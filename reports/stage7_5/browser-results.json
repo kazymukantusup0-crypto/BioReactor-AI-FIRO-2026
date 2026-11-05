@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "checks": [
+    "Actual persisted 142 L conversation renders decision cards",
+    "Biogas range rendered from Python",
+    "Conditional decision visible",
+    "One current followup question",
+    "Evidence and provenance expandable",
+    "Real browser followup changes gas use",
+    "Purpose change preserves 142 L",
+    "No new arbitrary reactor temperature",
+    "Real input form updates calculation",
+    "Form preserves original batch",
+    "Mobile has no page overflow",
+    "No JavaScript page errors"
+  ],
+  "errors": []
+}

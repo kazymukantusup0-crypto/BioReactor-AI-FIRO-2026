@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+<meta name="theme-color" content="#0f172a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="description" content="ТОО КРЭК — Карагандинская Региональная Энергетическая Компания. Передача и распределение электроэнергии, электронные квитанции, технические условия." />
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://krec.kz/ru/notices">
+<link rel="alternate" hreflang="ru" href="https://krec.kz/ru/notices">
+<link rel="alternate" hreflang="kk" href="https://krec.kz/kk/notices">
+<link rel="alternate" hreflang="x-default" href="https://krec.kz/ru/notices">
+<meta property="og:title" content="ТОО КРЭК - Объявления">
+<meta property="og:description" content="ТОО КРЭК — Карагандинская Региональная Энергетическая Компания. Передача и распределение электроэнергии, электронные квитанции, технические условия.">
+<meta property="og:url" content="https://krec.kz/ru/notices">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ТОО «КРЭК»">
+<meta property="og:image" content="https://krec.kz/images/logo.png">
+<title>ТОО КРЭК - Объявления</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="stylesheet" href="/css/style.css?v=1790583295" type="text/css" />
+<link rel="stylesheet" href="/css/heroui.css?v=1788845744" type="text/css" />
+<link rel="stylesheet" href="/css/cookie_consent.css?v=1790582880" type="text/css" />
+<link rel="shortcut icon" href="/favicon.ico?v=1790583295" type="image/vnd.microsoft.icon">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "ТОО «Карагандинская Региональная Энергетическая Компания»",
+  "alternateName": "ТОО «КРЭК»",
+  "url": "https://krec.kz",
+  "logo": "https://krec.kz/images/logo.png",
+  "telephone": "+7-7212-90-03-50",
+  "email": "info@krec.kz",
+  "taxID": "031140001297",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "108 уч. квартал, строение 7",
+    "addressLocality": "Караганда",
+    "addressRegion": "Карагандинская область",
+    "postalCode": "100000",
+    "addressCountry": "KZ"
+  }
+}
+</script>
+<script>
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/sw.js?v=1789703764').then(function(reg) {
+            reg.update();
+        }).catch(function() {});
+    });
+    navigator.serviceWorker.addEventListener('controllerchange', function() {
+        if (!window._swReloaded) {
+            window._swReloaded = true;
+            window.location.reload();
+        }
+    });
+}
+</script>
+</head>
+<body>
+
+
+<div id="wrap">
+
+<header class="krec-header" id="krecHeader">
+    <div class="krec-header-container">
+        <a href="/" class="krec-brand">
+            <img src="/images/logo.png?v=8" alt="ТОО КРЭК" class="krec-logo-img" />
+            <div class="krec-brand-text">
+                <span class="krec-brand-title">ТОО &laquo;КРЭК&raquo;</span>
+                <span class="krec-brand-subtitle">Электрические сети Карагандинской области</span>
+            </div>
+        </a>
+
+        <!-- Основная навигация -->
+        <nav class="krec-nav" id="portalNav" aria-label="Основная навигация">
+            <div class="krec-nav-mobile-header">
+                <span class="krec-nav-mobile-title">Меню портала</span>
+                <button type="button" class="krec-nav-close-btn" aria-label="Закрыть меню" onclick="closeMobileNav()">&times;</button>
+            </div>
+            <ul class="krec-nav-list">
+                <li class="krec-nav-item has-dropdown">
+                    <a href="/consumers" class="krec-nav-link ">
+                        <span>Потребителям</span>
+                        <svg class="nav-chevron" width="10" height="10" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                    </a>
+                    <div class="krec-dropdown">
+                        <a href="/kvit/" class="krec-dropdown-item">
+                            <div class="krec-dd-icon"><svg width="15" height="15" viewBox="0 0 24 24" class="svg-icon-stroke"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+                            <div>
+                                <div class="krec-dd-title">Электронная квитанция</div>
+                                <div class="krec-dd-desc">Поиск, просмотр и скачивание PDF</div>
+                            </div>
+                        </a>
+                        <a href="/tarif" class="krec-dropdown-item">
+                            <div class="krec-dd-icon"><svg width="15" height="15" viewBox="0 0 24 24" class="svg-icon-stroke"><circle cx="12" cy="12" r="10"/><line x1="7" y1="6.5" x2="17" y2="6.5"/><line x1="7" y1="10.5" x2="17" y2="10.5"/><line x1="12" y1="10.5" x2="12" y2="18.5"/></svg></div>
+                            <div>
+                                <div class="krec-dd-title">Тариф на передачу э/э</div>
+                                <div class="krec-dd-desc">Регулируемый тариф (Приказ № 100-ОД)</div>
+                            </div>
+                        </a>
+                        <a href="/price" class="krec-dropdown-item">
+                            <div class="krec-dd-icon"><svg width="15" height="15" viewBox="0 0 24 24" class="svg-icon-stroke"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><circle cx="7" cy="7" r="1.5"/></svg></div>
+                            <div>
+                                <div class="krec-dd-title">Цены на электроснабжение</div>
+                                <div class="krec-dd-desc">Розничные цены для потребителей районов</div>
+                            </div>
+                        </a>
+                        <a href="/pd_byt_potr" class="krec-dropdown-item">
+                            <div class="krec-dd-icon"><svg width="15" height="15" viewBox="0 0 24 24" class="svg-icon-stroke"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg></div>
+                            <div>
+                                <div class="krec-dd-title">Типовой публичный договор</div>
+                                <div class="krec-dd-desc">Договор электроснабжения</div>
+                            </div>
+                        </a>
+                        <a href="/appeals" class="krec-dropdown-item">
+                            <div class="krec-dd-icon"><svg width="15" height="15" viewBox="0 0 24 24" class="svg-icon-stroke"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+                            <div>
+                                <div class="krec-dd-title">Обратиться в КРЭК</div>
+                                <div class="krec-dd-desc">Электронная приемная обращений</div>
+                            </div>
+                        </a>
+                        <a href="/appeals/status" class="krec-dropdown-item">
+                            <div class="krec-dd-icon"><svg class="ui-icon" style="vertical-align:-2px;display:inline-block;flex-shrink:0;" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15.5 2H8.6c-.4 0-.8.2-1.1.5-.3.3-.5.7-.5 1.1v12.8c0 .4.2.8.5 1.1.3.3.7.5 1.1.5h10.8c.4 0 .8-.2 1.1-.5.3-.3.5-.7.5-1.1V6.5L15.5 2z"/><polyline points="15 2 15 7 20 7"/><path d="M4 19.5V7a2 2 0 0 1 2-2h1"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22h9.5a2 2 0 0 0 2-2v-1"/></svg></div>
+                            <div>
+                                <div class="krec-dd-title">Мои обращения</div>
+                                <div class="krec-dd-desc">Статусы и ответы на этом устройстве</div>
+                            </div>
+                        </a>
+                        <a href="/notices" class="krec-dropdown-item">
+                            <div class="krec-dd-icon"><svg width="15" height="15" viewBox="0 0 24 24" class="svg-icon-stroke"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></div>
+                            <div>
+                                <div class="krec-dd-title">Объявления и новости</div>
+                                <div class="krec-dd-desc">Официальные сообщения компании</div>
+                            </div>
+                        </a>
+                    </div>
+                </li>
+
+                <li class="krec-nav-item has-dropdown">
+                    <a href="/tu" class="krec-nav-link ">
+                        <span>Подключение</span>
+                        <svg class="nav-chevron" width="10" height="10" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                    </a>
+                    <div class="krec-dropdown">
+                        <a href="/tu" class="krec-dropdown-item">
+                            <div class="krec-dd-icon"><svg width="15" height="15" viewBox="0 0 24 24" class="svg-icon-stroke"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+                            <div>
+                                <div class="krec-dd-title">Технические условия</div>
+                                <div class="krec-dd-desc">Порядок подключения и этапы</div>
+                            </div>
+                        </a>
+                        <a href="/lists" class="krec-dropdown-item">
+                            <div class="krec-dd-icon"><svg width="15" height="15" viewBox="0 0 24 24" class="svg-icon-stroke"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+                            <div>
+                                <div class="krec-dd-title">Необходимые документы</div>
+                                <div class="krec-dd-desc">Checklist для физлиц, юрлиц и ИП</div>
+                            </div>
+                        </a>
+                        <a href="https://gov.ggk.kz" target="_blank" rel="noopener noreferrer" class="krec-dropdown-item highlight-portal">
+                            <div class="krec-dd-icon"><svg width="15" height="15" viewBox="0 0 24 24" class="svg-icon-stroke"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></div>
+                            <div>
+                                <div class="krec-dd-title">Портал АИС ГГК (gov.ggk.kz) ↗</div>
+                                <div class="krec-dd-desc">Подача заявки онлайн с ЭЦП</div>
+                            </div>
+                        </a>
+                    </div>
+                </li>
+
+                <li class="krec-nav-item has-dropdown">
+                    <a href="/load" class="krec-nav-link ">
+                        <span>Сеть</span>
+                        <svg class="nav-chevron" width="10" height="10" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                    </a>
+                    <div class="krec-dropdown">
+                        <a href="/load" class="krec-dropdown-item">
+                            <div class="krec-dd-icon"><svg width="15" height="15" viewBox="0 0 24 24" class="svg-icon-stroke"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg></div>
+                            <div>
+                                <div class="krec-dd-title">Подстанции 35–110 кВ</div>
+                                <div class="krec-dd-desc">Загрузка и резерв мощности</div>
+                            </div>
+                        </a>
+                        <a href="/line" class="krec-dropdown-item">
+                            <div class="krec-dd-icon"><svg width="15" height="15" viewBox="0 0 24 24" class="svg-icon-stroke"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+                            <div>
+                                <div class="krec-dd-title">Линии 35–110 кВ</div>
+                                <div class="krec-dd-desc">Высоковольтные сети</div>
+                            </div>
+                        </a>
+                        <a href="/lines10kv" class="krec-dropdown-item">
+                            <div class="krec-dd-icon"><svg width="15" height="15" viewBox="0 0 24 24" class="svg-icon-stroke"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+                            <div>
+                                <div class="krec-dd-title">Линии 6–10 кВ</div>
+                                <div class="krec-dd-desc">Распределительные сети</div>
+                            </div>
+                        </a>
+                        <a href="/ktp" class="krec-dropdown-item">
+                            <div class="krec-dd-icon"><svg width="15" height="15" viewBox="0 0 24 24" class="svg-icon-stroke"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg></div>
+                            <div>
+                                <div class="krec-dd-title">КТП 6(10) кВ</div>
+                                <div class="krec-dd-desc">Трансформаторные подстанции</div>
+                            </div>
+                        </a>
+                    </div>
+                </li>
+
+                <li class="krec-nav-item has-dropdown">
+                    <a href="/contacts" class="krec-nav-link ">
+                        <span>Компания</span>
+                        <svg class="nav-chevron" width="10" height="10" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                    </a>
+                    <div class="krec-dropdown">
+                        <a href="/#about" class="krec-dropdown-item">
+                            <div class="krec-dd-icon"><svg width="15" height="15" viewBox="0 0 24 24" class="svg-icon-stroke"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></div>
+                            <div>
+                                <div class="krec-dd-title">О компании ТОО «КРЭК»</div>
+                                <div class="krec-dd-desc">Масштаб сети и инфраструктура</div>
+                            </div>
+                        </a>
+                        <a href="/contacts" class="krec-dropdown-item">
+                            <div class="krec-dd-icon"><svg width="15" height="15" viewBox="0 0 24 24" class="svg-icon-stroke"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+                            <div>
+                                <div class="krec-dd-title">Контакты и службы</div>
+                                <div class="krec-dd-desc">Центральный офис и подразделения</div>
+                            </div>
+                        </a>
+                        <a href="/contacts#res" class="krec-dropdown-item">
+                            <div class="krec-dd-icon"><svg width="15" height="15" viewBox="0 0 24 24" class="svg-icon-stroke"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+                            <div>
+                                <div class="krec-dd-title">Районы сетей (6 РЭС)</div>
+                                <div class="krec-dd-desc">Абай, Осакаровка, Нура, Каркаралинск...</div>
+                            </div>
+                        </a>
+                        <a href="/tbquest" class="krec-dropdown-item">
+                            <div class="krec-dd-icon"><svg width="15" height="15" viewBox="0 0 24 24" class="svg-icon-stroke"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+                            <div>
+                                <div class="krec-dd-title">Охрана труда и ТБ</div>
+                                <div class="krec-dd-desc">Техника безопасности персонала</div>
+                            </div>
+                        </a>
+                    </div>
+                </li>
+
+                <li class="krec-nav-item">
+                    <a href="/zakup" class="krec-nav-link ">
+                        <span>Закупки</span>
+                    </a>
+                </li>
+
+                <li class="krec-nav-item">
+                    <a href="/vacancy" class="krec-nav-link ">
+                        <span>Вакансии</span>
+                    </a>
+                </li>
+
+                <li class="krec-nav-item has-dropdown">
+                    <a href="/docs" class="krec-nav-link ">
+                        <span>Документы</span>
+                        <svg class="nav-chevron" width="10" height="10" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                    </a>
+                    <div class="krec-dropdown">
+                        <a href="/docs" class="krec-dropdown-item">
+                            <div class="krec-dd-icon"><svg width="15" height="15" viewBox="0 0 24 24" class="svg-icon-stroke"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+                            <div>
+                                <div class="krec-dd-title">Нормативная база</div>
+                                <div class="krec-dd-desc">Законы и правила РК</div>
+                            </div>
+                        </a>
+                        <a href="/reports" class="krec-dropdown-item">
+                            <div class="krec-dd-icon"><svg width="15" height="15" viewBox="0 0 24 24" class="svg-icon-stroke"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+                            <div>
+                                <div class="krec-dd-title">Отчеты по ИП и ТС</div>
+                                <div class="krec-dd-desc">Инвестпрограмма и тарифная смета</div>
+                            </div>
+                        </a>
+                        <a href="/price" class="krec-dropdown-item">
+                            <div class="krec-dd-icon"><svg width="15" height="15" viewBox="0 0 24 24" class="svg-icon-stroke"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+                            <div>
+                                <div class="krec-dd-title">Прейскурант услуг</div>
+                                <div class="krec-dd-desc">Регулируемые и сервисные услуги</div>
+                            </div>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Правый блок: Языки и Бургер-меню -->
+        <div class="krec-header-actions">
+            <div class="krec-lang-switch" aria-label="Язык страницы">
+                <a href="/ru/notices" class="krec-lang-btn active" lang="ru">Рус</a>
+                <span class="krec-lang-sep">/</span>
+                <a href="/kk/notices" class="krec-lang-btn " lang="kk">Қаз</a>
+            </div>
+            <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Открыть навигационное меню" aria-expanded="false" onclick="toggleMobileNav(event)">
+                <span class="burger-icon-bars">
+                    <span></span><span></span><span></span>
+                </span>
+            </button>
+        </div>
+    </div>
+</header>
+
+
+<div class="mobile-nav-backdrop" id="mobileNavBackdrop" onclick="closeMobileNav()"></div>
+
+<!-- ===== ОСНОВНОЙ КОНТЕНТ ===== -->
+<div class="content-container">
+<style>
+.price-notice-posters {margin:22px 0;}
+.price-poster-language {max-width:680px;margin:0 auto;}
+.price-poster-link {display:block;overflow:hidden;border:1px solid #dbeafe;border-radius:12px;background:#eff6ff;}
+.price-poster-image {display:block;width:100%;max-width:100%;height:auto;}
+.price-poster-caption {margin-top:10px;text-align:center;font-size:13px;line-height:1.6;}
+.price-poster-caption a {color:#2563eb;font-weight:600;text-decoration:underline;text-underline-offset:3px;}
+</style>
+<style>
+html[lang="ru"] .price-update-kk, html[lang="kk"] .price-update-ru {display:none!important;}
+.price-update-links {display:flex;flex-wrap:wrap;gap:10px;margin-top:18px;}
+.price-update-links a {white-space:normal;max-width:100%;overflow-wrap:anywhere;}
+.price-update-history {border:1px solid #e2e8f0;border-radius:14px;padding:20px;margin:0 0 28px;background:#fff;}
+.price-update-history summary {cursor:pointer;font-weight:700;color:#0f172a;font-size:16px;}
+.price-update-history[open] summary {margin-bottom:20px;}
+@media(max-width:600px) {.price-update-history {padding:14px;} #price-unified .tarif-hero-card {padding:22px 18px!important;} #price-unified .tarif-params-box {min-width:0!important;width:100%;max-width:none!important;} .price-update-links a {width:100%;}}
+</style>
+<nav class="breadcrumb-nav" aria-label="Хлебные крошки">
+    <a href="/">
+        <svg class="svg-icon-stroke" width="13" height="13" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Главная
+    </a>
+    <span class="breadcrumb-sep">
+        <svg class="svg-icon-stroke" width="12" height="12" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+    </span>
+    <span class="breadcrumb-current">Объявления</span>
+</nav>
+
+<div class="page-title-wrap">
+    <div class="page-category-badge">
+        <svg class="svg-icon-stroke" width="12" height="12" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        Пресс-служба и уведомления
+    </div>
+    <h1 class="page-main-title">Объявления и официальные сообщения</h1>
+    <p style="color:#64748b; font-size:14.5px; margin:0; line-height:1.5;">
+        Официальные уведомления для потребителей электрической энергии Карагандинской области, изменения регламентов обслуживания и архив публикаций.
+    </p>
+</div>
+
+<!-- ТАБЫ: АКТУАЛЬНЫЕ И АРХИВ (Requirement 13) -->
+<div class="cl-tabs-header" style="margin-bottom:24px;">
+    <button type="button" class="cl-tab-btn active" onclick="switchNoticesTab('active', this)">Актуальные объявления</button>
+    <button type="button" class="cl-tab-btn" onclick="switchNoticesTab('archive', this)">Архив объявлений</button>
+</div>
+
+<!-- ПОИСКОВАЯ СТРОКА -->
+<div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:14px; padding:16px 20px; margin-bottom:24px; display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
+    <div style="display:flex; align-items:center; gap:8px; flex:1; min-width:240px; background:#ffffff; border:1px solid #cbd5e1; border-radius:8px; padding:8px 12px;">
+        <svg class="svg-icon-stroke" width="16" height="16" viewBox="0 0 24 24" style="color:#64748b;"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" id="noticesSearch" placeholder="Поиск по ключевым словам или населенному пункту..." oninput="filterNotices()" style="width:100%; border:none; background:transparent; font-size:13.5px; color:#0f172a; outline:none; font-family:inherit;">
+    </div>
+    <div style="display:flex; gap:6px; flex-wrap:wrap;">
+        <span style="font-size:12.5px; font-weight:700; color:#2563eb; background:#eff6ff; padding:5px 12px; border-radius:6px;">2025–2026</span>
+    </div>
+</div>
+
+<!-- 1. АКТУАЛЬНЫЕ ОБЪЯВЛЕНИЯ -->
+<div id="notices-active" class="notices-panel" style="display:block;">
+    <div style="display:flex; flex-direction:column; gap:20px;">
+
+        <div class="notice-item-card" id="notice-price-2026-10-15" style="background:#fff;border:1px solid #bfdbfe;border-radius:16px;padding:26px;box-shadow:0 4px 16px rgba(15,23,42,.06);">
+<div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:14px;"><span style="font-size:12px;font-weight:700;color:#1d4ed8;background:#eff6ff;padding:4px 12px;border-radius:9999px;"><span class="price-update-ru" lang="ru">ИЗМЕНЕНИЕ ЦЕН НА ЭЛЕКТРОСНАБЖЕНИЕ</span><span class="price-update-kk" lang="kk">ЭЛЕКТРМЕН ЖАБДЫҚТАУ БАҒАЛАРЫНЫҢ ӨЗГЕРУІ</span></span><time datetime="2026-10-09" style="font-size:13px;color:#64748b;">09.10.2026</time></div>
+<h2 style="font-size:20px;font-weight:800;color:#0f172a;margin:0 0 14px;line-height:1.45;"><span class="price-update-ru" lang="ru">Единые цены на электроснабжение с 15 октября 2026 года</span><span class="price-update-kk" lang="kk">2026 жылғы 15 қазаннан бастап электрмен жабдықтауға бірыңғай бағалар</span></h2>
+<p style="font-size:14px;color:#334155;line-height:1.7;margin:0 0 12px;"><span class="price-update-ru" lang="ru">ТОО «Карагандинская региональная энергетическая компания» уведомляет своих потребителей об изменении цены на услуги электроснабжения с 15 октября 2026 года.</span><span class="price-update-kk" lang="kk">«Қарағанды аймақтық энергетикалық компаниясы» ЖШС 2026 жылғы 15 қазаннан бастап электрмен жабдықтау қызметтерінің бағасы өзгеретінін тұтынушыларына хабарлайды.</span></p>
+<p style="font-size:14px;color:#334155;line-height:1.7;margin:0 0 12px;"><span class="price-update-ru" lang="ru">Цены по каждой группе потребителей едины для Абайского, Бухар-Жырауского, Нуринского, Осакаровского и Каркаралинского районов.</span><span class="price-update-kk" lang="kk">Тұтынушылардың әр тобы үшін бағалар Абай, Бұқар-Жырау, Нұра, Осакаров және Қарқаралы аудандары бойынша бірыңғай.</span></p>
+<p style="font-size:13px;color:#64748b;line-height:1.6;margin:0;"><span class="price-update-ru" lang="ru">Основание: мотивированное заключение № 35-03-07/1011-И от 09.10.2026 о снижении проектируемой цены до уровня предельной цены на услуги розничной реализации электрической энергии по Нуринскому, Осакаровскому, Абайскому и Каркаралинскому районам Карагандинской области.</span><span class="price-update-kk" lang="kk">Негіздеме: Қарағанды облысының Нұра, Осакаров, Абай және Қарқаралы аудандары бойынша электр энергиясын бөлшек саудада өткізу қызметтеріне арналған жобаланған бағаны шекті баға деңгейіне дейін төмендету туралы 2026 жылғы 9 қазандағы № 35-03-07/1011-И дәлелді қорытынды.</span></p>
+<section class="price-notice-posters" id="price-notice-posters-2026-10-15">
+<figure class="price-poster-language price-update-ru" lang="ru">
+<a class="price-poster-link" href="/static/images/price_2026-10-15_ru.jpg" target="_blank" rel="noopener" aria-label="Открыть объявление о новых ценах с 15 октября 2026 года на русском языке">
+<img class="price-poster-image" src="/static/images/price_2026-10-15_ru.jpg" width="1086" height="1448" loading="lazy" decoding="async" alt="Объявление ТОО КРЭК о новых ценах на электроснабжение с 15 октября 2026 года. Русская версия.">
+</a>
+<figcaption class="price-poster-caption"><a href="/static/images/price_2026-10-15_ru.jpg" target="_blank" rel="noopener">Открыть плакат в полном размере</a></figcaption>
+</figure>
+<figure class="price-poster-language price-update-kk" lang="kk">
+<a class="price-poster-link" href="/static/images/price_2026-10-15_kk.jpg" target="_blank" rel="noopener" aria-label="2026 жылғы 15 қазаннан бастап жаңа бағалар туралы қазақ тіліндегі хабарландыруды ашу">
+<img class="price-poster-image" src="/static/images/price_2026-10-15_kk.jpg" width="1086" height="1448" loading="lazy" decoding="async" alt="КРЭК ЖШС электрмен жабдықтаудың 2026 жылғы 15 қазаннан бастап жаңа бағалары туралы хабарландыру. Қазақша нұсқа.">
+</a>
+<figcaption class="price-poster-caption"><a href="/static/images/price_2026-10-15_kk.jpg" target="_blank" rel="noopener">Плакатты толық өлшемде ашу</a></figcaption>
+</figure>
+</section>
+<div class="price-update-links">
+    <a href="/files/price_2026-10-15_notice.docx" class="btn-doc-download" download><span class="price-update-ru" lang="ru">Скачать объявление и таблицу цен (DOCX)</span><span class="price-update-kk" lang="kk">Хабарландыру мен бағалар кестесін жүктеу (DOCX)</span></a>
+    <a href="/files/zaklyuchenie_35-03-07_1011-I_2026-10-09.pdf" class="btn-doc-secondary" target="_blank" rel="noopener"><span class="price-update-ru" lang="ru">Мотивированное заключение (PDF)</span><span class="price-update-kk" lang="kk">Дәлелді қорытынды (PDF)</span></a>
+    </div>
+<a href="/price#price-unified" style="display:inline-block;margin-top:16px;font-weight:700;color:#2563eb;"><span class="price-update-ru" lang="ru">Посмотреть цены по группам потребителей →</span><span class="price-update-kk" lang="kk">Тұтынушылар топтары бойынша бағаларды көру →</span></a>
+</div>
+<!-- Карточка: Включение АТ-2 на ПС НС-19 -->
+        <div class="notice-item-card" style="background:#ffffff; border:1px solid #bfdbfe; border-radius:16px; padding:28px; box-shadow:0 4px 16px rgba(15,23,42,0.06); position:relative; overflow:hidden;">
+            <div style="position:absolute; top:0; left:0; width:4px; height:100%; background:#2563eb;"></div>
+            
+            <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:16px;">
+                <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+                    <span style="font-size:12px; font-weight:800; background:#eff6ff; color:#1d4ed8; border:1px solid #bfdbfe; padding:4px 12px; border-radius:9999px; letter-spacing:0.04em;">
+                        ВАЖНАЯ ИНФОРМАЦИЯ
+                    </span>
+                    <span style="font-size:11.5px; font-weight:700; background:#f0fdf4; color:#16a34a; border:1px solid #bbf7d0; padding:3px 10px; border-radius:9999px;">
+                        ПС НС-19
+                    </span>
+                </div>
+                <span style="font-size:13px; color:#64748b; font-weight:600;">18 сентября 2026 г.</span>
+            </div>
+
+            <h2 style="font-size:20px; font-weight:800; color:#0f172a; margin:0 0 16px 0; line-height:1.35;">
+                Включение автотрансформатора АТ-2 на ПС НС-19 после капитального ремонта
+            </h2>
+
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:24px; align-items:start; margin-bottom:10px;">
+                <div style="font-size:14.5px; color:#334155; line-height:1.65; display:flex; flex-direction:column; gap:12px;">
+                    <div style="background:#f8fafc; border-left:3px solid #3b82f6; padding:12px 16px; border-radius:0 8px 8px 0; font-weight:600; color:#1e293b;">
+                        Уважаемые потребители электроэнергии!
+                    </div>
+                    <p style="margin:0;">
+                        Сообщаем, что <strong>АТ-2 на ПС НС-19</strong> после проведения капитального ремонта включён на холостой ход сроком на <strong>72 часа</strong>.
+                    </p>
+                    <p style="margin:0; background:#eff6ff; padding:12px 16px; border-radius:10px; border:1px solid #dbeafe; color:#1e40af;">
+                        <strong>21 октября</strong>, после проведения дополнительной проверки и подтверждения стабильности работы оборудования, планируется включение <strong>АТ-2 под нагрузку</strong>.
+                    </p>
+                    <p style="margin:0; color:#64748b; font-size:13.5px;">
+                        Все работы проводятся в рамках мероприятий по обеспечению надёжной и стабильной работы электроснабжения.
+                    </p>
+                    <div style="font-weight:700; color:#0f172a; margin-top:4px;">
+                        С уважением,<br>
+                        <span style="color:#2563eb;">ТОО «КРЭК»</span>
+                    </div>
+                </div>
+
+                <!-- Фотографии оборудования -->
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+                    <a href="/static/images/ns19_at2_repair_1.jpg" target="_blank" style="display:block; border-radius:12px; overflow:hidden; border:1px solid #e2e8f0; box-shadow:0 2px 8px rgba(0,0,0,0.05); aspect-ratio:3/4; background:#f1f5f9;">
+                        <img src="/static/images/ns19_at2_repair_1.jpg" alt="Информационное сообщение АТ-2 ПС НС-19" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.2s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+                    </a>
+                    <a href="/static/images/ns19_at2_repair_2.jpg" target="_blank" style="display:block; border-radius:12px; overflow:hidden; border:1px solid #e2e8f0; box-shadow:0 2px 8px rgba(0,0,0,0.05); aspect-ratio:3/4; background:#f1f5f9;">
+                        <img src="/static/images/ns19_at2_repair_2.jpg" alt="Оборудование АТ-2 на ПС НС-19" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.2s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Объявление 2: АИС ГГК -->
+        <div class="notice-item-card" style="background:#ffffff; border:1px solid #e2e8f0; border-radius:16px; padding:26px; box-shadow:0 2px 8px rgba(15,23,42,0.04);">
+            <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:14px;">
+                <span style="font-size:12px; font-weight:700; background:#eff6ff; color:#2563eb; border:1px solid #bfdbfe; padding:4px 10px; border-radius:9999px;">
+                    ЦИФРОВИЗАЦИЯ УСЛУГ
+                </span>
+                <span style="font-size:13px; color:#64748b; font-weight:600;">Постоянно</span>
+            </div>
+            <h2 style="font-size:18px; font-weight:800; color:#0f172a; margin:0 0 10px 0; line-height:1.35;">
+                Прием заявлений на выдачу технических условий в электронном формате через АИС ГГК
+            </h2>
+            <div style="font-size:14px; color:#475569; line-height:1.6; margin-bottom:16px;">
+                В целях упрощения процедур технологического присоединения для физических и юридических лиц подача заявлений на выдачу ТУ осуществляется онлайн через Автоматизированную информационную систему государственного градостроительного кадастра с использованием электронной цифровой подписи (ЭЦП).
+            </div>
+            <a href="https://gov.ggk.kz" target="_blank" rel="noopener noreferrer" class="btn-doc-download" style="display:inline-flex;">
+                <span>Перейти на портал gov.ggk.kz ↗</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- 2. АРХИВ ОБЪЯВЛЕНИЙ -->
+<div id="notices-archive" class="notices-panel" style="display:none;">
+    <div style="display:flex; flex-direction:column; gap:14px;">
+
+        <div class="notice-item-card" style="background:#ffffff; border:1px solid #e2e8f0; border-radius:14px; padding:20px 24px;">
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;">
+                <span style="font-size:12px; color:#64748b; font-weight:600;">2024 год</span>
+                <span style="font-size:12px; color:#64748b; background:#f1f5f9; padding:2px 8px; border-radius:6px;">Архив</span>
+            </div>
+            <h3 style="font-size:16px; font-weight:700; color:#0f172a; margin:0 0 6px 0;">Проведение ежегодных публичных слушаний по исполнению тарифной сметы</h3>
+            <p style="font-size:13.5px; color:#64748b; line-height:1.5; margin:0;">Отчет перед потребителями и иными заинтересованными лицами об исполнении утвержденной тарифной сметы на услуги по передаче электрической энергии.</p>
+        </div>
+
+        <div class="notice-item-card" style="background:#ffffff; border:1px solid #e2e8f0; border-radius:14px; padding:20px 24px;">
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;">
+                <span style="font-size:12px; color:#64748b; font-weight:600;">2023 год</span>
+                <span style="font-size:12px; color:#64748b; background:#f1f5f9; padding:2px 8px; border-radius:6px;">Архив</span>
+            </div>
+            <h3 style="font-size:16px; font-weight:700; color:#0f172a; margin:0 0 6px 0;">О соблюдении правил охранных зон электрических сетей</h3>
+            <p style="font-size:13.5px; color:#64748b; line-height:1.5; margin:0;">Разъяснение требований безопасности при производстве земляных и строительных работ вблизи воздушных и кабельных линий электропередач напряжением 0,4–110 кВ.</p>
+        </div>
+    </div>
+</div>
+
+<script>
+function switchNoticesTab(tab, btn) {
+    document.querySelectorAll('.notices-panel').forEach(p => p.style.display = 'none');
+    document.querySelectorAll('.cl-tabs-header .cl-tab-btn').forEach(b => b.classList.remove('active'));
+    const target = document.getElementById('notices-' + tab);
+    if (target) target.style.display = 'block';
+    btn.classList.add('active');
+}
+function filterNotices() {
+    const q = (document.getElementById('noticesSearch').value || '').toLowerCase().trim();
+    const cards = document.querySelectorAll('.notice-item-card');
+    cards.forEach(c => {
+        const text = c.textContent.toLowerCase();
+        c.style.display = (!q || text.includes(q)) ? 'block' : 'none';
+    });
+}
+</script>
+
+</div>
+
+
+<footer class="krec-footer" id="krecFooter">
+    <div class="krec-footer-top">
+        <div class="krec-footer-container">
+            <div class="krec-footer-col">
+                <h4 class="krec-footer-title">Потребителям</h4>
+                <ul class="krec-footer-links">
+                    <li><a href="/kvit/">Электронная квитанция</a></li>
+                    <li><a href="/consumers">Сервисный центр потребителей</a></li>
+                    <li><a href="/tarif">Тариф на передачу э/э</a></li>
+                    <li><a href="/price">Цены на электроснабжение</a></li>
+                    <li><a href="/pd_byt_potr">Типовой публичный договор</a></li>
+                    <li><a href="/appeals">Обратиться в КРЭК</a></li>
+                    <li><a href="/notices">Объявления и новости</a></li>
+                </ul>
+            </div>
+
+            <div class="krec-footer-col">
+                <h4 class="krec-footer-title">Подключение и сеть</h4>
+                <ul class="krec-footer-links">
+                    <li><a href="/tu">Порядок подключения к сетям</a></li>
+                    <li><a href="/tu">Технические условия (ТУ)</a></li>
+                    <li><a href="/lists">Необходимые документы</a></li>
+                    <li><a href="https://gov.ggk.kz" target="_blank" rel="noopener noreferrer">Портал АИС ГГК (gov.ggk.kz) ↗</a></li>
+                    <li><a href="/load">Загрузка подстанций 35–110 кВ</a></li>
+                    <li><a href="/images/nets.png" target="_blank" rel="noopener noreferrer">Схема электрических сетей ↗</a></li>
+                </ul>
+            </div>
+
+            <div class="krec-footer-col">
+                <h4 class="krec-footer-title">Компания</h4>
+                <ul class="krec-footer-links">
+                    <li><a href="/#about">О компании ТОО «КРЭК»</a></li>
+                    <li><a href="/contacts#res">Районы электрических сетей (6 РЭС)</a></li>
+                    <li><a href="/contacts">Контакты и реквизиты</a></li>
+                    <li><a href="/privacy">Политика конфиденциальности</a></li>
+                    <li><a href="/terms">Условия использования</a></li>
+                    <li><a href="javascript:void(0)" onclick="krecOpenCookieModal()">Настройки файлов cookie</a></li>
+                    <li><a href="/vacancy">Вакансии предприятия</a></li>
+                    <li><a href="/tbquest">Охрана труда и безопасность</a></li>
+                </ul>
+            </div>
+
+            <div class="krec-footer-col">
+                <h4 class="krec-footer-title">Документы и закупки</h4>
+                <ul class="krec-footer-links">
+                    <li><a href="/reports">Отчетность по инвестпрограмме</a></li>
+                    <li><a href="/reports">Отчетность по тарифной смете</a></li>
+                    <li><a href="/docs">Нормативно-правовая база</a></li>
+                    <li><a href="/zakup">Планы закупок и тендеры</a></li>
+                    <li><a href="/price">Прейскурант сервисных услуг</a></li>
+                    <li><a href="/privacy#rights">Защита персональных данных</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="krec-footer-bottom">
+        <div class="krec-footer-container bottom-row">
+            <div class="krec-footer-copy">
+                <div>&copy; 2005&ndash;2026 ТОО &laquo;Карагандинская Региональная Энергетическая Компания&raquo; (ТОО &laquo;КРЭК&raquo;). Все права защищены.</div>
+                <div style="margin-top:4px; font-size:12.5px; color:#cbd5e1;">
+                    БИН: <strong>031140001297</strong> &bull; 100000, Карагандинская обл., г. Караганда, район им. Казыбек би, 108 учетный квартал, стр. 7
+                </div>
+                <div style="margin-top:3px; font-size:12px; color:#94a3b8;">
+                    Вопросы по персональным данным: <a href="mailto:dpo@krec.kz" style="color:#93c5fd; text-decoration:none;">dpo@krec.kz</a> &bull; Канцелярия: +7 (7212) 90-03-50
+                </div>
+                <div style="margin-top:6px; font-size:12px; color:#94a3b8; display:flex; align-items:center; gap:6px;">
+                    <svg width="13" height="13" viewBox="0 0 24 24" class="svg-icon-stroke" style="stroke:#94a3b8;"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                    <span>Разработка и создание портала: <a href="https://t.me/REALLY_DE4D" target="_blank" rel="noopener noreferrer" style="color:#e2e8f0; font-weight:700; text-decoration:none; border-bottom:1px dotted #64748b; transition:all 0.2s;" onmouseover="this.style.color='#60a5fa';this.style.borderBottomColor='#60a5fa'" onmouseout="this.style.color='#e2e8f0';this.style.borderBottomColor='#64748b'">Жүніс Тамерлан</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+</div><!-- /#wrap -->
+
+
+<!-- ===== КОРПОРАТИВНЫЙ БАННЕР СОГЛАСИЯ НА COOKIES ===== -->
+<div id="krecCookieBanner" class="krec-cookie-banner" style="display:none;" role="region" aria-label="Уведомление о файлах cookie">
+    <div class="krec-cookie-container">
+        <div class="krec-cookie-text">
+            <div class="krec-cookie-title">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <span>Файлы cookie и конфиденциальность данных</span>
+            </div>
+            <p class="krec-cookie-desktop-text">Мы используем обязательные cookies для работы портала и аналитические cookies (Яндекс.Метрика) для анализа посещаемости сайта. На страницах поиска квитанций и обращений запись экрана и перехват ввода клавиатуры отключены. Вы можете принять все или продолжить только с техническими cookies. Подробнее: <a href="/privacy" style="color:#60a5fa;text-decoration:underline;">Политика сбора и обработки данных</a>.</p>
+            <p class="krec-cookie-mobile-text">Обязательные cookies нужны для работы сайта. Аналитику можно разрешить или отключить. <a href="/privacy" style="color:#60a5fa;text-decoration:underline;">Подробнее</a>.</p>
+        </div>
+        <div class="krec-cookie-actions">
+            <button type="button" class="krec-cookie-btn krec-cookie-btn-primary" onclick="krecAcceptAllCookies()">Принять все</button>
+            <button type="button" class="krec-cookie-btn krec-cookie-btn-outline" onclick="krecRejectCookies()">Только необходимые</button>
+            <button type="button" class="krec-cookie-btn krec-cookie-btn-subtle" onclick="krecOpenCookieModal()">Настроить</button>
+        </div>
+    </div>
+</div>
+
+<!-- ===== МОДАЛЬНОЕ ОКНО НАСТРОЙКИ COOKIES ===== -->
+<div id="krecCookieModal" class="krec-cookie-modal-backdrop" style="display:none;" onclick="if(event.target===this)krecCloseCookieModal()">
+    <div class="krec-cookie-modal-content" role="dialog" aria-modal="true" aria-labelledby="krecCookieModalTitle">
+        <div class="krec-cookie-modal-header">
+            <h3 id="krecCookieModalTitle">Настройки файлов cookie и аналитики</h3>
+            <button type="button" class="krec-cookie-close-btn" onclick="krecCloseCookieModal()" aria-label="Закрыть">&times;</button>
+        </div>
+        <div class="krec-cookie-modal-body">
+            <p style="margin-bottom:16px; font-size:13.5px; color:#64748b; line-height:1.5;">В соответствии с Законом Республики Казахстан «О персональных данных и их защите» вы можете настроить категории используемых файлов cookie.</p>
+
+            <div class="krec-cookie-option">
+                <div class="krec-cookie-opt-header">
+                    <div>
+                        <strong>Технические (необходимые) cookies</strong>
+                        <span class="krec-badge-req">Всегда активны</span>
+                    </div>
+                </div>
+                <p>Обеспечивают базовое функционирование сайта: выбор языка, сессии, предотвращение атак. Без них сайт не может работать.</p>
+            </div>
+
+            <div class="krec-cookie-option">
+                <div class="krec-cookie-opt-header">
+                    <div>
+                        <strong>Аналитические cookies (Яндекс.Метрика)</strong>
+                    </div>
+                    <label class="krec-switch">
+                        <input type="checkbox" id="krecConsentAnalyticsCheckbox">
+                        <span class="krec-slider"></span>
+                    </label>
+                </div>
+                <p>Сбор агрегированной обезличенной статистики посещаемости. На страницах поиска квитанций и формы обращений Webvisor (запись действий на экране) отключён принудительно.</p>
+            </div>
+        </div>
+        <div class="krec-cookie-modal-footer">
+            <button type="button" class="krec-cookie-btn krec-cookie-btn-outline" onclick="krecCloseCookieModal()">Отмена</button>
+            <button type="button" class="krec-cookie-btn krec-cookie-btn-primary" onclick="krecSaveCookieSettings()">Сохранить выбор</button>
+        </div>
+    </div>
+</div>
+
+
+<script>
+function toggleMobileNav(e) {
+    if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+    }
+    const nav = document.getElementById('portalNav');
+    const toggle = document.getElementById('mobileNavToggle');
+    const backdrop = document.getElementById('mobileNavBackdrop');
+    if (!nav) return;
+    const isOpen = nav.classList.toggle('is-open');
+    if (toggle) {
+        toggle.classList.toggle('active', isOpen);
+        toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    }
+    if (backdrop) {
+        backdrop.classList.toggle('is-visible', isOpen);
+    }
+    document.body.classList.toggle('mobile-menu-active', isOpen);
+    if (isOpen) {
+        nav.removeAttribute('inert');
+        nav.setAttribute('aria-hidden', 'false');
+        const closeBtn = nav.querySelector('.krec-nav-close-btn');
+        if (closeBtn) closeBtn.focus();
+    } else {
+        if (window.innerWidth <= 1080) {
+            nav.setAttribute('inert', '');
+            nav.setAttribute('aria-hidden', 'true');
+        }
+        if (toggle) toggle.focus();
+    }
+}
+
+function closeMobileNav() {
+    const nav = document.getElementById('portalNav');
+    const toggle = document.getElementById('mobileNavToggle');
+    const backdrop = document.getElementById('mobileNavBackdrop');
+    if (nav) {
+        nav.classList.remove('is-open');
+        if (window.innerWidth <= 1080) {
+            nav.setAttribute('inert', '');
+            nav.setAttribute('aria-hidden', 'true');
+        }
+    }
+    if (toggle) {
+        toggle.classList.remove('active');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.focus();
+    }
+    if (backdrop) backdrop.classList.remove('is-visible');
+    document.body.classList.remove('mobile-menu-active');
+}
+
+function switchAnnouncementLang(lang) {
+    var ruCard = document.getElementById('announcementRu');
+    var kzCard = document.getElementById('announcementKz');
+    var btnRu = document.getElementById('btnAnnounceRu');
+    var btnKz = document.getElementById('btnAnnounceKz');
+
+    if (lang === 'kz') {
+        if (ruCard) ruCard.style.display = 'none';
+        if (kzCard) kzCard.style.display = 'block';
+        if (btnRu) btnRu.classList.remove('active');
+        if (btnKz) btnKz.classList.add('active');
+    } else {
+        if (kzCard) kzCard.style.display = 'none';
+        if (ruCard) ruCard.style.display = 'block';
+        if (btnKz) btnKz.classList.remove('active');
+        if (btnRu) btnRu.classList.add('active');
+    }
+    try {
+        localStorage.setItem('krec_announce_lang', lang);
+    } catch(e) {}
+}
+
+function switchPortalLang(lang) {
+    var ruBtn = document.getElementById('btnLangRu');
+    var kzBtn = document.getElementById('btnLangKz');
+    if (ruBtn && kzBtn) {
+        if (lang === 'kz') {
+            ruBtn.classList.remove('active');
+            kzBtn.classList.add('active');
+        } else {
+            kzBtn.classList.remove('active');
+            ruBtn.classList.add('active');
+        }
+    }
+    try {
+        localStorage.setItem('krec_portal_lang', lang);
+        document.cookie = 'krec_lang=' + lang + '; path=/; max-age=31536000';
+    } catch(e) {}
+
+    if (typeof switchAnnouncementLang === 'function') {
+        switchAnnouncementLang(lang);
+    }
+}
+
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeMobileNav();
+        if (typeof krecCloseCookieModal === 'function') {
+            krecCloseCookieModal();
+        }
+    }
+});
+
+function syncPortalNavInert() {
+    const nav = document.getElementById('portalNav');
+    if (!nav) return;
+    if (window.innerWidth <= 1080) {
+        if (!nav.classList.contains('is-open')) {
+            nav.setAttribute('inert', '');
+            nav.setAttribute('aria-hidden', 'true');
+        } else {
+            nav.removeAttribute('inert');
+            nav.setAttribute('aria-hidden', 'false');
+        }
+    } else {
+        nav.removeAttribute('inert');
+        nav.removeAttribute('aria-hidden');
+    }
+}
+
+window.addEventListener('resize', syncPortalNavInert);
+document.addEventListener('DOMContentLoaded', syncPortalNavInert);
+
+document.addEventListener('DOMContentLoaded', function() {
+    try {
+        var saved = localStorage.getItem('krec_portal_lang') || localStorage.getItem('krec_announce_lang');
+        if (saved === 'kz') {
+            switchPortalLang('kz');
+        }
+    } catch(e) {}
+});
+
+// ===== COOKIE CONSENT & METRIKA SHIELD =====
+(function() {
+    var sensitiveSlugs = ['appeals', 'search', 'kvit', 'receipt'];
+    var currentSlug = 'notices';
+    var isSensitive = sensitiveSlugs.indexOf(currentSlug) !== -1;
+
+    function getStoredConsent() {
+        try {
+            var raw = localStorage.getItem('krec_cookie_consent');
+            if (raw) return JSON.parse(raw);
+        } catch(e) {}
+        return null;
+    }
+
+    function purgeTrackingData() {
+        var host = window.location.hostname;
+        var domains = ['', '.' + host, host];
+        var parts = host.split('.');
+        if (parts.length >= 2) {
+            domains.push('.' + parts.slice(-2).join('.'));
+        }
+        try {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var c = cookies[i].trim();
+                var eq = c.indexOf('=');
+                var name = eq > -1 ? c.substring(0, eq).trim() : c;
+                if (name.indexOf('_ym') === 0 || name.indexOf('yabs') === 0 || name === 'krec_analytics') {
+                    for (var d = 0; d < domains.length; d++) {
+                        var dom = domains[d];
+                        var domAttr = dom ? '; domain=' + dom : '';
+                        document.cookie = name + '=; path=/; max-age=0; expires=Thu, 01 Jan 1970 00:00:00 GMT' + domAttr;
+                    }
+                }
+            }
+            document.cookie = 'krec_analytics=0; path=/; max-age=31536000; SameSite=Lax' + (location.protocol === 'https:' ? '; Secure' : '');
+        } catch(e) {}
+
+        try {
+            var removeKeys = [];
+            for (var k = 0; k < localStorage.length; k++) {
+                var key = localStorage.key(k);
+                if (key && (key.indexOf('_ym') === 0 || key.indexOf('yabs') === 0 || key.indexOf('metrika') !== -1)) {
+                    removeKeys.push(key);
+                }
+            }
+            for (var j = 0; j < removeKeys.length; j++) {
+                localStorage.removeItem(removeKeys[j]);
+            }
+        } catch(e) {}
+
+        try {
+            var sRemoveKeys = [];
+            for (var sk = 0; sk < sessionStorage.length; sk++) {
+                var sKey = sessionStorage.key(sk);
+                if (sKey && (sKey.indexOf('_ym') === 0 || sKey.indexOf('yabs') === 0 || sKey.indexOf('metrika') !== -1)) {
+                    sRemoveKeys.push(sKey);
+                }
+            }
+            for (var sj = 0; sj < sRemoveKeys.length; sj++) {
+                sessionStorage.removeItem(sRemoveKeys[sj]);
+            }
+        } catch(e) {}
+
+        if (window.yaCounter51197381) {
+            try {
+                if (typeof window.yaCounter51197381.destructor === 'function') {
+                    window.yaCounter51197381.destructor();
+                }
+            } catch(e) {}
+            window.yaCounter51197381 = null;
+        }
+        window._krecMetrikaInitialized = false;
+    }
+
+    function storeConsent(allowAnalytics) {
+        var val = {
+            analytics: !!allowAnalytics,
+            necessary: true,
+            timestamp: new Date().toISOString(),
+            version: 'v1.0-2026-kz'
+        };
+        try {
+            localStorage.setItem('krec_cookie_consent', JSON.stringify(val));
+            if (allowAnalytics) {
+                document.cookie = 'krec_analytics=1; path=/; max-age=31536000; SameSite=Lax' + (location.protocol === 'https:' ? '; Secure' : '');
+            } else {
+                purgeTrackingData();
+            }
+        } catch(e) {}
+        return val;
+    }
+
+    function loadYandexMetrika(enableWebvisor) {
+        if (window.yaCounter51197381 || window._krecMetrikaInitialized) return;
+        window._krecMetrikaInitialized = true;
+
+        (function (d, w, c) {
+            (w[c] = w[c] || []).push(function() {
+                try {
+                    w.yaCounter51197381 = new Ya.Metrika2({
+                        id: 51197381,
+                        clickmap: !isSensitive,
+                        trackLinks: !isSensitive,
+                        accurateTrackBounce: true,
+                        webvisor: enableWebvisor && !isSensitive
+                    });
+                } catch(e) { }
+            });
+
+            var n = d.getElementsByTagName("script")[0],
+                s = d.createElement("script"),
+                f = function () { n.parentNode.insertBefore(s, n); };
+            s.type = "text/javascript";
+            s.async = true;
+            s.src = "https://mc.yandex.ru/metrika/tag.js";
+
+            if (w.opera == "[object Opera]") {
+                d.addEventListener("DOMContentLoaded", f, false);
+            } else { f(); }
+        })(document, window, "yandex_metrika_callbacks2");
+    }
+
+    window.krecAcceptAllCookies = function() {
+        storeConsent(true);
+        var b = document.getElementById('krecCookieBanner');
+        if (b) b.style.display = 'none';
+        loadYandexMetrika(true);
+    };
+
+    window.krecRejectCookies = function() {
+        storeConsent(false);
+        var b = document.getElementById('krecCookieBanner');
+        if (b) b.style.display = 'none';
+    };
+
+    window.krecOpenCookieModal = function() {
+        window._lastCookieFocusEl = document.activeElement;
+        var c = getStoredConsent();
+        var chk = document.getElementById('krecConsentAnalyticsCheckbox');
+        if (chk) chk.checked = !!(c && c.analytics);
+        var modal = document.getElementById('krecCookieModal');
+        if (modal) {
+            modal.style.display = 'flex';
+            var closeBtn = modal.querySelector('.krec-cookie-close-btn');
+            if (closeBtn) closeBtn.focus();
+        }
+    };
+
+    window.krecCloseCookieModal = function() {
+        var modal = document.getElementById('krecCookieModal');
+        if (modal) modal.style.display = 'none';
+        if (window._lastCookieFocusEl && typeof window._lastCookieFocusEl.focus === 'function') {
+            window._lastCookieFocusEl.focus();
+        }
+    };
+
+    window.krecSaveCookieSettings = function() {
+        var chk = document.getElementById('krecConsentAnalyticsCheckbox');
+        var allowed = chk ? chk.checked : false;
+        storeConsent(allowed);
+        krecCloseCookieModal();
+        var b = document.getElementById('krecCookieBanner');
+        if (b) b.style.display = 'none';
+        if (allowed) {
+            loadYandexMetrika(true);
+        }
+    };
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var consent = getStoredConsent();
+        if (!consent) {
+            var b = document.getElementById('krecCookieBanner');
+            if (b) b.style.display = 'block';
+        } else if (consent.analytics) {
+            loadYandexMetrika(true);
+        }
+    });
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "scope": "Simulated resource_guard exception, not actual memory exhaustion",
+  "status": [
+    {
+      "provider": "offline",
+      "model": "qwen3:8b",
+      "status": "unavailable_or_incompatible",
+      "phase": "structured_nlu",
+      "reason": "resource_guard: TEST simulated low memory",
+      "requests": []
+    },
+    {
+      "provider": "offline",
+      "model": "qwen2.5:1.5b",
+      "status": "available",
+      "actual_generation": true,
+      "phase": "structured_nlu",
+      "requests": []
+    }
+  ]
+}

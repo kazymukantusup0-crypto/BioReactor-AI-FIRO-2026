@@ -1,0 +1,47 @@
+{
+  "method": "manual official-browser verification, not automated scraping",
+  "observations": [
+    {
+      "source_id": "esalmaty_business",
+      "commodity": "electricity",
+      "country": "KZ",
+      "region": "KZ-Almaty",
+      "currency": "KZT",
+      "unit": "kWh",
+      "published_at": null,
+      "price_type": "tariff",
+      "reliability": "verified_manual",
+      "consumer_class": "non_household_group2",
+      "tax_basis": "VAT_included",
+      "evidence": "Manually checked on official supplier page using web tool, 2026-10-28. Non-household group 2, VAT included. Publication date not stated; not a current verified quote.",
+      "value": "46.25",
+      "effective_from": "2026-06-05",
+      "source_url": "https://www.esalmaty.kz/ru/i4160"
+    },
+    {
+      "source_id": "esalmaty_business",
+      "commodity": "electricity",
+      "country": "KZ",
+      "region": "KZ-Almaty",
+      "currency": "KZT",
+      "unit": "kWh",
+      "published_at": null,
+      "price_type": "tariff",
+      "reliability": "verified_manual",
+      "consumer_class": "non_household_group2",
+      "tax_basis": "VAT_included",
+      "evidence": "Manually checked on official supplier page using web tool, 2026-10-28. Non-household group 2, VAT included. Publication date not stated; not a current verified quote.",
+      "value": "50.03",
+      "effective_from": "2026-09-12",
+      "source_url": "https://www.esalmaty.kz/ru/business-tariffs"
+    }
+  ],
+  "import_result": {
+    "inserted": 0,
+    "duplicates": 2,
+    "ids": [
+      1,
+      2
+    ]
+  }
+}

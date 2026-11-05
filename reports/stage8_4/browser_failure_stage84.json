@@ -1,0 +1,8 @@
+{
+  "error": "TimeoutError: locator.fill: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.advisor-page input[type=number]').nth(1)\u001b[22m\n\u001b[2m    - locator resolved to <input min=\"0\" max=\"10\" value=\"\" step=\"any\" type=\"number\" placeholder=\"Не измерено\"/>\u001b[22m\n\u001b[2m    - fill(\"90\")\u001b[22m\n\u001b[2m  - attempting fill action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and editable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying fill action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and editable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying fill action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    59 × waiting for element to be visible, enabled and editable\u001b[22m\n\u001b[2m       - element is not visible\u001b[22m\n\u001b[2m     - retrying fill action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n",
+  "checks": [
+    "Calculator opens in simple mode"
+  ],
+  "errors": [],
+  "failed": []
+}

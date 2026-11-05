@@ -1,0 +1,46 @@
+[
+  {
+    "args": [
+      "dashboard",
+      "--help"
+    ],
+    "returncode": 0
+  },
+  {
+    "args": [
+      "market",
+      "status"
+    ],
+    "returncode": 0
+  },
+  {
+    "args": [
+      "predict",
+      "--model",
+      "stage1",
+      "--input",
+      "examples/stage1_5_measured.json"
+    ],
+    "returncode": 0
+  },
+  {
+    "args": [
+      "predict",
+      "--model",
+      "stage1_5",
+      "--input",
+      "examples/stage1_5_measured.json"
+    ],
+    "returncode": 0
+  },
+  {
+    "args": [
+      "chat",
+      "--no-llm",
+      "--message",
+      "Какая точность у модели BMP?",
+      "--json"
+    ],
+    "returncode": 0
+  }
+]

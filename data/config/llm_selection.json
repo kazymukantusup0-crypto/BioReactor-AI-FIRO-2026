@@ -1,0 +1,9 @@
+{
+  "model": "qwen3:8b",
+  "num_ctx": 2048,
+  "quantization": "Q4_K_M",
+  "benchmark": "reports/stage7/llm_benchmark.json",
+  "selection_basis": "Identical production NLU prompt and task suite: success 9/11 versus 5/11; required-tool inclusion 3/3 each. Small proxy benchmark, not a general quality guarantee.",
+  "fallback_model": "qwen2.5:1.5b",
+  "limitations": "Literal-span validation and deterministic arithmetic remain mandatory. Temperature and no-measurement cases still require parser safeguards."
+}

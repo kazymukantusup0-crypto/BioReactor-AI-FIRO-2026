@@ -1,0 +1,95 @@
+{
+  "artifact": "evaluations/analytical_fix/qwen_http_final.json",
+  "checks": [
+    {
+      "case": "food_economics",
+      "turn": 0,
+      "status": "passed",
+      "tools": [
+        "assess_substrate_potential",
+        "analyze_substrate",
+        "search_scientific_sources",
+        "evaluate_partial_economics"
+      ],
+      "seconds": 9.824
+    },
+    {
+      "case": "pig_biogas",
+      "turn": 0,
+      "status": "passed",
+      "tools": [
+        "assess_substrate_potential"
+      ],
+      "seconds": 4.452
+    },
+    {
+      "case": "alternatives",
+      "turn": 0,
+      "status": "passed",
+      "tools": [
+        "assess_substrate_potential",
+        "search_scientific_sources",
+        "evaluate_partial_economics"
+      ],
+      "seconds": 8.817
+    },
+    {
+      "case": "temperature",
+      "turn": 0,
+      "status": "passed",
+      "tools": [
+        "assess_process_evidence"
+      ],
+      "seconds": 3.734
+    },
+    {
+      "case": "addition",
+      "turn": 0,
+      "status": "passed",
+      "tools": [
+        "assess_substrate_potential"
+      ],
+      "seconds": 5.495
+    },
+    {
+      "case": "water_context",
+      "turn": 0,
+      "status": "passed",
+      "tools": [
+        "assess_substrate_potential",
+        "analyze_substrate",
+        "search_scientific_sources",
+        "evaluate_partial_economics"
+      ],
+      "seconds": 13.862
+    },
+    {
+      "case": "water_context",
+      "turn": 1,
+      "status": "passed",
+      "tools": [
+        "assess_substrate_potential",
+        "analyze_substrate",
+        "search_scientific_sources",
+        "assess_process_evidence",
+        "evaluate_partial_economics"
+      ],
+      "seconds": 30.875
+    },
+    {
+      "case": "income",
+      "turn": 0,
+      "status": "passed",
+      "tools": [
+        "get_market_prices",
+        "assess_substrate_potential",
+        "analyze_substrate",
+        "search_scientific_sources",
+        "evaluate_partial_economics"
+      ],
+      "seconds": 48.23
+    }
+  ],
+  "passed": 8,
+  "failed": 0
+}

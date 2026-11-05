@@ -1,0 +1,11 @@
+{
+  "at": "2026-10-29T10:35:40.042649+00:00",
+  "ollama_version": "ollama version is 0.40.13",
+  "ollama_version_exit": 0,
+  "models": "NAME            ID              SIZE      MODIFIED     \nqwen3:8b        500a1f067a9f    5.2 GB    17 hours ago    \nqwen2.5:1.5b    399ba1a4d9c7    1.1 GB    46 hours ago",
+  "models_exit": 0,
+  "loaded": "NAME        ID              SIZE      PROCESSOR    CONTEXT    RUNNER      UNTIL              \nqwen3:8b    500a1f067a9f    5.3 GB    100% GPU     2048       llamacpp    4 minutes from now",
+  "loaded_exit": 0,
+  "gpu": "NVIDIA GeForce RTX 3070 Laptop GPU, 8192 MiB, 6868 MiB, 1153 MiB",
+  "gpu_exit": 0
+}

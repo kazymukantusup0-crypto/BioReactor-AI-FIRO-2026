@@ -1,0 +1,100 @@
+{
+  "python": "3.13.13 (tags/v3.13.13:01104ce, Apr  7 2026, 19:25:48) [MSC v.1944 64 bit (AMD64)]",
+  "openssl": "OpenSSL 3.0.19 27 Jan 2026",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "utc_time": "2026-10-28T09:12:40.319235+00:00",
+  "client_timezone": "Asia/Qyzylorda",
+  "environment": {},
+  "urllib_proxy_setting_names": [],
+  "certifi": "2026.2.25",
+  "truststore": "0.10.5",
+  "windows_roots": 57,
+  "windows_intermediates": 16,
+  "default_verify_flags": 557088,
+  "probes": [
+    {
+      "backend": "default",
+      "url": "https://www.esalmaty.kz/ru/business-tariffs",
+      "certificate_required": true,
+      "hostname_check": true,
+      "status": "failed",
+      "error_type": "URLError",
+      "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Missing Authority Key Identifier (_ssl.c:1032)>"
+    },
+    {
+      "backend": "certifi",
+      "url": "https://www.esalmaty.kz/ru/business-tariffs",
+      "certificate_required": true,
+      "hostname_check": true,
+      "status": "failed",
+      "error_type": "URLError",
+      "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1032)>"
+    },
+    {
+      "backend": "windows_native",
+      "url": "https://www.esalmaty.kz/ru/business-tariffs",
+      "certificate_required": true,
+      "hostname_check": true,
+      "http_status": 200,
+      "final_url": "https://www.esalmaty.kz/ru/business-tariffs",
+      "leaf_certificate": {
+        "issuer": "1.2.840.113549.1.9.1=support@sts.kz,CN=USIAG Intermediate October,OU=HQ,O=State Technical Service,L=Astana,ST=Astana,C=KZ",
+        "subject": "CN=esalmaty.kz",
+        "not_before_utc": "2026-09-30T05:22:28+00:00",
+        "not_after_utc": "2026-12-29T05:22:27+00:00",
+        "sha256": "c823869048e0387f7b9e4b087d879a75d45b8f62717119e3860e605ed4ebef07"
+      },
+      "status": "verified_https_success"
+    },
+    {
+      "backend": "windows_native",
+      "url": "https://stat.gov.kz/ru/industries/economy/prices/spreadsheets/?name=19087",
+      "certificate_required": true,
+      "hostname_check": true,
+      "http_status": 200,
+      "final_url": "https://stat.gov.kz/ru/industries/economy/prices/spreadsheets/?name=19087",
+      "leaf_certificate": {
+        "issuer": "CN=Sectigo Public Server Authentication CA DV R36,O=Sectigo Limited,C=GB",
+        "subject": "CN=*.stat.gov.kz",
+        "not_before_utc": "2026-01-26T00:00:00+00:00",
+        "not_after_utc": "2027-02-14T23:59:59+00:00",
+        "sha256": "515e4c42a695575e9009a5ebe95935f84380c1fffb2e611d3cf6de2704140eaf"
+      },
+      "status": "verified_https_success"
+    },
+    {
+      "backend": "windows_native",
+      "url": "https://www.k-zharyk.kz/ru/node/329",
+      "certificate_required": true,
+      "hostname_check": true,
+      "http_status": 200,
+      "final_url": "https://www.k-zharyk.kz/ru/node/329",
+      "leaf_certificate": {
+        "issuer": "1.2.840.113549.1.9.1=support@sts.kz,CN=USIAG Intermediate October,OU=HQ,O=State Technical Service,L=Astana,ST=Astana,C=KZ",
+        "subject": "CN=k-zharyk.kz",
+        "not_before_utc": "2026-09-30T23:03:14+00:00",
+        "not_after_utc": "2026-12-29T23:03:13+00:00",
+        "sha256": "ad24441ba31350d93b28701616054e21e57d12838748acb4911352080d0f9af1"
+      },
+      "status": "verified_https_success"
+    },
+    {
+      "backend": "windows_native",
+      "url": "https://krec.kz/notices",
+      "certificate_required": true,
+      "hostname_check": true,
+      "http_status": 200,
+      "final_url": "https://krec.kz/notices",
+      "leaf_certificate": {
+        "issuer": "1.2.840.113549.1.9.1=support@sts.kz,CN=USIAG Intermediate October,OU=HQ,O=State Technical Service,L=Astana,ST=Astana,C=KZ",
+        "subject": "CN=krec.kz",
+        "not_before_utc": "2026-10-11T08:51:49+00:00",
+        "not_after_utc": "2027-01-09T08:51:48+00:00",
+        "sha256": "f7e45e8b0cf09552d891d989c6b262eafe8b73333f4a8a8db65ad654673ab4be"
+      },
+      "status": "verified_https_success"
+    }
+  ],
+  "verification_disabled": false,
+  "global_ssl_injection": false
+}

@@ -1,0 +1,1 @@
+NOTICE='Sensitivity envelope from transferred literature and coarse graph gridlines. No validated coverage; not a confidence or prediction interval. Single-study transfer error, density variation and plant recovery are not quantified.'

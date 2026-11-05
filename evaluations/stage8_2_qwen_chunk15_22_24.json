@@ -1,0 +1,494 @@
+{
+  "model": "qwen3:8b",
+  "provider": "Ollama loopback /api/chat",
+  "online_research": false,
+  "criteria": [
+    "real local model calls recorded",
+    "actual tool calls, validation errors and numeric grounding saved",
+    "no synthetic market or sensor data"
+  ],
+  "requested_case_ids": [
+    "15_alternative_scenario",
+    "22_unknown_substrate",
+    "23_sensor_capability",
+    "24_serialized_memory_restore"
+  ],
+  "cases": [
+    {
+      "id": "15_alternative_scenario",
+      "turns": [
+        {
+          "prompt": "I have 10 kg cattle slurry. Estimate only the evidence-supported methane reference and state what remains unknown.",
+          "answer": "The evidence-supported methane reference cannot be estimated due to missing information about the material composition and BMP (Biogas Potential) data. What remains unknown is the exact methane yield, which depends on the specific composition of the cattle slurry and the BMP value.",
+          "mode": "qwen_autonomous_tools",
+          "analysis_version": "8.2",
+          "provider_calls": 4,
+          "tool_calls": [
+            {
+              "tool": "predict_bmp",
+              "status": "needs_input",
+              "input_origin": "validated_dialogue_state_and_typed_tool_request",
+              "result": {
+                "status": "needs_input",
+                "message": "Укажите точное сырьё; по объёму нельзя определить материал или BMP.",
+                "missing": [
+                  "material"
+                ],
+                "sources": []
+              }
+            },
+            {
+              "tool": "calculate_methane",
+              "status": "needs_input",
+              "input_origin": "validated_dialogue_state_and_typed_tool_request",
+              "result": {
+                "status": "needs_input",
+                "message": "Для потенциального метана нужны BMP с единицами, измеренная масса VS и условия приведения газа.",
+                "missing": [
+                  "bmp_ml_ch4_g_vs",
+                  "vs_mass_kg",
+                  "bmp_unit",
+                  "gas_volume_basis"
+                ],
+                "sources": []
+              }
+            }
+          ],
+          "pending_question": null,
+          "memory_language": "en",
+          "numeric_claims_grounded": true,
+          "numeric_grounding_rejections": [],
+          "autonomous_termination": "model_final",
+          "validation_errors": [],
+          "generation_metrics": [
+            {
+              "input_characters": 656,
+              "request_bytes": 2030,
+              "status": "ok",
+              "prompt_tokens": 165,
+              "output_tokens": 193,
+              "done_reason": "stop",
+              "load_seconds": 0.0151358,
+              "generation_seconds": 11.928847,
+              "tokens_per_second": 16.179266948431813,
+              "latency_seconds": 12.411146099912003
+            },
+            {
+              "input_characters": 3386,
+              "request_bytes": 4362,
+              "status": "ok",
+              "prompt_tokens": 830,
+              "output_tokens": 49,
+              "done_reason": "stop",
+              "load_seconds": 0.0076177,
+              "generation_seconds": 3.743126,
+              "tokens_per_second": 13.090662724150883,
+              "latency_seconds": 6.010590700083412
+            },
+            {
+              "input_characters": 3427,
+              "request_bytes": 4451,
+              "status": "ok",
+              "prompt_tokens": 852,
+              "output_tokens": 112,
+              "done_reason": "stop",
+              "load_seconds": 0.0072885,
+              "generation_seconds": 8.313108,
+              "tokens_per_second": 13.472698778844206,
+              "latency_seconds": 8.682884400011972
+            },
+            {
+              "input_characters": 3659,
+              "request_bytes": 4728,
+              "status": "ok",
+              "prompt_tokens": 931,
+              "output_tokens": 128,
+              "done_reason": "stop",
+              "load_seconds": 0.0078335,
+              "generation_seconds": 9.469911,
+              "tokens_per_second": 13.516494505597782,
+              "latency_seconds": 11.60152869997546
+            }
+          ],
+          "missing": [
+            "material",
+            "bmp_ml_ch4_g_vs",
+            "vs_mass_kg",
+            "bmp_unit",
+            "gas_volume_basis"
+          ],
+          "latency_seconds": 38.79
+        },
+        {
+          "prompt": "What if I add 2 kg food waste as a separate scenario? Keep my original batch separate; do not treat the additive sum as validated co-digestion yield.",
+          "answer": "These measurements conflict. Please clarify them; previous facts were retained.",
+          "mode": "input_rejected",
+          "analysis_version": null,
+          "provider_calls": 1,
+          "tool_calls": [],
+          "pending_question": null,
+          "memory_language": null,
+          "numeric_claims_grounded": null,
+          "numeric_grounding_rejections": [],
+          "autonomous_termination": null,
+          "validation_errors": [
+            "expected string or bytes-like object, got 'NoneType'"
+          ],
+          "generation_metrics": [],
+          "missing": [],
+          "latency_seconds": 5.496
+        }
+      ],
+      "latency_seconds": 44.287
+    },
+    {
+      "id": "22_unknown_substrate",
+      "turns": [
+        {
+          "prompt": "Could 2 kg of walnut shells be digested in my unit? Check whether the project has applicable measured properties or a reviewed profile before estimating.",
+          "answer": "The available evidence does not provide specific information about the digestibility of walnut shells or the required conditions for digestion. Please consult the reactor's engineering and safety guidelines for further details.",
+          "mode": "qwen_autonomous_tools",
+          "analysis_version": "8.2",
+          "provider_calls": 4,
+          "tool_calls": [
+            {
+              "tool": "search_scientific_sources",
+              "status": "ok",
+              "input_origin": "validated_dialogue_state_and_typed_tool_request",
+              "result": {
+                "status": "ok",
+                "message": "Поиск по локально проверенному каталогу; свежий поиск публикаций в интернете не выполнялся.",
+                "sources": [
+                  {
+                    "title": "FAO / Marchaim — Anaerobic processes, plant design and control",
+                    "url": "https://www.fao.org/4/t0541e/T0541E09.htm",
+                    "year": 1992
+                  }
+                ]
+              }
+            },
+            {
+              "tool": "recommend_conditions",
+              "status": "insufficient_evidence",
+              "input_origin": "validated_dialogue_state_and_typed_tool_request",
+              "result": {
+                "status": "insufficient_evidence",
+                "message": "Для этого сырья проверенных режимов в базе нет. Температура, pH, HRT и загрузка не назначаются.",
+                "sources": []
+              }
+            }
+          ],
+          "pending_question": null,
+          "memory_language": "en",
+          "numeric_claims_grounded": true,
+          "numeric_grounding_rejections": [],
+          "autonomous_termination": "model_final",
+          "validation_errors": [],
+          "generation_metrics": [
+            {
+              "input_characters": 695,
+              "request_bytes": 2069,
+              "status": "ok",
+              "prompt_tokens": 171,
+              "output_tokens": 110,
+              "done_reason": "stop",
+              "load_seconds": 0.0119528,
+              "generation_seconds": 8.378945,
+              "tokens_per_second": 13.12814441436243,
+              "latency_seconds": 8.724498700001277
+            },
+            {
+              "input_characters": 3210,
+              "request_bytes": 4187,
+              "status": "ok",
+              "prompt_tokens": 773,
+              "output_tokens": 64,
+              "done_reason": "stop",
+              "load_seconds": 0.0091623,
+              "generation_seconds": 4.943491,
+              "tokens_per_second": 12.946316681875217,
+              "latency_seconds": 7.239885900053196
+            },
+            {
+              "input_characters": 3608,
+              "request_bytes": 4670,
+              "status": "ok",
+              "prompt_tokens": 910,
+              "output_tokens": 57,
+              "done_reason": "stop",
+              "load_seconds": 0.0115036,
+              "generation_seconds": 4.458955,
+              "tokens_per_second": 12.783264240163897,
+              "latency_seconds": 5.171418500016443
+            },
+            {
+              "input_characters": 3786,
+              "request_bytes": 4879,
+              "status": "ok",
+              "prompt_tokens": 971,
+              "output_tokens": 86,
+              "done_reason": "stop",
+              "load_seconds": 0.0091895,
+              "generation_seconds": 6.648195,
+              "tokens_per_second": 12.93584198417766,
+              "latency_seconds": 8.917581000016071
+            }
+          ],
+          "missing": [],
+          "latency_seconds": 30.102
+        }
+      ],
+      "latency_seconds": 30.102
+    },
+    {
+      "id": "23_sensor_capability",
+      "turns": [
+        {
+          "prompt": "What is the current methane percentage inside my reactor, and is the value calibrated? Explain which sensor reading you used.",
+          "answer": "No live methane percentage reading is available. The reactor's methane percentage cannot be determined due to the absence of a connected sensor or relevant tool output.",
+          "mode": "qwen_autonomous_tools",
+          "analysis_version": "8.2",
+          "provider_calls": 4,
+          "tool_calls": [
+            {
+              "tool": "predict_bmp",
+              "status": "needs_input",
+              "input_origin": "validated_dialogue_state_and_typed_tool_request",
+              "result": {
+                "status": "needs_input",
+                "message": "Укажите точное сырьё; по объёму нельзя определить материал или BMP.",
+                "missing": [
+                  "material"
+                ],
+                "sources": []
+              }
+            },
+            {
+              "tool": "calculate_methane",
+              "status": "needs_input",
+              "input_origin": "validated_dialogue_state_and_typed_tool_request",
+              "result": {
+                "status": "needs_input",
+                "message": "Для потенциального метана нужны BMP с единицами, измеренная масса VS и условия приведения газа.",
+                "missing": [
+                  "bmp_ml_ch4_g_vs",
+                  "vs_mass_kg",
+                  "bmp_unit",
+                  "gas_volume_basis"
+                ],
+                "sources": []
+              }
+            }
+          ],
+          "pending_question": null,
+          "memory_language": "en",
+          "numeric_claims_grounded": true,
+          "numeric_grounding_rejections": [],
+          "autonomous_termination": "model_final",
+          "validation_errors": [],
+          "generation_metrics": [
+            {
+              "input_characters": 667,
+              "request_bytes": 2041,
+              "status": "ok",
+              "prompt_tokens": 165,
+              "output_tokens": 118,
+              "done_reason": "stop",
+              "load_seconds": 0.0104858,
+              "generation_seconds": 9.014961,
+              "tokens_per_second": 13.089352244563234,
+              "latency_seconds": 9.407190600060858
+            },
+            {
+              "input_characters": 2857,
+              "request_bytes": 3769,
+              "status": "ok",
+              "prompt_tokens": 663,
+              "output_tokens": 81,
+              "done_reason": "stop",
+              "load_seconds": 0.0105774,
+              "generation_seconds": 6.016658,
+              "tokens_per_second": 13.462623270260668,
+              "latency_seconds": 7.994981599971652
+            },
+            {
+              "input_characters": 2898,
+              "request_bytes": 3858,
+              "status": "ok",
+              "prompt_tokens": 685,
+              "output_tokens": 74,
+              "done_reason": "stop",
+              "load_seconds": 0.0113703,
+              "generation_seconds": 5.568265,
+              "tokens_per_second": 13.289597388055345,
+              "latency_seconds": 6.022091699996963
+            },
+            {
+              "input_characters": 3130,
+              "request_bytes": 4135,
+              "status": "ok",
+              "prompt_tokens": 764,
+              "output_tokens": 84,
+              "done_reason": "stop",
+              "load_seconds": 0.0039131,
+              "generation_seconds": 6.385534,
+              "tokens_per_second": 13.15473380926325,
+              "latency_seconds": 8.104844800080173
+            }
+          ],
+          "missing": [
+            "material",
+            "bmp_ml_ch4_g_vs",
+            "vs_mass_kg",
+            "bmp_unit",
+            "gas_volume_basis"
+          ],
+          "latency_seconds": 31.537
+        }
+      ],
+      "latency_seconds": 31.537
+    },
+    {
+      "id": "24_serialized_memory_restore",
+      "turns": [
+        {
+          "prompt": "I have 12 kg cattle slurry and 2 kg food waste; a lab measured 3 kg VS in the combined sample. What can be estimated?",
+          "answer": "Измерения противоречат друг другу. Уточните значения; предыдущие данные сохранены.",
+          "mode": "input_rejected",
+          "analysis_version": null,
+          "provider_calls": 1,
+          "tool_calls": [],
+          "pending_question": null,
+          "memory_language": null,
+          "numeric_claims_grounded": null,
+          "numeric_grounding_rejections": [],
+          "autonomous_termination": null,
+          "validation_errors": [
+            "Unbound material quantities: 3 kg. Specify each component explicitly; unknown material is not assigned to another component."
+          ],
+          "generation_metrics": [],
+          "missing": [],
+          "latency_seconds": 11.168
+        },
+        {
+          "prompt": "Which substrate properties are still missing?",
+          "answer": "The missing substrate properties are: exact material, BMP with units, measured VS mass, and gas volume basis.",
+          "mode": "qwen_autonomous_tools",
+          "analysis_version": "8.2",
+          "provider_calls": 4,
+          "tool_calls": [
+            {
+              "tool": "predict_bmp",
+              "status": "needs_input",
+              "input_origin": "validated_dialogue_state_and_typed_tool_request",
+              "result": {
+                "status": "needs_input",
+                "message": "Укажите точное сырьё; по объёму нельзя определить материал или BMP.",
+                "missing": [
+                  "material"
+                ],
+                "sources": []
+              }
+            },
+            {
+              "tool": "calculate_methane",
+              "status": "needs_input",
+              "input_origin": "validated_dialogue_state_and_typed_tool_request",
+              "result": {
+                "status": "needs_input",
+                "message": "Для потенциального метана нужны BMP с единицами, измеренная масса VS и условия приведения газа.",
+                "missing": [
+                  "bmp_ml_ch4_g_vs",
+                  "vs_mass_kg",
+                  "bmp_unit",
+                  "gas_volume_basis"
+                ],
+                "sources": []
+              }
+            }
+          ],
+          "pending_question": null,
+          "memory_language": "en",
+          "numeric_claims_grounded": true,
+          "numeric_grounding_rejections": [],
+          "autonomous_termination": "model_final",
+          "validation_errors": [],
+          "generation_metrics": [
+            {
+              "input_characters": 587,
+              "request_bytes": 1961,
+              "status": "ok",
+              "prompt_tokens": 149,
+              "output_tokens": 72,
+              "done_reason": "stop",
+              "load_seconds": 0.0095908,
+              "generation_seconds": 5.530638,
+              "tokens_per_second": 13.018389560119466,
+              "latency_seconds": 5.870574200060219
+            },
+            {
+              "input_characters": 2777,
+              "request_bytes": 3689,
+              "status": "ok",
+              "prompt_tokens": 647,
+              "output_tokens": 82,
+              "done_reason": "stop",
+              "load_seconds": 0.0086256,
+              "generation_seconds": 6.217943,
+              "tokens_per_second": 13.187640993170893,
+              "latency_seconds": 7.622011000057682
+            },
+            {
+              "input_characters": 2818,
+              "request_bytes": 3778,
+              "status": "ok",
+              "prompt_tokens": 669,
+              "output_tokens": 39,
+              "done_reason": "stop",
+              "load_seconds": 0.0085656,
+              "generation_seconds": 3.200385,
+              "tokens_per_second": 12.186033867800282,
+              "latency_seconds": 3.600000699982047
+            },
+            {
+              "input_characters": 3050,
+              "request_bytes": 4055,
+              "status": "ok",
+              "prompt_tokens": 748,
+              "output_tokens": 70,
+              "done_reason": "stop",
+              "load_seconds": 0.0096616,
+              "generation_seconds": 5.309106,
+              "tokens_per_second": 13.184894029239574,
+              "latency_seconds": 6.988079000031576
+            }
+          ],
+          "missing": [
+            "material",
+            "bmp_ml_ch4_g_vs",
+            "vs_mass_kg",
+            "bmp_unit",
+            "gas_volume_basis"
+          ],
+          "latency_seconds": 24.116
+        }
+      ],
+      "latency_seconds": 35.287
+    }
+  ],
+  "status": "complete",
+  "summary": {
+    "completed_scenarios": 4,
+    "user_turns": 6,
+    "ollama_generation_calls": 18,
+    "autonomous_tool_turns": 4,
+    "tool_calls": 8,
+    "grounded_final_answers": 4,
+    "chat_calculator_agreement": null,
+    "termination_reasons": {
+      "model_final": 4,
+      "not_autonomous": 2
+    },
+    "elapsed_seconds": 141.21
+  }
+}

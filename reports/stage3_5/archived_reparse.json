@@ -1,0 +1,32 @@
+[
+  {
+    "source": "bns_retail_gas",
+    "archive": "04d5ae63c51922af435ef4b6e5845bbaa2eff026390cc1c45d573f540ab4d189.bin",
+    "parsed": 6,
+    "duplicates": 6
+  },
+  {
+    "source": "bns_retail_electricity",
+    "archive": "04d5ae63c51922af435ef4b6e5845bbaa2eff026390cc1c45d573f540ab4d189.bin",
+    "parsed": 6,
+    "duplicates": 6
+  },
+  {
+    "source": "bns_retail_gas",
+    "archive": "0c54c546f54dfaf1d02edab2cffee6ccf9ea5f81e11584ce4f53562c5aa1d6e9.bin",
+    "parsed": 6,
+    "duplicates": 6
+  },
+  {
+    "source": "bns_retail_electricity",
+    "archive": "0c54c546f54dfaf1d02edab2cffee6ccf9ea5f81e11584ce4f53562c5aa1d6e9.bin",
+    "parsed": 6,
+    "duplicates": 6
+  },
+  {
+    "source": "krec_district_supply",
+    "archive": "f497e908a77765ee3f567fcaf4c6ca962f032fec076f5955efacd3fab810f52d.bin",
+    "parsed": 10,
+    "duplicates": 10
+  }
+]

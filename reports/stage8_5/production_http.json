@@ -1,0 +1,22 @@
+[
+  {
+    "path": "/health",
+    "status": 200,
+    "bytes": 240
+  },
+  {
+    "path": "/dashboard/",
+    "status": 200,
+    "bytes": 1040
+  },
+  {
+    "path": "/api/advisor/research/dossiers",
+    "status": 200,
+    "bytes": 61590
+  },
+  {
+    "path": "/api/advisor/research/compare?material=swine_manure",
+    "status": 200,
+    "bytes": 7620
+  }
+]

@@ -1,0 +1,8 @@
+{
+  "tests_returncode": 0,
+  "all_checks_passed": true,
+  "local_actual_generation_verified": true,
+  "online_actual_generation_verified": false,
+  "models_retrained": false,
+  "prior_artifacts_unchanged": true
+}

@@ -1,0 +1,18 @@
+{
+  "status": "passed",
+  "checks": [
+    "Automatic calculation uses actual API food profile",
+    "Browser and direct API produce identical mixture values",
+    "Changing water recalculates dilution without increasing methane",
+    "Costs reactively reach economic module; unknown costs remain unknown",
+    "Grass scenarios are separate selectable studies, not pooled endpoints",
+    "Mobile layout has no horizontal document overflow"
+  ],
+  "errors": [],
+  "requests": [
+    200,
+    200,
+    200,
+    200
+  ]
+}

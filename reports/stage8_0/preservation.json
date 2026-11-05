@@ -1,0 +1,43 @@
+{
+  "protected_file_count": 371,
+  "all_protected_files_unchanged": true,
+  "changed_or_missing": [],
+  "tables": {
+    "observations": {
+      "baseline_rows": 28,
+      "current_rows": 28,
+      "all_old_rows_unchanged": true
+    },
+    "dashboard_sessions": {
+      "baseline_rows": 2,
+      "current_rows": 2,
+      "all_old_rows_unchanged": true
+    },
+    "dashboard_turns": {
+      "baseline_rows": 15,
+      "current_rows": 15,
+      "all_old_rows_unchanged": true
+    },
+    "scenarios": {
+      "baseline_rows": 5,
+      "current_rows": 5,
+      "all_old_rows_unchanged": true
+    },
+    "research_records": {
+      "baseline_rows": 23,
+      "current_rows": 24,
+      "all_old_rows_unchanged": true
+    },
+    "experiment_records": {
+      "baseline_rows": 0,
+      "current_rows": 0,
+      "all_old_rows_unchanged": true
+    },
+    "process_optimizer_runs": {
+      "baseline_rows": 0,
+      "current_rows": 0,
+      "all_old_rows_unchanged": true
+    }
+  },
+  "active_leases": []
+}

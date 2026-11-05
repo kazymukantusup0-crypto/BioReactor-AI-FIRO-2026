@@ -1,0 +1,13 @@
+import main,json
+from src.data.prepare import ROOT
+p=ROOT/'data/research/advanced_profiles.json';d=json.loads(p.read_text(encoding='utf-8'))
+assert not any(s['id']=='pham2013' for s in d['sources'])
+d['sources'].append({'id':'pham2013','doi':'10.5713/ajas.2012.12623','title':'Validation and Recommendation of Methods to Measure Biogas Production Potential of Animal Manure','authors':['C. H. Pham','J. M. Triolo','T. T. T. Cu','L. Pedersen','S. G. Sommer'],'year':2013,'url':'https://doi.org/10.5713/ajas.2012.12623','review_url':'https://pdfs.semanticscholar.org/11ec/6cf5527fb8cd3d44f99641d82ec645b15b8f.pdf','verification_stage':'NUMERIC_DATA_VERIFIED','reviewed_sections':['Tables 2 and 3, Methods, Equation 1; table screenshots visually checked'],'conditions':{'temperature_c':37,'duration_days':None,'endpoint':'Gas production rate below 1% of accumulated gas; no fixed universal number of days','reactor_type':'VDI 4630: 1 L glass bottles, 620 mL mixture, 150 mL medium; inoculum/substrate 2:1 VS','gas_basis':{'temperature_k':273,'pressure_pa':101300,'moisture':'dry'}},'limitations':'Fangel fattening pig sample, VDI method only; other methods and temperatures not pooled. Density absent.'})
+def v(n,loc):return {'low':n,'high':n,'locator':loc}
+d['profiles'].append({'id':'pham2013-pig-vdi','material':'swine_manure','material_state':'slurry','source_id':'pham2013','verification_stage':'APPROVED_FOR_ESTIMATION','approved_scope':'Table 2 paired with VDI methane row of Table 3, not theoretical BMP','density_kg_l':None,'ts_fraction':v(.0318,'Table 2: 3.18% total mass; SD .2 percentage points'),'vs_fraction_wet':v(.02275,'Table 2: 22.75 g/kg fresh mass; SD .6 g/kg'),'bmp_ml_g_vs':v(207.84,'Table 3: VDI CH4 pig, 207.84 NL/kg VS; reported SD 1.97, not a prediction interval'),'cn_ratio':None,'ph':7.71,'preparation':'Fattening pig manure from Fangel biogas plant; VDI assay at 37 C','reported_sd_bmp_ml_g_vs':1.97,'beddings':['unknown','none']})
+for density in d['density_profiles']:
+ if density['material']=='straw':density.update(value={'low':.058,'high':.357},locator='Table 3: general straw, moisture 4-27%; 58-357 kg/m3',limitations=['Broad engineering reference across straw materials and packing; not a measured density of this batch'])
+d['source_access']['pmc_pham2013']='CAPTCHA, not bypassed; lawful primary PDF mirror 200, downloaded and tables visually reviewed'
+for c in d['partial_characterizations']:
+ if c['material']=='swine_manure':c['bmp_available']=True;c['reason']='Pham VDI profile approved for slurry only; Baek pure-pig RSM vertex remains excluded.'
+p.write_text(json.dumps(d,ensure_ascii=False,indent=2),encoding='utf-8')

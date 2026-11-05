@@ -1,0 +1,13 @@
+{
+  "date": "2026-11-03",
+  "scope": "External browser-tool access during development; separate from runtime local retrieval",
+  "attempts": [
+    {"url":"https://cigrjournal.org/index.php/Ejounral/article/view/2445","result":"Publisher page and abstract accessible; full PDF was not re-extracted"},
+    {"url":"https://www.mdpi.com/1660-4601/17/13/4737","result":"HTTP 429"},
+    {"url":"https://www.mdpi.com/2076-3417/14/11/4957","result":"HTTP 429; publisher search metadata accessible"},
+    {"url":"https://www.mdpi.com/2813-0391/1/1/14","result":"HTTP 429"},
+    {"url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC7370025/","result":"Browser/CAPTCHA challenge; no bypass attempted"}
+  ],
+  "new_numerical_profiles_added": false,
+  "runtime_search_scope": "LOCAL_REVIEWED_CORPUS"
+}

@@ -1,0 +1,821 @@
+{
+  "version": "6.0",
+  "label": "TEST hypothetical physical worksheet, not an operating recommendation",
+  "scenarios": [
+    {
+      "scenario_id": "2ecdcdff0f3c42d7af15",
+      "label": "TEST 35 C",
+      "input_parameters": {
+        "material": "cattle_manure",
+        "mass_kg": 10.0,
+        "feedstock_volume_l": 10.0,
+        "density_kg_l": null,
+        "reactor_total_volume_l": 90.0,
+        "reactor_working_volume_l": 65.0,
+        "headspace_l": null,
+        "inoculum_volume_l": 0.0,
+        "dilution_water_l": 0.0,
+        "resident_liquid_volume_l": 0.0,
+        "liquid_charge_volume_l": null,
+        "gas_storage_volume_l": null,
+        "gas_storage_conditions": "TEST not engineering approval",
+        "reactor_type": "TEST vessel",
+        "process_type": null,
+        "operating_mode": "batch",
+        "batch_duration_days": 1.0,
+        "turnaround_days": 0.0,
+        "duration_days": 1.0,
+        "hrt_days": null,
+        "olr_kg_vs_m3_day": null,
+        "daily_feed_volume_l": null,
+        "daily_vs_mass_kg": null,
+        "inoculum_description": "TEST explicit inoculum scenario",
+        "ts_percent": null,
+        "vs_percent": null,
+        "vs_basis": null,
+        "vs_mass_kg": 1.0,
+        "ph": null,
+        "temperature_c": 35.0,
+        "initial_temperature_c": 20.0,
+        "ambient_temperature_c": 20.0,
+        "heating_available": null,
+        "heated_mass_kg": 10.0,
+        "heat_capacity_kj_kg_k": 4.0,
+        "heat_loss_coefficient_w_k": 2.0,
+        "heater_efficiency": 0.8,
+        "auxiliary_power_w": null,
+        "auxiliary_duty_fraction": null,
+        "auxiliary_energy_kwh": 0.1,
+        "energy_scope": "entire_feedstock",
+        "bmp_ml_ch4_g_vs": 300.0,
+        "bmp_unit": "mL CH4/g VS",
+        "bmp_provenance": "scenario_assumption",
+        "bmp_evidence": "TEST user-supplied arithmetic example, not measured BMP",
+        "gas_volume_basis": "TEST dry gas reference, no normalization certification",
+        "recovery_fraction": null,
+        "methane_fraction": null,
+        "model": "stage1_5",
+        "c_vs_sub_m": null,
+        "c_vs_sub_f": null,
+        "c_vs_inoc": null,
+        "ISR": null,
+        "pretreatment": null,
+        "mixture_components": [],
+        "market": {},
+        "assumptions": {
+          "temperature_c": {
+            "value": 35,
+            "provenance": "SCENARIO_ASSUMPTION",
+            "evidence": "TEST explicit temperature hypothesis"
+          }
+        },
+        "user_limits": {},
+        "feedstock_purchase_cost": null,
+        "capital_cost": null,
+        "annual_batches": null,
+        "annual_fixed_cost": null
+      },
+      "assumptions": {
+        "temperature_c": {
+          "value": 35,
+          "provenance": "SCENARIO_ASSUMPTION",
+          "evidence": "TEST explicit temperature hypothesis"
+        }
+      },
+      "scientific_sources": [
+        {
+          "id": "fao_environment",
+          "title": "FAO / Marchaim — Biogas processes for sustainable development: Environmental factors",
+          "url": "https://www.fao.org/4/t0541e/T0541E06.htm",
+          "year": 1992,
+          "doi": null,
+          "locator": "Temperature and pH sections",
+          "reviewed_by": "Codex primary-source inspection, 2026-10-28",
+          "verified_on": "2026-10-28",
+          "provenance": "SOURCE_VERIFIED"
+        },
+        {
+          "id": "fao_design",
+          "title": "FAO / Marchaim — Anaerobic processes, plant design and control",
+          "url": "https://www.fao.org/4/t0541e/T0541E09.htm",
+          "year": 1992,
+          "doi": null,
+          "locator": "Digester types; KVIC; process control",
+          "reviewed_by": "Codex primary-source inspection, 2026-10-28",
+          "verified_on": "2026-10-28",
+          "provenance": "SOURCE_VERIFIED"
+        }
+      ],
+      "constraints": [
+        {
+          "kind": "HARD_CONSTRAINT",
+          "parameter": "reactor_working_volume_l",
+          "status": "SATISFIED",
+          "message": "Working liquid volume must not exceed total vessel volume."
+        },
+        {
+          "kind": "HARD_CONSTRAINT",
+          "parameter": "charge_occupancy",
+          "status": "SATISFIED",
+          "message": "Feedstock, inoculum, dilution and resident liquid share the working volume.",
+          "feedstock_capacity_l": 65.0
+        },
+        {
+          "kind": "UNKNOWN",
+          "parameter": "ts_percent",
+          "status": "UNKNOWN",
+          "message": "No universal literature value is substituted for the missing measurement."
+        },
+        {
+          "kind": "UNKNOWN",
+          "parameter": "vs_percent",
+          "status": "UNKNOWN",
+          "message": "No universal literature value is substituted for the missing measurement."
+        },
+        {
+          "kind": "UNKNOWN",
+          "parameter": "ph",
+          "status": "UNKNOWN",
+          "message": "No universal literature value is substituted for the missing measurement."
+        },
+        {
+          "kind": "UNKNOWN",
+          "parameter": "hrt_days",
+          "status": "UNKNOWN",
+          "message": "No universal literature value is substituted for the missing measurement."
+        },
+        {
+          "kind": "UNKNOWN",
+          "parameter": "olr_kg_vs_m3_day",
+          "status": "UNKNOWN",
+          "message": "No universal literature value is substituted for the missing measurement."
+        },
+        {
+          "kind": "EVIDENCE_BASED_RANGE",
+          "parameter": "mesophilic_reference",
+          "status": "REFERENCE_ONLY",
+          "message": "General literature reference, not a verified optimum or control setpoint for this installation",
+          "values": [
+            35.0
+          ],
+          "unit": "°C",
+          "source_id": "fao_environment"
+        },
+        {
+          "kind": "SCENARIO_ASSUMPTION",
+          "parameter": "temperature_c",
+          "status": "CONDITIONAL",
+          "message": "Explicit scenario assumption; not a measured fact.",
+          "value": {
+            "value": 35,
+            "provenance": "SCENARIO_ASSUMPTION",
+            "evidence": "TEST explicit temperature hypothesis"
+          }
+        }
+      ],
+      "critical_missing": [],
+      "feasibility_status": "CONDITIONAL",
+      "predicted_outputs": {
+        "methane": {
+          "status": "ok",
+          "potential_methane_m3": 0.3,
+          "recoverable_methane_scenario_m3": null,
+          "raw_biogas_scenario_m3": null,
+          "bmp_ml_ch4_g_vs": 300.0,
+          "bmp_unit": "mL CH4/g VS",
+          "bmp_provenance": "scenario_assumption",
+          "bmp_evidence": "TEST user-supplied arithmetic example, not measured BMP",
+          "vs_mass_kg": 1.0,
+          "gas_volume_basis": "TEST dry gas reference, no normalization certification",
+          "model_version": null,
+          "model_result": null,
+          "missing": [],
+          "warnings": [],
+          "uncertainty_status": "not_quantified_no_coverage_validated_interval",
+          "limitations": [
+            "BMP times VS is methane potential, not reactor productivity or measured production.",
+            "Recovery and methane fraction, if supplied, are explicit scenario inputs, not model predictions.",
+            "No temperature, HRT, OLR or pretreatment yield multiplier is used.",
+            "Measured BMP evidence and volume reference conditions are user assertions, not independently certified."
+          ],
+          "formula": "BMP [mL CH4/g VS] * VS [kg] / 1000"
+        },
+        "energy": {
+          "status": "ok",
+          "initial_thermal_kwh": 0.16666666666666666,
+          "initial_heating_kwh": 0.20833333333333331,
+          "maintenance_heating_kwh": 0.8999999999999999,
+          "auxiliary_kwh": 0.1,
+          "total_energy_kwh": 1.2083333333333333,
+          "known_subtotal_kwh": 1.2083333333333333,
+          "cooling_required": false,
+          "missing": [],
+          "scope": "entire_feedstock",
+          "warnings": [],
+          "formulas": {
+            "initial_thermal_kwh": "heated_mass_kg * cp_kJ_kg_K * max(T_target-T_initial,0) / 3600",
+            "initial_heating_kwh": "initial_thermal_kwh / heater_efficiency",
+            "maintenance_heating_kwh": "UA_W_K * max(T_target-T_ambient,0) * duration_days * 24 / 1000 / heater_efficiency",
+            "auxiliary_kwh": "auxiliary_power_W * duty_fraction * duration_days * 24 / 1000, or explicit measured energy"
+          },
+          "limitations": [
+            "Constant heat capacity; no phase change, evaporation, biological heat or heat recovery model.",
+            "UA and temperatures are user inputs; steady holding losses exclude startup transients.",
+            "Heated mass includes only the explicit input. Inoculum, water and vessel thermal mass must be included by the user.",
+            "Energy scope/duration is explicit; no automatic scaling from one charge to the entire feedstock lot."
+          ],
+          "scientific_sources": [
+            {
+              "title": "US DOE Fundamentals Handbook, Thermodynamics, Heat Transfer, and Fluid Flow, Vol. 1",
+              "url": "https://www.energy.gov/documents/doe-hdbk-1012-92vol1",
+              "year": 1992,
+              "scope": "Sensible heat Q=m cp delta T; not a reactor-specific calibration"
+            },
+            {
+              "title": "PNNL Building Science: Introduction to Heat Flow",
+              "url": "https://basc.pnnl.gov/information/building-science-introduction-heat-flow",
+              "scope": "Steady heat-transfer relation UA delta T, not measured reactor heat loss"
+            }
+          ]
+        },
+        "economics": {
+          "status": "needs_input",
+          "scenarios": [
+            {
+              "scenario": "A",
+              "status": "needs_input",
+              "reason": "Не заданы: sale_storage_cost, sale_transport_cost",
+              "net_profit": null
+            },
+            {
+              "scenario": "B",
+              "status": "needs_input",
+              "reason": "Не заданы: preparation_cost, heating_cost, operating_cost, storage_cost, transport_cost, digestate_handling_cost, recovery_fraction",
+              "net_profit": null
+            },
+            {
+              "scenario": "C",
+              "status": "needs_input",
+              "reason": "Не заданы: gas_sale_technical_confirmed, gas_sale_legal_confirmed, gas_sale_evidence",
+              "net_profit": null
+            },
+            {
+              "scenario": "D",
+              "status": "needs_input",
+              "reason": "Не заданы: digestate_quality_confirmed, digestate_market_allowed, digestate_quality_evidence",
+              "net_profit": null
+            }
+          ],
+          "recommended_scenario": null,
+          "final_recommendation": null,
+          "is_final_recommendation": false,
+          "recommendation_scope": "explicit_hypothetical_process_inputs_only",
+          "currency": "KZT",
+          "region": null,
+          "potential_methane_m3": 0.3,
+          "potential_provenance": "explicit_user_potential",
+          "selected_prices": {},
+          "sensitivity": [],
+          "double_counting_policy": "A/B/C/D are alternatives. B values only self-consumed electricity; C only gas sales; D only digestate benefit. No summed gas/electricity/digestate revenue.",
+          "limitations": [
+            "Нет гарантии фактической эффективности или юридической оценки: подтверждения задаёт пользователь.",
+            "Тариф покупки электроэнергии означает только экономию собственного потребления, не доход от продажи в сеть.",
+            "Минеральное удобрение не оценивает дигестат без подтверждённой эквивалентности; здесь такой пересчёт не выполняется."
+          ],
+          "message": "Рыночные сценарии. A: Не заданы: sale_storage_cost, sale_transport_cost; B: Не заданы: preparation_cost, heating_cost, operating_cost, storage_cost, transport_cost, digestate_handling_cost, recovery_fraction; C: Не заданы: gas_sale_technical_confirmed, gas_sale_legal_confirmed, gas_sale_evidence; D: Не заданы: digestate_quality_confirmed, digestate_market_allowed, digestate_quality_evidence. Итоговая рекомендация не выдана: сравнение неполное.",
+          "sensitivity_policy": "Only explicit v6 ranges; legacy automatic +/-20% is not used.",
+          "comparison_route": null,
+          "warnings": [
+            "Market region is not supplied; no regional price is substituted.",
+            "Input acquisition cost is unknown: margins exclude feedstock purchase. Sale A separately represents the owned-feedstock opportunity value."
+          ],
+          "payback": {
+            "status": "INSUFFICIENT_DATA",
+            "simple_payback_years": null,
+            "scope": "Simple incremental payback relative to sale A; excludes discounting, financing, taxes and unprovided replacement costs."
+          }
+        },
+        "batch_plan": {
+          "status": "ok",
+          "batch_count": 1,
+          "feedstock_capacity_per_batch_l": 65.0,
+          "last_feedstock_charge_l": 10.0,
+          "total_duration_days": 1.0,
+          "missing": [],
+          "formula": "capacity = working - inoculum - dilution - resident liquid; count = ceil(feedstock/capacity)",
+          "assumptions": [
+            "Serial charges in one reactor with the entered occupancy for each charge.",
+            "Turnaround occurs only between charges; no initial setup/final cleanout time is included.",
+            "This is a volume/time worksheet, not proof of microbial stability, safe loading or achieved conversion."
+          ],
+          "message": "Batch allocation uses explicit occupancy; no percentage of total reactor volume was assumed."
+        },
+        "derived_process_values": {}
+      },
+      "uncertainty_status": "not_quantified_no_coverage_validated_interval",
+      "warnings": [
+        "Market region is not supplied; no regional price is substituted.",
+        "Input acquisition cost is unknown: margins exclude feedstock purchase. Sale A separately represents the owned-feedstock opportunity value.",
+        "Target temperature is an entered or literature-study condition, not a validated optimum or equipment command.",
+        "Scenario assumptions remain separate from user measurements."
+      ],
+      "rationale": "TEST explicit temperature hypothesis"
+    },
+    {
+      "scenario_id": "1c43112f375451145aaa",
+      "label": "TEST 38 C",
+      "input_parameters": {
+        "material": "cattle_manure",
+        "mass_kg": 10.0,
+        "feedstock_volume_l": 10.0,
+        "density_kg_l": null,
+        "reactor_total_volume_l": 90.0,
+        "reactor_working_volume_l": 65.0,
+        "headspace_l": null,
+        "inoculum_volume_l": 0.0,
+        "dilution_water_l": 0.0,
+        "resident_liquid_volume_l": 0.0,
+        "liquid_charge_volume_l": null,
+        "gas_storage_volume_l": null,
+        "gas_storage_conditions": "TEST not engineering approval",
+        "reactor_type": "TEST vessel",
+        "process_type": null,
+        "operating_mode": "batch",
+        "batch_duration_days": 1.0,
+        "turnaround_days": 0.0,
+        "duration_days": 1.0,
+        "hrt_days": null,
+        "olr_kg_vs_m3_day": null,
+        "daily_feed_volume_l": null,
+        "daily_vs_mass_kg": null,
+        "inoculum_description": "TEST explicit inoculum scenario",
+        "ts_percent": null,
+        "vs_percent": null,
+        "vs_basis": null,
+        "vs_mass_kg": 1.0,
+        "ph": null,
+        "temperature_c": 38.0,
+        "initial_temperature_c": 20.0,
+        "ambient_temperature_c": 20.0,
+        "heating_available": null,
+        "heated_mass_kg": 10.0,
+        "heat_capacity_kj_kg_k": 4.0,
+        "heat_loss_coefficient_w_k": 2.0,
+        "heater_efficiency": 0.8,
+        "auxiliary_power_w": null,
+        "auxiliary_duty_fraction": null,
+        "auxiliary_energy_kwh": 0.1,
+        "energy_scope": "entire_feedstock",
+        "bmp_ml_ch4_g_vs": 300.0,
+        "bmp_unit": "mL CH4/g VS",
+        "bmp_provenance": "scenario_assumption",
+        "bmp_evidence": "TEST user-supplied arithmetic example, not measured BMP",
+        "gas_volume_basis": "TEST dry gas reference, no normalization certification",
+        "recovery_fraction": null,
+        "methane_fraction": null,
+        "model": "stage1_5",
+        "c_vs_sub_m": null,
+        "c_vs_sub_f": null,
+        "c_vs_inoc": null,
+        "ISR": null,
+        "pretreatment": null,
+        "mixture_components": [],
+        "market": {},
+        "assumptions": {
+          "temperature_c": {
+            "value": 38,
+            "provenance": "SCENARIO_ASSUMPTION",
+            "evidence": "TEST explicit temperature hypothesis"
+          }
+        },
+        "user_limits": {},
+        "feedstock_purchase_cost": null,
+        "capital_cost": null,
+        "annual_batches": null,
+        "annual_fixed_cost": null
+      },
+      "assumptions": {
+        "temperature_c": {
+          "value": 38,
+          "provenance": "SCENARIO_ASSUMPTION",
+          "evidence": "TEST explicit temperature hypothesis"
+        }
+      },
+      "scientific_sources": [
+        {
+          "id": "fao_environment",
+          "title": "FAO / Marchaim — Biogas processes for sustainable development: Environmental factors",
+          "url": "https://www.fao.org/4/t0541e/T0541E06.htm",
+          "year": 1992,
+          "doi": null,
+          "locator": "Temperature and pH sections",
+          "reviewed_by": "Codex primary-source inspection, 2026-10-28",
+          "verified_on": "2026-10-28",
+          "provenance": "SOURCE_VERIFIED"
+        },
+        {
+          "id": "fao_design",
+          "title": "FAO / Marchaim — Anaerobic processes, plant design and control",
+          "url": "https://www.fao.org/4/t0541e/T0541E09.htm",
+          "year": 1992,
+          "doi": null,
+          "locator": "Digester types; KVIC; process control",
+          "reviewed_by": "Codex primary-source inspection, 2026-10-28",
+          "verified_on": "2026-10-28",
+          "provenance": "SOURCE_VERIFIED"
+        }
+      ],
+      "constraints": [
+        {
+          "kind": "HARD_CONSTRAINT",
+          "parameter": "reactor_working_volume_l",
+          "status": "SATISFIED",
+          "message": "Working liquid volume must not exceed total vessel volume."
+        },
+        {
+          "kind": "HARD_CONSTRAINT",
+          "parameter": "charge_occupancy",
+          "status": "SATISFIED",
+          "message": "Feedstock, inoculum, dilution and resident liquid share the working volume.",
+          "feedstock_capacity_l": 65.0
+        },
+        {
+          "kind": "UNKNOWN",
+          "parameter": "ts_percent",
+          "status": "UNKNOWN",
+          "message": "No universal literature value is substituted for the missing measurement."
+        },
+        {
+          "kind": "UNKNOWN",
+          "parameter": "vs_percent",
+          "status": "UNKNOWN",
+          "message": "No universal literature value is substituted for the missing measurement."
+        },
+        {
+          "kind": "UNKNOWN",
+          "parameter": "ph",
+          "status": "UNKNOWN",
+          "message": "No universal literature value is substituted for the missing measurement."
+        },
+        {
+          "kind": "UNKNOWN",
+          "parameter": "hrt_days",
+          "status": "UNKNOWN",
+          "message": "No universal literature value is substituted for the missing measurement."
+        },
+        {
+          "kind": "UNKNOWN",
+          "parameter": "olr_kg_vs_m3_day",
+          "status": "UNKNOWN",
+          "message": "No universal literature value is substituted for the missing measurement."
+        },
+        {
+          "kind": "EVIDENCE_BASED_RANGE",
+          "parameter": "mesophilic_reference",
+          "status": "REFERENCE_ONLY",
+          "message": "General literature reference, not a verified optimum or control setpoint for this installation",
+          "values": [
+            35.0
+          ],
+          "unit": "°C",
+          "source_id": "fao_environment"
+        },
+        {
+          "kind": "SCENARIO_ASSUMPTION",
+          "parameter": "temperature_c",
+          "status": "CONDITIONAL",
+          "message": "Explicit scenario assumption; not a measured fact.",
+          "value": {
+            "value": 38,
+            "provenance": "SCENARIO_ASSUMPTION",
+            "evidence": "TEST explicit temperature hypothesis"
+          }
+        }
+      ],
+      "critical_missing": [],
+      "feasibility_status": "CONDITIONAL",
+      "predicted_outputs": {
+        "methane": {
+          "status": "ok",
+          "potential_methane_m3": 0.3,
+          "recoverable_methane_scenario_m3": null,
+          "raw_biogas_scenario_m3": null,
+          "bmp_ml_ch4_g_vs": 300.0,
+          "bmp_unit": "mL CH4/g VS",
+          "bmp_provenance": "scenario_assumption",
+          "bmp_evidence": "TEST user-supplied arithmetic example, not measured BMP",
+          "vs_mass_kg": 1.0,
+          "gas_volume_basis": "TEST dry gas reference, no normalization certification",
+          "model_version": null,
+          "model_result": null,
+          "missing": [],
+          "warnings": [],
+          "uncertainty_status": "not_quantified_no_coverage_validated_interval",
+          "limitations": [
+            "BMP times VS is methane potential, not reactor productivity or measured production.",
+            "Recovery and methane fraction, if supplied, are explicit scenario inputs, not model predictions.",
+            "No temperature, HRT, OLR or pretreatment yield multiplier is used.",
+            "Measured BMP evidence and volume reference conditions are user assertions, not independently certified."
+          ],
+          "formula": "BMP [mL CH4/g VS] * VS [kg] / 1000"
+        },
+        "energy": {
+          "status": "ok",
+          "initial_thermal_kwh": 0.2,
+          "initial_heating_kwh": 0.25,
+          "maintenance_heating_kwh": 1.0799999999999998,
+          "auxiliary_kwh": 0.1,
+          "total_energy_kwh": 1.43,
+          "known_subtotal_kwh": 1.43,
+          "cooling_required": false,
+          "missing": [],
+          "scope": "entire_feedstock",
+          "warnings": [],
+          "formulas": {
+            "initial_thermal_kwh": "heated_mass_kg * cp_kJ_kg_K * max(T_target-T_initial,0) / 3600",
+            "initial_heating_kwh": "initial_thermal_kwh / heater_efficiency",
+            "maintenance_heating_kwh": "UA_W_K * max(T_target-T_ambient,0) * duration_days * 24 / 1000 / heater_efficiency",
+            "auxiliary_kwh": "auxiliary_power_W * duty_fraction * duration_days * 24 / 1000, or explicit measured energy"
+          },
+          "limitations": [
+            "Constant heat capacity; no phase change, evaporation, biological heat or heat recovery model.",
+            "UA and temperatures are user inputs; steady holding losses exclude startup transients.",
+            "Heated mass includes only the explicit input. Inoculum, water and vessel thermal mass must be included by the user.",
+            "Energy scope/duration is explicit; no automatic scaling from one charge to the entire feedstock lot."
+          ],
+          "scientific_sources": [
+            {
+              "title": "US DOE Fundamentals Handbook, Thermodynamics, Heat Transfer, and Fluid Flow, Vol. 1",
+              "url": "https://www.energy.gov/documents/doe-hdbk-1012-92vol1",
+              "year": 1992,
+              "scope": "Sensible heat Q=m cp delta T; not a reactor-specific calibration"
+            },
+            {
+              "title": "PNNL Building Science: Introduction to Heat Flow",
+              "url": "https://basc.pnnl.gov/information/building-science-introduction-heat-flow",
+              "scope": "Steady heat-transfer relation UA delta T, not measured reactor heat loss"
+            }
+          ]
+        },
+        "economics": {
+          "status": "needs_input",
+          "scenarios": [
+            {
+              "scenario": "A",
+              "status": "needs_input",
+              "reason": "Не заданы: sale_storage_cost, sale_transport_cost",
+              "net_profit": null
+            },
+            {
+              "scenario": "B",
+              "status": "needs_input",
+              "reason": "Не заданы: preparation_cost, heating_cost, operating_cost, storage_cost, transport_cost, digestate_handling_cost, recovery_fraction",
+              "net_profit": null
+            },
+            {
+              "scenario": "C",
+              "status": "needs_input",
+              "reason": "Не заданы: gas_sale_technical_confirmed, gas_sale_legal_confirmed, gas_sale_evidence",
+              "net_profit": null
+            },
+            {
+              "scenario": "D",
+              "status": "needs_input",
+              "reason": "Не заданы: digestate_quality_confirmed, digestate_market_allowed, digestate_quality_evidence",
+              "net_profit": null
+            }
+          ],
+          "recommended_scenario": null,
+          "final_recommendation": null,
+          "is_final_recommendation": false,
+          "recommendation_scope": "explicit_hypothetical_process_inputs_only",
+          "currency": "KZT",
+          "region": null,
+          "potential_methane_m3": 0.3,
+          "potential_provenance": "explicit_user_potential",
+          "selected_prices": {},
+          "sensitivity": [],
+          "double_counting_policy": "A/B/C/D are alternatives. B values only self-consumed electricity; C only gas sales; D only digestate benefit. No summed gas/electricity/digestate revenue.",
+          "limitations": [
+            "Нет гарантии фактической эффективности или юридической оценки: подтверждения задаёт пользователь.",
+            "Тариф покупки электроэнергии означает только экономию собственного потребления, не доход от продажи в сеть.",
+            "Минеральное удобрение не оценивает дигестат без подтверждённой эквивалентности; здесь такой пересчёт не выполняется."
+          ],
+          "message": "Рыночные сценарии. A: Не заданы: sale_storage_cost, sale_transport_cost; B: Не заданы: preparation_cost, heating_cost, operating_cost, storage_cost, transport_cost, digestate_handling_cost, recovery_fraction; C: Не заданы: gas_sale_technical_confirmed, gas_sale_legal_confirmed, gas_sale_evidence; D: Не заданы: digestate_quality_confirmed, digestate_market_allowed, digestate_quality_evidence. Итоговая рекомендация не выдана: сравнение неполное.",
+          "sensitivity_policy": "Only explicit v6 ranges; legacy automatic +/-20% is not used.",
+          "comparison_route": null,
+          "warnings": [
+            "Market region is not supplied; no regional price is substituted.",
+            "Input acquisition cost is unknown: margins exclude feedstock purchase. Sale A separately represents the owned-feedstock opportunity value."
+          ],
+          "payback": {
+            "status": "INSUFFICIENT_DATA",
+            "simple_payback_years": null,
+            "scope": "Simple incremental payback relative to sale A; excludes discounting, financing, taxes and unprovided replacement costs."
+          }
+        },
+        "batch_plan": {
+          "status": "ok",
+          "batch_count": 1,
+          "feedstock_capacity_per_batch_l": 65.0,
+          "last_feedstock_charge_l": 10.0,
+          "total_duration_days": 1.0,
+          "missing": [],
+          "formula": "capacity = working - inoculum - dilution - resident liquid; count = ceil(feedstock/capacity)",
+          "assumptions": [
+            "Serial charges in one reactor with the entered occupancy for each charge.",
+            "Turnaround occurs only between charges; no initial setup/final cleanout time is included.",
+            "This is a volume/time worksheet, not proof of microbial stability, safe loading or achieved conversion."
+          ],
+          "message": "Batch allocation uses explicit occupancy; no percentage of total reactor volume was assumed."
+        },
+        "derived_process_values": {}
+      },
+      "uncertainty_status": "not_quantified_no_coverage_validated_interval",
+      "warnings": [
+        "Market region is not supplied; no regional price is substituted.",
+        "Input acquisition cost is unknown: margins exclude feedstock purchase. Sale A separately represents the owned-feedstock opportunity value.",
+        "Target temperature is an entered or literature-study condition, not a validated optimum or equipment command.",
+        "Scenario assumptions remain separate from user measurements."
+      ],
+      "rationale": "TEST explicit temperature hypothesis"
+    }
+  ],
+  "comparison": {
+    "method": "pareto_non_dominated_sort",
+    "objectives": [
+      "energy",
+      "methane"
+    ],
+    "rows": [
+      {
+        "scenario_id": "2ecdcdff0f3c42d7af15",
+        "label": "TEST 35 C",
+        "feasibility_status": "CONDITIONAL",
+        "potential_methane_m3": 0.3,
+        "total_energy_kwh": 1.2083333333333333,
+        "processing_cost": null,
+        "net_profit": null,
+        "total_duration_days": 1.0,
+        "uncertainty_score": null,
+        "pareto_rank": 1
+      },
+      {
+        "scenario_id": "1c43112f375451145aaa",
+        "label": "TEST 38 C",
+        "feasibility_status": "CONDITIONAL",
+        "potential_methane_m3": 0.3,
+        "total_energy_kwh": 1.43,
+        "processing_cost": null,
+        "net_profit": null,
+        "total_duration_days": 1.0,
+        "uncertainty_score": null,
+        "pareto_rank": 2
+      }
+    ],
+    "pareto_fronts": [
+      [
+        "2ecdcdff0f3c42d7af15"
+      ],
+      [
+        "1c43112f375451145aaa"
+      ]
+    ],
+    "recommended_scenario_id": null,
+    "weights": null,
+    "ranking_status": "CONDITIONAL",
+    "reason": "Pareto fronts under the entered assumptions and selected objectives; no unique operational optimum or weights are claimed."
+  },
+  "sensitivity": {
+    "rows": [
+      {
+        "scenario_id": "2ecdcdff0f3c42d7af15",
+        "parameter": "temperature_c",
+        "low": 35.0,
+        "high": 38.0,
+        "provenance": "USER_DEFINED_RANGE",
+        "evidence": "TEST explicit endpoints",
+        "source_url": null,
+        "outputs": {
+          "potential_methane_m3": {
+            "low": 0.3,
+            "high": 0.3,
+            "span": 0.0
+          },
+          "total_energy_kwh": {
+            "low": 1.2083333333333333,
+            "high": 1.43,
+            "span": 0.22166666666666668
+          }
+        },
+        "status": "CONDITIONAL",
+        "method": "One parameter at a time; endpoint sensitivity, not a probability interval or forecast."
+      },
+      {
+        "scenario_id": "1c43112f375451145aaa",
+        "parameter": "temperature_c",
+        "low": 35.0,
+        "high": 38.0,
+        "provenance": "USER_DEFINED_RANGE",
+        "evidence": "TEST explicit endpoints",
+        "source_url": null,
+        "outputs": {
+          "potential_methane_m3": {
+            "low": 0.3,
+            "high": 0.3,
+            "span": 0.0
+          },
+          "total_energy_kwh": {
+            "low": 1.2083333333333333,
+            "high": 1.43,
+            "span": 0.22166666666666668
+          }
+        },
+        "status": "CONDITIONAL",
+        "method": "One parameter at a time; endpoint sensitivity, not a probability interval or forecast."
+      }
+    ],
+    "influence_by_output": {
+      "potential_methane_m3": [
+        {
+          "scenario_id": "2ecdcdff0f3c42d7af15",
+          "parameter": "temperature_c",
+          "absolute_span": 0.0
+        },
+        {
+          "scenario_id": "1c43112f375451145aaa",
+          "parameter": "temperature_c",
+          "absolute_span": 0.0
+        }
+      ],
+      "total_energy_kwh": [
+        {
+          "scenario_id": "2ecdcdff0f3c42d7af15",
+          "parameter": "temperature_c",
+          "absolute_span": 0.22166666666666668
+        },
+        {
+          "scenario_id": "1c43112f375451145aaa",
+          "parameter": "temperature_c",
+          "absolute_span": 0.22166666666666668
+        }
+      ]
+    },
+    "uncertainty_status": "not_quantified_no_calibrated_probability_distribution",
+    "limitations": [
+      "Endpoint effects are compared within each output unit; no cross-unit importance score.",
+      "User/source ranges are scenario boundaries, not empirically calibrated confidence intervals.",
+      "Correlations, process kinetics and interactions are not estimated.",
+      "Temperature affects only the explicit thermal worksheet; no temperature-to-BMP response is inferred."
+    ]
+  },
+  "scientific_sources": [
+    {
+      "id": "fao_environment",
+      "title": "FAO / Marchaim — Biogas processes for sustainable development: Environmental factors",
+      "url": "https://www.fao.org/4/t0541e/T0541E06.htm",
+      "year": 1992,
+      "doi": null,
+      "locator": "Temperature and pH sections",
+      "reviewed_by": "Codex primary-source inspection, 2026-10-28",
+      "verified_on": "2026-10-28",
+      "provenance": "SOURCE_VERIFIED"
+    },
+    {
+      "id": "fao_design",
+      "title": "FAO / Marchaim — Anaerobic processes, plant design and control",
+      "url": "https://www.fao.org/4/t0541e/T0541E09.htm",
+      "year": 1992,
+      "doi": null,
+      "locator": "Digester types; KVIC; process control",
+      "reviewed_by": "Codex primary-source inspection, 2026-10-28",
+      "verified_on": "2026-10-28",
+      "provenance": "SOURCE_VERIFIED"
+    },
+    {
+      "title": "US DOE Fundamentals Handbook, Thermodynamics, Heat Transfer, and Fluid Flow, Vol. 1",
+      "url": "https://www.energy.gov/documents/doe-hdbk-1012-92vol1",
+      "year": 1992,
+      "scope": "Sensible heat Q=m cp delta T; not a reactor-specific calibration"
+    },
+    {
+      "title": "PNNL Building Science: Introduction to Heat Flow",
+      "url": "https://basc.pnnl.gov/information/building-science-introduction-heat-flow",
+      "scope": "Steady heat-transfer relation UA delta T, not measured reactor heat loss"
+    }
+  ],
+  "actuator_access": false,
+  "status_scope": "VERIFIED means input/arithmetic checks only if used; no scenario receives an operating or safety certification.",
+  "models_retrained": false,
+  "final_recommendation": null,
+  "explanation": {
+    "summary": "2 alternatives studied; 0 have critical missing inputs and 0 violate declared constraints.",
+    "ranking_explanation": "Pareto fronts under the entered assumptions and selected objectives; no unique operational optimum or weights are claimed.",
+    "critical_missing": [],
+    "safety": "Advisory calculations only. No actuator commands. Reactor operation needs engineering protection, pressure control, ventilation and gas safety.",
+    "scientific_limit": "Methane potential is distinct from actual conversion; higher temperature is not assumed to increase methane."
+  },
+  "id": "4207de5ba4cc4577bedd38c19074da5f",
+  "created_at": "2026-10-28T16:48:07.830172+00:00",
+  "engine_version": "6"
+}

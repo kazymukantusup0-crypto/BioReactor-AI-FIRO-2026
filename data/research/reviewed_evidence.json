@@ -1,0 +1,42 @@
+{
+  "schema_version": "7.0",
+  "profiles": [{
+    "id": "oliveira-rm1-2025-v1",
+    "material": "cattle_manure",
+    "material_state": "slurry",
+    "source": {
+      "id": "doi:10.1007/s43153-025-00592-x",
+      "title": "Moderate thermal, alkaline and thermal-alkaline pretreatment of cattle manure: effects on methane production and economic feasibility",
+      "authors": ["Helena Rodrigues Oliveira", "Thuane Mendes Anacleto", "Lisa Åsenius", "Alex Enrich-Prast"],
+      "year": 2025,
+      "online_published": "2025-09-11",
+      "issue_year": 2026,
+      "doi": "10.1007/s43153-025-00592-x",
+      "url": "https://link.springer.com/article/10.1007/s43153-025-00592-x",
+      "license": "CC BY 4.0",
+      "review_method": "Manual review of primary article and original Figure 1; not an automatic full-text extraction",
+      "verification_status": "REVIEWED_PRIMARY",
+      "retrieval_limit": "Publisher robots disallows programmatic article/PDF downloads; no bypass. Public figure host was accessible under its own robots policy."
+    },
+    "conditions": {
+      "country": "Sweden", "sample": "RM1 untreated raw cattle slurry, Sjukulla; refrigerated 4 °C for 12 days",
+      "bmp_method": "AMPTS II, triplicate, inoculum blank corrected",
+      "temperature_c": 37, "duration_days": 27, "ISR_VS": 1,
+      "gas_reference": "273.2 K; 1.01325 bar", "gas_moisture_basis": "not explicitly stated",
+      "pretreatment": "none", "limitations": "Single material and laboratory; frozen RM2 and treated samples excluded. Not a full-scale recovery guarantee."
+    },
+    "values": {
+      "density_kg_l": {"original_value": "1.013", "original_unit": "g/mL", "low": 1.013, "high": 1.013, "normalized_unit": "kg/L", "locator": "Materials and methods, economic analysis, Eq. 1", "method": "REPORTED_POINT; variation not reported"},
+      "ts_fraction": {"original_value": "13.3 ± 0.61", "original_unit": "% wet weight", "low": 0.1269, "high": 0.1391, "normalized_unit": "kg TS/kg wet", "locator": "Table 1, PDF page 3, journal page 739", "method": "REPORTED_MEAN_PLUS_MINUS_SD_SENSITIVITY; not confidence bounds"},
+      "vs_fraction_wet": {"original_value": "10.8 ± 0.64", "original_unit": "% wet weight", "low": 0.1016, "high": 0.1144, "normalized_unit": "kg VS/kg wet", "locator": "Table 1, PDF page 3, journal page 739", "method": "REPORTED_MEAN_PLUS_MINUS_SD_SENSITIVITY; not percent TS, not confidence bounds"},
+      "bmp_ml_g_vs": {"original_value": "Untreated RM1 bar between major gridlines 200 and 250", "original_unit": "NmL CH4/g VS", "low": 200, "high": 250, "normalized_unit": "mL CH4/g VS at stated reference", "locator": "Figure 1a, untreated RM1 bar only", "method": "GRAPH_READ_ENVELOPE; coarse major-gridline bracket, not reported exact mean or uncertainty interval", "asset_url": "https://media.springernature.com/lw685/springer-static/image/art%3A10.1007%2Fs43153-025-00592-x/MediaObjects/43153_2025_592_Fig1_HTML.jpg"}
+    },
+    "excluded_items": [{"locator": "Table 3", "value": "35.8 kWh/m3 methane", "status": "REJECTED_UNIT_CONFLICT", "reason": "Conflicting heating-value unit; not used or silently corrected"}]
+  }],
+  "energy_reference": {
+    "id": "fnr-methane-energy", "title": "Faustzahlen Biogas", "organization": "Fachagentur Nachwachsende Rohstoffe e. V. (FNR)", "year": null,
+    "url": "https://biogas.fnr.de/daten-und-fakten/faustzahlen", "locator": "Energy content of pure methane",
+    "original_value": "9.97", "original_unit": "kWh per m3 pure methane", "kwh_m3": 9.97,
+    "verification_status": "REVIEWED_PRIMARY_REFERENCE", "limitation": "Indicative fuel energy; reference-condition/dry-gas compatibility is an assumption. Not electric output or revenue."
+  }
+}

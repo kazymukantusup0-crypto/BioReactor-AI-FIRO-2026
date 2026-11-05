@@ -1,0 +1,16 @@
+[
+  {
+    "id": 3,
+    "url": "https://api.crossref.org/works?query.bibliographic=Cattle+manure+Food+waste+anaerobic+digestion+BMP+co_digestion&rows=5&select=DOI%2Ctitle%2Cauthor%2Cpublished%2CURL",
+    "attempted_at": "2026-10-29T15:33:04.477123+00:00",
+    "status": "unavailable",
+    "detail": "Download failed: HTTP Error 429: Too Many Requests"
+  },
+  {
+    "id": 1,
+    "url": "https://api.crossref.org/works?query.bibliographic=cattle+slurry+biochemical+methane+potential+total+volatile+solids+density&rows=5&select=DOI%2Ctitle%2Cauthor%2Cpublished%2CURL",
+    "attempted_at": "2026-10-29T05:43:15.279056+00:00",
+    "status": "success",
+    "detail": "4083 bytes; robots/TLS checked by public adapter"
+  }
+]

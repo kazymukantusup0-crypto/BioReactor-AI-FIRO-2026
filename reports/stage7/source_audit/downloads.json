@@ -1,0 +1,27 @@
+[
+  {
+    "id": "oliveira_2025_pdf",
+    "url": "https://link.springer.com/content/pdf/10.1007/s43153-025-00592-x.pdf",
+    "status": "unavailable",
+    "error": "robots.txt does not allow this download"
+  },
+  {
+    "id": "oliveira_2025_html",
+    "url": "https://link.springer.com/article/10.1007/s43153-025-00592-x",
+    "status": "unavailable",
+    "error": "robots.txt does not allow this download"
+  },
+  {
+    "id": "stroitaxi_manure",
+    "url": "https://stroitaxi.kz/karaganda/catalog/stroitelnye-materialy/koroviy-navoz/",
+    "bytes": 143870,
+    "sha256": "81594cf5fe815506528db2107bf55ce7539fc9727b5a411148bc4f0b6fe32f30",
+    "status": "downloaded_with_robots_check"
+  },
+  {
+    "id": "griffith_bmp",
+    "url": "https://research-repository.griffith.edu.au/server/api/core/bitstreams/10fa9998-60c0-46ba-8caa-bb83b5aa54d2/content",
+    "status": "unavailable",
+    "error": "robots.txt does not allow this download"
+  }
+]

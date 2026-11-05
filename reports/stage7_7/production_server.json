@@ -1,0 +1,9 @@
+﻿{
+    "version":  "7.7",
+    "database":  "C:\\Users\\Kazhu\\Downloads\\face_dataset_you_noname\\face_dataset_project\\BioReactor_AI\\data\\market\\market.sqlite3",
+    "scheduler_enabled":  false,
+    "pid":  21888,
+    "regional_price_rows":  4,
+    "url":  "http://127.0.0.1:8765/dashboard/#/overview",
+    "http_status":  200
+}

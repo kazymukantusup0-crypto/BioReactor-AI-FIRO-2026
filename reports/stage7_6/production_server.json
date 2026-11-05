@@ -1,0 +1,10 @@
+﻿{
+    "http_status":  200,
+    "pid":  20916,
+    "materials_with_profiles":  2,
+    "scheduler_enabled":  false,
+    "advisor_version":  "7.6",
+    "url":  "http://127.0.0.1:8765/dashboard/#/mixtures",
+    "recognized_categories":  15,
+    "approved_profiles":  3
+}

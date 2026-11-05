@@ -1,0 +1,10 @@
+import { ArrowRight, MessageSquare, Layers, Radio } from 'lucide-react'
+import { useEffect } from 'react'
+import { api } from '../api'
+import { useQuery } from '../hooks'
+import { LoadState, PriceStatus, number } from '../ui'
+export default function Overview({navigate}:{navigate:(page:string)=>void}){
+const prices=useQuery('home-prices',signal=>api.prices('KZ-Karaganda',signal))
+useEffect(()=>{const timer=setInterval(prices.refresh,60000);return()=>clearInterval(timer)},[prices.refresh])
+return <div className="clean-home"><div className="clean-intro"><h1>Что можно получить из вашего сырья?</h1><p>Опишите состав или задайте вопрос ассистенту — он поможет оценить газ, условия и экономику.</p></div><div className="home-actions"><button className="home-action" onClick={()=>navigate('substrates')}><Layers size={25}/><h2>Сырьё и смеси</h2><p>Один материал или несколько. Количество, ориентир выхода и сравнение составов.</p><ArrowRight size={17}/></button><button className="home-action" onClick={()=>navigate('chat')}><MessageSquare size={25}/><h2>Спросить ассистента</h2><p>Задайте вопрос своими словами. Состав и уточнения сохранятся в диалоге.</p><ArrowRight size={17}/></button></div><div className="home-status"><Radio size={19}/><span>Реактор пока не подключён. Живых измерений нет, управление оборудованием отключено.</span><button className="text-button" onClick={()=>navigate('reactor')}>Подробнее</button></div>{<section className="home-market"><h2>Цены для вашего сравнения</h2><LoadState loading={prices.loading} error={prices.error} retry={prices.refresh}/>{prices.data?.prices.slice(0,3).map(p=><div className="home-market-row" key={p.id}><span>{p.commodity==='electricity'?'Электроэнергия':'Природный газ'}<small>{p.price_type==='reference'?'Статистический ориентир':'Тариф'} · {p.region}</small></span><span>{number(p.normalized_value)} {p.normalized_unit.includes(p.currency)?p.normalized_unit:p.currency+'/'+p.normalized_unit}<PriceStatus price={p}/></span></div>)}<button className="text-button" onClick={()=>navigate('market')}>Все цены и даты <ArrowRight size={14}/></button></section>}</div>
+}

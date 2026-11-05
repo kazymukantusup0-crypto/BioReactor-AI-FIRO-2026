@@ -1,0 +1,491 @@
+[
+  {
+    "scenario": "live local LLM; user-request example",
+    "user": "У меня 80 литров чернозёма и реактор на 90 литров. Выгоднее продать чернозём или переработать в биогаз?",
+    "reply": {
+      "mode": "llm_tools",
+      "provider_status": [
+        {
+          "provider": "offline",
+          "model": "qwen2.5:1.5b",
+          "status": "available",
+          "actual_generation": true
+        }
+      ],
+      "llm_proposed_tools": [
+        "analyze_substrate",
+        "predict_bmp",
+        "calculate_methane",
+        "calculate_profitability"
+      ],
+      "policy_tool_plan": [
+        "analyze_substrate",
+        "predict_bmp",
+        "calculate_methane",
+        "calculate_profitability"
+      ],
+      "response_order": [
+        "analyze_substrate",
+        "calculate_profitability",
+        "predict_bmp",
+        "calculate_methane"
+      ],
+      "answer": "Сырьё: чернозём. Почва не подтверждена как продуктивный субстрат этой системой. Нет BMP-данных или режимов для чернозёма; численный ML-прогноз отклоняется. Численный прогноз Hafner для этого материала отклоняется.\n\nСравнение пока невозможно. Задайте количество, цены, дату, валюту, долю извлечения и все затраты партии (включая явные нули).\n\nДля потенциального метана нужны BMP с единицами, измеренная масса VS и условия приведения газа.\n\nДля сравнения нужны: масса партии, обоснованный потенциал метана и условия приведения, доля извлечения, цены сырья и метана, затраты на подготовку/нагрев/эксплуатацию, валюта и дата цен. Полный список полей доступен с --json.\n\nЛитры сырья не равны килограммам: измерьте массу или задайте density_kg_l. Номинальный объём реактора не задаёт безопасный рабочий объём.\n\nИсточники:\n- FAO Global Soil Partnership, Fifth Plenary (June 2017), GSPPA V/2017/3: https://www.fao.org/fileadmin/user_upload/GSP/Fifth_plenary/en/GSPPA_V_2017_3.pdf",
+      "tools": [
+        {
+          "tool": "analyze_substrate",
+          "input_origin": "explicit_user_context_and_verified_prior_tool_results",
+          "status": "ok",
+          "result": {
+            "status": "ok",
+            "material": "chernozem",
+            "name_ru": "чернозём",
+            "category": "soil",
+            "dry_matter_fraction": null,
+            "vs_fraction": null,
+            "conditions": null,
+            "sources": [
+              {
+                "id": "fao_soil",
+                "title": "FAO Global Soil Partnership, Fifth Plenary (June 2017), GSPPA V/2017/3",
+                "url": "https://www.fao.org/fileadmin/user_upload/GSP/Fifth_plenary/en/GSPPA_V_2017_3.pdf",
+                "locator": "Annex I, International Network of Black Soils: Chernozems and soil conservation",
+                "verified_on": "2026-10-28",
+                "keywords": [
+                  "черноз",
+                  "почв",
+                  "soil",
+                  "chernozem"
+                ],
+                "summary": "Чернозёмы рассматриваются как почвы с органическим веществом, требующие сохранения. Содержание органического вещества почвы не равно измеренной BMP или доступной для сбраживания VS."
+              }
+            ],
+            "limitations": "Почва не подтверждена как продуктивный субстрат этой системой. Нет BMP-данных или режимов для чернозёма; численный ML-прогноз отклоняется.",
+            "model_applicable": false,
+            "message": "Сырьё: чернозём. Почва не подтверждена как продуктивный субстрат этой системой. Нет BMP-данных или режимов для чернозёма; численный ML-прогноз отклоняется. Численный прогноз Hafner для этого материала отклоняется."
+          }
+        },
+        {
+          "tool": "predict_bmp",
+          "input_origin": "explicit_user_context_and_verified_prior_tool_results",
+          "status": "unsupported",
+          "result": {
+            "status": "unsupported",
+            "missing": [],
+            "message": "Сырьё: чернозём. Почва не подтверждена как продуктивный субстрат этой системой. Нет BMP-данных или режимов для чернозёма; численный ML-прогноз отклоняется. Численный прогноз Hafner для этого материала отклоняется.",
+            "model_called": false
+          }
+        },
+        {
+          "tool": "calculate_methane",
+          "input_origin": "explicit_user_context_and_verified_prior_tool_results",
+          "status": "needs_input",
+          "result": {
+            "status": "needs_input",
+            "missing": [
+              "bmp_ml_ch4_g_vs",
+              "vs_mass_kg",
+              "bmp_unit",
+              "gas_volume_basis"
+            ],
+            "message": "Для потенциального метана нужны BMP с единицами, измеренная масса VS и условия приведения газа."
+          }
+        },
+        {
+          "tool": "calculate_profitability",
+          "input_origin": "explicit_user_context_and_verified_prior_tool_results",
+          "status": "needs_input",
+          "result": {
+            "status": "needs_input",
+            "missing": [
+              "mass_kg",
+              "sale_price_per_kg",
+              "potential_methane_m3",
+              "recovery_fraction",
+              "methane_price_per_m3",
+              "preparation_cost",
+              "heating_cost",
+              "operating_cost",
+              "currency",
+              "price_date",
+              "gas_volume_basis",
+              "price_gas_volume_basis"
+            ],
+            "message": "Сравнение пока невозможно. Задайте количество, цены, дату, валюту, долю извлечения и все затраты партии (включая явные нули)."
+          }
+        }
+      ],
+      "missing": [
+        "bmp_ml_ch4_g_vs",
+        "vs_mass_kg",
+        "bmp_unit",
+        "gas_volume_basis",
+        "mass_kg",
+        "sale_price_per_kg",
+        "potential_methane_m3",
+        "recovery_fraction",
+        "methane_price_per_m3",
+        "preparation_cost",
+        "heating_cost",
+        "operating_cost",
+        "currency",
+        "price_date",
+        "price_gas_volume_basis"
+      ],
+      "context": {
+        "material": "chernozem",
+        "material_volume_l": 80.0,
+        "reactor_volume_l": 90.0
+      },
+      "actuator_access": false
+    }
+  },
+  {
+    "scenario": "live hybrid agent; incomplete measured inputs",
+    "user": "Оцени BMP пшеничной соломы",
+    "reply": {
+      "mode": "llm_tools",
+      "provider_status": [
+        {
+          "provider": "online",
+          "model": null,
+          "status": "not_configured"
+        },
+        {
+          "provider": "offline",
+          "model": "qwen2.5:1.5b",
+          "status": "available",
+          "actual_generation": true
+        }
+      ],
+      "llm_proposed_tools": [
+        "predict_bmp"
+      ],
+      "policy_tool_plan": [
+        "analyze_substrate",
+        "predict_bmp"
+      ],
+      "response_order": [
+        "analyze_substrate",
+        "predict_bmp"
+      ],
+      "answer": "Сырьё: пшеничная солома. Общий эталонный субстрат Hafner; не все партии соломы эквивалентны. Категория есть в обучении; применимость конкретной партии ещё не подтверждена.\n\nДля научного BMP укажите измеренные c_vs_sub_m, c_vs_sub_f, c_vs_inoc, ISR. VS — г/г влажного материала; ISR — отношение масс VS. Эталонную VS нельзя назначать произвольно.\n\nНужны данные: c_vs_sub_m, c_vs_sub_f, c_vs_inoc, ISR. Ответьте JSON-объектом или полями имя=значение; строки с пробелами — в кавычках.\n\nИсточники:\n- Hafner et al. — Reliable biochemical methane potential testing (2026), original repository and dictionary: https://github.com/AU-BCE-EE/Hafner-2026-IL-BMP",
+      "tools": [
+        {
+          "tool": "analyze_substrate",
+          "input_origin": "explicit_user_context_and_verified_prior_tool_results",
+          "status": "ok",
+          "result": {
+            "status": "ok",
+            "material": "Wheat straw",
+            "name_ru": "пшеничная солома",
+            "category": "crop_residue",
+            "dry_matter_fraction": null,
+            "vs_fraction": null,
+            "conditions": null,
+            "sources": [
+              {
+                "id": "hafner",
+                "title": "Hafner et al. — Reliable biochemical methane potential testing (2026), original repository and dictionary",
+                "url": "https://github.com/AU-BCE-EE/Hafner-2026-IL-BMP",
+                "locator": "README: Contents and Column names; local preserved copy in data/raw/hafner_2026_il_bmp",
+                "verified_on": "2026-10-28",
+                "keywords": [
+                  "bmp",
+                  "vs",
+                  "isr",
+                  "модел",
+                  "солом",
+                  "сыворот",
+                  "hafner",
+                  "метан"
+                ],
+                "summary": "Бутылочные BMP общих субстратов от 31 лаборатории. Единица: мл метана на грамм добавленной VS субстрата. Это лабораторный потенциал, не выработка установки."
+              }
+            ],
+            "limitations": "Общий эталонный субстрат Hafner; не все партии соломы эквивалентны.",
+            "model_applicable": true,
+            "message": "Сырьё: пшеничная солома. Общий эталонный субстрат Hafner; не все партии соломы эквивалентны. Категория есть в обучении; применимость конкретной партии ещё не подтверждена."
+          }
+        },
+        {
+          "tool": "predict_bmp",
+          "input_origin": "explicit_user_context_and_verified_prior_tool_results",
+          "status": "needs_input",
+          "result": {
+            "status": "needs_input",
+            "missing": [
+              "c_vs_sub_m",
+              "c_vs_sub_f",
+              "c_vs_inoc",
+              "ISR"
+            ],
+            "model_called": false,
+            "message": "Для научного BMP укажите измеренные c_vs_sub_m, c_vs_sub_f, c_vs_inoc, ISR. VS — г/г влажного материала; ISR — отношение масс VS. Эталонную VS нельзя назначать произвольно."
+          }
+        }
+      ],
+      "missing": [
+        "c_vs_sub_m",
+        "c_vs_sub_f",
+        "c_vs_inoc",
+        "ISR"
+      ],
+      "context": {
+        "material": "Wheat straw"
+      },
+      "actuator_access": false
+    }
+  },
+  {
+    "scenario": "live same session; real train-bottle inputs, not independent validation",
+    "user": "{\n  \"substrate\": \"Wheat straw\",\n  \"c_vs_sub_m\": 0.9041,\n  \"c_vs_sub_f\": 0.872,\n  \"c_vs_inoc\": 0.02213,\n  \"ISR\": 1.915\n}\n",
+    "reply": {
+      "mode": "llm_tools",
+      "provider_status": [
+        {
+          "provider": "online",
+          "model": null,
+          "status": "not_configured"
+        },
+        {
+          "provider": "offline",
+          "model": "qwen2.5:1.5b",
+          "status": "available",
+          "actual_generation": true
+        }
+      ],
+      "llm_proposed_tools": [
+        "analyze_substrate",
+        "predict_bmp",
+        "calculate_methane",
+        "calculate_profitability",
+        "get_model_info",
+        "get_reactor_status",
+        "search_scientific_sources"
+      ],
+      "policy_tool_plan": [
+        "analyze_substrate",
+        "predict_bmp"
+      ],
+      "response_order": [
+        "analyze_substrate",
+        "predict_bmp"
+      ],
+      "answer": "Сырьё: пшеничная солома. Общий эталонный субстрат Hafner; не все партии соломы эквивалентны. Категория есть в обучении; применимость конкретной партии ещё не подтверждена.\n\nЛабораторный BMP: 279.4 мл CH₄/г VS (SubstrateMedian). Это потенциал, не фактический выход газа. 90% интервал не установлен; перенос на вашу установку не подтверждён.\n\nИсточники:\n- Hafner et al. — Reliable biochemical methane potential testing (2026), original repository and dictionary: https://github.com/AU-BCE-EE/Hafner-2026-IL-BMP",
+      "tools": [
+        {
+          "tool": "analyze_substrate",
+          "input_origin": "explicit_user_context_and_verified_prior_tool_results",
+          "status": "ok",
+          "result": {
+            "status": "ok",
+            "material": "Wheat straw",
+            "name_ru": "пшеничная солома",
+            "category": "crop_residue",
+            "dry_matter_fraction": null,
+            "vs_fraction": null,
+            "conditions": null,
+            "sources": [
+              {
+                "id": "hafner",
+                "title": "Hafner et al. — Reliable biochemical methane potential testing (2026), original repository and dictionary",
+                "url": "https://github.com/AU-BCE-EE/Hafner-2026-IL-BMP",
+                "locator": "README: Contents and Column names; local preserved copy in data/raw/hafner_2026_il_bmp",
+                "verified_on": "2026-10-28",
+                "keywords": [
+                  "bmp",
+                  "vs",
+                  "isr",
+                  "модел",
+                  "солом",
+                  "сыворот",
+                  "hafner",
+                  "метан"
+                ],
+                "summary": "Бутылочные BMP общих субстратов от 31 лаборатории. Единица: мл метана на грамм добавленной VS субстрата. Это лабораторный потенциал, не выработка установки."
+              }
+            ],
+            "limitations": "Общий эталонный субстрат Hafner; не все партии соломы эквивалентны.",
+            "model_applicable": true,
+            "message": "Сырьё: пшеничная солома. Общий эталонный субстрат Hafner; не все партии соломы эквивалентны. Категория есть в обучении; применимость конкретной партии ещё не подтверждена."
+          }
+        },
+        {
+          "tool": "predict_bmp",
+          "input_origin": "explicit_user_context_and_verified_prior_tool_results",
+          "status": "ok",
+          "result": {
+            "status": "ok",
+            "bmp": 279.4,
+            "unit": "mL CH4/g substrate VS",
+            "model_version": "stage1_5-003b3b49e63e",
+            "model": "SubstrateMedian",
+            "used_features": {
+              "substrate": "Wheat straw"
+            },
+            "uncertainty": {
+              "interval_90": null,
+              "explanation": "Only four calibration labs and five previously viewed validation labs. 80% band is exploratory; observed coverage does not establish population coverage. 90% finite band unavailable. Group exchangeability, group sizes and substrate composition may differ."
+            },
+            "warnings": [
+              "Research only: one study with six shared substrates.",
+              "Nested CV winner selection is optimistic; validation was previously viewed.",
+              "Required composition and operating conditions are not represented; no reactor yield prediction.",
+              "Input domain detector is heuristic and cannot establish applicability."
+            ],
+            "ignored_context_fields": [],
+            "domain_assessed_features": {
+              "substrate": "Wheat straw",
+              "c_vs_sub_m": 0.9041,
+              "c_vs_sub_f": 0.872,
+              "c_vs_inoc": 0.02213,
+              "ISR": 1.915
+            },
+            "domain": {
+              "out_of_distribution": false,
+              "distance": 0.0,
+              "threshold": 10.427499248358611,
+              "conditional_range_violations": [],
+              "training_labs": 16,
+              "training_rows": 48,
+              "limited_support": false,
+              "method": "IQR-scaled nearest same-substrate training observation; threshold=95th percentile of training leave-lab-out distances. Heuristic, not a probability."
+            },
+            "experimental_uncertainty": {
+              "group_radius_90": null,
+              "experimental_group_radius_80": 164.0,
+              "calibration_labs": 4,
+              "validation_labs": 5,
+              "validation_row_coverage": 1.0,
+              "validation_all_bottles_group_coverage": 1.0,
+              "covered_validation_labs": 5,
+              "warning": "Only four calibration labs and five previously viewed validation labs. 80% band is exploratory; observed coverage does not establish population coverage. 90% finite band unavailable. Group exchangeability, group sizes and substrate composition may differ."
+            },
+            "model_called": true,
+            "message": "Лабораторный BMP: 279.4 мл CH₄/г VS (SubstrateMedian). Это потенциал, не фактический выход газа. 90% интервал не установлен; перенос на вашу установку не подтверждён."
+          }
+        }
+      ],
+      "missing": [],
+      "context": {
+        "material": "Wheat straw",
+        "c_vs_sub_m": 0.9041,
+        "c_vs_sub_f": 0.872,
+        "c_vs_inoc": 0.02213,
+        "ISR": 1.915
+      },
+      "actuator_access": false
+    }
+  },
+  {
+    "scenario": "legacy ML loading, deterministic tool mode",
+    "user": "Оцени BMP",
+    "reply": {
+      "mode": "deterministic_tools_no_llm",
+      "provider_status": [],
+      "llm_proposed_tools": [],
+      "policy_tool_plan": [
+        "analyze_substrate",
+        "predict_bmp"
+      ],
+      "response_order": [
+        "analyze_substrate",
+        "predict_bmp"
+      ],
+      "answer": "В этом ответе LLM не используется. Работает ограниченный расчётный режим, не языковая модель.\n\nСырьё: пшеничная солома. Общий эталонный субстрат Hafner; не все партии соломы эквивалентны. Категория есть в обучении; применимость конкретной партии ещё не подтверждена.\n\nЛабораторный BMP: 392.656 мл CH₄/г VS (CatBoost). Это потенциал, не фактический выход газа. 90% интервал не установлен; перенос на вашу установку не подтверждён.\n\nИсточники:\n- Hafner et al. — Reliable biochemical methane potential testing (2026), original repository and dictionary: https://github.com/AU-BCE-EE/Hafner-2026-IL-BMP",
+      "tools": [
+        {
+          "tool": "analyze_substrate",
+          "input_origin": "explicit_user_context_and_verified_prior_tool_results",
+          "status": "ok",
+          "result": {
+            "status": "ok",
+            "material": "Wheat straw",
+            "name_ru": "пшеничная солома",
+            "category": "crop_residue",
+            "dry_matter_fraction": null,
+            "vs_fraction": null,
+            "conditions": null,
+            "sources": [
+              {
+                "id": "hafner",
+                "title": "Hafner et al. — Reliable biochemical methane potential testing (2026), original repository and dictionary",
+                "url": "https://github.com/AU-BCE-EE/Hafner-2026-IL-BMP",
+                "locator": "README: Contents and Column names; local preserved copy in data/raw/hafner_2026_il_bmp",
+                "verified_on": "2026-10-28",
+                "keywords": [
+                  "bmp",
+                  "vs",
+                  "isr",
+                  "модел",
+                  "солом",
+                  "сыворот",
+                  "hafner",
+                  "метан"
+                ],
+                "summary": "Бутылочные BMP общих субстратов от 31 лаборатории. Единица: мл метана на грамм добавленной VS субстрата. Это лабораторный потенциал, не выработка установки."
+              }
+            ],
+            "limitations": "Общий эталонный субстрат Hafner; не все партии соломы эквивалентны.",
+            "model_applicable": true,
+            "message": "Сырьё: пшеничная солома. Общий эталонный субстрат Hafner; не все партии соломы эквивалентны. Категория есть в обучении; применимость конкретной партии ещё не подтверждена."
+          }
+        },
+        {
+          "tool": "predict_bmp",
+          "input_origin": "explicit_user_context_and_verified_prior_tool_results",
+          "status": "ok",
+          "result": {
+            "status": "ok",
+            "bmp": 392.65616634852415,
+            "unit": "mL CH4/g substrate VS",
+            "model_version": "hafner-11df60e7b85e",
+            "model": "CatBoost",
+            "used_features": {
+              "substrate": "Wheat straw",
+              "c_vs_sub_m": 0.9041,
+              "c_vs_sub_f": 0.872,
+              "c_vs_inoc": 0.02213,
+              "ISR": 1.915
+            },
+            "uncertainty": {
+              "interval_90": null,
+              "explanation": "Too few calibration laboratories for finite 90% group interval."
+            },
+            "warnings": [
+              "One study only; no independent-study test.",
+              "Only represented shared substrates, laboratory batch BMP.",
+              "No temperature, pH, HRT or reactor production prediction.",
+              "Test results are not used to revise selection.",
+              "Legacy artifact: only global numeric bounds are checked; multivariate applicability is unknown."
+            ],
+            "ignored_context_fields": [],
+            "domain": {
+              "out_of_distribution": false,
+              "distance": 0.0,
+              "threshold": 10.427499248358611,
+              "conditional_range_violations": [],
+              "training_labs": 16,
+              "training_rows": 48,
+              "limited_support": false,
+              "method": "IQR-scaled nearest same-substrate training observation; threshold=95th percentile of training leave-lab-out distances. Heuristic, not a probability."
+            },
+            "model_called": true,
+            "message": "Лабораторный BMP: 392.656 мл CH₄/г VS (CatBoost). Это потенциал, не фактический выход газа. 90% интервал не установлен; перенос на вашу установку не подтверждён."
+          }
+        }
+      ],
+      "missing": [],
+      "context": {
+        "c_vs_sub_m": 0.9041,
+        "c_vs_sub_f": 0.872,
+        "c_vs_inoc": 0.02213,
+        "ISR": 1.915,
+        "model": "stage1",
+        "material": "Wheat straw"
+      },
+      "actuator_access": false
+    }
+  }
+]

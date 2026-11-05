@@ -1,0 +1,14 @@
+[
+  {
+    "case": "original_default",
+    "http_status": 400,
+    "error": "{\"error\":\"request (5711 tokens) exceeds the available context size (4096 tokens), try increasing it\"}",
+    "latency_seconds": 2.004821899929084
+  },
+  {
+    "case": "explicit_4096",
+    "http_status": 400,
+    "error": "{\"error\":\"request (5711 tokens) exceeds the available context size (4096 tokens), try increasing it\"}",
+    "latency_seconds": 0.04845450003631413
+  }
+]

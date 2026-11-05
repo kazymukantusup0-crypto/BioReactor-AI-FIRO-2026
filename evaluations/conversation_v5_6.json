@@ -1,0 +1,23 @@
+{
+  "purpose": "User-requested regression dialogues, not an independent language benchmark or measured reactor batches",
+  "cases": [
+    {"id":"manure_800", "conversation":"main", "message":"У меня 800 литров навоза. Лучше продать или переработать? Какую температуру поставить?", "expected":{"material":"manure", "quantity":800,"unit":"L","intents":["economic_comparison","temperature_recommendation"],"pending":"manure_subtype"}},
+    {"id":"cattle_followup", "conversation":"main", "message":"Коровий", "expected":{"material":"cattle_manure","quantity":800,"unit":"L","retains_quantity":true}},
+    {"id":"sale_offer", "conversation":"main", "message":"Я могу продать его за 15 000 тенге", "expected":{"material":"cattle_manure","quantity":800,"unit":"L","sale_offer_amount":15000,"pending":"sale_scope"}},
+    {"id":"sale_scope", "conversation":"main", "message":"Да, это за весь объём", "expected":{"material":"cattle_manure","sale_offer_scope":"batch","no_fake_profit":true}},
+    {"id":"swine_change", "conversation":"main", "message":"А если у меня свиной навоз?", "expected":{"material":"swine_manure","quantity":800,"unit":"L","invalidates_material_results":true}},
+    {"id":"reactor_capacity", "conversation":"main", "message":"А если реактор всего 90 литров?", "expected":{"material":"swine_manure","quantity":800,"unit":"L","reactor_total_volume_l":90,"pending":"working_volume"}},
+    {"id":"food_waste", "conversation":"food", "message":"У меня 5 кг пищевых отходов. Сколько получится метана?", "expected":{"material":"food_waste","quantity":5,"unit":"kg","intents":["methane_yield"],"no_fake_bmp":true}},
+    {"id":"chernozem", "conversation":"soil", "message":"Можно ли переработать чернозём?", "expected":{"material":"chernozem","no_fake_bmp":true}},
+    {"id":"cattle_temperature", "conversation":"temperature", "message":"Какая температура нужна для коровьего навоза?", "expected":{"material":"cattle_manure","intents":["temperature_recommendation"],"source_required":true}},
+    {"id":"temperature_followup", "conversation":"temperature", "message":"А если температура 37 градусов?", "expected":{"material":"cattle_manure","temperature_c":37,"intents":["temperature_recommendation"]}},
+    {"id":"english_volume", "conversation":"english", "message":"I have 2 cubic metres of cattle manure. Should I sell it or digest it? What temperature should I use?", "expected":{"material":"cattle_manure","quantity":2,"unit":"m3","language":"en","intents":["economic_comparison","temperature_recommendation"]}},
+    {"id":"english_followup", "conversation":"english", "message":"What if the temperature is 37 degrees?", "expected":{"material":"cattle_manure","temperature_c":37,"language":"en"}},
+    {"id":"kazakh_volume", "conversation":"kazakh", "message":"Менде 800 литр көң бар. Сатқан тиімді ме, әлде өңдеген дұрыс па? Қандай температура керек?", "expected":{"material":"manure","quantity":800,"unit":"L","language":"kk","intents":["economic_comparison","temperature_recommendation"]}},
+    {"id":"kazakh_subtype", "conversation":"kazakh", "message":"Сиырдікі", "expected":{"material":"cattle_manure","quantity":800,"unit":"L","language":"kk"}},
+    {"id":"kazakh_food", "conversation":"kazakh_food", "message":"Менде 5 кг тағам қалдықтары бар. Қанша метан алуға болады?", "expected":{"material":"food_waste","quantity":5,"unit":"kg","language":"kk","intents":["methane_yield"]}},
+    {"id":"tonnes", "conversation":"units", "message":"У меня 2 тонны коровьего навоза", "expected":{"material":"cattle_manure","quantity":2,"unit":"t"}},
+    {"id":"percentages", "conversation":"units", "message":"TS 8%, VS 80% от TS", "expected":{"ts_percent":8,"vs_percent":80,"vs_basis":"TS"}},
+    {"id":"correction", "conversation":"units", "message":"Нет, это не коровий, а свиной навоз", "expected":{"material":"swine_manure","quantity":2,"unit":"t"}}
+  ]
+}

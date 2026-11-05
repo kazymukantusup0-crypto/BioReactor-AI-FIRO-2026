@@ -1,0 +1,1065 @@
+{
+  "model": "qwen3:8b",
+  "provider": "Ollama loopback /api/chat",
+  "online_research": false,
+  "criteria": [
+    "real local model calls recorded",
+    "actual tool calls, validation errors and numeric grounding saved",
+    "no synthetic market or sensor data"
+  ],
+  "requested_case_ids": [
+    "21_unit_conversion"
+  ],
+  "cases": [
+    {
+      "id": "21_unit_conversion",
+      "turns": [
+        {
+          "prompt": "Convert 4 litres of cattle slurry to kilograms. I have not measured its density; tell me whether a reliable conversion is possible.",
+          "answer": "A reliable conversion from litres to kilograms for cattle slurry is not possible without knowing its density. The provided information does not include density measurements or a reliable source for density values. Therefore, the conversion cannot be reliably performed.",
+          "mode": "qwen_autonomous_tools",
+          "analysis_version": "8.2",
+          "provider_calls": 7,
+          "tool_calls": [
+            {
+              "tool": "analyze_substrate",
+              "status": "ok",
+              "input_origin": "validated_dialogue_state_and_typed_tool_request",
+              "result": {
+                "status": "ok",
+                "message": "Сырьё: навоз КРС. BMP-модель Hafner не применима к навозу; TS примера нельзя присвоить вашей партии. Численный прогноз Hafner для этого материала отклоняется.",
+                "model_applicable": false,
+                "category": "manure",
+                "limitations": "BMP-модель Hafner не применима к навозу; TS примера нельзя присвоить вашей партии.",
+                "conditions": {
+                  "process": "Справочный пример KVIC на навозе КРС в тёплом климате, не batch",
+                  "ambient_temperature_range_c": [
+                    20,
+                    40
+                  ],
+                  "hrt_days": [
+                    30,
+                    40
+                  ],
+                  "example_feed_ts_pct": 10,
+                  "ph_range": null,
+                  "source_ids": [
+                    "fao_design"
+                  ]
+                },
+                "sources": [
+                  {
+                    "title": "FAO, Marchaim (1992), Biogas processes for sustainable development — Environmental factors",
+                    "url": "https://www.fao.org/4/t0541e/T0541E06.htm"
+                  },
+                  {
+                    "title": "FAO, Marchaim (1992) — Anaerobic processes, plant design and control",
+                    "url": "https://www.fao.org/4/t0541e/T0541E09.htm"
+                  }
+                ]
+              }
+            },
+            {
+              "tool": "research_scientific_evidence",
+              "status": "ok",
+              "input_origin": "validated_dialogue_state_and_typed_tool_request",
+              "result": {
+                "status": "ok",
+                "message": "Поиск выполнен; метаданные новых публикаций не означают проверенные численные данные.",
+                "sources": []
+              }
+            },
+            {
+              "tool": "research_and_estimate",
+              "status": "ok",
+              "input_origin": "validated_dialogue_state_and_typed_tool_request",
+              "result": {
+                "status": "ok",
+                "message": "Детерминированная оценка по проверенным источникам; факты партии не изменены.",
+                "missing": [
+                  "methane_fraction_for_total_biogas_volume",
+                  "comparable_raw_biogas_purchase_quote_and_technical_legal_sale_conditions",
+                  "energy_conversion_efficiency_and_operating_storage_transport_digestate_costs"
+                ],
+                "methane_potential_m3": {
+                  "low": 0.08233663999999999,
+                  "high": 0.1158872
+                },
+                "result_level": "LITERATURE_ESTIMATE",
+                "vs_mass_kg": {
+                  "low": 0.4116831999999999,
+                  "high": 0.4635488
+                },
+                "assumptions": [
+                  "density_kg_l transferred from oliveira-rm1-2025-v1",
+                  "vs_fraction_wet transferred from oliveira-rm1-2025-v1",
+                  "bmp_ml_g_vs transferred from oliveira-rm1-2025-v1",
+                  "Indicative pure-methane fuel energy: FNR 9.97 kWh/m3; compatible dry/reference basis assumed, not verified",
+                  "KZ-Karaganda is a dashboard default region, not user-confirmed"
+                ],
+                "warnings": [
+                  "Sensitivity envelope from transferred literature and coarse graph gridlines. No validated coverage; not a confidence or prediction interval. Single-study transfer error, density variation and plant recovery are not quantified.",
+                  "Laboratory methane potential is not actual plant gas production."
+                ],
+                "decision_analysis": {
+                  "version": "7.5",
+                  "biogas": {
+                    "potential_biogas_m3": {
+                      "low": 0.13722773333333332,
+                      "high": 0.21070399999999997
+                    },
+                    "methane_fraction": {
+                      "low": 0.55,
+                      "high": 0.6,
+                      "provenance": "HYPOTHETICAL_SCENARIO",
+                      "evidence": "FNR cattle-slurry references 55% (2024) and 60% (2006); cross-reference sensitivity, not same sample"
+                    },
+                    "gas_basis": {
+                      "temperature_k": 273.2,
+                      "pressure_pa": 101325.0,
+                      "moisture": "unknown",
+                      "description": "273.2 K; 1.01325 bar"
+                    },
+                    "status": "conditional",
+                    "result_level": "HYPOTHETICAL_SCENARIO",
+                    "compatibility": "assumed_moisture_compatibility",
+                    "assumptions": [
+                      "CH4 and total biogas at identical temperature, pressure and moisture basis assumed"
+                    ],
+                    "scope": "Potential gas corresponding to laboratory methane potential, not collected plant gas. CH4 is part of biogas and must not be added again.",
+                    "uncertainty": "Independent extrema envelope; unknown correlation and no validated probability coverage.",
+                    "recoverable_biogas_scenario_m3": {
+                      "low": 0.08233663999999999,
+                      "high": 0.1685632
+                    },
+                    "recovery_notice": "Conditional collected volume under selected recovery; distinct from laboratory potential and not a measured reactor output."
+                  },
+                  "energy": {
+                    "status": "conditional",
+                    "outputs": {
+                      "potential_fuel_kwh": {
+                        "low": 0.8208963008,
+                        "high": 1.155395384
+                      },
+                      "recovered_fuel_kwh": {
+                        "low": 0.49253778047999996,
+                        "high": 0.9243163072
+                      },
+                      "heat_only_kwh": {
+                        "low": 0.394030224384,
+                        "high": 0.73945304576
+                      },
+                      "electricity_only_kwh": {
+                        "low": 0.12313444511999999,
+                        "high": 0.2310790768
+                      },
+                      "chp_heat_kwh": {
+                        "low": 0.221642001216,
+                        "high": 0.41594233824000004
+                      },
+                      "chp_electricity_kwh": {
+                        "low": 0.12313444511999999,
+                        "high": 0.2310790768
+                      },
+                      "chp_unconverted_fuel_kwh": {
+                        "low": 0.147761334144,
+                        "high": 0.27729489216000003
+                      }
+                    },
+                    "parameters": {
+                      "recovery_fraction": {
+                        "low": 0.6,
+                        "high": 0.8,
+                        "provenance": "HYPOTHETICAL_SCENARIO",
+                        "evidence": "Selected illustrative equipment/recovery scenario, not a device measurement"
+                      },
+                      "thermal_efficiency": {
+                        "low": 0.8,
+                        "high": 0.8,
+                        "provenance": "HYPOTHETICAL_SCENARIO",
+                        "evidence": "Selected illustrative equipment/recovery scenario, not a device measurement"
+                      },
+                      "electrical_efficiency": {
+                        "low": 0.25,
+                        "high": 0.25,
+                        "provenance": "HYPOTHETICAL_SCENARIO",
+                        "evidence": "Selected illustrative equipment/recovery scenario, not a device measurement"
+                      },
+                      "chp_thermal_efficiency": {
+                        "low": 0.45,
+                        "high": 0.45,
+                        "provenance": "HYPOTHETICAL_SCENARIO",
+                        "evidence": "Selected illustrative equipment/recovery scenario, not a device measurement"
+                      },
+                      "chp_electrical_efficiency": {
+                        "low": 0.25,
+                        "high": 0.25,
+                        "provenance": "HYPOTHETICAL_SCENARIO",
+                        "evidence": "Selected illustrative equipment/recovery scenario, not a device measurement"
+                      }
+                    },
+                    "heating_value": {
+                      "value": 9.97,
+                      "unit": "kWh/m3 CH4",
+                      "type": "LHV",
+                      "source": "FNR"
+                    },
+                    "gas_compatibility": "assumed_moisture_compatibility",
+                    "gas_basis": {
+                      "temperature_k": 273.2,
+                      "pressure_pa": 101325.0,
+                      "moisture": "unknown",
+                      "description": "273.2 K; 1.01325 bar"
+                    },
+                    "assumed_parameters": [
+                      "recovery_fraction",
+                      "thermal_efficiency",
+                      "electrical_efficiency",
+                      "chp_thermal_efficiency",
+                      "chp_electrical_efficiency"
+                    ],
+                    "result_level": "HYPOTHETICAL_SCENARIO",
+                    "allocation_policy": "Heat-only, electricity-only and CHP are alternative allocations of one fuel stream. Only CHP heat and electricity may be valued together.",
+                    "uncertainty": "Sensitivity bounds, no independent probability or validated interval coverage."
+                  },
+                  "reactor_balance": {
+                    "status": "needs_input",
+                    "initial_thermal_kwh": null,
+                    "initial_heating_kwh": null,
+                    "maintenance_heating_kwh": null,
+                    "auxiliary_kwh": null,
+                    "total_energy_kwh": null,
+                    "known_subtotal_kwh": null,
+                    "cooling_required": false,
+                    "missing": [
+                      "temperature_c",
+                      "initial_temperature_c",
+                      "heated_mass_kg",
+                      "heat_capacity_kj_kg_k",
+                      "heat_loss_coefficient_w_k",
+                      "auxiliary_power_w",
+                      "auxiliary_duty_fraction",
+                      "duration_days",
+                      "energy_scope"
+                    ],
+                    "scope": null,
+                    "warnings": [],
+                    "formulas": {
+                      "initial_thermal_kwh": "heated_mass_kg * cp_kJ_kg_K * max(T_target-T_initial,0) / 3600",
+                      "initial_heating_kwh": "initial_thermal_kwh / heater_efficiency",
+                      "maintenance_heating_kwh": "UA_W_K * max(T_target-T_ambient,0) * duration_days * 24 / 1000 / heater_efficiency",
+                      "auxiliary_kwh": "auxiliary_power_W * duty_fraction * duration_days * 24 / 1000, or explicit measured energy"
+                    },
+                    "limitations": [
+                      "Constant heat capacity; no phase change, evaporation, biological heat or heat recovery model.",
+                      "UA and temperatures are user inputs; steady holding losses exclude startup transients.",
+                      "Heated mass includes only the explicit input. Inoculum, water and vessel thermal mass must be included by the user.",
+                      "Energy scope/duration is explicit; no automatic scaling from one charge to the entire feedstock lot."
+                    ],
+                    "scientific_sources": [
+                      {
+                        "title": "US DOE Fundamentals Handbook, Thermodynamics, Heat Transfer, and Fluid Flow, Vol. 1",
+                        "url": "https://www.energy.gov/documents/doe-hdbk-1012-92vol1",
+                        "year": 1992,
+                        "scope": "Sensible heat Q=m cp delta T; not a reactor-specific calibration"
+                      },
+                      {
+                        "title": "PNNL Building Science: Introduction to Heat Flow",
+                        "url": "https://basc.pnnl.gov/information/building-science-introduction-heat-flow",
+                        "scope": "Steady heat-transfer relation UA delta T, not measured reactor heat loss"
+                      }
+                    ],
+                    "heating_input_kwh": null,
+                    "electricity_input_kwh": null,
+                    "heating_carrier": null,
+                    "process_heat_draw_kwh": null,
+                    "loads": [],
+                    "known_load_subtotal_kwh": null,
+                    "input_provenance": "USER_REPORTED",
+                    "scope_valid_for_batch": false,
+                    "mass_scope_consistent": true,
+                    "allocation_notice": "No complete matching entire-batch balance; energy costs are unknown, not zero. Gross energy and total-cost break-even remain scenario bounds."
+                  },
+                  "feasibility": {
+                    "status": "UNKNOWN",
+                    "violations": [],
+                    "unknown": [
+                      "reactor_working_volume_l",
+                      "headspace_l",
+                      "inoculum_volume_l",
+                      "dilution_water_l",
+                      "operating_mode",
+                      "reactor_type",
+                      "resident_liquid_volume_l"
+                    ],
+                    "known_charge_min_l": 4.0,
+                    "headspace_l": null,
+                    "working_volume_l": null,
+                    "total_volume_l": null,
+                    "engineering_review_confirmed": false,
+                    "operation_authorized": false,
+                    "existing_constraints": {
+                      "constraints": [
+                        {
+                          "kind": "UNKNOWN",
+                          "parameter": "reactor_total_volume_l",
+                          "status": "UNKNOWN",
+                          "message": "reactor_total_volume_l is not supplied; no operating approval is inferred."
+                        },
+                        {
+                          "kind": "UNKNOWN",
+                          "parameter": "reactor_working_volume_l",
+                          "status": "UNKNOWN",
+                          "message": "reactor_working_volume_l is not supplied; no operating approval is inferred."
+                        },
+                        {
+                          "kind": "UNKNOWN",
+                          "parameter": "reactor_type",
+                          "status": "UNKNOWN",
+                          "message": "reactor_type is not supplied; no operating approval is inferred."
+                        },
+                        {
+                          "kind": "UNKNOWN",
+                          "parameter": "operating_mode",
+                          "status": "UNKNOWN",
+                          "message": "operating_mode is not supplied; no operating approval is inferred."
+                        },
+                        {
+                          "kind": "UNKNOWN",
+                          "parameter": "inoculum_description",
+                          "status": "UNKNOWN",
+                          "message": "inoculum_description is not supplied; no operating approval is inferred."
+                        },
+                        {
+                          "kind": "UNKNOWN",
+                          "parameter": "gas_storage_conditions",
+                          "status": "UNKNOWN",
+                          "message": "gas_storage_conditions is not supplied; no operating approval is inferred."
+                        },
+                        {
+                          "kind": "UNKNOWN",
+                          "parameter": "ts_percent",
+                          "status": "UNKNOWN",
+                          "message": "No universal literature value is substituted for the missing measurement."
+                        },
+                        {
+                          "kind": "UNKNOWN",
+                          "parameter": "vs_percent",
+                          "status": "UNKNOWN",
+                          "message": "No universal literature value is substituted for the missing measurement."
+                        },
+                        {
+                          "kind": "UNKNOWN",
+                          "parameter": "ph",
+                          "status": "UNKNOWN",
+                          "message": "No universal literature value is substituted for the missing measurement."
+                        },
+                        {
+                          "kind": "UNKNOWN",
+                          "parameter": "temperature_c",
+                          "status": "UNKNOWN",
+                          "message": "No universal literature value is substituted for the missing measurement."
+                        },
+                        {
+                          "kind": "UNKNOWN",
+                          "parameter": "hrt_days",
+                          "status": "UNKNOWN",
+                          "message": "No universal literature value is substituted for the missing measurement."
+                        },
+                        {
+                          "kind": "UNKNOWN",
+                          "parameter": "olr_kg_vs_m3_day",
+                          "status": "UNKNOWN",
+                          "message": "No universal literature value is substituted for the missing measurement."
+                        }
+                      ],
+                      "critical_missing": [
+                        "reactor_total_volume_l",
+                        "reactor_working_volume_l",
+                        "reactor_type",
+                        "operating_mode",
+                        "inoculum_description",
+                        "gas_storage_conditions"
+                      ],
+                      "derived": {},
+                      "feasibility_status": "INSUFFICIENT_DATA",
+                      "status_scope": "Consistency and information availability only; not engineering safety certification."
+                    },
+                    "batch_plan": {
+                      "status": "needs_input",
+                      "batch_count": null,
+                      "total_duration_days": null,
+                      "missing": [
+                        "reactor_working_volume_l",
+                        "operating_mode",
+                        "reactor_type",
+                        "inoculum_volume_l",
+                        "dilution_water_l",
+                        "resident_liquid_volume_l"
+                      ],
+                      "message": "Need working volume, loading mode, reactor type and explicit occupancy before assigning batches."
+                    },
+                    "scope": "One simultaneous charge only; serial processing can require a different plan. Geometric consistency is not a safety certification."
+                  },
+                  "prices": {
+                    "electricity": {
+                      "status": "missing",
+                      "value": null,
+                      "unit": "KZT/kWh",
+                      "provenance": null,
+                      "reasons": [
+                        "no_eligible_quote"
+                      ]
+                    },
+                    "heat": {
+                      "status": "missing",
+                      "value": null,
+                      "unit": "KZT/kWh",
+                      "provenance": null,
+                      "reasons": [
+                        "no_eligible_quote"
+                      ]
+                    },
+                    "feedstock": {
+                      "status": "missing",
+                      "value": null,
+                      "unit": "KZT/kg",
+                      "provenance": null,
+                      "reasons": [
+                        "no_eligible_quote"
+                      ]
+                    },
+                    "gas_sale": {
+                      "status": "missing",
+                      "value": null,
+                      "unit": "KZT/m3",
+                      "provenance": null,
+                      "reasons": [
+                        "no_eligible_quote"
+                      ]
+                    },
+                    "digestate": {
+                      "status": "missing",
+                      "value": null,
+                      "unit": "KZT/kg",
+                      "provenance": null,
+                      "reasons": [
+                        "no_eligible_quote"
+                      ]
+                    }
+                  },
+                  "scenarios": [
+                    {
+                      "id": "A_sell_feedstock",
+                      "status": "needs_input",
+                      "reference_asking_value_kzt": null,
+                      "confirmed_buyer_gross_offer_kzt": null,
+                      "transaction_costs": {
+                        "complete_total": null,
+                        "known_subtotal": {
+                          "low": 0,
+                          "high": 0
+                        },
+                        "missing": [
+                          "sale_transport",
+                          "sale_storage",
+                          "sale_packaging"
+                        ]
+                      },
+                      "net_result_kzt": null,
+                      "evidence_confirmed": false,
+                      "missing": [
+                        "sale_transport",
+                        "sale_storage",
+                        "sale_packaging",
+                        "confirmed_comparable_buyer_offer"
+                      ]
+                    },
+                    {
+                      "id": "B_heat",
+                      "status": "needs_input",
+                      "gross_heat_kwh": {
+                        "low": 0.394030224384,
+                        "high": 0.73945304576
+                      },
+                      "gross_electricity_kwh": null,
+                      "useful_heat_after_internal_use_kwh": null,
+                      "useful_electricity_after_internal_use_kwh": null,
+                      "gross_benefit_reference_kzt": null,
+                      "reactor_energy_cost_kzt": null,
+                      "total_cost_kzt": null,
+                      "net_result_kzt": null,
+                      "break_even": {
+                        "maximum_total_processing_cost_to_match_sale_kzt": null,
+                        "minimum_product_price": null,
+                        "minimum_product_price_unit": "KZT/kWh",
+                        "minimum_useful_product_quantity": null,
+                        "condition": "Processing beats the stated sale comparator only if total allocated processing costs are below the corresponding gross-benefit-minus-sale threshold.",
+                        "formulas": {
+                          "cost_budget": "gross benefit - sale net proceeds (or explicitly hypothetical reference asking comparator)",
+                          "minimum_price": "(total processing cost + sale comparator) / useful consumed product quantity"
+                        },
+                        "scope": "Deterministic sensitivity thresholds, not guaranteed profit, coverage or evidence that a buyer exists."
+                      },
+                      "comparison_basis": "UNAVAILABLE",
+                      "evidence_confirmed": false,
+                      "assumptions": [
+                        "Full external self-consumption assumed; not a confirmed demand",
+                        "Heat valuation assumes displaced electric resistance heating at the electricity reference price (100% resistance efficiency)"
+                      ],
+                      "missing": [
+                        "preparation",
+                        "maintenance",
+                        "storage",
+                        "transport",
+                        "gas_cleaning",
+                        "digestate_handling",
+                        "packaging",
+                        "complete_entire_batch_reactor_energy_balance",
+                        "confirm_all_operating_costs_included"
+                      ],
+                      "price_sensitivity": null
+                    },
+                    {
+                      "id": "C_electricity",
+                      "status": "needs_input",
+                      "gross_heat_kwh": null,
+                      "gross_electricity_kwh": {
+                        "low": 0.12313444511999999,
+                        "high": 0.2310790768
+                      },
+                      "useful_heat_after_internal_use_kwh": null,
+                      "useful_electricity_after_internal_use_kwh": null,
+                      "gross_benefit_reference_kzt": null,
+                      "reactor_energy_cost_kzt": null,
+                      "total_cost_kzt": null,
+                      "net_result_kzt": null,
+                      "break_even": {
+                        "maximum_total_processing_cost_to_match_sale_kzt": null,
+                        "minimum_product_price": null,
+                        "minimum_product_price_unit": "KZT/kWh",
+                        "minimum_useful_product_quantity": null,
+                        "condition": "Processing beats the stated sale comparator only if total allocated processing costs are below the corresponding gross-benefit-minus-sale threshold.",
+                        "formulas": {
+                          "cost_budget": "gross benefit - sale net proceeds (or explicitly hypothetical reference asking comparator)",
+                          "minimum_price": "(total processing cost + sale comparator) / useful consumed product quantity"
+                        },
+                        "scope": "Deterministic sensitivity thresholds, not guaranteed profit, coverage or evidence that a buyer exists."
+                      },
+                      "comparison_basis": "UNAVAILABLE",
+                      "evidence_confirmed": false,
+                      "assumptions": [
+                        "Full external self-consumption assumed; not a confirmed demand"
+                      ],
+                      "missing": [
+                        "preparation",
+                        "maintenance",
+                        "storage",
+                        "transport",
+                        "gas_cleaning",
+                        "digestate_handling",
+                        "packaging",
+                        "complete_entire_batch_reactor_energy_balance",
+                        "confirm_all_operating_costs_included"
+                      ],
+                      "price_sensitivity": null
+                    },
+                    {
+                      "id": "CHP",
+                      "status": "needs_input",
+                      "gross_heat_kwh": {
+                        "low": 0.221642001216,
+                        "high": 0.41594233824000004
+                      },
+                      "gross_electricity_kwh": {
+                        "low": 0.12313444511999999,
+                        "high": 0.2310790768
+                      },
+                      "useful_heat_after_internal_use_kwh": null,
+                      "useful_electricity_after_internal_use_kwh": null,
+                      "gross_benefit_reference_kzt": null,
+                      "reactor_energy_cost_kzt": null,
+                      "total_cost_kzt": null,
+                      "net_result_kzt": null,
+                      "break_even": {
+                        "maximum_total_processing_cost_to_match_sale_kzt": null,
+                        "minimum_product_price": null,
+                        "minimum_product_price_unit": "KZT/kWh",
+                        "minimum_useful_product_quantity": null,
+                        "condition": "Processing beats the stated sale comparator only if total allocated processing costs are below the corresponding gross-benefit-minus-sale threshold.",
+                        "formulas": {
+                          "cost_budget": "gross benefit - sale net proceeds (or explicitly hypothetical reference asking comparator)",
+                          "minimum_price": "(total processing cost + sale comparator) / useful consumed product quantity"
+                        },
+                        "scope": "Deterministic sensitivity thresholds, not guaranteed profit, coverage or evidence that a buyer exists."
+                      },
+                      "comparison_basis": "UNAVAILABLE",
+                      "evidence_confirmed": false,
+                      "assumptions": [
+                        "Full external self-consumption assumed; not a confirmed demand",
+                        "Heat valuation assumes displaced electric resistance heating at the electricity reference price (100% resistance efficiency)"
+                      ],
+                      "missing": [
+                        "preparation",
+                        "maintenance",
+                        "storage",
+                        "transport",
+                        "gas_cleaning",
+                        "digestate_handling",
+                        "packaging",
+                        "complete_entire_batch_reactor_energy_balance",
+                        "confirm_all_operating_costs_included"
+                      ],
+                      "price_sensitivity": null
+                    },
+                    {
+                      "id": "D_sell_gas",
+                      "status": "needs_input",
+                      "revenue_kzt": null,
+                      "net_result_kzt": null,
+                      "total_cost_kzt": null,
+                      "evidence_confirmed": false,
+                      "break_even": {
+                        "maximum_total_processing_cost_to_match_sale_kzt": null,
+                        "minimum_product_price": null,
+                        "minimum_product_price_unit": "KZT/m3 raw biogas",
+                        "minimum_useful_product_quantity": null,
+                        "condition": "Processing beats the stated sale comparator only if total allocated processing costs are below the corresponding gross-benefit-minus-sale threshold.",
+                        "formulas": {
+                          "cost_budget": "gross benefit - sale net proceeds (or explicitly hypothetical reference asking comparator)",
+                          "minimum_price": "(total processing cost + sale comparator) / useful consumed product quantity"
+                        },
+                        "scope": "Deterministic sensitivity thresholds, not guaranteed profit, coverage or evidence that a buyer exists."
+                      },
+                      "missing": [
+                        "confirmed_raw_biogas_buyer_quote_composition_quality_storage_transport_and_technical_legal_conditions"
+                      ],
+                      "notice": "Natural gas tariffs never value raw biogas sales; no implied storage/pressure operation."
+                    },
+                    {
+                      "id": "E_digestate",
+                      "status": "needs_input",
+                      "revenue_kzt": null,
+                      "net_result_kzt": null,
+                      "total_cost_kzt": null,
+                      "evidence_confirmed": false,
+                      "missing": [
+                        "digestate_mass_quality_market_eligibility_and_buyer_offer"
+                      ],
+                      "break_even": {
+                        "maximum_total_processing_cost_to_match_sale_kzt": null,
+                        "minimum_product_price": null,
+                        "minimum_product_price_unit": "KZT/kg digestate",
+                        "minimum_useful_product_quantity": null,
+                        "condition": "Processing beats the stated sale comparator only if total allocated processing costs are below the corresponding gross-benefit-minus-sale threshold.",
+                        "formulas": {
+                          "cost_budget": "gross benefit - sale net proceeds (or explicitly hypothetical reference asking comparator)",
+                          "minimum_price": "(total processing cost + sale comparator) / useful consumed product quantity"
+                        },
+                        "scope": "Deterministic sensitivity thresholds, not guaranteed profit, coverage or evidence that a buyer exists."
+                      },
+                      "notice": "Standalone product alternative. Digestate income is not added to the gas/energy alternatives."
+                    }
+                  ],
+                  "decision": {
+                    "status": "INSUFFICIENT_EVIDENCE",
+                    "selected_scenario": null,
+                    "reason": "No eligible comparable price/energy result; break-even formulas and missing inputs are retained.",
+                    "operating_approval": false
+                  },
+                  "sale_comparator": {
+                    "value_kzt": null,
+                    "basis": "UNAVAILABLE"
+                  },
+                  "operating_costs": {
+                    "complete_total": null,
+                    "known_subtotal": {
+                      "low": 0,
+                      "high": 0
+                    },
+                    "missing": [
+                      "preparation",
+                      "maintenance",
+                      "storage",
+                      "transport",
+                      "gas_cleaning",
+                      "digestate_handling",
+                      "packaging"
+                    ]
+                  },
+                  "illustrative_reactor_energy_cases": [
+                    {
+                      "inputs": {
+                        "reactor_working_volume_l": null,
+                        "headspace_l": null,
+                        "inoculum_volume_l": null,
+                        "dilution_water_l": null,
+                        "resident_liquid_volume_l": null,
+                        "operating_mode": null,
+                        "reactor_type": null,
+                        "engineering_review_confirmed": false,
+                        "safety_review_required": false,
+                        "temperature_c": 35.0,
+                        "initial_temperature_c": 15.0,
+                        "ambient_temperature_c": 15.0,
+                        "heated_mass_kg": 4.052,
+                        "heat_capacity_kj_kg_k": 4.0,
+                        "heat_loss_coefficient_w_k": 0.2,
+                        "u_w_m2_k": null,
+                        "area_m2": null,
+                        "duration_days": 20.0,
+                        "heater_efficiency": 1.0,
+                        "heating_carrier": "electricity",
+                        "auxiliary_energy_kwh": null,
+                        "loads": [
+                          {
+                            "name": "ILLUSTRATIVE mixing/pump/electronics total",
+                            "power_w": 1.0,
+                            "hours": 480.0,
+                            "duty_fraction": 1,
+                            "provenance": "USER_REPORTED"
+                          }
+                        ],
+                        "loads_complete": true,
+                        "energy_scope": "entire_batch",
+                        "provenance": "HYPOTHETICAL_SCENARIO"
+                      },
+                      "result": {
+                        "status": "ok",
+                        "initial_thermal_kwh": 0.09004444444444444,
+                        "initial_heating_kwh": 0.09004444444444444,
+                        "maintenance_heating_kwh": 1.92,
+                        "auxiliary_kwh": 0.48,
+                        "total_energy_kwh": 2.4900444444444445,
+                        "known_subtotal_kwh": 2.4900444444444445,
+                        "cooling_required": false,
+                        "missing": [],
+                        "scope": "entire_batch",
+                        "warnings": [],
+                        "formulas": {
+                          "initial_thermal_kwh": "heated_mass_kg * cp_kJ_kg_K * max(T_target-T_initial,0) / 3600",
+                          "initial_heating_kwh": "initial_thermal_kwh / heater_efficiency",
+                          "maintenance_heating_kwh": "UA_W_K * max(T_target-T_ambient,0) * duration_days * 24 / 1000 / heater_efficiency",
+                          "auxiliary_kwh": "auxiliary_power_W * duty_fraction * duration_days * 24 / 1000, or explicit measured energy"
+                        },
+                        "limitations": [
+                          "Constant heat capacity; no phase change, evaporation, biological heat or heat recovery model.",
+                          "UA and temperatures are user inputs; steady holding losses exclude startup transients.",
+                          "Heated mass includes only the explicit input. Inoculum, water and vessel thermal mass must be included by the user.",
+                          "Energy scope/duration is explicit; no automatic scaling from one charge to the entire feedstock lot."
+                        ],
+                        "scientific_sources": [
+                          {
+                            "title": "US DOE Fundamentals Handbook, Thermodynamics, Heat Transfer, and Fluid Flow, Vol. 1",
+                            "url": "https://www.energy.gov/documents/doe-hdbk-1012-92vol1",
+                            "year": 1992,
+                            "scope": "Sensible heat Q=m cp delta T; not a reactor-specific calibration"
+                          },
+                          {
+                            "title": "PNNL Building Science: Introduction to Heat Flow",
+                            "url": "https://basc.pnnl.gov/information/building-science-introduction-heat-flow",
+                            "scope": "Steady heat-transfer relation UA delta T, not measured reactor heat loss"
+                          }
+                        ],
+                        "heating_input_kwh": 2.0100444444444445,
+                        "electricity_input_kwh": 2.4900444444444445,
+                        "heating_carrier": "electricity",
+                        "process_heat_draw_kwh": 0,
+                        "loads": [
+                          {
+                            "name": "ILLUSTRATIVE mixing/pump/electronics total",
+                            "power_w": 1.0,
+                            "hours": 480.0,
+                            "duty_fraction": 1,
+                            "provenance": "USER_REPORTED",
+                            "energy_kwh": 0.48
+                          }
+                        ],
+                        "known_load_subtotal_kwh": 0.48,
+                        "input_provenance": "HYPOTHETICAL_SCENARIO",
+                        "scope_valid_for_batch": true
+                      },
+                      "notice": "Illustration only: chosen 35/15°C, cp=4, 20 days, UA and 1 W are not measured reactor properties or prescribed operation. Heated mass excludes unreported inoculum/vessel mass. No 37°C laboratory setting was copied."
+                    },
+                    {
+                      "inputs": {
+                        "reactor_working_volume_l": null,
+                        "headspace_l": null,
+                        "inoculum_volume_l": null,
+                        "dilution_water_l": null,
+                        "resident_liquid_volume_l": null,
+                        "operating_mode": null,
+                        "reactor_type": null,
+                        "engineering_review_confirmed": false,
+                        "safety_review_required": false,
+                        "temperature_c": 35.0,
+                        "initial_temperature_c": 15.0,
+                        "ambient_temperature_c": 15.0,
+                        "heated_mass_kg": 4.052,
+                        "heat_capacity_kj_kg_k": 4.0,
+                        "heat_loss_coefficient_w_k": 1.0,
+                        "u_w_m2_k": null,
+                        "area_m2": null,
+                        "duration_days": 20.0,
+                        "heater_efficiency": 1.0,
+                        "heating_carrier": "electricity",
+                        "auxiliary_energy_kwh": null,
+                        "loads": [
+                          {
+                            "name": "ILLUSTRATIVE mixing/pump/electronics total",
+                            "power_w": 1.0,
+                            "hours": 480.0,
+                            "duty_fraction": 1,
+                            "provenance": "USER_REPORTED"
+                          }
+                        ],
+                        "loads_complete": true,
+                        "energy_scope": "entire_batch",
+                        "provenance": "HYPOTHETICAL_SCENARIO"
+                      },
+                      "result": {
+                        "status": "ok",
+                        "initial_thermal_kwh": 0.09004444444444444,
+                        "initial_heating_kwh": 0.09004444444444444,
+                        "maintenance_heating_kwh": 9.6,
+                        "auxiliary_kwh": 0.48,
+                        "total_energy_kwh": 10.170044444444445,
+                        "known_subtotal_kwh": 10.170044444444445,
+                        "cooling_required": false,
+                        "missing": [],
+                        "scope": "entire_batch",
+                        "warnings": [],
+                        "formulas": {
+                          "initial_thermal_kwh": "heated_mass_kg * cp_kJ_kg_K * max(T_target-T_initial,0) / 3600",
+                          "initial_heating_kwh": "initial_thermal_kwh / heater_efficiency",
+                          "maintenance_heating_kwh": "UA_W_K * max(T_target-T_ambient,0) * duration_days * 24 / 1000 / heater_efficiency",
+                          "auxiliary_kwh": "auxiliary_power_W * duty_fraction * duration_days * 24 / 1000, or explicit measured energy"
+                        },
+                        "limitations": [
+                          "Constant heat capacity; no phase change, evaporation, biological heat or heat recovery model.",
+                          "UA and temperatures are user inputs; steady holding losses exclude startup transients.",
+                          "Heated mass includes only the explicit input. Inoculum, water and vessel thermal mass must be included by the user.",
+                          "Energy scope/duration is explicit; no automatic scaling from one charge to the entire feedstock lot."
+                        ],
+                        "scientific_sources": [
+                          {
+                            "title": "US DOE Fundamentals Handbook, Thermodynamics, Heat Transfer, and Fluid Flow, Vol. 1",
+                            "url": "https://www.energy.gov/documents/doe-hdbk-1012-92vol1",
+                            "year": 1992,
+                            "scope": "Sensible heat Q=m cp delta T; not a reactor-specific calibration"
+                          },
+                          {
+                            "title": "PNNL Building Science: Introduction to Heat Flow",
+                            "url": "https://basc.pnnl.gov/information/building-science-introduction-heat-flow",
+                            "scope": "Steady heat-transfer relation UA delta T, not measured reactor heat loss"
+                          }
+                        ],
+                        "heating_input_kwh": 9.690044444444444,
+                        "electricity_input_kwh": 10.170044444444445,
+                        "heating_carrier": "electricity",
+                        "process_heat_draw_kwh": 0,
+                        "loads": [
+                          {
+                            "name": "ILLUSTRATIVE mixing/pump/electronics total",
+                            "power_w": 1.0,
+                            "hours": 480.0,
+                            "duty_fraction": 1,
+                            "provenance": "USER_REPORTED",
+                            "energy_kwh": 0.48
+                          }
+                        ],
+                        "known_load_subtotal_kwh": 0.48,
+                        "input_provenance": "HYPOTHETICAL_SCENARIO",
+                        "scope_valid_for_batch": true
+                      },
+                      "notice": "Illustration only: chosen 35/15°C, cp=4, 20 days, UA and 1 W are not measured reactor properties or prescribed operation. Heated mass excludes unreported inoculum/vessel mass. No 37°C laboratory setting was copied."
+                    }
+                  ],
+                  "assumptions": [
+                    "recovery_fraction",
+                    "thermal_efficiency",
+                    "electrical_efficiency",
+                    "chp_thermal_efficiency",
+                    "chp_electrical_efficiency",
+                    "CH4 and total biogas at identical temperature, pressure and moisture basis assumed"
+                  ],
+                  "references": [
+                    {
+                      "id": "fnr-cattle-slurry-composition-2024",
+                      "title": "Basisdaten Bioenergie Deutschland 2024",
+                      "organization": "Fachagentur Nachwachsende Rohstoffe e. V.",
+                      "year": 2023,
+                      "url": "https://www.fnr.de/fileadmin/Projekte/2023/Mediathek/Broschuere_Basisdaten_Bioenergie_2023_web.pdf",
+                      "locator": "Biogasausbeuten: Rindergülle, Methangehalt; source KTBL 2015",
+                      "original_value": "55",
+                      "original_unit": "vol-% CH4",
+                      "normalized_value": 0.55,
+                      "material": "cattle slurry",
+                      "verification_status": "REVIEWED_PRIMARY_REFERENCE",
+                      "limitations": "Reference calculation, not RM1 measurement. Process and moisture/reference conditions not specified sufficiently for direct transfer.",
+                      "edition_year": 2024
+                    },
+                    {
+                      "id": "fnr-cattle-slurry-composition-2006",
+                      "title": "Handreichung Biogasgewinnung und -nutzung",
+                      "organization": "FNR",
+                      "year": 2006,
+                      "url": "https://www.big-east.eu/downloads/FNR_HR_Biogas.pdf",
+                      "locator": "Table 4-3: Gasertrag und Methangehalt von Wirtschaftsdüngern, Rindergülle",
+                      "original_value": "60",
+                      "original_unit": "vol-% CH4",
+                      "normalized_value": 0.6,
+                      "material": "cattle slurry",
+                      "verification_status": "REVIEWED_PUBLISHER_REFERENCE_MIRROR",
+                      "limitations": "Historical handbook reference, not same RM1 sample; gas moisture not explicit. 55–60% is a cross-reference sensitivity scenario, not a statistical interval."
+                    },
+                    {
+                      "id": "fnr-energy-lhv",
+                      "title": "Faustzahlen Biogas",
+                      "organization": "FNR",
+                      "year": null,
+                      "url": "https://biogas.fnr.de/daten-und-fakten/faustzahlen",
+                      "locator": "General conversions: 1 m3 methane, 9.97 kWh; Heizwert 36 MJ/m3 and 50 MJ/kg",
+                      "original_value": "9.97",
+                      "original_unit": "kWh/m3 CH4",
+                      "normalized_value": 9.97,
+                      "energy_basis": "LHV (Heizwert)",
+                      "verification_status": "REVIEWED_PRIMARY_REFERENCE",
+                      "limitations": "Dry/reference-volume compatibility with RM1 is assumed only in marked scenarios; no unconditional energy conversion from unknown wet/actual gas."
+                    },
+                    {
+                      "id": "doe-sensible-heat",
+                      "title": "DOE Fundamentals Handbook, Thermodynamics, Heat Transfer and Fluid Flow, Vol. 1",
+                      "organization": "US Department of Energy",
+                      "year": 1992,
+                      "url": "https://www.energy.gov/documents/doe-hdbk-1012-92vol1",
+                      "locator": "Sensible heat and heat capacity",
+                      "verification_status": "ENGINEERING_FORMULA_REFERENCE",
+                      "limitations": "Not a measured slurry heat capacity or vessel UA."
+                    },
+                    {
+                      "id": "pnnl-heat-flow",
+                      "title": "Building Science: Introduction to Heat Flow",
+                      "organization": "Pacific Northwest National Laboratory",
+                      "year": null,
+                      "url": "https://basc.pnnl.gov/information/building-science-introduction-heat-flow",
+                      "locator": "Steady heat transmission",
+                      "verification_status": "ENGINEERING_FORMULA_REFERENCE",
+                      "limitations": "Q_loss = UA deltaT time is a simplified steady approximation; geometry, insulation and UA are not inferred from vessel litres."
+                    }
+                  ],
+                  "capital_cost_included": false,
+                  "capital_scope": "Operating comparison only; capital cost excluded, not silently assumed paid off",
+                  "double_counting_policy": "A/B/C/CHP/D/E are alternatives. Only CHP heat and electricity share a split fuel stream. Reactor internal heat/electric consumption is subtracted once; gas and digestate income not added to energy."
+                },
+                "sources": [
+                  {
+                    "title": "Moderate thermal, alkaline and thermal-alkaline pretreatment of cattle manure: effects on methane production and economic feasibility",
+                    "url": "https://link.springer.com/article/10.1007/s43153-025-00592-x",
+                    "year": 2025,
+                    "doi": "10.1007/s43153-025-00592-x",
+                    "verification_status": "REVIEWED_PRIMARY"
+                  },
+                  {
+                    "title": "Faustzahlen Biogas",
+                    "url": "https://biogas.fnr.de/daten-und-fakten/faustzahlen",
+                    "verification_status": "REVIEWED_PRIMARY_REFERENCE"
+                  }
+                ]
+              }
+            }
+          ],
+          "pending_question": null,
+          "memory_language": "en",
+          "numeric_claims_grounded": true,
+          "numeric_grounding_rejections": [],
+          "autonomous_termination": "tool_call_limit",
+          "validation_errors": [],
+          "generation_metrics": [
+            {
+              "input_characters": 4553,
+              "request_bytes": 5919,
+              "status": "ok",
+              "prompt_tokens": 1188,
+              "output_tokens": 49,
+              "done_reason": "stop",
+              "load_seconds": 0.0042925,
+              "generation_seconds": 0.851596,
+              "tokens_per_second": 57.53902085026233,
+              "latency_seconds": 1.0909713000291958
+            },
+            {
+              "input_characters": 4615,
+              "request_bytes": 6029,
+              "status": "ok",
+              "prompt_tokens": 1215,
+              "output_tokens": 50,
+              "done_reason": "stop",
+              "load_seconds": 0.0091612,
+              "generation_seconds": 0.887606,
+              "tokens_per_second": 56.33130014893996,
+              "latency_seconds": 1.0325352000072598
+            },
+            {
+              "input_characters": 7063,
+              "request_bytes": 8664,
+              "status": "ok",
+              "prompt_tokens": 1931,
+              "output_tokens": 54,
+              "done_reason": "stop",
+              "load_seconds": 0.0068647,
+              "generation_seconds": 1.098318,
+              "tokens_per_second": 49.16608850988512,
+              "latency_seconds": 1.5664590001106262
+            },
+            {
+              "input_characters": 7477,
+              "request_bytes": 8977,
+              "status": "ok",
+              "prompt_tokens": 2015,
+              "output_tokens": 166,
+              "done_reason": "stop",
+              "load_seconds": 0.0036279,
+              "generation_seconds": 3.004918,
+              "tokens_per_second": 55.24277201574219,
+              "latency_seconds": 4.04737009992823
+            },
+            {
+              "input_characters": 7007,
+              "request_bytes": 8467,
+              "status": "ok",
+              "prompt_tokens": 1942,
+              "output_tokens": 96,
+              "done_reason": "stop",
+              "load_seconds": 0.0037656,
+              "generation_seconds": 1.82865,
+              "tokens_per_second": 52.49774423755229,
+              "latency_seconds": 3.055823400034569
+            }
+          ],
+          "missing": [
+            "methane_fraction_for_total_biogas_volume",
+            "comparable_raw_biogas_purchase_quote_and_technical_legal_sale_conditions",
+            "energy_conversion_efficiency_and_operating_storage_transport_digestate_costs"
+          ],
+          "latency_seconds": 14.648
+        }
+      ],
+      "latency_seconds": 14.648
+    }
+  ],
+  "status": "complete",
+  "summary": {
+    "completed_scenarios": 1,
+    "user_turns": 1,
+    "ollama_generation_calls": 7,
+    "autonomous_tool_turns": 1,
+    "tool_calls": 3,
+    "grounded_final_answers": 1,
+    "chat_calculator_agreement": null,
+    "termination_reasons": {
+      "tool_call_limit": 1
+    },
+    "elapsed_seconds": 14.65
+  }
+}

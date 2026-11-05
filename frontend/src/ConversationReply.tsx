@@ -1,0 +1,28 @@
+import { BookOpen, ChevronRight, FlaskConical, MessageCircleQuestion, ShieldCheck, Terminal } from 'lucide-react'
+import type { AgentReply } from './types'
+import { Badge, JsonDetails, Notice, ToolTrace } from './ui'
+import DecisionCards from './DecisionCards'
+import AdvisorResults from './AdvisorResults'
+import type { AdvisorResult, MixtureComparison } from './advisorApi'
+import { useDisplayMode } from './DisplayMode'
+
+export default function ConversationReply({ reply, onAnswer, disabled = false }: { reply: AgentReply; onAnswer?: (value: string) => void; disabled?: boolean }) {
+  const facing = reply.user_facing_answer
+  const smart=['7.7','8.0','9.0'].includes(String(reply.technical_metadata?.smart_version))
+  const { mode } = useDisplayMode(); const legacy = mode === 'legacy'
+  const hasDecision = Boolean((reply.technical_metadata?.research_result as { decision_analysis?: unknown } | undefined)?.decision_analysis)
+  const advisor = reply.technical_metadata?.advisor_result as AdvisorResult | undefined
+  const comparison = reply.technical_metadata?.mixture_comparison as MixtureComparison | undefined
+  const lang = reply.memory?.language ?? 'ru'
+  const text = (ru: string, en: string, kk: string) => ({ ru, en, kk })[lang]
+  return <div className="conversation-answer" data-testid="conversational-answer">
+    <div className="guidance-modes">{facing?.modes.includes('HYPOTHETICAL_SCENARIO') && <Badge tone="amber">{legacy?'HYPOTHETICAL_SCENARIO':text('Условный пример','Conditional example','Шартты мысал')}</Badge>}{facing?.modes.includes('LITERATURE_ESTIMATE') && <Badge tone="cyan">{legacy?'LITERATURE_ESTIMATE':text('Оценка по публикациям','Published reference','Әдеби бағалау')}</Badge>}{facing?.modes.includes('MEASURED') && <Badge tone="green">{legacy?'MEASURED':text('По измеренным свойствам','Measured properties','Өлшенген қасиеттер')}</Badge>}{facing?.modes.includes('literature_guidance') && <Badge tone="cyan"><BookOpen size={12}/>{text('Литературная справка','Literature guidance','Әдеби нұсқаулық')}</Badge>}{facing?.modes.includes('experimental_ml_prediction') && <Badge tone="green"><FlaskConical size={12}/>{text('Экспериментальная ML-модель','Experimental ML model','Эксперименттік ML моделі')}</Badge>}{facing?.modes.includes('conditional_economic_scenario') && <Badge tone="amber">{text('Условный экономический сценарий','Conditional economic scenario','Шартты экономикалық сценарий')}</Badge>}</div>
+    <div className="conversation-prose">{!legacy && facing?.sections?.length ? facing.sections.map((s,i)=><section className="conversation-section" key={i}><h4>{s.title}</h4><p>{s.body}</p></section>) : facing ? facing.paragraphs.map((p,i)=><p key={i}>{p}</p>):<p>{reply.answer}</p>}</div>
+    {facing?.question && <div className="clarification-card"><div><MessageCircleQuestion size={18}/><strong>{facing.question.text}</strong></div>{facing.question.options.length>0 && onAnswer && <div className="clarification-options">{facing.question.options.map(option=><button key={option} disabled={disabled} onClick={()=>onAnswer(option)}>{option}<ChevronRight size={12}/></button>)}</div>}</div>}
+    {facing && facing.sources.length>0 && <details className="decision-sources" open={(legacy && !hasDecision) || facing.modes.includes('show_sources')}><summary>{legacy?'Sources':text('Источники','Sources','Дереккөздер')}</summary><div className="source-links">{facing.sources.map(source=><a href={source.url} key={source.url} target="_blank" rel="noreferrer"><BookOpen size={12}/>{source.title}</a>)}</div></details>}
+    {hasDecision && (onAnswer && (!smart || mode==='scientific')?<DecisionCards reply={reply} onAnswer={onAnswer} disabled={disabled}/>:<details className="decision-card"><summary>{text('Расчёт этого шага','Calculation for this turn','Осы қадамның есебі')}</summary><DecisionCards reply={reply} disabled={disabled}/></details>)}
+    {advisor && <details className="decision-card" open={Boolean(onAnswer) && (!smart || mode==='scientific')}><summary>{text('Состав, расчёт и условия процесса','Composition, calculation and process conditions','Құрам, есеп және үдеріс шарттары')}</summary><AdvisorResults result={advisor} comparison={comparison}/></details>}
+    <div className={smart?'sr-only':'conversation-reliability'}><ShieldCheck size={12}/>{text('Численная уверенность не оценена. Факты и предположения разделены.','Numerical confidence is not quantified. Facts and assumptions are separated.','Сандық сенімділік бағаланбаған. Деректер мен болжамдар бөлек.')}</div>
+    <details className="conversation-technical" open={mode==='scientific'}><summary><Terminal size={13}/>{text(legacy?'Технические подробности':'Научные подробности',legacy?'Technical details':'Scientific details',legacy?'Техникалық мәліметтер':'Ғылыми мәліметтер')}<span>{reply.tools.length} tools</span><ChevronRight size={14}/></summary><div>{reply.mode!=='llm_tools'&&!smart&&<Notice tone="muted">{text('LLM недоступна или выключена. Ответ построен детерминированным слоем и проверенными инструментами.','The LLM is unavailable or disabled. Deterministic parsing and verified tools provided this answer.','LLM қолжетімсіз немесе өшірілген. Жауап детерминдік өңдеу мен тексерілген құралдарға сүйенеді.')}</Notice>}{reply.tools.length>0&&<ToolTrace tools={reply.tools}/>}<JsonDetails value={reply.technical_metadata} title={text('Память, происхождение данных и валидация','Memory, provenance and validation','Жад, дерек шығу тегі және тексеру')}/><JsonDetails value={reply.provider_status} title={text('Диагностика локальной модели','Local model diagnostics','Жергілікті модель диагностикасы')}/></div></details>
+  </div>
+}

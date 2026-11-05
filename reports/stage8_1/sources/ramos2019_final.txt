@@ -1,0 +1,545 @@
+ 
+ 
+ 
+
+ 
+ 
+ 
+/*
+Simple Popup trail script- By JavaScriptKit.com
+Visit http://www.javascriptkit.com for this script and more
+This notice must stay intact
+*/
+
+function popupwin(){
+	window.open("http://google.com","Figures List","450, 550");
+}
+
+
+var offsetfrommouse=[5,5]; //image x,y offsets from cursor position in pixels. Enter 0,0 for no offset
+var displayduration=0; //duration in seconds image should remain visible. 0 for always.
+
+var defaultimageheight = 40;	// maximum image size.
+var defaultimagewidth = 40;	// maximum image size.
+
+var timer;
+
+function gettrailobj(){
+if (document.getElementById)
+return document.getElementById("preview_div").style
+}
+
+function gettrailobjnostyle(){
+if (document.getElementById)
+return document.getElementById("preview_div")
+}
+
+
+function truebody(){
+return (!window.opera && document.compatMode && document.compatMode!="BackCompat")? document.documentElement : document.body
+}
+
+
+function hidetrail(){	
+	gettrailobj().display= "none";
+	document.onmousemove=""
+	gettrailobj().left="-500px"
+	clearTimeout(timer);
+}
+
+function showtrail(imagename,title,width,hight){
+	i = imagename
+	t = document.getElementById(imagename).innerHTML 
+	w = 250;
+	h = 0; //80
+	timer = setTimeout("show('"+i+"',t,w,h);",100);
+}
+function show(imagename,title,width,height){
+ 
+    var docwidth=document.all? truebody().scrollLeft+truebody().clientWidth : pageXOffset+window.innerWidth - offsetfrommouse[0]
+	var docheight=document.all? Math.min(truebody().scrollHeight, truebody().clientHeight) : Math.min(window.innerHeight)
+
+	if( (navigator.userAgent.indexOf("Konqueror")==-1  || navigator.userAgent.indexOf("Firefox")!=-1 || (navigator.userAgent.indexOf("Opera")==-1 && navigator.appVersion.indexOf("MSIE")!=-1)) && (docwidth>650 && docheight>500)) {
+		( width == 0 ) ? width = defaultimagewidth: '';
+		( height == 0 ) ? height = defaultimageheight: '';
+			
+		width+=30;
+		//height+=15
+		defaultimageheight = height
+		defaultimagewidth = width
+	
+		document.onmousemove=followmouse; 
+		
+		newHTML = ' ';
+		newHTML = newHTML + '' + ' '+title + ''
+		
+		newHTML = newHTML + ' '; 
+		
+		gettrailobjnostyle().innerHTML = newHTML;
+		gettrailobj().display="block";
+	}
+}
+
+
+function followmouse(e){
+
+	var xcoord=offsetfrommouse[0]
+	var ycoord=offsetfrommouse[1]
+
+	var docwidth=document.all? truebody().scrollLeft+truebody().clientWidth : pageXOffset+window.innerWidth-15
+	var docheight=document.all? Math.min(truebody().scrollHeight, truebody().clientHeight) : Math.min(window.innerHeight)
+	//alert(Math.min(window.innerHeight));
+	if (typeof e != "undefined"){
+		if (docwidth - e.pageX   0){
+				text = titles[idd]
+			}else{
+				return;
+			}
+		}else{
+			return
+		}
+
+		x = 0;
+		y = 0;
+		oX = 0;
+		if (document.all){
+			x = window.event.clientX
+			y = window.event.clientY + document.body.scrollTop
+		}else{
+			x = event.clientX - oX
+			y = event.clientY + window.scrollY
+		}
+		x += Math.round(xs[idd])
+		y += Math.round(ys[idd])
+
+		obj = new Array()
+		obj[0] = text
+		obj[1] = x
+		obj[2] = y
+
+		timerId = setTimeout("showAlt()", 500);
+	}
+
+	function showAlt(){
+		text = obj[0]
+		x = obj[1]
+		y = obj[2]
+		altd = document.getElementById('altDiv')
+		altd.innerHTML = "  20 ? "width: 200px;" : "") +"'>  " + text + "   "
+		altd.style.left = Math.min(x + 10,document.body.clientWidth-201)
+		altd.style.top = y
+		altd.style.display = 'inline'
+	}
+
+	function hideAlt(){
+		obj = new Array()
+		clearTimeout(timerId)
+		altd = document.getElementById('altDiv')
+		altd.innerHTML = ""
+		altd.style.left = -100
+		altd.style.top = -100
+		altd.style.display = 'none'
+	}
+
+	function initAlts(){
+		arr = document.getElementsByName('title')
+		titles = new Array()
+		xs = new Array()
+		ys = new Array()
+		for (i=0; i 32 || pos>79) pos += dir;
+if (pos>79) len -= dir;
+if (pos>79 && len==0) pos=0;
+elem.style.left = pos;
+elem.style.width = len;
+}
+}
+
+function remove_loading() {
+this.clearInterval(t_id);
+var targelem = document.getElementById('loader_container');
+targelem.style.display='none';
+targelem.style.visibility='hidden';
+var t_id = setInterval(animate,60);
+}
+ 
+ 
+
+  
+   
+    
+
+     
+
+	   
+	      
+          
+       	 
+	  
+       RESEARCH ARTICLE 
+ 
+         
+       Evaluation of poultry manure and goat cheese whey anaerobic co-digestion 
+
+       Juan L. Ramos-Suárez 
+        Universidad de La Laguna (ULL), Sección de Ingeniería Agraria de la Escuela Politécnica Superior de Ingeniería (EPSI), Dept. Ingeniería Agraria, Náutica, Civil y Marítima. Ctra. de Geneto 2. 38071 La Laguna (Tenerife), Spain.  
+	        
+       Claudia L. Vargas-Avendaño 
+       Universidad de La Laguna (ULL), Sección de Ingeniería Agraria de la Escuela Politécnica Superior de Ingeniería (EPSI), Dept. Ingeniería Agraria, Náutica, Civil y Marítima. Ctra. de Geneto 2. 38071 La Laguna (Tenerife), Spain.  
+
+  Javier Mata-González 
+           Universidad de La Laguna (ULL), Sección de Ingeniería Agraria de la Escuela Politécnica Superior de Ingeniería (EPSI), Dept. Ingeniería Agraria, Náutica, Civil y Marítima. Ctra. de Geneto 2. 38071 La Laguna (Tenerife), Spain.  
+        
+ Ángeles Camacho-Pérez 
+  Universidad de La Laguna (ULL), Sección de Ingeniería Agraria de la Escuela Politécnica Superior de Ingeniería (EPSI), Dept. Ingeniería Agraria, Náutica, Civil y Marítima. Ctra. de Geneto 2. 38071 La Laguna (Tenerife), Spain.  
+
+
+
+
+	   
+         
+		   
+               
+             
+                Abstract        
+              	 Hen droppings (HD) and Goat Cheese Whey (GCW) are two difficult substrates to be treated by anaerobic digestion due to their characteristics; however, their co-digestion offers the possibility of successfully treating these substrates together. The goal of this study was to evaluate the anaerobic co-digestion of HD and GCW at laboratory scale in order to determine biogas potential and possible operational problems before extrapolating results to a full-scale biogas plant. The potential methane production of HD, GCW and a mixture of both substrates was studied in batch mode, whereas the co-digestion of the mixture of HD and GCW was also studied in semi-continuous mode in a continuously stirred tank reactor. Results showed that the addition of GCW to HD increased methane production compared to HD alone; however, GCW alone showed the highest methane potential. In semi-continuous mode, the mixture of GCW and HD showed high biogas and methane yields (582.0±29.5 L biogas  kg VS -1  and 381.2±19.0 L CH4  kg VS -1 , respectively), although intense foaming incidents occurred. The composition of both substrates is complementary for their co-digestion and it improved the energy yield of the process. However, the economic viability of a biogas plant of 30 kWe, designed for treating HD and GCW, would be economically feasible only with subsidies for the investment and in the low range of investment costs for small scale biogas plants. 
+			  Additional keywords:  anaerobic digestion; biogas; renewable energy; livestock waste; economic analysis. 
+	
+
+			  Abbreviations used:  BMP (biochemical methane potential); CODs (soluble chemical oxygen demand); CODt (total chemical oxygen demand); CSTR (continuously stirred tank reactor); CW (cheese whey); FA (free ammonia); GCW (goat cheese whey); HD (hen droppings); HRT (hydraulic retention time); IA (intermediate alkalinity); IRR (internal rate of return); NPV (net present value); OLR (organic loading rate); PA (partial alkalinity); TA (total alkalinity); TAN (total ammonia nitrogen); TKN (total Kjeldahl nitrogen); TS (total solids); VFA (volatile fatty acids); VS (volatile solids). 
+			
+			    Authors' contributions:   Designed the experiments: JLRS, CLVA, JMG. Performed the experiments: CLVA, JLRS. Obtaining funds: JLRS, ACP. Contributed reagents: ACP. All authors analyzed the data, drafted, read and approved the final manuscript. 
+
+			     Citation:  Ramos-Suárez, J. L.; Vargas-Avendaño, C. L.; Mata-González, J.; Camacho-Pérez, A. (2019). Evaluation of poultry manure and goat cheese whey anaerobic co-digestion. Spanish Journal of Agricultural Research, Volume 17, Issue 2, e0302.  https://doi.org/10.5424/sjar/2019172-14577  
+
+                Supplementary material   (Tables S1 and S2) accompanies the paper on SJAR’s website. 
+
+                Received:   23 Jan 2019.  Accepted:  27 Jun 2019. 
+
+                Copyright © 2019 INIA.  This is an open access article distributed under the terms of the Creative Commons Attribution 4.0 International (CC-by 4.0) License. 
+
+                Funding:   Dirección General de Ganadería del Gobierno de Canarias; Cabildo de Tenerife, Spain (Program ‘Agustín de Betancourt 2016-2020’).  
+
+                Competing interests:  The authors have declared that no competing interests exist. 
+
+ 			    Correspondence   should be addressed to Juan Luis Ramos Suárez:  jramossu@ull.es  
+             
+           
+         
+       
+        
+	   
+         
+           
+               
+             
+                CONTENTS  
+                Abstract  
+			    Introduction  
+                Material and methods  
+			    Results  
+                Discussion  
+                Acknowledgements  
+			    References  
+             
+           
+         
+               
+     
+
+	 
+	
+	   
+             Introduction  Top   
+             Anaerobic digestion is a well proven technology for waste recovery in the form of energy, biofertilizer and/or many other useful and valuable by-products (   Kougias & Angelidaki, 2018 ). Anaerobic digestion, also known as biogas technology, is associated with the reduction of greenhouse gases in the livestock and agricultural sector, the recycling of nutrients for agriculture, the production of renewable energy and, in general, the protection of the environment. All this, promoting the circular economy in the primary and agroindustry sector. Biogas technology is present all over the world covering from high industrialized plants (   Poeschl  et al. , 2010 ), such as the used in Europe, to low-tech, low-cost biogas plants widespread in developing countries (   SNV & FACT Foundation, 2014 ). In either case, the use of local, sustainable, high-energy content substrates is essential to bring technology wherever is not present, adapting to the reality of each place.  
+			 Animal manures and agro-industrial by-products have been used in anaerobic digestion for many years, the former being the substrates mostly used to produce biogas. Animal manures are commonly co-digested with other substrates in order to improve their digestion process, mainly focusing on increasing biogas production, reducing N concentration to decrease risks of ammonia inhibition, and improving chemical and physical characteristics to favor anaerobic degradation (   Weiland, 2010 ). Specifically, hen droppings (HD) are a good example of complex substrate to be used in anaerobic digestion. It has as a high N content, which leads during the digestion process to inhibition due to excess ammonia concentration (   Molaey  et al. , 2018 ), a high solids concentration, which makes difficult the use of the wet anaerobic digestion technology (   Marchioro  et al. , 2018 ), a high content of feathers, which increases the risk of the formation of a superficial crust inside the digester and, moreover, the precipitation of calcium carbonate during the digestion process and substrate feeding could lead to the loss of working volume of the digester, ultimately reducing the efficiency of the process. Probably, the most important problem is the high N content, and therefore, it has been widely studied (   Niu  et al. , 2013 ;    Molaey  et al. , 2018 ). Different techniques are used in order to reduce N concentration of HD, such as membrane separation (   Bayrakdar  et al. , 2017 ). But, probably, the simplest and most efficient (in economic and energy terms) technique for avoiding ammonia inhibition issues in the digestion of HD is the co-digestion with high C content substrates. 
+			 On the other hand, cheese whey (CW) is an agro-industrial by-product with a high availability, produced from the cheese manufacturing. Two different types of CW are produced depending on the casein precipitation method used for cheese production: acidic whey (pH<5) and sweet whey (pH=6-7) (   Carvalho  et al. , 2013 ;    Carlini  et al. , 2015 ). Moreover, CW composition depends on the manufacturing process and the milk type (cow, goat, sheep, etc.) (   Carvalho  et al. , 2013 ). In any case, CW has a high content of lactose (39-60 kg m -3 ), fats (0.99-10.58 kg m -3 ) proteins (1.4-8.0 kg m -3 ) and mineral salts (4.6-100 kg m -3 ), with chemical oxygen demand (COD) values ranging from 50-102 kg m -3 , being highly biodegradable and with a low alkalinity (   Prazeres  et al. , 2012 ). Therefore, any form of CW has a rich nutritional value, but also, a high pollution potential (   Chatzipaschali & Stamatis, 2012 ;    Prazeres  et al. , 2012 ). Because of its high biodegradability, anaerobic digestion has been widely studied as a convenient process for CW treatment and valorization (   Yan  et al. , 1988 ;    Beszédes  et al. , 2010 ). Despite its high specific biogas yield (   Rico  et al. , 2014 ;    Escalante  et al. , 2018 ), anaerobic digestion of CW also showed lack of alkalinity and quick acidification (   Lo & Liao, 1986 ;    Hublin  et al.  2012 ). Therefore, its co-digestion with substrates which provide alkalinity, such as HD, is a suitable solution for valorizing CW into biogas. 
+			 Nowadays, the production of CW is a problem for worldwide small and medium scale cheese producers who cannot find an affordable solution for its treatment and management (   Prazeres  et al. , 2012 ;    Carvalho  et al. , 2013 ;    Escalante  et al. , 2018 ). Specifically, farmers in the Canary Islands produce high quantities of goat cheese whey (GCW), a large part of it being produced in small and medium scale artisan cheese factories.    Dupuis (2015)  estimated CW production in the Canary Islands to be between 70,000 and 90,000 m 3  per year, being most of it GCW (≈86%) and most of cheese producers in the Canary Islands small, artisan producers. Only a small fraction of the CW produced in the Canary Islands is used for feeding animals and for agricultural purposes, most of it being discharged into the sewage system or disposed without any treatment in the environment, being both options forbidden and with negative effects to the environment and to the local water treatment systems. These practices can entail legal problems for farmers. 
+			 Availability of GCW for anaerobic digestion is a great opportunity for cheese manufacturers, livestock farmers and the agricultural biogas industry, which is currently inexistent in the Canary Islands (   Gobierno de Canarias, 2017 ). On the one hand, there is a great potential for GCW producers for treating adequately this by-product through anaerobic co-digestion; on the other hand, livestock farmers could use GCW as co-substrate for improving biogas production from animal manures, increasing profitability of biogas plants due to better economics of scale and higher energy production. 
+			 This study focuses on finding a suitable solution for the treatment of HD produced in a laying hen farm in Fuerteventura island (Canary Islands) with around 16,000 laying hens. The goal of the study is to evaluate the anaerobic co-digestion of HD and GCW at laboratory scale in order to determine biogas potential and possible operational problems to extrapolate results to a full-scale biogas plant producing renewable energy for the farm.  
+			
+	   
+	  
+	  
+	   
+            Material and methods  Top   
+            Substrates and inoculum 
+            Two substrates were used during this study: HD and GCW. HD samples were collected from two different farms in the Canary Islands (Spain), one located in Puerto del Rosario (Fuerteventura) and the second one in Arico (Tenerife). Both farms use the conventional cage rearing system for laying hens, droppings being collected on conveyor belts and being automatically transported to the dunghill located outside the rearing building. HD samples were collected directly from the conveyor belts to ensure freshness. Afterwards, samples were kept in the fridge at -20 ºC until they were used in the experiment. This procedure was repeated three times throughout this research, two times for the farm located in Fuerteventura (sample 1 and sample 2) and one time for the farm located in Tenerife (sample 3). The aim of collecting different samples throughout the research was to use mainly fresh samples, avoiding the need to store samples for long time in the freezer. Samples were analyzed in total solids (TS) and volatile solids (VS) before freezing.  
+            GCW samples were collected from two different goat farms that produce their own artisan cheese, one located in Adeje (Tenerife) and the other one in Fasnia (Tenerife). Each time fresh samples were collected, they were transported to the laboratory and frozen as quickly as possible to avoid degradation until their use in the experiment. Before freezing the samples, a subsample was analyzed in TS, VS and pH. This procedure was repeated two times throughout this research, one time in each farm. A subsample of the first sample was also freeze-dried before analyzing its ultimate composition (C, H, N, S). 
+            Anaerobic biomass (inoculum) used for the different experiments was collected from a biogas plant located in Gran Canaria which co-digests Organic Fraction of Municipal Solid Waste (OFMSW) and wastewater sludge, working at 37ºC. Inoculum was pre-digested before its use in the anaerobic assays in order to reduce endogenous biogas potential. TS and VS concentration were 51.2 g L -1  and 35.6 g L -1 , respectively. Total Kjeldahl Nitrogen (TKN) concentration was 6.7 g L -1  and total ammonia concentration was 1.4 g L -1 . Total Chemical Oxygen Demand (CODt) and Soluble Chemical Oxygen Demand (CODs) were 80,650 mgO 2  L -1  and 10,970 mgO 2  L -1 , respectively, with an Intermediate Alkalinity (IA)/Partial Alkalinity (PA) ratio under 0.3 (0.14), corresponding to a PA of 12,636 mgCaCO 3  L -1  and an IA of 1,795 mgCaCO 3  L -1 . Finally, pH was 8.4. 
+            Biochemical methane potential (BMP) assays 
+            BMP assays were carried out according to the guideline VDI 4630 (   VDI, 2006 ). HD, GCW and a mixture of both substrates were analyzed (see    Table 1 ). Substrates were placed into 500 mL reactors with the corresponding amount of inoculum according to the VDI 4630 (VS substrate /VS inoculum ≤ 0.5).  
+           
+            
+               Table 1.   
+                Content of each substrate (GCW=goat cheese whey; HD = hen
+                droppings) in each of the reactors used in the BMP assays and estimated C/N
+                ratio.
+             
+                                     
+             
+       
+
+            HD and the mixture of HD and GCW were analyzed in triplicate, whereas GCW was analyzed in duplicate. The substrates were crushed in a conventional crusher before being introduced into the reactors. Blank reac­tors were run in duplicate only with inoculum for the determination of endogenous methane production.    Table 1  shows the content of each reactor of the assay. Reactors containing HD and the mixture of HD and GCW were diluted with water in order to have the same TS concentration in each of the reactors. All reactors were tightly closed and submerged into water kept at 37 ºC by a thermostatic bath. Content of reactors was manually stirred once a day. The duration of the test was 56 days. 
+            Methane production was measured using 500 mL inverted transparent plastic graduated cylinders, which were re-filled when necessary. Cylinders were filled with sodium hydroxide (NaOH) at 2.5% (w/w) in order to dissolve carbon dioxide and measure only methane production. 
+            Ultimate analyses of substrates were performed before blending them in order to balance C/N ratio of the mixture of HD and GCW. Analyses of TS, VS, CODt, CODs, TKN, PA, total alkalinity (TA) and pH, were performed at the beginning and at the end of the assay. 
+            Semi-continuous assay 
+            The mixture of HD and GCW was co-digested in semi-continuous mode in a Continuously Stirred Tank Reactor (CSTR) of 12 L working volume. The composition of the mixture was such that the C/N ratio was at least 10, considered the minimum value in order to avoid ammonia toxicity during the digestion process. The mixture of substrates for feeding the reactor was done several times throughout the experiment to work with fresh substrates. This led to different composition of the mixtures (see    Table 2 ).  
+           
+            
+               Table 2.   
+                Composition of the mixtures used during the semi-continuous assay.
+             
+                                     
+             
+       
+
+            The reactor was started by placing inside 12 L of inoculum. Afterwards, reactor was closed, and gas tightness was verified. CSTR was kept at constant temperature in the mesophilic range (37 ºC) by water heated by a thermostatic bath and pumped around the reactor through a fabricated plastic casing. The content of the reactor was stirred 15 minutes each two hours with an electrical mixer. The reactor was kept without feeding for one week, in order to acclimate inoculum to the new conditions of temperature. During this week gas production was not monitored, and therefore, the start of the semi-continuous assay was considered to be the first day of feeding.  
+            Duration of the experiment was 60 days, during which different samples were collected from farms and analyzed each time in TS and VS. Organic Loading Rate (OLR) was low due to operational problems occurred at the beginning of the experiment, related to the characteristics of the substrates used (see section  Results  for more information). Consequently, Hydraulic Retention Time (HRT) was kept at 60 days after the startup period in order to stabilize the reactor. Feed and discharge of reactors were done manually every day. 
+            Reactors were monitored by means of chemical and physical analysis of the digestate and biogas production and composition. pH, TS and VS were measured once a week, whereas CODt, CODs, PA, TA, TKN and total ammonia nitrogen (TAN) were measured every two weeks. Volume of biogas was monitored continuously using Milligascounters® (Dr. Ing. Ritter Apparatebau GMBH & Co. KG; Bochum, Germany). Biogas composition (CH 4 , CO 2 , H 2 S and O 2 ) was measured approximately every two weeks directly from the reactor or from a gasometer. 
+            Energy availability 
+            The energy available for the use of the laying hen farm was determined based on the results obtained during the semi-continuous assay co-digesting GCW and HD. The following equations were used: 
+                
+                
+                
+            where  V  CH4  is the potential daily methane production (m 3  d -1 ),  V  mixture  is the daily volume of the mixture of GCW and HD fed into the digester (m 3 ),  VS  is the content of volatile solids of the mixture (kg VS m -3 ),  Y  CH4  is the methane yield obtained during the semi-continuous assay (m 3  kg VS -1 ),  P  electricity  is the electricity potential (kWh d -1 ),  LHV  CH4  is the lower heating value of methane (kWh m -3 ), which is 9.96 kWh m -3 ,  γ  CHP_e  is the electrical efficiency of a Combined Heat and Power (CHP) unit, which was considered to be 30%,  P  heating  is the heating potential (kWh d -1 ) and  γ  CHP_h  is the heating efficiency of a CHP unit, which was considered 60% in this study. 
+            Afterwards, an economic feasibility study was performed for this case. Several assumptions were considered for performing the economic feasibility study in order to get representative and useful results. Investment costs were considered for two different cases: Case 1=5,000 € kWe -1 ; Case 2=9,000 € kWe -1  (   Deublein & Steinhauser, 2008 ;    Scheftelowitz & Thrän, 2016 ) to provide results for low and high cost biogas plants. In the Canary Islands, where the laying hen farm is located, there are subsidies from the regional Government that farmers can use for the construction of biogas plants. These subsidies can reach 45% of the investment costs of a renewable energy facility (   Gobierno de Canarias, 2018 ). Therefore, for the economic feasibility study 45% of the investment costs were obtained from these subsidies. Operating and maintenance costs must be considered when evaluating the economic feasibility of a biogas plant. This figure was considered to be 5% of the investment costs each year (   Klavon  et al. , 2013 ). In order to evaluate incomes provided by the biogas plant, the real electricity demand and cost of electricity of the farm during a one-year period was considered. According to the data provided by the laying hen farm, average electricity cost for the farm is 0.16367 € kWh -1 , with an average electricity consumption of 136.9 kWh d -1  (49,954 kWh year -1 ). Electricity production from biogas that exceeded elec­tricity demand of the farm was considered to be sold to the electricity network at an average price 0.05729 € kWh -1 , which was the average price of the electricity pool in Spain during 2018 (   Omie, 2018 ). No income was considered due to heat nor digestate selling. Finally, a lifespan of 20 years was considered for the biogas plant, with a discount rate of 6%. Economic parameters were used to determine the economic feasibility of such a project. The Net Present Value (NPV) describes the value at present time of the cash flows that a project (or an investment) will produce through its life cycle, and it is calculated according to    equation (4) . The Internal Rate of Return (IRR) is the discount rate that would make the NPV of the project equal to zero, and it is calculated according to    equation (5) . 
+                
+                            where  CF  n  is the cash flow of year  n  (€),  r  is the discount rate (-) and  t  is the lifespan of the project. 
+            Analytical methods 
+            Ultimate analysis (C, H, N, S) were carried out by combustion using a CHNS Flash EA 1112 Organic Elemental Analyzer. The pH analyses were performed using a Crison pH sensor submerged directly into the reactors or samples. The pH of HD was analyzed after dilution with water at a ratio 1:5 (substrate:water). TS and VS were analyzed according to    APHA (1992) . PA and TA were determined by titration to pH 5.75 and 4.3, respectively, according to    Ripley  et al.  (1986) . IA is calculated as the difference between TA and PA, and it approximates volatile acids concentration in the reactor (   Ripley  et al. , 1986 ). CODt and CODs were analyzed by an adaptation of the 410.4 method of U.S. EPA, using a multiparametric photometer HI83399 (Hanna Instruments; Woonsocket U.S.A.). TKN was determined by the Kjeldahl method and TAN was analyzed with the same method but without the acid digestion step. Free ammonia (FA), as unionized ammonia (NH 3 ), was calculated using TAN concentration considering the equilibrium between NH 4  +  and NH 3  inside reactors, which depends on temperature and pH (   Hansen  et al. , 1998 ). 
+            Gas analysis during the semi-continuous assay was performed with a Multitec 545 (Hermann Sewerin GmbH, Gütersloh, Germany) which has infrared sensors for measuring methane (0–100%) and carbon dioxide (0–100%) and electrochemical sensors to measure hydrogen sulﬁde (0–5000 ppm) and oxygen (0–25%). 
+            Statistical analysis 
+            Statistical analyses were performed in order to determine significant differences between samples used in the BMP test. Two parameters were evaluated: methane yield (L CH4  kgVS -1 ) and VS removal (%). For parameters which population was normally distributed and with homogeneity of variance (VS removal) an ANOVA analysis followed by a HSD Tukey post-hoc analysis was performed. For parameters which population was not normally distributed (methane yield) a non-parametric test was used (Kruskal-Wallis) followed by Mann-Whitney U test comparing groups by pairs. A significance level of 0.05 was used in all tests. 
+		
+	   
+			
+	   
+	  
+	  		 Results  Top   
+               Substrate characterization 
+               Results of substrates characterization are shown in Table S1 [suppl.]. HD showed a pH close to neutral, a high TS content (between 24.2 and 38.6%TS) and a VS content between 65.4 and 74.3% (% d.m.). On the other hand, ultimate analysis of the first sample showed a high C content together with a high N content, leading to a C/N ratio of 7.18. Samples showed a low variability of organic matter content [between 74.3±1.4 and 65.4±0.2% VS (in TS)], whereas sample 1 showed a TS content higher than sample 2 and sample 3, probably, due to the place of collection in the farm and the different freshness of the samples at the time of collection, which can be affected by the accumulation time of the droppings on the belt. 
+               In contrast, GCW showed high water content                        (> 90%) with a high portion of dry matter being organic matter (between 78.0 and 92.7%). pH was acid, with values around 5. Ultimate analysis of the first sample of GCW showed a high C content (45.95%) and a low N content (2.13%), leading to a C/N ratio of 21.6. It should be noted that the GCW showed a constant and significant biological activity, which made impossible an appropriate ultimate analysis. Consequently, the sample was lyophilized before its analysis. 
+               Both, for HD and for GCW, ultimate analysis of the first sample was supposed to be similar for the subsequent samples collected for this study due to lack of resources to perform more analysis. 
+               Biochemical methane potential (BMP) assays 
+                  Figure 1.a  shows the cumulative methane production during the BMP assay. At the beginning of the expe­riment there was a large delay in the production of biogas of 10-15 days. Afterwards, all reactors showed typical biogas production curves, with an exponential period of biogas production longer for GCW than for any other substrate. In fact, GCW showed the highest methane production at the end of the assay with 5.23 ± 0.23 L CH4 , followed by the mixture of GCW and HD with 2.78 ± 0.02 L CH4  and HD alone with 2.26 ± 0.02 L CH4  (results expressed as ‘mean value ± standard error’). 
+               
+                  
+                   
+                    
+                          
+                           Figure 1.   
+                         Cumulative methane production for each reactor: (▲) hen droppings (HD), (●) goat cheese whey (GCW);
+                         (■) mixture of HD and GCW, (○) inoculum.
+                       
+                        
+                    
+                   
+                 
+               
+
+               GCW also showed the highest methane yield, in terms of L CH4  kg VS -1 , with 691.9 ± 42.1 L CH4  kg VS -1 , followed by the mixture of GCW and HD (357.4 ±                                                                                                          2.9 L CH4  kg VS -1 ) and, finally, HD as sole substrate (282.1 ± 3.98 L CH4  kg VS -1 ). The co-digestion of GCW and HD yielded higher methane than HD as sole substrate, increasing methane yield by 26.7%. The Kruskal-Wallis analysis showed ( p =0.042 < 0.05) that there is at least one group which differs from the others. Therefore, the Mann-Whitney U test was performed, showing that HD and the mixture of GCW and HD are different ( p =0.046 <0.05). On the other hand, GCW, despite showing the largest methane yield compared to HD and the mixture of GCW and HD, showed no significant difference with HD ( p =0.083 >0.05) nor with the mixture of GCW and HD (0.076 >0.05). 
+               Regarding biodegradability, in terms of TS and VS, results followed the trend of methane production, with the highest biodegradability for the GCW (56.9 ± 0.8% TS and 68.4 ± 0.8% VS reduction) and the lowest for HD (37.6 ± 1.0% TS and 39.7 ±0.6% VS reduction) with intermediate value for the mixture of both substrates (44.3 ± 0.4% TS and 49.2 ± 1.0% VS reduction). In this case and unlike methane produc­tion, results are much more even among the different samples analy­zed. However, ANOVA analysis sho­­wed significant differences between samples ( p =0.00001 <0.05) and HSD Tukey post-hoc analysis showed that all samples differed from each other in terms of organic matter removal (in all cases  p <0.05). 
+               Semi-continuous assay 
+               The CSTR reactor was operated for 60 days, during which the mixture of HD and GCW was done several times in order to work with fresh substrates. Due to the different compositions of the samples of HD and GCW collected (see Table S1 [suppl.]), proportion of each substrate in the mixture was different throughout the experiment, looking for keeping a C/N ratio > 10.    Table 2  shows composition of the mixtures used throughout the semi-continuous assay. 
+               The composition of the mixtures showed differences, an aspect to take into account when analyzing results as this could influence the anaerobic digestion process. All mixtures showed a high TS concentration (> 11%), leading to a high organic load. Moreover, there were some characteristics that should be highlighted. The pH was acid, with values around 5. CODs/CODt ratio was high, between 16% and 30%, showing a high fraction of organic matter easily degradable. Finally, N content of the mixtures was between 7.7-8.9 g L -1 , despite the high amount of GCW used in the mixture.  
+                  Figure 2a  shows digester operational conditions throughout the study, together with the periods during which the different mixtures were fed into the digester. Three different phases have been identified during the operation of the digester according to operational parameters and biogas and methane production (   Figure 2b ). 
+               
+                  
+                   
+                    
+                          
+                           Figure 2.   
+                         a) Operational conditions throughout the semi-continuous experiment. (x) %TS in
+the mixture fed; (○) %VS in the mixture fed; (-) hydraulic retention time (HRT), (▲) organic
+loading rate (OLR); b) Daily biogas production (●), Average biogas production for each phase
+(-), Daily methane production (●), average methane production for each phase (-), methane
+content in biogas (-).
+                       
+                        
+                    
+                   
+                 
+               
+
+               Phase 1 was the start of the experiment, that lasted 23 days. At the beginning HRT and OLR was fixed at 45 days and 2.5 kg VS m -3  d -1 . However, foam production inside the digester was high, leading to overpressure, the loss of biomass and biogas. Overpressure inside the reactor was produced as a consequence of the obstruction of the gas outlet pipe to the flowmeter. As a measure to reduce foaming, OLR was reduced and HRT was increased. Furthermore, mixing intensity (mixing speed was increased and mixing interval was reduced) was also increased trying to improve liquid-gas mass transfer and release biogas contained in the digesting biomass. On day 8, HRT and OLR were fixed at 60 days and 1.6-1.9 kg VS m -3  d -1 . These changes led to a period of stability with high biogas production between days 24 and 49 (Phase 2). During this phase there were also some foaming incidents, but these were easily manageable and did not lead to significant operational problems. Operational conditions during this phase were constant at an HRT of 60 days and an OLR of 1.5 kg VS m -3  d -1 . Finally, during Phase 3 there was a slight decrease in biogas production, starting on day 50, despite operating the digester with the same conditions as in Phase 2. Mixture fed during Phase 3 used HD collected from the farm located in Tenerife (sample 3), which could have influenced biogas production. 
+               Daily biogas and methane production are shown in    Figure 2b , expressed as biogas and methane yield in L kg VS -1 . During Phase 1 average biogas and methane yield were 148.8±11.9 and 95.6±7.9 L kg VS -1 , respectively, increasing up to 582.0±29.5 L biogas  kg VS -1  and 381.2±19.0 L CH4  kg VS -1  in the second phase of operation. Finally, during Phase 3 biogas and methane yields decreased to 378.5±29.9 L biogas  kg VS -1  and 203.0±16.0 L CH4  kg VS -1 . As already mentioned, Phase 1 was characterized by instability and operational problems, intrinsic to any startup process of an ana­erobic digester. The reduction of the OLR and the increase in the HRT during this phase led to a stable period during Phase 2, with the highest biogas and methane production recorded in day 48 of operation, with a biogas and methane yield of 882.8 L biogas  kg VS -1  and 577.7 L CH4  kg VS -1 .  
+               Digester efficiency, expressed as methane production per volume unit of the digester and day (L CH4  L dig  -1  d -1 ) (   Table 3 ), was higher during Phase 2, with the highest reported value of 0.69±0.03 L CH4  L dig-  1  d -1  during week 7. Methane content was similar during Phase 1 and Phase 2, oscillating between 60 and 70%, decreasing afterwards in Phase 3 to approximately 53%. Hydrogen sulfide concentration was very high during Phase 2, reaching more than 2,000 ppm in week 5, decreasing afterwards in Phase 3 to 300-500 ppm. 
+              
+             
+                   Table 3.   
+                    Biogas and methane yield (L kg VS -1 ), digester efficiency (L CH4  L digester 
+                     -1  day -1 ), biogas composition (CH 4 ,
+                    CO 2 , H 2 S) and organic matter degradation (VS and COD reduction) during the semi-continuous assay (results
+                    reported in a weekly basis). Average ± standard error (calculated on a weekly basis from daily results).
+                 
+                                         
+                 
+           
+
+               Biodegradability is calculated based on the con­version of organic matter to biogas, and therefore, based on the reduction of organic matter in the digestate compared to the initial substrate fed to the digester. VS and COD reduction were used to determine biodegradability during this assay.    Table 3  shows that, on average, VS reduction and COD reduction were higher than 50 and 65% throughout the experiment, respectively. 
+                  Table 4  shows all control parameters analyzed during the assay. TS and VS showed constant values during last weeks, indicating the stability of the reactor. IA, an indicator of volatile fatty acids (VFA), was high during the entire assay. VFA are intermediate compounds of the anaerobic digestion process. Their accumulation is an indicator of the decoupling of VFA production, by acidogenic and acetogenic bacteria, and VFA consumption, by methanogenic bacteria. Therefore, VFA accumulation showed an unstable process. In fact, the IA/PA ratio reached very high values during week 3 and 5. 
+              
+             
+                   Table 4.   
+                    Control parameters monitored during the semi-continuous assay.
+                 
+                                         
+                 
+           
+
+               As already mentioned, ammonia nitrogen can be inhibitory for the anaerobic digestion process. FA (NH 3 ) is considered the most toxic form of ammonia nitrogen as it is able to freely pass bacteria cell membrane (   Rajagopal  et al. , 2013 ). FA concentration, calculated according to    Hansen  et al.  (1998) , increased throughout the experiment up to concentrations higher than 1,000 mg L -1  at the end of the experimental period. The pH was stable during the experiment, oscillating between 7.44 and 8.21.  
+               Energy availability 
+               Methane yield during Phase 2 of the semi-continuous assay was used to calculate the available energy for the farm use. Methane yield considered for the calculation was therefore 381.2 L CH4  kg VS -1 . The amount of HD produced daily by the farm is 1.4 ton d -1  with an average TS and VS content of 31.4% and 22.8%, respectively (only sample 1 and 2 were considered for calculating the average composition, since these samples were collected from the farm being studied). In order to obtain a mixture with a C/N ratio higher than 10 and with a TS content lower than 20%, the amount of GCW (average composition of 8.6 %TS and 7.6 %VS) to be added is 3.3 m 3  d -1 , leading to a mixture with a TS and VS content of 15.5 and 12.9 %, respectively, and with a C/N ratio of 10.3. 
+               Daily methane production treating 4.8 m 3  d -1  of the mixture is estimated to be 233.5 m 3  d -1 , leading to a daily electricity and heat production of 697.6 kWh d -1  and 1,395.1 kWh d -1 . CHP unit power would be                                    30 kWe, if biogas is to be used continuously throughout the day. On the other hand, the amount of digestate to be commercialized would be around 1,600 m 3  year -1 .    Figure 3  shows a scheme of the valorization path of HD and GCW through anaerobic co-digestion. 
+               
+                  
+                   
+                    
+                          
+                           Figure 3.   
+                         Valorization scheme of hen droppings (HD) and goat cheese whey (GCW) through anaerobic co-digestion,
+energy and digestate availability. CHP = combined heat and power unit.
+                       
+                        
+                    
+                   
+                 
+               
+
+               The economic feasibility study was performed con­sidering several assumptions that would influence the results. All these assumptions can be found in the M&M section. With these assumptions, results showed that such an investment would only be pro­fitable if investment costs are close to 5,000 € kWe -1  (150,000 € for the full plant), receiving a subsidy of 67,500 € and leading to a NPV of 56,355.01 € and an IRR of 13.92%. In contrast, if the highest investment cost is applied (9,000 € kWe -1  = 270,000 € for the full plant), NPV of the investment would be negative                                                       (-5,909.14 €) and IRR 5.48%, despite receiving a subsidy of 121,500 € (45% of the investment cost) (see Table S2 [suppl.]). 
+  
+		
+		 
+
+
+		 
+	  
+	  		 Discussion  Top   
+               Substrates characterization 
+               Composition of HD hinders its anaerobic digestion. On the one hand, the low moisture content prevents its use as substrate for wet anaerobic digestion, which requires a TS content below 20%. This fact would lead to the use of dry anaerobic digestion unless the substrate is diluted with water (with the consequent cost for the process) or co-digested with other liquid substrate which increases the moisture content of the resulting mixture. On the other hand, its C/N ratio is lower than the C/N ratio recommended for anaerobic digestion, which is between 10 and 30 (   Schattauer & Weiland, 2004 ). The low C/N ratio is an indicator of possible problems during the digestion process due to ammonia inhibition (   Rajagopal  et al. , 2013 ) and shows the need for looking for possible solutions prior to the digestion of HD as sole substrate, such as co-digestion with substrates with a higher C/N ratio. 
+               GCW showed a high moisture content, like other typical wheys analyzed in literature (   Carvalho  et al. , 2013 ), with a remarkable content of organic matter in its dry matter, which indicates a high biodegradability. Its low pH highlights its acid character, which could lead to problems during the anaerobic digestion process depending on the OLR used, since optimum pH for the anaerobic digestion process is close to neutral. The high biological activity of GCW indicates a constant process of decay which according to    Powell  et al.  (2013)  does not influence its biogas potential. Finally, its C/N ratio                    is high and ideal for the anaerobic digestion process. 
+               Comparing whey composition with other studies it has to be highlighted the high dry matter content of the whey used in this research. For instance,    Antonelli  et al.  (2016)  used a whey with TS and VS content of 5.9% and 5.3%, respectively, whereas    Carlini  et al.  (2015)  studied biogas production from a whey containing 5.9%TS and 5.8%VS and    Hublin  et al.  (2012)  from whey containing 4.69%TS and 4.26%VS. Probably, this difference in TS content is consequence of the whey origin (goat milk) and the traditional way of making the cheese in the Canary Islands, which is normally less efficient than an industrial process. In fact,    Jasko  et al.  (2011) , authors that used CW obtained from a home-made cheese maker, obtained a whey with 7.2% TS and 6.6% VS, values closer to the whey used in this study. On the other hand, it is also remarkable that C/N ratio of GCW in this study is much higher than C/N ratios of wheys used in other anaerobic digestion tests, which were 5.8 for    Carlini  et al.  (2015)  and 8.7 for    Hublin  et al.  (2012) . In these cases, whey cannot be used as a co-substrate to increase C/N ratio. 
+               The comparison of the composition of both subs­trates showed an excellent complementarity for the anaerobic digestion process. The whey provides a high amount of water to the mixture, along with significant amounts of biodegradable organic matter. This high-water content is enough to dilute dry matter concentration of HD to a concentration close to 15-20%, which would be enough for treating the mixture by wet anaerobic digestion, which is simpler and normally has a higher kinetics than dry anaerobic digestion thanks to a faster hydrolysis reaction (   Veeken  et al. , 2000 ;    Kothari  et al. , 2014 ). On the other hand, the use of GCW as co-substrate increases the C/N ratio of the mixture, being enough for achieving C/N ratios close to the optimum values for the anaerobic digestion process. 
+               Biochemical methane potential (BMP) assays 
+               As shown in    Fig. 1 , methane production was delayed at the beginning of the assay. This delay was probably consequence of two different factors: the reactors’ headspaces were not flushed, and the inoculum was not previously adapted to the substrates used. Afterwards, methane production continued without any problem. 
+               Methane production of HD was similar to other studies.    Niu  et al.  (2013)  showed methane yields bet­ween 254.2 and 177 L CH4  kg VS -1  before the inhibition of the process occurred. In other study,    Molaey  et al.  (2018)  reached a methane yield of 260 L CH4  kg VS -1  supplementing chicken manure with trace elements in order to mitigate ammonia inhibition. It must be noted that both authors studied the process in continuous mode and under high ammonia concentrations that led to inhibition of the process. In this study, batch assays showed slightly higher methane yields (282.1 ±                                       3.98 L CH4  kg VS -1 ) with inoculum which was not adapted to the substrate used. 
+               On the other hand, GCW biogas production was high and similar to other studies that used cow CW, indicating that CW, regardless of its origin, is a great substrate or co-substrate for biogas production. Me­thane yield obtained in this study (691.9 ± 42.1 L CH4  kgVS -1 ) was similar to results obtained by    Yan  et al.  (1988)  in an Upflow Anaerobic Sludge Blanket (UASB) in continuous mode, who showed the highest methane yield for CW to be 533 L CH4  kg COD -1 , equivalent to approximately 756.9 L CH4  kg VS -1 , according to characterization of CW showed by authors.    Escalante  et al.  (2018)  showed methane yields ranging from 510 to 600 L CH4  kgVS -1  with four different CWs obtained from four dairies in Colombia. Contrarily,    Antonelli  et al.  (2016)  showed low methane yield digesting whey in batch mode with 170.1 and 104.3 L CH4  kg VS -1  at 32 °C and 26 °C, respectively. Probably, low yields obtained by    Antonelli  et al.  (2016)  were consequence of an acidification process occurring during the digestion, consequence of the high whey/inoculum ratio used for the study.  
+               Results showed the high potential of the GCW as a substrate or co-substrate to produce biogas. Addition of GCW improved substantially the methane yield of HD digested alone ( p <0.05). Therefore, it can be a valuable co-substrate for high concentrated wastes with low C/N ratio. In fact, several authors explored this possibility in the past (   Kavacik & Tapaloglu, 2010 ;    Comino  et al. , 2012 ; Hublin  et al. , 2012;    Carlini  et al. , 2015 ), however, few of them studied the process in batch mode. 
+                  Hublin  et al.  (2012)  showed that in batch mode the addition of whey to cow manure in high ratios (>5% v/v) required the addition of alkalinity (in form of NaHCO 3 ) in order to avoid inhibition due to acidification of the reactors. Furthermore,    Carlini  et al.  (2015)  showed also that a high proportion of cheese whey in the mixture with poultry manure (3:1 cheese whey: poultry manure-v/v) led to acidification and disruption of the process. On the other hand, if no acidification occurred, the highest the proportion of cheese whey in the mixture with poultry manure, the highest the methane yield, increasing 65.2% the methane yield when CW:poultry manure ratio was increased from 1:3 to 1:1. Acidification was not observed in this study with a mixing ratio of 3:1 (GCW:HD), highlighting the importance of using ap­propriate inoculum/substrate ratio in batch assays to avoid inhibition. Furthermore, results of other studies showed the importance of monitoring pH variations in continuous anaerobic reactors when digesting or co-digesting whey due to its acidic nature. 
+               In any case, all studies showed the potential of co-digesting CW with animal manure, regardless of its origin (cow or chicken) and their mixing ratios, as long as acidification does not occur. Due to the increase in methane yield when co-digesting HD and GCW, compared to the mono-digestion of HD, semi-continuous assay was performed with the mixture of HD and GCW in order to explore biogas yield and further operational issues in a laboratory setup similar to full-scale plants. 
+               Semi-continuous assay 
+               The characterization of the mixtures used during the semi-continuous assay showed a high CODs fraction, being greater than 50 g O 2  L -1  in all mixtures, representing at least between 16.3 and 30.8% of the CODt. This high soluble fraction indicated a high biodegradability and, probably, a fast kinetics of degradation, which is beneficial for the anaerobic digestion process. On the other hand, it can lead to sudden changes in pH, which can be detrimental to the digestion process. Moreover, the mixture itself had a low pH. Finally, TKN and TAN content were high. As already said, high N can lead to inhibition due to ammonia accumulation inside the digester. C/N ratio was increased from 7.18 (lowest C/N ratio of HD) to more than 10, thanks to the mixture of HD and GCW. Mixtures also showed significant variability in their composition, as a consequence of keeping C/N ratios higher than 10. These changes, otherwise, would be common in an agro-industrial biogas plant, where the composition of substrates varies with the season, process conditions ( e.g.  in cheese production), animal feeding, etc. 
+               During the semi-continuous assay foam production was constant, with periods of high production that led to severe operational problems: biogas loss and digester overflow. Foam production is common in anaerobic digesters (   Kougias  et al. , 2014 ). This problem is usually related to a high organic load, instability of the digestion process, presence of filamentous microorganisms, type of substrate fed into the digester, inadequate mixing and temperature changes (   Evans  et al. , 2011 ;    Kougias  et al. , 2013a ).  
+                  Kougias  et al.  (2014)  investigated foaming incidents in a full-scale biogas plant concluding that they were consequence of the substrates fed into the digester and the mixing pattern. In particular, foaming incidents were attributed to the use of acid substrates (whey) and substrates with a high protein content (chicken manure), being similar substrates as the used in this study (GCW and HD). Therefore, foaming problems in the digester were probably consequence of the co-digestion of GCW and HD. A decrease of the OLR and an increase of the HRT was shown to be effective in reducing foaming production, although it was almost permanent throughout the study. Therefore, when scaling up the process, special measures should be considered in order to control foaming phenomenon inside the digester, such as constant foam monitoring and antifoamers dosing (   Kougias  et al. , 2013b ). 
+               Biogas and methane yields during the assay were high compared to anaerobic reactors working only with animal manures, where methane yields are commonly between 200 and 300 L CH4  kg VS -1  (   Biogas3, 2014 ). During the phase with higher biogas production (Phase 2), biogas and methane yields were 582.0±29.5 L biogas  kg VS -1  and 381.2±19.0 L CH4  kg VS -1 , with a maximum production of 704.5±34.2 L biogas  kg VS -1  and 458.7± 23.2 L CH4  kg VS -1  during week 7. Biogas production decreased suddenly during Phase 3 (week 8 and 9), when HD used for the mixture was collected in the second farm, located in Arico (Tenerife). Probably, the change of substrate caused an unidentified disruption in the process, which led to a lower biogas yield and a decrease in the methane content in biogas. 
+               Other studies have shown similar biogas yields for the co-digestion of CW and animal manure.    Comino  et al.  (2012)  showed a methane yield between 195 and 386 L CH4  kg VS -1  when co-digesting a mixture of cow manure and CW with varying content of each substrate at 42 days of HRT. The highest biogas production was obtained for the mixture containing the highest fraction of CW (65% CW and 35% cow manure (v/v)), like the mixture used throughout the semi-continuous assay in this study and with similar results. It must be noted that    Comino  et al.  (2012)  did not observe any foam in the digester: the gradual increase in the proportion of whey in the mixture and/or the substitution of chicken manure for cow manure could be the reasons. 
+                  Table 3  shows biodegradability of the mixture fed into the digester. At the end of the process, when the digester was closer to equilibrium, organic matter removal was higher than 50% (in terms of VS removal) and 65% (in terms of CODt removal). Large HRT favor organic matter removal, therefore, these values are expected to decrease in an anaerobic reactor operated at shorter HRT, which is the desired situation in full-scale plants in order to obtain a higher energy efficiency of the reactor. Removal of COD was like that observed by    Comino  et al.  (2012)  when co-digesting cow manure and CW in similar fractions. In a CSTR the digester is not in equilibrium for certain conditions until it is operated 1.5-2 × HRT without any change. Results on biodegradability are subject to equilibrium state within the digester. Since in this study the experiment lasted 60 days (1×HRT), the results shown here should be taken with caution. 
+               During the experiment IA was very high, indica­ting high accumulation of VFA. Furthermore, IA/PA ratio was always above 0.3, which is considered to be the threshold for an unstable digestion process (   Ripley  et al. , 1986 ). The instability of the process, and more precisely, the accumulation of VFA favor foam production (   Kougias  et al. , 2013a ). Despite the imbalance of the digestion process, biogas production and methane content in biogas was high during most of the assay, with a decrease during the two last weeks of operation.  
+               FA concentration throughout the assay increased since the beginning of the experiment, reaching values higher than 1,000 mg L -1 . There is no consensus regarding the threshold above which FA concentra­tion is toxic for anaerobic microorganisms, moreover, microorganisms have the ability of adapting to increasing FA concentrations (   Ramos-Suárez  et al. , 2014 ). Some authors have observed signs of inhibition even for FA concentrations above 100 mg L -1  (   Parkin & Owen, 1986 ), although it is normal to observe the toxic concentration threshold above 700 mg L -1  for animal manures (   Rajagopal  et al. , 2013 ). Therefore, it is possible that the increasing accumulation of FA in this study caused the decrease in biogas yield observed during the last two weeks of operation. 
+               Overall, the increase in the energy yield when mixing HD and GCW could make profitable, through energy self-consumption and selling, the investment in such a processing plant. Furthermore, GCW could be properly treated by anaerobic digestion. 
+               Results found during this study are directly applicable to the farm under study. Any extrapolation to other farms in the Canary Islands should be done with caution due to the methodology used, which was focused only on this laying hen farm in Fuerteventura. 
+               Energy availability 
+               The laying hen farm being studied would have available a large amount of electricity, which would be able to cover all the electricity demand by the farm. Even peak demand would be cover, considering that the CHP unit which could be installed (30 kWe) would be higher than the electric power currently installed in the farm (27.7 kWe). Electricity production from biogas which exceeds electricity demand by the farm could be sold to the electricity network. According to average cost of electricity for the farm, savings thanks to electricity self-consumption could reach 8,176 € year -1 , whereas incomes due to the sale of electricity to the electricity network could be 11,724.81 € year -1 , summing up 19,900.81 € year -1 . On the other hand, heat energy would also be available. Heat energy is currently not necessary on the laying hen farm, but new processes could be implemented in order to use this available energy. In summary, the co-digestion of HD and GCW would create a new way of waste valorization. On the other hand, cheese manufacturers would save in GCW management. 
+               The application of small-scale biogas plants is often difficult due to economics of scale and low energy yield from manure (   Deublein & Steinhauser, 2008 ;    Klavon  et al. , 2013 ;    Scheftelowitz & Thrän, 2016 ). Therefore, the use of a co-substrate could improve the economics of such investment due to higher energy production and higher scale of the biogas plant. This model needs the cooperation between cheese manufacturers and the laying hen farm to provide successful exploitation results, whereas the economic viability of such a model would depend on the biogas technology used, subsidies for the application of anaerobic digestion for waste treatment and self-energy consumption of the farm, since in Spain feed-in tariffs for renewable energy were suspended in 2012. 
+               A rough economic feasibility study has been made in order to estimate if the investment in such a treatment system would make sense for the laying hen farm. Results showed that the investment in such a facility is economically feasible only if the investment costs are low (around 5,000 € kWe -1 ). If the investment costs rise to the high values of the range (around 9,000 € kWe -1 ), which is according to other authors more common for small scale biogas projects (   Scheftelowitz & Thrän, 2016 ), the investment would not be feasible even with a 45% subsidy of the investment. 
+               Results showed that even with an increase in energy production due to the co-digestion of HD with GCW the investment should be reduced as much as possible in order to make feasible such a processing plant. Other possible sources of income, such as waste management fees or digestate selling, were not considered in this evaluation and could improve the economics of the processing plant. Digestate may have a higher acceptance by local farmers thanks to a reduction of odors, pathogens, seeds and a higher nutrient availability for crops (   Al Seadi & Lukehurst, 2012 ) compared to raw manure. 
+			
+         
+        
+         
+	  
+             Acknowledgements  Top   
+           
+             Authors would like to thank Dr. Axel Ritter Ro­dríguez for his valuable inputs for the preparation of this manuscript. 
+       
+			
+	 
+         
+         
+          
+		
+         
+                      
+             References  Top   
+			
+			 
+               
+                 
+                   
+					
+                     Al Seadi T, Lukehurst C, 2012. Quality management of digestate from biogas plants used as fertiliser. IEA Bioenergy.   http://task37.ieabioenergy.com/files/daten-redaktion/download/    
+                     Antonelli J, Lindino CA, Rodrigues de Azevedo JC, Melegari de Souza N, Cremonez PA, Rossi E, 2016. Biogas production by the anaerobic digestion of whey. Rev Ciênc Agrár 39: 463-467.   https://doi.org/10.19084/RCA15087   
+                     APHA, 1992. Métodos normalizados para el análisis de aguas potables y residuales. Díaz de Santos S.A., Madrid, Spain. 1816 pp. 
+                     Bayrakdar A, Önder Çalli B, 2017. Dry anaerobic digestion of chicken manure coupled with membrane separation of ammonia. Bioresour Technol 244: 816-823.   https://doi.org/10.1016/j.biortech.2017.08.047   
+                     Beszédes S, László Z, Szabó G, Hodúr C, 2010. The possibilities of bioenergy production from whey. J Agric Sci Technol 4: 62-68. 
+                     Biogas3, 2014. Small Biogas Web Application.   http://smallbiogas.biogas3.eu/Acceso.aspx   [27.02.2018]. 
+                     Carlini M, Castellucci S, Moneti M, 2015. Biogas production from poultry manure and cheese whey wastewater under mesophilic conditions in batch reactor. Energy Procedia 82: 811-818.   https://doi.org/10.1016/j.egypro.2015.11.817   
+                     Carvalho F, Prazeres AR, Rivas, J, 2013. Cheese whey wastewater: Characterization and treatment. Sci Total Environ 445-446: 385-396.   https://doi.org/10.1016/j.scitotenv.2012.12.038   
+                     Chatzipaschali AA, Stamatis AG, 2012. Biotechnological utilization with a focus on anaerobic treatment of cheese whey: current status and prospects. Energies 5: 3492-3525.   https://doi.org/10.3390/en5093492   
+                     Comino E, Vincenzo A. Riggio VA, Rosso M, 2012. Biogas production by anaerobic co-digestion of cattle slurry and cheese whey. Bioresour Technol 114: 46-53.   https://doi.org/10.1016/j.biortech.2012.02.090   
+                     Deublein D, Steinhayser A, 2008. Biogas from waste and renewable resources. An introduction. Wiley VCH, Weinheim, Germany. 450 pp.   https://doi.org/10.1002/9783527621705   
+                     Dupuis I, 2015. Evaluación de subproductos agroalimentarios para la alimentación animal en Canarias: análisis geográfico, de viabilidad y desarrollo metodológico. Instituto Canario de Investigaciones Agrarias (ICIA), San Cristóbal de La Laguna, Spain. 132 pp. 
+                     Escalante H, Castro L, Amaya MP, Jaimes L, Jaimes-Estévez J, 2018. Anaerobic digestion of cheese whey: Energetic and nutritional potential for the dairy sector in developing countries. Waste Manage 71: 711-718.   https://doi.org/10.1016/j.wasman.2017.09.026   
+                     Evans EA, Evans KM, Ulrich A, Ellsworth S, 2011. Anaerobic processes. Water Environ Res 83: 1285-1332.   https://doi.org/10.2175//106143011X13075599869335   
+                     Gobierno de Canarias, 2017. Anuario Energético de Canarias 2016.   http://www.gobiernodecanarias.org   [25.07.18]. 
+                     Gobierno de Canarias, 2018. Subvenciones durante el ejercicio 2018 para la mejora de la eficiencia energética y el uso de energías renovables en empresas y edificios residenciales, cofinanciadas con FEDER en el ámbito del Programa Operativo de Canarias.   https://sede.gobcan.es/ceicc/tramites/5174   [28.12.18]. 
+                     Hansen KH, Angelidaki I, Ahring BK, 1998. Anaerobic digestion of swine manure: inhibition by ammonia. Water Res 32(1): 5-12.   https://doi.org/10.1016/S0043-1354(97)00201-7   
+                     Hublin A, Zokic TI, Zelic B, 2012. Optimization of biogas production from co-digestion of whey and cow manure. Biotechnol Bioprocess Eng 17: 1284-1293.   https://doi.org/10.1007/s12257-012-0044-z   
+                     Jasko J, Skripsts E, Dubrovskis V, Zabarovskis E, Kotelenecs V, 2011. Biogas production from cheese whey in two phase anaerobic digestion. Engineering for Rural Development Conf., Jelgava, Latvia. 
+                     Kavacik B, Topaloglu B, 2010. Biogas production from co-digestion of a mixture of cheese whey and dairy manure. Biomass Bioenergy 34: 1321-1329.   https://doi.org/10.1016/j.biombioe.2010.04.006   
+                     Klavon KH, Lansing SA, Mulbry W, Moss AR, Felton G, 2013. Economic analysis of small-scale agricultural digesters in the United States. Biomass Bioenergy 54: 36-45.   https://doi.org/10.1016/j.biombioe.2013.03.009   
+                     Kothari R, Pandey AK, Kumar S, Tyagi VV, Tyagi SK, 2014. Different aspects of dry anaerobic digestion for bio-energy: An overview. Renew Sust Energ Rev 39: 174-195.   https://doi.org/10.1016/j.rser.2014.07.011   
+                     Kougias PG, Angelidaki I, 2018. Biogas and its opportunities - A review. Front Environ Sci Eng 12: 14.   https://doi.org/10.1007/s11783-018-1037-8   
+                     Kougias PG, Boe K, Angelidaki I, 2013a. Effect of organic loading rate and feedstock composition on foaming in manure-based biogas reactors. Bioresour Technol 144: 1-7.   https://doi.org/10.1016/j.biortech.2013.06.028   
+                     Kougias PG, Tsapekos P, Boe K, Angelidaki I, 2013b. Antifoaming effect of chemical compounds in manure biogas reactors. Wat Res 47: 6280-6288.   https://doi.org/10.1016/j.watres.2013.07.045   
+                     Kougias PG, Boe K, O-Thong S, Kristensen LA, Angelidaki I, 2014. Anaerobic digestion foaming in full-scale biogas plants: a survey on causes and solutions. Water Sci Technol 69: 889-895.   https://doi.org/10.2166/wst.2013.792   
+                     Lo KV, Liao PH, 1986. Digestion of cheese whey with anaerobic rotating biological contact reactors. Biomass 10: 243-252.   https://doi.org/10.1016/0144-4565(86)90001-6   
+                     Marchioro V, Steinmetz RLR, Amaral AC, Taís C, Gaspareto TC , Treichel H, Kunz A, 2018. Poultry litter solid state anaerobic digestion: Effect of digestate recirculation intervals and substrate/inoculum ratios on process efﬁciency. Front Sustain Food Syst 2: 46.   https://doi.org/10.3389/fsufs.2018.00046   
+                     Molaey R, Bayrakdar A, Sürmeli RÖ, Çalli B, 2018. Anaerobic digestion of chicken manure: Mitigating process inhibition at high ammonia concentrations by selenium supplementation. Biomass Bioenergy 108: 439-446.   https://doi.org/10.1016/j.biombioe.2017.10.050   
+                     Niu Q, Qiao W, Qiang H, Hojo T., Li YY, 2013. Mesophilic methane fermentation of chicken manure at a wide range of ammonia concentration: Stability, inhibition and recovery. Bioresour Technol 137: 358-367.   https://doi.org/10.1016/j.biortech.2013.03.080   
+                     Omie, 2018. Informe de Precios 2018. OMI-Polo Español S.A.   http://www.omie.es/inicio/publicaciones/informe-anual   [07.03.2019]. 
+                     Parkin GF, Owen WF, 1986. Fundamentals of anaerobic digestion of wastewater sludges. J Environ Eng 112: 867-920.   https://doi.org/10.1061/(ASCE)0733-9372(1986)112:5(867)   
+                     Poeschl M, Ward S, Owende P, 2010. Prospects for expanded utilization of biogas in Germany. Renew Sust Energ Rev 14: 1782-1797.   https://doi.org/10.1016/j.rser.2010.04.010   
+                     Powell N, Broughton A, Pratt C, Shilton A, 2013. Effect of whey storage on biogas produced by co-digestion of sewage sludge and whey. Environ Technol 34: 2743-2748.   https://doi.org/10.1080/09593330.2013.788042   
+                     Prazeres AR, Carvalho F, Rivas J, 2012. Cheese whey management: A review. J Environ Manage 110: 48-68.   https://doi.org/10.1016/j.jenvman.2012.05.018   
+                     Rajagopal R, Massé DI, Singh G, 2013. A critical review on inhibition of anaerobic digestion process by excess ammonia. Bioresour Technol 143: 632-641.   https://doi.org/10.1016/j.biortech.2013.06.030   
+                     Ramos-Suárez JL, García Cuadra F, Acién FG, Carreras N, 2014. Beneﬁts of combining anaerobic digestion and amino acid extraction from Microalgae. Chem Eng J 258: 1-9.   https://doi.org/10.1016/j.cej.2014.07.086   
+                     Rico C, Diego R, Valcarce A, Rico JL, 2014. Biogas production from various typical organic wastes generated in the region of Cantabria (Spain): methane yields and co-digestion tests. SGRE 5: 128-136.   https://doi.org/10.4236/sgre.2014.56012   
+                     Ripley LE, Boyle WC, Converse JC, 1986. Improved alkalimetric monitoring for anaerobic digestion of high-strength wastes. J Water Pollut Control Fed 58 (5): 406-411. 
+                     Schattauer A, Weiland P, 2004. Handreichung Biogasgewinnung und -nutzung (Guidelines of biogas production and use). Fachagentur Nachwachsende Rohstoffe e.V., Gülzow, Germany. 233 pp. 
+                     Scheftelowitz M, Thrän D, 2016. Unlocking the energy potential of manure - An assessment of the biogas production potential at the farm level in Germany. Agriculture 6: 20.   https://doi.org/10.3390/agriculture6020020   
+                     SNV & FACT Foundation, 2014. Productive biogas: Current and future development. Five case studies across Vietnam, Uganda, Honduras, Mali and Peru. SNV Corporate Office Renewable Energy and FACT Foundation, Burkina Faso. 109 pp. 
+                     Veeken A, Kalyuzhnyi S, Scharff H, Hamelers B, 2000. Effect of pH and VFA on hydrolysis of organic solid waste. J Environ Eng 126: 1076-1081.   https://doi.org/10.1061/(ASCE)0733-9372(2000)126:12(1076)   
+                     VDI, 2006. VDI Guideline 4630, Fermentation of organic materials. Characterisation of the substrate, sampling, collection of material data and fermentation tests. Verein Deutscher Ingenieure, Düsseldorf. 
+                     Weiland P, 2010. Biogas production: current state and perspectives. Appl Microbiol Biotechnol 85: 849-860.   https://doi.org/10.1007/s00253-009-2246-7   
+                     Yan JQ, Liao PH, Lo KV, 1988. Methane production from cheese whey. Biomass 17: 185-202.   https://doi.org/10.1016/0144-4565(88)90113-8   
+						
+			    
+
+             
+            
+          
+         
+       
+	      
+	 
+      
+      
+      
+ 		
+ 
+ 
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+   
+ 
+var pageTracker = _gat._getTracker("UA-50831113-1");
+pageTracker._initData();
+pageTracker._trackPageview();
+ 
+ 
+
+  
+           //        
+  
+ 

@@ -1,0 +1,1858 @@
+[
+  {
+    "id": "01_first_science_economics",
+    "prompt": "У меня 5 кг пищевых отходов и реактор объёмом 90 литров. Сколько метана можно получить и выгодно ли его производить?",
+    "passed": true,
+    "checks": {
+      "science_tool_called": true,
+      "methane_potential_0_31814": true,
+      "nominal_reactor_explained": true,
+      "has_compact_answer": true,
+      "asks_region_when_not_yet_known": true,
+      "live_qwen3_8b": true,
+      "qwen_mode": true
+    },
+    "answer": "Пищевые отходы, 5 кг: условный сценарий по опубликованным образцам; потенциал CH₄ 0.31814 м³ при указанной базе газа. Пищевые отходы: TS 0.1264 кг/кг влажной массы; VS 0.1206 кг/кг; масса VS 0.603 кг; BMP 527.5 мл CH₄/г VS. Источник: Treatment of Cattle Manure by Anaerobic Co-Digestion with Food Waste and Pig Manure: Methane Yield and Synergistic Effect (2020); профиль baek2020-food-pulp, форма prepared_pulp. Допущение: состав и подготовка вашей партии сопоставимы с данным образцом; это не измерение партии и не прогноз фактической выработки. Неизвестная влажность газа источника не измерена. Газовая база: 273.2 K, 101325 Па, dry. Общий биогаз = объём CH₄ / доля CH₄ при одинаковой газовой базе; без доли метана численный объём всего биогаза не определён. Учтённый объём загрузки не определено л; статус геометрии REQUIRES_REVIEW. Это известная часть загрузки, не полный объём. Для полной проверки загрузки нужны: volume_or_density:c1, inoculum_volume_l, dilution_water_l, resident_liquid_volume_l, operating_mode, reactor_working_volume_l, headspace_l. \n\nОбъём реактора 90 л ограничивает загрузку, но не задаёт выход метана. Нужны рабочий объём, объём инокулята и воды, запас газового пространства; вся ёмкость не считается массой нагреваемой жидкости.\n\nЭнергия и экономика (s1): валовая энергия топлива 3.1719 кВт·ч; тепло 1.5225–2.03 кВт·ч ИЛИ электричество 0.47578–0.63437 кВт·ч. Условные параметры: извлечение 0.6–0.8, КПД тепла 0.8, электричества 0.25; LHV 9.97 кВт·ч/м³ CH₄. При применимой цене P KZT/кВт·ч ценность электричества = (0.47578–0.63437) × P; цену не подставляю без источника. Прибыль и окупаемость не установлены: не подтверждён полный баланс подогрева и перемешивания, всех расходов и капитальных затрат. Неизвестные затраты не равны нулю. Учтённая часть эксплуатационных расходов: 0 KZT; это не полные затраты. Недостающие статьи: preparation, maintenance, storage, transport, gas_cleaning, digestate_handling, packaging. Цена природного газа не используется как цена продажи сырого биогаза.\n\nВ каком регионе находится установка?",
+    "sections": [
+      {
+        "title": "Краткий результат",
+        "body": "Пищевые отходы: 0.31814 м³ CH₄"
+      },
+      {
+        "title": "Потенциал метана",
+        "body": "Пищевые отходы: 0.31814 м³ CH₄. условный литературный сценарий, не измерение вашей партии"
+      },
+      {
+        "title": "Энергетическая ценность",
+        "body": "3.1719 kWh fuel-equivalent"
+      },
+      {
+        "title": "Экономика",
+        "body": "Прибыль не подтверждена: нужны полные расходы и капитальные затраты. Неизвестные расходы не считаются нулевыми."
+      },
+      {
+        "title": "Ограничения и риски",
+        "body": "90 л — номинальная ёмкость; она не задаёт рабочую загрузку или выход метана."
+      }
+    ],
+    "clarification": {
+      "id": "market-region",
+      "text": "В каком регионе находится установка?",
+      "options": [],
+      "fields": [
+        "market_region"
+      ],
+      "reason": "Region affects which stored market observations are applicable."
+    },
+    "tools": [
+      {
+        "tool": "assess_substrate_potential",
+        "status": "ok"
+      },
+      {
+        "tool": "analyze_substrate",
+        "status": "ok"
+      },
+      {
+        "tool": "search_scientific_sources",
+        "status": "ok"
+      },
+      {
+        "tool": "evaluate_partial_economics",
+        "status": "ok"
+      }
+    ],
+    "memory": {
+      "version": "7",
+      "conversation_id": "42bc5581c9ba4f99a370db663640b8a3",
+      "language": "ru",
+      "facts": {
+        "material": {
+          "value": "food_waste",
+          "unit": null,
+          "provenance": "USER_CONFIRMED",
+          "evidence": "пищевых отходов",
+          "recorded_at": "2026-11-03T11:54:17.701790+00:00",
+          "dependencies": []
+        },
+        "quantity": {
+          "value": 5.0,
+          "unit": "kg",
+          "provenance": "USER_CONFIRMED",
+          "evidence": "5 кг",
+          "recorded_at": "2026-11-03T11:54:17.701806+00:00",
+          "dependencies": []
+        },
+        "unit": {
+          "value": "kg",
+          "unit": null,
+          "provenance": "USER_CONFIRMED",
+          "evidence": "5 кг",
+          "recorded_at": "2026-11-03T11:54:17.701811+00:00",
+          "dependencies": []
+        },
+        "reactor_total_volume_l": {
+          "value": 90.0,
+          "unit": "L",
+          "provenance": "USER_CONFIRMED",
+          "evidence": "90 литров",
+          "recorded_at": "2026-11-03T11:54:17.701815+00:00",
+          "dependencies": []
+        }
+      },
+      "assumptions": {
+        "market_region": {
+          "value": "KZ-Karaganda",
+          "unit": null,
+          "provenance": "ASSUMED_FOR_SCENARIO",
+          "evidence": "Default dashboard region; not user-confirmed",
+          "recorded_at": "2026-11-03T11:54:14.671983+00:00",
+          "dependencies": []
+        }
+      },
+      "derived": {
+        "mass_kg": {
+          "value": 5.0,
+          "unit": "kg",
+          "provenance": "CALCULATED_FROM_CONFIRMED",
+          "evidence": "Unit arithmetic from explicit confirmed inputs",
+          "recorded_at": "2026-11-03T11:54:17.701824+00:00",
+          "dependencies": [
+            "quantity",
+            "unit"
+          ]
+        }
+      },
+      "estimates": {},
+      "source_verified": {},
+      "intents": [
+        "economic_comparison",
+        "methane_yield"
+      ],
+      "pending_question": null,
+      "invalidated": [],
+      "decision_settings": {
+        "gas_use": "unknown",
+        "assume_reference_compatibility": false,
+        "use_reference_scenarios": true,
+        "heating_value_type": "LHV",
+        "reactor": {
+          "engineering_review_confirmed": false,
+          "safety_review_required": false,
+          "loads": [],
+          "loads_complete": false,
+          "provenance": "USER_REPORTED"
+        },
+        "quotes": {},
+        "price_ids": {},
+        "max_price_age_days": 30,
+        "costs": {},
+        "all_operating_costs_included": false,
+        "include_capital": false,
+        "assume_full_self_consumption": false,
+        "replacement_heat_source": "unknown",
+        "gas_sale_technical_confirmed": false,
+        "gas_sale_legal_confirmed": false,
+        "gas_quality_confirmed": false,
+        "gas_storage_transport_confirmed": false,
+        "digestate_quality_confirmed": false,
+        "digestate_market_allowed": false
+      },
+      "decision_unavailable": [],
+      "last_research_summary": {},
+      "mixture_components": [],
+      "mixture_scenario_components": [],
+      "mixture_revision": 0,
+      "mixture_history": [],
+      "advisor_inventory_mode": "none",
+      "advisor_pending_component": null,
+      "advisor_settings": {},
+      "smart_goals": [],
+      "smart_cache": {},
+      "active_mixture_scenario": false,
+      "advanced": {},
+      "analytical_mode": "mixture"
+    },
+    "provider_status": [
+      {
+        "provider": "offline",
+        "model": "qwen3:8b",
+        "status": "available",
+        "actual_generation": true,
+        "phase": "structured_nlu",
+        "requests": [
+          {
+            "input_characters": 658,
+            "request_bytes": 2124,
+            "status": "ok",
+            "prompt_tokens": 181,
+            "output_tokens": 136,
+            "done_reason": "stop",
+            "load_seconds": 0.0077802,
+            "generation_seconds": 2.555369,
+            "tokens_per_second": 53.22127645752923,
+            "latency_seconds": 3.0258625999558717
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "02_oblast_reply_saved_and_used",
+    "prompt": "В Карагандинской",
+    "passed": true,
+    "checks": {
+      "region_saved": true,
+      "region_confirmed": true,
+      "no_region_question": true,
+      "market_economics_rechecked": true,
+      "live_qwen3_8b": true,
+      "qwen_mode": true
+    },
+    "answer": "Пищевые отходы, 5 кг: условный сценарий по опубликованным образцам; потенциал CH₄ 0.31814 м³ при указанной базе газа. Пищевые отходы: TS 0.1264 кг/кг влажной массы; VS 0.1206 кг/кг; масса VS 0.603 кг; BMP 527.5 мл CH₄/г VS. Источник: Treatment of Cattle Manure by Anaerobic Co-Digestion with Food Waste and Pig Manure: Methane Yield and Synergistic Effect (2020); профиль baek2020-food-pulp, форма prepared_pulp. Допущение: состав и подготовка вашей партии сопоставимы с данным образцом; это не измерение партии и не прогноз фактической выработки. Неизвестная влажность газа источника не измерена. Газовая база: 273.2 K, 101325 Па, dry. Общий биогаз = объём CH₄ / доля CH₄ при одинаковой газовой базе; без доли метана численный объём всего биогаза не определён. Учтённый объём загрузки не определено л; статус геометрии REQUIRES_REVIEW. Это известная часть загрузки, не полный объём. Для полной проверки загрузки нужны: volume_or_density:c1, inoculum_volume_l, dilution_water_l, resident_liquid_volume_l, operating_mode, reactor_working_volume_l, headspace_l. \n\nОбъём реактора 90 л ограничивает загрузку, но не задаёт выход метана. Нужны рабочий объём, объём инокулята и воды, запас газового пространства; вся ёмкость не считается массой нагреваемой жидкости.\n\nЭнергия и экономика (s1): валовая энергия топлива 3.1719 кВт·ч; тепло 1.5225–2.03 кВт·ч ИЛИ электричество 0.47578–0.63437 кВт·ч. Условные параметры: извлечение 0.6–0.8, КПД тепла 0.8, электричества 0.25; LHV 9.97 кВт·ч/м³ CH₄. При применимой цене P KZT/кВт·ч ценность электричества = (0.47578–0.63437) × P; цену не подставляю без источника. Прибыль и окупаемость не установлены: не подтверждён полный баланс подогрева и перемешивания, всех расходов и капитальных затрат. Неизвестные затраты не равны нулю. Учтённая часть эксплуатационных расходов: 0 KZT; это не полные затраты. Недостающие статьи: preparation, maintenance, storage, transport, gas_cleaning, digestate_handling, packaging. Цена природного газа не используется как цена продажи сырого биогаза.\n\nКакие полные расходы на эту партию: подготовка, транспорт, нагрев и обслуживание?",
+    "sections": [
+      {
+        "title": "Краткий результат",
+        "body": "Пищевые отходы: 0.31814 м³ CH₄"
+      },
+      {
+        "title": "Потенциал метана",
+        "body": "Пищевые отходы: 0.31814 м³ CH₄. условный литературный сценарий, не измерение вашей партии"
+      },
+      {
+        "title": "Энергетическая ценность",
+        "body": "3.1719 kWh fuel-equivalent"
+      },
+      {
+        "title": "Экономика",
+        "body": "Прибыль не подтверждена: нужны полные расходы и капитальные затраты. Неизвестные расходы не считаются нулевыми."
+      },
+      {
+        "title": "Ограничения и риски",
+        "body": "90 л — номинальная ёмкость; она не задаёт рабочую загрузку или выход метана."
+      }
+    ],
+    "clarification": {
+      "id": "operating-costs",
+      "text": "Какие полные расходы на эту партию: подготовка, транспорт, нагрев и обслуживание?",
+      "options": [],
+      "fields": [
+        "operating_costs"
+      ],
+      "reason": "Full costs are required to establish net profit."
+    },
+    "tools": [
+      {
+        "tool": "assess_substrate_potential",
+        "status": "ok"
+      },
+      {
+        "tool": "analyze_substrate",
+        "status": "ok"
+      },
+      {
+        "tool": "search_scientific_sources",
+        "status": "ok"
+      },
+      {
+        "tool": "evaluate_partial_economics",
+        "status": "ok"
+      }
+    ],
+    "memory": {
+      "version": "7",
+      "conversation_id": "42bc5581c9ba4f99a370db663640b8a3",
+      "language": "ru",
+      "facts": {
+        "material": {
+          "value": "food_waste",
+          "unit": null,
+          "provenance": "USER_CONFIRMED",
+          "evidence": "пищевых отходов",
+          "recorded_at": "2026-11-03T11:54:17.701790+00:00",
+          "dependencies": []
+        },
+        "quantity": {
+          "value": 5.0,
+          "unit": "kg",
+          "provenance": "USER_CONFIRMED",
+          "evidence": "5 кг",
+          "recorded_at": "2026-11-03T11:54:17.701806+00:00",
+          "dependencies": []
+        },
+        "unit": {
+          "value": "kg",
+          "unit": null,
+          "provenance": "USER_CONFIRMED",
+          "evidence": "5 кг",
+          "recorded_at": "2026-11-03T11:54:17.701811+00:00",
+          "dependencies": []
+        },
+        "reactor_total_volume_l": {
+          "value": 90.0,
+          "unit": "L",
+          "provenance": "USER_CONFIRMED",
+          "evidence": "90 литров",
+          "recorded_at": "2026-11-03T11:54:17.701815+00:00",
+          "dependencies": []
+        },
+        "market_region": {
+          "value": "KZ-Karaganda-oblast",
+          "unit": null,
+          "provenance": "USER_CONFIRMED",
+          "evidence": "В Карагандинской",
+          "recorded_at": "2026-11-03T11:54:27.347194+00:00",
+          "dependencies": []
+        }
+      },
+      "assumptions": {},
+      "derived": {
+        "mass_kg": {
+          "value": 5.0,
+          "unit": "kg",
+          "provenance": "CALCULATED_FROM_CONFIRMED",
+          "evidence": "Unit arithmetic from explicit confirmed inputs",
+          "recorded_at": "2026-11-03T11:54:27.347212+00:00",
+          "dependencies": [
+            "quantity",
+            "unit"
+          ]
+        }
+      },
+      "estimates": {},
+      "source_verified": {},
+      "intents": [
+        "economic_comparison",
+        "methane_yield"
+      ],
+      "pending_question": null,
+      "invalidated": [],
+      "decision_settings": {
+        "gas_use": "unknown",
+        "assume_reference_compatibility": false,
+        "use_reference_scenarios": true,
+        "heating_value_type": "LHV",
+        "reactor": {
+          "engineering_review_confirmed": false,
+          "safety_review_required": false,
+          "loads": [],
+          "loads_complete": false,
+          "provenance": "USER_REPORTED"
+        },
+        "quotes": {},
+        "price_ids": {},
+        "max_price_age_days": 30,
+        "costs": {},
+        "all_operating_costs_included": false,
+        "include_capital": false,
+        "assume_full_self_consumption": false,
+        "replacement_heat_source": "unknown",
+        "gas_sale_technical_confirmed": false,
+        "gas_sale_legal_confirmed": false,
+        "gas_quality_confirmed": false,
+        "gas_storage_transport_confirmed": false,
+        "digestate_quality_confirmed": false,
+        "digestate_market_allowed": false
+      },
+      "decision_unavailable": [],
+      "last_research_summary": {},
+      "mixture_components": [],
+      "mixture_scenario_components": [],
+      "mixture_revision": 0,
+      "mixture_history": [],
+      "advisor_inventory_mode": "none",
+      "advisor_pending_component": null,
+      "advisor_settings": {},
+      "smart_goals": [],
+      "smart_cache": {},
+      "active_mixture_scenario": false,
+      "advanced": {},
+      "analytical_mode": "mixture"
+    },
+    "provider_status": [
+      {
+        "provider": "offline",
+        "model": "qwen3:8b",
+        "status": "available",
+        "actual_generation": true,
+        "phase": "structured_nlu",
+        "requests": [
+          {
+            "input_characters": 687,
+            "request_bytes": 2096,
+            "status": "ok",
+            "prompt_tokens": 191,
+            "output_tokens": 119,
+            "done_reason": "stop",
+            "load_seconds": 0.0095366,
+            "generation_seconds": 3.523023,
+            "tokens_per_second": 33.777809568657375,
+            "latency_seconds": 3.7139710999908857
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "03_region_correction",
+    "prompt": "Теперь регион Алматы.",
+    "passed": true,
+    "checks": {
+      "region_updated": true,
+      "live_qwen3_8b": true,
+      "qwen_mode": true
+    },
+    "answer": "Пищевые отходы, 5 кг: условный сценарий по опубликованным образцам; потенциал CH₄ 0.31814 м³ при указанной базе газа. Пищевые отходы: TS 0.1264 кг/кг влажной массы; VS 0.1206 кг/кг; масса VS 0.603 кг; BMP 527.5 мл CH₄/г VS. Источник: Treatment of Cattle Manure by Anaerobic Co-Digestion with Food Waste and Pig Manure: Methane Yield and Synergistic Effect (2020); профиль baek2020-food-pulp, форма prepared_pulp. Допущение: состав и подготовка вашей партии сопоставимы с данным образцом; это не измерение партии и не прогноз фактической выработки. Неизвестная влажность газа источника не измерена. Газовая база: 273.2 K, 101325 Па, dry. Общий биогаз = объём CH₄ / доля CH₄ при одинаковой газовой базе; без доли метана численный объём всего биогаза не определён. Учтённый объём загрузки не определено л; статус геометрии REQUIRES_REVIEW. Это известная часть загрузки, не полный объём. Для полной проверки загрузки нужны: volume_or_density:c1, inoculum_volume_l, dilution_water_l, resident_liquid_volume_l, operating_mode, reactor_working_volume_l, headspace_l. \n\nОбъём реактора 90 л ограничивает загрузку, но не задаёт выход метана. Нужны рабочий объём, объём инокулята и воды, запас газового пространства; вся ёмкость не считается массой нагреваемой жидкости.\n\nЭнергия и экономика (s1): валовая энергия топлива 3.1719 кВт·ч; тепло 1.5225–2.03 кВт·ч ИЛИ электричество 0.47578–0.63437 кВт·ч. Условные параметры: извлечение 0.6–0.8, КПД тепла 0.8, электричества 0.25; LHV 9.97 кВт·ч/м³ CH₄. При применимой цене P KZT/кВт·ч ценность электричества = (0.47578–0.63437) × P; цену не подставляю без источника. Прибыль и окупаемость не установлены: не подтверждён полный баланс подогрева и перемешивания, всех расходов и капитальных затрат. Неизвестные затраты не равны нулю. Учтённая часть эксплуатационных расходов: 0 KZT; это не полные затраты. Недостающие статьи: preparation, maintenance, storage, transport, gas_cleaning, digestate_handling, packaging. Цена природного газа не используется как цена продажи сырого биогаза.\n\nКакие полные расходы на эту партию: подготовка, транспорт, нагрев и обслуживание?",
+    "sections": [
+      {
+        "title": "Краткий результат",
+        "body": "Пищевые отходы: 0.31814 м³ CH₄"
+      },
+      {
+        "title": "Потенциал метана",
+        "body": "Пищевые отходы: 0.31814 м³ CH₄. условный литературный сценарий, не измерение вашей партии"
+      },
+      {
+        "title": "Энергетическая ценность",
+        "body": "3.1719 kWh fuel-equivalent"
+      },
+      {
+        "title": "Экономика",
+        "body": "Прибыль не подтверждена: нужны полные расходы и капитальные затраты. Неизвестные расходы не считаются нулевыми."
+      },
+      {
+        "title": "Ограничения и риски",
+        "body": "90 л — номинальная ёмкость; она не задаёт рабочую загрузку или выход метана."
+      }
+    ],
+    "clarification": {
+      "id": "operating-costs",
+      "text": "Какие полные расходы на эту партию: подготовка, транспорт, нагрев и обслуживание?",
+      "options": [],
+      "fields": [
+        "operating_costs"
+      ],
+      "reason": "Full costs are required to establish net profit."
+    },
+    "tools": [
+      {
+        "tool": "assess_substrate_potential",
+        "status": "ok"
+      },
+      {
+        "tool": "analyze_substrate",
+        "status": "ok"
+      },
+      {
+        "tool": "search_scientific_sources",
+        "status": "ok"
+      },
+      {
+        "tool": "evaluate_partial_economics",
+        "status": "ok"
+      }
+    ],
+    "memory": {
+      "version": "7",
+      "conversation_id": "42bc5581c9ba4f99a370db663640b8a3",
+      "language": "ru",
+      "facts": {
+        "material": {
+          "value": "food_waste",
+          "unit": null,
+          "provenance": "USER_CONFIRMED",
+          "evidence": "пищевых отходов",
+          "recorded_at": "2026-11-03T11:54:17.701790+00:00",
+          "dependencies": []
+        },
+        "quantity": {
+          "value": 5.0,
+          "unit": "kg",
+          "provenance": "USER_CONFIRMED",
+          "evidence": "5 кг",
+          "recorded_at": "2026-11-03T11:54:17.701806+00:00",
+          "dependencies": []
+        },
+        "unit": {
+          "value": "kg",
+          "unit": null,
+          "provenance": "USER_CONFIRMED",
+          "evidence": "5 кг",
+          "recorded_at": "2026-11-03T11:54:17.701811+00:00",
+          "dependencies": []
+        },
+        "reactor_total_volume_l": {
+          "value": 90.0,
+          "unit": "L",
+          "provenance": "USER_CONFIRMED",
+          "evidence": "90 литров",
+          "recorded_at": "2026-11-03T11:54:17.701815+00:00",
+          "dependencies": []
+        },
+        "market_region": {
+          "value": "KZ-Almaty",
+          "unit": null,
+          "provenance": "USER_CONFIRMED",
+          "evidence": "Теперь регион Алматы.",
+          "recorded_at": "2026-11-03T11:54:42.151049+00:00",
+          "dependencies": []
+        }
+      },
+      "assumptions": {},
+      "derived": {
+        "mass_kg": {
+          "value": 5.0,
+          "unit": "kg",
+          "provenance": "CALCULATED_FROM_CONFIRMED",
+          "evidence": "Unit arithmetic from explicit confirmed inputs",
+          "recorded_at": "2026-11-03T11:54:42.151072+00:00",
+          "dependencies": [
+            "quantity",
+            "unit"
+          ]
+        }
+      },
+      "estimates": {},
+      "source_verified": {},
+      "intents": [
+        "economic_comparison",
+        "methane_yield"
+      ],
+      "pending_question": null,
+      "invalidated": [],
+      "decision_settings": {
+        "gas_use": "unknown",
+        "assume_reference_compatibility": false,
+        "use_reference_scenarios": true,
+        "heating_value_type": "LHV",
+        "reactor": {
+          "engineering_review_confirmed": false,
+          "safety_review_required": false,
+          "loads": [],
+          "loads_complete": false,
+          "provenance": "USER_REPORTED"
+        },
+        "quotes": {},
+        "price_ids": {},
+        "max_price_age_days": 30,
+        "costs": {},
+        "all_operating_costs_included": false,
+        "include_capital": false,
+        "assume_full_self_consumption": false,
+        "replacement_heat_source": "unknown",
+        "gas_sale_technical_confirmed": false,
+        "gas_sale_legal_confirmed": false,
+        "gas_quality_confirmed": false,
+        "gas_storage_transport_confirmed": false,
+        "digestate_quality_confirmed": false,
+        "digestate_market_allowed": false
+      },
+      "decision_unavailable": [],
+      "last_research_summary": {},
+      "mixture_components": [],
+      "mixture_scenario_components": [],
+      "mixture_revision": 0,
+      "mixture_history": [],
+      "advisor_inventory_mode": "none",
+      "advisor_pending_component": null,
+      "advisor_settings": {},
+      "smart_goals": [],
+      "smart_cache": {},
+      "active_mixture_scenario": false,
+      "advanced": {},
+      "analytical_mode": "mixture"
+    },
+    "provider_status": [
+      {
+        "provider": "offline",
+        "model": "qwen3:8b",
+        "status": "available",
+        "actual_generation": true,
+        "phase": "structured_nlu",
+        "requests": [
+          {
+            "input_characters": 732,
+            "request_bytes": 2148,
+            "status": "ok",
+            "prompt_tokens": 208,
+            "output_tokens": 142,
+            "done_reason": "stop",
+            "load_seconds": 0.0071418,
+            "generation_seconds": 6.581125,
+            "tokens_per_second": 21.576858059982147,
+            "latency_seconds": 6.766447899979539
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "04_mass_correction_50_to_5",
+    "prompt": "Исправление: 5 кг.",
+    "passed": true,
+    "checks": {
+      "quantity_is_5": true,
+      "unit_is_kg": true,
+      "recalculated_5kg": true,
+      "live_qwen3_8b": true,
+      "qwen_mode": true
+    },
+    "answer": "Пищевые отходы, 5 кг: условный сценарий по опубликованным образцам; потенциал CH₄ 0.31814 м³ при указанной базе газа. Пищевые отходы: TS 0.1264 кг/кг влажной массы; VS 0.1206 кг/кг; масса VS 0.603 кг; BMP 527.5 мл CH₄/г VS. Источник: Treatment of Cattle Manure by Anaerobic Co-Digestion with Food Waste and Pig Manure: Methane Yield and Synergistic Effect (2020); профиль baek2020-food-pulp, форма prepared_pulp. Допущение: состав и подготовка вашей партии сопоставимы с данным образцом; это не измерение партии и не прогноз фактической выработки. Неизвестная влажность газа источника не измерена. Газовая база: 273.2 K, 101325 Па, dry. Общий биогаз = объём CH₄ / доля CH₄ при одинаковой газовой базе; без доли метана численный объём всего биогаза не определён. Учтённый объём загрузки не определено л; статус геометрии REQUIRES_REVIEW. Это известная часть загрузки, не полный объём. Для полной проверки загрузки нужны: volume_or_density:c1, inoculum_volume_l, dilution_water_l, resident_liquid_volume_l, operating_mode, reactor_working_volume_l, headspace_l, reactor_total_volume_l. \n\nКакой состав и влажность у сырья вашей партии?",
+    "sections": [
+      {
+        "title": "Краткий результат",
+        "body": "Пищевые отходы: 0.31814 м³ CH₄"
+      },
+      {
+        "title": "Потенциал метана",
+        "body": "Пищевые отходы: 0.31814 м³ CH₄. условный литературный сценарий, не измерение вашей партии"
+      },
+      {
+        "title": "Энергетическая ценность",
+        "body": "не определён по имеющимся данным. Нужна измеренная доля CH₄ и условия преобразования."
+      },
+      {
+        "title": "Экономика",
+        "body": "не определён по имеющимся данным"
+      },
+      {
+        "title": "Ограничения и риски",
+        "body": "условный литературный сценарий, не измерение вашей партии"
+      }
+    ],
+    "clarification": {
+      "id": "working-volume",
+      "text": "Какой подтверждённый рабочий объём реактора, отдельно от номинального?",
+      "options": [],
+      "fields": [
+        "reactor_working_volume_l"
+      ],
+      "reason": "Nominal volume does not establish safe working capacity."
+    },
+    "tools": [
+      {
+        "tool": "assess_substrate_potential",
+        "status": "ok"
+      }
+    ],
+    "memory": {
+      "version": "7",
+      "conversation_id": "6198b11267e34c9589879866a1744b2f",
+      "language": "ru",
+      "facts": {
+        "material": {
+          "value": "food_waste",
+          "unit": null,
+          "provenance": "USER_CONFIRMED",
+          "evidence": "пищевых отходов",
+          "recorded_at": "2026-11-03T11:55:00.960154+00:00",
+          "dependencies": []
+        },
+        "quantity": {
+          "value": 5.0,
+          "unit": "kg",
+          "provenance": "USER_CONFIRMED",
+          "evidence": "5 кг",
+          "recorded_at": "2026-11-03T11:55:09.423578+00:00",
+          "dependencies": []
+        },
+        "unit": {
+          "value": "kg",
+          "unit": null,
+          "provenance": "USER_CONFIRMED",
+          "evidence": "5 кг",
+          "recorded_at": "2026-11-03T11:55:09.423602+00:00",
+          "dependencies": []
+        }
+      },
+      "assumptions": {
+        "market_region": {
+          "value": "KZ-Karaganda",
+          "unit": null,
+          "provenance": "ASSUMED_FOR_SCENARIO",
+          "evidence": "Default dashboard region; not user-confirmed",
+          "recorded_at": "2026-11-03T11:54:53.340561+00:00",
+          "dependencies": []
+        }
+      },
+      "derived": {
+        "mass_kg": {
+          "value": 5.0,
+          "unit": "kg",
+          "provenance": "CALCULATED_FROM_CONFIRMED",
+          "evidence": "Unit arithmetic from explicit confirmed inputs",
+          "recorded_at": "2026-11-03T11:55:09.423613+00:00",
+          "dependencies": [
+            "quantity",
+            "unit"
+          ]
+        }
+      },
+      "estimates": {},
+      "source_verified": {},
+      "intents": [
+        "methane_yield"
+      ],
+      "pending_question": null,
+      "invalidated": [],
+      "decision_settings": {
+        "gas_use": "unknown",
+        "assume_reference_compatibility": false,
+        "use_reference_scenarios": true,
+        "heating_value_type": "LHV",
+        "reactor": {
+          "engineering_review_confirmed": false,
+          "safety_review_required": false,
+          "provenance": "USER_REPORTED"
+        },
+        "quotes": {},
+        "price_ids": {},
+        "max_price_age_days": 30,
+        "costs": {},
+        "all_operating_costs_included": false,
+        "include_capital": false,
+        "assume_full_self_consumption": false,
+        "replacement_heat_source": "unknown",
+        "gas_sale_technical_confirmed": false,
+        "gas_sale_legal_confirmed": false,
+        "gas_quality_confirmed": false,
+        "gas_storage_transport_confirmed": false,
+        "digestate_quality_confirmed": false,
+        "digestate_market_allowed": false
+      },
+      "decision_unavailable": [],
+      "last_research_summary": {},
+      "mixture_components": [],
+      "mixture_scenario_components": [],
+      "mixture_revision": 0,
+      "mixture_history": [],
+      "advisor_inventory_mode": "none",
+      "advisor_pending_component": null,
+      "advisor_settings": {},
+      "smart_goals": [],
+      "smart_cache": {},
+      "active_mixture_scenario": false,
+      "advanced": {},
+      "analytical_mode": "mixture"
+    },
+    "provider_status": [
+      {
+        "provider": "offline",
+        "model": "qwen3:8b",
+        "status": "available",
+        "actual_generation": true,
+        "phase": "structured_nlu",
+        "requests": [
+          {
+            "input_characters": 633,
+            "request_bytes": 2034,
+            "status": "ok",
+            "prompt_tokens": 178,
+            "output_tokens": 88,
+            "done_reason": "stop",
+            "load_seconds": 0.0086814,
+            "generation_seconds": 4.555229,
+            "tokens_per_second": 19.318457974341136,
+            "latency_seconds": 4.80039809999289
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "05_reactor_volume_correction",
+    "prompt": "Нет, реактор 120 литров.",
+    "passed": true,
+    "checks": {
+      "reactor_volume_120": true,
+      "quantity_preserved_5": true,
+      "live_qwen3_8b": true,
+      "qwen_mode": true
+    },
+    "answer": "Для определения объема метана, который можно получить из 5 кг пищевых отходов в 120-литровом реакторе, необходимо учитывать такие факторы, как температура, время брожения, состав субстрата и наличие инокула. Однако, на основе предоставленных данных и доступных источников, точное значение объема метана не может быть определено без дополнительной информации о конкретных условиях брожения и характеристиках субстрата.",
+    "sections": [],
+    "clarification": null,
+    "tools": [
+      {
+        "tool": "advise_substrate_conditions",
+        "status": "ok"
+      },
+      {
+        "tool": "research_and_estimate",
+        "status": "needs_input"
+      }
+    ],
+    "memory": {
+      "version": "7",
+      "conversation_id": "6ae199f110ca441fb1d1215a92bade5d",
+      "language": "ru",
+      "facts": {
+        "material": {
+          "value": "food_waste",
+          "unit": null,
+          "provenance": "USER_CONFIRMED",
+          "evidence": "пищевых отходов",
+          "recorded_at": "2026-11-03T11:55:19.853676+00:00",
+          "dependencies": []
+        },
+        "quantity": {
+          "value": 5.0,
+          "unit": "kg",
+          "provenance": "USER_CONFIRMED",
+          "evidence": "5 кг",
+          "recorded_at": "2026-11-03T11:55:19.853692+00:00",
+          "dependencies": []
+        },
+        "unit": {
+          "value": "kg",
+          "unit": null,
+          "provenance": "USER_CONFIRMED",
+          "evidence": "5 кг",
+          "recorded_at": "2026-11-03T11:55:19.853697+00:00",
+          "dependencies": []
+        },
+        "reactor_total_volume_l": {
+          "value": 120.0,
+          "unit": "L",
+          "provenance": "USER_CONFIRMED",
+          "evidence": "120 литров",
+          "recorded_at": "2026-11-03T11:55:31.555485+00:00",
+          "dependencies": []
+        }
+      },
+      "assumptions": {
+        "market_region": {
+          "value": "KZ-Karaganda",
+          "unit": null,
+          "provenance": "ASSUMED_FOR_SCENARIO",
+          "evidence": "Default dashboard region; not user-confirmed",
+          "recorded_at": "2026-11-03T11:55:13.012472+00:00",
+          "dependencies": []
+        }
+      },
+      "derived": {
+        "mass_kg": {
+          "value": 5.0,
+          "unit": "kg",
+          "provenance": "CALCULATED_FROM_CONFIRMED",
+          "evidence": "Unit arithmetic from explicit confirmed inputs",
+          "recorded_at": "2026-11-03T11:55:31.555508+00:00",
+          "dependencies": [
+            "quantity",
+            "unit"
+          ]
+        }
+      },
+      "estimates": {},
+      "source_verified": {},
+      "intents": [
+        "process_guidance"
+      ],
+      "pending_question": null,
+      "invalidated": [],
+      "decision_settings": {
+        "gas_use": "unknown",
+        "assume_reference_compatibility": false,
+        "use_reference_scenarios": true,
+        "heating_value_type": "LHV",
+        "reactor": {
+          "engineering_review_confirmed": false,
+          "safety_review_required": false,
+          "loads": [],
+          "loads_complete": false,
+          "provenance": "USER_REPORTED"
+        },
+        "quotes": {},
+        "price_ids": {},
+        "max_price_age_days": 30,
+        "costs": {},
+        "all_operating_costs_included": false,
+        "include_capital": false,
+        "assume_full_self_consumption": false,
+        "replacement_heat_source": "unknown",
+        "gas_sale_technical_confirmed": false,
+        "gas_sale_legal_confirmed": false,
+        "gas_quality_confirmed": false,
+        "gas_storage_transport_confirmed": false,
+        "digestate_quality_confirmed": false,
+        "digestate_market_allowed": false
+      },
+      "decision_unavailable": [],
+      "last_research_summary": {},
+      "mixture_components": [],
+      "mixture_scenario_components": [],
+      "mixture_revision": 0,
+      "mixture_history": [],
+      "advisor_inventory_mode": "none",
+      "advisor_pending_component": null,
+      "advisor_settings": {},
+      "smart_goals": [],
+      "smart_cache": {},
+      "active_mixture_scenario": false,
+      "advanced": {},
+      "analytical_mode": "mixture"
+    },
+    "provider_status": [
+      {
+        "provider": "offline",
+        "model": "qwen3:8b",
+        "status": "available",
+        "actual_generation": true,
+        "phase": "structured_nlu",
+        "requests": [
+          {
+            "input_characters": 672,
+            "request_bytes": 2080,
+            "status": "ok",
+            "prompt_tokens": 192,
+            "output_tokens": 112,
+            "done_reason": "stop",
+            "load_seconds": 0.0042775,
+            "generation_seconds": 7.241749,
+            "tokens_per_second": 15.465877096817357,
+            "latency_seconds": 7.486043300013989
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "06_chat_api_dashboard_contract_equal",
+    "prompt": "5 kg food waste / 90 L / Karaganda oblast",
+    "passed": true,
+    "checks": {
+      "dashboard_api_ok": true,
+      "chat_scientific_tool_called": true,
+      "same_mixture_result": true,
+      "live_qwen3_8b": true,
+      "qwen_mode": true
+    },
+    "answer": "Пищевые отходы, 5 кг: условный сценарий по опубликованным образцам; потенциал CH₄ 0.31814 м³ при указанной базе газа. Пищевые отходы: TS 0.1264 кг/кг влажной массы; VS 0.1206 кг/кг; масса VS 0.603 кг; BMP 527.5 мл CH₄/г VS. Источник: Treatment of Cattle Manure by Anaerobic Co-Digestion with Food Waste and Pig Manure: Methane Yield and Synergistic Effect (2020); профиль baek2020-food-pulp, форма prepared_pulp. Допущение: состав и подготовка вашей партии сопоставимы с данным образцом; это не измерение партии и не прогноз фактической выработки. Неизвестная влажность газа источника не измерена. Газовая база: 273.2 K, 101325 Па, dry. Общий биогаз = объём CH₄ / доля CH₄ при одинаковой газовой базе; без доли метана численный объём всего биогаза не определён. Учтённый объём загрузки не определено л; статус геометрии REQUIRES_REVIEW. Это известная часть загрузки, не полный объём. Для полной проверки загрузки нужны: volume_or_density:c1, inoculum_volume_l, dilution_water_l, resident_liquid_volume_l, operating_mode, reactor_working_volume_l, headspace_l. \n\nОбъём реактора 90 л ограничивает загрузку, но не задаёт выход метана. Нужны рабочий объём, объём инокулята и воды, запас газового пространства; вся ёмкость не считается массой нагреваемой жидкости.\n\nКакой состав и влажность у сырья вашей партии?",
+    "sections": [
+      {
+        "title": "Краткий результат",
+        "body": "Пищевые отходы: 0.31814 м³ CH₄"
+      },
+      {
+        "title": "Потенциал метана",
+        "body": "Пищевые отходы: 0.31814 м³ CH₄. условный литературный сценарий, не измерение вашей партии"
+      },
+      {
+        "title": "Энергетическая ценность",
+        "body": "не определён по имеющимся данным. Нужна измеренная доля CH₄ и условия преобразования."
+      },
+      {
+        "title": "Экономика",
+        "body": "не определён по имеющимся данным"
+      },
+      {
+        "title": "Ограничения и риски",
+        "body": "90 л — номинальная ёмкость; она не задаёт рабочую загрузку или выход метана."
+      }
+    ],
+    "clarification": {
+      "id": "working-volume",
+      "text": "Какой подтверждённый рабочий объём реактора, отдельно от номинального?",
+      "options": [],
+      "fields": [
+        "reactor_working_volume_l"
+      ],
+      "reason": "Nominal volume does not establish safe working capacity."
+    },
+    "tools": [
+      {
+        "tool": "assess_substrate_potential",
+        "status": "ok"
+      }
+    ],
+    "memory": {
+      "version": "7",
+      "conversation_id": "b3997731f47846e8a9f41b9ebfb24514",
+      "language": "ru",
+      "facts": {
+        "material": {
+          "value": "food_waste",
+          "unit": null,
+          "provenance": "USER_CONFIRMED",
+          "evidence": "пищевых отходов",
+          "recorded_at": "2026-11-03T11:56:26.545478+00:00",
+          "dependencies": []
+        },
+        "market_region": {
+          "value": "KZ-Karaganda-oblast",
+          "unit": null,
+          "provenance": "USER_CONFIRMED",
+          "evidence": "У меня 5 кг пищевых отходов, реактор 90 литров, регион Карагандинская область. Сколько метана?",
+          "recorded_at": "2026-11-03T11:56:26.545494+00:00",
+          "dependencies": []
+        },
+        "quantity": {
+          "value": 5.0,
+          "unit": "kg",
+          "provenance": "USER_CONFIRMED",
+          "evidence": "5 кг",
+          "recorded_at": "2026-11-03T11:56:26.545500+00:00",
+          "dependencies": []
+        },
+        "unit": {
+          "value": "kg",
+          "unit": null,
+          "provenance": "USER_CONFIRMED",
+          "evidence": "5 кг",
+          "recorded_at": "2026-11-03T11:56:26.545503+00:00",
+          "dependencies": []
+        },
+        "reactor_total_volume_l": {
+          "value": 90.0,
+          "unit": "L",
+          "provenance": "USER_CONFIRMED",
+          "evidence": "90 литров",
+          "recorded_at": "2026-11-03T11:56:26.545507+00:00",
+          "dependencies": []
+        }
+      },
+      "assumptions": {},
+      "derived": {
+        "mass_kg": {
+          "value": 5.0,
+          "unit": "kg",
+          "provenance": "CALCULATED_FROM_CONFIRMED",
+          "evidence": "Unit arithmetic from explicit confirmed inputs",
+          "recorded_at": "2026-11-03T11:56:26.545515+00:00",
+          "dependencies": [
+            "quantity",
+            "unit"
+          ]
+        }
+      },
+      "estimates": {},
+      "source_verified": {},
+      "intents": [
+        "methane_yield"
+      ],
+      "pending_question": null,
+      "invalidated": [],
+      "decision_settings": {
+        "gas_use": "unknown",
+        "assume_reference_compatibility": false,
+        "use_reference_scenarios": true,
+        "heating_value_type": "LHV",
+        "reactor": {
+          "engineering_review_confirmed": false,
+          "safety_review_required": false,
+          "loads": [],
+          "loads_complete": false,
+          "provenance": "USER_REPORTED"
+        },
+        "quotes": {},
+        "price_ids": {},
+        "max_price_age_days": 30,
+        "costs": {},
+        "all_operating_costs_included": false,
+        "include_capital": false,
+        "assume_full_self_consumption": false,
+        "replacement_heat_source": "unknown",
+        "gas_sale_technical_confirmed": false,
+        "gas_sale_legal_confirmed": false,
+        "gas_quality_confirmed": false,
+        "gas_storage_transport_confirmed": false,
+        "digestate_quality_confirmed": false,
+        "digestate_market_allowed": false
+      },
+      "decision_unavailable": [],
+      "last_research_summary": {},
+      "mixture_components": [],
+      "mixture_scenario_components": [],
+      "mixture_revision": 0,
+      "mixture_history": [],
+      "advisor_inventory_mode": "none",
+      "advisor_pending_component": null,
+      "advisor_settings": {},
+      "smart_goals": [],
+      "smart_cache": {},
+      "active_mixture_scenario": false,
+      "advanced": {},
+      "analytical_mode": "mixture"
+    },
+    "provider_status": [
+      {
+        "provider": "offline",
+        "model": "qwen3:8b",
+        "status": "available",
+        "actual_generation": true,
+        "phase": "structured_nlu",
+        "requests": [
+          {
+            "input_characters": 636,
+            "request_bytes": 2084,
+            "status": "ok",
+            "prompt_tokens": 179,
+            "output_tokens": 136,
+            "done_reason": "stop",
+            "load_seconds": 0.0045923,
+            "generation_seconds": 9.827713,
+            "tokens_per_second": 13.838417951358572,
+            "latency_seconds": 10.060765600006562
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "07_incompatible_physical_state",
+    "prompt": "У меня 5 кг сухих пищевых отходов. Сколько метана?",
+    "passed": true,
+    "checks": {
+      "science_checked": true,
+      "no_pulp_profile_transfer": true,
+      "live_qwen3_8b": true,
+      "qwen_mode": true
+    },
+    "answer": "Пищевые отходы, 5 кг: расчёт по введённым данным; численный потенциал не определён: нет совместимых TS, VS и BMP. Это вычисленный потенциал, а не измеренный выход установки. Недостающие параметры: bmp_ml_g_vs, ts_fraction, vs_fraction_wet. Учтённый объём загрузки не определено л; статус геометрии REQUIRES_REVIEW. Это известная часть загрузки, не полный объём. Для полной проверки загрузки нужны: volume_or_density:c1, inoculum_volume_l, dilution_water_l, resident_liquid_volume_l, operating_mode, reactor_working_volume_l, headspace_l, reactor_total_volume_l. \n\nКакой состав и влажность у сырья вашей партии?",
+    "sections": [
+      {
+        "title": "Краткий результат",
+        "body": "Потенциал метана не рассчитан: нет совместимого профиля и свойств партии."
+      },
+      {
+        "title": "Потенциал метана",
+        "body": "Потенциал метана не рассчитан: нет совместимого профиля и свойств партии.. расчёт из введённых свойств, не измерение выхода установки"
+      },
+      {
+        "title": "Энергетическая ценность",
+        "body": "не определён по имеющимся данным. Нужна измеренная доля CH₄ и условия преобразования."
+      },
+      {
+        "title": "Экономика",
+        "body": "не определён по имеющимся данным"
+      },
+      {
+        "title": "Ограничения и риски",
+        "body": "расчёт из введённых свойств, не измерение выхода установки"
+      }
+    ],
+    "clarification": {
+      "id": "working-volume",
+      "text": "Какой подтверждённый рабочий объём реактора, отдельно от номинального?",
+      "options": [],
+      "fields": [
+        "reactor_working_volume_l"
+      ],
+      "reason": "Nominal volume does not establish safe working capacity."
+    },
+    "tools": [
+      {
+        "tool": "assess_substrate_potential",
+        "status": "needs_input"
+      }
+    ],
+    "memory": {
+      "version": "7",
+      "conversation_id": "c0b9bca6944746e2a07e2e199b73b1de",
+      "language": "ru",
+      "facts": {
+        "material": {
+          "value": "food_waste",
+          "unit": null,
+          "provenance": "USER_CONFIRMED",
+          "evidence": "пищевых отходов",
+          "recorded_at": "2026-11-03T11:56:37.455588+00:00",
+          "dependencies": []
+        },
+        "physical_state": {
+          "value": "dry",
+          "unit": null,
+          "provenance": "USER_CONFIRMED",
+          "evidence": "сухих",
+          "recorded_at": "2026-11-03T11:56:37.455605+00:00",
+          "dependencies": []
+        },
+        "material_state": {
+          "value": "dry",
+          "unit": null,
+          "provenance": "USER_CONFIRMED",
+          "evidence": "сухих",
+          "recorded_at": "2026-11-03T11:56:37.455609+00:00",
+          "dependencies": []
+        },
+        "quantity": {
+          "value": 5.0,
+          "unit": "kg",
+          "provenance": "USER_CONFIRMED",
+          "evidence": "5 кг",
+          "recorded_at": "2026-11-03T11:56:37.455613+00:00",
+          "dependencies": []
+        },
+        "unit": {
+          "value": "kg",
+          "unit": null,
+          "provenance": "USER_CONFIRMED",
+          "evidence": "5 кг",
+          "recorded_at": "2026-11-03T11:56:37.455617+00:00",
+          "dependencies": []
+        }
+      },
+      "assumptions": {
+        "market_region": {
+          "value": "KZ-Karaganda",
+          "unit": null,
+          "provenance": "ASSUMED_FOR_SCENARIO",
+          "evidence": "Default dashboard region; not user-confirmed",
+          "recorded_at": "2026-11-03T11:56:30.406523+00:00",
+          "dependencies": []
+        }
+      },
+      "derived": {
+        "mass_kg": {
+          "value": 5.0,
+          "unit": "kg",
+          "provenance": "CALCULATED_FROM_CONFIRMED",
+          "evidence": "Unit arithmetic from explicit confirmed inputs",
+          "recorded_at": "2026-11-03T11:56:37.455625+00:00",
+          "dependencies": [
+            "quantity",
+            "unit"
+          ]
+        }
+      },
+      "estimates": {},
+      "source_verified": {},
+      "intents": [
+        "methane_yield"
+      ],
+      "pending_question": null,
+      "invalidated": [],
+      "decision_settings": {
+        "gas_use": "unknown",
+        "assume_reference_compatibility": false,
+        "use_reference_scenarios": true,
+        "heating_value_type": "LHV",
+        "reactor": {
+          "engineering_review_confirmed": false,
+          "safety_review_required": false,
+          "loads": [],
+          "loads_complete": false,
+          "provenance": "USER_REPORTED"
+        },
+        "quotes": {},
+        "price_ids": {},
+        "max_price_age_days": 30,
+        "costs": {},
+        "all_operating_costs_included": false,
+        "include_capital": false,
+        "assume_full_self_consumption": false,
+        "replacement_heat_source": "unknown",
+        "gas_sale_technical_confirmed": false,
+        "gas_sale_legal_confirmed": false,
+        "gas_quality_confirmed": false,
+        "gas_storage_transport_confirmed": false,
+        "digestate_quality_confirmed": false,
+        "digestate_market_allowed": false
+      },
+      "decision_unavailable": [],
+      "last_research_summary": {},
+      "mixture_components": [],
+      "mixture_scenario_components": [],
+      "mixture_revision": 0,
+      "mixture_history": [],
+      "advisor_inventory_mode": "none",
+      "advisor_pending_component": null,
+      "advisor_settings": {},
+      "smart_goals": [],
+      "smart_cache": {},
+      "active_mixture_scenario": false,
+      "advanced": {},
+      "analytical_mode": "mixture"
+    },
+    "provider_status": [
+      {
+        "provider": "offline",
+        "model": "qwen3:8b",
+        "status": "available",
+        "actual_generation": true,
+        "phase": "structured_nlu",
+        "requests": [
+          {
+            "input_characters": 592,
+            "request_bytes": 2005,
+            "status": "ok",
+            "prompt_tokens": 164,
+            "output_tokens": 95,
+            "done_reason": "stop",
+            "load_seconds": 0.0087188,
+            "generation_seconds": 6.826447,
+            "tokens_per_second": 13.916463425263538,
+            "latency_seconds": 7.045630800013896
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "08_new_question_keeps_batch_context",
+    "prompt": "А сколько полезной энергии в этом метане?",
+    "passed": true,
+    "checks": {
+      "feed_material_retained": true,
+      "quantity_retained": true,
+      "science_or_economics_checked": true,
+      "live_qwen3_8b": true,
+      "qwen_mode": true
+    },
+    "answer": "Пищевые отходы, 5 кг: условный сценарий по опубликованным образцам; потенциал CH₄ 0.31814 м³ при указанной базе газа. Пищевые отходы: TS 0.1264 кг/кг влажной массы; VS 0.1206 кг/кг; масса VS 0.603 кг; BMP 527.5 мл CH₄/г VS. Источник: Treatment of Cattle Manure by Anaerobic Co-Digestion with Food Waste and Pig Manure: Methane Yield and Synergistic Effect (2020); профиль baek2020-food-pulp, форма prepared_pulp. Допущение: состав и подготовка вашей партии сопоставимы с данным образцом; это не измерение партии и не прогноз фактической выработки. Неизвестная влажность газа источника не измерена. Газовая база: 273.2 K, 101325 Па, dry. Общий биогаз = объём CH₄ / доля CH₄ при одинаковой газовой базе; без доли метана численный объём всего биогаза не определён. Учтённый объём загрузки не определено л; статус геометрии REQUIRES_REVIEW. Это известная часть загрузки, не полный объём. Для полной проверки загрузки нужны: volume_or_density:c1, inoculum_volume_l, dilution_water_l, resident_liquid_volume_l, operating_mode, reactor_working_volume_l, headspace_l. \n\nОбъём реактора 90 л ограничивает загрузку, но не задаёт выход метана. Нужны рабочий объём, объём инокулята и воды, запас газового пространства; вся ёмкость не считается массой нагреваемой жидкости.\n\nКакой состав и влажность у сырья вашей партии?",
+    "sections": [
+      {
+        "title": "Краткий результат",
+        "body": "Пищевые отходы: 0.31814 м³ CH₄"
+      },
+      {
+        "title": "Потенциал метана",
+        "body": "Пищевые отходы: 0.31814 м³ CH₄. условный литературный сценарий, не измерение вашей партии"
+      },
+      {
+        "title": "Энергетическая ценность",
+        "body": "не определён по имеющимся данным. Нужна измеренная доля CH₄ и условия преобразования."
+      },
+      {
+        "title": "Экономика",
+        "body": "не определён по имеющимся данным"
+      },
+      {
+        "title": "Ограничения и риски",
+        "body": "90 л — номинальная ёмкость; она не задаёт рабочую загрузку или выход метана."
+      }
+    ],
+    "clarification": {
+      "id": "working-volume",
+      "text": "Какой подтверждённый рабочий объём реактора, отдельно от номинального?",
+      "options": [],
+      "fields": [
+        "reactor_working_volume_l"
+      ],
+      "reason": "Nominal volume does not establish safe working capacity."
+    },
+    "tools": [
+      {
+        "tool": "assess_substrate_potential",
+        "status": "ok"
+      }
+    ],
+    "memory": {
+      "version": "7",
+      "conversation_id": "42bc5581c9ba4f99a370db663640b8a3",
+      "language": "ru",
+      "facts": {
+        "material": {
+          "value": "food_waste",
+          "unit": null,
+          "provenance": "USER_CONFIRMED",
+          "evidence": "пищевых отходов",
+          "recorded_at": "2026-11-03T11:54:17.701790+00:00",
+          "dependencies": []
+        },
+        "quantity": {
+          "value": 5.0,
+          "unit": "kg",
+          "provenance": "USER_CONFIRMED",
+          "evidence": "5 кг",
+          "recorded_at": "2026-11-03T11:54:17.701806+00:00",
+          "dependencies": []
+        },
+        "unit": {
+          "value": "kg",
+          "unit": null,
+          "provenance": "USER_CONFIRMED",
+          "evidence": "5 кг",
+          "recorded_at": "2026-11-03T11:54:17.701811+00:00",
+          "dependencies": []
+        },
+        "reactor_total_volume_l": {
+          "value": 90.0,
+          "unit": "L",
+          "provenance": "USER_CONFIRMED",
+          "evidence": "90 литров",
+          "recorded_at": "2026-11-03T11:54:17.701815+00:00",
+          "dependencies": []
+        },
+        "market_region": {
+          "value": "KZ-Almaty",
+          "unit": null,
+          "provenance": "USER_CONFIRMED",
+          "evidence": "Теперь регион Алматы.",
+          "recorded_at": "2026-11-03T11:54:42.151049+00:00",
+          "dependencies": []
+        }
+      },
+      "assumptions": {},
+      "derived": {
+        "mass_kg": {
+          "value": 5.0,
+          "unit": "kg",
+          "provenance": "CALCULATED_FROM_CONFIRMED",
+          "evidence": "Unit arithmetic from explicit confirmed inputs",
+          "recorded_at": "2026-11-03T11:56:52.513944+00:00",
+          "dependencies": [
+            "quantity",
+            "unit"
+          ]
+        }
+      },
+      "estimates": {},
+      "source_verified": {},
+      "intents": [
+        "methane_yield"
+      ],
+      "pending_question": null,
+      "invalidated": [],
+      "decision_settings": {
+        "gas_use": "unknown",
+        "assume_reference_compatibility": false,
+        "use_reference_scenarios": true,
+        "heating_value_type": "LHV",
+        "reactor": {
+          "engineering_review_confirmed": false,
+          "safety_review_required": false,
+          "loads": [],
+          "loads_complete": false,
+          "provenance": "USER_REPORTED"
+        },
+        "quotes": {},
+        "price_ids": {},
+        "max_price_age_days": 30,
+        "costs": {},
+        "all_operating_costs_included": false,
+        "include_capital": false,
+        "assume_full_self_consumption": false,
+        "replacement_heat_source": "unknown",
+        "gas_sale_technical_confirmed": false,
+        "gas_sale_legal_confirmed": false,
+        "gas_quality_confirmed": false,
+        "gas_storage_transport_confirmed": false,
+        "digestate_quality_confirmed": false,
+        "digestate_market_allowed": false
+      },
+      "decision_unavailable": [],
+      "last_research_summary": {},
+      "mixture_components": [],
+      "mixture_scenario_components": [],
+      "mixture_revision": 0,
+      "mixture_history": [],
+      "advisor_inventory_mode": "none",
+      "advisor_pending_component": null,
+      "advisor_settings": {},
+      "smart_goals": [],
+      "smart_cache": {},
+      "active_mixture_scenario": false,
+      "advanced": {},
+      "analytical_mode": "mixture"
+    },
+    "provider_status": [
+      {
+        "provider": "offline",
+        "model": "qwen3:8b",
+        "status": "available",
+        "actual_generation": true,
+        "phase": "structured_nlu",
+        "requests": [
+          {
+            "input_characters": 742,
+            "request_bytes": 2174,
+            "status": "ok",
+            "prompt_tokens": 210,
+            "output_tokens": 135,
+            "done_reason": "stop",
+            "load_seconds": 0.0135327,
+            "generation_seconds": 10.029366,
+            "tokens_per_second": 13.460471977989437,
+            "latency_seconds": 10.294770499982405
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "09_scientific_detail_followup",
+    "prompt": "Покажи научные подробности расчёта и источник.",
+    "passed": true,
+    "checks": {
+      "batch_retained": true,
+      "source_or_science_tool": true,
+      "live_qwen3_8b": true,
+      "qwen_mode": true
+    },
+    "answer": "Для расчёта метана из пищевых отходов используется информация из научных источников, таких как: \n1. EBMUD / US EPA — Anaerobic Digestion of Food Waste (https://www.epa.gov/system/files/documents/2024-08/ebmud-final-report-anaerobic-digestion-of-food-waste-2008-03.pdf) \n2. Hafner et al. — Reliable biochemical methane potential testing (https://github.com/AU-BCE-EE/Hafner-2026-IL-BMP). \nОднако, точные численные данные по производству метана из 5 кг пищевых отходов в реакторе объёмом 90 литров не предоставлены. Дополнительные данные о биогазе, энергии и условиях рынка необходимы для полного расчёта.",
+    "sections": [],
+    "clarification": null,
+    "tools": [
+      {
+        "tool": "search_scientific_sources",
+        "status": "ok"
+      },
+      {
+        "tool": "research_scientific_evidence",
+        "status": "ok"
+      },
+      {
+        "tool": "research_and_estimate",
+        "status": "needs_input"
+      }
+    ],
+    "memory": {
+      "version": "7",
+      "conversation_id": "42bc5581c9ba4f99a370db663640b8a3",
+      "language": "ru",
+      "facts": {
+        "material": {
+          "value": "food_waste",
+          "unit": null,
+          "provenance": "USER_CONFIRMED",
+          "evidence": "пищевых отходов",
+          "recorded_at": "2026-11-03T11:54:17.701790+00:00",
+          "dependencies": []
+        },
+        "quantity": {
+          "value": 5.0,
+          "unit": "kg",
+          "provenance": "USER_CONFIRMED",
+          "evidence": "5 кг",
+          "recorded_at": "2026-11-03T11:54:17.701806+00:00",
+          "dependencies": []
+        },
+        "unit": {
+          "value": "kg",
+          "unit": null,
+          "provenance": "USER_CONFIRMED",
+          "evidence": "5 кг",
+          "recorded_at": "2026-11-03T11:54:17.701811+00:00",
+          "dependencies": []
+        },
+        "reactor_total_volume_l": {
+          "value": 90.0,
+          "unit": "L",
+          "provenance": "USER_CONFIRMED",
+          "evidence": "90 литров",
+          "recorded_at": "2026-11-03T11:54:17.701815+00:00",
+          "dependencies": []
+        },
+        "market_region": {
+          "value": "KZ-Almaty",
+          "unit": null,
+          "provenance": "USER_CONFIRMED",
+          "evidence": "Теперь регион Алматы.",
+          "recorded_at": "2026-11-03T11:54:42.151049+00:00",
+          "dependencies": []
+        }
+      },
+      "assumptions": {},
+      "derived": {
+        "mass_kg": {
+          "value": 5.0,
+          "unit": "kg",
+          "provenance": "CALCULATED_FROM_CONFIRMED",
+          "evidence": "Unit arithmetic from explicit confirmed inputs",
+          "recorded_at": "2026-11-03T11:57:07.776547+00:00",
+          "dependencies": [
+            "quantity",
+            "unit"
+          ]
+        }
+      },
+      "estimates": {},
+      "source_verified": {},
+      "intents": [
+        "sources"
+      ],
+      "pending_question": null,
+      "invalidated": [],
+      "decision_settings": {
+        "gas_use": "unknown",
+        "assume_reference_compatibility": false,
+        "use_reference_scenarios": true,
+        "heating_value_type": "LHV",
+        "reactor": {
+          "engineering_review_confirmed": false,
+          "safety_review_required": false,
+          "loads": [],
+          "loads_complete": false,
+          "provenance": "USER_REPORTED"
+        },
+        "quotes": {},
+        "price_ids": {},
+        "max_price_age_days": 30,
+        "costs": {},
+        "all_operating_costs_included": false,
+        "include_capital": false,
+        "assume_full_self_consumption": false,
+        "replacement_heat_source": "unknown",
+        "gas_sale_technical_confirmed": false,
+        "gas_sale_legal_confirmed": false,
+        "gas_quality_confirmed": false,
+        "gas_storage_transport_confirmed": false,
+        "digestate_quality_confirmed": false,
+        "digestate_market_allowed": false
+      },
+      "decision_unavailable": [],
+      "last_research_summary": {},
+      "mixture_components": [],
+      "mixture_scenario_components": [],
+      "mixture_revision": 0,
+      "mixture_history": [],
+      "advisor_inventory_mode": "none",
+      "advisor_pending_component": null,
+      "advisor_settings": {},
+      "smart_goals": [],
+      "smart_cache": {},
+      "active_mixture_scenario": false,
+      "advanced": {},
+      "analytical_mode": "mixture"
+    },
+    "provider_status": [
+      {
+        "provider": "offline",
+        "model": "qwen3:8b",
+        "status": "available",
+        "actual_generation": true,
+        "phase": "structured_nlu",
+        "requests": [
+          {
+            "input_characters": 724,
+            "request_bytes": 2160,
+            "status": "ok",
+            "prompt_tokens": 206,
+            "output_tokens": 135,
+            "done_reason": "stop",
+            "load_seconds": 0.0041591,
+            "generation_seconds": 10.136162,
+            "tokens_per_second": 13.318650589838638,
+            "latency_seconds": 10.37086210004054
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "10_dashboard_to_chat_handoff",
+    "prompt": "dashboard mixture handoff",
+    "passed": true,
+    "checks": {
+      "handoff_created": true,
+      "material_and_mass_preserved": true,
+      "profile_preserved": true,
+      "region_preserved": true
+    },
+    "answer": "dashboard handoff persisted; no assistant generation in this check",
+    "sections": null,
+    "clarification": null,
+    "tools": [],
+    "memory": {
+      "version": "7",
+      "conversation_id": "913c28737c4a4f21b4bf6620a5d5c600",
+      "language": "ru",
+      "facts": {
+        "market_region": {
+          "value": "KZ-Karaganda-oblast",
+          "unit": null,
+          "provenance": "USER_CONFIRMED",
+          "evidence": "Confirmed region transferred from the substrate calculator",
+          "recorded_at": "2026-11-03T11:57:49.789441+00:00",
+          "dependencies": []
+        },
+        "reactor_total_volume_l": {
+          "value": 90.0,
+          "unit": "L",
+          "provenance": "USER_CONFIRMED",
+          "evidence": "Nominal reactor volume transferred from the substrate calculator",
+          "recorded_at": "2026-11-03T11:57:49.789455+00:00",
+          "dependencies": []
+        }
+      },
+      "assumptions": {},
+      "derived": {},
+      "estimates": {},
+      "source_verified": {},
+      "intents": [],
+      "pending_question": null,
+      "invalidated": [],
+      "decision_settings": {
+        "gas_use": "unknown",
+        "gas_basis": null,
+        "methane_fraction": null,
+        "composition_basis": null,
+        "assume_reference_compatibility": false,
+        "recovery_fraction": null,
+        "thermal_efficiency": null,
+        "electrical_efficiency": null,
+        "chp_thermal_efficiency": null,
+        "chp_electrical_efficiency": null,
+        "use_reference_scenarios": true,
+        "heating_value_kwh_m3": null,
+        "heating_value_type": "LHV",
+        "heating_value_basis": null,
+        "equipment_evidence": null,
+        "reactor": {
+          "reactor_working_volume_l": null,
+          "headspace_l": null,
+          "inoculum_volume_l": null,
+          "dilution_water_l": null,
+          "resident_liquid_volume_l": null,
+          "operating_mode": null,
+          "reactor_type": null,
+          "engineering_review_confirmed": false,
+          "safety_review_required": false,
+          "temperature_c": null,
+          "initial_temperature_c": null,
+          "ambient_temperature_c": null,
+          "heated_mass_kg": null,
+          "heat_capacity_kj_kg_k": null,
+          "heat_loss_coefficient_w_k": null,
+          "u_w_m2_k": null,
+          "area_m2": null,
+          "duration_days": null,
+          "heater_efficiency": null,
+          "heating_carrier": null,
+          "auxiliary_energy_kwh": null,
+          "loads": [],
+          "loads_complete": false,
+          "energy_scope": null,
+          "provenance": "USER_REPORTED"
+        },
+        "quotes": {},
+        "price_ids": {},
+        "consumer_class": null,
+        "tax_basis": null,
+        "max_price_age_days": 30,
+        "costs": {},
+        "all_operating_costs_included": false,
+        "include_capital": false,
+        "capital_cost_per_batch": null,
+        "heat_demand_kwh": null,
+        "electricity_demand_kwh": null,
+        "assume_full_self_consumption": false,
+        "replacement_heat_source": "unknown",
+        "gas_sale_technical_confirmed": false,
+        "gas_sale_legal_confirmed": false,
+        "gas_quality_confirmed": false,
+        "gas_storage_transport_confirmed": false,
+        "digestate_mass_kg": null,
+        "digestate_quality_confirmed": false,
+        "digestate_market_allowed": false
+      },
+      "decision_unavailable": [],
+      "last_research_summary": {},
+      "mixture_components": [
+        {
+          "id": "c1",
+          "material": "food_waste",
+          "material_state": "prepared_pulp",
+          "quantity": 5.0,
+          "unit": "kg",
+          "animal": "unknown",
+          "poultry_type": "unknown",
+          "reference_profile_id": "baek2020-food-pulp",
+          "physical_state": "unknown",
+          "decay_state": "unknown",
+          "bedding": "unknown",
+          "data_mode": "LITERATURE_ESTIMATE",
+          "properties": {
+            "density_kg_l": null,
+            "ts_fraction": null,
+            "vs_fraction_wet": null,
+            "vs_fraction_of_ts": null,
+            "bmp_ml_g_vs": null,
+            "carbon_fraction_wet": null,
+            "nitrogen_fraction_wet": null,
+            "gas_basis": null
+          },
+          "provenance": "USER_CONFIRMED",
+          "evidence": ""
+        }
+      ],
+      "mixture_scenario_components": [],
+      "mixture_revision": 0,
+      "mixture_history": [],
+      "advisor_inventory_mode": "none",
+      "advisor_pending_component": null,
+      "advisor_settings": {},
+      "smart_goals": [],
+      "smart_cache": {},
+      "active_mixture_scenario": false,
+      "advanced": {
+        "inventory": [
+          {
+            "id": "c1",
+            "material": "food_waste",
+            "material_state": "prepared_pulp",
+            "quantity": 5.0,
+            "unit": "kg",
+            "animal": "unknown",
+            "poultry_type": "unknown",
+            "reference_profile_id": "baek2020-food-pulp",
+            "physical_state": "unknown",
+            "decay_state": "unknown",
+            "bedding": "unknown",
+            "data_mode": "LITERATURE_ESTIMATE",
+            "properties": {
+              "density_kg_l": null,
+              "ts_fraction": null,
+              "vs_fraction_wet": null,
+              "vs_fraction_of_ts": null,
+              "bmp_ml_g_vs": null,
+              "carbon_fraction_wet": null,
+              "nitrogen_fraction_wet": null,
+              "gas_basis": null
+            },
+            "provenance": "USER_CONFIRMED",
+            "evidence": ""
+          }
+        ],
+        "origin": "mixture_builder",
+        "preferences": {},
+        "request_overrides": {
+          "allow_literature_transfer": true,
+          "allow_conditional_profiles": true,
+          "target_ts_fraction": null,
+          "assume_common_dry_gas_basis": true,
+          "assume_unreported_gas_basis": false,
+          "reactor_total_volume_l": 90.0,
+          "feeding_period_days": null,
+          "total_daily_liquid_feed_l": null,
+          "daily_feed_includes_all_liquid": false,
+          "inoculum_description": null,
+          "inoculum_adapted_temperature_c": null,
+          "temperature_control_confirmed": false,
+          "mixing_available": null,
+          "measured_ph": null,
+          "monitoring_confirmed": false,
+          "inhibition_warning": false,
+          "region": "KZ-Karaganda-oblast",
+          "region_confirmed": true,
+          "objectives": [
+            "methane",
+            "stability"
+          ]
+        },
+        "reactor": {
+          "total_volume_l": 90.0
+        },
+        "task": {
+          "id": "fb8ae21aa2e24444a442d353faa6ba73",
+          "original_text": "Состав передан из конструктора с измерениями и допущениями",
+          "goals": [
+            "gas",
+            "heat",
+            "electricity",
+            "economics"
+          ],
+          "status": {
+            "gas": "pending",
+            "heat": "pending",
+            "electricity": "pending",
+            "economics": "pending"
+          }
+        }
+      },
+      "analytical_mode": "mixture"
+    },
+    "provider_status": []
+  }
+]

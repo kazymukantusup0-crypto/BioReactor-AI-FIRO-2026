@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="ru" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+<meta name="description" content="Цены на услуги розничной реализации электрической энергии с 1 сентября 2025 года (г Караганда)             Наименование группы потребителей Цена, тенге за 1 кВтч без учета НДС Цена,тенге за 1 кВтч с учетом НДС 16% потребители, использующие электрическую энергию не для бытовых нужд 33,51 38,87" />
+<link rel="canonical" href="https://www.k-zharyk.kz/ru/node/329" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<script type="text/javascript" data-toolbar-anti-flicker-loading>(function() {
+  const toolbarState = sessionStorage.getItem('Drupal.toolbar.toolbarState')
+    ? JSON.parse(sessionStorage.getItem('Drupal.toolbar.toolbarState'))
+    : false;
+  // These are classes that toolbar typically adds to <body>, but this code
+  // executes before the first paint, when <body> is not yet present. The
+  // classes are added to <html> so styling immediately reflects the current
+  // toolbar state. The classes are removed after the toolbar completes
+  // initialization.
+  const classesToAdd = ['toolbar-loading', 'toolbar-anti-flicker'];
+  if (toolbarState) {
+    const {
+      orientation,
+      hasActiveTab,
+      isFixed,
+      activeTray,
+      activeTabId,
+      isOriented,
+      userButtonMinWidth
+    } = toolbarState;
+
+    classesToAdd.push(
+      orientation ? `toolbar-` + orientation + `` : 'toolbar-horizontal',
+    );
+    if (hasActiveTab !== false) {
+      classesToAdd.push('toolbar-tray-open');
+    }
+    if (isFixed) {
+      classesToAdd.push('toolbar-fixed');
+    }
+    if (isOriented) {
+      classesToAdd.push('toolbar-oriented');
+    }
+
+    if (activeTray) {
+      // These styles are added so the active tab/tray styles are present
+      // immediately instead of "flickering" on as the toolbar initializes. In
+      // instances where a tray is lazy loaded, these styles facilitate the
+      // lazy loaded tray appearing gracefully and without reflow.
+      const styleContent = `
+      .toolbar-loading #` + activeTabId + ` {
+        background-image: linear-gradient(rgba(255, 255, 255, 0.25) 20%, transparent 200%);
+      }
+      .toolbar-loading #` + activeTabId + `-tray {
+        display: block; box-shadow: -1px 0 5px 2px rgb(0 0 0 / 33%);
+        border-right: 1px solid #aaa; background-color: #f5f5f5;
+        z-index: 0;
+      }
+      .toolbar-loading.toolbar-vertical.toolbar-tray-open #` + activeTabId + `-tray {
+        width: 15rem; height: 100vh;
+      }
+     .toolbar-loading.toolbar-horizontal :not(#` + activeTray + `) > .toolbar-lining {opacity: 0}`;
+
+      const style = document.createElement('style');
+      style.textContent = styleContent;
+      style.setAttribute('data-toolbar-anti-flicker-loading', true);
+      document.querySelector('head').appendChild(style);
+
+      if (userButtonMinWidth) {
+        const userButtonStyle = document.createElement('style');
+        userButtonStyle.textContent = `#toolbar-item-user {min-width: ` + userButtonMinWidth +`px;}`
+        document.querySelector('head').appendChild(userButtonStyle);
+      }
+    }
+  }
+  document.querySelector('html').classList.add(...classesToAdd);
+})();</script>
+<meta http-equiv="x-ua-compatible" content="ie=edge" />
+<link rel="icon" href="/themes/custom/zharyk/header__logo.png" type="image/png" />
+<link rel="alternate" hreflang="kk" href="https://www.k-zharyk.kz/kk/node/329" />
+<link rel="alternate" hreflang="ru" href="https://www.k-zharyk.kz/ru/node/329" />
+
+    <title>Действующие цены по энергоснабжению | Қарағанды Жарық</title>
+    <link rel="stylesheet" media="all" href="/core/modules/system/css/components/ajax-progress.module.css?s3phzy" />
+<link rel="stylesheet" media="all" href="/core/modules/system/css/components/align.module.css?s3phzy" />
+<link rel="stylesheet" media="all" href="/core/modules/system/css/components/autocomplete-loading.module.css?s3phzy" />
+<link rel="stylesheet" media="all" href="/core/modules/system/css/components/fieldgroup.module.css?s3phzy" />
+<link rel="stylesheet" media="all" href="/core/modules/system/css/components/container-inline.module.css?s3phzy" />
+<link rel="stylesheet" media="all" href="/core/modules/system/css/components/clearfix.module.css?s3phzy" />
+<link rel="stylesheet" media="all" href="/core/modules/system/css/components/details.module.css?s3phzy" />
+<link rel="stylesheet" media="all" href="/core/modules/system/css/components/hidden.module.css?s3phzy" />
+<link rel="stylesheet" media="all" href="/core/modules/system/css/components/item-list.module.css?s3phzy" />
+<link rel="stylesheet" media="all" href="/core/modules/system/css/components/js.module.css?s3phzy" />
+<link rel="stylesheet" media="all" href="/core/modules/system/css/components/nowrap.module.css?s3phzy" />
+<link rel="stylesheet" media="all" href="/core/modules/system/css/components/position-container.module.css?s3phzy" />
+<link rel="stylesheet" media="all" href="/core/modules/system/css/components/progress.module.css?s3phzy" />
+<link rel="stylesheet" media="all" href="/core/modules/system/css/components/reset-appearance.module.css?s3phzy" />
+<link rel="stylesheet" media="all" href="/core/modules/system/css/components/resize.module.css?s3phzy" />
+<link rel="stylesheet" media="all" href="/core/modules/system/css/components/sticky-header.module.css?s3phzy" />
+<link rel="stylesheet" media="all" href="/core/modules/system/css/components/system-status-counter.css?s3phzy" />
+<link rel="stylesheet" media="all" href="/core/modules/system/css/components/system-status-report-counters.css?s3phzy" />
+<link rel="stylesheet" media="all" href="/core/modules/system/css/components/system-status-report-general-info.css?s3phzy" />
+<link rel="stylesheet" media="all" href="/core/modules/system/css/components/tabledrag.module.css?s3phzy" />
+<link rel="stylesheet" media="all" href="/core/modules/system/css/components/tablesort.module.css?s3phzy" />
+<link rel="stylesheet" media="all" href="/core/modules/system/css/components/tree-child.module.css?s3phzy" />
+<link rel="stylesheet" media="all" href="/themes/contrib/bootstrap_barrio/css/components/user.css?s3phzy" />
+<link rel="stylesheet" media="all" href="/themes/contrib/bootstrap_barrio/css/components/progress.css?s3phzy" />
+<link rel="stylesheet" media="all" href="/themes/contrib/bootstrap_barrio/css/components/node.css?s3phzy" />
+<link rel="stylesheet" media="all" href="/themes/contrib/bootstrap_barrio/css/components/book.css?s3phzy" />
+<link rel="stylesheet" media="all" href="/themes/contrib/bootstrap_barrio/css/components/contextual.css?s3phzy" />
+<link rel="stylesheet" media="all" href="/themes/contrib/bootstrap_barrio/css/components/feed-icon.css?s3phzy" />
+<link rel="stylesheet" media="all" href="/themes/contrib/bootstrap_barrio/css/components/field.css?s3phzy" />
+<link rel="stylesheet" media="all" href="/themes/contrib/bootstrap_barrio/css/components/header.css?s3phzy" />
+<link rel="stylesheet" media="all" href="/themes/contrib/bootstrap_barrio/css/components/help.css?s3phzy" />
+<link rel="stylesheet" media="all" href="/themes/contrib/bootstrap_barrio/css/components/icons.css?s3phzy" />
+<link rel="stylesheet" media="all" href="/themes/contrib/bootstrap_barrio/css/components/image-button.css?s3phzy" />
+<link rel="stylesheet" media="all" href="/themes/contrib/bootstrap_barrio/css/components/item-list.css?s3phzy" />
+<link rel="stylesheet" media="all" href="/themes/contrib/bootstrap_barrio/css/components/list-group.css?s3phzy" />
+<link rel="stylesheet" media="all" href="/themes/contrib/bootstrap_barrio/css/components/media.css?s3phzy" />
+<link rel="stylesheet" media="all" href="/themes/contrib/bootstrap_barrio/css/components/page.css?s3phzy" />
+<link rel="stylesheet" media="all" href="/themes/contrib/bootstrap_barrio/css/components/search-form.css?s3phzy" />
+<link rel="stylesheet" media="all" href="/themes/contrib/bootstrap_barrio/css/components/shortcut.css?s3phzy" />
+<link rel="stylesheet" media="all" href="/themes/contrib/bootstrap_barrio/css/components/sidebar.css?s3phzy" />
+<link rel="stylesheet" media="all" href="/themes/contrib/bootstrap_barrio/css/components/site-footer.css?s3phzy" />
+<link rel="stylesheet" media="all" href="/themes/contrib/bootstrap_barrio/css/components/skip-link.css?s3phzy" />
+<link rel="stylesheet" media="all" href="/themes/contrib/bootstrap_barrio/css/components/table.css?s3phzy" />
+<link rel="stylesheet" media="all" href="/themes/contrib/bootstrap_barrio/css/components/tabledrag.css?s3phzy" />
+<link rel="stylesheet" media="all" href="/themes/contrib/bootstrap_barrio/css/components/tableselect.css?s3phzy" />
+<link rel="stylesheet" media="all" href="/themes/contrib/bootstrap_barrio/css/components/tablesort-indicator.css?s3phzy" />
+<link rel="stylesheet" media="all" href="/themes/contrib/bootstrap_barrio/css/components/ui.widget.css?s3phzy" />
+<link rel="stylesheet" media="all" href="/themes/contrib/bootstrap_barrio/css/components/tabs.css?s3phzy" />
+<link rel="stylesheet" media="all" href="/themes/contrib/bootstrap_barrio/css/components/toolbar.css?s3phzy" />
+<link rel="stylesheet" media="all" href="/themes/contrib/bootstrap_barrio/css/components/vertical-tabs.css?s3phzy" />
+<link rel="stylesheet" media="all" href="/themes/contrib/bootstrap_barrio/css/components/views.css?s3phzy" />
+<link rel="stylesheet" media="all" href="/themes/contrib/bootstrap_barrio/css/components/webform.css?s3phzy" />
+<link rel="stylesheet" media="all" href="/themes/contrib/bootstrap_barrio/css/components/ui-dialog.css?s3phzy" />
+<link rel="stylesheet" media="all" href="/libraries/bootstrap/dist/css/bootstrap.min.css?s3phzy" />
+<link rel="stylesheet" media="all" href="/themes/contrib/bootstrap_barrio/css/components/form.css?s3phzy" />
+<link rel="stylesheet" media="all" href="/themes/contrib/bootstrap_barrio/css/components/bootstrap-icons.css?s3phzy" />
+<link rel="stylesheet" media="all" href="/themes/contrib/bootstrap_barrio/css/colors/messages/messages-white.css?s3phzy" />
+<link rel="stylesheet" media="all" href="/themes/contrib/bootstrap_barrio/css/components/affix.css?s3phzy" />
+<link rel="stylesheet" media="print" href="/themes/contrib/bootstrap_barrio/css/print.css?s3phzy" />
+<link rel="stylesheet" media="all" href="/themes/contrib/bootstrap_barrio/css/components/navigation.css?s3phzy" />
+<link rel="stylesheet" media="all" href="/themes/custom/zharyk/libraries/example1/colorbox.css?s3phzy" />
+<link rel="stylesheet" media="all" href="/themes/custom/zharyk/build/app.css?s3phzy" />
+
+    
+  </head>
+  <body class="layout-no-sidebars page-node-329 path-node node--type-page">
+    <a href="#main-content" class="visually-hidden-focusable">
+      Перейти к основному содержанию
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+<div id="page-wrapper">
+  <div id="page">
+    <header id="header" class="header" role="banner" aria-label="Шапка сайта">
+        <div class="container">
+    <div class="row align-items-center k-custom-header-search-wrapper">
+      <div class="col-7 col-sm-auto ms-auto">
+                  <div class="form-inline navbar-form ms-auto">
+              <section class="row region region-top-header-form">
+    <div class="custom-search-block-form block block-custom-search" role="search" data-drupal-selector="custom-search-block-form" id="block-zharyk-customsearchform-2">
+  
+    
+      <div class="container-inline content">
+      
+<form action="/ru/node/329" method="post" id="custom-search-block-form" accept-charset="UTF-8">
+  
+
+
+
+
+        
+  <div class="js-form-item js-form-type-search form-type-search js-form-item-keys form-item-keys form-no-label mb-3">
+          <label for="edit-keys" class="visually-hidden">Поиск на сайте</label>
+                    <input title="Введите ключевые слова для поиска." class="custom_search-keys form-search form-control" data-drupal-selector="edit-keys" type="search" id="edit-keys" name="keys" value="" maxlength="128" placeholder="Поиск" />
+
+                      </div>
+<input autocomplete="off" data-drupal-selector="form-9gjk0aq4pp21qdrpri-q3twb1incmfmscqciprhsark" type="hidden" name="form_build_id" value="form-9GjK0Aq4pp21qDrpRI_q3Twb1INcMfmsCqCIpRHSaRk" class="form-control" />
+<input data-drupal-selector="edit-custom-search-block-form" type="hidden" name="form_id" value="custom_search_block_form" class="form-control" />
+<input class="custom-search-selector custom-search-language form-control" data-drupal-selector="edit-languages" type="hidden" name="languages" value="c-current" />
+<div data-drupal-selector="edit-actions" class="form-actions js-form-wrapper form-wrapper mb-3" id="edit-actions"><button data-drupal-selector="edit-submit" type="submit" id="edit-submit" value=" " class="button js-form-submit form-submit btn btn-primary btn-sm"> </button>
+</div>
+
+</form>
+
+    </div>
+  </div>
+
+  </section>
+
+          </div>
+              </div>
+      <div class="col-auto">
+        <div class="language-switcher-language-url block block-language block-language-blocklanguage-content" role="navigation">
+  
+    
+      <div class="content">
+      
+
+  <nav class="links nav links-inline"><span hreflang="kk" data-drupal-link-system-path="node/329" class="kk nav-link"><a href="/kk/node/329" class="language-link" hreflang="kk" data-drupal-link-system-path="node/329">Қаз</a></span><span hreflang="ru" data-drupal-link-system-path="node/329" class="ru nav-link is-active"><a href="/ru/node/329" class="language-link is-active" hreflang="ru" data-drupal-link-system-path="node/329">Рус</a></span></nav>
+
+    </div>
+  </div>
+
+      </div>
+    </div>
+    <div class="row my-3  k-link-white k-text-white align-items-center">
+      <div class="col-12  lh-1 col-md d-flex d-md-block align-items-center mb-2 mb-md-0">
+        <div class="fs-6 me-2">
+            <div class="field field--name-field-vid-khozyaystvennoy-organi field--type-string field--label-hidden field__item">ТОО</div>
+      </div>
+        <div class="fs-3"><span
+            class="">«</span><span
+            class="fw-bold">Қарағанды Жарық</span><span
+            class="">»</span></div>
+      </div>
+      <div class="col-12 col-md-4">
+        <div class="row align-items-center">
+          <div class="col-12 col-lg-6 ">
+            <a href="mailto:zharyk@kzharyk.kz"
+            ><i class="bi bi-envelope me-1"></i>zharyk@kzharyk.kz</a>
+          </div>
+          <div class="col-12 col-lg-6">
+            
+            <div class="field field--name-field-ssylka field--type-link field--label-hidden field__item"><a href="/ru/feedback">Интернет-приемная</a></div>
+      
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md text-align-right mt-3 mt-md-0">
+        
+            <div class="field field--name-field-tekst-pered-nomerom-telefo field--type-string field--label-hidden field__item">CALL-центр</div>
+      
+        <a class="fs-4" href="tel:40-50-60, 50-60-70"
+        ><i class="bi bi-telephone me-1"></i>40-50-60, 50-60-70
+        </a>
+      </div>
+    </div>
+  </div>
+    <nav class="navbar bg-transparent navbar-expand-lg" id="navbar-main" data-toggle="affix">
+        <div class="container">
+            <a class="k-link-home me-3" href="/ru"></a>
+              <button class="navbar-toggler collapsed" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#CollapsingNavbar" aria-controls="CollapsingNavbar" aria-expanded="false"
+                aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="offcanvas offcanvas-end" id="CollapsingNavbar">
+                    <div class="offcanvas-header">
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+                          <nav role="navigation" aria-labelledby="block-zharyk-main-menu-menu" id="block-zharyk-main-menu" class="block block-menu navigation menu--main">
+            
+  <h2 class="visually-hidden" id="block-zharyk-main-menu-menu">Main navigation</h2>
+  
+
+        
+              <ul class="clearfix nav navbar-nav">
+                    <li class="nav-item menu-item--expanded dropdown">
+                          <span class="nav-link dropdown-toggle nav-link-" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">О компании </span>
+                        <ul class="dropdown-menu">
+                    <li class="dropdown-item">
+                          <a href="/ru/node/167" class="nav-link--ru-node-167" data-drupal-link-system-path="node/167">Руководство</a>
+              </li>
+                <li class="dropdown-item">
+                          <a href="/ru/node/324" class="nav-link--ru-node-324" data-drupal-link-system-path="node/324">Лица компании</a>
+              </li>
+                <li class="dropdown-item">
+                          <a href="/ru/node/166" class="nav-link--ru-node-166" data-drupal-link-system-path="node/166">Стратегия</a>
+              </li>
+                <li class="dropdown-item">
+                          <a href="/ru/node/3" class="nav-link--ru-node-3" data-drupal-link-system-path="node/3">История </a>
+              </li>
+                <li class="dropdown-item">
+                          <a href="/ru/node/165" class="nav-link--ru-node-165" data-drupal-link-system-path="node/165">Политика в области ИСМ </a>
+              </li>
+                <li class="dropdown-item menu-item--collapsed">
+                          <a href="/ru/node/4" class="nav-link--ru-node-4" data-drupal-link-system-path="node/4">Сертификаты</a>
+              </li>
+                <li class="dropdown-item">
+                          <a href="/ru/node/309" class="nav-link--ru-node-309" data-drupal-link-system-path="node/309">Лицензии</a>
+              </li>
+                <li class="dropdown-item">
+                          <a href="/ru/node/314" class="nav-link--ru-node-314" data-drupal-link-system-path="node/314">Реквизиты</a>
+              </li>
+        </ul>
+  
+              </li>
+                <li class="nav-item menu-item--expanded active dropdown">
+                          <span class="nav-link active dropdown-toggle nav-link-" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Деятельность </span>
+                        <ul class="dropdown-menu">
+                    <li class="dropdown-item">
+                          <a href="/ru/node/168" class="nav-link--ru-node-168" data-drupal-link-system-path="node/168">Основные показатели</a>
+              </li>
+                <li class="dropdown-item">
+                          <a href="/ru/node/169" class="nav-link--ru-node-169" data-drupal-link-system-path="node/169">Инвестиционные программы</a>
+              </li>
+                <li class="dropdown-item">
+                          <a href="/ru/node/174" class="nav-link--ru-node-174" data-drupal-link-system-path="node/174">Производственные показатели </a>
+              </li>
+                <li class="dropdown-item">
+                          <a href="/ru/node/175" class="nav-link--ru-node-175" data-drupal-link-system-path="node/175">АСКУЭ </a>
+              </li>
+                <li class="dropdown-item">
+                          <a href="/ru/node/176" class="nav-link--ru-node-176" data-drupal-link-system-path="node/176">Отчет перед населением</a>
+              </li>
+                <li class="dropdown-item">
+                          <a href="/ru/node/177" class="nav-link--ru-node-177" data-drupal-link-system-path="node/177">Схема размещения сетей</a>
+              </li>
+                <li class="dropdown-item">
+                          <a href="/ru/node/178" class="nav-link--ru-node-178" data-drupal-link-system-path="node/178">Тарифы</a>
+              </li>
+                <li class="dropdown-item active">
+                          <a href="/ru/node/329" class="active nav-link--ru-node-329 is-active" data-drupal-link-system-path="node/329">Действующие цены по энергоснабжению</a>
+              </li>
+        </ul>
+  
+              </li>
+                <li class="nav-item menu-item--expanded dropdown">
+                          <span class="nav-link dropdown-toggle nav-link-" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Потребителям </span>
+                        <ul class="dropdown-menu">
+                    <li class="dropdown-item">
+                          <a href="/ru/news" class="nav-link--ru-news" data-drupal-link-system-path="news">Новости </a>
+              </li>
+                <li class="dropdown-item">
+                          <a href="/ru/faq" class="nav-link--ru-faq" data-drupal-link-system-path="faq">Вопрос ответ </a>
+              </li>
+                <li class="dropdown-item">
+                          <a href="/ru/node/179" class="nav-link--ru-node-179" data-drupal-link-system-path="node/179">Нормативная база</a>
+              </li>
+                <li class="dropdown-item">
+                          <a href="/ru/node/180" class="nav-link--ru-node-180" data-drupal-link-system-path="node/180">Плановые отключения</a>
+              </li>
+                <li class="dropdown-item">
+                          <a href="/ru/node/181" class="nav-link--ru-node-181" data-drupal-link-system-path="node/181">Порядок подключения к эл. сетям</a>
+              </li>
+                <li class="dropdown-item">
+                          <a href="/ru/node/366" class="nav-link--ru-node-366" data-drupal-link-system-path="node/366">Информация для потребителей</a>
+              </li>
+                <li class="dropdown-item">
+                          <a href="/ru/node/310" class="nav-link--ru-node-310" data-drupal-link-system-path="node/310">Типовые договоры электроснабжения</a>
+              </li>
+        </ul>
+  
+              </li>
+                <li class="nav-item menu-item--expanded dropdown">
+                          <span class="nav-link dropdown-toggle nav-link-" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Услуги </span>
+                        <ul class="dropdown-menu">
+                    <li class="dropdown-item">
+                          <a href="/ru/node/182" class="nav-link--ru-node-182" data-drupal-link-system-path="node/182">Услуги по основной деятельности</a>
+              </li>
+                <li class="dropdown-item">
+                          <a href="/ru/node/183" class="nav-link--ru-node-183" data-drupal-link-system-path="node/183">Услуги по иной деятельности</a>
+              </li>
+        </ul>
+  
+              </li>
+                <li class="nav-item menu-item--expanded dropdown">
+                          <span class="nav-link dropdown-toggle nav-link-" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Закупки </span>
+                        <ul class="dropdown-menu">
+                    <li class="dropdown-item">
+                          <a href="/ru/node/188" class="nav-link--ru-node-188" data-drupal-link-system-path="node/188">Закупки 2019</a>
+              </li>
+                <li class="dropdown-item">
+                          <a href="/ru/node/187" class="nav-link--ru-node-187" data-drupal-link-system-path="node/187">Закупки 2020</a>
+              </li>
+                <li class="dropdown-item">
+                          <a href="/ru/node/186" class="nav-link--ru-node-186" data-drupal-link-system-path="node/186">Закупки 2021</a>
+              </li>
+                <li class="dropdown-item">
+                          <a href="/ru/node/185" class="nav-link--ru-node-185" data-drupal-link-system-path="node/185">Закупки 2022</a>
+              </li>
+                <li class="dropdown-item">
+                          <a href="/ru/node/184" class="nav-link--ru-node-184" data-drupal-link-system-path="node/184">Закупки 2023</a>
+              </li>
+        </ul>
+  
+              </li>
+                <li class="nav-item">
+                          <a href="/ru/about" class="nav-link nav-link--ru-about" data-drupal-link-system-path="node/191">Контакты</a>
+              </li>
+                <li class="nav-item menu-item--expanded dropdown">
+                          <span target="_blank" class="nav-link dropdown-toggle nav-link-" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Сервисы</span>
+                        <ul class="dropdown-menu">
+                    <li class="dropdown-item">
+                          <a href="https://energy.kzharyk.com/" target="_blank" class="nav-link-https--energykzharykcom-">Свободная трансформаторная мощность</a>
+              </li>
+                <li class="dropdown-item">
+                          <a href="/ru/node/454" target="_self" class="nav-link--ru-node-454" data-drupal-link-system-path="node/454">Получение технических условий</a>
+              </li>
+                <li class="dropdown-item">
+                          <a href="https://isel.kz/welcome/main" target="_blank" class="nav-link-https--iselkz-welcome-main">Проект внешнего электроснабжения</a>
+              </li>
+                <li class="dropdown-item">
+                          <a href="https://isel.kz/welcome/main" target="_blank" class="nav-link-https--iselkz-welcome-main">Получение акта раздела границ</a>
+              </li>
+                <li class="dropdown-item">
+                          <a href="https://energy.kzharyk.com/login" target="_blank" class="nav-link-https--energykzharykcom-login">Заявка в службу сбыта</a>
+              </li>
+                <li class="dropdown-item">
+                          <a href="https://isel.kz/welcome/main" target="_blank" class="nav-link-https--iselkz-welcome-main">Расчет электрической нагрузки</a>
+              </li>
+        </ul>
+  
+              </li>
+                <li class="nav-item">
+                          <a href="https://www.erc.kz/personal/" target="_blank" class="nav-link nav-link-https--wwwerckz-personal-">Единый платежный документ</a>
+              </li>
+        </ul>
+  
+
+
+  </nav>
+
+
+                                  </div>
+                  </div>
+                      </div>
+      </nav>
+      </header>
+          <div class="highlighted">
+        <aside class="container section clearfix" role="complementary">
+            <div data-drupal-messages-fallback class="hidden"></div>
+
+
+        </aside>
+      </div>
+            <div id="main-wrapper" class="layout-main-wrapper clearfix">
+        <div id="main" class="container py-2">
+    
+    <div class="row row-offcanvas row-offcanvas-left clearfix">
+      <main class="main-content col" id="content" role="main">
+        <section class="section">
+          <a href="#main-content" id="main-content" tabindex="-1"></a>
+                                  <nav role="navigation" aria-labelledby="block-zharyk-mainnavigation-2-menu" id="block-zharyk-mainnavigation-2" class="block block-menu navigation menu--main">
+            
+  <h2 class="visually-hidden" id="block-zharyk-mainnavigation-2-menu">Подразделы</h2>
+  
+
+        
+  </nav>
+<div id="block-zharyk-page-title" class="block block-core block-page-title-block">
+  
+    
+      <div class="content">
+      
+  <h1 class="title"><span class="field field--name-title field--type-string field--label-hidden">Действующие цены по энергоснабжению</span>
+</h1>
+
+
+    </div>
+  </div>
+<div id="block-zharyk-content" class="block block-system block-system-main-block">
+  
+    
+      <div class="content">
+      
+
+<article class="node node--type-page node--view-mode-full clearfix">
+  <header>
+    
+        
+      </header>
+  <div class="node__content clearfix">
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><table><tbody><tr><td colspan="3" rowspan="1"><strong>Цены на услуги розничной реализации электрической энергии с 1 сентября 2025 года (г Караганда)</strong></td>
+</tr><tr><td> </td>
+<td> </td>
+<td> </td>
+</tr><tr><td> </td>
+<td> </td>
+<td> </td>
+</tr><tr><td><strong>Наименование группы потребителей</strong></td>
+<td><strong>Цена, тенге за 1 кВтч без учета НДС</strong></td>
+<td><strong>Цена,тенге за 1 кВтч с учетом НДС 16%</strong></td>
+</tr><tr><td>потребители, использующие электрическую энергию не для бытовых нужд</td>
+<td>33,51</td>
+<td>38,87</td>
+</tr><tr><td>потребители, расположенные на территории специальных экономических и индустриальных зонах и производители социально значимых продовольственных товаров</td>
+<td>27,93</td>
+<td>32,40</td>
+</tr><tr><td>для бытовых потребителей, в т.ч.:</td>
+<td>19,91</td>
+<td>23,10</td>
+</tr><tr><td>использующие электроплиты:</td>
+<td> </td>
+<td> </td>
+</tr><tr><td><em>1 уровень (до 100 (140*) кВтч/чел.)</em></td>
+<td><em>17,58</em></td>
+<td>20,39</td>
+</tr><tr><td><em>2 уровень (от 100 (140*) до 180 кВтч/чел.)</em></td>
+<td><em>23,89</em></td>
+<td>27,71</td>
+</tr><tr><td><em>3 уровень (свыше 180 кВтч/чел.)</em></td>
+<td><em>29,87</em></td>
+<td>34,65</td>
+</tr><tr><td>не использующие электроплиты:</td>
+<td> </td>
+<td> </td>
+</tr><tr><td><em>1 уровень (до 80 (120*) кВтч/чел.)</em></td>
+<td><em>17,30</em></td>
+<td>20,07</td>
+</tr><tr><td><em>2 уровень (от 80 (120*) до 160 кВтч/чел.)</em></td>
+<td><em>23,89</em></td>
+<td>27,71</td>
+</tr><tr><td><em>3 уровень (свыше 160 кВтч/чел.)</em></td>
+<td><em>29,87</em></td>
+<td>34,65</td>
+</tr><tr><td> </td>
+<td> </td>
+<td> </td>
+</tr><tr><td colspan="3" rowspan="1">Цены на услуги розничной реализации электрической энергии с 1 сентября 2025 года ( г.Шахтинск , г Абай, Абайский, Бухар-Жырауский районы, п. Коктас, п. Мантак, п. Ынталы, Каркаралиского района, с. Сенокосное Осакаровского района)</td>
+</tr><tr><td><strong>Наименование группы потребителей</strong></td>
+<td><strong>Цена, тенге за 1 кВтч без учета НДС</strong></td>
+<td><strong>Цена,тенге за 1 кВтч с учетом НДС 16%</strong></td>
+</tr><tr><td>потребители, использующие электрическую энергию не для бытовых нужд</td>
+<td>36,84</td>
+<td>42,73</td>
+</tr><tr><td>потребители, расположенные на территории специальных экономических и индустриальных зонах и производители социально значимых продовольственных товаров</td>
+<td>27,93</td>
+<td>32,40</td>
+</tr><tr><td>для бытовых потребителей, в т.ч.:</td>
+<td>21,61</td>
+<td>25,07</td>
+</tr><tr><td><em>использующие электроплиты:</em></td>
+<td> </td>
+<td> </td>
+</tr><tr><td><em>1 уровень (до 100 (140*) кВтч/чел.)</em></td>
+<td><em>20,66</em></td>
+<td>23,97</td>
+</tr><tr><td><em>2 уровень (от 100 (140*) до 180 кВтч/чел.)</em></td>
+<td><em>25,93</em></td>
+<td>30,08</td>
+</tr><tr><td><em>3 уровень (свыше 180 кВтч/чел.)</em></td>
+<td><em>32,42</em></td>
+<td>37,61</td>
+</tr><tr><td> </td>
+<td> </td>
+<td> </td>
+</tr><tr><td> </td>
+<td> </td>
+<td> </td>
+</tr><tr><td colspan="3" rowspan="1">Цены на услуги розничной реализации электрической энергии с 1 сентября 2025 года (г. Сарань)</td>
+</tr><tr><td><strong>Наименование группы потребителей</strong></td>
+<td><strong>Цена, тенге за 1 кВтч без учета НДС</strong></td>
+<td><strong>Цена,тенге за 1 кВтч с учетом НДС 16%</strong></td>
+</tr><tr><td>потребители, использующие электрическую энергию не для бытовых нужд</td>
+<td>38,51</td>
+<td>44,67</td>
+</tr><tr><td>потребители, расположенные на территории специальных экономических и индустриальных зонах и производители социально значимых продовольственных товаров</td>
+<td>27,93</td>
+<td>32,40</td>
+</tr><tr><td>для бытовых потребителей, в т.ч.:</td>
+<td>20,11</td>
+<td>23,33</td>
+</tr><tr><td><em>использующие электроплиты:</em></td>
+<td> </td>
+<td> </td>
+</tr><tr><td><em>1 уровень (до 100 (140*) кВтч/чел.)</em></td>
+<td><em>19,54</em></td>
+<td>22,67</td>
+</tr><tr><td><em>2 уровень (от 100 (140*) до 180 кВтч/чел.)</em></td>
+<td><em>24,13</em></td>
+<td>27,99</td>
+</tr><tr><td><em>3 уровень (свыше 180 кВтч/чел.)</em></td>
+<td><em>30,17</em></td>
+<td>35,00</td>
+</tr><tr><td> </td>
+<td> </td>
+<td> </td>
+</tr><tr><td> </td>
+<td> </td>
+<td> </td>
+</tr><tr><td colspan="3" rowspan="1">Цены на услуги розничной реализации электрической энергии с 1 сентября 2025 года в городе Темиртау</td>
+</tr><tr><td> </td>
+<td> </td>
+<td> </td>
+</tr><tr><td><strong>Наименование группы потребителей</strong></td>
+<td><strong>Цена, тенге за 1 кВтч без учета НДС</strong></td>
+<td><strong>Цена,тенге за 1 кВтч с учетом НДС 16%</strong></td>
+</tr><tr><td>потребители, использующие электрическую энергию не для бытовых нужд</td>
+<td>27,93</td>
+<td>32,40</td>
+</tr><tr><td>потребители, расположенные на территории специальных экономических и индустриальных зонах и производители социально значимых продовольственных товаров</td>
+<td>27,93</td>
+<td>32,40</td>
+</tr><tr><td>для бытовых потребителей, в т.ч.:</td>
+<td>9,13</td>
+<td>10,59</td>
+</tr><tr><td>использующие электроплиты:</td>
+<td> </td>
+<td> </td>
+</tr><tr><td><em>1 уровень (до 90 (140*) кВтч/чел)</em></td>
+<td><em>8,20</em></td>
+<td>9,51</td>
+</tr><tr><td><em>2 уровень (от 90 (140*) до 180 кВтч/чел)</em></td>
+<td><em>10,96</em></td>
+<td>12,71</td>
+</tr><tr><td><em>3 уровень (свыше 180 кВтч/чел)</em></td>
+<td><em>13,70</em></td>
+<td>15,89</td>
+</tr><tr><td>не использующие электроплиты:</td>
+<td> </td>
+<td> </td>
+</tr><tr><td><em>1 уровень (до 70 (120*) кВтч/чел)</em></td>
+<td><em>7,57</em></td>
+<td>8,78</td>
+</tr><tr><td><em>2 уровень (от 70 (120*) до 160 кВтч/чел)</em></td>
+<td><em>10,96</em></td>
+<td>12,71</td>
+</tr><tr><td><em>3 уровень (свыше 160 кВтч/чел)</em></td>
+<td><em>13,70</em></td>
+<td>15,89</td>
+</tr><tr><td> </td>
+<td> </td>
+<td> </td>
+</tr><tr><td> </td>
+<td> </td>
+<td> </td>
+</tr><tr><td colspan="3" rowspan="1">Цены на услуги розничной реализации электрической энергии с 1 сентября 2025 года в п. Актау</td>
+</tr><tr><td> </td>
+<td> </td>
+<td> </td>
+</tr><tr><td><strong>Наименование группы потребителей</strong></td>
+<td><strong>Цена, тенге за 1 кВтч без учета НДС</strong></td>
+<td><strong>Цена,тенге за 1 кВтч с учетом НДС 16%</strong></td>
+</tr><tr><td>потребители, использующие электрическую энергию не для бытовых нужд</td>
+<td>27,93</td>
+<td>32,40</td>
+</tr><tr><td>для бытовых потребителей, в т.ч.:</td>
+<td>18,68</td>
+<td>21,67</td>
+</tr><tr><td>использующие электроплиты:</td>
+<td> </td>
+<td> </td>
+</tr><tr><td><em>1 уровень (до 100 (140*) кВтч/чел.)</em></td>
+<td><em>17,85</em></td>
+<td>20,71</td>
+</tr><tr><td><em>2 уровень (от 100 (140*) до 180 кВтч/чел.)</em></td>
+<td><em>22,42</em></td>
+<td>26,01</td>
+</tr><tr><td><em>3 уровень (свыше 180 кВтч/чел.)</em></td>
+<td><em>28,02</em></td>
+<td>32,50</td>
+</tr><tr><td> </td>
+<td> </td>
+<td> </td>
+</tr><tr><td colspan="3" rowspan="1"><em>*нормы потребления, установленные для одиноко проживающих пенсионеров по возрасту, инвалидов, участников ВОВ и приравненных к ним лицам.</em></td>
+</tr><tr><td> </td>
+<td> </td>
+<td> </td>
+</tr><tr><td> </td>
+<td> </td>
+<td> </td>
+</tr><tr><td> </td>
+<td> </td>
+<td> </td>
+</tr><tr><td colspan="3" rowspan="1">Цены на услуги розничной реализации электрической энергии с 1 ноября 2025 года (г. Караганда, г. Темиртау г. Сарань, п. Актау, г. Абай, Абайский и Бухар-Жырауские районы, г. Шахтинск ,, п. Коктас, п. Матак, п. Ынталы Каркаралинского района, с. Сенокосное Осакаровского района).<br /> </td>
+</tr><tr><td> </td>
+<td> </td>
+<td> </td>
+</tr><tr><td> </td>
+<td> </td>
+<td> </td>
+</tr><tr><td><strong>Наименование группы потребителей</strong></td>
+<td><strong>Цена, тенге за 1 кВтч без учета НДС</strong></td>
+<td><strong>Цена,тенге за 1 кВтч с учетом НДС 16%</strong></td>
+</tr><tr><td>юридические лица, финансируемые из государственного бюджета</td>
+<td>90,36</td>
+<td>104,82</td>
+</tr></tbody></table><p> </p>
+<p> </p>
+</div>
+      
+
+
+  </div>
+</article>
+
+    </div>
+  </div>
+
+
+                  </section>
+      </main>
+                </div>
+  </div>
+  <div class="container k-custom-block-call-center my-3">
+    <div class="row py-3">
+      <div class="col-12 col-md-auto">
+        <div class="fs-3 fw-bold"><i class="bi bi-exclamation-circle me-3 k-text-blue-3"></i> Аварийная служба
+        </div>
+      </div>
+      <div class="col-12 col-md-auto">
+        <div class="ms-5 ms-md-0">
+          <div>ЕДИНЫЙ CALL-ЦЕНТР</div>
+          <div><a class="fs-4"
+                  href="tel:40-50-60, 50-60-70"
+            ><i class="bi bi-telephone me-1 k-text-blue-3"></i>40-50-60, 50-60-70
+            </a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+      <div class="container my-3">
+        <section class="row region region-footer-fifth">
+    <div  id="block-zharyk-mainnavigation" class="block block-menu navigation menu--main">
+            
+  <h2 class="visually-hidden" id="block-zharyk-mainnavigation-menu">Main navigation</h2>
+  
+
+        
+
+        <div class="clearfix row g-3 overflow-hidden py-3">
+                  <div class="col-12 col-sm-6 col-md-4  col-lg-3 menu-item--expanded">
+                <span class="fs-5 nav-link-">О компании </span>
+                            <div class="mt-3 mb-4">
+                    <div class="my-2">
+                <a href="/ru/node/167" class="fs-6 nav-link--ru-node-167" data-drupal-link-system-path="node/167">Руководство</a>
+              </div>
+                <div class="my-2">
+                <a href="/ru/node/324" class="fs-6 nav-link--ru-node-324" data-drupal-link-system-path="node/324">Лица компании</a>
+              </div>
+                <div class="my-2">
+                <a href="/ru/node/166" class="fs-6 nav-link--ru-node-166" data-drupal-link-system-path="node/166">Стратегия</a>
+              </div>
+                <div class="my-2">
+                <a href="/ru/node/3" class="fs-6 nav-link--ru-node-3" data-drupal-link-system-path="node/3">История </a>
+              </div>
+                <div class="my-2">
+                <a href="/ru/node/165" class="fs-6 nav-link--ru-node-165" data-drupal-link-system-path="node/165">Политика в области ИСМ </a>
+              </div>
+                <div class="my-2 menu-item--collapsed">
+                <a href="/ru/node/4" class="fs-6 nav-link--ru-node-4" data-drupal-link-system-path="node/4">Сертификаты</a>
+              </div>
+                <div class="my-2">
+                <a href="/ru/node/309" class="fs-6 nav-link--ru-node-309" data-drupal-link-system-path="node/309">Лицензии</a>
+              </div>
+                <div class="my-2">
+                <a href="/ru/node/314" class="fs-6 nav-link--ru-node-314" data-drupal-link-system-path="node/314">Реквизиты</a>
+              </div>
+      </div>
+    
+              </div>
+                <div class="col-12 col-sm-6 col-md-4  col-lg-3 menu-item--expanded active">
+                <span class="active fs-5 nav-link-">Деятельность </span>
+                            <div class="mt-3 mb-4">
+                    <div class="my-2">
+                <a href="/ru/node/168" class="fs-6 nav-link--ru-node-168" data-drupal-link-system-path="node/168">Основные показатели</a>
+              </div>
+                <div class="my-2">
+                <a href="/ru/node/169" class="fs-6 nav-link--ru-node-169" data-drupal-link-system-path="node/169">Инвестиционные программы</a>
+              </div>
+                <div class="my-2">
+                <a href="/ru/node/174" class="fs-6 nav-link--ru-node-174" data-drupal-link-system-path="node/174">Производственные показатели </a>
+              </div>
+                <div class="my-2">
+                <a href="/ru/node/175" class="fs-6 nav-link--ru-node-175" data-drupal-link-system-path="node/175">АСКУЭ </a>
+              </div>
+                <div class="my-2">
+                <a href="/ru/node/176" class="fs-6 nav-link--ru-node-176" data-drupal-link-system-path="node/176">Отчет перед населением</a>
+              </div>
+                <div class="my-2">
+                <a href="/ru/node/177" class="fs-6 nav-link--ru-node-177" data-drupal-link-system-path="node/177">Схема размещения сетей</a>
+              </div>
+                <div class="my-2">
+                <a href="/ru/node/178" class="fs-6 nav-link--ru-node-178" data-drupal-link-system-path="node/178">Тарифы</a>
+              </div>
+                <div class="my-2 active">
+                <a href="/ru/node/329" class="active fs-6 nav-link--ru-node-329 is-active" data-drupal-link-system-path="node/329">Действующие цены по энергоснабжению</a>
+              </div>
+      </div>
+    
+              </div>
+                <div class="col-12 col-sm-6 col-md-4  col-lg-3 menu-item--expanded">
+                <span class="fs-5 nav-link-">Потребителям </span>
+                            <div class="mt-3 mb-4">
+                    <div class="my-2">
+                <a href="/ru/news" class="fs-6 nav-link--ru-news" data-drupal-link-system-path="news">Новости </a>
+              </div>
+                <div class="my-2">
+                <a href="/ru/faq" class="fs-6 nav-link--ru-faq" data-drupal-link-system-path="faq">Вопрос ответ </a>
+              </div>
+                <div class="my-2">
+                <a href="/ru/node/179" class="fs-6 nav-link--ru-node-179" data-drupal-link-system-path="node/179">Нормативная база</a>
+              </div>
+                <div class="my-2">
+                <a href="/ru/node/180" class="fs-6 nav-link--ru-node-180" data-drupal-link-system-path="node/180">Плановые отключения</a>
+              </div>
+                <div class="my-2">
+                <a href="/ru/node/181" class="fs-6 nav-link--ru-node-181" data-drupal-link-system-path="node/181">Порядок подключения к эл. сетям</a>
+              </div>
+                <div class="my-2">
+                <a href="/ru/node/366" class="fs-6 nav-link--ru-node-366" data-drupal-link-system-path="node/366">Информация для потребителей</a>
+              </div>
+                <div class="my-2">
+                <a href="/ru/node/310" class="fs-6 nav-link--ru-node-310" data-drupal-link-system-path="node/310">Типовые договоры электроснабжения</a>
+              </div>
+      </div>
+    
+              </div>
+                <div class="col-12 col-sm-6 col-md-4  col-lg-3 menu-item--expanded">
+                <span class="fs-5 nav-link-">Услуги </span>
+                            <div class="mt-3 mb-4">
+                    <div class="my-2">
+                <a href="/ru/node/182" class="fs-6 nav-link--ru-node-182" data-drupal-link-system-path="node/182">Услуги по основной деятельности</a>
+              </div>
+                <div class="my-2">
+                <a href="/ru/node/183" class="fs-6 nav-link--ru-node-183" data-drupal-link-system-path="node/183">Услуги по иной деятельности</a>
+              </div>
+      </div>
+    
+              </div>
+                <div class="col-12 col-sm-6 col-md-4  col-lg-3 menu-item--expanded">
+                <span class="fs-5 nav-link-">Закупки </span>
+                            <div class="mt-3 mb-4">
+                    <div class="my-2">
+                <a href="/ru/node/188" class="fs-6 nav-link--ru-node-188" data-drupal-link-system-path="node/188">Закупки 2019</a>
+              </div>
+                <div class="my-2">
+                <a href="/ru/node/187" class="fs-6 nav-link--ru-node-187" data-drupal-link-system-path="node/187">Закупки 2020</a>
+              </div>
+                <div class="my-2">
+                <a href="/ru/node/186" class="fs-6 nav-link--ru-node-186" data-drupal-link-system-path="node/186">Закупки 2021</a>
+              </div>
+                <div class="my-2">
+                <a href="/ru/node/185" class="fs-6 nav-link--ru-node-185" data-drupal-link-system-path="node/185">Закупки 2022</a>
+              </div>
+                <div class="my-2">
+                <a href="/ru/node/184" class="fs-6 nav-link--ru-node-184" data-drupal-link-system-path="node/184">Закупки 2023</a>
+              </div>
+      </div>
+    
+              </div>
+                <div class="col-12 col-sm-6 col-md-4  col-lg-3">
+                <a href="/ru/about" class="fs-6 nav-link--ru-about" data-drupal-link-system-path="node/191">Контакты</a>
+              </div>
+                <div class="col-12 col-sm-6 col-md-4  col-lg-3 menu-item--expanded">
+                <span target="_blank" class="fs-5 nav-link-">Сервисы</span>
+                            <div class="mt-3 mb-4">
+                    <div class="my-2">
+                <a href="https://energy.kzharyk.com/" target="_blank" class="fs-6 nav-link-https--energykzharykcom-">Свободная трансформаторная мощность</a>
+              </div>
+                <div class="my-2">
+                <a href="/ru/node/454" target="_self" class="fs-6 nav-link--ru-node-454" data-drupal-link-system-path="node/454">Получение технических условий</a>
+              </div>
+                <div class="my-2">
+                <a href="https://isel.kz/welcome/main" target="_blank" class="fs-6 nav-link-https--iselkz-welcome-main">Проект внешнего электроснабжения</a>
+              </div>
+                <div class="my-2">
+                <a href="https://isel.kz/welcome/main" target="_blank" class="fs-6 nav-link-https--iselkz-welcome-main">Получение акта раздела границ</a>
+              </div>
+                <div class="my-2">
+                <a href="https://energy.kzharyk.com/login" target="_blank" class="fs-6 nav-link-https--energykzharykcom-login">Заявка в службу сбыта</a>
+              </div>
+                <div class="my-2">
+                <a href="https://isel.kz/welcome/main" target="_blank" class="fs-6 nav-link-https--iselkz-welcome-main">Расчет электрической нагрузки</a>
+              </div>
+      </div>
+    
+              </div>
+                <div class="col-12 col-sm-6 col-md-4  col-lg-3">
+                <a href="https://www.erc.kz/personal/" target="_blank" class="fs-6 nav-link-https--wwwerckz-personal-">Единый платежный документ</a>
+              </div>
+      </div>
+    
+
+
+  </div>
+
+  </section>
+
+    </div>
+    <div class="container k-custom-block-footer my-3">
+    <div class="row py-3">
+      <div class="col-12 col-md-auto">
+        <span class="k-text-grey-3 me-2">© 2026</span>
+        <span>ТОО Қарағанды Жарық</span>
+      </div>
+    </div>
+  </div>
+    </div>
+        <footer class="site-footer">
+        <div class="container k-custom-block-footer-footer k-text-white overflow-hidden">
+    <div class="row g-3 align-items-center py-3">
+      <div class="col-12 col-sm-6 col-lg-3">
+        <div class="row align-items-center">
+          <div class="col">
+            <div>100008, Республика Казахстан, г. Караганда Ул. Муканова, 57/3</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-sm-6 col-lg-3">
+        <div class="row align-items-center">
+          <div class="col">
+            <div class="ms-4">Телефон:</div>
+            <div class="fs-5">
+              <a class="k-text-white"
+                 href="tel:40-50-60, 50-60-70"
+              ><i class="bi bi-telephone me-1"></i>40-50-60, 50-60-70
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-sm-6 col-lg-3">
+        <div class="row align-items-center">
+          <div class="col">
+            <div class="ms-4">Факс:</div>
+            <div class="fs-5"><i
+                class="bi bi-printer me-1"></i>(7212) 50-60-70</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-sm-6 col-lg-3">
+        <div class="row align-items-center">
+          <div class="col">
+            <div class="ms-4">Электронный адрес:</div>
+            <div class="fs-6">
+              <a class="k-text-white" href="mailto:zharyk@kzharyk.kz"
+              ><i class="bi bi-envelope-paper me-2"></i>zharyk@kzharyk.kz
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+  <div id="map" class="container g-0 k-custom-block-map-footer">
+    <script type="text/javascript" charset="utf-8" async
+            src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Afde99b4e2d69158ad986e62c79be8b0c063b0d3d86c9e8042500fcefc20f879f&amp;width=100%25&amp;height=250&amp;lang=ru_RU&amp;scroll=true"></script>
+  </div>
+  <span id="btn-back-to-top">
+    <i class="bi bi-arrow-up-circle-fill"></i>
+  </span>
+    </footer>
+  </div>
+</div>
+
+  </div>
+
+    
+    <script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","scriptPath":null,"pathPrefix":"ru\/","currentPath":"node\/329","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"ru"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"ajaxTrustedUrl":{"form_action_p_pvdeGsVG5zNF_XLGPTvYSKCf43t8qZYSwcfZl2uzM":true},"user":{"uid":0,"permissionsHash":"45eb77f5af1ffa8f021b01abec01e18bfb4d4f19d23f97ace4af7420184a037c"}}</script>
+<script src="/libraries/bootstrap/dist/js/bootstrap.bundle.min.js?s3phzy"></script>
+<script src="/core/assets/vendor/jquery/jquery.min.js?v=3.7.0"></script>
+<script src="/core/assets/vendor/once/once.min.js?v=1.0.1"></script>
+<script src="/sites/default/files/languages/ru_x_MsBOXcjEvhil-hkFM1qB9Mo-olh8haE2FxzWCMgPg.js?s3phzy"></script>
+<script src="/core/misc/drupalSettingsLoader.js?v=10.1.2"></script>
+<script src="/core/misc/drupal.js?v=10.1.2"></script>
+<script src="/core/misc/drupal.init.js?v=10.1.2"></script>
+<script src="/themes/contrib/bootstrap_barrio/js/barrio.js?v=10.1.2"></script>
+<script src="/libraries/colorbox/jquery.colorbox-min.js?v=10.1.2"></script>
+<script src="/themes/custom/zharyk/js/colorbox.js?v=10.1.2"></script>
+<script src="/themes/custom/zharyk/build/app.js?v=10.1.2"></script>
+<script src="/themes/contrib/bootstrap_barrio/js/affix.js?v=10.1.2"></script>
+
+  </body>
+</html>

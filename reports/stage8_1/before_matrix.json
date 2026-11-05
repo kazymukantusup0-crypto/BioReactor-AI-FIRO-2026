@@ -1,0 +1,574 @@
+[
+  {
+    "material": "cattle_manure",
+    "state": "unknown",
+    "status": "ok",
+    "methane": {
+      "low": 1.016,
+      "high": 1.43
+    },
+    "missing": []
+  },
+  {
+    "material": "cattle_manure",
+    "state": "slurry",
+    "status": "ok",
+    "methane": {
+      "low": 1.016,
+      "high": 1.43
+    },
+    "missing": []
+  },
+  {
+    "material": "cattle_manure",
+    "state": "bedded",
+    "status": "ok",
+    "methane": {
+      "low": 1.2847380000000002,
+      "high": 1.2847380000000002
+    },
+    "missing": []
+  },
+  {
+    "material": "cattle_manure",
+    "state": "fresh_solid",
+    "status": "needs_input",
+    "methane": null,
+    "missing": [
+      "ts_fraction",
+      "vs_fraction_wet",
+      "bmp_ml_g_vs"
+    ]
+  },
+  {
+    "material": "cattle_manure",
+    "state": "dry",
+    "status": "needs_input",
+    "methane": null,
+    "missing": [
+      "density_kg_l",
+      "ts_fraction",
+      "vs_fraction_wet",
+      "bmp_ml_g_vs"
+    ]
+  },
+  {
+    "material": "swine_manure",
+    "state": "unknown",
+    "status": "ok",
+    "methane": {
+      "low": 0.23641800000000002,
+      "high": 0.23641800000000002
+    },
+    "missing": [
+      "density_kg_l"
+    ]
+  },
+  {
+    "material": "swine_manure",
+    "state": "slurry",
+    "status": "ok",
+    "methane": {
+      "low": 0.23641800000000002,
+      "high": 0.23641800000000002
+    },
+    "missing": []
+  },
+  {
+    "material": "swine_manure",
+    "state": "fresh_solid",
+    "status": "needs_input",
+    "methane": null,
+    "missing": [
+      "ts_fraction",
+      "vs_fraction_wet",
+      "bmp_ml_g_vs"
+    ]
+  },
+  {
+    "material": "poultry_manure",
+    "state": "unknown",
+    "status": "needs_input",
+    "methane": null,
+    "missing": [
+      "density_kg_l",
+      "ts_fraction",
+      "vs_fraction_wet",
+      "bmp_ml_g_vs"
+    ]
+  },
+  {
+    "material": "poultry_manure",
+    "state": "fresh_solid",
+    "status": "needs_input",
+    "methane": null,
+    "missing": [
+      "ts_fraction",
+      "vs_fraction_wet",
+      "bmp_ml_g_vs"
+    ]
+  },
+  {
+    "material": "poultry_manure",
+    "state": "bedded",
+    "status": "needs_input",
+    "methane": null,
+    "missing": [
+      "ts_fraction",
+      "vs_fraction_wet",
+      "bmp_ml_g_vs"
+    ]
+  },
+  {
+    "material": "poultry_manure",
+    "state": "dry",
+    "status": "needs_input",
+    "methane": null,
+    "missing": [
+      "density_kg_l",
+      "ts_fraction",
+      "vs_fraction_wet",
+      "bmp_ml_g_vs"
+    ]
+  },
+  {
+    "material": "sheep_goat_manure",
+    "state": "unknown",
+    "status": "needs_input",
+    "methane": null,
+    "missing": [
+      "density_kg_l",
+      "ts_fraction",
+      "vs_fraction_wet",
+      "bmp_ml_g_vs"
+    ]
+  },
+  {
+    "material": "sheep_goat_manure",
+    "state": "fresh_solid",
+    "status": "needs_input",
+    "methane": null,
+    "missing": [
+      "ts_fraction",
+      "vs_fraction_wet",
+      "bmp_ml_g_vs"
+    ]
+  },
+  {
+    "material": "sheep_goat_manure",
+    "state": "dry",
+    "status": "needs_input",
+    "methane": null,
+    "missing": [
+      "density_kg_l",
+      "ts_fraction",
+      "vs_fraction_wet",
+      "bmp_ml_g_vs"
+    ]
+  },
+  {
+    "material": "horse_manure",
+    "state": "unknown",
+    "status": "ok",
+    "methane": {
+      "low": 1.80488,
+      "high": 1.80488
+    },
+    "missing": [
+      "density_kg_l"
+    ]
+  },
+  {
+    "material": "horse_manure",
+    "state": "bedded",
+    "status": "needs_input",
+    "methane": null,
+    "missing": [
+      "ts_fraction",
+      "vs_fraction_wet",
+      "bmp_ml_g_vs"
+    ]
+  },
+  {
+    "material": "horse_manure",
+    "state": "fresh_solid",
+    "status": "ok",
+    "methane": {
+      "low": 1.80488,
+      "high": 1.80488
+    },
+    "missing": [
+      "density_kg_l"
+    ]
+  },
+  {
+    "material": "food_waste",
+    "state": "unknown",
+    "status": "ok",
+    "methane": {
+      "low": 3.1808250000000005,
+      "high": 3.1808250000000005
+    },
+    "missing": [
+      "density_kg_l"
+    ]
+  },
+  {
+    "material": "food_waste",
+    "state": "prepared_pulp",
+    "status": "ok",
+    "methane": {
+      "low": 3.1808250000000005,
+      "high": 3.1808250000000005
+    },
+    "missing": [
+      "density_kg_l"
+    ]
+  },
+  {
+    "material": "food_waste",
+    "state": "fresh_solid",
+    "status": "needs_input",
+    "methane": null,
+    "missing": [
+      "density_kg_l",
+      "ts_fraction",
+      "vs_fraction_wet",
+      "bmp_ml_g_vs"
+    ]
+  },
+  {
+    "material": "vegetable_waste",
+    "state": "unknown",
+    "status": "needs_input",
+    "methane": null,
+    "missing": [
+      "density_kg_l",
+      "ts_fraction",
+      "vs_fraction_wet",
+      "bmp_ml_g_vs"
+    ]
+  },
+  {
+    "material": "vegetable_waste",
+    "state": "fresh_solid",
+    "status": "needs_input",
+    "methane": null,
+    "missing": [
+      "density_kg_l",
+      "ts_fraction",
+      "vs_fraction_wet",
+      "bmp_ml_g_vs"
+    ]
+  },
+  {
+    "material": "vegetable_waste",
+    "state": "prepared_pulp",
+    "status": "needs_input",
+    "methane": null,
+    "missing": [
+      "density_kg_l",
+      "ts_fraction",
+      "vs_fraction_wet",
+      "bmp_ml_g_vs"
+    ]
+  },
+  {
+    "material": "fruit_waste",
+    "state": "unknown",
+    "status": "needs_input",
+    "methane": null,
+    "missing": [
+      "density_kg_l",
+      "ts_fraction",
+      "vs_fraction_wet",
+      "bmp_ml_g_vs"
+    ]
+  },
+  {
+    "material": "fruit_waste",
+    "state": "fresh_solid",
+    "status": "needs_input",
+    "methane": null,
+    "missing": [
+      "density_kg_l",
+      "ts_fraction",
+      "vs_fraction_wet",
+      "bmp_ml_g_vs"
+    ]
+  },
+  {
+    "material": "fruit_waste",
+    "state": "prepared_pulp",
+    "status": "needs_input",
+    "methane": null,
+    "missing": [
+      "density_kg_l",
+      "ts_fraction",
+      "vs_fraction_wet",
+      "bmp_ml_g_vs"
+    ]
+  },
+  {
+    "material": "plant_residue",
+    "state": "unknown",
+    "status": "needs_input",
+    "methane": null,
+    "missing": [
+      "density_kg_l",
+      "ts_fraction",
+      "vs_fraction_wet",
+      "bmp_ml_g_vs"
+    ]
+  },
+  {
+    "material": "plant_residue",
+    "state": "fresh_solid",
+    "status": "needs_input",
+    "methane": null,
+    "missing": [
+      "density_kg_l",
+      "ts_fraction",
+      "vs_fraction_wet",
+      "bmp_ml_g_vs"
+    ]
+  },
+  {
+    "material": "plant_residue",
+    "state": "dry",
+    "status": "needs_input",
+    "methane": null,
+    "missing": [
+      "density_kg_l",
+      "ts_fraction",
+      "vs_fraction_wet",
+      "bmp_ml_g_vs"
+    ]
+  },
+  {
+    "material": "plant_residue",
+    "state": "shredded",
+    "status": "needs_input",
+    "methane": null,
+    "missing": [
+      "density_kg_l",
+      "ts_fraction",
+      "vs_fraction_wet",
+      "bmp_ml_g_vs"
+    ]
+  },
+  {
+    "material": "grass",
+    "state": "unknown",
+    "status": "needs_input",
+    "methane": null,
+    "missing": [
+      "density_kg_l",
+      "ts_fraction",
+      "vs_fraction_wet",
+      "bmp_ml_g_vs"
+    ]
+  },
+  {
+    "material": "grass",
+    "state": "fresh_solid",
+    "status": "needs_input",
+    "methane": null,
+    "missing": [
+      "density_kg_l",
+      "ts_fraction",
+      "vs_fraction_wet",
+      "bmp_ml_g_vs"
+    ]
+  },
+  {
+    "material": "grass",
+    "state": "shredded",
+    "status": "needs_input",
+    "methane": null,
+    "missing": [
+      "density_kg_l",
+      "ts_fraction",
+      "vs_fraction_wet",
+      "bmp_ml_g_vs"
+    ]
+  },
+  {
+    "material": "grass",
+    "state": "silage",
+    "status": "needs_input",
+    "methane": null,
+    "missing": [
+      "density_kg_l",
+      "ts_fraction",
+      "vs_fraction_wet",
+      "bmp_ml_g_vs"
+    ]
+  },
+  {
+    "material": "grass",
+    "state": "dry",
+    "status": "needs_input",
+    "methane": null,
+    "missing": [
+      "density_kg_l",
+      "ts_fraction",
+      "vs_fraction_wet",
+      "bmp_ml_g_vs"
+    ]
+  },
+  {
+    "material": "straw",
+    "state": "unknown",
+    "status": "ok",
+    "methane": {
+      "low": 8.09027,
+      "high": 8.09027
+    },
+    "missing": [
+      "density_kg_l"
+    ]
+  },
+  {
+    "material": "straw",
+    "state": "dry",
+    "status": "ok",
+    "methane": {
+      "low": 8.09027,
+      "high": 8.09027
+    },
+    "missing": []
+  },
+  {
+    "material": "straw",
+    "state": "shredded",
+    "status": "needs_input",
+    "methane": null,
+    "missing": [
+      "density_kg_l",
+      "ts_fraction",
+      "vs_fraction_wet",
+      "bmp_ml_g_vs"
+    ]
+  },
+  {
+    "material": "silage",
+    "state": "unknown",
+    "status": "needs_input",
+    "methane": null,
+    "missing": [
+      "density_kg_l",
+      "ts_fraction",
+      "vs_fraction_wet",
+      "bmp_ml_g_vs"
+    ]
+  },
+  {
+    "material": "silage",
+    "state": "silage",
+    "status": "needs_input",
+    "methane": null,
+    "missing": [
+      "density_kg_l",
+      "ts_fraction",
+      "vs_fraction_wet",
+      "bmp_ml_g_vs"
+    ]
+  },
+  {
+    "material": "dairy_waste",
+    "state": "unknown",
+    "status": "needs_input",
+    "methane": null,
+    "missing": [
+      "density_kg_l",
+      "ts_fraction",
+      "vs_fraction_wet",
+      "bmp_ml_g_vs"
+    ]
+  },
+  {
+    "material": "dairy_waste",
+    "state": "slurry",
+    "status": "needs_input",
+    "methane": null,
+    "missing": [
+      "density_kg_l",
+      "ts_fraction",
+      "vs_fraction_wet",
+      "bmp_ml_g_vs"
+    ]
+  },
+  {
+    "material": "other_organic",
+    "state": "unknown",
+    "status": "needs_input",
+    "methane": null,
+    "missing": [
+      "density_kg_l",
+      "ts_fraction",
+      "vs_fraction_wet",
+      "bmp_ml_g_vs"
+    ]
+  },
+  {
+    "material": "other_organic",
+    "state": "unknown",
+    "status": "needs_input",
+    "methane": null,
+    "missing": [
+      "density_kg_l",
+      "ts_fraction",
+      "vs_fraction_wet",
+      "bmp_ml_g_vs"
+    ]
+  },
+  {
+    "material": "manure",
+    "state": "unknown",
+    "status": "needs_input",
+    "methane": null,
+    "missing": [
+      "density_kg_l",
+      "ts_fraction",
+      "vs_fraction_wet",
+      "bmp_ml_g_vs"
+    ]
+  },
+  {
+    "material": "manure",
+    "state": "slurry",
+    "status": "needs_input",
+    "methane": null,
+    "missing": [
+      "density_kg_l",
+      "ts_fraction",
+      "vs_fraction_wet",
+      "bmp_ml_g_vs"
+    ]
+  },
+  {
+    "material": "manure",
+    "state": "fresh_solid",
+    "status": "needs_input",
+    "methane": null,
+    "missing": [
+      "density_kg_l",
+      "ts_fraction",
+      "vs_fraction_wet",
+      "bmp_ml_g_vs"
+    ]
+  },
+  {
+    "material": "manure",
+    "state": "bedded",
+    "status": "needs_input",
+    "methane": null,
+    "missing": [
+      "density_kg_l",
+      "ts_fraction",
+      "vs_fraction_wet",
+      "bmp_ml_g_vs"
+    ]
+  }
+]

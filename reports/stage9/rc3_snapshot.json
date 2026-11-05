@@ -1,0 +1,48 @@
+{
+  "created_at": "2026-11-05T16:37:52.404865+00:00",
+  "source_sha256": "95d0a40a6b6340bf9664622fcd798488d7a52cf6cd5cf40a41ed83e86cfee427",
+  "snapshot": "rc3_source.zip",
+  "model_artifact_sha256": {
+    "models\\bmp.joblib": "dbbf33f0eca4a5f43fa00feafe6fab9fd76778a0f1804e0bea66d363879b9c4f",
+    "models\\features.json": "0a584746017089103003d954522d5dd0fbe6e235b527cba279352ab54085066a",
+    "models\\metadata.json": "ce8aae120926d602407df248bd8098e028421d3e0ae7be88026dd064354d588c",
+    "models\\stage1_5\\bmp.joblib": "eb1d88854c7b5a98410ee4ae8e6513ca17ee2aceb6f250ba9e9536aab90e793e",
+    "models\\stage1_5\\features.json": "663371ce92af50dcaeeef60a1f912c55b390015a7e40414adebad8819fce564a",
+    "models\\stage1_5\\metadata.json": "a9df89e8bda12c5c3c0cb5b41112fc9bfeb64feec14b4e7b254bb37c051dab2d"
+  },
+  "qwen": {
+    "name": "qwen3:8b",
+    "model": "qwen3:8b",
+    "modified_at": "2026-10-28T22:06:28.6723114+05:00",
+    "size": 5225388164,
+    "digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+    "details": {
+      "parent_model": "",
+      "format": "gguf",
+      "family": "qwen3",
+      "families": [
+        "qwen3"
+      ],
+      "parameter_size": "8.2B",
+      "quantization_level": "Q4_K_M",
+      "context_length": 40960,
+      "embedding_length": 4096,
+      "runner": "ggml"
+    },
+    "capabilities": [
+      "completion",
+      "tools",
+      "thinking"
+    ]
+  },
+  "validation_configuration": {
+    "num_ctx": 8192,
+    "num_gpu": 16,
+    "think": false,
+    "temperature": 0,
+    "agent_timeout_seconds": 150,
+    "job_timeout_seconds": 180,
+    "online_research": false
+  },
+  "note": "A source snapshot and configuration record, not evidence that generations succeeded."
+}

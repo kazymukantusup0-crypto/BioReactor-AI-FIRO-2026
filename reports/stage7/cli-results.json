@@ -1,0 +1,1984 @@
+{
+  "passed": true,
+  "checks": [
+    "Actual v7 CLI returns sourced deterministic estimate",
+    "CLI restores v7 without repeating research flag",
+    "CLI retains full vessel capacity",
+    "Legacy CLI contract retained",
+    "Saved estimator CLI stage1",
+    "Saved estimator CLI stage1_5"
+  ],
+  "research_reply": {
+    "conversation_version": "7",
+    "mode": "deterministic_tools_no_llm",
+    "answer": "Литературная оценка для сопоставимой навозной жижи. Это потенциал CH₄, а не подтверждённый выход вашей установки.\n\nОценочная влажная масса: 143.85 кг; масса VS: 14.61–16.46 кг. Потенциальный метан: 2.92–4.11 м³ CH₄ (2923–4114 л), при 273.2 K; 1.01325 bar. Влажностный базис газа требует проверки.\n\nИсточник: Oliveira и соавт., DOI 10.1007/s43153-025-00592-x. Плотность 1,013 кг/л; VS 10,8 ± 0,64% влажной массы (таблица 1). Для необработанного RM1 использован грубый графический диапазон BMP 200–250 мл CH₄/г VS между основными делениями рисунка 1a. Это не точное среднее и не доверительный интервал. Опыт: 37 °C, 27 суток; эти условия не назначены вашей установке.\n\nОриентировочная энергия топлива: 29.14–41.02 кВт·ч по справочнику FNR, 9,97 кВт·ч/м³ чистого метана, при допущении сопоставимых опорных условий. Это не электрическая энергия и не выручка; реальный выход и КПД неизвестны.\n\nОбщий объём биогаза не рассчитан: доля метана неизвестна. Метан и сырой биогаз имеют разные состав и цену.\n\nРыночный ориентир, Караганда: каталог StroiTaxi показывает приблизительно 700 ₸/т. Дата публикации неизвестна; получено 2026-10-29T05:36:01.632415+00:00; возраст сохранённой записи 0.0 ч. Актуальность цены не подтверждена. Для оценочной массы это около 100.69 ₸ по цене предложения. Это предложение продавца: покупатель для вашей партии, влажность, доставка и минимальный объём не подтверждены; доход от продажи не установлен.\n\nЧистую прибыль продажи и переработки пока нельзя ранжировать: нет подтверждённого покупателя навоза/сырого биогаза, условий допустимости продажи газа, реального извлечения, энергозатрат, подготовки, хранения, перевозки и обращения с дигестатом. Тариф природного газа не принят за цену сырого биогаза. Газ на продажу и тот же газ на энергию не суммируются.\n\nВ памяти сохранён полный объём реактора 200 л. Рабочий объём, место для инокулюма и газовое пространство ещё не установлены.\n\nКараганда использована как регион по умолчанию панели; ваш регион ещё не подтверждён.\n\nДиапазон показывает чувствительность к литературным параметрам; его покрытие не проверено. Hafner BMP для этого материала не вызывался. Литературные свойства не записаны как измерения вашей партии.",
+    "user_facing_answer": {
+      "paragraphs": [
+        "Литературная оценка для сопоставимой навозной жижи. Это потенциал CH₄, а не подтверждённый выход вашей установки.",
+        "Оценочная влажная масса: 143.85 кг; масса VS: 14.61–16.46 кг. Потенциальный метан: 2.92–4.11 м³ CH₄ (2923–4114 л), при 273.2 K; 1.01325 bar. Влажностный базис газа требует проверки.",
+        "Источник: Oliveira и соавт., DOI 10.1007/s43153-025-00592-x. Плотность 1,013 кг/л; VS 10,8 ± 0,64% влажной массы (таблица 1). Для необработанного RM1 использован грубый графический диапазон BMP 200–250 мл CH₄/г VS между основными делениями рисунка 1a. Это не точное среднее и не доверительный интервал. Опыт: 37 °C, 27 суток; эти условия не назначены вашей установке.",
+        "Ориентировочная энергия топлива: 29.14–41.02 кВт·ч по справочнику FNR, 9,97 кВт·ч/м³ чистого метана, при допущении сопоставимых опорных условий. Это не электрическая энергия и не выручка; реальный выход и КПД неизвестны.",
+        "Общий объём биогаза не рассчитан: доля метана неизвестна. Метан и сырой биогаз имеют разные состав и цену.",
+        "Рыночный ориентир, Караганда: каталог StroiTaxi показывает приблизительно 700 ₸/т. Дата публикации неизвестна; получено 2026-10-29T05:36:01.632415+00:00; возраст сохранённой записи 0.0 ч. Актуальность цены не подтверждена. Для оценочной массы это около 100.69 ₸ по цене предложения. Это предложение продавца: покупатель для вашей партии, влажность, доставка и минимальный объём не подтверждены; доход от продажи не установлен.",
+        "Чистую прибыль продажи и переработки пока нельзя ранжировать: нет подтверждённого покупателя навоза/сырого биогаза, условий допустимости продажи газа, реального извлечения, энергозатрат, подготовки, хранения, перевозки и обращения с дигестатом. Тариф природного газа не принят за цену сырого биогаза. Газ на продажу и тот же газ на энергию не суммируются.",
+        "В памяти сохранён полный объём реактора 200 л. Рабочий объём, место для инокулюма и газовое пространство ещё не установлены.",
+        "Караганда использована как регион по умолчанию панели; ваш регион ещё не подтверждён.",
+        "Диапазон показывает чувствительность к литературным параметрам; его покрытие не проверено. Hafner BMP для этого материала не вызывался. Литературные свойства не записаны как измерения вашей партии."
+      ],
+      "question": null,
+      "sources": [
+        {
+          "title": "Moderate thermal, alkaline and thermal-alkaline pretreatment of cattle manure: effects on methane production and economic feasibility",
+          "url": "https://link.springer.com/article/10.1007/s43153-025-00592-x"
+        },
+        {
+          "title": "Faustzahlen Biogas",
+          "url": "https://biogas.fnr.de/daten-und-fakten/faustzahlen"
+        },
+        {
+          "title": "Коровий навоз — Караганда",
+          "url": "https://stroitaxi.kz/karaganda/catalog/stroitelnye-materialy/koroviy-navoz/"
+        }
+      ],
+      "modes": [
+        "literature_guidance",
+        "LITERATURE_ESTIMATE"
+      ],
+      "assumptions": [
+        "density_kg_l transferred from oliveira-rm1-2025-v1",
+        "vs_fraction_wet transferred from oliveira-rm1-2025-v1",
+        "bmp_ml_g_vs transferred from oliveira-rm1-2025-v1",
+        "Indicative pure-methane fuel energy: FNR 9.97 kWh/m3; compatible dry/reference basis assumed, not verified",
+        "KZ-Karaganda is a dashboard default region, not user-confirmed"
+      ]
+    },
+    "tools": [
+      {
+        "tool": "research_and_estimate",
+        "status": "ok",
+        "input_origin": "confirmed_inputs_and_separate_reviewed_literature",
+        "result": {
+          "status": "ok",
+          "result_level": "LITERATURE_ESTIMATE",
+          "material": "cattle_manure",
+          "material_state": "slurry",
+          "profile_id": "oliveira-rm1-2025-v1",
+          "wet_mass_kg": {
+            "low": 143.84599999999998,
+            "high": 143.84599999999998
+          },
+          "vs_mass_kg": {
+            "low": 14.614753599999997,
+            "high": 16.455982399999996
+          },
+          "inputs": {
+            "density_kg_l": {
+              "range": {
+                "low": 1.013,
+                "high": 1.013
+              },
+              "basis": "REVIEWED_LITERATURE",
+              "source_id": "doi:10.1007/s43153-025-00592-x",
+              "locator": "Materials and methods, economic analysis, Eq. 1",
+              "original_value": "1.013",
+              "original_unit": "g/mL",
+              "method": "REPORTED_POINT; variation not reported"
+            },
+            "vs_fraction_wet": {
+              "range": {
+                "low": 0.1016,
+                "high": 0.1144
+              },
+              "basis": "REVIEWED_LITERATURE",
+              "source_id": "doi:10.1007/s43153-025-00592-x",
+              "locator": "Table 1, PDF page 3, journal page 739",
+              "original_value": "10.8 ± 0.64",
+              "original_unit": "% wet weight",
+              "method": "REPORTED_MEAN_PLUS_MINUS_SD_SENSITIVITY; not percent TS, not confidence bounds"
+            },
+            "bmp_ml_g_vs": {
+              "range": {
+                "low": 200,
+                "high": 250
+              },
+              "basis": "REVIEWED_LITERATURE",
+              "source_id": "doi:10.1007/s43153-025-00592-x",
+              "locator": "Figure 1a, untreated RM1 bar only",
+              "original_value": "Untreated RM1 bar between major gridlines 200 and 250",
+              "original_unit": "NmL CH4/g VS",
+              "method": "GRAPH_READ_ENVELOPE; coarse major-gridline bracket, not reported exact mean or uncertainty interval"
+            }
+          },
+          "assumptions": [
+            "density_kg_l transferred from oliveira-rm1-2025-v1",
+            "vs_fraction_wet transferred from oliveira-rm1-2025-v1",
+            "bmp_ml_g_vs transferred from oliveira-rm1-2025-v1",
+            "Indicative pure-methane fuel energy: FNR 9.97 kWh/m3; compatible dry/reference basis assumed, not verified",
+            "KZ-Karaganda is a dashboard default region, not user-confirmed"
+          ],
+          "warnings": [
+            "Sensitivity envelope from transferred literature and coarse graph gridlines. No validated coverage; not a confidence or prediction interval. Single-study transfer error, density variation and plant recovery are not quantified.",
+            "Laboratory methane potential is not actual plant gas production.",
+            "Total vessel volume does not establish working volume, headspace, inoculum or dilution capacity.",
+            "Catalog reference value is not a purchase bid, sale income, current confirmed price, or profit; material form and small-batch terms unverified."
+          ],
+          "methane_potential_l": {
+            "low": 2922.9507199999994,
+            "high": 4113.995599999999
+          },
+          "methane_potential_m3": {
+            "low": 2.9229507199999993,
+            "high": 4.113995599999999
+          },
+          "raw_biogas_m3": null,
+          "fuel_energy_kwh": {
+            "low": 29.141818678399996,
+            "high": 41.016536132
+          },
+          "gas_sale_revenue": null,
+          "net_profit": null,
+          "final_recommendation": null,
+          "missing": [
+            "methane_fraction_for_total_biogas_volume",
+            "comparable_raw_biogas_purchase_quote_and_technical_legal_sale_conditions",
+            "energy_conversion_efficiency_and_operating_storage_transport_digestate_costs"
+          ],
+          "sources": [
+            {
+              "id": "doi:10.1007/s43153-025-00592-x",
+              "title": "Moderate thermal, alkaline and thermal-alkaline pretreatment of cattle manure: effects on methane production and economic feasibility",
+              "authors": [
+                "Helena Rodrigues Oliveira",
+                "Thuane Mendes Anacleto",
+                "Lisa Åsenius",
+                "Alex Enrich-Prast"
+              ],
+              "year": 2025,
+              "online_published": "2025-09-11",
+              "issue_year": 2026,
+              "doi": "10.1007/s43153-025-00592-x",
+              "url": "https://link.springer.com/article/10.1007/s43153-025-00592-x",
+              "license": "CC BY 4.0",
+              "review_method": "Manual review of primary article and original Figure 1; not an automatic full-text extraction",
+              "verification_status": "REVIEWED_PRIMARY",
+              "retrieval_limit": "Publisher robots disallows programmatic article/PDF downloads; no bypass. Public figure host was accessible under its own robots policy.",
+              "locators": {
+                "density_kg_l": "Materials and methods, economic analysis, Eq. 1",
+                "ts_fraction": "Table 1, PDF page 3, journal page 739",
+                "vs_fraction_wet": "Table 1, PDF page 3, journal page 739",
+                "bmp_ml_g_vs": "Figure 1a, untreated RM1 bar only"
+              }
+            },
+            {
+              "id": "fnr-methane-energy",
+              "title": "Faustzahlen Biogas",
+              "organization": "Fachagentur Nachwachsende Rohstoffe e. V. (FNR)",
+              "year": null,
+              "url": "https://biogas.fnr.de/daten-und-fakten/faustzahlen",
+              "locator": "Energy content of pure methane",
+              "original_value": "9.97",
+              "original_unit": "kWh per m3 pure methane",
+              "kwh_m3": 9.97,
+              "verification_status": "REVIEWED_PRIMARY_REFERENCE",
+              "limitation": "Indicative fuel energy; reference-condition/dry-gas compatibility is an assumption. Not electric output or revenue."
+            }
+          ],
+          "uncertainty_status": "Sensitivity envelope from transferred literature and coarse graph gridlines. No validated coverage; not a confidence or prediction interval. Single-study transfer error, density variation and plant recovery are not quantified.",
+          "gas_reference": "273.2 K; 1.01325 bar",
+          "gas_moisture_basis": "not explicitly stated",
+          "sensitivity": {
+            "vary_VS_only_m3": {
+              "low": 3.2883195599999993,
+              "high": 3.702596039999999
+            },
+            "vary_BMP_only_m3": {
+              "low": 3.1070735999999997,
+              "high": 3.883841999999999
+            },
+            "method": "One factor at a time around arithmetic midpoint; no probabilities assigned"
+          },
+          "market": {
+            "offers": [
+              {
+                "source_id": "stroitaxi-karaganda-cattle-manure",
+                "source_url": "https://stroitaxi.kz/karaganda/catalog/stroitelnye-materialy/koroviy-navoz/",
+                "title": "Коровий навоз — Караганда",
+                "commodity": "cattle_manure",
+                "region": "KZ-Karaganda",
+                "country": "KZ",
+                "value": 700.0,
+                "currency": "KZT",
+                "unit": "t",
+                "normalized_value": 0.7,
+                "normalized_unit": "KZT/kg",
+                "published_at": null,
+                "received_at": "2026-10-29T05:36:01.632415+00:00",
+                "price_type": "seller_ask",
+                "reliability": "UNDATED_APPROXIMATE_REFERENCE",
+                "is_current": false,
+                "material_state": "unknown",
+                "evidence": "Approximate catalog asking price; publication date, moisture, delivery, minimum lot and tax basis unspecified",
+                "sha256": "8f6d95dd87b0cf0703d0f5c5a018509e9d675aa0526d48928983fa8babf0c1d2"
+              }
+            ],
+            "status": "cached_undated_reference",
+            "region": "KZ-Karaganda",
+            "missing": [
+              "confirmed_feedstock_purchase_bid",
+              "raw_biogas_purchase_quote"
+            ],
+            "coverage": [
+              "cattle_manure",
+              "swine_manure",
+              "poultry_manure",
+              "organic_waste",
+              "digestate",
+              "electricity",
+              "natural_gas",
+              "biogas",
+              "heat"
+            ],
+            "coverage_notice": "Only configured cattle manure catalog adapter; other categories use existing market store/manual import. Coverage does not imply live sources.",
+            "cache_age_hours": 0.041587678333333336
+          },
+          "scientific_search": {
+            "reviewed_profiles": [
+              {
+                "id": "oliveira-rm1-2025-v1",
+                "material": "cattle_manure",
+                "material_state": "slurry",
+                "source": {
+                  "id": "doi:10.1007/s43153-025-00592-x",
+                  "title": "Moderate thermal, alkaline and thermal-alkaline pretreatment of cattle manure: effects on methane production and economic feasibility",
+                  "authors": [
+                    "Helena Rodrigues Oliveira",
+                    "Thuane Mendes Anacleto",
+                    "Lisa Åsenius",
+                    "Alex Enrich-Prast"
+                  ],
+                  "year": 2025,
+                  "online_published": "2025-09-11",
+                  "issue_year": 2026,
+                  "doi": "10.1007/s43153-025-00592-x",
+                  "url": "https://link.springer.com/article/10.1007/s43153-025-00592-x",
+                  "license": "CC BY 4.0",
+                  "review_method": "Manual review of primary article and original Figure 1; not an automatic full-text extraction",
+                  "verification_status": "REVIEWED_PRIMARY",
+                  "retrieval_limit": "Publisher robots disallows programmatic article/PDF downloads; no bypass. Public figure host was accessible under its own robots policy."
+                },
+                "conditions": {
+                  "country": "Sweden",
+                  "sample": "RM1 untreated raw cattle slurry, Sjukulla; refrigerated 4 °C for 12 days",
+                  "bmp_method": "AMPTS II, triplicate, inoculum blank corrected",
+                  "temperature_c": 37,
+                  "duration_days": 27,
+                  "ISR_VS": 1,
+                  "gas_reference": "273.2 K; 1.01325 bar",
+                  "gas_moisture_basis": "not explicitly stated",
+                  "pretreatment": "none",
+                  "limitations": "Single material and laboratory; frozen RM2 and treated samples excluded. Not a full-scale recovery guarantee."
+                },
+                "values": {
+                  "density_kg_l": {
+                    "original_value": "1.013",
+                    "original_unit": "g/mL",
+                    "low": 1.013,
+                    "high": 1.013,
+                    "normalized_unit": "kg/L",
+                    "locator": "Materials and methods, economic analysis, Eq. 1",
+                    "method": "REPORTED_POINT; variation not reported"
+                  },
+                  "ts_fraction": {
+                    "original_value": "13.3 ± 0.61",
+                    "original_unit": "% wet weight",
+                    "low": 0.1269,
+                    "high": 0.1391,
+                    "normalized_unit": "kg TS/kg wet",
+                    "locator": "Table 1, PDF page 3, journal page 739",
+                    "method": "REPORTED_MEAN_PLUS_MINUS_SD_SENSITIVITY; not confidence bounds"
+                  },
+                  "vs_fraction_wet": {
+                    "original_value": "10.8 ± 0.64",
+                    "original_unit": "% wet weight",
+                    "low": 0.1016,
+                    "high": 0.1144,
+                    "normalized_unit": "kg VS/kg wet",
+                    "locator": "Table 1, PDF page 3, journal page 739",
+                    "method": "REPORTED_MEAN_PLUS_MINUS_SD_SENSITIVITY; not percent TS, not confidence bounds"
+                  },
+                  "bmp_ml_g_vs": {
+                    "original_value": "Untreated RM1 bar between major gridlines 200 and 250",
+                    "original_unit": "NmL CH4/g VS",
+                    "low": 200,
+                    "high": 250,
+                    "normalized_unit": "mL CH4/g VS at stated reference",
+                    "locator": "Figure 1a, untreated RM1 bar only",
+                    "method": "GRAPH_READ_ENVELOPE; coarse major-gridline bracket, not reported exact mean or uncertainty interval",
+                    "asset_url": "https://media.springernature.com/lw685/springer-static/image/art%3A10.1007%2Fs43153-025-00592-x/MediaObjects/43153_2025_592_Fig1_HTML.jpg"
+                  }
+                },
+                "excluded_items": [
+                  {
+                    "locator": "Table 3",
+                    "value": "35.8 kWh/m3 methane",
+                    "status": "REJECTED_UNIT_CONFLICT",
+                    "reason": "Conflicting heating-value unit; not used or silently corrected"
+                  }
+                ]
+              }
+            ],
+            "synonyms": [
+              "коровий навоз",
+              "навоз КРС",
+              "cattle manure",
+              "cow manure",
+              "cow dung",
+              "cattle slurry"
+            ],
+            "discovered": [
+              {
+                "doi": "10.37473/fic/10.3390/su15043172",
+                "title": "Relationships among Physicochemical, Microbiological, and Parasitological Parameters, Ecotoxicity, and Biochemical Methane Potential of Pig Slurry",
+                "authors": [],
+                "published": null,
+                "url": "https://doi.org/10.37473/fic/10.3390/su15043172",
+                "verification_status": "DRAFT_METADATA_ONLY_NOT_FOR_CALCULATION"
+              },
+              {
+                "doi": "10.37473/dac/10.3390/su15043172",
+                "title": "Relationships among Physicochemical, Microbiological, and Parasitological Parameters, Ecotoxicity, and Biochemical Methane Potential of Pig Slurry",
+                "authors": [],
+                "published": null,
+                "url": "https://doi.org/10.37473/dac/10.3390/su15043172",
+                "verification_status": "DRAFT_METADATA_ONLY_NOT_FOR_CALCULATION"
+              },
+              {
+                "doi": "10.1111/asj.12495",
+                "title": "The cumulative methane production from dairy cattle slurry can be explained by its volatile solid, temperature and length of storage",
+                "authors": [
+                  {
+                    "given": "Takuji",
+                    "family": "Sawamoto",
+                    "sequence": "first",
+                    "affiliation": [
+                      {
+                        "name": "Department of Sustainable Agriculture, College of Agriculture, Food and Environment Sciences; Rakuno Gakuen University; Ebetsu Hokkaido"
+                      }
+                    ],
+                    "role": [
+                      {
+                        "vocabulary": "crossref",
+                        "role": "author"
+                      }
+                    ]
+                  },
+                  {
+                    "given": "Megumi",
+                    "family": "Nakamura",
+                    "sequence": "additional",
+                    "affiliation": [
+                      {
+                        "name": "Department of Sustainable Agriculture, College of Agriculture, Food and Environment Sciences; Rakuno Gakuen University; Ebetsu Hokkaido"
+                      },
+                      {
+                        "name": "Zukosha Co., Ltd.; Obihiro Hokkaido Japan"
+                      }
+                    ],
+                    "role": [
+                      {
+                        "vocabulary": "crossref",
+                        "role": "author"
+                      }
+                    ]
+                  },
+                  {
+                    "given": "Kenji",
+                    "family": "Nekomoto",
+                    "sequence": "additional",
+                    "affiliation": [
+                      {
+                        "name": "Department of Sustainable Agriculture, College of Agriculture, Food and Environment Sciences; Rakuno Gakuen University; Ebetsu Hokkaido"
+                      }
+                    ],
+                    "role": [
+                      {
+                        "vocabulary": "crossref",
+                        "role": "author"
+                      }
+                    ]
+                  },
+                  {
+                    "given": "Shinji",
+                    "family": "Hoshiba",
+                    "sequence": "additional",
+                    "affiliation": [
+                      {
+                        "name": "Department of Sustainable Agriculture, College of Agriculture, Food and Environment Sciences; Rakuno Gakuen University; Ebetsu Hokkaido"
+                      }
+                    ],
+                    "role": [
+                      {
+                        "vocabulary": "crossref",
+                        "role": "author"
+                      }
+                    ]
+                  },
+                  {
+                    "given": "Keiko",
+                    "family": "Minato",
+                    "sequence": "additional",
+                    "affiliation": [
+                      {
+                        "name": "Animal Research Center; Hokkaido Research Organization; Shintoku Hokkaido"
+                      }
+                    ],
+                    "role": [
+                      {
+                        "vocabulary": "crossref",
+                        "role": "author"
+                      }
+                    ]
+                  },
+                  {
+                    "given": "Motoo",
+                    "family": "Nakayama",
+                    "sequence": "additional",
+                    "affiliation": [
+                      {
+                        "name": "Kumamoto Prefectural Agricultural Research Center; Animal Husbandry Research Institute; Koushi Kumamoto"
+                      }
+                    ],
+                    "role": [
+                      {
+                        "vocabulary": "crossref",
+                        "role": "author"
+                      }
+                    ]
+                  },
+                  {
+                    "given": "Takashi",
+                    "family": "Osada",
+                    "sequence": "additional",
+                    "affiliation": [
+                      {
+                        "name": "National Agriculture and Food Research Organization; Institute of Livestock and Grassland Science; Tsukuba Ibaraki"
+                      }
+                    ],
+                    "role": [
+                      {
+                        "vocabulary": "crossref",
+                        "role": "author"
+                      }
+                    ]
+                  }
+                ],
+                "published": {
+                  "date-parts": [
+                    [
+                      2015,
+                      9,
+                      21
+                    ]
+                  ]
+                },
+                "url": "https://doi.org/10.1111/asj.12495",
+                "verification_status": "DRAFT_METADATA_ONLY_NOT_FOR_CALCULATION"
+              },
+              {
+                "doi": "10.1016/j.egypro.2015.12.105",
+                "title": "Anaerobic Co-digestion of Olive-mill Solid Waste with Cattle Manure and Cattle Slurry: Analysis of Bio-methane Potential",
+                "authors": [
+                  {
+                    "given": "Maurizio",
+                    "family": "Carlini",
+                    "sequence": "first",
+                    "affiliation": [],
+                    "role": [
+                      {
+                        "role": "author",
+                        "vocabulary": "crossref"
+                      }
+                    ]
+                  },
+                  {
+                    "given": "Sonia",
+                    "family": "Castellucci",
+                    "sequence": "additional",
+                    "affiliation": [],
+                    "role": [
+                      {
+                        "role": "author",
+                        "vocabulary": "crossref"
+                      }
+                    ]
+                  },
+                  {
+                    "given": "Marta",
+                    "family": "Moneti",
+                    "sequence": "additional",
+                    "affiliation": [],
+                    "role": [
+                      {
+                        "role": "author",
+                        "vocabulary": "crossref"
+                      }
+                    ]
+                  }
+                ],
+                "published": {
+                  "date-parts": [
+                    [
+                      2015,
+                      12
+                    ]
+                  ]
+                },
+                "url": "https://doi.org/10.1016/j.egypro.2015.12.105",
+                "verification_status": "DRAFT_METADATA_ONLY_NOT_FOR_CALCULATION"
+              },
+              {
+                "doi": "10.1016/b978-0-12-323440-7.50026-3",
+                "title": "Biochemical Changes in Soil Beneath Dairy Cattle Slurry Layer: The Effect of Volatile Fatty Acid Oxidation on Denitrification and Soil pH",
+                "authors": [
+                  {
+                    "given": "J.W.",
+                    "family": "PAUL",
+                    "sequence": "first",
+                    "affiliation": [],
+                    "role": [
+                      {
+                        "role": "author",
+                        "vocabulary": "crossref"
+                      }
+                    ]
+                  },
+                  {
+                    "given": "E.G.",
+                    "family": "BEAUCHAMP",
+                    "sequence": "additional",
+                    "affiliation": [],
+                    "role": [
+                      {
+                        "role": "author",
+                        "vocabulary": "crossref"
+                      }
+                    ]
+                  }
+                ],
+                "published": {
+                  "date-parts": [
+                    [
+                      1989
+                    ]
+                  ]
+                },
+                "url": "https://doi.org/10.1016/b978-0-12-323440-7.50026-3",
+                "verification_status": "DRAFT_METADATA_ONLY_NOT_FOR_CALCULATION"
+              }
+            ],
+            "network_status": "cached_metadata",
+            "cache_age_hours": 0.039341414166666665
+          },
+          "region": "KZ-Karaganda",
+          "region_confirmed": false,
+          "catalog_reference_value_kzt": {
+            "low": 100.69219999999997,
+            "high": 100.69219999999997
+          },
+          "calculated_at": "2026-10-29T05:38:31.363916+00:00",
+          "version": "7",
+          "model_used": false,
+          "economic_comparison": {
+            "A_sell_feedstock": {
+              "net_profit": null,
+              "reason": "No confirmed buyer bid and transaction costs"
+            },
+            "B_energy": {
+              "fuel_energy_kwh": {
+                "low": 29.141818678399996,
+                "high": 41.016536132
+              },
+              "net_profit": null,
+              "reason": "No actual recovery, conversion efficiency, avoided tariff eligibility and costs"
+            },
+            "C_sell_gas": {
+              "net_profit": null,
+              "reason": "No comparable raw biogas quote and sale feasibility"
+            },
+            "D_digestate": {
+              "net_profit": null,
+              "reason": "No quality test, product quantity, eligible buyer quote and handling costs"
+            },
+            "ranking": null,
+            "double_counting_policy": "Gas sale and energy use are alternative allocations, never added for the same gas; digestate revenue requires an eligible separate product."
+          },
+          "user_economic_scenario": {
+            "status": "needs_input",
+            "missing": [
+              "sale_price_per_kg",
+              "recovery_fraction",
+              "methane_price_per_m3",
+              "preparation_cost",
+              "heating_cost",
+              "operating_cost",
+              "currency",
+              "price_date",
+              "price_gas_volume_basis"
+            ],
+            "endpoints": [],
+            "final_recommendation": null
+          },
+          "research_run_id": 12,
+          "message": "Детерминированная оценка по проверенным источникам; факты партии не изменены."
+        }
+      }
+    ],
+    "provider_status": [],
+    "missing": [
+      "methane_fraction_for_total_biogas_volume",
+      "comparable_raw_biogas_purchase_quote_and_technical_legal_sale_conditions",
+      "energy_conversion_efficiency_and_operating_storage_transport_digestate_costs"
+    ],
+    "context": {
+      "material_volume_l": 142.0,
+      "model": "stage1_5",
+      "material": "cattle_manure",
+      "reactor_volume_l": 200.0,
+      "market_region": "KZ-Karaganda"
+    },
+    "context_updated": true,
+    "memory": {
+      "version": "7",
+      "conversation_id": "c88daf7e48b441f990d0de6a80f56032",
+      "language": "ru",
+      "facts": {
+        "model": {
+          "value": "stage1_5",
+          "unit": null,
+          "provenance": "USER_CONFIRMED",
+          "evidence": "Explicit validated context from the existing session/API",
+          "recorded_at": "2026-10-29T05:38:30.238527+00:00",
+          "dependencies": []
+        },
+        "material": {
+          "value": "cattle_manure",
+          "unit": null,
+          "provenance": "USER_CONFIRMED",
+          "evidence": "коровьего",
+          "recorded_at": "2026-10-29T05:38:30.284694+00:00",
+          "dependencies": []
+        },
+        "quantity": {
+          "value": 142.0,
+          "unit": "L",
+          "provenance": "USER_CONFIRMED",
+          "evidence": "142 литра",
+          "recorded_at": "2026-10-29T05:38:30.284718+00:00",
+          "dependencies": []
+        },
+        "unit": {
+          "value": "L",
+          "unit": null,
+          "provenance": "USER_CONFIRMED",
+          "evidence": "142 литра",
+          "recorded_at": "2026-10-29T05:38:30.284724+00:00",
+          "dependencies": []
+        },
+        "reactor_total_volume_l": {
+          "value": 200.0,
+          "unit": "L",
+          "provenance": "USER_CONFIRMED",
+          "evidence": "200 литров",
+          "recorded_at": "2026-10-29T05:38:30.284728+00:00",
+          "dependencies": []
+        },
+        "material_state": {
+          "value": "slurry",
+          "unit": null,
+          "provenance": "USER_CONFIRMED",
+          "evidence": "Навозная жиж",
+          "recorded_at": "2026-10-29T05:38:31.346476+00:00",
+          "dependencies": []
+        }
+      },
+      "assumptions": {
+        "market_region": {
+          "value": "KZ-Karaganda",
+          "unit": null,
+          "provenance": "ASSUMED_FOR_SCENARIO",
+          "evidence": "Default dashboard region; not user-confirmed",
+          "recorded_at": "2026-10-29T05:38:30.238572+00:00",
+          "dependencies": []
+        }
+      },
+      "derived": {
+        "material_volume_l": {
+          "value": 142.0,
+          "unit": "L",
+          "provenance": "CALCULATED_FROM_CONFIRMED",
+          "evidence": "Unit arithmetic from explicit confirmed inputs",
+          "recorded_at": "2026-10-29T05:38:31.346506+00:00",
+          "dependencies": [
+            "quantity",
+            "unit"
+          ]
+        }
+      },
+      "estimates": {},
+      "source_verified": {},
+      "intents": [
+        "economic_comparison"
+      ],
+      "pending_question": null,
+      "invalidated": []
+    },
+    "pending_question": null,
+    "actuator_access": false,
+    "policy_tool_plan": [
+      "research_and_estimate"
+    ],
+    "technical_metadata": {
+      "tool_calls": [
+        {
+          "tool": "research_and_estimate",
+          "status": "ok",
+          "input_origin": "confirmed_inputs_and_separate_reviewed_literature",
+          "result": {
+            "status": "ok",
+            "result_level": "LITERATURE_ESTIMATE",
+            "material": "cattle_manure",
+            "material_state": "slurry",
+            "profile_id": "oliveira-rm1-2025-v1",
+            "wet_mass_kg": {
+              "low": 143.84599999999998,
+              "high": 143.84599999999998
+            },
+            "vs_mass_kg": {
+              "low": 14.614753599999997,
+              "high": 16.455982399999996
+            },
+            "inputs": {
+              "density_kg_l": {
+                "range": {
+                  "low": 1.013,
+                  "high": 1.013
+                },
+                "basis": "REVIEWED_LITERATURE",
+                "source_id": "doi:10.1007/s43153-025-00592-x",
+                "locator": "Materials and methods, economic analysis, Eq. 1",
+                "original_value": "1.013",
+                "original_unit": "g/mL",
+                "method": "REPORTED_POINT; variation not reported"
+              },
+              "vs_fraction_wet": {
+                "range": {
+                  "low": 0.1016,
+                  "high": 0.1144
+                },
+                "basis": "REVIEWED_LITERATURE",
+                "source_id": "doi:10.1007/s43153-025-00592-x",
+                "locator": "Table 1, PDF page 3, journal page 739",
+                "original_value": "10.8 ± 0.64",
+                "original_unit": "% wet weight",
+                "method": "REPORTED_MEAN_PLUS_MINUS_SD_SENSITIVITY; not percent TS, not confidence bounds"
+              },
+              "bmp_ml_g_vs": {
+                "range": {
+                  "low": 200,
+                  "high": 250
+                },
+                "basis": "REVIEWED_LITERATURE",
+                "source_id": "doi:10.1007/s43153-025-00592-x",
+                "locator": "Figure 1a, untreated RM1 bar only",
+                "original_value": "Untreated RM1 bar between major gridlines 200 and 250",
+                "original_unit": "NmL CH4/g VS",
+                "method": "GRAPH_READ_ENVELOPE; coarse major-gridline bracket, not reported exact mean or uncertainty interval"
+              }
+            },
+            "assumptions": [
+              "density_kg_l transferred from oliveira-rm1-2025-v1",
+              "vs_fraction_wet transferred from oliveira-rm1-2025-v1",
+              "bmp_ml_g_vs transferred from oliveira-rm1-2025-v1",
+              "Indicative pure-methane fuel energy: FNR 9.97 kWh/m3; compatible dry/reference basis assumed, not verified",
+              "KZ-Karaganda is a dashboard default region, not user-confirmed"
+            ],
+            "warnings": [
+              "Sensitivity envelope from transferred literature and coarse graph gridlines. No validated coverage; not a confidence or prediction interval. Single-study transfer error, density variation and plant recovery are not quantified.",
+              "Laboratory methane potential is not actual plant gas production.",
+              "Total vessel volume does not establish working volume, headspace, inoculum or dilution capacity.",
+              "Catalog reference value is not a purchase bid, sale income, current confirmed price, or profit; material form and small-batch terms unverified."
+            ],
+            "methane_potential_l": {
+              "low": 2922.9507199999994,
+              "high": 4113.995599999999
+            },
+            "methane_potential_m3": {
+              "low": 2.9229507199999993,
+              "high": 4.113995599999999
+            },
+            "raw_biogas_m3": null,
+            "fuel_energy_kwh": {
+              "low": 29.141818678399996,
+              "high": 41.016536132
+            },
+            "gas_sale_revenue": null,
+            "net_profit": null,
+            "final_recommendation": null,
+            "missing": [
+              "methane_fraction_for_total_biogas_volume",
+              "comparable_raw_biogas_purchase_quote_and_technical_legal_sale_conditions",
+              "energy_conversion_efficiency_and_operating_storage_transport_digestate_costs"
+            ],
+            "sources": [
+              {
+                "id": "doi:10.1007/s43153-025-00592-x",
+                "title": "Moderate thermal, alkaline and thermal-alkaline pretreatment of cattle manure: effects on methane production and economic feasibility",
+                "authors": [
+                  "Helena Rodrigues Oliveira",
+                  "Thuane Mendes Anacleto",
+                  "Lisa Åsenius",
+                  "Alex Enrich-Prast"
+                ],
+                "year": 2025,
+                "online_published": "2025-09-11",
+                "issue_year": 2026,
+                "doi": "10.1007/s43153-025-00592-x",
+                "url": "https://link.springer.com/article/10.1007/s43153-025-00592-x",
+                "license": "CC BY 4.0",
+                "review_method": "Manual review of primary article and original Figure 1; not an automatic full-text extraction",
+                "verification_status": "REVIEWED_PRIMARY",
+                "retrieval_limit": "Publisher robots disallows programmatic article/PDF downloads; no bypass. Public figure host was accessible under its own robots policy.",
+                "locators": {
+                  "density_kg_l": "Materials and methods, economic analysis, Eq. 1",
+                  "ts_fraction": "Table 1, PDF page 3, journal page 739",
+                  "vs_fraction_wet": "Table 1, PDF page 3, journal page 739",
+                  "bmp_ml_g_vs": "Figure 1a, untreated RM1 bar only"
+                }
+              },
+              {
+                "id": "fnr-methane-energy",
+                "title": "Faustzahlen Biogas",
+                "organization": "Fachagentur Nachwachsende Rohstoffe e. V. (FNR)",
+                "year": null,
+                "url": "https://biogas.fnr.de/daten-und-fakten/faustzahlen",
+                "locator": "Energy content of pure methane",
+                "original_value": "9.97",
+                "original_unit": "kWh per m3 pure methane",
+                "kwh_m3": 9.97,
+                "verification_status": "REVIEWED_PRIMARY_REFERENCE",
+                "limitation": "Indicative fuel energy; reference-condition/dry-gas compatibility is an assumption. Not electric output or revenue."
+              }
+            ],
+            "uncertainty_status": "Sensitivity envelope from transferred literature and coarse graph gridlines. No validated coverage; not a confidence or prediction interval. Single-study transfer error, density variation and plant recovery are not quantified.",
+            "gas_reference": "273.2 K; 1.01325 bar",
+            "gas_moisture_basis": "not explicitly stated",
+            "sensitivity": {
+              "vary_VS_only_m3": {
+                "low": 3.2883195599999993,
+                "high": 3.702596039999999
+              },
+              "vary_BMP_only_m3": {
+                "low": 3.1070735999999997,
+                "high": 3.883841999999999
+              },
+              "method": "One factor at a time around arithmetic midpoint; no probabilities assigned"
+            },
+            "market": {
+              "offers": [
+                {
+                  "source_id": "stroitaxi-karaganda-cattle-manure",
+                  "source_url": "https://stroitaxi.kz/karaganda/catalog/stroitelnye-materialy/koroviy-navoz/",
+                  "title": "Коровий навоз — Караганда",
+                  "commodity": "cattle_manure",
+                  "region": "KZ-Karaganda",
+                  "country": "KZ",
+                  "value": 700.0,
+                  "currency": "KZT",
+                  "unit": "t",
+                  "normalized_value": 0.7,
+                  "normalized_unit": "KZT/kg",
+                  "published_at": null,
+                  "received_at": "2026-10-29T05:36:01.632415+00:00",
+                  "price_type": "seller_ask",
+                  "reliability": "UNDATED_APPROXIMATE_REFERENCE",
+                  "is_current": false,
+                  "material_state": "unknown",
+                  "evidence": "Approximate catalog asking price; publication date, moisture, delivery, minimum lot and tax basis unspecified",
+                  "sha256": "8f6d95dd87b0cf0703d0f5c5a018509e9d675aa0526d48928983fa8babf0c1d2"
+                }
+              ],
+              "status": "cached_undated_reference",
+              "region": "KZ-Karaganda",
+              "missing": [
+                "confirmed_feedstock_purchase_bid",
+                "raw_biogas_purchase_quote"
+              ],
+              "coverage": [
+                "cattle_manure",
+                "swine_manure",
+                "poultry_manure",
+                "organic_waste",
+                "digestate",
+                "electricity",
+                "natural_gas",
+                "biogas",
+                "heat"
+              ],
+              "coverage_notice": "Only configured cattle manure catalog adapter; other categories use existing market store/manual import. Coverage does not imply live sources.",
+              "cache_age_hours": 0.041587678333333336
+            },
+            "scientific_search": {
+              "reviewed_profiles": [
+                {
+                  "id": "oliveira-rm1-2025-v1",
+                  "material": "cattle_manure",
+                  "material_state": "slurry",
+                  "source": {
+                    "id": "doi:10.1007/s43153-025-00592-x",
+                    "title": "Moderate thermal, alkaline and thermal-alkaline pretreatment of cattle manure: effects on methane production and economic feasibility",
+                    "authors": [
+                      "Helena Rodrigues Oliveira",
+                      "Thuane Mendes Anacleto",
+                      "Lisa Åsenius",
+                      "Alex Enrich-Prast"
+                    ],
+                    "year": 2025,
+                    "online_published": "2025-09-11",
+                    "issue_year": 2026,
+                    "doi": "10.1007/s43153-025-00592-x",
+                    "url": "https://link.springer.com/article/10.1007/s43153-025-00592-x",
+                    "license": "CC BY 4.0",
+                    "review_method": "Manual review of primary article and original Figure 1; not an automatic full-text extraction",
+                    "verification_status": "REVIEWED_PRIMARY",
+                    "retrieval_limit": "Publisher robots disallows programmatic article/PDF downloads; no bypass. Public figure host was accessible under its own robots policy."
+                  },
+                  "conditions": {
+                    "country": "Sweden",
+                    "sample": "RM1 untreated raw cattle slurry, Sjukulla; refrigerated 4 °C for 12 days",
+                    "bmp_method": "AMPTS II, triplicate, inoculum blank corrected",
+                    "temperature_c": 37,
+                    "duration_days": 27,
+                    "ISR_VS": 1,
+                    "gas_reference": "273.2 K; 1.01325 bar",
+                    "gas_moisture_basis": "not explicitly stated",
+                    "pretreatment": "none",
+                    "limitations": "Single material and laboratory; frozen RM2 and treated samples excluded. Not a full-scale recovery guarantee."
+                  },
+                  "values": {
+                    "density_kg_l": {
+                      "original_value": "1.013",
+                      "original_unit": "g/mL",
+                      "low": 1.013,
+                      "high": 1.013,
+                      "normalized_unit": "kg/L",
+                      "locator": "Materials and methods, economic analysis, Eq. 1",
+                      "method": "REPORTED_POINT; variation not reported"
+                    },
+                    "ts_fraction": {
+                      "original_value": "13.3 ± 0.61",
+                      "original_unit": "% wet weight",
+                      "low": 0.1269,
+                      "high": 0.1391,
+                      "normalized_unit": "kg TS/kg wet",
+                      "locator": "Table 1, PDF page 3, journal page 739",
+                      "method": "REPORTED_MEAN_PLUS_MINUS_SD_SENSITIVITY; not confidence bounds"
+                    },
+                    "vs_fraction_wet": {
+                      "original_value": "10.8 ± 0.64",
+                      "original_unit": "% wet weight",
+                      "low": 0.1016,
+                      "high": 0.1144,
+                      "normalized_unit": "kg VS/kg wet",
+                      "locator": "Table 1, PDF page 3, journal page 739",
+                      "method": "REPORTED_MEAN_PLUS_MINUS_SD_SENSITIVITY; not percent TS, not confidence bounds"
+                    },
+                    "bmp_ml_g_vs": {
+                      "original_value": "Untreated RM1 bar between major gridlines 200 and 250",
+                      "original_unit": "NmL CH4/g VS",
+                      "low": 200,
+                      "high": 250,
+                      "normalized_unit": "mL CH4/g VS at stated reference",
+                      "locator": "Figure 1a, untreated RM1 bar only",
+                      "method": "GRAPH_READ_ENVELOPE; coarse major-gridline bracket, not reported exact mean or uncertainty interval",
+                      "asset_url": "https://media.springernature.com/lw685/springer-static/image/art%3A10.1007%2Fs43153-025-00592-x/MediaObjects/43153_2025_592_Fig1_HTML.jpg"
+                    }
+                  },
+                  "excluded_items": [
+                    {
+                      "locator": "Table 3",
+                      "value": "35.8 kWh/m3 methane",
+                      "status": "REJECTED_UNIT_CONFLICT",
+                      "reason": "Conflicting heating-value unit; not used or silently corrected"
+                    }
+                  ]
+                }
+              ],
+              "synonyms": [
+                "коровий навоз",
+                "навоз КРС",
+                "cattle manure",
+                "cow manure",
+                "cow dung",
+                "cattle slurry"
+              ],
+              "discovered": [
+                {
+                  "doi": "10.37473/fic/10.3390/su15043172",
+                  "title": "Relationships among Physicochemical, Microbiological, and Parasitological Parameters, Ecotoxicity, and Biochemical Methane Potential of Pig Slurry",
+                  "authors": [],
+                  "published": null,
+                  "url": "https://doi.org/10.37473/fic/10.3390/su15043172",
+                  "verification_status": "DRAFT_METADATA_ONLY_NOT_FOR_CALCULATION"
+                },
+                {
+                  "doi": "10.37473/dac/10.3390/su15043172",
+                  "title": "Relationships among Physicochemical, Microbiological, and Parasitological Parameters, Ecotoxicity, and Biochemical Methane Potential of Pig Slurry",
+                  "authors": [],
+                  "published": null,
+                  "url": "https://doi.org/10.37473/dac/10.3390/su15043172",
+                  "verification_status": "DRAFT_METADATA_ONLY_NOT_FOR_CALCULATION"
+                },
+                {
+                  "doi": "10.1111/asj.12495",
+                  "title": "The cumulative methane production from dairy cattle slurry can be explained by its volatile solid, temperature and length of storage",
+                  "authors": [
+                    {
+                      "given": "Takuji",
+                      "family": "Sawamoto",
+                      "sequence": "first",
+                      "affiliation": [
+                        {
+                          "name": "Department of Sustainable Agriculture, College of Agriculture, Food and Environment Sciences; Rakuno Gakuen University; Ebetsu Hokkaido"
+                        }
+                      ],
+                      "role": [
+                        {
+                          "vocabulary": "crossref",
+                          "role": "author"
+                        }
+                      ]
+                    },
+                    {
+                      "given": "Megumi",
+                      "family": "Nakamura",
+                      "sequence": "additional",
+                      "affiliation": [
+                        {
+                          "name": "Department of Sustainable Agriculture, College of Agriculture, Food and Environment Sciences; Rakuno Gakuen University; Ebetsu Hokkaido"
+                        },
+                        {
+                          "name": "Zukosha Co., Ltd.; Obihiro Hokkaido Japan"
+                        }
+                      ],
+                      "role": [
+                        {
+                          "vocabulary": "crossref",
+                          "role": "author"
+                        }
+                      ]
+                    },
+                    {
+                      "given": "Kenji",
+                      "family": "Nekomoto",
+                      "sequence": "additional",
+                      "affiliation": [
+                        {
+                          "name": "Department of Sustainable Agriculture, College of Agriculture, Food and Environment Sciences; Rakuno Gakuen University; Ebetsu Hokkaido"
+                        }
+                      ],
+                      "role": [
+                        {
+                          "vocabulary": "crossref",
+                          "role": "author"
+                        }
+                      ]
+                    },
+                    {
+                      "given": "Shinji",
+                      "family": "Hoshiba",
+                      "sequence": "additional",
+                      "affiliation": [
+                        {
+                          "name": "Department of Sustainable Agriculture, College of Agriculture, Food and Environment Sciences; Rakuno Gakuen University; Ebetsu Hokkaido"
+                        }
+                      ],
+                      "role": [
+                        {
+                          "vocabulary": "crossref",
+                          "role": "author"
+                        }
+                      ]
+                    },
+                    {
+                      "given": "Keiko",
+                      "family": "Minato",
+                      "sequence": "additional",
+                      "affiliation": [
+                        {
+                          "name": "Animal Research Center; Hokkaido Research Organization; Shintoku Hokkaido"
+                        }
+                      ],
+                      "role": [
+                        {
+                          "vocabulary": "crossref",
+                          "role": "author"
+                        }
+                      ]
+                    },
+                    {
+                      "given": "Motoo",
+                      "family": "Nakayama",
+                      "sequence": "additional",
+                      "affiliation": [
+                        {
+                          "name": "Kumamoto Prefectural Agricultural Research Center; Animal Husbandry Research Institute; Koushi Kumamoto"
+                        }
+                      ],
+                      "role": [
+                        {
+                          "vocabulary": "crossref",
+                          "role": "author"
+                        }
+                      ]
+                    },
+                    {
+                      "given": "Takashi",
+                      "family": "Osada",
+                      "sequence": "additional",
+                      "affiliation": [
+                        {
+                          "name": "National Agriculture and Food Research Organization; Institute of Livestock and Grassland Science; Tsukuba Ibaraki"
+                        }
+                      ],
+                      "role": [
+                        {
+                          "vocabulary": "crossref",
+                          "role": "author"
+                        }
+                      ]
+                    }
+                  ],
+                  "published": {
+                    "date-parts": [
+                      [
+                        2015,
+                        9,
+                        21
+                      ]
+                    ]
+                  },
+                  "url": "https://doi.org/10.1111/asj.12495",
+                  "verification_status": "DRAFT_METADATA_ONLY_NOT_FOR_CALCULATION"
+                },
+                {
+                  "doi": "10.1016/j.egypro.2015.12.105",
+                  "title": "Anaerobic Co-digestion of Olive-mill Solid Waste with Cattle Manure and Cattle Slurry: Analysis of Bio-methane Potential",
+                  "authors": [
+                    {
+                      "given": "Maurizio",
+                      "family": "Carlini",
+                      "sequence": "first",
+                      "affiliation": [],
+                      "role": [
+                        {
+                          "role": "author",
+                          "vocabulary": "crossref"
+                        }
+                      ]
+                    },
+                    {
+                      "given": "Sonia",
+                      "family": "Castellucci",
+                      "sequence": "additional",
+                      "affiliation": [],
+                      "role": [
+                        {
+                          "role": "author",
+                          "vocabulary": "crossref"
+                        }
+                      ]
+                    },
+                    {
+                      "given": "Marta",
+                      "family": "Moneti",
+                      "sequence": "additional",
+                      "affiliation": [],
+                      "role": [
+                        {
+                          "role": "author",
+                          "vocabulary": "crossref"
+                        }
+                      ]
+                    }
+                  ],
+                  "published": {
+                    "date-parts": [
+                      [
+                        2015,
+                        12
+                      ]
+                    ]
+                  },
+                  "url": "https://doi.org/10.1016/j.egypro.2015.12.105",
+                  "verification_status": "DRAFT_METADATA_ONLY_NOT_FOR_CALCULATION"
+                },
+                {
+                  "doi": "10.1016/b978-0-12-323440-7.50026-3",
+                  "title": "Biochemical Changes in Soil Beneath Dairy Cattle Slurry Layer: The Effect of Volatile Fatty Acid Oxidation on Denitrification and Soil pH",
+                  "authors": [
+                    {
+                      "given": "J.W.",
+                      "family": "PAUL",
+                      "sequence": "first",
+                      "affiliation": [],
+                      "role": [
+                        {
+                          "role": "author",
+                          "vocabulary": "crossref"
+                        }
+                      ]
+                    },
+                    {
+                      "given": "E.G.",
+                      "family": "BEAUCHAMP",
+                      "sequence": "additional",
+                      "affiliation": [],
+                      "role": [
+                        {
+                          "role": "author",
+                          "vocabulary": "crossref"
+                        }
+                      ]
+                    }
+                  ],
+                  "published": {
+                    "date-parts": [
+                      [
+                        1989
+                      ]
+                    ]
+                  },
+                  "url": "https://doi.org/10.1016/b978-0-12-323440-7.50026-3",
+                  "verification_status": "DRAFT_METADATA_ONLY_NOT_FOR_CALCULATION"
+                }
+              ],
+              "network_status": "cached_metadata",
+              "cache_age_hours": 0.039341414166666665
+            },
+            "region": "KZ-Karaganda",
+            "region_confirmed": false,
+            "catalog_reference_value_kzt": {
+              "low": 100.69219999999997,
+              "high": 100.69219999999997
+            },
+            "calculated_at": "2026-10-29T05:38:31.363916+00:00",
+            "version": "7",
+            "model_used": false,
+            "economic_comparison": {
+              "A_sell_feedstock": {
+                "net_profit": null,
+                "reason": "No confirmed buyer bid and transaction costs"
+              },
+              "B_energy": {
+                "fuel_energy_kwh": {
+                  "low": 29.141818678399996,
+                  "high": 41.016536132
+                },
+                "net_profit": null,
+                "reason": "No actual recovery, conversion efficiency, avoided tariff eligibility and costs"
+              },
+              "C_sell_gas": {
+                "net_profit": null,
+                "reason": "No comparable raw biogas quote and sale feasibility"
+              },
+              "D_digestate": {
+                "net_profit": null,
+                "reason": "No quality test, product quantity, eligible buyer quote and handling costs"
+              },
+              "ranking": null,
+              "double_counting_policy": "Gas sale and energy use are alternative allocations, never added for the same gas; digestate revenue requires an eligible separate product."
+            },
+            "user_economic_scenario": {
+              "status": "needs_input",
+              "missing": [
+                "sale_price_per_kg",
+                "recovery_fraction",
+                "methane_price_per_m3",
+                "preparation_cost",
+                "heating_cost",
+                "operating_cost",
+                "currency",
+                "price_date",
+                "price_gas_volume_basis"
+              ],
+              "endpoints": [],
+              "final_recommendation": null
+            },
+            "research_run_id": 12,
+            "message": "Детерминированная оценка по проверенным источникам; факты партии не изменены."
+          }
+        }
+      ],
+      "confirmed_parameters": {
+        "model": {
+          "value": "stage1_5",
+          "unit": null,
+          "provenance": "USER_CONFIRMED",
+          "evidence": "Explicit validated context from the existing session/API",
+          "recorded_at": "2026-10-29T05:38:30.238527+00:00",
+          "dependencies": []
+        },
+        "material": {
+          "value": "cattle_manure",
+          "unit": null,
+          "provenance": "USER_CONFIRMED",
+          "evidence": "коровьего",
+          "recorded_at": "2026-10-29T05:38:30.284694+00:00",
+          "dependencies": []
+        },
+        "quantity": {
+          "value": 142.0,
+          "unit": "L",
+          "provenance": "USER_CONFIRMED",
+          "evidence": "142 литра",
+          "recorded_at": "2026-10-29T05:38:30.284718+00:00",
+          "dependencies": []
+        },
+        "unit": {
+          "value": "L",
+          "unit": null,
+          "provenance": "USER_CONFIRMED",
+          "evidence": "142 литра",
+          "recorded_at": "2026-10-29T05:38:30.284724+00:00",
+          "dependencies": []
+        },
+        "reactor_total_volume_l": {
+          "value": 200.0,
+          "unit": "L",
+          "provenance": "USER_CONFIRMED",
+          "evidence": "200 литров",
+          "recorded_at": "2026-10-29T05:38:30.284728+00:00",
+          "dependencies": []
+        },
+        "material_state": {
+          "value": "slurry",
+          "unit": null,
+          "provenance": "USER_CONFIRMED",
+          "evidence": "Навозная жиж",
+          "recorded_at": "2026-10-29T05:38:31.346476+00:00",
+          "dependencies": []
+        }
+      },
+      "assumptions": [
+        "density_kg_l transferred from oliveira-rm1-2025-v1",
+        "vs_fraction_wet transferred from oliveira-rm1-2025-v1",
+        "bmp_ml_g_vs transferred from oliveira-rm1-2025-v1",
+        "Indicative pure-methane fuel energy: FNR 9.97 kWh/m3; compatible dry/reference basis assumed, not verified",
+        "KZ-Karaganda is a dashboard default region, not user-confirmed"
+      ],
+      "research_request": {
+        "material": "cattle_manure",
+        "material_state": "slurry",
+        "region": "KZ-Karaganda",
+        "region_confirmed": false,
+        "online": false,
+        "volume_l": 142.0,
+        "reactor_total_volume_l": 200.0
+      },
+      "extracted_entities": {
+        "language": "ru",
+        "intents": [],
+        "entities": [
+          {
+            "name": "material_state",
+            "value": "slurry",
+            "unit": null,
+            "evidence": "Навозная жиж",
+            "provenance": "USER_CONFIRMED"
+          }
+        ],
+        "correction": false,
+        "new_batch": false,
+        "validation_errors": []
+      },
+      "llm_proposal": null,
+      "research_result": {
+        "status": "ok",
+        "result_level": "LITERATURE_ESTIMATE",
+        "material": "cattle_manure",
+        "material_state": "slurry",
+        "profile_id": "oliveira-rm1-2025-v1",
+        "wet_mass_kg": {
+          "low": 143.84599999999998,
+          "high": 143.84599999999998
+        },
+        "vs_mass_kg": {
+          "low": 14.614753599999997,
+          "high": 16.455982399999996
+        },
+        "inputs": {
+          "density_kg_l": {
+            "range": {
+              "low": 1.013,
+              "high": 1.013
+            },
+            "basis": "REVIEWED_LITERATURE",
+            "source_id": "doi:10.1007/s43153-025-00592-x",
+            "locator": "Materials and methods, economic analysis, Eq. 1",
+            "original_value": "1.013",
+            "original_unit": "g/mL",
+            "method": "REPORTED_POINT; variation not reported"
+          },
+          "vs_fraction_wet": {
+            "range": {
+              "low": 0.1016,
+              "high": 0.1144
+            },
+            "basis": "REVIEWED_LITERATURE",
+            "source_id": "doi:10.1007/s43153-025-00592-x",
+            "locator": "Table 1, PDF page 3, journal page 739",
+            "original_value": "10.8 ± 0.64",
+            "original_unit": "% wet weight",
+            "method": "REPORTED_MEAN_PLUS_MINUS_SD_SENSITIVITY; not percent TS, not confidence bounds"
+          },
+          "bmp_ml_g_vs": {
+            "range": {
+              "low": 200,
+              "high": 250
+            },
+            "basis": "REVIEWED_LITERATURE",
+            "source_id": "doi:10.1007/s43153-025-00592-x",
+            "locator": "Figure 1a, untreated RM1 bar only",
+            "original_value": "Untreated RM1 bar between major gridlines 200 and 250",
+            "original_unit": "NmL CH4/g VS",
+            "method": "GRAPH_READ_ENVELOPE; coarse major-gridline bracket, not reported exact mean or uncertainty interval"
+          }
+        },
+        "assumptions": [
+          "density_kg_l transferred from oliveira-rm1-2025-v1",
+          "vs_fraction_wet transferred from oliveira-rm1-2025-v1",
+          "bmp_ml_g_vs transferred from oliveira-rm1-2025-v1",
+          "Indicative pure-methane fuel energy: FNR 9.97 kWh/m3; compatible dry/reference basis assumed, not verified",
+          "KZ-Karaganda is a dashboard default region, not user-confirmed"
+        ],
+        "warnings": [
+          "Sensitivity envelope from transferred literature and coarse graph gridlines. No validated coverage; not a confidence or prediction interval. Single-study transfer error, density variation and plant recovery are not quantified.",
+          "Laboratory methane potential is not actual plant gas production.",
+          "Total vessel volume does not establish working volume, headspace, inoculum or dilution capacity.",
+          "Catalog reference value is not a purchase bid, sale income, current confirmed price, or profit; material form and small-batch terms unverified."
+        ],
+        "methane_potential_l": {
+          "low": 2922.9507199999994,
+          "high": 4113.995599999999
+        },
+        "methane_potential_m3": {
+          "low": 2.9229507199999993,
+          "high": 4.113995599999999
+        },
+        "raw_biogas_m3": null,
+        "fuel_energy_kwh": {
+          "low": 29.141818678399996,
+          "high": 41.016536132
+        },
+        "gas_sale_revenue": null,
+        "net_profit": null,
+        "final_recommendation": null,
+        "missing": [
+          "methane_fraction_for_total_biogas_volume",
+          "comparable_raw_biogas_purchase_quote_and_technical_legal_sale_conditions",
+          "energy_conversion_efficiency_and_operating_storage_transport_digestate_costs"
+        ],
+        "sources": [
+          {
+            "id": "doi:10.1007/s43153-025-00592-x",
+            "title": "Moderate thermal, alkaline and thermal-alkaline pretreatment of cattle manure: effects on methane production and economic feasibility",
+            "authors": [
+              "Helena Rodrigues Oliveira",
+              "Thuane Mendes Anacleto",
+              "Lisa Åsenius",
+              "Alex Enrich-Prast"
+            ],
+            "year": 2025,
+            "online_published": "2025-09-11",
+            "issue_year": 2026,
+            "doi": "10.1007/s43153-025-00592-x",
+            "url": "https://link.springer.com/article/10.1007/s43153-025-00592-x",
+            "license": "CC BY 4.0",
+            "review_method": "Manual review of primary article and original Figure 1; not an automatic full-text extraction",
+            "verification_status": "REVIEWED_PRIMARY",
+            "retrieval_limit": "Publisher robots disallows programmatic article/PDF downloads; no bypass. Public figure host was accessible under its own robots policy.",
+            "locators": {
+              "density_kg_l": "Materials and methods, economic analysis, Eq. 1",
+              "ts_fraction": "Table 1, PDF page 3, journal page 739",
+              "vs_fraction_wet": "Table 1, PDF page 3, journal page 739",
+              "bmp_ml_g_vs": "Figure 1a, untreated RM1 bar only"
+            }
+          },
+          {
+            "id": "fnr-methane-energy",
+            "title": "Faustzahlen Biogas",
+            "organization": "Fachagentur Nachwachsende Rohstoffe e. V. (FNR)",
+            "year": null,
+            "url": "https://biogas.fnr.de/daten-und-fakten/faustzahlen",
+            "locator": "Energy content of pure methane",
+            "original_value": "9.97",
+            "original_unit": "kWh per m3 pure methane",
+            "kwh_m3": 9.97,
+            "verification_status": "REVIEWED_PRIMARY_REFERENCE",
+            "limitation": "Indicative fuel energy; reference-condition/dry-gas compatibility is an assumption. Not electric output or revenue."
+          }
+        ],
+        "uncertainty_status": "Sensitivity envelope from transferred literature and coarse graph gridlines. No validated coverage; not a confidence or prediction interval. Single-study transfer error, density variation and plant recovery are not quantified.",
+        "gas_reference": "273.2 K; 1.01325 bar",
+        "gas_moisture_basis": "not explicitly stated",
+        "sensitivity": {
+          "vary_VS_only_m3": {
+            "low": 3.2883195599999993,
+            "high": 3.702596039999999
+          },
+          "vary_BMP_only_m3": {
+            "low": 3.1070735999999997,
+            "high": 3.883841999999999
+          },
+          "method": "One factor at a time around arithmetic midpoint; no probabilities assigned"
+        },
+        "market": {
+          "offers": [
+            {
+              "source_id": "stroitaxi-karaganda-cattle-manure",
+              "source_url": "https://stroitaxi.kz/karaganda/catalog/stroitelnye-materialy/koroviy-navoz/",
+              "title": "Коровий навоз — Караганда",
+              "commodity": "cattle_manure",
+              "region": "KZ-Karaganda",
+              "country": "KZ",
+              "value": 700.0,
+              "currency": "KZT",
+              "unit": "t",
+              "normalized_value": 0.7,
+              "normalized_unit": "KZT/kg",
+              "published_at": null,
+              "received_at": "2026-10-29T05:36:01.632415+00:00",
+              "price_type": "seller_ask",
+              "reliability": "UNDATED_APPROXIMATE_REFERENCE",
+              "is_current": false,
+              "material_state": "unknown",
+              "evidence": "Approximate catalog asking price; publication date, moisture, delivery, minimum lot and tax basis unspecified",
+              "sha256": "8f6d95dd87b0cf0703d0f5c5a018509e9d675aa0526d48928983fa8babf0c1d2"
+            }
+          ],
+          "status": "cached_undated_reference",
+          "region": "KZ-Karaganda",
+          "missing": [
+            "confirmed_feedstock_purchase_bid",
+            "raw_biogas_purchase_quote"
+          ],
+          "coverage": [
+            "cattle_manure",
+            "swine_manure",
+            "poultry_manure",
+            "organic_waste",
+            "digestate",
+            "electricity",
+            "natural_gas",
+            "biogas",
+            "heat"
+          ],
+          "coverage_notice": "Only configured cattle manure catalog adapter; other categories use existing market store/manual import. Coverage does not imply live sources.",
+          "cache_age_hours": 0.041587678333333336
+        },
+        "scientific_search": {
+          "reviewed_profiles": [
+            {
+              "id": "oliveira-rm1-2025-v1",
+              "material": "cattle_manure",
+              "material_state": "slurry",
+              "source": {
+                "id": "doi:10.1007/s43153-025-00592-x",
+                "title": "Moderate thermal, alkaline and thermal-alkaline pretreatment of cattle manure: effects on methane production and economic feasibility",
+                "authors": [
+                  "Helena Rodrigues Oliveira",
+                  "Thuane Mendes Anacleto",
+                  "Lisa Åsenius",
+                  "Alex Enrich-Prast"
+                ],
+                "year": 2025,
+                "online_published": "2025-09-11",
+                "issue_year": 2026,
+                "doi": "10.1007/s43153-025-00592-x",
+                "url": "https://link.springer.com/article/10.1007/s43153-025-00592-x",
+                "license": "CC BY 4.0",
+                "review_method": "Manual review of primary article and original Figure 1; not an automatic full-text extraction",
+                "verification_status": "REVIEWED_PRIMARY",
+                "retrieval_limit": "Publisher robots disallows programmatic article/PDF downloads; no bypass. Public figure host was accessible under its own robots policy."
+              },
+              "conditions": {
+                "country": "Sweden",
+                "sample": "RM1 untreated raw cattle slurry, Sjukulla; refrigerated 4 °C for 12 days",
+                "bmp_method": "AMPTS II, triplicate, inoculum blank corrected",
+                "temperature_c": 37,
+                "duration_days": 27,
+                "ISR_VS": 1,
+                "gas_reference": "273.2 K; 1.01325 bar",
+                "gas_moisture_basis": "not explicitly stated",
+                "pretreatment": "none",
+                "limitations": "Single material and laboratory; frozen RM2 and treated samples excluded. Not a full-scale recovery guarantee."
+              },
+              "values": {
+                "density_kg_l": {
+                  "original_value": "1.013",
+                  "original_unit": "g/mL",
+                  "low": 1.013,
+                  "high": 1.013,
+                  "normalized_unit": "kg/L",
+                  "locator": "Materials and methods, economic analysis, Eq. 1",
+                  "method": "REPORTED_POINT; variation not reported"
+                },
+                "ts_fraction": {
+                  "original_value": "13.3 ± 0.61",
+                  "original_unit": "% wet weight",
+                  "low": 0.1269,
+                  "high": 0.1391,
+                  "normalized_unit": "kg TS/kg wet",
+                  "locator": "Table 1, PDF page 3, journal page 739",
+                  "method": "REPORTED_MEAN_PLUS_MINUS_SD_SENSITIVITY; not confidence bounds"
+                },
+                "vs_fraction_wet": {
+                  "original_value": "10.8 ± 0.64",
+                  "original_unit": "% wet weight",
+                  "low": 0.1016,
+                  "high": 0.1144,
+                  "normalized_unit": "kg VS/kg wet",
+                  "locator": "Table 1, PDF page 3, journal page 739",
+                  "method": "REPORTED_MEAN_PLUS_MINUS_SD_SENSITIVITY; not percent TS, not confidence bounds"
+                },
+                "bmp_ml_g_vs": {
+                  "original_value": "Untreated RM1 bar between major gridlines 200 and 250",
+                  "original_unit": "NmL CH4/g VS",
+                  "low": 200,
+                  "high": 250,
+                  "normalized_unit": "mL CH4/g VS at stated reference",
+                  "locator": "Figure 1a, untreated RM1 bar only",
+                  "method": "GRAPH_READ_ENVELOPE; coarse major-gridline bracket, not reported exact mean or uncertainty interval",
+                  "asset_url": "https://media.springernature.com/lw685/springer-static/image/art%3A10.1007%2Fs43153-025-00592-x/MediaObjects/43153_2025_592_Fig1_HTML.jpg"
+                }
+              },
+              "excluded_items": [
+                {
+                  "locator": "Table 3",
+                  "value": "35.8 kWh/m3 methane",
+                  "status": "REJECTED_UNIT_CONFLICT",
+                  "reason": "Conflicting heating-value unit; not used or silently corrected"
+                }
+              ]
+            }
+          ],
+          "synonyms": [
+            "коровий навоз",
+            "навоз КРС",
+            "cattle manure",
+            "cow manure",
+            "cow dung",
+            "cattle slurry"
+          ],
+          "discovered": [
+            {
+              "doi": "10.37473/fic/10.3390/su15043172",
+              "title": "Relationships among Physicochemical, Microbiological, and Parasitological Parameters, Ecotoxicity, and Biochemical Methane Potential of Pig Slurry",
+              "authors": [],
+              "published": null,
+              "url": "https://doi.org/10.37473/fic/10.3390/su15043172",
+              "verification_status": "DRAFT_METADATA_ONLY_NOT_FOR_CALCULATION"
+            },
+            {
+              "doi": "10.37473/dac/10.3390/su15043172",
+              "title": "Relationships among Physicochemical, Microbiological, and Parasitological Parameters, Ecotoxicity, and Biochemical Methane Potential of Pig Slurry",
+              "authors": [],
+              "published": null,
+              "url": "https://doi.org/10.37473/dac/10.3390/su15043172",
+              "verification_status": "DRAFT_METADATA_ONLY_NOT_FOR_CALCULATION"
+            },
+            {
+              "doi": "10.1111/asj.12495",
+              "title": "The cumulative methane production from dairy cattle slurry can be explained by its volatile solid, temperature and length of storage",
+              "authors": [
+                {
+                  "given": "Takuji",
+                  "family": "Sawamoto",
+                  "sequence": "first",
+                  "affiliation": [
+                    {
+                      "name": "Department of Sustainable Agriculture, College of Agriculture, Food and Environment Sciences; Rakuno Gakuen University; Ebetsu Hokkaido"
+                    }
+                  ],
+                  "role": [
+                    {
+                      "vocabulary": "crossref",
+                      "role": "author"
+                    }
+                  ]
+                },
+                {
+                  "given": "Megumi",
+                  "family": "Nakamura",
+                  "sequence": "additional",
+                  "affiliation": [
+                    {
+                      "name": "Department of Sustainable Agriculture, College of Agriculture, Food and Environment Sciences; Rakuno Gakuen University; Ebetsu Hokkaido"
+                    },
+                    {
+                      "name": "Zukosha Co., Ltd.; Obihiro Hokkaido Japan"
+                    }
+                  ],
+                  "role": [
+                    {
+                      "vocabulary": "crossref",
+                      "role": "author"
+                    }
+                  ]
+                },
+                {
+                  "given": "Kenji",
+                  "family": "Nekomoto",
+                  "sequence": "additional",
+                  "affiliation": [
+                    {
+                      "name": "Department of Sustainable Agriculture, College of Agriculture, Food and Environment Sciences; Rakuno Gakuen University; Ebetsu Hokkaido"
+                    }
+                  ],
+                  "role": [
+                    {
+                      "vocabulary": "crossref",
+                      "role": "author"
+                    }
+                  ]
+                },
+                {
+                  "given": "Shinji",
+                  "family": "Hoshiba",
+                  "sequence": "additional",
+                  "affiliation": [
+                    {
+                      "name": "Department of Sustainable Agriculture, College of Agriculture, Food and Environment Sciences; Rakuno Gakuen University; Ebetsu Hokkaido"
+                    }
+                  ],
+                  "role": [
+                    {
+                      "vocabulary": "crossref",
+                      "role": "author"
+                    }
+                  ]
+                },
+                {
+                  "given": "Keiko",
+                  "family": "Minato",
+                  "sequence": "additional",
+                  "affiliation": [
+                    {
+                      "name": "Animal Research Center; Hokkaido Research Organization; Shintoku Hokkaido"
+                    }
+                  ],
+                  "role": [
+                    {
+                      "vocabulary": "crossref",
+                      "role": "author"
+                    }
+                  ]
+                },
+                {
+                  "given": "Motoo",
+                  "family": "Nakayama",
+                  "sequence": "additional",
+                  "affiliation": [
+                    {
+                      "name": "Kumamoto Prefectural Agricultural Research Center; Animal Husbandry Research Institute; Koushi Kumamoto"
+                    }
+                  ],
+                  "role": [
+                    {
+                      "vocabulary": "crossref",
+                      "role": "author"
+                    }
+                  ]
+                },
+                {
+                  "given": "Takashi",
+                  "family": "Osada",
+                  "sequence": "additional",
+                  "affiliation": [
+                    {
+                      "name": "National Agriculture and Food Research Organization; Institute of Livestock and Grassland Science; Tsukuba Ibaraki"
+                    }
+                  ],
+                  "role": [
+                    {
+                      "vocabulary": "crossref",
+                      "role": "author"
+                    }
+                  ]
+                }
+              ],
+              "published": {
+                "date-parts": [
+                  [
+                    2015,
+                    9,
+                    21
+                  ]
+                ]
+              },
+              "url": "https://doi.org/10.1111/asj.12495",
+              "verification_status": "DRAFT_METADATA_ONLY_NOT_FOR_CALCULATION"
+            },
+            {
+              "doi": "10.1016/j.egypro.2015.12.105",
+              "title": "Anaerobic Co-digestion of Olive-mill Solid Waste with Cattle Manure and Cattle Slurry: Analysis of Bio-methane Potential",
+              "authors": [
+                {
+                  "given": "Maurizio",
+                  "family": "Carlini",
+                  "sequence": "first",
+                  "affiliation": [],
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ]
+                },
+                {
+                  "given": "Sonia",
+                  "family": "Castellucci",
+                  "sequence": "additional",
+                  "affiliation": [],
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ]
+                },
+                {
+                  "given": "Marta",
+                  "family": "Moneti",
+                  "sequence": "additional",
+                  "affiliation": [],
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ]
+                }
+              ],
+              "published": {
+                "date-parts": [
+                  [
+                    2015,
+                    12
+                  ]
+                ]
+              },
+              "url": "https://doi.org/10.1016/j.egypro.2015.12.105",
+              "verification_status": "DRAFT_METADATA_ONLY_NOT_FOR_CALCULATION"
+            },
+            {
+              "doi": "10.1016/b978-0-12-323440-7.50026-3",
+              "title": "Biochemical Changes in Soil Beneath Dairy Cattle Slurry Layer: The Effect of Volatile Fatty Acid Oxidation on Denitrification and Soil pH",
+              "authors": [
+                {
+                  "given": "J.W.",
+                  "family": "PAUL",
+                  "sequence": "first",
+                  "affiliation": [],
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ]
+                },
+                {
+                  "given": "E.G.",
+                  "family": "BEAUCHAMP",
+                  "sequence": "additional",
+                  "affiliation": [],
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ]
+                }
+              ],
+              "published": {
+                "date-parts": [
+                  [
+                    1989
+                  ]
+                ]
+              },
+              "url": "https://doi.org/10.1016/b978-0-12-323440-7.50026-3",
+              "verification_status": "DRAFT_METADATA_ONLY_NOT_FOR_CALCULATION"
+            }
+          ],
+          "network_status": "cached_metadata",
+          "cache_age_hours": 0.039341414166666665
+        },
+        "region": "KZ-Karaganda",
+        "region_confirmed": false,
+        "catalog_reference_value_kzt": {
+          "low": 100.69219999999997,
+          "high": 100.69219999999997
+        },
+        "calculated_at": "2026-10-29T05:38:31.363916+00:00",
+        "version": "7",
+        "model_used": false,
+        "economic_comparison": {
+          "A_sell_feedstock": {
+            "net_profit": null,
+            "reason": "No confirmed buyer bid and transaction costs"
+          },
+          "B_energy": {
+            "fuel_energy_kwh": {
+              "low": 29.141818678399996,
+              "high": 41.016536132
+            },
+            "net_profit": null,
+            "reason": "No actual recovery, conversion efficiency, avoided tariff eligibility and costs"
+          },
+          "C_sell_gas": {
+            "net_profit": null,
+            "reason": "No comparable raw biogas quote and sale feasibility"
+          },
+          "D_digestate": {
+            "net_profit": null,
+            "reason": "No quality test, product quantity, eligible buyer quote and handling costs"
+          },
+          "ranking": null,
+          "double_counting_policy": "Gas sale and energy use are alternative allocations, never added for the same gas; digestate revenue requires an eligible separate product."
+        },
+        "user_economic_scenario": {
+          "status": "needs_input",
+          "missing": [
+            "sale_price_per_kg",
+            "recovery_fraction",
+            "methane_price_per_m3",
+            "preparation_cost",
+            "heating_cost",
+            "operating_cost",
+            "currency",
+            "price_date",
+            "price_gas_volume_basis"
+          ],
+          "endpoints": [],
+          "final_recommendation": null
+        },
+        "research_run_id": 12,
+        "message": "Детерминированная оценка по проверенным источникам; факты партии не изменены."
+      },
+      "uncertainty_status": "Sensitivity envelope from transferred literature and coarse graph gridlines. No validated coverage; not a confidence or prediction interval. Single-study transfer error, density variation and plant recovery are not quantified.",
+      "latency_seconds": 0.053146299906075,
+      "fallback_reason": "No structured local LLM; deterministic parser and research tools used"
+    }
+  }
+}

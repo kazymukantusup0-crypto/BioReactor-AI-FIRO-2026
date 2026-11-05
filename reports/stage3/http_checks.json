@@ -1,0 +1,1186 @@
+{
+  "base_url": "http://127.0.0.1:58716",
+  "real_tcp_requests": 26,
+  "all_passed": true,
+  "test_database_isolated": true,
+  "server_stopped_after_verification": true,
+  "checks": [
+    {
+      "method": "GET",
+      "path": "/health",
+      "http_status": 200,
+      "response": {
+        "status": "ok",
+        "database": "C:\\Users\\Kazhu\\AppData\\Local\\Temp\\bioreactor-http-TEST-pbsuw4v2\\TEST.sqlite3",
+        "scheduler_enabled": false,
+        "interval_seconds": 86400.0,
+        "market": "KZ",
+        "price_forecasting": false
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/catalog",
+      "http_status": 200,
+      "response": {
+        "categories": [
+          "natural_gas",
+          "electricity",
+          "organic_fertilizer",
+          "mineral_fertilizer",
+          "organic_feedstock"
+        ],
+        "commodities": [
+          {
+            "id": "natural_gas",
+            "category": "natural_gas",
+            "unit": "m3",
+            "name": "Природный газ"
+          },
+          {
+            "id": "raw_biogas",
+            "category": "natural_gas",
+            "unit": "m3",
+            "name": "Сырой биогаз; отдельный товар"
+          },
+          {
+            "id": "biomethane",
+            "category": "natural_gas",
+            "unit": "m3",
+            "name": "Очищенный биометан; отдельный товар"
+          },
+          {
+            "id": "electricity",
+            "category": "electricity",
+            "unit": "kWh",
+            "name": "Электроэнергия"
+          },
+          {
+            "id": "digestate",
+            "category": "organic_fertilizer",
+            "unit": "kg",
+            "name": "Дигестат подтверждённого качества"
+          },
+          {
+            "id": "compost",
+            "category": "organic_fertilizer",
+            "unit": "kg",
+            "name": "Компост"
+          },
+          {
+            "id": "urea",
+            "category": "mineral_fertilizer",
+            "unit": "kg",
+            "name": "Карбамид"
+          },
+          {
+            "id": "ammophos",
+            "category": "mineral_fertilizer",
+            "unit": "kg",
+            "name": "Аммофос"
+          },
+          {
+            "id": "food_waste",
+            "category": "organic_feedstock",
+            "unit": "kg",
+            "name": "Пищевые отходы"
+          },
+          {
+            "id": "Wheat straw",
+            "category": "organic_feedstock",
+            "unit": "kg",
+            "name": "Пшеничная солома"
+          },
+          {
+            "id": "Whey",
+            "category": "organic_feedstock",
+            "unit": "kg",
+            "name": "Молочная сыворотка"
+          },
+          {
+            "id": "cattle_manure",
+            "category": "organic_feedstock",
+            "unit": "kg",
+            "name": "Навоз КРС"
+          },
+          {
+            "id": "chernozem",
+            "category": "organic_feedstock",
+            "unit": "kg",
+            "name": "Чернозём; не подтверждённый BMP-субстрат"
+          }
+        ],
+        "regions": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/sources",
+      "http_status": 200,
+      "response": [
+        {
+          "id": "esalmaty_business",
+          "name": "АО Алатау Жарық Компаниясы — Энергосбыт, небытовая группа 2",
+          "url": "https://www.esalmaty.kz/ru/business-tariffs",
+          "category": "electricity",
+          "adapter": "esalmaty",
+          "enabled": 1,
+          "config": {}
+        },
+        {
+          "id": "feedstock_verified_manual",
+          "name": "Органическое сырьё: проверенные предложения или договоры пользователя",
+          "url": "manual://organic_feedstock",
+          "category": "organic_feedstock",
+          "adapter": "manual",
+          "enabled": 1,
+          "config": {}
+        },
+        {
+          "id": "mineral_verified_manual",
+          "name": "Минеральные удобрения: проверенные предложения или договоры пользователя",
+          "url": "manual://mineral_fertilizer",
+          "category": "mineral_fertilizer",
+          "adapter": "manual",
+          "enabled": 1,
+          "config": {}
+        },
+        {
+          "id": "organic_verified_manual",
+          "name": "Органические удобрения: проверенные предложения или договоры пользователя",
+          "url": "manual://organic_fertilizer",
+          "category": "organic_fertilizer",
+          "adapter": "manual",
+          "enabled": 1,
+          "config": {}
+        },
+        {
+          "id": "qazaqgaz_aimaq",
+          "name": "QazaqGaz Aimaq: regional natural-gas schedules (Word attachment; manual review)",
+          "url": "https://www.aimaq.kz/ru/тарифы-и-цены/tarify-i-czeny-2026/",
+          "category": "natural_gas",
+          "adapter": "manual",
+          "enabled": 1,
+          "config": {}
+        }
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/sources",
+      "http_status": 201,
+      "response": {
+        "id": "test_feed",
+        "name": "TEST only",
+        "url": "https://example.invalid/TEST",
+        "category": "organic_feedstock",
+        "adapter": "manual",
+        "enabled": true,
+        "config": {}
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/sources",
+      "http_status": 201,
+      "response": {
+        "id": "test_power",
+        "name": "TEST only",
+        "url": "https://example.invalid/TEST",
+        "category": "electricity",
+        "adapter": "manual",
+        "enabled": true,
+        "config": {}
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/sources",
+      "http_status": 201,
+      "response": {
+        "id": "test_gas",
+        "name": "TEST only",
+        "url": "https://example.invalid/TEST",
+        "category": "natural_gas",
+        "adapter": "manual",
+        "enabled": true,
+        "config": {}
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/sources",
+      "http_status": 201,
+      "response": {
+        "id": "test_fert",
+        "name": "TEST only",
+        "url": "https://example.invalid/TEST",
+        "category": "organic_fertilizer",
+        "adapter": "manual",
+        "enabled": true,
+        "config": {}
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/prices",
+      "http_status": 201,
+      "response": {
+        "inserted": 1,
+        "duplicates": 0,
+        "ids": [
+          1
+        ]
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/prices",
+      "http_status": 201,
+      "response": {
+        "inserted": 1,
+        "duplicates": 0,
+        "ids": [
+          2
+        ]
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/prices",
+      "http_status": 201,
+      "response": {
+        "inserted": 1,
+        "duplicates": 0,
+        "ids": [
+          3
+        ]
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/prices",
+      "http_status": 201,
+      "response": {
+        "inserted": 1,
+        "duplicates": 0,
+        "ids": [
+          4
+        ]
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/prices",
+      "http_status": 201,
+      "response": {
+        "inserted": 1,
+        "duplicates": 0,
+        "ids": [
+          5
+        ]
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/prices",
+      "http_status": 201,
+      "response": {
+        "inserted": 1,
+        "duplicates": 0,
+        "ids": [
+          6
+        ]
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/prices/current?region=KZ-Almaty",
+      "http_status": 200,
+      "response": {
+        "label": "latest_known_not_necessarily_current",
+        "prices": [
+          {
+            "id": 6,
+            "source_id": "esalmaty_business",
+            "commodity": "electricity",
+            "region": "KZ-Almaty",
+            "country": "KZ",
+            "value": "50.03",
+            "currency": "KZT",
+            "unit": "kWh",
+            "normalized_value": "50.03",
+            "normalized_unit": "kWh",
+            "published_at": null,
+            "effective_from": "2026-09-12",
+            "valid_to": null,
+            "received_at": "2026-10-28T09:03:56.979012+00:00",
+            "price_type": "tariff",
+            "reliability": "verified_manual",
+            "consumer_class": "non_household_group2",
+            "tax_basis": "VAT_included",
+            "gas_volume_basis": null,
+            "source_url": "https://www.esalmaty.kz/ru/business-tariffs",
+            "evidence": "Manually checked on official supplier page using web tool, 2026-10-28. Non-household group 2, VAT included. Publication date not stated; not a current verified quote.",
+            "is_test": 0,
+            "fingerprint": "d91bd67ba31a047630761916d8bb0ff32ca23c62227b7d0a74b7c197b92ce23f",
+            "category": "electricity",
+            "source_name": "АО Алатау Жарық Компаниясы — Энергосбыт, небытовая группа 2",
+            "age_days": 46,
+            "publication_date_unknown": true,
+            "is_superseded": false,
+            "receipt_age_seconds": 0.019728,
+            "is_stale": true,
+            "is_future": false,
+            "usable_as_current": false
+          }
+        ]
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/prices/history?commodity=electricity&region=KZ-Almaty",
+      "http_status": 200,
+      "response": {
+        "prices": [
+          {
+            "id": 6,
+            "source_id": "esalmaty_business",
+            "commodity": "electricity",
+            "region": "KZ-Almaty",
+            "country": "KZ",
+            "value": "50.03",
+            "currency": "KZT",
+            "unit": "kWh",
+            "normalized_value": "50.03",
+            "normalized_unit": "kWh",
+            "published_at": null,
+            "effective_from": "2026-09-12",
+            "valid_to": null,
+            "received_at": "2026-10-28T09:03:56.979012+00:00",
+            "price_type": "tariff",
+            "reliability": "verified_manual",
+            "consumer_class": "non_household_group2",
+            "tax_basis": "VAT_included",
+            "gas_volume_basis": null,
+            "source_url": "https://www.esalmaty.kz/ru/business-tariffs",
+            "evidence": "Manually checked on official supplier page using web tool, 2026-10-28. Non-household group 2, VAT included. Publication date not stated; not a current verified quote.",
+            "is_test": 0,
+            "fingerprint": "d91bd67ba31a047630761916d8bb0ff32ca23c62227b7d0a74b7c197b92ce23f",
+            "category": "electricity",
+            "source_name": "АО Алатау Жарық Компаниясы — Энергосбыт, небытовая группа 2",
+            "age_days": 46,
+            "publication_date_unknown": true,
+            "is_superseded": false,
+            "receipt_age_seconds": 0.036618,
+            "is_stale": true,
+            "is_future": false,
+            "usable_as_current": false
+          },
+          {
+            "id": 5,
+            "source_id": "esalmaty_business",
+            "commodity": "electricity",
+            "region": "KZ-Almaty",
+            "country": "KZ",
+            "value": "46.25",
+            "currency": "KZT",
+            "unit": "kWh",
+            "normalized_value": "46.25",
+            "normalized_unit": "kWh",
+            "published_at": null,
+            "effective_from": "2026-06-05",
+            "valid_to": null,
+            "received_at": "2026-10-28T09:03:56.967386+00:00",
+            "price_type": "tariff",
+            "reliability": "verified_manual",
+            "consumer_class": "non_household_group2",
+            "tax_basis": "VAT_included",
+            "gas_volume_basis": null,
+            "source_url": "https://www.esalmaty.kz/ru/i4160",
+            "evidence": "Manually checked on official supplier page using web tool, 2026-10-28. Non-household group 2, VAT included. Publication date not stated; not a current verified quote.",
+            "is_test": 0,
+            "fingerprint": "c9aa9e2bee2b7290340691c7d7ac60918c5dfc10855386628aa403d0d09fa3c0",
+            "category": "electricity",
+            "source_name": "АО Алатау Жарық Компаниясы — Энергосбыт, небытовая группа 2",
+            "age_days": 145,
+            "publication_date_unknown": true,
+            "is_superseded": true,
+            "receipt_age_seconds": 0.048244,
+            "is_stale": true,
+            "is_future": false,
+            "usable_as_current": false
+          }
+        ],
+        "total": 2,
+        "truncated": false
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/analytics/price-change?commodity=electricity&region=KZ-Almaty",
+      "http_status": 200,
+      "response": {
+        "series": [
+          {
+            "source_id": "esalmaty_business",
+            "commodity": "electricity",
+            "region": "KZ-Almaty",
+            "currency": "KZT",
+            "unit": "kWh",
+            "consumer_class": "non_household_group2",
+            "tax_basis": "VAT_included",
+            "price_type": "tariff",
+            "gas_volume_basis": null,
+            "observations": 2,
+            "from": "2026-06-05",
+            "to": "2026-09-12",
+            "absolute_change": 3.780000000000001,
+            "percent_change": 8.172972972972975
+          }
+        ]
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/prices/import-csv",
+      "http_status": 200,
+      "response": {
+        "inserted": 0,
+        "duplicates": 1,
+        "ids": [
+          1
+        ]
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/prices",
+      "http_status": 201,
+      "response": {
+        "inserted": 0,
+        "duplicates": 1,
+        "ids": [
+          1
+        ]
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/prices/current?region=KZ-TEST",
+      "http_status": 200,
+      "response": {
+        "label": "latest_known_not_necessarily_current",
+        "prices": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/prices/history?commodity=electricity&region=KZ-TEST",
+      "http_status": 200,
+      "response": {
+        "prices": [],
+        "total": 0,
+        "truncated": false
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/analytics/price-change?commodity=electricity&region=KZ-TEST",
+      "http_status": 200,
+      "response": {
+        "series": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/scenarios/compare",
+      "http_status": 200,
+      "response": {
+        "status": "ok",
+        "scenarios": [
+          {
+            "scenario": "A",
+            "status": "ok",
+            "revenue": 40.0,
+            "total_cost": 2.0,
+            "net_profit": 38.0,
+            "valuation_role": "feedstock",
+            "priced_quantity": 20.0,
+            "price": 2.0,
+            "price_slope": 20.0,
+            "break_even_price": 0.1,
+            "break_even_unit": "KZT/kg",
+            "difference_vs_sale": 0.0
+          },
+          {
+            "scenario": "B",
+            "status": "ok",
+            "revenue": 200.0,
+            "total_cost": 60.0,
+            "net_profit": 140.0,
+            "recovered_methane_m3": 5.0,
+            "gross_generated_kwh": 20.0,
+            "valued_self_consumption_kwh": 20.0,
+            "unvalued_surplus_kwh": 0.0,
+            "priced_quantity": 20.0,
+            "price_slope": 18.0,
+            "valuation_role": "electricity",
+            "price": 10.0,
+            "non_price_cost": 40.0,
+            "difference_vs_sale": 102.0,
+            "break_even_price_to_match_sale": 4.333333333333333,
+            "break_even_unit": "KZT/kWh"
+          },
+          {
+            "scenario": "C",
+            "status": "ok",
+            "revenue": 300.0,
+            "total_cost": 60.0,
+            "net_profit": 240.0,
+            "recovered_methane_m3": 5.0,
+            "priced_quantity": 10.0,
+            "valuation_role": "gas_sale",
+            "price": 30.0,
+            "price_slope": 10.0,
+            "product": "raw_biogas",
+            "legacy_profitability_reconciliation": {
+              "processing_net_profit": 240.0,
+              "derived_ch4_valuation_not_market_quote": 60.0
+            },
+            "difference_vs_sale": 202.0,
+            "break_even_price_to_match_sale": 9.8,
+            "break_even_unit": "KZT/m3"
+          },
+          {
+            "scenario": "D",
+            "status": "ok",
+            "revenue": 10.0,
+            "total_cost": 50.0,
+            "net_profit": -40.0,
+            "recovered_methane_m3": 5.0,
+            "priced_quantity": 10.0,
+            "valuation_role": "digestate",
+            "price": 1.0,
+            "price_slope": 10.0,
+            "mode": "sale",
+            "benefit_kind": "sale_revenue",
+            "difference_vs_sale": -78.0,
+            "break_even_price_to_match_sale": 8.8,
+            "break_even_unit": "KZT/kg"
+          }
+        ],
+        "recommended_scenario": "C",
+        "recommendation_scope": "test_or_stale_price_scenario_only",
+        "currency": "KZT",
+        "region": "KZ-TEST",
+        "potential_methane_m3": 10.0,
+        "potential_provenance": "explicit_user_potential",
+        "selected_prices": {
+          "feedstock": {
+            "id": 1,
+            "source_id": "test_feed",
+            "commodity": "food_waste",
+            "region": "KZ-TEST",
+            "country": "KZ",
+            "value": "2",
+            "currency": "KZT",
+            "unit": "kg",
+            "normalized_value": "2",
+            "normalized_unit": "kg",
+            "published_at": "2020-01-01",
+            "effective_from": "2020-01-01",
+            "valid_to": null,
+            "received_at": "2026-10-28T09:03:56.914498+00:00",
+            "price_type": "purchase",
+            "reliability": "test",
+            "consumer_class": "non_household_group2",
+            "tax_basis": "VAT_included",
+            "gas_volume_basis": null,
+            "source_url": "https://example.invalid/TEST",
+            "evidence": "TEST mathematical fixture; NOT a real quotation",
+            "is_test": 1,
+            "fingerprint": "75272066dadc659b286000aceca5071ac47188b68b6beacffe3f2954a613f277",
+            "category": "organic_feedstock",
+            "source_name": "TEST only",
+            "age_days": 2492,
+            "publication_date_unknown": false,
+            "is_superseded": false,
+            "receipt_age_seconds": 0.197275,
+            "is_stale": true,
+            "is_future": false,
+            "usable_as_current": false
+          },
+          "electricity": {
+            "id": 2,
+            "source_id": "test_power",
+            "commodity": "electricity",
+            "region": "KZ-TEST",
+            "country": "KZ",
+            "value": "10",
+            "currency": "KZT",
+            "unit": "kWh",
+            "normalized_value": "10",
+            "normalized_unit": "kWh",
+            "published_at": "2020-01-01",
+            "effective_from": "2020-01-01",
+            "valid_to": null,
+            "received_at": "2026-10-28T09:03:56.929603+00:00",
+            "price_type": "tariff",
+            "reliability": "test",
+            "consumer_class": "non_household_group2",
+            "tax_basis": "VAT_included",
+            "gas_volume_basis": null,
+            "source_url": "https://example.invalid/TEST",
+            "evidence": "TEST mathematical fixture; NOT a real quotation",
+            "is_test": 1,
+            "fingerprint": "2233a61fdfe836447e3a8f9b1e17dd62a212f047d9151c58a3918a69f9ea0d5e",
+            "category": "electricity",
+            "source_name": "TEST only",
+            "age_days": 2492,
+            "publication_date_unknown": false,
+            "is_superseded": false,
+            "receipt_age_seconds": 0.184627,
+            "is_stale": true,
+            "is_future": false,
+            "usable_as_current": false
+          },
+          "gas_sale": {
+            "id": 3,
+            "source_id": "test_gas",
+            "commodity": "raw_biogas",
+            "region": "KZ-TEST",
+            "country": "KZ",
+            "value": "30",
+            "currency": "KZT",
+            "unit": "m3",
+            "normalized_value": "30",
+            "normalized_unit": "m3",
+            "published_at": "2020-01-01",
+            "effective_from": "2020-01-01",
+            "valid_to": null,
+            "received_at": "2026-10-28T09:03:56.941659+00:00",
+            "price_type": "purchase",
+            "reliability": "test",
+            "consumer_class": "non_household_group2",
+            "tax_basis": "VAT_included",
+            "gas_volume_basis": "TEST_same_basis",
+            "source_url": "https://example.invalid/TEST",
+            "evidence": "TEST mathematical fixture; NOT a real quotation",
+            "is_test": 1,
+            "fingerprint": "ca49cb366dd158a652ee2e1e26c0cc7296befdf2c7980833606da49fa2914e9d",
+            "category": "natural_gas",
+            "source_name": "TEST only",
+            "age_days": 2492,
+            "publication_date_unknown": false,
+            "is_superseded": false,
+            "receipt_age_seconds": 0.173907,
+            "is_stale": true,
+            "is_future": false,
+            "usable_as_current": false
+          },
+          "digestate": {
+            "id": 4,
+            "source_id": "test_fert",
+            "commodity": "digestate",
+            "region": "KZ-TEST",
+            "country": "KZ",
+            "value": "1",
+            "currency": "KZT",
+            "unit": "kg",
+            "normalized_value": "1",
+            "normalized_unit": "kg",
+            "published_at": "2020-01-01",
+            "effective_from": "2020-01-01",
+            "valid_to": null,
+            "received_at": "2026-10-28T09:03:56.954228+00:00",
+            "price_type": "purchase",
+            "reliability": "test",
+            "consumer_class": "non_household_group2",
+            "tax_basis": "VAT_included",
+            "gas_volume_basis": null,
+            "source_url": "https://example.invalid/TEST",
+            "evidence": "TEST mathematical fixture; NOT a real quotation",
+            "is_test": 1,
+            "fingerprint": "eab6aab2b763e0bf3b89bbeebd0d73d3f45f315f3493a822266bfd52d2d0d33f",
+            "category": "organic_fertilizer",
+            "source_name": "TEST only",
+            "age_days": 2492,
+            "publication_date_unknown": false,
+            "is_superseded": false,
+            "receipt_age_seconds": 0.162608,
+            "is_stale": true,
+            "is_future": false,
+            "usable_as_current": false
+          }
+        },
+        "sensitivity": [
+          {
+            "scenario": "A",
+            "price_role": "feedstock",
+            "price": 2.0,
+            "net_profit_minus_20pct": 30.0,
+            "net_profit_plus_20pct": 46.0,
+            "method": "One price at a time, other explicit inputs fixed; not a future-price forecast"
+          },
+          {
+            "scenario": "B",
+            "price_role": "electricity",
+            "price": 10.0,
+            "net_profit_minus_20pct": 104.0,
+            "net_profit_plus_20pct": 176.0,
+            "method": "One price at a time, other explicit inputs fixed; not a future-price forecast"
+          },
+          {
+            "scenario": "C",
+            "price_role": "gas_sale",
+            "price": 30.0,
+            "net_profit_minus_20pct": 180.0,
+            "net_profit_plus_20pct": 300.0,
+            "method": "One price at a time, other explicit inputs fixed; not a future-price forecast"
+          },
+          {
+            "scenario": "C",
+            "price_role": "electricity",
+            "price": 10.0,
+            "net_profit_minus_20pct": 244.0,
+            "net_profit_plus_20pct": 236.0,
+            "method": "One price at a time, other explicit inputs fixed; not a future-price forecast"
+          },
+          {
+            "scenario": "D",
+            "price_role": "digestate",
+            "price": 1.0,
+            "net_profit_minus_20pct": -42.0,
+            "net_profit_plus_20pct": -38.0,
+            "method": "One price at a time, other explicit inputs fixed; not a future-price forecast"
+          },
+          {
+            "scenario": "D",
+            "price_role": "electricity",
+            "price": 10.0,
+            "net_profit_minus_20pct": -36.0,
+            "net_profit_plus_20pct": -44.0,
+            "method": "One price at a time, other explicit inputs fixed; not a future-price forecast"
+          }
+        ],
+        "double_counting_policy": "A/B/C/D are alternatives. B values only self-consumed electricity; C only gas sales; D only digestate benefit. No summed gas/electricity/digestate revenue.",
+        "limitations": [
+          "Нет гарантии фактической эффективности или юридической оценки: подтверждения задаёт пользователь.",
+          "Тариф покупки электроэнергии означает только экономию собственного потребления, не доход от продажи в сеть.",
+          "Минеральное удобрение не оценивает дигестат без подтверждённой эквивалентности; здесь такой пересчёт не выполняется."
+        ],
+        "message": "Условные сценарии (тестовые/устаревшие цены). A: 38 KZT; B: 140 KZT; C: 240 KZT; D: -40 KZT. При заданных предположениях лучший вариант: C.",
+        "scenario_id": 1
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/scenarios/1",
+      "http_status": 200,
+      "response": {
+        "id": 1,
+        "created_at": "2026-10-28T09:03:57.119355+00:00",
+        "input_json": {
+          "region": "KZ-TEST",
+          "currency": "KZT",
+          "consumer_class": "non_household_group2",
+          "tax_basis": "VAT_included",
+          "feedstock_commodity": "food_waste",
+          "mass_kg": 20.0,
+          "bmp_ml_ch4_g_vs": null,
+          "bmp_unit": null,
+          "vs_mass_kg": null,
+          "potential_methane_m3": 10.0,
+          "gas_volume_basis": "TEST_same_basis",
+          "recovery_fraction": 0.5,
+          "methane_fraction": 0.5,
+          "methane_energy_kwh_per_m3": 10.0,
+          "electricity_efficiency": 0.4,
+          "electricity_demand_kwh": 100.0,
+          "energy_use_kwh": 2.0,
+          "preparation_cost": 10.0,
+          "heating_cost": 5.0,
+          "operating_cost": 5.0,
+          "storage_cost": 2.0,
+          "transport_cost": 3.0,
+          "gas_cleaning_cost": 10.0,
+          "digestate_handling_cost": 5.0,
+          "sale_storage_cost": 1.0,
+          "sale_transport_cost": 1.0,
+          "upgrading_cost": null,
+          "upgrading_recovery_fraction": null,
+          "biomethane_purity": null,
+          "gas_sale_product": "raw_biogas",
+          "gas_sale_technical_confirmed": true,
+          "gas_sale_legal_confirmed": true,
+          "gas_sale_evidence": "TEST assumption, not legal advice",
+          "digestate_mass_kg": 10.0,
+          "digestate_mode": "sale",
+          "digestate_quality_confirmed": true,
+          "digestate_market_allowed": true,
+          "digestate_equivalence_confirmed": null,
+          "digestate_quality_evidence": "TEST assumption, not a quality certificate",
+          "price_ids": {},
+          "max_price_age_days": 30,
+          "allow_stale_prices": false,
+          "allow_test_prices": true
+        },
+        "result_json": {
+          "status": "ok",
+          "scenarios": [
+            {
+              "scenario": "A",
+              "status": "ok",
+              "revenue": 40.0,
+              "total_cost": 2.0,
+              "net_profit": 38.0,
+              "valuation_role": "feedstock",
+              "priced_quantity": 20.0,
+              "price": 2.0,
+              "price_slope": 20.0,
+              "break_even_price": 0.1,
+              "break_even_unit": "KZT/kg",
+              "difference_vs_sale": 0.0
+            },
+            {
+              "scenario": "B",
+              "status": "ok",
+              "revenue": 200.0,
+              "total_cost": 60.0,
+              "net_profit": 140.0,
+              "recovered_methane_m3": 5.0,
+              "gross_generated_kwh": 20.0,
+              "valued_self_consumption_kwh": 20.0,
+              "unvalued_surplus_kwh": 0.0,
+              "priced_quantity": 20.0,
+              "price_slope": 18.0,
+              "valuation_role": "electricity",
+              "price": 10.0,
+              "non_price_cost": 40.0,
+              "difference_vs_sale": 102.0,
+              "break_even_price_to_match_sale": 4.333333333333333,
+              "break_even_unit": "KZT/kWh"
+            },
+            {
+              "scenario": "C",
+              "status": "ok",
+              "revenue": 300.0,
+              "total_cost": 60.0,
+              "net_profit": 240.0,
+              "recovered_methane_m3": 5.0,
+              "priced_quantity": 10.0,
+              "valuation_role": "gas_sale",
+              "price": 30.0,
+              "price_slope": 10.0,
+              "product": "raw_biogas",
+              "legacy_profitability_reconciliation": {
+                "processing_net_profit": 240.0,
+                "derived_ch4_valuation_not_market_quote": 60.0
+              },
+              "difference_vs_sale": 202.0,
+              "break_even_price_to_match_sale": 9.8,
+              "break_even_unit": "KZT/m3"
+            },
+            {
+              "scenario": "D",
+              "status": "ok",
+              "revenue": 10.0,
+              "total_cost": 50.0,
+              "net_profit": -40.0,
+              "recovered_methane_m3": 5.0,
+              "priced_quantity": 10.0,
+              "valuation_role": "digestate",
+              "price": 1.0,
+              "price_slope": 10.0,
+              "mode": "sale",
+              "benefit_kind": "sale_revenue",
+              "difference_vs_sale": -78.0,
+              "break_even_price_to_match_sale": 8.8,
+              "break_even_unit": "KZT/kg"
+            }
+          ],
+          "recommended_scenario": "C",
+          "recommendation_scope": "test_or_stale_price_scenario_only",
+          "currency": "KZT",
+          "region": "KZ-TEST",
+          "potential_methane_m3": 10.0,
+          "potential_provenance": "explicit_user_potential",
+          "selected_prices": {
+            "feedstock": {
+              "id": 1,
+              "source_id": "test_feed",
+              "commodity": "food_waste",
+              "region": "KZ-TEST",
+              "country": "KZ",
+              "value": "2",
+              "currency": "KZT",
+              "unit": "kg",
+              "normalized_value": "2",
+              "normalized_unit": "kg",
+              "published_at": "2020-01-01",
+              "effective_from": "2020-01-01",
+              "valid_to": null,
+              "received_at": "2026-10-28T09:03:56.914498+00:00",
+              "price_type": "purchase",
+              "reliability": "test",
+              "consumer_class": "non_household_group2",
+              "tax_basis": "VAT_included",
+              "gas_volume_basis": null,
+              "source_url": "https://example.invalid/TEST",
+              "evidence": "TEST mathematical fixture; NOT a real quotation",
+              "is_test": 1,
+              "fingerprint": "75272066dadc659b286000aceca5071ac47188b68b6beacffe3f2954a613f277",
+              "category": "organic_feedstock",
+              "source_name": "TEST only",
+              "age_days": 2492,
+              "publication_date_unknown": false,
+              "is_superseded": false,
+              "receipt_age_seconds": 0.197275,
+              "is_stale": true,
+              "is_future": false,
+              "usable_as_current": false
+            },
+            "electricity": {
+              "id": 2,
+              "source_id": "test_power",
+              "commodity": "electricity",
+              "region": "KZ-TEST",
+              "country": "KZ",
+              "value": "10",
+              "currency": "KZT",
+              "unit": "kWh",
+              "normalized_value": "10",
+              "normalized_unit": "kWh",
+              "published_at": "2020-01-01",
+              "effective_from": "2020-01-01",
+              "valid_to": null,
+              "received_at": "2026-10-28T09:03:56.929603+00:00",
+              "price_type": "tariff",
+              "reliability": "test",
+              "consumer_class": "non_household_group2",
+              "tax_basis": "VAT_included",
+              "gas_volume_basis": null,
+              "source_url": "https://example.invalid/TEST",
+              "evidence": "TEST mathematical fixture; NOT a real quotation",
+              "is_test": 1,
+              "fingerprint": "2233a61fdfe836447e3a8f9b1e17dd62a212f047d9151c58a3918a69f9ea0d5e",
+              "category": "electricity",
+              "source_name": "TEST only",
+              "age_days": 2492,
+              "publication_date_unknown": false,
+              "is_superseded": false,
+              "receipt_age_seconds": 0.184627,
+              "is_stale": true,
+              "is_future": false,
+              "usable_as_current": false
+            },
+            "gas_sale": {
+              "id": 3,
+              "source_id": "test_gas",
+              "commodity": "raw_biogas",
+              "region": "KZ-TEST",
+              "country": "KZ",
+              "value": "30",
+              "currency": "KZT",
+              "unit": "m3",
+              "normalized_value": "30",
+              "normalized_unit": "m3",
+              "published_at": "2020-01-01",
+              "effective_from": "2020-01-01",
+              "valid_to": null,
+              "received_at": "2026-10-28T09:03:56.941659+00:00",
+              "price_type": "purchase",
+              "reliability": "test",
+              "consumer_class": "non_household_group2",
+              "tax_basis": "VAT_included",
+              "gas_volume_basis": "TEST_same_basis",
+              "source_url": "https://example.invalid/TEST",
+              "evidence": "TEST mathematical fixture; NOT a real quotation",
+              "is_test": 1,
+              "fingerprint": "ca49cb366dd158a652ee2e1e26c0cc7296befdf2c7980833606da49fa2914e9d",
+              "category": "natural_gas",
+              "source_name": "TEST only",
+              "age_days": 2492,
+              "publication_date_unknown": false,
+              "is_superseded": false,
+              "receipt_age_seconds": 0.173907,
+              "is_stale": true,
+              "is_future": false,
+              "usable_as_current": false
+            },
+            "digestate": {
+              "id": 4,
+              "source_id": "test_fert",
+              "commodity": "digestate",
+              "region": "KZ-TEST",
+              "country": "KZ",
+              "value": "1",
+              "currency": "KZT",
+              "unit": "kg",
+              "normalized_value": "1",
+              "normalized_unit": "kg",
+              "published_at": "2020-01-01",
+              "effective_from": "2020-01-01",
+              "valid_to": null,
+              "received_at": "2026-10-28T09:03:56.954228+00:00",
+              "price_type": "purchase",
+              "reliability": "test",
+              "consumer_class": "non_household_group2",
+              "tax_basis": "VAT_included",
+              "gas_volume_basis": null,
+              "source_url": "https://example.invalid/TEST",
+              "evidence": "TEST mathematical fixture; NOT a real quotation",
+              "is_test": 1,
+              "fingerprint": "eab6aab2b763e0bf3b89bbeebd0d73d3f45f315f3493a822266bfd52d2d0d33f",
+              "category": "organic_fertilizer",
+              "source_name": "TEST only",
+              "age_days": 2492,
+              "publication_date_unknown": false,
+              "is_superseded": false,
+              "receipt_age_seconds": 0.162608,
+              "is_stale": true,
+              "is_future": false,
+              "usable_as_current": false
+            }
+          },
+          "sensitivity": [
+            {
+              "scenario": "A",
+              "price_role": "feedstock",
+              "price": 2.0,
+              "net_profit_minus_20pct": 30.0,
+              "net_profit_plus_20pct": 46.0,
+              "method": "One price at a time, other explicit inputs fixed; not a future-price forecast"
+            },
+            {
+              "scenario": "B",
+              "price_role": "electricity",
+              "price": 10.0,
+              "net_profit_minus_20pct": 104.0,
+              "net_profit_plus_20pct": 176.0,
+              "method": "One price at a time, other explicit inputs fixed; not a future-price forecast"
+            },
+            {
+              "scenario": "C",
+              "price_role": "gas_sale",
+              "price": 30.0,
+              "net_profit_minus_20pct": 180.0,
+              "net_profit_plus_20pct": 300.0,
+              "method": "One price at a time, other explicit inputs fixed; not a future-price forecast"
+            },
+            {
+              "scenario": "C",
+              "price_role": "electricity",
+              "price": 10.0,
+              "net_profit_minus_20pct": 244.0,
+              "net_profit_plus_20pct": 236.0,
+              "method": "One price at a time, other explicit inputs fixed; not a future-price forecast"
+            },
+            {
+              "scenario": "D",
+              "price_role": "digestate",
+              "price": 1.0,
+              "net_profit_minus_20pct": -42.0,
+              "net_profit_plus_20pct": -38.0,
+              "method": "One price at a time, other explicit inputs fixed; not a future-price forecast"
+            },
+            {
+              "scenario": "D",
+              "price_role": "electricity",
+              "price": 10.0,
+              "net_profit_minus_20pct": -36.0,
+              "net_profit_plus_20pct": -44.0,
+              "method": "One price at a time, other explicit inputs fixed; not a future-price forecast"
+            }
+          ],
+          "double_counting_policy": "A/B/C/D are alternatives. B values only self-consumed electricity; C only gas sales; D only digestate benefit. No summed gas/electricity/digestate revenue.",
+          "limitations": [
+            "Нет гарантии фактической эффективности или юридической оценки: подтверждения задаёт пользователь.",
+            "Тариф покупки электроэнергии означает только экономию собственного потребления, не доход от продажи в сеть.",
+            "Минеральное удобрение не оценивает дигестат без подтверждённой эквивалентности; здесь такой пересчёт не выполняется."
+          ],
+          "message": "Условные сценарии (тестовые/устаревшие цены). A: 38 KZT; B: 140 KZT; C: 240 KZT; D: -40 KZT. При заданных предположениях лучший вариант: C."
+        },
+        "is_test": 1
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/scenarios/compare",
+      "http_status": 200,
+      "response": {
+        "status": "needs_input",
+        "scenarios": [
+          {
+            "scenario": "A",
+            "status": "needs_input",
+            "reason": "Не заданы: sale_storage_cost, sale_transport_cost",
+            "net_profit": null
+          },
+          {
+            "scenario": "B",
+            "status": "needs_input",
+            "reason": "Не заданы: preparation_cost, heating_cost, operating_cost, storage_cost, transport_cost, digestate_handling_cost, energy_use_kwh, recovery_fraction, gas_volume_basis",
+            "net_profit": null
+          },
+          {
+            "scenario": "C",
+            "status": "needs_input",
+            "reason": "Не заданы: gas_sale_technical_confirmed, gas_sale_legal_confirmed, gas_sale_evidence",
+            "net_profit": null
+          },
+          {
+            "scenario": "D",
+            "status": "needs_input",
+            "reason": "Не заданы: digestate_quality_confirmed, digestate_market_allowed, digestate_quality_evidence",
+            "net_profit": null
+          }
+        ],
+        "recommended_scenario": null,
+        "recommendation_scope": "explicit_assumptions_and_selected_quotes",
+        "currency": "KZT",
+        "region": null,
+        "potential_methane_m3": null,
+        "potential_provenance": "unavailable",
+        "selected_prices": {},
+        "sensitivity": [],
+        "double_counting_policy": "A/B/C/D are alternatives. B values only self-consumed electricity; C only gas sales; D only digestate benefit. No summed gas/electricity/digestate revenue.",
+        "limitations": [
+          "Нет гарантии фактической эффективности или юридической оценки: подтверждения задаёт пользователь.",
+          "Тариф покупки электроэнергии означает только экономию собственного потребления, не доход от продажи в сеть.",
+          "Минеральное удобрение не оценивает дигестат без подтверждённой эквивалентности; здесь такой пересчёт не выполняется."
+        ],
+        "message": "Рыночные сценарии. A: Не заданы: sale_storage_cost, sale_transport_cost; B: Не заданы: preparation_cost, heating_cost, operating_cost, storage_cost, transport_cost, digestate_handling_cost, energy_use_kwh, recovery_fraction, gas_volume_basis; C: Не заданы: gas_sale_technical_confirmed, gas_sale_legal_confirmed, gas_sale_evidence; D: Не заданы: digestate_quality_confirmed, digestate_market_allowed, digestate_quality_evidence. Итоговая рекомендация не выдана: сравнение неполное.",
+        "scenario_id": 2
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/updates",
+      "http_status": 200,
+      "response": []
+    },
+    {
+      "method": "POST",
+      "path": "/updates?category=organic_fertilizer",
+      "http_status": 200,
+      "response": {
+        "category": "organic_fertilizer",
+        "sources": [
+          {
+            "source": "organic_verified_manual",
+            "status": "needs_configuration",
+            "inserted": 0
+          },
+          {
+            "source": "test_fert",
+            "status": "needs_configuration",
+            "inserted": 0
+          }
+        ],
+        "inserted": 0
+      }
+    }
+  ]
+}

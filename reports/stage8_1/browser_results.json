@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "checks": [
+    "API serves separate swine and poultry material definitions",
+    "Swine liquid state and volume unit are editable",
+    "Layer subtype offers its specific primary-study profile",
+    "Mixture analysis reaches the backend with two components",
+    "Literature selection is explicit and both rows remain in analysis",
+    "Mobile page has no horizontal overflow",
+    "Saved mixture reloads with both rows",
+    "Handoff preloads the economics question in the chat composer",
+    "Agent handoff loads a conversation session",
+    "Agent receives original units, species, subtype and profile ID",
+    "No browser JavaScript errors"
+  ],
+  "errors": []
+}

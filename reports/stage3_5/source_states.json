@@ -1,0 +1,92 @@
+[
+  {
+    "source_id": "bns_retail_electricity",
+    "last_attempt_at": "2026-10-28T09:29:59.852382+00:00",
+    "last_success_at": "2026-10-28T09:29:59.852382+00:00",
+    "last_status": "success",
+    "consecutive_failures": 0,
+    "next_attempt_at": "2026-10-29T09:29:59.852382+00:00",
+    "last_error": null
+  },
+  {
+    "source_id": "bns_retail_gas",
+    "last_attempt_at": "2026-10-28T09:29:58.071528+00:00",
+    "last_success_at": "2026-10-28T09:29:58.071528+00:00",
+    "last_status": "success",
+    "consecutive_failures": 0,
+    "next_attempt_at": "2026-10-29T09:29:58.071528+00:00",
+    "last_error": null
+  },
+  {
+    "source_id": "esalmaty_business",
+    "last_attempt_at": "2026-10-28T09:35:56.763213+00:00",
+    "last_success_at": "2026-10-28T09:35:56.763213+00:00",
+    "last_status": "success",
+    "consecutive_failures": 0,
+    "next_attempt_at": "2026-10-29T09:35:56.763213+00:00",
+    "last_error": null
+  },
+  {
+    "source_id": "feedstock_verified_manual",
+    "last_attempt_at": "2026-10-28T09:38:19.643777+00:00",
+    "last_success_at": null,
+    "last_status": "needs_configuration",
+    "consecutive_failures": 0,
+    "next_attempt_at": "2026-10-29T09:38:19.643777+00:00",
+    "last_error": null
+  },
+  {
+    "source_id": "karaganda_zharyk_supply",
+    "last_attempt_at": "2026-10-28T09:30:18.739992+00:00",
+    "last_success_at": "2026-10-28T09:30:18.739992+00:00",
+    "last_status": "success",
+    "consecutive_failures": 0,
+    "next_attempt_at": "2026-10-29T09:30:18.739992+00:00",
+    "last_error": null
+  },
+  {
+    "source_id": "kosagro_verified_manual",
+    "last_attempt_at": "2026-10-28T09:38:19.554849+00:00",
+    "last_success_at": null,
+    "last_status": "needs_configuration",
+    "consecutive_failures": 0,
+    "next_attempt_at": "2026-10-29T09:38:19.554849+00:00",
+    "last_error": null
+  },
+  {
+    "source_id": "krec_district_supply",
+    "last_attempt_at": "2026-10-28T09:30:21.435196+00:00",
+    "last_success_at": "2026-10-28T09:30:21.435196+00:00",
+    "last_status": "success",
+    "consecutive_failures": 0,
+    "next_attempt_at": "2026-10-29T09:30:21.435196+00:00",
+    "last_error": null
+  },
+  {
+    "source_id": "mineral_verified_manual",
+    "last_attempt_at": "2026-10-28T09:38:19.589159+00:00",
+    "last_success_at": null,
+    "last_status": "needs_configuration",
+    "consecutive_failures": 0,
+    "next_attempt_at": "2026-10-29T09:38:19.589159+00:00",
+    "last_error": null
+  },
+  {
+    "source_id": "organic_verified_manual",
+    "last_attempt_at": "2026-10-28T09:38:19.498509+00:00",
+    "last_success_at": null,
+    "last_status": "needs_configuration",
+    "consecutive_failures": 0,
+    "next_attempt_at": "2026-10-29T09:38:19.498509+00:00",
+    "last_error": null
+  },
+  {
+    "source_id": "qazaqgaz_aimaq",
+    "last_attempt_at": "2026-10-28T09:38:19.417967+00:00",
+    "last_success_at": null,
+    "last_status": "needs_configuration",
+    "consecutive_failures": 0,
+    "next_attempt_at": "2026-10-29T09:38:19.417967+00:00",
+    "last_error": null
+  }
+]

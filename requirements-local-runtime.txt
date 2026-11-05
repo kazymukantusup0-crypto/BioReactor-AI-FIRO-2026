@@ -1,0 +1,4 @@
+# Versions actually exercised against preserved model artifacts on Python 3.13.
+# Install project-locally: python -m pip install --target .runtime-deps -r requirements-local-runtime.txt
+catboost==1.2.10
+truststore==0.10.4

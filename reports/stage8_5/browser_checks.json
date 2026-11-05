@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "checks": [
+    "Simple mode default",
+    "Mode switch preserves quantity",
+    "Mode switch preserves source profile",
+    "Calculation sends typed state",
+    "Scientific calculation returns methane",
+    "Calculator to chat keeps full component",
+    "Calculator to chat keeps region and capacity",
+    "Chat to calculator retains material form and profile",
+    "Chat to calculator retains amount capacity region",
+    "Chat import opens scientific mode",
+    "No browser JavaScript exceptions",
+    "Browser chat uses actual Qwen3 8B",
+    "Browser chat computes same methane",
+    "Browser chat retains known region"
+  ],
+  "errors": [],
+  "values": {
+    "material-0": "food_waste",
+    "state-0": "prepared_pulp",
+    "profile-0": "baek2020-food-pulp",
+    "quantity-0": "5",
+    "reactor-total": "90",
+    "market-region": "KZ-Karaganda-oblast"
+  },
+  "browser": "156.0.8078.80"
+}

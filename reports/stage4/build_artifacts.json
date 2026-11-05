@@ -1,0 +1,30 @@
+{
+  "favicon.svg": {
+    "bytes": 269,
+    "sha256": "57173430d2adcf65f41de6eb536e1abd3b53a5568856ab45a0e792c345ac4a51"
+  },
+  "index.html": {
+    "bytes": 1040,
+    "sha256": "5eac8d298ea8e089bb381831ddb12b0648007dca4646319836d7a6620e8c3a85"
+  },
+  "assets\\animation-CnhVhGaB.js": {
+    "bytes": 132054,
+    "sha256": "5db22f5d282cded3383a592d3cf1425017631b3baf74e8f458c77ab06064fbdd"
+  },
+  "assets\\charts-BqoSv1Lu.js": {
+    "bytes": 386353,
+    "sha256": "97775085e98a4edf99925433697078e4108825865e4c2ef225696669955ec087"
+  },
+  "assets\\index-CekT1pXU.css": {
+    "bytes": 50243,
+    "sha256": "7a38b15da906372e1dcd34374f7c1778906929ba60312cbc9eacfa95d19bb791"
+  },
+  "assets\\index-CfjJnoZ5.js": {
+    "bytes": 94118,
+    "sha256": "84c7f1871fefed6a4efd1121fb9abd8c63fd4dd46b16261de6c2c847775fce86"
+  },
+  "assets\\react-D4Urq-_C.js": {
+    "bytes": 208987,
+    "sha256": "0e4123f80d7f05d2f1ac65d800b09ae01600f8a826b13357d11b32d502ff8be0"
+  }
+}

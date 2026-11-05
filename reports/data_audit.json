@@ -1,0 +1,81 @@
+{
+  "raw_rows": 619,
+  "missing": {
+    "test": 0,
+    "set": 0,
+    "lab_id": 0,
+    "file_id": 0,
+    "substrate": 0,
+    "bottle_id": 0,
+    "bmp_calc": 0,
+    "c_vs_sub_m": 0,
+    "c_vs_sub_f": 0,
+    "c_vs_inoc": 0,
+    "ISR": 0
+  },
+  "duplicate_bottle_keys": 0,
+  "identical_feature_target_rows": 10,
+  "invalid_rows_excluded": 6,
+  "extreme_bmp_above_1000_retained_for_review": 1,
+  "distributions": {
+    "c_vs_sub_m": {
+      "count": 619.0,
+      "mean": 0.900507916,
+      "std": 0.0717467665,
+      "min": 0.6357,
+      "25%": 0.8695,
+      "50%": 0.9041,
+      "75%": 0.9745,
+      "max": 1.017
+    },
+    "c_vs_sub_f": {
+      "count": 619.0,
+      "mean": 0.9076155089,
+      "std": 0.063077064,
+      "min": 0.803,
+      "25%": 0.872,
+      "50%": 0.914,
+      "75%": 0.989,
+      "max": 0.991
+    },
+    "c_vs_inoc": {
+      "count": 619.0,
+      "mean": 0.0244966162,
+      "std": 0.0168984313,
+      "min": 0.0003372,
+      "25%": 0.01608,
+      "50%": 0.0194,
+      "75%": 0.02423,
+      "max": 0.09217
+    },
+    "ISR": {
+      "count": 619.0,
+      "mean": 2.1262159774,
+      "std": 1.2392099291,
+      "min": 0.04366,
+      "25%": 1.9335,
+      "50%": 1.999,
+      "75%": 2.0485,
+      "max": 20.56
+    },
+    "bmp_calc": {
+      "count": 619.0,
+      "mean": 382.5470113086,
+      "std": 102.8494405147,
+      "min": 107.8,
+      "25%": 330.05,
+      "50%": 370.9,
+      "75%": 428.65,
+      "max": 1208.0
+    }
+  },
+  "units": {
+    "c_vs_sub_m": "g VS/g fresh material",
+    "c_vs_sub_f": "g VS/g fresh material",
+    "c_vs_inoc": "g VS/g fresh material",
+    "ISR": "g inoculum VS/g substrate VS",
+    "bmp_calc": "mL CH4/g substrate VS"
+  },
+  "replicates": "Bottle replicates retained; all records from each laboratory stay in one partition.",
+  "leakage_control": "Explicit input allowlist. Excludes fv_inoc, gas volumes, SMP, reported BMP, identifiers and all target aliases."
+}

@@ -1,0 +1,117 @@
+[
+  {
+    "method": "GET",
+    "path": "/health",
+    "http": 200
+  },
+  {
+    "method": "GET",
+    "path": "/dashboard/",
+    "http": 200
+  },
+  {
+    "method": "GET",
+    "path": "/api/dashboard/status",
+    "http": 200
+  },
+  {
+    "method": "GET",
+    "path": "/api/dashboard/scientific",
+    "http": 200
+  },
+  {
+    "method": "GET",
+    "path": "/api/dashboard/reactor",
+    "http": 200
+  },
+  {
+    "method": "GET",
+    "path": "/api/process/scenarios",
+    "http": 200
+  },
+  {
+    "method": "GET",
+    "path": "/api/experiments",
+    "http": 200
+  },
+  {
+    "method": "GET",
+    "path": "/api/experiments/schema",
+    "http": 200
+  },
+  {
+    "method": "POST",
+    "path": "/api/dashboard/chat/sessions",
+    "http": 201
+  },
+  {
+    "method": "POST",
+    "path": "/api/dashboard/chat/sessions/bd5fc432a2734f0cbee4ebe725ab0d13/messages",
+    "http": 200
+  },
+  {
+    "method": "POST",
+    "path": "/api/dashboard/chat/sessions/bd5fc432a2734f0cbee4ebe725ab0d13/messages",
+    "http": 200
+  },
+  {
+    "method": "POST",
+    "path": "/api/dashboard/chat/sessions/bd5fc432a2734f0cbee4ebe725ab0d13/messages",
+    "http": 200
+  },
+  {
+    "method": "POST",
+    "path": "/api/dashboard/chat/sessions/bd5fc432a2734f0cbee4ebe725ab0d13/messages",
+    "http": 200
+  },
+  {
+    "method": "POST",
+    "path": "/api/process/optimize",
+    "http": 201
+  },
+  {
+    "method": "POST",
+    "path": "/api/process/optimize",
+    "http": 201
+  },
+  {
+    "method": "GET",
+    "path": "/api/process/scenarios/4207de5ba4cc4577bedd38c19074da5f",
+    "http": 200
+  },
+  {
+    "method": "POST",
+    "path": "/api/process/compare",
+    "http": 200
+  },
+  {
+    "method": "POST",
+    "path": "/api/experiments",
+    "http": 201
+  },
+  {
+    "method": "POST",
+    "path": "/api/experiments/1a00073eb9e1405b9c0e89762c74d8c6/measurements",
+    "http": 201
+  },
+  {
+    "method": "GET",
+    "path": "/api/experiments/1a00073eb9e1405b9c0e89762c74d8c6/comparison",
+    "http": 200
+  },
+  {
+    "method": "GET",
+    "path": "/api/experiments/1a00073eb9e1405b9c0e89762c74d8c6/export.csv",
+    "http": 200
+  },
+  {
+    "method": "PATCH",
+    "path": "/api/experiments/1a00073eb9e1405b9c0e89762c74d8c6",
+    "http": 200
+  },
+  {
+    "method": "GET",
+    "path": "/api/experiments/1a00073eb9e1405b9c0e89762c74d8c6/revisions",
+    "http": 200
+  }
+]

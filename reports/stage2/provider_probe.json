@@ -1,0 +1,17 @@
+[
+  {
+    "provider": "online",
+    "model": null,
+    "status": "not_configured",
+    "actual_generation": false
+  },
+  {
+    "provider": "offline",
+    "model": "qwen2.5:1.5b",
+    "status": "available",
+    "actual_generation": true,
+    "returned_plan": [
+      "get_model_info"
+    ]
+  }
+]

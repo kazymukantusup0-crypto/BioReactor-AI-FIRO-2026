@@ -1,0 +1,317 @@
+{
+  "sources": [
+    {
+      "id": "lallement2023",
+      "doi": "10.3390/waste1010014",
+      "title": "A Detailed Database of the Chemical Properties and Methane Potential of Biomasses Covering a Large Range of Common Agricultural Biogas Plant Feedstocks",
+      "authors": [
+        "Audrey Lallement",
+        "Christine Peyrelasse",
+        "Camille Lagnet",
+        "Abdellatif Barakat",
+        "Blandine Schraauwers",
+        "Samuel Maunas",
+        "Florian Monlau"
+      ],
+      "year": 2023,
+      "url": "https://doi.org/10.3390/waste1010014",
+      "review_url": "https://pdfs.semanticscholar.org/7db4/f1330e4ad1a5fe147448c28a98dede996d8d.pdf",
+      "reviewed_sections": [
+        "Methods 2.3",
+        "Appendix A Table A1, pp209-210, six individual ENSI Grass rows (not Mix Grass)"
+      ],
+      "local_pdf": "reports/stage8_3/sources/database2023.pdf",
+      "pdf_sha256": "8585ff941672d65497e60f33fa319e7bbceb5bc3b46f63c451614898775d1313",
+      "conditions": {
+        "temperature_c": 39,
+        "duration_days": null,
+        "duration_kind": "BMP_INCUBATION",
+        "reactor_type": "500 mL bottles, 300 mL charge, duplicate tests",
+        "inoculum": "APESA, maintained at38 +/-1 C; inoculum/substrate3 gVS/gVS",
+        "storage": "5 C for <=3 days, otherwise -20 C and thawed at6 C",
+        "mixing": "Manual daily",
+        "endpoint": "Daily gas change below0.5% for three consecutive days",
+        "gas_reference_text": "Normal liters at0 C and printed1.013 hPa. Pressure unit is ambiguous; no silent correction applied.",
+        "gas_basis": null,
+        "gas_basis_missing": [
+          "Unambiguous normal pressure (printed1.013 hPa)",
+          "Moisture correction"
+        ]
+      },
+      "limitations": [
+        "Grass rows are individual ENSI samples; exact harvest/ensiling state and packing density are not identified. State transfer is conditional, never a matched fresh-grass measurement.",
+        "DM and VS both percent fresh mass. Paired values retained per row.",
+        "BMP standard deviations refer to duplicate assays, not a population or prediction interval.",
+        "Normal pressure is printed with an ambiguous unit; numerical common-basis normalization requires an explicit assumption.",
+        "No universal grass density or actual reactor recovery is supplied."
+      ]
+    }
+  ],
+  "profiles": [
+    {
+      "id": "lallement2023-grass-1",
+      "material": "grass",
+      "source_id": "lallement2023",
+      "material_state": "fresh_solid",
+      "matching_states": [
+        "fresh_solid",
+        "shredded",
+        "silage"
+      ],
+      "conditional_states": [
+        "fresh_solid",
+        "shredded",
+        "silage"
+      ],
+      "state_transfer_note": "ENSI grass sample; exact fresh/ensiled/preparation status not specified. Comparison to the requested state is a hypothetical transfer, not confirmed equivalence.",
+      "verification_stage": "APPROVED_FOR_ESTIMATION",
+      "approved_scope": "Individual paired grass sample; state and gas-reference transfer must be explicitly conditional",
+      "preparation": "ENSI grass sample, cooled/frozen laboratory storage; harvest, ensiling and size preparation not specified per sample",
+      "density_kg_l": null,
+      "cn_ratio": null,
+      "ph": null,
+      "ts_fraction": {
+        "low": 0.278,
+        "high": 0.278,
+        "locator": "Table A1 p209, Grass row1",
+        "original_unit": "% fresh mass /100"
+      },
+      "vs_fraction_wet": {
+        "low": 0.247,
+        "high": 0.247,
+        "locator": "Table A1 p209, Grass row1",
+        "original_unit": "% fresh mass /100"
+      },
+      "bmp_ml_g_vs": {
+        "low": 264.3,
+        "high": 264.3,
+        "locator": "Table A1 p209, Grass row1",
+        "original_unit": "Nm3 CH4/t VS = mL CH4/g VS",
+        "reported_spread": 15,
+        "spread_type": "SD of duplicate assays; not prediction interval"
+      },
+      "source_stp_claimed": true
+    },
+    {
+      "id": "lallement2023-grass-2",
+      "material": "grass",
+      "source_id": "lallement2023",
+      "material_state": "fresh_solid",
+      "matching_states": [
+        "fresh_solid",
+        "shredded",
+        "silage"
+      ],
+      "conditional_states": [
+        "fresh_solid",
+        "shredded",
+        "silage"
+      ],
+      "state_transfer_note": "ENSI grass sample; exact fresh/ensiled/preparation status not specified. Comparison to the requested state is a hypothetical transfer, not confirmed equivalence.",
+      "verification_stage": "APPROVED_FOR_ESTIMATION",
+      "approved_scope": "Individual paired grass sample; state and gas-reference transfer must be explicitly conditional",
+      "preparation": "ENSI grass sample, cooled/frozen laboratory storage; harvest, ensiling and size preparation not specified per sample",
+      "density_kg_l": null,
+      "cn_ratio": null,
+      "ph": null,
+      "ts_fraction": {
+        "low": 0.172,
+        "high": 0.172,
+        "locator": "Table A1 p209, Grass row2",
+        "original_unit": "% fresh mass /100"
+      },
+      "vs_fraction_wet": {
+        "low": 0.135,
+        "high": 0.135,
+        "locator": "Table A1 p209, Grass row2",
+        "original_unit": "% fresh mass /100"
+      },
+      "bmp_ml_g_vs": {
+        "low": 406.3,
+        "high": 406.3,
+        "locator": "Table A1 p209, Grass row2",
+        "original_unit": "Nm3 CH4/t VS = mL CH4/g VS",
+        "reported_spread": 4.8,
+        "spread_type": "SD of duplicate assays; not prediction interval"
+      },
+      "source_stp_claimed": true
+    },
+    {
+      "id": "lallement2023-grass-3",
+      "material": "grass",
+      "source_id": "lallement2023",
+      "material_state": "fresh_solid",
+      "matching_states": [
+        "fresh_solid",
+        "shredded",
+        "silage"
+      ],
+      "conditional_states": [
+        "fresh_solid",
+        "shredded",
+        "silage"
+      ],
+      "state_transfer_note": "ENSI grass sample; exact fresh/ensiled/preparation status not specified. Comparison to the requested state is a hypothetical transfer, not confirmed equivalence.",
+      "verification_stage": "APPROVED_FOR_ESTIMATION",
+      "approved_scope": "Individual paired grass sample; state and gas-reference transfer must be explicitly conditional",
+      "preparation": "ENSI grass sample, cooled/frozen laboratory storage; harvest, ensiling and size preparation not specified per sample",
+      "density_kg_l": null,
+      "cn_ratio": null,
+      "ph": null,
+      "ts_fraction": {
+        "low": 0.17600000000000002,
+        "high": 0.17600000000000002,
+        "locator": "Table A1 p209, Ray-grass row",
+        "original_unit": "% fresh mass /100"
+      },
+      "vs_fraction_wet": {
+        "low": 0.16699999999999998,
+        "high": 0.16699999999999998,
+        "locator": "Table A1 p209, Ray-grass row",
+        "original_unit": "% fresh mass /100"
+      },
+      "bmp_ml_g_vs": {
+        "low": 393.3,
+        "high": 393.3,
+        "locator": "Table A1 p209, Ray-grass row",
+        "original_unit": "Nm3 CH4/t VS = mL CH4/g VS",
+        "reported_spread": 26.5,
+        "spread_type": "SD of duplicate assays; not prediction interval"
+      },
+      "source_stp_claimed": true
+    },
+    {
+      "id": "lallement2023-grass-4",
+      "material": "grass",
+      "source_id": "lallement2023",
+      "material_state": "fresh_solid",
+      "matching_states": [
+        "fresh_solid",
+        "shredded",
+        "silage"
+      ],
+      "conditional_states": [
+        "fresh_solid",
+        "shredded",
+        "silage"
+      ],
+      "state_transfer_note": "ENSI grass sample; exact fresh/ensiled/preparation status not specified. Comparison to the requested state is a hypothetical transfer, not confirmed equivalence.",
+      "verification_stage": "APPROVED_FOR_ESTIMATION",
+      "approved_scope": "Individual paired grass sample; state and gas-reference transfer must be explicitly conditional",
+      "preparation": "ENSI grass sample, cooled/frozen laboratory storage; harvest, ensiling and size preparation not specified per sample",
+      "density_kg_l": null,
+      "cn_ratio": null,
+      "ph": null,
+      "ts_fraction": {
+        "low": 0.213,
+        "high": 0.213,
+        "locator": "Table A1 p210, Grass row1",
+        "original_unit": "% fresh mass /100"
+      },
+      "vs_fraction_wet": {
+        "low": 0.18899999999999997,
+        "high": 0.18899999999999997,
+        "locator": "Table A1 p210, Grass row1",
+        "original_unit": "% fresh mass /100"
+      },
+      "bmp_ml_g_vs": {
+        "low": 461.2,
+        "high": 461.2,
+        "locator": "Table A1 p210, Grass row1",
+        "original_unit": "Nm3 CH4/t VS = mL CH4/g VS",
+        "reported_spread": 3.7,
+        "spread_type": "SD of duplicate assays; not prediction interval"
+      },
+      "source_stp_claimed": true
+    },
+    {
+      "id": "lallement2023-grass-5",
+      "material": "grass",
+      "source_id": "lallement2023",
+      "material_state": "fresh_solid",
+      "matching_states": [
+        "fresh_solid",
+        "shredded",
+        "silage"
+      ],
+      "conditional_states": [
+        "fresh_solid",
+        "shredded",
+        "silage"
+      ],
+      "state_transfer_note": "ENSI grass sample; exact fresh/ensiled/preparation status not specified. Comparison to the requested state is a hypothetical transfer, not confirmed equivalence.",
+      "verification_stage": "APPROVED_FOR_ESTIMATION",
+      "approved_scope": "Individual paired grass sample; state and gas-reference transfer must be explicitly conditional",
+      "preparation": "ENSI grass sample, cooled/frozen laboratory storage; harvest, ensiling and size preparation not specified per sample",
+      "density_kg_l": null,
+      "cn_ratio": null,
+      "ph": null,
+      "ts_fraction": {
+        "low": 0.23399999999999999,
+        "high": 0.23399999999999999,
+        "locator": "Table A1 p210, Grass row2",
+        "original_unit": "% fresh mass /100"
+      },
+      "vs_fraction_wet": {
+        "low": 0.213,
+        "high": 0.213,
+        "locator": "Table A1 p210, Grass row2",
+        "original_unit": "% fresh mass /100"
+      },
+      "bmp_ml_g_vs": {
+        "low": 403.2,
+        "high": 403.2,
+        "locator": "Table A1 p210, Grass row2",
+        "original_unit": "Nm3 CH4/t VS = mL CH4/g VS",
+        "reported_spread": 14.2,
+        "spread_type": "SD of duplicate assays; not prediction interval"
+      },
+      "source_stp_claimed": true
+    },
+    {
+      "id": "lallement2023-grass-6",
+      "material": "grass",
+      "source_id": "lallement2023",
+      "material_state": "fresh_solid",
+      "matching_states": [
+        "fresh_solid",
+        "shredded",
+        "silage"
+      ],
+      "conditional_states": [
+        "fresh_solid",
+        "shredded",
+        "silage"
+      ],
+      "state_transfer_note": "ENSI grass sample; exact fresh/ensiled/preparation status not specified. Comparison to the requested state is a hypothetical transfer, not confirmed equivalence.",
+      "verification_stage": "APPROVED_FOR_ESTIMATION",
+      "approved_scope": "Individual paired grass sample; state and gas-reference transfer must be explicitly conditional",
+      "preparation": "ENSI grass sample, cooled/frozen laboratory storage; harvest, ensiling and size preparation not specified per sample",
+      "density_kg_l": null,
+      "cn_ratio": null,
+      "ph": null,
+      "ts_fraction": {
+        "low": 0.39899999999999997,
+        "high": 0.39899999999999997,
+        "locator": "Table A1 p210, Grass row3",
+        "original_unit": "% fresh mass /100"
+      },
+      "vs_fraction_wet": {
+        "low": 0.361,
+        "high": 0.361,
+        "locator": "Table A1 p210, Grass row3",
+        "original_unit": "% fresh mass /100"
+      },
+      "bmp_ml_g_vs": {
+        "low": 187.2,
+        "high": 187.2,
+        "locator": "Table A1 p210, Grass row3",
+        "original_unit": "Nm3 CH4/t VS = mL CH4/g VS",
+        "reported_spread": 11.5,
+        "spread_type": "SD of duplicate assays; not prediction interval"
+      },
+      "source_stp_claimed": true
+    }
+  ],
+  "partial_characterizations": []
+}

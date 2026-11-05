@@ -1,0 +1,53 @@
+{
+  "checked_files": 281,
+  "changed_or_missing": [],
+  "tables": {
+    "observations": {
+      "original_rows": 28,
+      "current_rows": 28,
+      "all_original_rows_retained": true
+    },
+    "dashboard_sessions": {
+      "original_rows": 2,
+      "current_rows": 2,
+      "all_original_rows_retained": true
+    },
+    "dashboard_turns": {
+      "original_rows": 10,
+      "current_rows": 10,
+      "all_original_rows_retained": true
+    },
+    "scenarios": {
+      "original_rows": 5,
+      "current_rows": 5,
+      "all_original_rows_retained": true
+    },
+    "process_optimizer_runs": {
+      "original_rows": 0,
+      "current_rows": 0,
+      "all_original_rows_retained": true
+    },
+    "experiment_records": {
+      "original_rows": 0,
+      "current_rows": 0,
+      "all_original_rows_retained": true
+    },
+    "experiment_revisions": {
+      "original_rows": 0,
+      "current_rows": 0,
+      "all_original_rows_retained": true
+    },
+    "experiment_measurements": {
+      "original_rows": 0,
+      "current_rows": 0,
+      "all_original_rows_retained": true
+    },
+    "research_records": {
+      "original_rows": 10,
+      "current_rows": 10,
+      "all_original_rows_retained": true
+    }
+  },
+  "all_original_rows_retained": true,
+  "passed": true
+}

@@ -1,0 +1,12 @@
+{
+  "protected_artifacts": 196,
+  "changed_artifacts": [],
+  "prior_rows_unchanged": {
+    "observations": true,
+    "dashboard_turns": true,
+    "scenarios": true
+  },
+  "production_prices": 28,
+  "production_test_prices": 0,
+  "broken_doc_links": []
+}

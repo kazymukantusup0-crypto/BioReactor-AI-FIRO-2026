@@ -1,0 +1,4400 @@
+2005
+Manual
+Composting
+Manure
+
+Prepared and Published by:
+Livestock Engineering Unit & Environmental Practices Unit
+Technical Services Division
+Alberta Agriculture, Food and Rural Development
+Distributed by:
+Information Packaging Centre
+Alberta Agriculture, Food and Rural Development
+7000 - 113 Street, Edmonton, Alberta
+Canada  T6H 5T6
+Copyright © 2004.
+Her majesty the Queen in Right of Alberta
+(Alberta Agriculture, Food and Rural Development).
+All rights reserved.
+Updated January 2005
+
+Contents
+Chapter 1  Introduction
+Chapter 2  The Composting Process
+Chapter 3  Composting Methods
+Chapter 4  Site Selection for Composting
+Chapter 5  Compost Regulations
+Chapter 6  Compost Uses
+Troubleshooting
+Questions to be Addressed Prior to Composting
+Additional Information
+References
+Appendix A  Blending Sample Calculation
+5
+6
+11
+15
+17
+17
+18
+19
+20
+21
+23
+Composting
+Manual
+Manure
+
+4
+
+5
+Chapter 1.  Introduction
+Producers and researchers are exploring many
+ways to address environmental sustainability and
+nuisance problems while adding value and
+improving transportability of manure to offset the
+costs of management practices.  Manure
+management includes feed management,
+collection, transport, storage, handling, treatment,
+disposal and utilization of manure.  This
+handbook will provide an introduction to
+agricultural composting and provide additional
+sources of information for those interested.
+Composting is the biological decomposition and
+stabilization of organic material.  The process
+produces heat that, in turn, produces a final
+product that is stable, free of pathogens and
+viable plant seeds, and can be beneficially applied
+to the land.  As the product stabilizes, odours are
+reduced and pathogens eliminated.  When
+composting high moisture materials, bulking
+materials are necessary for reducing moisture
+content and maintaining the integrity of the pile.
+Ideally, composting will enhance the usefulness
+of organic by-products as fertilizers, privately and
+commercially.
+Composting is receiving increased attention as an
+alternative manure management practice due to
+increased pressures from society to reduce the
+impact on the environment.  The producer may
+see alternative benefits to the reduction in volume
+of manure due to composting.  Land base
+required to apply manure compost may stay the
+same but the producer can economically haul
+compost further than manure.
+Table 1.  Benefits and disadvantages of manure compost
+Benefits
+•
+Reduces mass and volume
+- lower hauling costs
+•
+Reduces odour
+•
+Pathogens are destroyed
+•
+Kills weed seeds
+•
+Improves transportability
+•
+Soil conditioner
+•
+Improves nutrient qualities
+- the nutrients from compost are
+released slowly and steadily
+•
+Decreases pollutants
+- stabilizes the volatile nitrogen into
+large protein particles, reducing losses
+•
+Land application when convenient
+•
+Saleable product
+•
+Increases water retention of soil
+Disadvantages
+•
+Loss of ammonia (N)
+•
+Time and labour involved
+•
+Cost of equipment (initial and operating)
+•
+Land required for composting
+•
+Marketing required for sale
+
+6
+Figure 1.  Material flow for the conventional composting process.
+Chapter 2.  The Composting Process
+Under controlled conditions, composting is
+accomplished in two main stages: an active stage
+and a curing stage (Figure 1).  In the active
+composting stage, microorganisms consume
+oxygen (O2) while feeding on organic matter in
+manure and produce heat, carbon dioxide (CO2)
+and water vapour.  During this stage, most of the
+degradable organic matter is decomposed.  A
+management plan is needed to maintain proper
+temperature, oxygen and moisture for the
+organisms.  Testing temperature, moisture
+content, and oxygen levels can help make
+decisions on composting activities, such as
+turning, aerating, or adding moisture.  These tests
+can be performed quite simply on site giving
+quick feedback - from minutes for temperature or
+oxygen to overnight for moisture content.  In the
+curing phase, microbial activity slows down and
+as the process nears completion, the material
+approaches ambient air temperature.  Finished
+compost takes on many of the characteristics of
+humus, the organic fraction of soil.  The material
+will have been reduced in volume by 20 to 60%,
+the moisture content by 40% and the weight by up
+to 50%.  One of the key challenges in composting
+is to retain as much nitrogen as possible.
+Composting may contribute to the greenhouse
+effect because carbon dioxide (CO2), methane
+(NH4) and nitrous oxide (NO2) will be emitted to
+the atmosphere during composting.
+Factors Affecting the Composting
+Process
+Controlling the process factors can accelerate the
+natural composting process.  Each of these
+factors has the potential to significantly affect the
+composting process.  Some of the important
+factors in the composting process are shown in
+Table 2 with  their acceptable ranges.
+Table 2.  Factors affecting the composting
+process and acceptable ranges
+r
+o
+tc
+a
+F
+e
+g
+n
+a
+R
+e
+l
+b
+a
+t
+p
+e
+c
+c
+A
+e
+r
+u
+t
+a
+r
+e
+p
+m
+e
+T
+)
+N
+:
+C
+(
+o
+it
+a
+r
+n
+e
+g
+o
+rti
+N
+o
+t
+n
+o
+b
+r
+a
+C
+n
+e
+g
+y
+x
+o
+t
+n
+e
+c
+r
+e
+p
+,
+n
+o
+it
+a
+r
+e
+A
+t
+n
+e
+t
+n
+o
+c
+e
+r
+u
+tsi
+o
+M
+ytis
+o
+r
+o
+P
+H
+p
+C
+°
+0
+6
+-
+4
+5
+1
+:
+0
+3
+-
+1
+:
+5
+2
+%
+5
+>
+%
+0
+6
+-
+0
+5
+6
+3
+-
+0
+3
+5
+.
+7
+-
+5
+.
+6
+
+7
+stage, the temperature may start to fall because of
+a lack of oxygen.  Turning the material
+introduces new oxygen and the active
+composting stage continues.  The temperatures
+can exceed 70°C (158°F) but many
+microorganisms begin to die, which stops the
+active composting stage.  Cooling the material by
+turning helps to keep the temperature from
+reaching these damaging levels.  Heat loss occurs
+primarily because of water evaporation from the
+material.  Heat loss can also occur if the pile is
+too small or  is exposed to cold weather.  If the
+moisture content falls too low it increases the
+chance of obtaining damaging high temperatures.
+The temperature should be maintained at 55°C
+(131°F) or higher for a minimum of 14 days to
+destroy the viability of many pathogens and
+weed seeds.  Remember, the edges of the
+windrow are cool, therefore they must be turned
+into the center to kill the weed seeds.
+Temperature
+Temperature is a very good indicator of the
+process occurring within the composting
+material.  The temperature increases due to the
+microbial activity and is noticeable within a few
+hours of forming a pile as easily degradable
+compounds are consumed.  The temperature
+usually increases rapidly to 50 - 60°C (122 -
+140°F) where it is maintained for several weeks.
+This is called the active composting stage.
+Biochemical reaction rates approximately double
+with each 10°C (50°F) increase in temperature,
+yet higher temperatures will increase ammonia
+loss during the composting process.  The
+temperature gradually drops to 40°C (104°F) as
+the active composting slows down and the curing
+stage begins.  Eventually, the temperature will
+become that of the surrounding air.
+The highest rates of decomposition occur when
+temperatures are in the range of 43 - 66°C
+(110 -  150°F).  During the active composting
+Figure 2.  Temperature measurement probe.
+The temperature can
+be measured with a
+1 metre (3 foot) long
+dial temperature probe.
+
+8
+Carbon to Nitrogen Ratio
+The carbon to nitrogen ratio (C:N) of manure is a
+very important factor that affects the whole
+composting process because microbes need 20 to
+25 times more carbon than nitrogen to remain
+active.   The ratio should be between 25:1 and
+30:1 at the beginning.  The microorganisms digest
+carbon as an energy source and ingest nitrogen for
+protein and reproduction.  Softwood shavings,
+sawdust and straw are good sources of carbon.
+Other inexpensive sources of carbon include
+municipal waste and shredded newsprint or
+cardboard.  Most manures are a good source of
+nitrogen but may be low in carbon depending on
+the amount of bedding used.  Table 3, in this
+chapter, lists the C:N ratio for materials
+commonly included in farm compost.  The
+content of materials on your farm can be
+estimated using the table or a laboratory can
+perform the analysis.
+If the ratio is too high (insufficient nitrogen), the
+decomposition slows.  If the ratio is too low (too
+much nitrogen), it will likely be lost to the
+atmosphere in the form of ammonia gas.  This
+can lead to odour problems (refer to the
+troubleshooting table in the back of the manual
+for solutions).  Most materials available for
+composting do not fit the ideal ratio so different
+materials must be blended.  Proper blending of
+carbon and nitrogen helps ensure that composting
+temperatures will be high enough for the process
+to work efficiently and ensures other nutrients are
+available for microbes in adequate supply.
+Aeration
+The minimum desirable oxygen concentration in
+the composting material is 5%.  Greater than 10%
+is ideal to avoid anaerobic conditions and high
+odour potential.  Aeration adds fresh air in the
+center of the composting material.  Rapid aerobic
+decomposition can only occur in the presence of
+sufficient oxygen.  Aeration occurs naturally
+when air warmed by the compost rises through
+the material, drawing in fresh air from the
+surroundings at the base of the windrow.  Initial
+mixing of materials usually introduces enough
+air to start composting.  Porosity and moisture
+content affect air movement through the
+composting material.  Regular mixing of the
+material, referred to as turning, enhances aeration
+in the composting material.  Good aeration
+during composting will encourage complete
+decomposition of carbon (C) to carbon dioxide
+(CO2) rather than releasing carbon as methane
+(CH4).  Too much aeration, however, can actually
+reduce the rate of decomposition by cooling the
+composting material and may cause the release
+of too much CO2.  Excessive air flow can remove
+a lot of moisture.  Another consequence of
+excessive aeration is ammonia loss, especially
+with high nitrogen (low C:N ratio) mixes.  As the
+material dries out, more ammonia volatilizes and
+consequently, more nitrogen is lost.
+The oxygen concentration can be measured with
+an oxygen probe.  However, temperature
+provides an adequate indication of the process
+conditions.  If the supply of oxygen is limited,
+the composting process slows and the
+temperature begins to fall.  In this case the
+composting materials should be turned.
+Moisture Content
+Moisture plays an essential role in the
+metabolism of microorganisms and indirectly in
+the supply of oxygen.  Microorganisms can
+utilize only those organic molecules that are
+dissolved in water.  Moisture content between 50
+and 60% (by weight) provides adequate moisture
+without limiting aeration.  If the moisture content
+falls below 40%, bacterial activity will slow
+down and will cease entirely below 15%.  When
+the moisture content exceeds 60%, nutrients are
+leached, porosity is reduced, odours are produced
+(due to anaerobic conditions) and decomposition
+slows.  The squeeze test can be used to check the
+moisture content.  The material is too wet if
+water can be squeezed out of a handful and too
+dry if the material doesn’t form a ball when
+squeezed.
+
+9
+  Caution: Material in the pile will be very
+  hot, use a shovel to remove material.
+If the pile becomes too wet, it should be turned.
+This allows air to circulate back into it and loosens
+the materials for better draining and drying.  Adding
+dry material, such as straw, sawdust or finished
+compost can also remedy excess moisture problems.
+If the material is too dry, water can be added.  An
+effective practice is to turn the material and rewet
+materials in the process.  Shaping the pile can assist
+in shedding excess water from the pile.  A windrow
+cover can be used to keep unwanted moisture from
+the elements out of the windrow and conserve
+moisture within the windrow.  Optimum moisture
+content of raw materials should be between 50 and
+60% (wet basis), depending on particle size,
+available nutrients and physical characteristics.
+Porosity
+Porosity refers to the spaces between particles in the
+compost material.  These spaces are partially filled
+with air that can supply oxygen to the organisms and
+provide a path for air circulation.  As the material
+becomes water saturated, the space available for air
+decreases, thus slowing the composting process.
+Compacting the composting material reduces the
+porosity.  Excessive shredding can also impede air
+circulation by creating smaller particles and pores.
+Turning fluffs up the material and increases its
+porosity.  Adding coarse materials such as straw or
+woodchips can increase the overall porosity,
+although some coarse materials will be slow to
+decompose.
+pH of Materials
+The optimum pH for microorganisms involved in
+composting lies between 6.5 and 7.5.  The pH of
+most animal manures is approximately 6.8 to 7.4.
+Composting alone leads to major changes in
+materials and their pH as decomposition occurs.
+For example, release of organic acids may,
+temporarily, lower the pH (increase acidity), and
+production of ammonia from nitrogenous
+compounds may raise the pH (increase alkalinity)
+during early stages of composting. On-site
+laboratory tests of pH can be used to maintain
+process control and product quality at a composting
+site.
+Nutrients
+Adequate levels of phosphorus (P), potassium (K),
+carbon (C), nitrogen (N), etc. are important in the
+composting process and are normally present in
+farm organic materials such as manure and livestock
+mortalities.  Nutrient loss can occur through
+volatilization, losses to the atmosphere and leaching.
+Composting converts the nutrients in manure to
+stable forms that have a low ability to be lost by
+volatilization and leaching when applied to the land.
+However, during the composting process substantial
+amounts of nitrogen will be lost through ammonia
+volatilization.  The ammonia emissions during
+composting reduce the fertilizer value of the finished
+compost. Nitrogen losses can also occur from
+emission of nitrous oxides or nitrogen gas.
+Toxic Substances: CAUTION
+Some organic materials may contain substances that
+are toxic to composting bacteria or bacteria required
+for composting.  Heavy metals such as manganese,
+copper, zinc, nickel, chromium and lead fall into this
+category and may be immobilized chemically prior
+to composting.  A laboratory can analyze samples of
+raw materials for toxic substances.  Weathered fly
+ash, after equilibrating with atmospheric CO2, is
+called lagoon ash, which has an alkaline pH and
+provides a good fixing agent to suppress the
+availability of heavy metals in manure compost.
+Clopyralid is a long-lasting herbicide used to control
+broadleaf weeds.  It does not pose a threat to humans
+or animals.  It passes through animals and the
+composting process with little breakdown.  Compost
+contaminated with clopyraid may harm certain types
+of broadleaf or ornamentals and vegetables such as
+beans, peas, peppers, tomatoes and potatoes.  If you
+suspect that manure or compost is contaminated
+with clopyralid, it is better to send a manure or
+compost sample to the lab for testing.
+
+10
+Material Characteristics
+It is important to be familiar with the material
+used in composting.  Make sure to have proper
+C:N ratios.  Materials can be blended together to
+attain the proper ratio.  Table 3 contains
+l
+a
+ir
+e
+t
+a
+M
+n
+e
+g
+o
+r
+ti
+N
+)t
+h
+g
+i
+e
+w
+y
+r
+d
+(
+)
+%
+(
+N
+:
+C
+)t
+h
+g
+i
+e
+w
+y
+r
+d
+(
+e
+r
+u
+t
+si
+o
+M
+t
+n
+e
+t
+n
+o
+C
+)
+%
+(
+@
+y
+ti
+s
+n
+e
+D
+k
+l
+u
+B
+e
+r
+u
+t
+si
+o
+M
+m
+/
+g
+k
+(
+t
+n
+e
+t
+n
+o
+C
+3)
+f
+e
+e
+B
+g
+n
+i
+d
+d
+e
+b
+h
+ti
+w
+t
+o
+l
+d
+e
+e
+F
+-
+0
+3
+.
+1
+8
+.
+1
+8
+6
+0
+1
+7
+y
+ri
+a
+D
+g
+n
+il
+d
+n
+a
+h
+e
+r
+u
+n
+a
+m
+d
+il
+o
+S
+-
+y
+rr
+u
+ls
+d
+i
+u
+q
+iL
+-
+y
+rr
+u
+ls
+m
+o
+rf
+d
+e
+t
+a
+r
+a
+p
+e
+s
+s
+d
+il
+o
+S
+-
+0
+7
+.
+1
+0
+6
+.
+3
+-
+0
+4
+.
+2
+5
+4
+.
+1
+8
+1
+6
+1
+3
+2
+9
+7
+2
+9
+-
+8
+8
+7
+7
+0
+1
+7
+0
+9
+9
+0
+5
+6
+s
+g
+i
+P
+y
+rr
+u
+ls
+d
+i
+u
+q
+iL
+-
+y
+rr
+u
+ls
+m
+o
+rf
+d
+e
+t
+a
+r
+a
+p
+e
+s
+s
+d
+il
+o
+S
+-
+0
+0
+.
+5
+-
+5
+1
+.
+0
+0
+0
+.
+5
+-
+5
+3
+.
+0
+0
+2
+9
+.
+1
+9
+9
+-
+3
+9
+0
+8
+-
+5
+7
+0
+0
+0
+1
+0
+6
+8
+-
+0
+7
+2
+y
+r
+tl
+u
+o
+P
+r
+e
+y
+a
+l
+r
+e
+d
+e
+e
+r
+b
+r
+eli
+o
+r
+B
+-
+r
+e
+ttil
+r
+eli
+o
+r
+B
+-
+r
+e
+ttil
+y
+e
+k
+r
+u
+T
+-
+0
+6
+.
+3
+0
+7
+.
+4
+0
+2
+.
+4
+0
+1
+5
+1
+4
+1
+6
+4
+5
+2
+3
+3
+0
+7
+4
+0
+3
+3
+0
+8
+3
+g
+n
+i
+d
+d
+e
+B
+h
+ti
+w
+e
+r
+u
+n
+a
+M
+e
+s
+r
+o
+H
+w
+a
+rts
+h
+ti
+w
+-
+s
+g
+n
+iv
+a
+h
+s
+h
+ti
+w
+-
+0
+3
+.
+2
+-
+0
+4
+.
+1
+0
+5
+.
+1
+0
+9
+.
+0
+0
+5
+-
+2
+2
+7
+2
+5
+6
+9
+7
+-
+9
+5
+7
+6
+2
+7
+0
+6
+9
+-
+5
+2
+7
+-
+-
+e
+r
+u
+n
+a
+M
+p
+e
+e
+h
+S
+9
+0
+.
+3
+-
+0
+3
+.
+1
+0
+2
+-
+3
+1
+5
+7
+-
+0
+6
+-
+w
+a
+r
+t
+S
+w
+a
+rts
+l
+a
+r
+e
+n
+e
+g
+-
+w
+a
+rts
+t
+a
+o
+-
+w
+a
+rts
+t
+a
+e
+h
+w
+-
+w
+a
+rts
+y
+elr
+a
+b
+-
+0
+1
+.
+1
+-
+0
+3
+.
+0
+0
+1
+.
+1
+-
+0
+6
+.
+0
+0
+5
+.
+0
+-
+0
+3
+.
+0
+8
+7
+.
+0
+-
+5
+7
+.
+0
+0
+5
+1
+-
+8
+4
+8
+9
+-
+8
+4
+0
+5
+1
+-
+0
+0
+1
+-
+7
+2
+-
+4
+4
+1
+0
+1
+8
+1
+-
+2
+1
+7
+5
+3
+-
+8
+5
+2
+9
+1
+-
+0
+3
+1
+5
+3
+1
+-
+y
+a
+H
+s
+s
+a
+r
+G
+e
+m
+u
+g
+e
+L
+0
+6
+.
+3
+-
+0
+8
+.
+1
+9
+1
+-
+5
+1
+0
+3
+-
+0
+1
+-
+d
+r
+a
+o
+b
+d
+r
+a
+C
+0
+1
+.
+0
+3
+6
+5
+8
+4
+5
+1
+s
+e
+v
+a
+e
+L
+0
+3
+.
+1
+-
+0
+5
+.
+0
+0
+8
+-
+0
+4
+8
+3
+0
+8
+-
+0
+6
+r
+e
+p
+a
+P
+5
+2
+.
+0
+-
+0
+2
+.
+0
+8
+7
+1
+-
+7
+2
+1
+0
+2
+-
+8
+1
+0
+3
+1
+t
+s
+u
+d
+w
+a
+S
+0
+8
+.
+0
+-
+6
+0
+.
+0
+0
+5
+7
+-
+0
+0
+2
+5
+6
+-
+9
+1
+7
+6
+2
+-
+7
+0
+2
+)
+s
+p
+i
+h
+C
+(
+e
+t
+s
+a
+w
+d
+o
+o
+W
+3
+2
+.
+0
+-
+4
+0
+.
+0
+3
+1
+3
+1
+-
+2
+1
+2
+0
+4
+-
+5
+1
+8
+6
+3
+-
+4
+6
+2
+characteristics of common on-farm composting
+materials.  In order to blend materials in suitable
+proportions several factors must be considered.
+The necessary formulas and a sample calculation
+are in Appendix A.
+Table 3. Characteristics of common composting materials
+
+11
+Chapter 3.  Composting Methods
+As outlined in Table 4, some basic composting
+methods use bins, passive windrows, turned
+windrows, aerated static piles and in-vessel
+channels.  The proper approach depends on the
+time to complete composting, the material and
+volume to be decomposed, space available, the
+availability of resources (labour, finances, etc.)
+and the quality of finished product required.
+Table 4. Basic composting methods
+n
+i
+B
+e
+v
+i
+s
+s
+a
+P
+w
+o
+r
+d
+n
+i
+W
+w
+o
+r
+d
+n
+i
+W
+e
+v
+itc
+A
+cit
+a
+t
+S
+d
+e
+t
+a
+r
+e
+A
+w
+o
+r
+d
+n
+i
+W
+l
+e
+s
+s
+e
+V
+-
+n
+I
+l
+e
+n
+n
+a
+h
+C
+l
+a
+r
+e
+n
+e
+G
+,y
+g
+o
+l
+o
+n
+h
+c
+e
+t
+w
+o
+L
+.ytil
+a
+u
+q
+m
+u
+i
+d
+e
+m
+,y
+g
+o
+l
+o
+n
+h
+c
+e
+t
+w
+o
+L
+.s
+m
+e
+l
+b
+o
+r
+p
+ytil
+a
+u
+q
+s
+m
+e
+ts
+y
+s
+e
+vitc
+A
+n
+o
+n
+o
+m
+m
+o
+c
+ts
+o
+m
+.s
+m
+r
+a
+f
+m
+r
+a
+f
+r
+o
+f
+e
+vitc
+e
+ff
+E
+.
+e
+s
+u
+l
+a
+p
+ici
+n
+u
+m
+d
+n
+a
+s
+m
+e
+ts
+y
+s
+e
+l
+a
+c
+s
+-
+e
+g
+r
+a
+L
+l
+a
+ic
+r
+e
+m
+m
+o
+c
+r
+o
+f
+.s
+n
+o
+it
+a
+cil
+p
+p
+a
+r
+u
+o
+b
+a
+L
+r
+u
+o
+b
+a
+l
+m
+u
+i
+d
+e
+M
+.
+d
+e
+ri
+u
+q
+e
+r
+r
+u
+o
+b
+a
+l
+w
+o
+L
+.
+d
+e
+ri
+u
+q
+e
+r
+h
+ti
+w
+s
+e
+s
+a
+e
+r
+c
+n
+I
+n
+o
+it
+a
+r
+e
+a
+d
+n
+a
+y
+c
+n
+e
+u
+q
+e
+rf
+.
+g
+n
+i
+n
+n
+a
+l
+p
+r
+o
+o
+p
+d
+n
+a
+n
+g
+is
+e
+d
+m
+e
+ts
+y
+S
+.t
+n
+a
+tr
+o
+p
+m
+i
+g
+n
+i
+n
+n
+a
+l
+p
+.
+d
+e
+d
+e
+e
+n
+g
+n
+ir
+o
+ti
+n
+o
+M
+t
+n
+e
+tsis
+n
+o
+c
+s
+e
+ri
+u
+q
+e
+R
+f
+o
+l
+e
+v
+e
+l
+/t
+n
+e
+m
+e
+g
+a
+n
+a
+m
+e
+b
+o
+t
+w
+o
+lf
+tc
+u
+d
+o
+r
+p
+.t
+n
+e
+iciff
+e
+ts
+o
+c
+e
+ti
+S
+t
+u
+b
+d
+n
+a
+l
+d
+e
+ti
+m
+iL
+a
+s
+e
+ri
+u
+q
+e
+r
+g
+n
+its
+o
+p
+m
+o
+c
+.
+e
+r
+u
+tc
+u
+rts
+d
+n
+a
+l
+e
+g
+r
+a
+l
+s
+e
+ri
+u
+q
+e
+R
+.s
+a
+e
+r
+a
+e
+g
+r
+a
+l
+e
+ri
+u
+q
+e
+r
+n
+a
+C
+.s
+a
+e
+r
+a
+d
+n
+a
+l
+d
+e
+ri
+u
+q
+e
+r
+d
+n
+a
+l
+s
+s
+e
+L
+s
+e
+t
+a
+r
+r
+e
+ts
+a
+f
+n
+e
+vi
+g
+e
+li
+p
+e
+vitc
+e
+ff
+e
+d
+n
+a
+.s
+e
+m
+u
+l
+o
+v
+d
+n
+a
+l
+d
+e
+ti
+m
+il
+y
+r
+e
+V
+s
+e
+t
+a
+r
+d
+i
+p
+a
+r
+o
+t
+e
+u
+d
+s
+u
+o
+u
+n
+it
+n
+o
+c
+d
+n
+a
+.s
+n
+o
+it
+a
+r
+e
+p
+o
+g
+n
+i
+k
+l
+u
+B
+t
+n
+e
+g
+A
+.
+e
+l
+b
+ix
+e
+lF
+ts
+u
+m
+,
+e
+l
+b
+ix
+e
+lf
+s
+s
+e
+L
+.s
+u
+o
+r
+o
+p
+e
+b
+.
+e
+l
+b
+ix
+e
+lF
+ts
+u
+m
+,
+e
+l
+b
+ix
+e
+lf
+s
+s
+e
+L
+.s
+u
+o
+r
+o
+p
+e
+b
+.
+e
+l
+b
+ix
+e
+lF
+e
+v
+itc
+A
+d
+o
+ir
+e
+P
+:
+e
+g
+n
+a
+R
+s
+h
+t
+n
+o
+m
+6
+-
+2
+:
+e
+g
+n
+a
+R
+s
+h
+t
+n
+o
+m
+4
+2
+-
+6
+:
+e
+g
+n
+a
+R
+s
+y
+a
+d
+0
+4
+-
+1
+2
+:
+e
+g
+n
+a
+R
+s
+y
+a
+d
+0
+4
+-
+1
+2
+:
+e
+g
+n
+a
+R
+s
+y
+a
+d
+5
+3
+-
+1
+2
+g
+n
+ir
+u
+C
+s
+y
+a
+d
++
+0
+3
+.
+e
+l
+b
+a
+cil
+p
+p
+a
+t
+o
+N
+s
+y
+a
+d
++
+0
+3
+s
+y
+a
+d
++
+0
+3
+s
+y
+a
+d
++
+0
+3
+:
+e
+z
+i
+S
+t
+h
+g
+i
+e
+H
+n
+i
+b
+n
+o
+t
+n
+e
+d
+n
+e
+p
+e
+D
+.
+n
+g
+is
+e
+d
+s
+e
+rt
+e
+m
+4
+-
+1
+s
+e
+rt
+e
+m
+8
+.
+2
+-
+1
+s
+e
+rt
+e
+m
+5
+.
+4
+-
+3
+y
+a
+b
+n
+o
+t
+n
+e
+d
+n
+e
+p
+e
+D
+.
+n
+g
+is
+e
+d
+:
+e
+z
+i
+S
+h
+t
+d
+i
+W
+.
+e
+l
+b
+a
+ir
+a
+V
+s
+e
+rt
+e
+m
+7
+-
+3
+s
+e
+rt
+e
+m
+6
+-
+3
+.
+e
+l
+b
+a
+ir
+a
+V
+.
+e
+l
+b
+a
+ir
+a
+V
+:
+e
+z
+i
+S
+h
+t
+g
+n
+e
+L
+.
+e
+l
+b
+a
+ir
+a
+V
+.
+e
+l
+b
+a
+ir
+a
+V
+.
+e
+l
+b
+a
+ir
+a
+V
+.
+e
+l
+b
+a
+ir
+a
+V
+.
+e
+l
+b
+a
+ir
+a
+V
+n
+o
+it
+a
+r
+e
+A
+m
+e
+t
+s
+y
+S
+l
+a
+r
+u
+t
+a
+N
+d
+n
+a
+n
+o
+itc
+e
+v
+n
+o
+c
+l
+a
+ci
+n
+a
+h
+c
+e
+m
+.
+g
+n
+i
+n
+r
+u
+t
+n
+o
+itc
+e
+v
+n
+o
+c
+l
+a
+r
+u
+t
+a
+N
+.yl
+n
+o
+l
+a
+ci
+n
+a
+h
+c
+e
+M
+d
+n
+a
+g
+n
+i
+n
+r
+u
+t
+l
+a
+r
+u
+t
+a
+n
+.
+n
+o
+itc
+e
+v
+n
+o
+c
+d
+e
+c
+r
+o
+F
+e
+vit
+a
+g
+e
+n
+/
+e
+vitis
+o
+p
+.
+e
+li
+p
+h
+g
+u
+o
+r
+h
+t
+w
+o
+lfri
+a
+e
+vis
+n
+e
+tx
+E
+g
+n
+i
+n
+r
+u
+t
+l
+a
+ci
+n
+a
+h
+c
+e
+m
+.
+n
+o
+it
+a
+r
+e
+a
+d
+n
+a
+s
+s
+e
+c
+o
+r
+P
+l
+o
+r
+t
+n
+o
+C
+r
+o
+xi
+m
+l
+a
+iti
+n
+I
+e
+n
+o
+d
+n
+a
+g
+n
+ir
+e
+y
+a
+l
+.
+g
+n
+i
+n
+r
+u
+t
+.yl
+n
+o
+xi
+m
+l
+a
+iti
+n
+I
+d
+n
+a
+xi
+m
+l
+a
+iti
+n
+I
+.
+g
+n
+i
+n
+r
+u
+t
+,
+n
+o
+it
+a
+r
+e
+a
+,xi
+m
+l
+a
+iti
+n
+I
+r
+o
+/
+d
+n
+a
+e
+r
+u
+t
+a
+r
+e
+p
+m
+e
+t
+.l
+o
+rt
+n
+o
+c
+e
+m
+it
+,
+n
+o
+it
+a
+r
+e
+a
+,xi
+m
+l
+a
+iti
+n
+I
+r
+o
+/
+d
+n
+a
+e
+r
+u
+t
+a
+r
+e
+p
+m
+e
+t
+d
+n
+a
+,l
+o
+rt
+n
+o
+c
+e
+m
+it
+.
+g
+n
+i
+n
+r
+u
+t
+r
+u
+o
+d
+O
+s
+r
+o
+tc
+a
+F
+,r
+u
+c
+c
+o
+n
+a
+c
+r
+u
+o
+d
+O
+yll
+a
+r
+e
+n
+e
+g
+t
+u
+b
+.
+g
+n
+i
+n
+r
+u
+t
+g
+n
+ir
+u
+d
+e
+h
+t
+m
+o
+rf
+r
+u
+o
+d
+O
+.r
+u
+c
+c
+o
+lli
+w
+w
+o
+r
+d
+n
+i
+w
+e
+h
+t
+r
+e
+g
+r
+a
+l
+e
+h
+T
+e
+h
+t
+w
+o
+r
+d
+n
+i
+w
+.s
+r
+u
+o
+d
+o
+e
+h
+t
+r
+e
+t
+a
+e
+r
+g
+a
+e
+r
+a
+e
+c
+a
+fr
+u
+s
+m
+o
+r
+F
+.
+w
+o
+r
+d
+n
+i
+w
+f
+o
+e
+t
+a
+e
+r
+c
+n
+a
+c
+g
+n
+i
+n
+r
+u
+T
+g
+n
+ir
+u
+d
+s
+r
+u
+o
+d
+o
+.s
+k
+e
+e
+w
+l
+a
+iti
+n
+i
+t
+u
+b
+,r
+u
+c
+c
+o
+n
+a
+c
+r
+u
+o
+d
+O
+e
+b
+n
+a
+c
+sl
+o
+rt
+n
+o
+c
+e
+li
+p
+s
+a
+h
+c
+u
+s
+,
+d
+e
+s
+u
+s
+r
+e
+tlif
+d
+n
+a
+n
+o
+it
+a
+l
+u
+s
+n
+i
+.s
+m
+e
+ts
+y
+s
+ri
+a
+n
+o
+.r
+u
+c
+c
+o
+n
+a
+c
+r
+u
+o
+d
+O
+o
+t
+e
+u
+d
+n
+e
+tf
+O
+r
+o
+e
+r
+u
+li
+a
+f
+t
+n
+e
+m
+p
+i
+u
+q
+e
+n
+g
+is
+e
+d
+m
+e
+ts
+y
+s
+.s
+n
+o
+it
+a
+ti
+m
+il
+
+12
+Do
+Bin Composting
+Bin composting is produced by natural aeration
+and through turning, using a tractor front-end
+loader.  This option is primarily used for
+composting mortalities, yard waste and smaller
+amounts of manure.  Operation and management
+of poultry and swine mortality compost systems
+are available from Alberta Agriculture, Food and
+Rural Development.
+Passive Windrow Composting
+Passive windrow composting is the production of
+compost in piles or windrows by natural aeration
+over long periods of time.  Attention to details
+such as the porosity of the initial mix, uniform
+product mixing and particle size greatly improve
+the speed of the process and product quality.
+Generally, material to be composted is collected
+and promptly piled into windrows, which remain
+untouched.  The materials may be wetted before
+they are initially formed into windrows but this is
+not essential.  Passive aeration has been
+successfully used in composting manure from
+poultry, dairy cattle and sheep.
+Covering the windrow with a layer of finished
+compost will help to prevent moisture loss,
+reduce odour problems and produce more
+uniform compost.  The center of a windrow will
+quickly become anaerobic and only by turning
+can it receive a new supply of oxygen.  An
+unpleasant odour will develop in the anaerobic
+region and may begin to emanate from the
+composting material; hence, a large land area is
+necessary to buffer residents and businesses from
+the odour.  Passive composting is not very
+conducive to oxygen presence.  Since rapid
+composting can take place only in the presence of
+oxygen, the compost normally will require three
+years to stabilize.
+Active Windrow Composting
+(Turned)
+Active windrow composting is the production of
+compost in windrows using mechanical aeration
+by a front-end loader or a specially designed
+windrow turner.  Loaders, although inexpensive
+compared to turners, have a tendency to compact
+the composting material, are comparatively
+inefficient, and can result in longer composting
+periods and less consistent quality.  Turned
+windrow composting represents a low
+technology and medium labour approach and
+produces a uniform product.
+The most commonly used windrow turners have
+a series of heavy tines that are placed along a
+rotating horizontal drum, which turns, mixes,
+aerates and reforms the windrow as the machine
+moves forward.  These windrow turners are
+either self-contained units that straddle the row
+or are towed by a tractor and powered by a
+tractor PTO (Figure 3).  The optimum height and
+width of the windrows depends on the type of
+equipment used to turn them.
+use two windrows - build one
+while the other is decomposing
+undisturbed.
+Don't
+make the windrow too big
+(above six feet high) because
+this inhibits natural aeration
+and the material will take longer
+to compost.
+Do
+stockpile ingredients, such as
+sawdust so it is available when
+needed.
+
+13
+Do
+Figure 3.  Windrow turning with a pull-type turner.
+Aerated Static Pile Composting
+Aerated static pile composting is the production
+of compost in piles or windrows with mechanical
+aeration and an air source such as perforated
+plastic pipes, aeration cones or a perforated floor.
+Aeration is accomplished either by forcing or
+drawing air through the compost pile.  Aeration
+systems can be relatively simple using electrical
+motors, fans and ducting, or they can be more
+sophisticated incorporating various sensors and
+alarms.
+This system of aeration requires electricity at the
+site and appropriate ventilation fans, ducts and
+monitoring equipment.  The monitoring
+equipment determines the timing, duration and
+direction of airflow.  The pile should be placed
+after the floors are first covered with a layer of a
+bulking agent, such as wood chips or finished
+compost.  The material to be composted is then
+added and a topping layer of finished compost
+applied to provide insulation.
+measure the temperature within
+the windrow to determine when
+to turn the windrow.
+forget to check for lack of
+reheating after turning to signal
+the end of the active composting
+stage.
+Windrow composting can produce excellent
+compost using a variety of diverse materials.
+Wastes such as manure solids and paunch manure
+(offal), if in a secure compost area to eliminate
+scavengers, can be composted with bulking
+agents such as sawdust, straw and recycled paper
+products.  Windrow composting efficiency and
+product quality are dependent primarily upon two
+major factors:
+1.
+The initial compost mix.
+2.
+Management practices.
+Don't
+
+14
+A major difficulty with the static pile system is
+the efficient diffusion of air throughout the entire
+pile, especially with wastes characterized by a
+large particle size distribution, high moisture
+content or a tendency to clump, such as dairy
+manure.  Other problems include the formation of
+channels in the pile, which allow forced air to
+short-circuit.  This causes excessive drying due to
+evaporation of moisture near the channels.
+The main advantages of the in-vessel system over
+others are more efficient composting process and
+a decreased number of pathogens resulting in a
+safer and more valuable end product.  In-vessel
+composting can maintain a rapid decomposition
+process year-round regardless of external ambient
+conditions.  Disadvantages of the enclosed vessel
+method include high capital and operational costs
+due to the use of computerized equipment and
+skilled labour.  In-vessel composters are generally
+more automated than active or static pile systems
+and can produce a top quality finished product on
+a consistent basis.
+Figure 4. In-vessel composting.
+assume that the airflow system
+provides adequate airflow
+uniformly.
+ensure materials chosen to
+compost have the proper porosity
+to prevent short-circuiting of air,
+such as dry wood chips.
+In-Vessel Composting
+In-vessel composting is the production of compost
+in drums, silos or channels using a high-rate
+controlled aeration system designed to provide
+optimal conditions.  Aeration of the material is
+accomplished by:
+1.
+Continuous agitation using aerating
+machines which operate in concrete bays.
+2.
+Fans providing air flow from ducts built
+into concrete floors.
+investigate the costs associated
+with building this type of facility.
+forget that the materials need to
+be aerated by turning them.
+For more information on any of the composting
+methods contact Alberta Agriculture, Food and
+Rural Development.
+Do
+Do
+Don't
+Don't
+
+15
+Chapter 4.  Site Selection for Composting
+If the production facility where the compost is to
+be made falls under the Agricultural Operation
+Practices Act (AOPA), contact the Natural
+Resources Conservation Board (NRCB)
+regarding site selection.
+There are several factors to consider when
+choosing a composting site:
+Space Requirements
+• The site must have sufficient area for the
+volume of manure to be composted and
+should have sufficient area for future
+expansion.
+• Consideration should be given to the space
+required for operation of the equipment at
+the site.
+• Take into account the impact on the farm
+residence and any neighbouring residences.
+Buffer to Sensitive Land Uses
+Appropriate separation or buffer distances
+between the composting operation and nearby
+water resources (surface and groundwater) and
+neighbouring homes can help to minimize the
+impact of any odour associated with raw
+materials, protect the water resources from
+possible contamination, and also meet the
+regulations.
+Figure 5. General site layout recommendations for composting facilities.
+
+16
+Site Characteristics
+•
+Choose the location that has compacted
+soil or an impervious surface to reduce the
+seepage of the nutrient into the
+groundwater.
+•
+The site must be sloped between 2 to 4%.
+•
+The site must have a moderate to well
+drained soil surface.
+•
+The site must be visible and have an easy
+access to hauling and storage.
+Protection of Water Resources
+•
+The site must have a permanent water
+diversion that works to keep surface runoff
+away from compost storage areas.
+•
+Placement of manure storage, stacking or
+composting area should be a safe distance
+from floodways, wells or springs.
+
+17
+Chapter 5.  Compost Regulations
+Chapter 6.  Compost Uses
+There are both federal and provincial regulations
+governing compost.  Both Alberta Environment
+and the Natural Resources Conservation Board
+(NRCB) are responsible for provincial
+regulations.  The NRCB administers a one-
+window approach for confined feeding operations
+and for the compliance monitoring and
+enforcement of province-wide standards under
+the Agricultural Operation Practices Act
+(AOPA).  On-farm manure composting is
+regulated by AOPA.  Guidelines for locating
+compost facilities are found in Section 3 of the
+Standards and Administration Regulation of
+AOPA.  Prior to setting up a composting facility,
+contact the NRCB to be advised on how the
+regulations affect you.
+The Canadian Food Inspection Agency (CFIA)
+Fertilizer Act regulates the sale of all compost in
+Canada.  The label for both bagged and bulk sales
+of compost from any individual must comply
+with CFIA standards.  Contact CFIA with the
+proposed labels prior to selling compost.
+Compost has numerous agronomic and
+horticultural uses.  It can be used as a soil
+amendment, fertilizer supplement, top dressing
+for pastures and hay crops, mulch for homes and
+gardens, and a potting mix component.  In these
+examples, the compost increases the water and
+nutrient retention of the soil, provides a porous
+medium for roots to grow in, increases the
+organic matter and decreases the bulk density or
+penetration resistance.
+
+18
+Troubleshooting
+Table 5. Manure composting troubleshooting
+m
+e
+l
+b
+o
+r
+P
+s
+e
+s
+u
+a
+C
+e
+l
+b
+i
+s
+s
+o
+P
+s
+n
+o
+it
+u
+l
+o
+S
+si
+w
+o
+r
+d
+n
+i
+w
+e
+h
+t
+f
+o
+e
+d
+is
+n
+i
+e
+h
+T
+y
+r
+d
+r
+e
+t
+a
+w
+h
+g
+u
+o
+n
+e
+t
+o
+N
+w
+o
+r
+d
+n
+i
+w
+e
+h
+t
+g
+n
+i
+n
+r
+u
+t
+n
+e
+h
+w
+r
+e
+t
+a
+w
+d
+d
+A
+h
+g
+i
+h
+o
+o
+t
+si
+e
+r
+u
+t
+a
+r
+e
+p
+m
+e
+T
+e
+r
+u
+tsi
+o
+m
+e
+t
+a
+r
+e
+d
+o
+m
+o
+t
+w
+o
+L
+.
+1
+g
+i
+b
+o
+o
+t
+si
+w
+o
+r
+d
+n
+i
+w
+e
+h
+T
+.
+2
+g
+n
+i
+n
+r
+u
+t
+e
+u
+n
+it
+n
+o
+c
+d
+n
+a
+r
+e
+t
+a
+w
+e
+r
+o
+m
+d
+d
+A
+.
+1
+w
+o
+r
+d
+n
+i
+w
+e
+h
+t
+w
+o
+r
+d
+n
+i
+w
+e
+h
+t
+f
+o
+e
+zis
+e
+h
+t
+e
+s
+a
+e
+r
+c
+e
+d
+o
+t
+y
+r
+T
+.
+2
+w
+o
+l
+o
+o
+t
+si
+e
+r
+u
+t
+a
+r
+e
+p
+m
+e
+T
+n
+o
+it
+a
+r
+e
+a
+t
+n
+e
+iciff
+u
+s
+n
+I
+.
+1
+e
+h
+t
+f
+o
+n
+o
+iti
+d
+n
+o
+c
+t
+e
+W
+.
+2
+w
+o
+r
+d
+n
+i
+w
+H
+p
+w
+o
+L
+.
+3
+o
+t
+ylt
+n
+e
+u
+q
+e
+rf
+e
+r
+o
+m
+w
+o
+r
+d
+n
+i
+w
+e
+h
+t
+n
+r
+u
+T
+.
+1
+w
+o
+lfri
+a
+e
+h
+t
+e
+s
+a
+e
+r
+c
+n
+i
+l
+a
+ir
+e
+t
+a
+m
+y
+r
+d
+e
+r
+o
+m
+d
+d
+A
+.
+2
+xi
+m
+e
+r
+d
+n
+a
+h
+s
+a
+d
+o
+o
+w
+r
+o
+e
+m
+il
+d
+d
+A
+.
+3
+r
+u
+o
+d
+o
+a
+i
+n
+o
+m
+m
+A
+o
+it
+a
+r
+N
+:
+C
+(
+N
+f
+o
+l
+e
+v
+e
+l
+h
+g
+i
+H
+.
+1
+)
+1
+:
+0
+2
+n
+a
+h
+t
+s
+s
+e
+l
+H
+p
+h
+g
+i
+H
+.
+2
+s
+a
+h
+c
+u
+s
+,l
+a
+ir
+e
+t
+a
+m
+n
+o
+b
+r
+a
+c
+h
+g
+i
+h
+d
+d
+A
+.
+1
+w
+a
+rts
+r
+o
+,s
+p
+i
+h
+c
+d
+o
+o
+w
+,ts
+u
+d
+w
+a
+s
+st
+n
+e
+i
+d
+e
+r
+g
+n
+i
+ci
+d
+ic
+a
+g
+n
+i
+d
+d
+a
+y
+b
+H
+p
+r
+e
+w
+o
+L.
+2
+e
+n
+il
+a
+kl
+a
+e
+r
+o
+m
+g
+n
+i
+d
+d
+a
+d
+i
+o
+v
+a
+r
+o
+)s
+e
+v
+a
+e
+l(
+h
+s
+a
+d
+o
+o
+w
+d
+n
+a
+e
+m
+il
+s
+a
+h
+c
+u
+s
+sl
+a
+ir
+e
+t
+a
+m
+r
+u
+o
+d
+o
+e
+d
+i
+h
+p
+l
+u
+s
+n
+e
+g
+o
+r
+d
+y
+H
+t
+e
+w
+o
+o
+t
+si
+l
+a
+ir
+e
+t
+a
+m
+w
+o
+r
+d
+n
+i
+W
+o
+o
+t
+si
+e
+r
+u
+t
+a
+r
+e
+p
+m
+e
+t
+sti
+d
+n
+a
+w
+o
+l
+l
+a
+ir
+e
+t
+a
+m
+kl
+u
+b
+y
+r
+d
+d
+d
+A
+
+19
+Questions To Be Addressed Prior To Composting
+Do you have enough manure on your farm to compost?
+Do you have a site appropriate for composting?
+What composting method is best suited for your operation?
+Do you have access to carbon amendments such as straw, woodchips, etc.?
+Will compost product be for on-farm use or for export off the farm?
+If your compost is for off-farm sales, do you have a marketing strategy?
+Is there a market for compost in your area?
+
+20
+Additional Information
+CCME Guidelines for Compost Quality (CCME-106E)
+Phone: (204) 945-4664
+or www.compost.org/compostqualitydoc.pdf
+www.compost.org/standard.html
+Olds College
+Alberta Agriculture, Food, and Rural Development
+AgTech Centre
+Environmental Practices Unit
+3000 College Drive
+J. G. O’Donoghue Building
+Lethbridge, Alberta
+Rm. 306, 7000 - 113 Street
+T1K 1L6
+Edmonton, Alberta
+(403) 329-1212
+T6H 5T6
+(780) 422-4844
+4500 - 50 St.,  Olds, Alberta  T4H 1R6
+or http://www.oldscollege.ab.ca
+Alberta Environment
+Peace River
+(780) 624-6502
+Edmonton
+(780) 427-9563
+Stony Plain
+(780) 963-6131
+Red Deer
+(403) 340-7721
+Calgary
+(403) 297-7883
+Lethbridge
+(403) 381-5995
+or http://www.qp.gov.ab.ca/documents/codes/COMPOST.CFM
+Natural Resources Conservation Board  (NRCB)
+Morinville
+(780) 939-1212
+Calgary
+(403) 662-3990
+Edmonton
+(780) 422-1977
+Fairview
+(780) 835-7111
+Lethbridge
+(403) 381-5166
+Red Deer
+(403) 340-5241
+or http://www.nrcb.gov.ab.ca/web/about/contacts.cfm
+Canadian Food Inspection Agency (CFIA)
+Head Office
+Alberta North
+Alberta South
+59 Camelot Dr.
+Rm. 205, 7000 - 113 St.
+110 Country Hills Landing NW
+Ottaw, Ontario
+Edmonton, Alberta
+Calgary, Alberta
+K1A 0Y9
+T6H 5T6
+T3K 5P3
+1-800-442-2342
+(780) 495-3333
+(403) 299-7660
+Alberta Agriculture, Food and Rural Development
+Agtech Centre, Technical Services Division
+Phone: (403) 329-1212
+Windrow Turner Evaluations Report
+Poultry and Swine Mortality Composting Handbooks
+AAFRD Publication Office
+Phone: 1-800-292-5797 or www.agric.gov.ab.ca/publications
+
+21
+References
+B.C. Agricultural Composting Handbook
+Second Edition, 2nd printing, September, 1998.
+Ministry of Agriculture and Food.
+Further Reading
+Haug, Roger T.  The Practical Handbook of Compost Engineering. London:  Lewis  Publishers, 1993.
+Rynk, R.(editor). 1992. Northeast Regional Agricultural Engineering Service. On-farm Composting Handbook.
+NRAS-54. Northeast Regional Agricultural Engineering Service. 152 Riley-Robb Hall, Cooperative Extension,
+Ithica, Ny. 14853-5701
+Saskatchewan Agriculture, Food, and Rural Revitalization. Composting Solid Manure.
+http://www.agr.gov.sk.ca/docs/crops/integrated_pest_management/Soil_fertility_fertilizers/
+CompostManure02.asp?firstPick=Livestock&secondpick=Pork&thirdpick=Manure%20Management
+Poultry Mortality Composting Handbook. 2002. AAFRD publication No. Agdex 450/29-1.
+Bin Comoposting of Daily Layer, Breeder, or Turkey Mortality. 2004. AAFRD publication No. Agdex 450/29-2.
+Composting Spent Layers (or Disaster Losses). 2004. AAFRD publication No. Agdex 451/29-1.
+Bin Composting of Daily Broiler Mortality. 2004.  AAFRD publication No. Agdex 452/29-1.
+Swine Mortality Composting Handbook. 2002. AAFRD publication No. Agdex 440/29-1.
+Windrow Composting of Swine (or Disaster Losses). 2004.  AAFRD publication No. Agdex 440/29-2.
+Bin Composting of Daily Swine Mortality. 2004. AAFRD publication No. Agdex 440/29-3.
+
+22
+
+23
+ (                )
+Appendix A.  Blending Sample Calculation
+Appendix A1
+Symbols
+a
+= total weight of ingredient a
+b
+= total weight of ingredient b
+c
+= total weight of ingredient c
+M
+=   desired mix moisture content
+Ma, Mb, Mc…
+= moisture content of ingredients a, b, c
+%Ca, %Cb, %Cc…
+= % carbon of ingredients a, b, c… (on dry weight basis)
+%Na, %Nb, %Nc…
+= % nitrogen of ingredients a, b, c,… (on dry weight basis)
+R
+= desired C:N ratio of mix
+Ra, Rb
+= C:N ratio of ingredients a, b, c
+Appendix A2
+Formulas for Only Two Ingredients
+Required amount of ingredient a per kg b
+ 
+ 
+To obtain desired C:N raio:
+a    =
+% Nb x (R-Rb)  x (1-Mb)
+ 
+% Na    (Ra-R)     (1-Ma)
+ 
+ 
+To obtain desired moisture content:
+a    =
+Mb-M
+ 
+ 
+M-Ma
+Appendix A 3
+Formulas for a Mix of Materials
+C:N ratio
+=
+weight of C in ingredient a + weight of C in b + weight of C in c +…
+ 
+       weight of N in a + weight of N in b + weight of N in c +…
+ 
+ 
+ 
+=
+[%Ca x a x (1-Ma)] + [%Cb x b x (1-Mb)] + [%Cc x c x (1-Mc)]
+ 
+[%Na x a x (1-Ma)] + [%Nb x b x (1-Mb)] + [%Nc x c x (1-Mc)]
+ 
+ 
+Moisture content
+=
+weight of water in ingredient a + weight of water in b + weight of water in c + ...
+ 
+total weight of all ingredients
+ 
+ 
+ 
+=
+(a x Ma) + (b x Mb) + (c x Mc) …
+ 
+ 
+            a + b + c + ...0
+Adapted from B.C. Agricultural Composting
+Handbook. Second Edition, 2nd printing, September,
+1998. Ministry of Agriculture and Food.
+
+24
+Assume a broiler breeder farm has manure to compost and that sawdust
+will be used as a bulking agent.  How much sawdust and water needs to
+be added to the manure to have a good compost mix?
+Step 1.  Determine the approximate nitrogen, carbon, moisture, and bulk density from
+Table 3 in Chapter 2.
+Material
+Nitrogen
+C:N
+Moisture
+Bulk Density @
+(dry weight) (dry weight)
+Content
+Moisture Content
+ 
+(%)
+ 
+(%)
+(kg/m3)
+ 
+Broiler Breeder Manure
+3.60
+10
+46
+470
+ 
+Sawdust
+0.06 - 0.80
+200 - 750
+19 - 65
+207 - 267 
+Note: For a range of numbers, take the average if there has been no analysis performed.
+Sawdust
+0.43
+475
+42
+237
+ 
+  
+ 
+ 
+ 
+ 
+Step 2.  Using the formula for two ingredients from Table 3, determine the amount of
+sawdust (a) needed for each kg of manure, (b) to give a desired C:N ratio (R) of 30.
+ 
+ 
+Given:
+b =  1 kg of broiler breeder manure
+ 
+Ma =  0.20 (for this example 20% was selected)
+ 
+Mb =  0.46 (46% moisture content of manure )
+ 
+Ra =  500 (for this example C:N of 500 was selected)
+ 
+Rb =  10 (C:N ratio of manure)
+ 
+%Na =  0.1 (for this example 0.1% was selected)
+ 
+%Nb =  3.6 (% nitrogen in manure)
+ 
+ 
+ 
+Determine:
+a (weight of sawdust needed) for the desired C:N ratio of R = 30
+ 
+(Appendix A2)
+a  =
+%Nb x (R-Rb) x (1-Mb)
+ 
+%Na    (Ra-R)   (1-Ma)
+ 
+ 
+ 
+Calculation: a  =
+3.6  x  (30-10)   x   (1-0.46) =   1.0
+ 
+0.1   (500-30)      (1-0.20)
+ 
+ 
+ 
+Answer:
+For each kg of manure, add 1.0 kg of sawdust to obtain a C:N ratio of 30.
+ 
+Step 3.  Check the mix moisture content (M.C.) using the moisture content formula in
+Appendix A2.
+ 
+ 
+Given:
+a =  1.0 kg weight of sawdust from Step 2
+ 
+b =  1.0 kg weight of manure
+ 
+Ma =  0.20 (for this example 20% was selected)
+ 
+Mb =  0.46 (46% moisture content of manure)
+ 
+ 
+ 
+Determine:
+M.C. (mix moisture content)
+(Appendix A3)
+ 
+M.C. =  (a x Ma) + (b x Mb)
+ 
+                                                 a + b
+ 
+Example
+
+25
+ 
+ 
+Calculation: M.C.  =  (1 x 0.20) + (1 x 0.46) =  0.33 or 33 %
+ 
+     1 + 1
+ 
+ 
+ 
+Answer:
+This starting moisture content of 33% is too low, since ideal moisture content runs
+from 50 to 60%.
+Step 4.  Adjust moisture content to 55% using the two ingredient formula from
+Appendix A2.
+ 
+ 
+ 
+Given:
+    b  =  1 kg of manure/sawdust mix
+ 
+  M  =  0.55 (55% desired moisture content)
+ 
+Ma  =  1.0 (100% moisture content of water)
+ 
+Mb  =  0.33 (33% moisture content of manure/sawdust mix)
+ 
+ 
+ 
+Determine:
+‘a’ quantity of water required
+ 
+a  =  Mb - M
+ 
+    M - Ma
+ 
+ 
+ 
+Calculation: a  =  0.33 - 0.55  =  0.49
+ 
+   0.55 - 1.00
+ 
+ 
+ 
+Answer:
+Add 0.49 kg of water for every 1.0 kg of manure/sawdust mix.
+ 
+  
+ 
+ 
+ 
+ 
+Step 5.  Determine how much manure, sawdust and water to mix.  
+ 
+ 
+ 
+ 
+Given:
+Tractor bucket volume  =  2.0 m3
+ 
+Manure bulk density  =  470 kg/m3
+ 
+Sawdust bulk density  =  207 kg/m3
+ 
+ 
+ 
+Determine:
+Volume of manure, sawdust, and water
+ 
+ 
+ 
+Calculation: One bucket of manure weighs 2.0 m3 x  470 kg/m3  =  940 kg
+ 
+ 
+ 
+Since an equal weight of manure and sawdust is wanted, add 940 kg of sawdust or
+ 
+940 kg / 207 kg/m3  =  4.54 m3 of sawdust
+ 
+ 
+ 
+This is equal to 4.54 m3 / 2.0 m3 per bucket  =  2.27 buckets of sawdust
+ 
+ 
+ 
+For each bucket of manure used, there will be a total manure/sawdust mix weighing
+940 kg + 940 kg = 1840 kg
+ 
+ 
+ 
+Similarly, for each bucket of manure used, add:
+ 
+0.49 kg of water / kg of mix  x  1840 kg  =  902 kg of water (902 L of water)
+ 
+ 
+ 
+Answer:
+For each bucket of manure, add 2.27 buckets of sawdust and 902 litres of water.
+
+26
+ 
+Step 1.  Determine the approximate nitrogen, carbon, moisture, and bulk density from
+Table 3 in Chapter 2.
+Material
+Nitrogen
+C:N
+Moisture
+Bulk Density @
+(dry weight) (dry weight)
+Content
+Moisture Content
+ 
+(%)
+ 
+(%)
+(kg/m3)
+ 
+ 
+ 
+Note: For a range of numbers, take the average if there has been no analysis performed.  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Step 2.  Using the formula for two ingredients from Table 3, determine the amount of
+sawdust (a) needed for each kg of manure, (b) to give a desired C:N ratio (R) of 30.
+ 
+ 
+Given:
+b = _____ kg of broiler breeder manure
+ 
+Ma = _____ % (moisture content of carbon source)
+ 
+Mb = _____ % (moisture content of manure)
+ 
+Ra = _____ (C:N ratio of sawdust)
+ 
+Rb = _____ (C:N ratio of manure)
+ 
+%Na = _____ (% nitrogen in sawdust)
+ 
+%Nb = _____ (% nitrogen in manure)
+ 
+ 
+ 
+Determine:
+a (weight of sawdust needed) for the desired C:N ratio of R = 30  
+a  =
+%Nb x (R-Rb) x (1-Mb)
+ 
+%Na    (Ra-R)   (1-Ma)
+ 
+ 
+ 
+Calculation:
+a  = ______ x ______ x ______ = ______%
+ 
+ 
+Step 3. Check the mix moisture content (M.C.) using the moisture content formula in
+Appendix A2.
+  
+ 
+Given:                     a  = _________ kg weight of sawdust from Step 2 
+                                b  = _________ kg weight of manure
+ 
+                             Ma  = _________ % (moisture content of sawdust)  
+                             Mb  = _________ % (moisture content of manure)  
+ 
+ 
+Determine:
+M.C. (mix moisture content)
+ 
+M.C.  =  (a x Ma) + (b x Mb)
+ 
+       a + b
+Calculation:
+M.C.  =  ______  + ______  / ______ = ______%
+Worksheet
+
+27
+Step 4.  Adjust moisture content to 55% using the two ingredient formula from
+Appendix A2.
+ 
+Given:
+   b  = ______ kg of manure/sawdust mix
+ 
+  M  = _____ % (desired moisture content)
+ 
+Ma  =______ % (moisture content of water)
+ 
+Mb  = _____ %  (moisture content of manure/sawdust mix)
+ 
+ 
+ 
+Determine:
+‘a’ quantity of water required
+ 
+a  =  Mb - M
+ 
+                                M - Ma
+ 
+ 
+ 
+Calculation: a  = ______ L
+ 
+    
+ 
+ 
+ 
+ 
+ 
+Step 5.  Determine how much manure, sawdust and water to mix.
+Given:
+Tractor bucket volume     =
+________ m3
+ 
+Manure bulk density        =
+________ kg/m3
+ 
+Sawdust bulk density       =
+________ kg/m3
+ 
+ 
+ 
+Determine:
+Volume of manure, sawdust, and water
+ 
+ 
+ 
+Calculation: One bucket of manure weighs _________ kg
+ 
+ 
+ 
+Since an equal weight of manure and sawdust is wanted, add                   kg of
+sawdust or                   kg /                 kg/m3  =                     m3 of sawdust
+ 
+ 
+ 
+This is equal to                  m3 /                     m3 per bucket  =                   buckets
+of sawdust
+ 
+ 
+For each bucket full of manure used, there will be a total manure/sawdust mix
+weighing                      kg +                    kg =                    kg
+ 
+ 
+ 
+Similarly, for each bucket of manure used, add:
+ 
+                 kg of water / kg of mix  x                kg  =               kg water
+(                L of water)
+These calculations can be done automatically by using the AAFRD
+manure composting calculator. The link for this calculator is:
+http://www.agric.gov.ab.ca/app19/calc/manure/manure.jsp
+ 
+ 

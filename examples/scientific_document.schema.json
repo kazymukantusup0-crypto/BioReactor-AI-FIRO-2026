@@ -1,0 +1,195 @@
+{
+  "$defs": {
+    "Claim": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[a-z0-9_-]{1,80}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "source_id": {
+          "title": "Source Id",
+          "type": "string"
+        },
+        "topics": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 10,
+          "minItems": 1,
+          "title": "Topics",
+          "type": "array"
+        },
+        "materials": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 30,
+          "minItems": 1,
+          "title": "Materials",
+          "type": "array"
+        },
+        "category": {
+          "title": "Category",
+          "type": "string"
+        },
+        "process_type": {
+          "title": "Process Type",
+          "type": "string"
+        },
+        "values": {
+          "items": {
+            "type": "number"
+          },
+          "maxItems": 20,
+          "title": "Values",
+          "type": "array"
+        },
+        "unit": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Unit"
+        },
+        "scope": {
+          "maxLength": 1500,
+          "minLength": 10,
+          "title": "Scope",
+          "type": "string"
+        },
+        "text": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Text",
+          "type": "object"
+        }
+      },
+      "required": [
+        "id",
+        "source_id",
+        "topics",
+        "materials",
+        "category",
+        "process_type",
+        "scope",
+        "text"
+      ],
+      "title": "Claim",
+      "type": "object"
+    },
+    "Publication": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[a-z0-9_-]{1,80}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "title": {
+          "maxLength": 500,
+          "minLength": 4,
+          "title": "Title",
+          "type": "string"
+        },
+        "url": {
+          "maxLength": 2000,
+          "pattern": "^https://",
+          "title": "Url",
+          "type": "string"
+        },
+        "year": {
+          "maximum": 2100,
+          "minimum": 1800,
+          "title": "Year",
+          "type": "integer"
+        },
+        "doi": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Doi"
+        },
+        "locator": {
+          "maxLength": 1000,
+          "minLength": 4,
+          "title": "Locator",
+          "type": "string"
+        },
+        "reviewed_by": {
+          "maxLength": 200,
+          "minLength": 4,
+          "title": "Reviewed By",
+          "type": "string"
+        },
+        "verified_on": {
+          "format": "date",
+          "title": "Verified On",
+          "type": "string"
+        },
+        "provenance": {
+          "const": "SOURCE_VERIFIED",
+          "default": "SOURCE_VERIFIED",
+          "title": "Provenance",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "url",
+        "year",
+        "locator",
+        "reviewed_by",
+        "verified_on"
+      ],
+      "title": "Publication",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "title": "Version",
+      "type": "string"
+    },
+    "sources": {
+      "items": {
+        "$ref": "#/$defs/Publication"
+      },
+      "maxItems": 30,
+      "minItems": 1,
+      "title": "Sources",
+      "type": "array"
+    },
+    "claims": {
+      "items": {
+        "$ref": "#/$defs/Claim"
+      },
+      "maxItems": 200,
+      "minItems": 1,
+      "title": "Claims",
+      "type": "array"
+    }
+  },
+  "required": [
+    "version",
+    "sources",
+    "claims"
+  ],
+  "title": "Document",
+  "type": "object"
+}

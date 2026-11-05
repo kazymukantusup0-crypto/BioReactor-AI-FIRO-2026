@@ -1,0 +1,25 @@
+partition,substrate,rows,labs
+calibration,Bird feed,14,4
+calibration,Cellulose,33,4
+calibration,Rabbit feed,12,4
+calibration,Sunflower seeds,12,4
+calibration,Wheat straw,18,4
+calibration,Whey,15,4
+test,Bird feed,16,5
+test,Cellulose,29,5
+test,Rabbit feed,16,5
+test,Sunflower seeds,16,5
+test,Wheat straw,16,5
+test,Whey,16,5
+train,Bird feed,35,10
+train,Cellulose,84,17
+train,Rabbit feed,50,17
+train,Sunflower seeds,51,17
+train,Wheat straw,48,16
+train,Whey,36,10
+validation,Bird feed,12,4
+validation,Cellulose,27,5
+validation,Rabbit feed,15,5
+validation,Sunflower seeds,15,5
+validation,Wheat straw,15,5
+validation,Whey,12,4

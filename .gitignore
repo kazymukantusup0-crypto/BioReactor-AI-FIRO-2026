@@ -1,0 +1,55 @@
+﻿# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+env/
+*.egg-info/
+dist/
+build/
+
+# Node / React
+node_modules/
+dist/
+.next/
+coverage/
+.vite/
+
+# Secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets.json
+credentials.json
+
+# Databases and runtime state
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+logs/
+*.log
+tmp/
+temp/
+
+# Large ML artifacts
+*.pkl
+*.joblib
+*.onnx
+*.pt
+*.pth
+*.safetensors
+*.gguf
+*.ckpt
+
+# OS and editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

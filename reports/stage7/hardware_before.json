@@ -1,0 +1,20 @@
+{
+  "gpu": "NVIDIA GeForce RTX 3070 Laptop GPU, 8192 MiB, 1943 MiB, 6078 MiB, 5 %\n",
+  "ollama_version": "ollama version is 0.40.12\n",
+  "ollama_models": "NAME            ID              SIZE      MODIFIED     \nqwen2.5:1.5b    399ba1a4d9c7    1.1 GB    29 hours ago    \n",
+  "ollama_running": "NAME    ID    SIZE    PROCESSOR    CONTEXT    RUNNER    UNTIL \n",
+  "current_context": "  Model\n    architecture        qwen2                 \n    parameters          1.8B                  \n    context length      32768                 \n    embedding length    1536                  \n    quantization        Q4_K_M                \n    template source     gguf_chat_template    \n\n  Capabilities\n    tools         \n    completion    \n\n  Parameters\n    num_ctx        4096    \n    temperature    0.2     \n\n",
+  "system": {
+    "cpu": "12th Gen Intel(R) Core(TM) i7-12700H",
+    "ram_total_kib": 16564728,
+    "ram_free_kib": 2569924,
+    "disk_free_bytes": 435287797760
+  },
+  "candidate": {
+    "name": "qwen3:8b",
+    "quantization": "Q4_K_M",
+    "registry_download_bytes_approx": 5200000000,
+    "trial_context_tokens": 2048,
+    "download_policy": "one candidate only; retain existing model; monitor memory; unload test model on pressure"
+  }
+}

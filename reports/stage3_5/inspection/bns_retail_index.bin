@@ -1,0 +1,2204 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru" class="">
+<head>
+    <meta name="google" content="notranslate">
+    <meta name="robots" content="" />
+    <meta name="description" content="Официальный сайт Бюро национальной статистики Агентства по стратегическому планированию и реформам Республики Казахстан"/>
+    <meta name="keywords" content="АСПИР, БНС, stat.gov.kz"/>
+
+    <meta property="og:title" content="Электронные таблицы - Бюро национальной статистики  Агентства по стратегическому  планированию и реформам  Республики Казахстан"/>
+    <meta property="og:description" content="Официальный сайт Бюро национальной статистики Агентства по стратегическому планированию и реформам Республики Казахстан"/>
+    <meta property="og:image" content="">
+        <meta property="og:type" content="website" />
+    <meta property="og:url" content="/ru/industries/economy/prices/spreadsheets/?name=19087"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="keywords" content="АСПИР, БНС, stat.gov.kz" />
+<meta name="description" content="Официальный сайт Бюро национальной статистики Агентства по стратегическому планированию и реформам Республики Казахстан" />
+<script data-skip-moving="true">(function(w, d, n) {var cl = "bx-core";var ht = d.documentElement;var htc = ht ? ht.className : undefined;if (htc === undefined || htc.indexOf(cl) !== -1){return;}var ua = n.userAgent;if (/(iPad;)|(iPhone;)/i.test(ua)){cl += " bx-ios";}else if (/Windows/i.test(ua)){cl += ' bx-win';}else if (/Macintosh/i.test(ua)){cl += " bx-mac";}else if (/Linux/i.test(ua) && !/Android/i.test(ua)){cl += " bx-linux";}else if (/Android/i.test(ua)){cl += " bx-android";}cl += (/(ipad|iphone|android|mobile|touch)/i.test(ua) ? " bx-touch" : " bx-no-touch");cl += w.devicePixelRatio && w.devicePixelRatio >= 2? " bx-retina": " bx-no-retina";if (/Safari/i.test(ua) && !/Chrome/i.test(ua)){cl += " bx-safari";}else if (/AppleWebKit/.test(ua)){cl += " bx-chrome";}else if (/Opera/.test(ua)){cl += " bx-opera";}else if (/Firefox/.test(ua)){cl += " bx-firefox";}ht.className = htc ? htc + " " + cl : cl;})(window, document, navigator);</script>
+
+
+<link href="/bitrix/js/ui/design-tokens/dist/ui.design-tokens.css?175794344226358" type="text/css" rel="stylesheet"/>
+<link href="/bitrix/js/ui/fonts/opensans/ui.font.opensans.css?16697149222555" type="text/css" rel="stylesheet"/>
+<link href="/bitrix/js/main/popup/dist/main.popup.bundle.css?178351750325093" type="text/css" rel="stylesheet"/>
+<link href="/bitrix/js/ui/design-tokens/air/dist/air-design-tokens.css?1783517512175933" type="text/css" rel="stylesheet"/>
+<link href="/bitrix/js/ui/icon-set/dist/icon-set.bundle.css?17835175122146" type="text/css" rel="stylesheet"/>
+<link href="/bitrix/js/ui/icon-set/actions/dist/actions.bundle.css?178351751221541" type="text/css" rel="stylesheet"/>
+<link href="/bitrix/js/ui/icon-set/main/dist/main.bundle.css?178351751282757" type="text/css" rel="stylesheet"/>
+<link href="/bitrix/js/ui/icon-set/outline/dist/outline.bundle.css?1783517512129903" type="text/css" rel="stylesheet"/>
+<link href="/bitrix/js/ui/system/skeleton/dist/skeleton.bundle.css?1757943987468" type="text/css" rel="stylesheet"/>
+<link href="/bitrix/js/main/sidepanel/dist/side-panel.bundle.css?178351750324869" type="text/css" rel="stylesheet"/>
+<link href="/local/templates/statgov_main/components/bitrix/system.pagenavigation/modern/style.css?1669714913754" type="text/css" rel="stylesheet"/>
+<link href="/local/templates/statgov_main/css/style.css?1790336625141685" type="text/css" rel="stylesheet" data-template-style="true"/>
+<link href="/local/templates/statgov_main/css/jquery.fancybox.css?166971488117706" type="text/css" rel="stylesheet" data-template-style="true"/>
+<link href="/local/templates/statgov_main/js/jsTree/themes/default/style.min.css?166997381727381" type="text/css" rel="stylesheet" data-template-style="true"/>
+<link href="/local/templates/statgov_main/css/custom.css?179307975766741" type="text/css" rel="stylesheet" data-template-style="true"/>
+<link href="/local/components/statdata/send.error/templates/.default/style.css?16710432931316" type="text/css" rel="stylesheet" data-template-style="true"/>
+
+
+<script type="extension/settings" data-extension="main.baseline">{"collectData":false,"helpUrl":"https:\/\/helpdesk.bitrix24.ru\/open\/code_27229654\/","helpCode":"redirect=detail\u0026code=27229654"}</script>
+
+
+
+
+
+
+<script type="extension/settings" data-extension="ui.a11y">{"restoreLostFocus":false,"useFocusTrapInDialogs":false}</script>
+
+
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+
+    	<title>Электронные таблицы - Бюро национальной статистики  Агентства по стратегическому  планированию и реформам  Республики Казахстан</title>
+
+    </head>
+<body class="">
+			<div id="panel"></div>
+
+        
+                
+		<header class="header">
+			<div class="container">
+				<div class="header-left">
+					<a href="/ru/" class="logo">
+                        <img src="/local/templates/statgov_main/img/bns_logo.svg" alt="Бюро национальной статистики Республики Казахстан">
+					</a>
+					<div class="logo-text">
+                                                    <div class="logo-text-top">
+                                Бюро национальной статистики                            </div>
+                            <div class="logo-text-bottom">
+                                Агентства по стратегическому планированию и реформам Республики Казахстан                            </div>
+											</div>
+				</div>
+				<div class="header-right">
+					<div class="header-right-top">
+
+                        
+						
+                        <div class="cabinet_block">
+                            <a class="cabinet_choice" href="javascript:;"><span class="cabinet_choice_inner">Личный кабинет</span></a>
+
+                            <div class="other_cabinet" style="display: none;">
+                                <a class="cabinet_link" href="/ru/cabinet/">Кабинет пользователя</a>
+                                <a class="cabinet_link" href="https://cabinet.stat.gov.kz/">Кабинет респондента</a>
+                            </div>
+                        </div>
+
+						<a href="javascript://" onclick="letsee_toggle_panel()" class="header-right-link eye">
+							Версия для слабовидящих						</a>
+												<div class="lang_block">
+    
+            <a class="lang_choice" href="javascript:;">РУС</a>
+    
+    
+    <div class="other_lang" style="display: none;">
+        
+                    <a class="lang" href="/industries/economy/prices/spreadsheets/">ҚАЗ</a>
+            <a class="lang" href="/en/industries/economy/prices/spreadsheets/">ENG</a>
+        
+            </div>
+</div>
+                        <a href="/ru/search/" class="mobile-search">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M19.5465 18.4176L16.5401 15.4124C16.5097 15.3819 16.4708 15.3685 16.4374 15.3441C19.3645 11.8473 19.1902 6.61788 15.9045 3.33317C14.2214  1.65039 11.9835 0.723633 9.60312 0.723633C7.22244 0.723633 4.98456 1.65066 3.30142 3.33317C-0.173391 6.80723 -0.173391 12.46 3.30142 15.9336C4.98456 17.6169 7.22244 18.5436 9.60312 18.5436C11.7166 18.5436 13.7154 17.8098 15.3153 16.4679C15.3397 16.5011 15.3528 16.5394 15.383 16.5696L18.3894 19.5748C18.5492 19.7345 18.7586 19.8145 18.968 19.8145C19.1774 19.8145 19.387 19.7348 19.5465 19.5748C19.8661 19.2553 19.8661 18.7374 19.5465 18.4179V18.4176ZM9.60339 16.9069C7.66015 16.9069 5.83284 16.1498 4.45887 14.7763C1.6224 11.9402 1.6224 7.32623 4.45887 4.48981C5.83284 3.11614 7.66015 2.35955 9.60339 2.35955C11.5464 2.35955 13.3737 3.11586 14.7476 4.48981C17.5838 7.32623 17.5838 11.9405 14.7476 14.7763C13.3731 16.15 11.5464 16.9069 9.60339 16.9069Z" fill="#4264D0"></path>
+                            </svg>
+                        </a>
+						<div class="mob-start">
+							<span class="menu1"></span>
+							<span class="menu2"></span>
+							<span class="menu3"></span>
+						</div>
+					</div>
+					
+    <ul class="nav">
+                                <li>
+                <a href="/ru/" class="selected">
+					Главная                </a>
+            </li>
+                                <li>
+                <a href="/ru/about/" class="">
+					О бюро                </a>
+            </li>
+                                <li>
+                <a href="/ru/respondents/" class="">
+					Для респондентов                </a>
+            </li>
+                                <li>
+                <a href="/ru/initiatives/" class="">
+					Инициативы                </a>
+            </li>
+                                <li>
+                <a href="/ru/instuments/" class="">
+					Инструменты                </a>
+            </li>
+            </ul>
+				</div>
+			</div>
+		</header>
+
+			
+
+<div class="header-title-block" style="background-image: url(/upload/iblock/01d/8urmfzz15kd26t7ntug9n0o7392haaii/j3th6bn5b.png">
+	<div class="container">
+		<div class="header-block">
+			<div class="header-block__icon">
+				<img src="/upload/iblock/a7a/yxjlbdvq167ejjc36s17lmsoug7qc38l.svg" alt="">
+			</div>
+			<div class="header-block-small-title">
+				Статистика цен			</div>
+			<div class="page-title">
+				Электронные таблицы			</div>
+		</div>
+	</div>
+</div>
+<div class="info-block white-bg">
+	<div class="container">
+
+		<ul class="breadcrumbs" itemscope itemtype="http://schema.org/BreadcrumbList">
+		<li id="bx_breadcrumb_0" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+			<a href="/ru/" title="Главная" itemprop="item">
+				<span itemprop="name">Главная</span>
+			</a>
+			<meta itemprop="position" content="1" />
+		</li>
+		<li id="bx_breadcrumb_1" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+			<a href="/ru/industries/" title="Отрасли" itemprop="item">
+				<span itemprop="name">Отрасли</span>
+			</a>
+			<meta itemprop="position" content="2" />
+		</li>
+		<li id="bx_breadcrumb_2" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+			<a href="/ru/industries/economy/" title="Экономика" itemprop="item">
+				<span itemprop="name">Экономика</span>
+			</a>
+			<meta itemprop="position" content="3" />
+		</li>
+		<li id="bx_breadcrumb_3" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+			<a href="/ru/industries/economy/prices/" title="Статистика цен" itemprop="item">
+				<span itemprop="name">Статистика цен</span>
+			</a>
+			<meta itemprop="position" content="4" />
+		</li></ul>
+
+
+		<div class="asside-content-page">
+	<div class="info-block">
+		<form action="/ru/industries/economy/prices/spreadsheets/?name=19087" method="GET" class="collections-filter-form">
+			<div class="table-filter-block mt-0">
+
+				<div class="table-filter-item">
+					<select name="year" id="collections-year-filter" class="select collections-filter-triger">
+						<option value="" selected>
+							Период						</option>
+																					<option
+										value="2026"
+																	>
+									2026								</option>
+															<option
+										value="2025"
+																	>
+									2025								</option>
+															<option
+										value="2024"
+																	>
+									2024								</option>
+															<option
+										value="2023"
+																	>
+									2023								</option>
+															<option
+										value="2022"
+																	>
+									2022								</option>
+															<option
+										value="2021"
+																	>
+									2021								</option>
+															<option
+										value="2020"
+																	>
+									2020								</option>
+															<option
+										value="2019"
+																	>
+									2019								</option>
+															<option
+										value="2018"
+																	>
+									2018								</option>
+															<option
+										value="2017"
+																	>
+									2017								</option>
+															<option
+										value="2016"
+																	>
+									2016								</option>
+															<option
+										value="2015"
+																	>
+									2015								</option>
+															<option
+										value="2014"
+																	>
+									2014								</option>
+															<option
+										value="2013"
+																	>
+									2013								</option>
+															<option
+										value="2012"
+																	>
+									2012								</option>
+															<option
+										value="2011"
+																	>
+									2011								</option>
+															<option
+										value="2010"
+																	>
+									2010								</option>
+															<option
+										value="2009"
+																	>
+									2009								</option>
+															<option
+										value="2008"
+																	>
+									2008								</option>
+															<option
+										value="2007"
+																	>
+									2007								</option>
+															<option
+										value="2006"
+																	>
+									2006								</option>
+															<option
+										value="2005"
+																	>
+									2005								</option>
+															<option
+										value="2004"
+																	>
+									2004								</option>
+															<option
+										value="2003"
+																	>
+									2003								</option>
+															<option
+										value="2002"
+																	>
+									2002								</option>
+															<option
+										value="2001"
+																	>
+									2001								</option>
+															<option
+										value="2000"
+																	>
+									2000								</option>
+															<option
+										value="1999"
+																	>
+									1999								</option>
+																		</select>
+				</div>
+
+				<div class="table-filter-item">
+					<select name="type" id="collections-type-filter" class="select collections-filter-triger">
+						<option value="" selected>
+							Тип						</option>
+																					<option
+										value="spreadsheets"
+																	>
+									Электронные таблицы								</option>
+															<option
+										value="bulletin"
+																	>
+									Бюллетень								</option>
+															<option
+										value="express_information"
+																	>
+									Экспресс информация								</option>
+																		</select>
+				</div>
+
+				<div class="table-filter-item mr-0">
+					<select name="period" id="collections-period-filter" class="select collections-filter-triger mr-0">
+						<option value="" selected>
+							Периодичность						</option>
+																														<option
+											value="month"
+																			>
+										Месяц									</option>
+																										</select>
+				</div>
+
+				<div class="table-filter-item">
+					<select name="name" id="collections-name-filter" class="select select-collections-all collections-filter-triger">
+						<option value="" selected>
+							Наименование						</option>
+																					<option
+										value="19525"
+																	>
+									Базовый индекс цен производителей промышленной продукции в Республике Казахстан								</option>
+															<option
+										value="18621"
+																	>
+									Величина прожиточного минимума в Республике Казахстан								</option>
+															<option
+										value="19117"
+																	>
+									Индекс потребительских цен и производные показатели в Республике Казахстан								</option>
+															<option
+										value="19636"
+																	>
+									Индекс цен аренды коммерческой недвижимости в Республике Казахстан								</option>
+															<option
+										value="19060"
+																	>
+									Индекс цен и средние цены на социально-значимые продовольственные товары в Республике Казахстан								</option>
+															<option
+										value="19646"
+																	>
+									Индекс цен приобретения продукции сельхозпроизводителями в Республике Казахстан								</option>
+															<option
+										value="19105"
+																	>
+									Индексы тарифов на перевозку грузов всеми видами транспорта в Республике Казахстан								</option>
+															<option
+										value="19592"
+																	>
+									Индексы тарифов на услуги почтовые, курьерские и связи для юридических лиц в Республике Казахстан								</option>
+															<option
+										value="19100"
+																	>
+									Индексы цен и цены в сельском хозяйстве в Республике Казахстан								</option>
+															<option
+										value="19094"
+																	>
+									Индексы цен и цены в строительстве в Республике Казахстан								</option>
+															<option
+										value="19521"
+																	>
+									Индексы цен и цены на рынке жилья в Республике Казахстан								</option>
+															<option
+										value="19110"
+																	>
+									Индексы цен и цены оптовых продаж в Республике Казахстан								</option>
+															<option
+										value="19589"
+																	>
+									Индексы цен и цены оптовых продаж товаров, продукции в Республике Казахстан								</option>
+															<option
+										value="19557"
+																	>
+									Индексы цен и цены приобретения продукции производственно-технического назначения промышленными предприятиями Республики Казахстан								</option>
+															<option
+										value="19080"
+																	>
+									Индексы цен и цены приобретения продукции производственно-технического промышленного назначения Республики Казахстан 								</option>
+															<option
+										value="19078"
+																	>
+									Индексы цен и цены производителей промышленной продукции в Республике Казахстан 								</option>
+															<option
+										value="19619"
+																	>
+									Индексы цен на продукцию лесного и рыбного хозяйства в Республике Казахстан								</option>
+															<option
+										value="19596"
+																	>
+									Индексы цен производителей на услуги в Республике Казахстан								</option>
+															<option
+										value="19073"
+																	>
+									Индексы цен экспортных поставок и импортных поступлений товаров, продукции Республики Казахстан 								</option>
+															<option
+										value="19087"
+									selected								>
+									Розничные цены на отдельные товары и услуги в Республике Казахстан								</option>
+															<option
+										value="19642"
+																	>
+									Среднегодовые цены на продукцию сельского хозяйства в Республике Казахстан								</option>
+															<option
+										value="19090"
+																	>
+									Цены на рынке жилья в Республике Казахстан								</option>
+															<option
+										value="71728"
+																	>
+									 Базовый индекс цен предприятий-производителей промышленной продукции в Республике Казахстан								</option>
+															<option
+										value="73124"
+																	>
+									 Индекс цен для групп населения с различным уровнем среднедушевых денежных доходов								</option>
+															<option
+										value="83957"
+																	>
+									 Об изменении цен в строительном производстве Республики Казахстан								</option>
+															<option
+										value="86820"
+																	>
+									 Об изменении цен импортных поступлений товаров, продукции в Республику Казахстан								</option>
+															<option
+										value="86826"
+																	>
+									 Об изменении цен на продукцию и услуги в области рыболовства и аквакультуры в Республике Казахстан								</option>
+															<option
+										value="86901"
+																	>
+									 Об изменении цен на строительные работы (услуги) по возведению объектов в Республике Казахстан								</option>
+															<option
+										value="87048"
+																	>
+									 Об изменении цен на строительные услуги по возведению объектов в Республике Казахстан								</option>
+															<option
+										value="88051"
+																	>
+									 Об изменении цен экспортных поставок товаров, продукции из Республики Казахстан								</option>
+															<option
+										value="96143"
+																	>
+									 Средние розничные цены на продукты нефтепереработки по Республике Казахстан								</option>
+															<option
+										value="24365"
+																	>
+									Базовый индекс цен производителей промышленной продукции в Республике Казахстан								</option>
+															<option
+										value="24872"
+																	>
+									Величина прожиточного минимума								</option>
+															<option
+										value="24386"
+																	>
+									Индекс цен и средние цены на социально-значимые продовольственные товары в Республике Казахстан								</option>
+															<option
+										value="24495"
+																	>
+									О базовой инфляции в Республике Казахстан								</option>
+															<option
+										value="24510"
+																	>
+									Об изменении цен в потребительском и реальном секторах экономики Республики Казахстан								</option>
+															<option
+										value="24525"
+																	>
+									Об изменении цен в промышленности в Республике Казахстан и странах  Евразийского экономического союза (ЕАЭС)								</option>
+															<option
+										value="25187"
+																	>
+									Об изменении цен в промышленности в странах Европы и государствах СНГ								</option>
+															<option
+										value="25207"
+																	>
+									Об изменении цен импортных поступлений продукции в Республику Казахстан								</option>
+															<option
+										value="25223"
+																	>
+									Об изменении цен оптовых продаж в Республике Казахстан								</option>
+															<option
+										value="25238"
+																	>
+									Об изменении цен предприятий-производителей промышленной продукции в Республике Казахстан								</option>
+															<option
+										value="25273"
+																	>
+									Об изменении цен производителей на продукцию сельского хозяйства в Республике Казахстан								</option>
+															<option
+										value="24538"
+																	>
+									Об изменении цен производителей на услуги в Республике Казахстан 								</option>
+															<option
+										value="25308"
+																	>
+									Об изменении цен экспортных поставок продукции из Республики Казахстан								</option>
+															<option
+										value="24551"
+																	>
+									Об инфляции в Республике Казахстан								</option>
+															<option
+										value="24570"
+																	>
+									Об инфляции в регионах Республики Казахстан								</option>
+															<option
+										value="95952"
+																	>
+									Об уровне инфляции в Республике Казахстан								</option>
+															<option
+										value="24589"
+																	>
+									Об уровне инфляции в Республике Казахстан и странах Евразийского экономического союза (ЕАЭС)								</option>
+															<option
+										value="25378"
+																	>
+									Уровень инфляции в Казахстане и приграничных государствах								</option>
+															<option
+										value="25421"
+																	>
+									Уровень инфляции в странах ЕЭП (Европейского экономического пространства) и государствах СНГ								</option>
+															<option
+										value="27196"
+																	>
+									Величина прожиточного минимума								</option>
+															<option
+										value="27199"
+																	>
+									Величина прожиточного минимума в Республике Казахстан								</option>
+															<option
+										value="165507"
+																	>
+									Величина прожиточного минимума по половозрастным группам населения в Республике Казахстан								</option>
+															<option
+										value="165786"
+																	>
+									Величина прожиточного минимума по районам и городам в Республике Казахстан								</option>
+															<option
+										value="27168"
+																	>
+									Вклад отдельных составляющих в индексе потребительских цен в Республике Казахстан								</option>
+															<option
+										value="166775"
+																	>
+									Индекс потребительских цен в Республике Казахстан								</option>
+															<option
+										value="168466"
+																	>
+									Индекс потребительских цен для групп населения с различным уровнем среднедушевых денежных доходов в Республике Казахстан								</option>
+															<option
+										value="169143"
+																	>
+									Индекс розничных цен в Республике Казахстан								</option>
+															<option
+										value="173112"
+																	>
+									Индекс средних цен на приобретенную продукцию производственно-технического назначения в Республике Казахстан								</option>
+															<option
+										value="174912"
+																	>
+									Индекс средних цен на продукцию производственно-технического назначения, приобретенную промышленными предприятиями Республики Казахстан								</option>
+															<option
+										value="174947"
+																	>
+									Индекс тарифов на перевозку грузов								</option>
+															<option
+										value="37054"
+																	>
+									Индекс тарифов на перевозку грузов всеми видами транспорта в Республике Казахстан								</option>
+															<option
+										value="37040"
+																	>
+									Индекс тарифов на почтовые и курьерские услуги для юридических лиц в Республике Казахстан								</option>
+															<option
+										value="28313"
+																	>
+									Индекс тарифов на услуги связи для юридических лиц в Республике Казахстан								</option>
+															<option
+										value="327142"
+																	>
+									Индекс цен аренды коммерческой недвижимости в Республике Казахстан								</option>
+															<option
+										value="185579"
+																	>
+									Индекс цен в розничной торговле в Республике Казахстан								</option>
+															<option
+										value="28216"
+																	>
+									Индекс цен в строительстве в Республике Казахстан								</option>
+															<option
+										value="28191"
+																	>
+									Индекс цен взаимной торговли Республики Казахстан с государствами-членами ЕАЭС								</option>
+															<option
+										value="28171"
+																	>
+									Индекс цен для групп населения с различным уровнем среднедушевых денежных доходов в Республике Казахстан								</option>
+															<option
+										value="187944"
+																	>
+									Индекс цен и средние цены на материалы, детали и конструкции, приобретенные строительными организациями Республики Казахстан								</option>
+															<option
+										value="327159"
+																	>
+									Индекс цен и цены на продукцию и услуги лесного хозяйства в Республике Казахстан								</option>
+															<option
+										value="327815"
+																	>
+									Индекс цен и цены на продукцию и услуги рыболовства и аквакультуры в Республике Казахстан								</option>
+															<option
+										value="28147"
+																	>
+									Индекс цен и цены приобретения продукции производственно-технического назначения промышленными предприятиями Республики Казахстан								</option>
+															<option
+										value="189288"
+																	>
+									Индекс цен импортных поступлений продукции Республики Казахстан								</option>
+															<option
+										value="27474"
+																	>
+									Индекс цен импортных поступлений товаров, продукции Республики Казахстан								</option>
+															<option
+										value="192003"
+																	>
+									Индекс цен на инвестиции в капитальное строительство в Республике Казахстан								</option>
+															<option
+										value="328048"
+																	>
+									Индекс цен на продукцию и услуги лесного хозяйства в Республике Казахстан								</option>
+															<option
+										value="27469"
+																	>
+									Индекс цен на продукцию и услуги, приобретенные сельхозпроизводителями в Республике Казахстан								</option>
+															<option
+										value="329473"
+																	>
+									Индекс цен на продукцию производственно-технического назначения и услуги для сельскохозяйственных формирований								</option>
+															<option
+										value="329491"
+																	>
+									Индекс цен на продукцию производственно-технического назначения и услуги, приобретенные сельхозпроизводителями в Республике Казахстан								</option>
+															<option
+										value="192015"
+																	>
+									Индекс цен на продукцию производственно-технического назначения, приобретенную промышленными предприятиями Республики Казахстан								</option>
+															<option
+										value="329504"
+																	>
+									Индекс цен на продукцию рыболовства и рыбоводства в Республике Казахстан								</option>
+															<option
+										value="332348"
+																	>
+									Индекс цен на продукцию, производственно-технического назначения, приобретенную сельскохозяйственными формированиями, и оказанные им услуги в Республике Казахстан								</option>
+															<option
+										value="27452"
+																	>
+									Индекс цен оптовых продаж товаров, продукции в Республике Казахстан								</option>
+															<option
+										value="28027"
+																	>
+									Индекс цен предприятий-производителей промышленной продукции (товаров, услуг) в Республике Казахстан								</option>
+															<option
+										value="27427"
+																	>
+									Индекс цен предприятий-производителей промышленной продукции в Республике Казахстан								</option>
+															<option
+										value="195273"
+																	>
+									Индекс цен приобретения продукции производственно-технического назначения промышленными предприятиями Республики Казахстан								</option>
+															<option
+										value="28005"
+																	>
+									Индекс цен производителей на продукцию сельского хозяйства в Республике Казахстан								</option>
+															<option
+										value="195413"
+																	>
+									Индекс цен производителей продукции сельского хозяйства в Республике Казахстан								</option>
+															<option
+										value="195540"
+																	>
+									Индекс цен реализации на продукцию сельского хозяйства в Республике Казахстан								</option>
+															<option
+										value="195603"
+																	>
+									Индекс цен реализации продукции сельского хозяйства в Республике Казахстан								</option>
+															<option
+										value="196072"
+																	>
+									Индекс цен экспортных поставок продукции Республики Казахстан								</option>
+															<option
+										value="27366"
+																	>
+									Индекс цен экспортных поставок товаров, продукции Республики Казахстан								</option>
+															<option
+										value="332408"
+																	>
+									Индексы по отдельным видам зданий и сооружений								</option>
+															<option
+										value="197156"
+																	>
+									Индексы розничных цен в Республике Казахстан								</option>
+															<option
+										value="198383"
+																	>
+									Индексы цен взаимной торговли Республики Казахстан с государствами-членами Таможенного союза								</option>
+															<option
+										value="199400"
+																	>
+									Индексы цен и тарифов на платные услуги в Республике Казахстан								</option>
+															<option
+										value="256394"
+																	>
+									Индексы цен и тарифов на платные услуги населению по Республике Казахстан								</option>
+															<option
+										value="27304"
+																	>
+									Индексы цен и цены в строительстве в Республике Казахстан								</option>
+															<option
+										value="329509"
+																	>
+									Индексы цен на основные виды строительных работ в Республике Казахстан								</option>
+															<option
+										value="329547"
+																	>
+									Индексы цен на отдельные виды потребительских товаров в Республике Казахстан								</option>
+															<option
+										value="256429"
+																	>
+									Индексы цен на потребительские товары и услуги в Казахстане и приграничных государствах								</option>
+															<option
+										value="332353"
+																	>
+									Индексы цен на промышленную продукцию, приобретаемую сельхозпредприятиями и оказанные им услуги и на реализованную по всем каналам сельскохозяйственную продукцию в Республике Казахстан								</option>
+															<option
+										value="329896"
+																	>
+									Индексы цен по отдельным типам сооружений жилищного, производственного и автодорожного назначения в Республике Казахстан								</option>
+															<option
+										value="258069"
+																	>
+									Розничные цены на основные непродовольственные товары в Республике Казахстан								</option>
+															<option
+										value="258282"
+																	>
+									Розничные цены на основные непродовольственные товары в городах Республики Казахстан								</option>
+															<option
+										value="27147"
+																	>
+									Розничные цены на основные продовольственные товары в Республике Казахстан								</option>
+															<option
+										value="262465"
+																	>
+									Розничные цены на основные продовольственные товары в городах Республики Казахстан								</option>
+															<option
+										value="329949"
+																	>
+									Розничные цены на отдельные продовольственные и непродовольственные товары по городам и районным центрам								</option>
+															<option
+										value="27083"
+																	>
+									Розничные цены на отдельные продовольственные товары в городах и районных центрах								</option>
+															<option
+										value="27723"
+																	>
+									Розничные цены на отдельные товары и услуги в городах и районных центрах Республики Казахстан								</option>
+															<option
+										value="27069"
+																	>
+									Розничные цены на товары и услуги в городах и районных центрах Республики Казахстан								</option>
+															<option
+										value="332362"
+																	>
+									Соотношение цен на потребительском рынке и инфляционные ожидания населения в Республике Казахстан								</option>
+															<option
+										value="27061"
+																	>
+									Среднегодовые цены на продукцию сельского хозяйства в Республике Казахстан								</option>
+															<option
+										value="332418"
+																	>
+									Среднегодовые цены на продукцию сельского хозяйства и продукты ее переработки в городах и районных центрах Республики Казахстан								</option>
+															<option
+										value="332422"
+																	>
+									Среднегодовые цены на продукцию сельского хозяйства и продукты ее переработки, зарегистрированные на рынках городов и районных центров								</option>
+															<option
+										value="332435"
+																	>
+									Среднегодовые цены производителей на продукцию сельского хозяйства в Республике Казахстан								</option>
+															<option
+										value="332441"
+																	>
+									Среднегодовые цены реализации на продукцию сельского хозяйства в Республике Казахстан								</option>
+															<option
+										value="27022"
+																	>
+									Средние цены (тарифы) на отдельные виды непродовольственных товаров и платных услуг в Республике Казахстан								</option>
+															<option
+										value="330836"
+																	>
+									Средние цены и индексы цен на продукцию сельского хозяйства, реализованную сельхозпредприятиями по всем каналам в Республике Казахстан								</option>
+															<option
+										value="265148"
+																	>
+									Средние цены и индексы цен реализации на основные виды сельскохозяйственной продукции в Республике Казахстан								</option>
+															<option
+										value="330865"
+																	>
+									Средние цены на отдельные виды материалов, деталей и конструкций, применяемых в строительном производстве по регионам Республики Казахстан								</option>
+															<option
+										value="279282"
+																	>
+									Средние цены на отдельные виды продукции производственно-технического назначения приобретенные промышленными предприятиями Республики Казахстан								</option>
+															<option
+										value="284949"
+																	>
+									Средние цены на продукты питания в отдельных городах республики, государствах, граничащих с Казахстаном								</option>
+															<option
+										value="288213"
+																	>
+									Средние цены оптовых продаж на отдельные виды продукции (товаров) в Республике Казахстан								</option>
+															<option
+										value="332177"
+																	>
+									Средние цены реализации на отдельные виды сельскохозяйственной продукции по областям Республики Казахстан								</option>
+															<option
+										value="290883"
+																	>
+									Цены и индекс цен предприятий-производителей на продукцию и услуги лесного хозяйства в Республике Казахстан								</option>
+															<option
+										value="27009"
+																	>
+									Цены и индексы цен на аренду коммерческой недвижимости в Республике Казахстан								</option>
+															<option
+										value="294879"
+																	>
+									Цены и индексы цен на материалы, детали и конструкции, приобретенные строительными организациями Республики Казахстан								</option>
+															<option
+										value="26984"
+																	>
+									Цены и индексы цен на отдельные виды строительных материалов в Республике Казахстан								</option>
+															<option
+										value="332231"
+																	>
+									Цены и индексы цен на продукцию и услуги рыболовства и аквакультуры в Республике Казахстан								</option>
+															<option
+										value="332240"
+																	>
+									Цены и индексы цен на продукцию рыболовства и аквакультуры в Республике Казахстан								</option>
+															<option
+										value="26979"
+																	>
+									Цены и индексы цен на продукцию рыболовства и рыбоводства в Республике Казахстан								</option>
+															<option
+										value="300756"
+																	>
+									Цены и индексы цен производителей на основные виды продукции сельского хозяйства в Республике Казахстан								</option>
+															<option
+										value="26960"
+																	>
+									Цены и индексы цен производителей на продукцию сельского хозяйства в Республике Казахстан								</option>
+															<option
+										value="300931"
+																	>
+									Цены и индексы цен реализации на основные виды продукции сельского хозяйства в Республике Казахстан								</option>
+															<option
+										value="300955"
+																	>
+									Цены и индексы цен реализации на основные виды сельскохозяйственной продукции в Республике Казахстан								</option>
+															<option
+										value="300992"
+																	>
+									Цены и тарифы на отдельные виды платных услуг в Республике Казахстан								</option>
+															<option
+										value="301383"
+																	>
+									Цены и тарифы на отдельные виды платных услуг в городах Республики Казахстан								</option>
+															<option
+										value="26941"
+																	>
+									Цены на нефть и продукты нефтепереработки в Республике Казахстан								</option>
+															<option
+										value="316532"
+																	>
+									Цены на отдельные виды продукции производственно-технического назначения, приобретенные промышленными предприятиями Республики Казахстан								</option>
+															<option
+										value="316548"
+																	>
+									Цены на отдельные виды строительных материалов в Республике Казахстан								</option>
+															<option
+										value="332270"
+																	>
+									Цены на отдельные виды товаров и индексы цен в производственном секторе экономики Казахстана и приграничных государствах								</option>
+															<option
+										value="332276"
+																	>
+									Цены на отдельные виды товаров и индексы цен в реальном секторе экономики Казахстана и приграничных государствах								</option>
+															<option
+										value="26926"
+																	>
+									Цены на продукты питания в городах республики и приграничных государств								</option>
+															<option
+										value="318186"
+																	>
+									Цены на продукцию предприятий - монополистов								</option>
+															<option
+										value="27647"
+																	>
+									Цены на продукцию сельского хозяйства в Республике Казахстан								</option>
+															<option
+										value="318806"
+																	>
+									Цены на продукцию сельского хозяйства и продукты ее переработки на рынках в городах и районных центрах Республики Казахстан								</option>
+															<option
+										value="321676"
+																	>
+									Цены на продукцию сельского хозяйства, реализованную в городах и районах Республики Казахстан								</option>
+															<option
+										value="322767"
+																	>
+									Цены на продукцию сельского хозяйства, реализованную по разным каналам в Республике Казахстан								</option>
+															<option
+										value="26908"
+																	>
+									Цены на рынке жилья в Республике Казахстан								</option>
+															<option
+										value="26872"
+																	>
+									Цены на сельскохозяйственных рынках Республики Казахстан								</option>
+															<option
+										value="332301"
+																	>
+									Цены на товары потребительского рынка городов и районных центров Республики Казахстан								</option>
+															<option
+										value="326083"
+																	>
+									Цены оптовых продаж на отдельные виды товаров, продукции в Республике Казахстан								</option>
+															<option
+										value="26846"
+																	>
+									Цены оптовых продаж товаров, продукции в Республике Казахстан								</option>
+															<option
+										value="326096"
+																	>
+									Цены предприятий производителей на отдельные виды промышленной продукции в Республике Казахстан								</option>
+															<option
+										value="326276"
+																	>
+									Цены предприятий, включённых в Государственный реестр хозяйствующих субъектов и Государственный регистр субъектов естественной монополии Республики Казахстан, на готовую продукцию								</option>
+															<option
+										value="326387"
+																	>
+									Цены предприятий-производителей на отдельные виды промышленной продукции в Республике Казахстан								</option>
+															<option
+										value="26764"
+																	>
+									Цены предприятий-производителей на промышленную продукцию в Республике Казахстан								</option>
+															<option
+										value="327075"
+																	>
+									Цены приобретения продукции производственно-технического назначения промышленными предприятиями Республики Казахстан								</option>
+															<option
+										value="332306"
+																	>
+									Цены производителей промышленной продукции и цены приобретения отдельных ее видов предприятиями Республики Казахстан на внутреннем рынке (по материалам обследования)								</option>
+															<option
+										value="332331"
+																	>
+									Цены реализации на отдельные виды сельскохозяйственной продукции по регионам Республики Казахстан								</option>
+																		</select>
+				</div>
+
+				<div class="table-filter-item">
+					<a href="/ru/industries/economy/prices/spreadsheets/" class="clear-filter custom-clear-filter">
+						Сбросить					</a>
+				</div>
+			</div>
+		</form>
+
+							<div class="content-page-news full-page">
+									<div class="tables-block">
+						<div class="tables-block__title mb-2">
+							Розничные цены на отдельные товары и услуги в Республике Казахстан						</div>
+						<div class="divTable tableSize collestions-table">
+							<div class="divTableHeading">
+								<div class="divTableRow">
+									<div class="divTableHead text-left">Наименование</div>
+									<div class="divTableHead text-right">Дата релиза</div>
+									<div class="divTableHead text-right">Тип и размер файла</div>
+								</div>
+							</div>
+							<div class="divTableBody">
+																										<div class="divTableRow" id="bx_3218110189_353619">
+										<div class="divTableCell">
+											<a href="/api/iblock/element/353619/file/ru/">
+												Розничные цены на отдельные товары и услуги в Республике Казахстан (сентябрь 2026 года)											</a>
+                                            										</div>
+										<div class="divTableCell text-right">09.10.2026</div>
+										<div class="divTableCell text-right">
+											<a href="/api/iblock/element/353619/file/ru/">
+												<span class="mr-1">154.3  Кб, xlsx</span>
+												<svg width="17" height="19" viewBox="0 0 17 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M14.1875 7.04219H12.3875C11.8475 7.04219 11.4875 7.40219 11.4875 7.94219C11.4875 8.48219 11.8475 8.84219 12.3875 8.84219H14.1875C14.7275 8.84219 15.0875 9.20219 15.0875 9.74219V16.0422C15.0875 16.5822 14.7275 16.9422 14.1875 16.9422H3.3875C2.8475 16.9422 2.4875 16.5822 2.4875 16.0422V9.74219C2.4875 9.20219 2.8475 8.84219 3.3875 8.84219H5.1875C5.7275 8.84219 6.0875 8.48219 6.0875 7.94219C6.0875 7.40219 5.7275 7.04219 5.1875 7.04219H3.3875C1.8575 7.04219 0.6875 8.21219 0.6875 9.74219V16.0422C0.6875 17.5722 1.8575 18.7422 3.3875 18.7422H14.1875C15.7175 18.7422 16.8875 17.5722 16.8875 16.0422V9.74219C16.8875 8.21219 15.7175 7.04219 14.1875 7.04219ZM5.4575 12.1722L8.1575 14.8722C8.3375 15.0522 8.5175 15.1422 8.7875 15.1422C9.0575 15.1422 9.2375 15.0522 9.4175 14.8722L12.1175 12.1722C12.4775 11.8122 12.4775 11.2722 12.1175 10.9122C11.7575 10.5522 11.2175 10.5522 10.8575 10.9122L9.6875 12.0822V1.64219C9.6875 1.10219 9.3275 0.742188 8.7875 0.742188C8.2475 0.742188 7.8875 1.10219 7.8875 1.64219V12.0822L6.7175 10.9122C6.3575 10.5522 5.8175 10.5522 5.4575 10.9122C5.0975 11.2722 5.0975 11.8122 5.4575 12.1722Z" fill="#4264D0"/>
+												</svg>
+											</a>
+										</div>
+									</div>
+																										<div class="divTableRow" id="bx_3218110189_347970">
+										<div class="divTableCell">
+											<a href="/api/iblock/element/347970/file/ru/">
+												Розничные цены на отдельные товары и услуги в Республике Казахстан (август 2026 года)											</a>
+                                            										</div>
+										<div class="divTableCell text-right">09.09.2026</div>
+										<div class="divTableCell text-right">
+											<a href="/api/iblock/element/347970/file/ru/">
+												<span class="mr-1">154.7  Кб, xlsx</span>
+												<svg width="17" height="19" viewBox="0 0 17 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M14.1875 7.04219H12.3875C11.8475 7.04219 11.4875 7.40219 11.4875 7.94219C11.4875 8.48219 11.8475 8.84219 12.3875 8.84219H14.1875C14.7275 8.84219 15.0875 9.20219 15.0875 9.74219V16.0422C15.0875 16.5822 14.7275 16.9422 14.1875 16.9422H3.3875C2.8475 16.9422 2.4875 16.5822 2.4875 16.0422V9.74219C2.4875 9.20219 2.8475 8.84219 3.3875 8.84219H5.1875C5.7275 8.84219 6.0875 8.48219 6.0875 7.94219C6.0875 7.40219 5.7275 7.04219 5.1875 7.04219H3.3875C1.8575 7.04219 0.6875 8.21219 0.6875 9.74219V16.0422C0.6875 17.5722 1.8575 18.7422 3.3875 18.7422H14.1875C15.7175 18.7422 16.8875 17.5722 16.8875 16.0422V9.74219C16.8875 8.21219 15.7175 7.04219 14.1875 7.04219ZM5.4575 12.1722L8.1575 14.8722C8.3375 15.0522 8.5175 15.1422 8.7875 15.1422C9.0575 15.1422 9.2375 15.0522 9.4175 14.8722L12.1175 12.1722C12.4775 11.8122 12.4775 11.2722 12.1175 10.9122C11.7575 10.5522 11.2175 10.5522 10.8575 10.9122L9.6875 12.0822V1.64219C9.6875 1.10219 9.3275 0.742188 8.7875 0.742188C8.2475 0.742188 7.8875 1.10219 7.8875 1.64219V12.0822L6.7175 10.9122C6.3575 10.5522 5.8175 10.5522 5.4575 10.9122C5.0975 11.2722 5.0975 11.8122 5.4575 12.1722Z" fill="#4264D0"/>
+												</svg>
+											</a>
+										</div>
+									</div>
+																										<div class="divTableRow" id="bx_3218110189_335770">
+										<div class="divTableCell">
+											<a href="/api/iblock/element/335770/file/ru/">
+												Розничные цены на отдельные товары и услуги в Республике Казахстан (Июль 2026)											</a>
+                                            										</div>
+										<div class="divTableCell text-right">10.08.2026</div>
+										<div class="divTableCell text-right">
+											<a href="/api/iblock/element/335770/file/ru/">
+												<span class="mr-1">154.5  Кб, xlsx</span>
+												<svg width="17" height="19" viewBox="0 0 17 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M14.1875 7.04219H12.3875C11.8475 7.04219 11.4875 7.40219 11.4875 7.94219C11.4875 8.48219 11.8475 8.84219 12.3875 8.84219H14.1875C14.7275 8.84219 15.0875 9.20219 15.0875 9.74219V16.0422C15.0875 16.5822 14.7275 16.9422 14.1875 16.9422H3.3875C2.8475 16.9422 2.4875 16.5822 2.4875 16.0422V9.74219C2.4875 9.20219 2.8475 8.84219 3.3875 8.84219H5.1875C5.7275 8.84219 6.0875 8.48219 6.0875 7.94219C6.0875 7.40219 5.7275 7.04219 5.1875 7.04219H3.3875C1.8575 7.04219 0.6875 8.21219 0.6875 9.74219V16.0422C0.6875 17.5722 1.8575 18.7422 3.3875 18.7422H14.1875C15.7175 18.7422 16.8875 17.5722 16.8875 16.0422V9.74219C16.8875 8.21219 15.7175 7.04219 14.1875 7.04219ZM5.4575 12.1722L8.1575 14.8722C8.3375 15.0522 8.5175 15.1422 8.7875 15.1422C9.0575 15.1422 9.2375 15.0522 9.4175 14.8722L12.1175 12.1722C12.4775 11.8122 12.4775 11.2722 12.1175 10.9122C11.7575 10.5522 11.2175 10.5522 10.8575 10.9122L9.6875 12.0822V1.64219C9.6875 1.10219 9.3275 0.742188 8.7875 0.742188C8.2475 0.742188 7.8875 1.10219 7.8875 1.64219V12.0822L6.7175 10.9122C6.3575 10.5522 5.8175 10.5522 5.4575 10.9122C5.0975 11.2722 5.0975 11.8122 5.4575 12.1722Z" fill="#4264D0"/>
+												</svg>
+											</a>
+										</div>
+									</div>
+																										<div class="divTableRow" id="bx_3218110189_347716">
+										<div class="divTableCell">
+											<a href="/api/iblock/element/347716/file/ru/">
+												Розничные цены на отдельные товары и услуги в Республике Казахстан (   июнь 2026 года)											</a>
+                                            										</div>
+										<div class="divTableCell text-right">09.07.2026</div>
+										<div class="divTableCell text-right">
+											<a href="/api/iblock/element/347716/file/ru/">
+												<span class="mr-1">156.8  Кб, xlsx</span>
+												<svg width="17" height="19" viewBox="0 0 17 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M14.1875 7.04219H12.3875C11.8475 7.04219 11.4875 7.40219 11.4875 7.94219C11.4875 8.48219 11.8475 8.84219 12.3875 8.84219H14.1875C14.7275 8.84219 15.0875 9.20219 15.0875 9.74219V16.0422C15.0875 16.5822 14.7275 16.9422 14.1875 16.9422H3.3875C2.8475 16.9422 2.4875 16.5822 2.4875 16.0422V9.74219C2.4875 9.20219 2.8475 8.84219 3.3875 8.84219H5.1875C5.7275 8.84219 6.0875 8.48219 6.0875 7.94219C6.0875 7.40219 5.7275 7.04219 5.1875 7.04219H3.3875C1.8575 7.04219 0.6875 8.21219 0.6875 9.74219V16.0422C0.6875 17.5722 1.8575 18.7422 3.3875 18.7422H14.1875C15.7175 18.7422 16.8875 17.5722 16.8875 16.0422V9.74219C16.8875 8.21219 15.7175 7.04219 14.1875 7.04219ZM5.4575 12.1722L8.1575 14.8722C8.3375 15.0522 8.5175 15.1422 8.7875 15.1422C9.0575 15.1422 9.2375 15.0522 9.4175 14.8722L12.1175 12.1722C12.4775 11.8122 12.4775 11.2722 12.1175 10.9122C11.7575 10.5522 11.2175 10.5522 10.8575 10.9122L9.6875 12.0822V1.64219C9.6875 1.10219 9.3275 0.742188 8.7875 0.742188C8.2475 0.742188 7.8875 1.10219 7.8875 1.64219V12.0822L6.7175 10.9122C6.3575 10.5522 5.8175 10.5522 5.4575 10.9122C5.0975 11.2722 5.0975 11.8122 5.4575 12.1722Z" fill="#4264D0"/>
+												</svg>
+											</a>
+										</div>
+									</div>
+																										<div class="divTableRow" id="bx_3218110189_346896">
+										<div class="divTableCell">
+											<a href="/api/iblock/element/346896/file/ru/">
+												Розничные цены на отдельные товары и услуги в Республике Казахстан (май 2026г.)											</a>
+                                            										</div>
+										<div class="divTableCell text-right">09.06.2026</div>
+										<div class="divTableCell text-right">
+											<a href="/api/iblock/element/346896/file/ru/">
+												<span class="mr-1">812.2  Кб, xlsx</span>
+												<svg width="17" height="19" viewBox="0 0 17 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M14.1875 7.04219H12.3875C11.8475 7.04219 11.4875 7.40219 11.4875 7.94219C11.4875 8.48219 11.8475 8.84219 12.3875 8.84219H14.1875C14.7275 8.84219 15.0875 9.20219 15.0875 9.74219V16.0422C15.0875 16.5822 14.7275 16.9422 14.1875 16.9422H3.3875C2.8475 16.9422 2.4875 16.5822 2.4875 16.0422V9.74219C2.4875 9.20219 2.8475 8.84219 3.3875 8.84219H5.1875C5.7275 8.84219 6.0875 8.48219 6.0875 7.94219C6.0875 7.40219 5.7275 7.04219 5.1875 7.04219H3.3875C1.8575 7.04219 0.6875 8.21219 0.6875 9.74219V16.0422C0.6875 17.5722 1.8575 18.7422 3.3875 18.7422H14.1875C15.7175 18.7422 16.8875 17.5722 16.8875 16.0422V9.74219C16.8875 8.21219 15.7175 7.04219 14.1875 7.04219ZM5.4575 12.1722L8.1575 14.8722C8.3375 15.0522 8.5175 15.1422 8.7875 15.1422C9.0575 15.1422 9.2375 15.0522 9.4175 14.8722L12.1175 12.1722C12.4775 11.8122 12.4775 11.2722 12.1175 10.9122C11.7575 10.5522 11.2175 10.5522 10.8575 10.9122L9.6875 12.0822V1.64219C9.6875 1.10219 9.3275 0.742188 8.7875 0.742188C8.2475 0.742188 7.8875 1.10219 7.8875 1.64219V12.0822L6.7175 10.9122C6.3575 10.5522 5.8175 10.5522 5.4575 10.9122C5.0975 11.2722 5.0975 11.8122 5.4575 12.1722Z" fill="#4264D0"/>
+												</svg>
+											</a>
+										</div>
+									</div>
+																										<div class="divTableRow" id="bx_3218110189_346511">
+										<div class="divTableCell">
+											<a href="/api/iblock/element/346511/file/ru/">
+												Розничные цены на отдельные товары и услуги в Республике Казахстан (Апрель 2026 года)											</a>
+                                            										</div>
+										<div class="divTableCell text-right">12.05.2026</div>
+										<div class="divTableCell text-right">
+											<a href="/api/iblock/element/346511/file/ru/">
+												<span class="mr-1">812.4  Кб, xlsx</span>
+												<svg width="17" height="19" viewBox="0 0 17 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M14.1875 7.04219H12.3875C11.8475 7.04219 11.4875 7.40219 11.4875 7.94219C11.4875 8.48219 11.8475 8.84219 12.3875 8.84219H14.1875C14.7275 8.84219 15.0875 9.20219 15.0875 9.74219V16.0422C15.0875 16.5822 14.7275 16.9422 14.1875 16.9422H3.3875C2.8475 16.9422 2.4875 16.5822 2.4875 16.0422V9.74219C2.4875 9.20219 2.8475 8.84219 3.3875 8.84219H5.1875C5.7275 8.84219 6.0875 8.48219 6.0875 7.94219C6.0875 7.40219 5.7275 7.04219 5.1875 7.04219H3.3875C1.8575 7.04219 0.6875 8.21219 0.6875 9.74219V16.0422C0.6875 17.5722 1.8575 18.7422 3.3875 18.7422H14.1875C15.7175 18.7422 16.8875 17.5722 16.8875 16.0422V9.74219C16.8875 8.21219 15.7175 7.04219 14.1875 7.04219ZM5.4575 12.1722L8.1575 14.8722C8.3375 15.0522 8.5175 15.1422 8.7875 15.1422C9.0575 15.1422 9.2375 15.0522 9.4175 14.8722L12.1175 12.1722C12.4775 11.8122 12.4775 11.2722 12.1175 10.9122C11.7575 10.5522 11.2175 10.5522 10.8575 10.9122L9.6875 12.0822V1.64219C9.6875 1.10219 9.3275 0.742188 8.7875 0.742188C8.2475 0.742188 7.8875 1.10219 7.8875 1.64219V12.0822L6.7175 10.9122C6.3575 10.5522 5.8175 10.5522 5.4575 10.9122C5.0975 11.2722 5.0975 11.8122 5.4575 12.1722Z" fill="#4264D0"/>
+												</svg>
+											</a>
+										</div>
+									</div>
+																										<div class="divTableRow" id="bx_3218110189_341262">
+										<div class="divTableCell">
+											<a href="/api/iblock/element/341262/file/ru/">
+												Розничные цены на отдельные товары и услуги в Республике Казахстан (Март 2026 года)											</a>
+                                            										</div>
+										<div class="divTableCell text-right">09.04.2026</div>
+										<div class="divTableCell text-right">
+											<a href="/api/iblock/element/341262/file/ru/">
+												<span class="mr-1">812.3  Кб, xlsx</span>
+												<svg width="17" height="19" viewBox="0 0 17 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M14.1875 7.04219H12.3875C11.8475 7.04219 11.4875 7.40219 11.4875 7.94219C11.4875 8.48219 11.8475 8.84219 12.3875 8.84219H14.1875C14.7275 8.84219 15.0875 9.20219 15.0875 9.74219V16.0422C15.0875 16.5822 14.7275 16.9422 14.1875 16.9422H3.3875C2.8475 16.9422 2.4875 16.5822 2.4875 16.0422V9.74219C2.4875 9.20219 2.8475 8.84219 3.3875 8.84219H5.1875C5.7275 8.84219 6.0875 8.48219 6.0875 7.94219C6.0875 7.40219 5.7275 7.04219 5.1875 7.04219H3.3875C1.8575 7.04219 0.6875 8.21219 0.6875 9.74219V16.0422C0.6875 17.5722 1.8575 18.7422 3.3875 18.7422H14.1875C15.7175 18.7422 16.8875 17.5722 16.8875 16.0422V9.74219C16.8875 8.21219 15.7175 7.04219 14.1875 7.04219ZM5.4575 12.1722L8.1575 14.8722C8.3375 15.0522 8.5175 15.1422 8.7875 15.1422C9.0575 15.1422 9.2375 15.0522 9.4175 14.8722L12.1175 12.1722C12.4775 11.8122 12.4775 11.2722 12.1175 10.9122C11.7575 10.5522 11.2175 10.5522 10.8575 10.9122L9.6875 12.0822V1.64219C9.6875 1.10219 9.3275 0.742188 8.7875 0.742188C8.2475 0.742188 7.8875 1.10219 7.8875 1.64219V12.0822L6.7175 10.9122C6.3575 10.5522 5.8175 10.5522 5.4575 10.9122C5.0975 11.2722 5.0975 11.8122 5.4575 12.1722Z" fill="#4264D0"/>
+												</svg>
+											</a>
+										</div>
+									</div>
+																										<div class="divTableRow" id="bx_3218110189_281456">
+										<div class="divTableCell">
+											<a href="/api/iblock/element/281456/file/ru/">
+												Розничные цены на отдельные товары и услуги в Республике Казахстан (Февраль 2026 года)											</a>
+                                            										</div>
+										<div class="divTableCell text-right">10.03.2026</div>
+										<div class="divTableCell text-right">
+											<a href="/api/iblock/element/281456/file/ru/">
+												<span class="mr-1">77.2  Кб, xlsx</span>
+												<svg width="17" height="19" viewBox="0 0 17 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M14.1875 7.04219H12.3875C11.8475 7.04219 11.4875 7.40219 11.4875 7.94219C11.4875 8.48219 11.8475 8.84219 12.3875 8.84219H14.1875C14.7275 8.84219 15.0875 9.20219 15.0875 9.74219V16.0422C15.0875 16.5822 14.7275 16.9422 14.1875 16.9422H3.3875C2.8475 16.9422 2.4875 16.5822 2.4875 16.0422V9.74219C2.4875 9.20219 2.8475 8.84219 3.3875 8.84219H5.1875C5.7275 8.84219 6.0875 8.48219 6.0875 7.94219C6.0875 7.40219 5.7275 7.04219 5.1875 7.04219H3.3875C1.8575 7.04219 0.6875 8.21219 0.6875 9.74219V16.0422C0.6875 17.5722 1.8575 18.7422 3.3875 18.7422H14.1875C15.7175 18.7422 16.8875 17.5722 16.8875 16.0422V9.74219C16.8875 8.21219 15.7175 7.04219 14.1875 7.04219ZM5.4575 12.1722L8.1575 14.8722C8.3375 15.0522 8.5175 15.1422 8.7875 15.1422C9.0575 15.1422 9.2375 15.0522 9.4175 14.8722L12.1175 12.1722C12.4775 11.8122 12.4775 11.2722 12.1175 10.9122C11.7575 10.5522 11.2175 10.5522 10.8575 10.9122L9.6875 12.0822V1.64219C9.6875 1.10219 9.3275 0.742188 8.7875 0.742188C8.2475 0.742188 7.8875 1.10219 7.8875 1.64219V12.0822L6.7175 10.9122C6.3575 10.5522 5.8175 10.5522 5.4575 10.9122C5.0975 11.2722 5.0975 11.8122 5.4575 12.1722Z" fill="#4264D0"/>
+												</svg>
+											</a>
+										</div>
+									</div>
+																										<div class="divTableRow" id="bx_3218110189_281090">
+										<div class="divTableCell">
+											<a href="/api/iblock/element/281090/file/ru/">
+												Розничные цены на отдельные товары и услуги в Республике Казахстан (Январь 2026 года)											</a>
+                                                                                            <div class="popover__wrapper spreadsheets-popover__wrapper">
+                                                    <div class="popover__title">
+                                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58214 0 0 3.58214 0 8C0 12.4179 3.58214 16 8 16C12.4179 16 16 12.4179 16 8C16 3.58214 12.4179 0 8 0Z" fill="#4264D0" fill-opacity="0.2"/>
+                                                            <path d="M8.26009 2.66797C8.82508 2.66797 9.27788 3.13569 9.25956 3.70039L9.10284 8.53242C9.08535 9.0718 8.64303 9.5 8.10337 9.5H7.9592C7.41986 9.5 6.97768 9.07229 6.95975 8.53325L6.79901 3.70122C6.78022 3.13621 7.23314 2.66797 7.79846 2.66797H8.26009ZM8.03168 13.783C7.65668 13.783 7.33471 13.6504 7.06577 13.3853C6.79684 13.1164 6.66426 12.7944 6.66805 12.4194C6.66426 12.0482 6.79684 11.73 7.06577 11.4648C7.33471 11.1997 7.65668 11.0671 8.03168 11.0671C8.39153 11.0671 8.70782 11.1997 8.98055 11.4648C9.25328 11.73 9.39153 12.0482 9.39532 12.4194C9.39153 12.6694 9.32524 12.8986 9.19646 13.1069C9.07146 13.3114 8.90668 13.4762 8.70214 13.6012C8.49759 13.7224 8.27411 13.783 8.03168 13.783Z" fill="#677CB7"/>
+                                                        </svg>
+                                                    </div>
+                                                    <div class="popover__content">
+                                                        <div class="popover__message">
+                                                            Примечание: Данные за январь 2026 года переформированы в связи с технической ошибкой.                                                        </div>
+                                                    </div>
+                                                </div>
+                                            										</div>
+										<div class="divTableCell text-right">09.02.2026</div>
+										<div class="divTableCell text-right">
+											<a href="/api/iblock/element/281090/file/ru/">
+												<span class="mr-1">81.6  Кб, xlsx</span>
+												<svg width="17" height="19" viewBox="0 0 17 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M14.1875 7.04219H12.3875C11.8475 7.04219 11.4875 7.40219 11.4875 7.94219C11.4875 8.48219 11.8475 8.84219 12.3875 8.84219H14.1875C14.7275 8.84219 15.0875 9.20219 15.0875 9.74219V16.0422C15.0875 16.5822 14.7275 16.9422 14.1875 16.9422H3.3875C2.8475 16.9422 2.4875 16.5822 2.4875 16.0422V9.74219C2.4875 9.20219 2.8475 8.84219 3.3875 8.84219H5.1875C5.7275 8.84219 6.0875 8.48219 6.0875 7.94219C6.0875 7.40219 5.7275 7.04219 5.1875 7.04219H3.3875C1.8575 7.04219 0.6875 8.21219 0.6875 9.74219V16.0422C0.6875 17.5722 1.8575 18.7422 3.3875 18.7422H14.1875C15.7175 18.7422 16.8875 17.5722 16.8875 16.0422V9.74219C16.8875 8.21219 15.7175 7.04219 14.1875 7.04219ZM5.4575 12.1722L8.1575 14.8722C8.3375 15.0522 8.5175 15.1422 8.7875 15.1422C9.0575 15.1422 9.2375 15.0522 9.4175 14.8722L12.1175 12.1722C12.4775 11.8122 12.4775 11.2722 12.1175 10.9122C11.7575 10.5522 11.2175 10.5522 10.8575 10.9122L9.6875 12.0822V1.64219C9.6875 1.10219 9.3275 0.742188 8.7875 0.742188C8.2475 0.742188 7.8875 1.10219 7.8875 1.64219V12.0822L6.7175 10.9122C6.3575 10.5522 5.8175 10.5522 5.4575 10.9122C5.0975 11.2722 5.0975 11.8122 5.4575 12.1722Z" fill="#4264D0"/>
+												</svg>
+											</a>
+										</div>
+									</div>
+																										<div class="divTableRow" id="bx_3218110189_280686">
+										<div class="divTableCell">
+											<a href="/api/iblock/element/280686/file/ru/">
+												Розничные цены на отдельные товары и услуги в Республике Казахстан (Декабрь 2025 года)											</a>
+                                            										</div>
+										<div class="divTableCell text-right">09.01.2026</div>
+										<div class="divTableCell text-right">
+											<a href="/api/iblock/element/280686/file/ru/">
+												<span class="mr-1">87.7  Кб, xlsx</span>
+												<svg width="17" height="19" viewBox="0 0 17 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M14.1875 7.04219H12.3875C11.8475 7.04219 11.4875 7.40219 11.4875 7.94219C11.4875 8.48219 11.8475 8.84219 12.3875 8.84219H14.1875C14.7275 8.84219 15.0875 9.20219 15.0875 9.74219V16.0422C15.0875 16.5822 14.7275 16.9422 14.1875 16.9422H3.3875C2.8475 16.9422 2.4875 16.5822 2.4875 16.0422V9.74219C2.4875 9.20219 2.8475 8.84219 3.3875 8.84219H5.1875C5.7275 8.84219 6.0875 8.48219 6.0875 7.94219C6.0875 7.40219 5.7275 7.04219 5.1875 7.04219H3.3875C1.8575 7.04219 0.6875 8.21219 0.6875 9.74219V16.0422C0.6875 17.5722 1.8575 18.7422 3.3875 18.7422H14.1875C15.7175 18.7422 16.8875 17.5722 16.8875 16.0422V9.74219C16.8875 8.21219 15.7175 7.04219 14.1875 7.04219ZM5.4575 12.1722L8.1575 14.8722C8.3375 15.0522 8.5175 15.1422 8.7875 15.1422C9.0575 15.1422 9.2375 15.0522 9.4175 14.8722L12.1175 12.1722C12.4775 11.8122 12.4775 11.2722 12.1175 10.9122C11.7575 10.5522 11.2175 10.5522 10.8575 10.9122L9.6875 12.0822V1.64219C9.6875 1.10219 9.3275 0.742188 8.7875 0.742188C8.2475 0.742188 7.8875 1.10219 7.8875 1.64219V12.0822L6.7175 10.9122C6.3575 10.5522 5.8175 10.5522 5.4575 10.9122C5.0975 11.2722 5.0975 11.8122 5.4575 12.1722Z" fill="#4264D0"/>
+												</svg>
+											</a>
+										</div>
+									</div>
+																										<div class="divTableRow" id="bx_3218110189_358656">
+										<div class="divTableCell">
+											<a href="/api/iblock/element/358656/file/ru/">
+												Розничные цены на отдельные товары и услуги в Республике Казахстан (Ноябрь 2025 года)											</a>
+                                            										</div>
+										<div class="divTableCell text-right">09.12.2025</div>
+										<div class="divTableCell text-right">
+											<a href="/api/iblock/element/358656/file/ru/">
+												<span class="mr-1">103.4  Кб, xlsx</span>
+												<svg width="17" height="19" viewBox="0 0 17 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M14.1875 7.04219H12.3875C11.8475 7.04219 11.4875 7.40219 11.4875 7.94219C11.4875 8.48219 11.8475 8.84219 12.3875 8.84219H14.1875C14.7275 8.84219 15.0875 9.20219 15.0875 9.74219V16.0422C15.0875 16.5822 14.7275 16.9422 14.1875 16.9422H3.3875C2.8475 16.9422 2.4875 16.5822 2.4875 16.0422V9.74219C2.4875 9.20219 2.8475 8.84219 3.3875 8.84219H5.1875C5.7275 8.84219 6.0875 8.48219 6.0875 7.94219C6.0875 7.40219 5.7275 7.04219 5.1875 7.04219H3.3875C1.8575 7.04219 0.6875 8.21219 0.6875 9.74219V16.0422C0.6875 17.5722 1.8575 18.7422 3.3875 18.7422H14.1875C15.7175 18.7422 16.8875 17.5722 16.8875 16.0422V9.74219C16.8875 8.21219 15.7175 7.04219 14.1875 7.04219ZM5.4575 12.1722L8.1575 14.8722C8.3375 15.0522 8.5175 15.1422 8.7875 15.1422C9.0575 15.1422 9.2375 15.0522 9.4175 14.8722L12.1175 12.1722C12.4775 11.8122 12.4775 11.2722 12.1175 10.9122C11.7575 10.5522 11.2175 10.5522 10.8575 10.9122L9.6875 12.0822V1.64219C9.6875 1.10219 9.3275 0.742188 8.7875 0.742188C8.2475 0.742188 7.8875 1.10219 7.8875 1.64219V12.0822L6.7175 10.9122C6.3575 10.5522 5.8175 10.5522 5.4575 10.9122C5.0975 11.2722 5.0975 11.8122 5.4575 12.1722Z" fill="#4264D0"/>
+												</svg>
+											</a>
+										</div>
+									</div>
+																										<div class="divTableRow" id="bx_3218110189_355085">
+										<div class="divTableCell">
+											<a href="/api/iblock/element/355085/file/ru/">
+												Розничные цены на отдельные товары и услуги в Республике Казахстан (Октябрь 2025 года)											</a>
+                                            										</div>
+										<div class="divTableCell text-right">10.11.2025</div>
+										<div class="divTableCell text-right">
+											<a href="/api/iblock/element/355085/file/ru/">
+												<span class="mr-1">101.5  Кб, xlsx</span>
+												<svg width="17" height="19" viewBox="0 0 17 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M14.1875 7.04219H12.3875C11.8475 7.04219 11.4875 7.40219 11.4875 7.94219C11.4875 8.48219 11.8475 8.84219 12.3875 8.84219H14.1875C14.7275 8.84219 15.0875 9.20219 15.0875 9.74219V16.0422C15.0875 16.5822 14.7275 16.9422 14.1875 16.9422H3.3875C2.8475 16.9422 2.4875 16.5822 2.4875 16.0422V9.74219C2.4875 9.20219 2.8475 8.84219 3.3875 8.84219H5.1875C5.7275 8.84219 6.0875 8.48219 6.0875 7.94219C6.0875 7.40219 5.7275 7.04219 5.1875 7.04219H3.3875C1.8575 7.04219 0.6875 8.21219 0.6875 9.74219V16.0422C0.6875 17.5722 1.8575 18.7422 3.3875 18.7422H14.1875C15.7175 18.7422 16.8875 17.5722 16.8875 16.0422V9.74219C16.8875 8.21219 15.7175 7.04219 14.1875 7.04219ZM5.4575 12.1722L8.1575 14.8722C8.3375 15.0522 8.5175 15.1422 8.7875 15.1422C9.0575 15.1422 9.2375 15.0522 9.4175 14.8722L12.1175 12.1722C12.4775 11.8122 12.4775 11.2722 12.1175 10.9122C11.7575 10.5522 11.2175 10.5522 10.8575 10.9122L9.6875 12.0822V1.64219C9.6875 1.10219 9.3275 0.742188 8.7875 0.742188C8.2475 0.742188 7.8875 1.10219 7.8875 1.64219V12.0822L6.7175 10.9122C6.3575 10.5522 5.8175 10.5522 5.4575 10.9122C5.0975 11.2722 5.0975 11.8122 5.4575 12.1722Z" fill="#4264D0"/>
+												</svg>
+											</a>
+										</div>
+									</div>
+																										<div class="divTableRow" id="bx_3218110189_353618">
+										<div class="divTableCell">
+											<a href="/api/iblock/element/353618/file/ru/">
+												Розничные цены на отдельные товары и услуги в Республике Казахстан (Сентябрь 2025 года)											</a>
+                                            										</div>
+										<div class="divTableCell text-right">09.10.2025</div>
+										<div class="divTableCell text-right">
+											<a href="/api/iblock/element/353618/file/ru/">
+												<span class="mr-1">101.5  Кб, xlsx</span>
+												<svg width="17" height="19" viewBox="0 0 17 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M14.1875 7.04219H12.3875C11.8475 7.04219 11.4875 7.40219 11.4875 7.94219C11.4875 8.48219 11.8475 8.84219 12.3875 8.84219H14.1875C14.7275 8.84219 15.0875 9.20219 15.0875 9.74219V16.0422C15.0875 16.5822 14.7275 16.9422 14.1875 16.9422H3.3875C2.8475 16.9422 2.4875 16.5822 2.4875 16.0422V9.74219C2.4875 9.20219 2.8475 8.84219 3.3875 8.84219H5.1875C5.7275 8.84219 6.0875 8.48219 6.0875 7.94219C6.0875 7.40219 5.7275 7.04219 5.1875 7.04219H3.3875C1.8575 7.04219 0.6875 8.21219 0.6875 9.74219V16.0422C0.6875 17.5722 1.8575 18.7422 3.3875 18.7422H14.1875C15.7175 18.7422 16.8875 17.5722 16.8875 16.0422V9.74219C16.8875 8.21219 15.7175 7.04219 14.1875 7.04219ZM5.4575 12.1722L8.1575 14.8722C8.3375 15.0522 8.5175 15.1422 8.7875 15.1422C9.0575 15.1422 9.2375 15.0522 9.4175 14.8722L12.1175 12.1722C12.4775 11.8122 12.4775 11.2722 12.1175 10.9122C11.7575 10.5522 11.2175 10.5522 10.8575 10.9122L9.6875 12.0822V1.64219C9.6875 1.10219 9.3275 0.742188 8.7875 0.742188C8.2475 0.742188 7.8875 1.10219 7.8875 1.64219V12.0822L6.7175 10.9122C6.3575 10.5522 5.8175 10.5522 5.4575 10.9122C5.0975 11.2722 5.0975 11.8122 5.4575 12.1722Z" fill="#4264D0"/>
+												</svg>
+											</a>
+										</div>
+									</div>
+																										<div class="divTableRow" id="bx_3218110189_347969">
+										<div class="divTableCell">
+											<a href="/api/iblock/element/347969/file/ru/">
+												Розничные цены на отдельные товары и услуги в Республике Казахстан (Август 2025 года)											</a>
+                                            										</div>
+										<div class="divTableCell text-right">09.09.2025</div>
+										<div class="divTableCell text-right">
+											<a href="/api/iblock/element/347969/file/ru/">
+												<span class="mr-1">100.6  Кб, xlsx</span>
+												<svg width="17" height="19" viewBox="0 0 17 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M14.1875 7.04219H12.3875C11.8475 7.04219 11.4875 7.40219 11.4875 7.94219C11.4875 8.48219 11.8475 8.84219 12.3875 8.84219H14.1875C14.7275 8.84219 15.0875 9.20219 15.0875 9.74219V16.0422C15.0875 16.5822 14.7275 16.9422 14.1875 16.9422H3.3875C2.8475 16.9422 2.4875 16.5822 2.4875 16.0422V9.74219C2.4875 9.20219 2.8475 8.84219 3.3875 8.84219H5.1875C5.7275 8.84219 6.0875 8.48219 6.0875 7.94219C6.0875 7.40219 5.7275 7.04219 5.1875 7.04219H3.3875C1.8575 7.04219 0.6875 8.21219 0.6875 9.74219V16.0422C0.6875 17.5722 1.8575 18.7422 3.3875 18.7422H14.1875C15.7175 18.7422 16.8875 17.5722 16.8875 16.0422V9.74219C16.8875 8.21219 15.7175 7.04219 14.1875 7.04219ZM5.4575 12.1722L8.1575 14.8722C8.3375 15.0522 8.5175 15.1422 8.7875 15.1422C9.0575 15.1422 9.2375 15.0522 9.4175 14.8722L12.1175 12.1722C12.4775 11.8122 12.4775 11.2722 12.1175 10.9122C11.7575 10.5522 11.2175 10.5522 10.8575 10.9122L9.6875 12.0822V1.64219C9.6875 1.10219 9.3275 0.742188 8.7875 0.742188C8.2475 0.742188 7.8875 1.10219 7.8875 1.64219V12.0822L6.7175 10.9122C6.3575 10.5522 5.8175 10.5522 5.4575 10.9122C5.0975 11.2722 5.0975 11.8122 5.4575 12.1722Z" fill="#4264D0"/>
+												</svg>
+											</a>
+										</div>
+									</div>
+																										<div class="divTableRow" id="bx_3218110189_335769">
+										<div class="divTableCell">
+											<a href="/api/iblock/element/335769/file/ru/">
+												Розничные цены на отдельные товары и услуги в Республике Казахстан (июль 2025г.)											</a>
+                                            										</div>
+										<div class="divTableCell text-right">11.08.2025</div>
+										<div class="divTableCell text-right">
+											<a href="/api/iblock/element/335769/file/ru/">
+												<span class="mr-1">101.6  Кб, xlsx</span>
+												<svg width="17" height="19" viewBox="0 0 17 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M14.1875 7.04219H12.3875C11.8475 7.04219 11.4875 7.40219 11.4875 7.94219C11.4875 8.48219 11.8475 8.84219 12.3875 8.84219H14.1875C14.7275 8.84219 15.0875 9.20219 15.0875 9.74219V16.0422C15.0875 16.5822 14.7275 16.9422 14.1875 16.9422H3.3875C2.8475 16.9422 2.4875 16.5822 2.4875 16.0422V9.74219C2.4875 9.20219 2.8475 8.84219 3.3875 8.84219H5.1875C5.7275 8.84219 6.0875 8.48219 6.0875 7.94219C6.0875 7.40219 5.7275 7.04219 5.1875 7.04219H3.3875C1.8575 7.04219 0.6875 8.21219 0.6875 9.74219V16.0422C0.6875 17.5722 1.8575 18.7422 3.3875 18.7422H14.1875C15.7175 18.7422 16.8875 17.5722 16.8875 16.0422V9.74219C16.8875 8.21219 15.7175 7.04219 14.1875 7.04219ZM5.4575 12.1722L8.1575 14.8722C8.3375 15.0522 8.5175 15.1422 8.7875 15.1422C9.0575 15.1422 9.2375 15.0522 9.4175 14.8722L12.1175 12.1722C12.4775 11.8122 12.4775 11.2722 12.1175 10.9122C11.7575 10.5522 11.2175 10.5522 10.8575 10.9122L9.6875 12.0822V1.64219C9.6875 1.10219 9.3275 0.742188 8.7875 0.742188C8.2475 0.742188 7.8875 1.10219 7.8875 1.64219V12.0822L6.7175 10.9122C6.3575 10.5522 5.8175 10.5522 5.4575 10.9122C5.0975 11.2722 5.0975 11.8122 5.4575 12.1722Z" fill="#4264D0"/>
+												</svg>
+											</a>
+										</div>
+									</div>
+																										<div class="divTableRow" id="bx_3218110189_347715">
+										<div class="divTableCell">
+											<a href="/api/iblock/element/347715/file/ru/">
+												Розничные цены на отдельные товары и услуги в Республике Казахстан (июнь 2025г.  )											</a>
+                                            										</div>
+										<div class="divTableCell text-right">09.07.2025</div>
+										<div class="divTableCell text-right">
+											<a href="/api/iblock/element/347715/file/ru/">
+												<span class="mr-1">85.6  Кб, xlsx</span>
+												<svg width="17" height="19" viewBox="0 0 17 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M14.1875 7.04219H12.3875C11.8475 7.04219 11.4875 7.40219 11.4875 7.94219C11.4875 8.48219 11.8475 8.84219 12.3875 8.84219H14.1875C14.7275 8.84219 15.0875 9.20219 15.0875 9.74219V16.0422C15.0875 16.5822 14.7275 16.9422 14.1875 16.9422H3.3875C2.8475 16.9422 2.4875 16.5822 2.4875 16.0422V9.74219C2.4875 9.20219 2.8475 8.84219 3.3875 8.84219H5.1875C5.7275 8.84219 6.0875 8.48219 6.0875 7.94219C6.0875 7.40219 5.7275 7.04219 5.1875 7.04219H3.3875C1.8575 7.04219 0.6875 8.21219 0.6875 9.74219V16.0422C0.6875 17.5722 1.8575 18.7422 3.3875 18.7422H14.1875C15.7175 18.7422 16.8875 17.5722 16.8875 16.0422V9.74219C16.8875 8.21219 15.7175 7.04219 14.1875 7.04219ZM5.4575 12.1722L8.1575 14.8722C8.3375 15.0522 8.5175 15.1422 8.7875 15.1422C9.0575 15.1422 9.2375 15.0522 9.4175 14.8722L12.1175 12.1722C12.4775 11.8122 12.4775 11.2722 12.1175 10.9122C11.7575 10.5522 11.2175 10.5522 10.8575 10.9122L9.6875 12.0822V1.64219C9.6875 1.10219 9.3275 0.742188 8.7875 0.742188C8.2475 0.742188 7.8875 1.10219 7.8875 1.64219V12.0822L6.7175 10.9122C6.3575 10.5522 5.8175 10.5522 5.4575 10.9122C5.0975 11.2722 5.0975 11.8122 5.4575 12.1722Z" fill="#4264D0"/>
+												</svg>
+											</a>
+										</div>
+									</div>
+																										<div class="divTableRow" id="bx_3218110189_346895">
+										<div class="divTableCell">
+											<a href="/api/iblock/element/346895/file/ru/">
+												Розничные цены на отдельные товары и услуги в Республике Казахстан (май 2025г.)											</a>
+                                            										</div>
+										<div class="divTableCell text-right">09.06.2025</div>
+										<div class="divTableCell text-right">
+											<a href="/api/iblock/element/346895/file/ru/">
+												<span class="mr-1">85.7  Кб, xlsx</span>
+												<svg width="17" height="19" viewBox="0 0 17 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M14.1875 7.04219H12.3875C11.8475 7.04219 11.4875 7.40219 11.4875 7.94219C11.4875 8.48219 11.8475 8.84219 12.3875 8.84219H14.1875C14.7275 8.84219 15.0875 9.20219 15.0875 9.74219V16.0422C15.0875 16.5822 14.7275 16.9422 14.1875 16.9422H3.3875C2.8475 16.9422 2.4875 16.5822 2.4875 16.0422V9.74219C2.4875 9.20219 2.8475 8.84219 3.3875 8.84219H5.1875C5.7275 8.84219 6.0875 8.48219 6.0875 7.94219C6.0875 7.40219 5.7275 7.04219 5.1875 7.04219H3.3875C1.8575 7.04219 0.6875 8.21219 0.6875 9.74219V16.0422C0.6875 17.5722 1.8575 18.7422 3.3875 18.7422H14.1875C15.7175 18.7422 16.8875 17.5722 16.8875 16.0422V9.74219C16.8875 8.21219 15.7175 7.04219 14.1875 7.04219ZM5.4575 12.1722L8.1575 14.8722C8.3375 15.0522 8.5175 15.1422 8.7875 15.1422C9.0575 15.1422 9.2375 15.0522 9.4175 14.8722L12.1175 12.1722C12.4775 11.8122 12.4775 11.2722 12.1175 10.9122C11.7575 10.5522 11.2175 10.5522 10.8575 10.9122L9.6875 12.0822V1.64219C9.6875 1.10219 9.3275 0.742188 8.7875 0.742188C8.2475 0.742188 7.8875 1.10219 7.8875 1.64219V12.0822L6.7175 10.9122C6.3575 10.5522 5.8175 10.5522 5.4575 10.9122C5.0975 11.2722 5.0975 11.8122 5.4575 12.1722Z" fill="#4264D0"/>
+												</svg>
+											</a>
+										</div>
+									</div>
+																										<div class="divTableRow" id="bx_3218110189_346510">
+										<div class="divTableCell">
+											<a href="/api/iblock/element/346510/file/ru/">
+												Розничные цены на отдельные товары и услуги в Республике Казахстан (апрель 2025г.)											</a>
+                                            										</div>
+										<div class="divTableCell text-right">12.05.2025</div>
+										<div class="divTableCell text-right">
+											<a href="/api/iblock/element/346510/file/ru/">
+												<span class="mr-1">88.4  Кб, xlsx</span>
+												<svg width="17" height="19" viewBox="0 0 17 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M14.1875 7.04219H12.3875C11.8475 7.04219 11.4875 7.40219 11.4875 7.94219C11.4875 8.48219 11.8475 8.84219 12.3875 8.84219H14.1875C14.7275 8.84219 15.0875 9.20219 15.0875 9.74219V16.0422C15.0875 16.5822 14.7275 16.9422 14.1875 16.9422H3.3875C2.8475 16.9422 2.4875 16.5822 2.4875 16.0422V9.74219C2.4875 9.20219 2.8475 8.84219 3.3875 8.84219H5.1875C5.7275 8.84219 6.0875 8.48219 6.0875 7.94219C6.0875 7.40219 5.7275 7.04219 5.1875 7.04219H3.3875C1.8575 7.04219 0.6875 8.21219 0.6875 9.74219V16.0422C0.6875 17.5722 1.8575 18.7422 3.3875 18.7422H14.1875C15.7175 18.7422 16.8875 17.5722 16.8875 16.0422V9.74219C16.8875 8.21219 15.7175 7.04219 14.1875 7.04219ZM5.4575 12.1722L8.1575 14.8722C8.3375 15.0522 8.5175 15.1422 8.7875 15.1422C9.0575 15.1422 9.2375 15.0522 9.4175 14.8722L12.1175 12.1722C12.4775 11.8122 12.4775 11.2722 12.1175 10.9122C11.7575 10.5522 11.2175 10.5522 10.8575 10.9122L9.6875 12.0822V1.64219C9.6875 1.10219 9.3275 0.742188 8.7875 0.742188C8.2475 0.742188 7.8875 1.10219 7.8875 1.64219V12.0822L6.7175 10.9122C6.3575 10.5522 5.8175 10.5522 5.4575 10.9122C5.0975 11.2722 5.0975 11.8122 5.4575 12.1722Z" fill="#4264D0"/>
+												</svg>
+											</a>
+										</div>
+									</div>
+																										<div class="divTableRow" id="bx_3218110189_341261">
+										<div class="divTableCell">
+											<a href="/api/iblock/element/341261/file/ru/">
+												Розничные цены на отдельные товары и услуги в Республике Казахстан (Март 2025 года)											</a>
+                                            										</div>
+										<div class="divTableCell text-right">09.04.2025</div>
+										<div class="divTableCell text-right">
+											<a href="/api/iblock/element/341261/file/ru/">
+												<span class="mr-1">87.4  Кб, xlsx</span>
+												<svg width="17" height="19" viewBox="0 0 17 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M14.1875 7.04219H12.3875C11.8475 7.04219 11.4875 7.40219 11.4875 7.94219C11.4875 8.48219 11.8475 8.84219 12.3875 8.84219H14.1875C14.7275 8.84219 15.0875 9.20219 15.0875 9.74219V16.0422C15.0875 16.5822 14.7275 16.9422 14.1875 16.9422H3.3875C2.8475 16.9422 2.4875 16.5822 2.4875 16.0422V9.74219C2.4875 9.20219 2.8475 8.84219 3.3875 8.84219H5.1875C5.7275 8.84219 6.0875 8.48219 6.0875 7.94219C6.0875 7.40219 5.7275 7.04219 5.1875 7.04219H3.3875C1.8575 7.04219 0.6875 8.21219 0.6875 9.74219V16.0422C0.6875 17.5722 1.8575 18.7422 3.3875 18.7422H14.1875C15.7175 18.7422 16.8875 17.5722 16.8875 16.0422V9.74219C16.8875 8.21219 15.7175 7.04219 14.1875 7.04219ZM5.4575 12.1722L8.1575 14.8722C8.3375 15.0522 8.5175 15.1422 8.7875 15.1422C9.0575 15.1422 9.2375 15.0522 9.4175 14.8722L12.1175 12.1722C12.4775 11.8122 12.4775 11.2722 12.1175 10.9122C11.7575 10.5522 11.2175 10.5522 10.8575 10.9122L9.6875 12.0822V1.64219C9.6875 1.10219 9.3275 0.742188 8.7875 0.742188C8.2475 0.742188 7.8875 1.10219 7.8875 1.64219V12.0822L6.7175 10.9122C6.3575 10.5522 5.8175 10.5522 5.4575 10.9122C5.0975 11.2722 5.0975 11.8122 5.4575 12.1722Z" fill="#4264D0"/>
+												</svg>
+											</a>
+										</div>
+									</div>
+																										<div class="divTableRow" id="bx_3218110189_281455">
+										<div class="divTableCell">
+											<a href="/api/iblock/element/281455/file/ru/">
+												Розничные цены на отдельные товары и услуги в Республике Казахстан (Февраль 2025г.)											</a>
+                                            										</div>
+										<div class="divTableCell text-right">11.03.2025</div>
+										<div class="divTableCell text-right">
+											<a href="/api/iblock/element/281455/file/ru/">
+												<span class="mr-1">87.5  Кб, xlsx</span>
+												<svg width="17" height="19" viewBox="0 0 17 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M14.1875 7.04219H12.3875C11.8475 7.04219 11.4875 7.40219 11.4875 7.94219C11.4875 8.48219 11.8475 8.84219 12.3875 8.84219H14.1875C14.7275 8.84219 15.0875 9.20219 15.0875 9.74219V16.0422C15.0875 16.5822 14.7275 16.9422 14.1875 16.9422H3.3875C2.8475 16.9422 2.4875 16.5822 2.4875 16.0422V9.74219C2.4875 9.20219 2.8475 8.84219 3.3875 8.84219H5.1875C5.7275 8.84219 6.0875 8.48219 6.0875 7.94219C6.0875 7.40219 5.7275 7.04219 5.1875 7.04219H3.3875C1.8575 7.04219 0.6875 8.21219 0.6875 9.74219V16.0422C0.6875 17.5722 1.8575 18.7422 3.3875 18.7422H14.1875C15.7175 18.7422 16.8875 17.5722 16.8875 16.0422V9.74219C16.8875 8.21219 15.7175 7.04219 14.1875 7.04219ZM5.4575 12.1722L8.1575 14.8722C8.3375 15.0522 8.5175 15.1422 8.7875 15.1422C9.0575 15.1422 9.2375 15.0522 9.4175 14.8722L12.1175 12.1722C12.4775 11.8122 12.4775 11.2722 12.1175 10.9122C11.7575 10.5522 11.2175 10.5522 10.8575 10.9122L9.6875 12.0822V1.64219C9.6875 1.10219 9.3275 0.742188 8.7875 0.742188C8.2475 0.742188 7.8875 1.10219 7.8875 1.64219V12.0822L6.7175 10.9122C6.3575 10.5522 5.8175 10.5522 5.4575 10.9122C5.0975 11.2722 5.0975 11.8122 5.4575 12.1722Z" fill="#4264D0"/>
+												</svg>
+											</a>
+										</div>
+									</div>
+																										<div class="divTableRow" id="bx_3218110189_281089">
+										<div class="divTableCell">
+											<a href="/api/iblock/element/281089/file/ru/">
+												Розничные цены на отдельные товары и услуги в Республике Казахстан (январь 2025г.)											</a>
+                                            										</div>
+										<div class="divTableCell text-right">10.02.2025</div>
+										<div class="divTableCell text-right">
+											<a href="/api/iblock/element/281089/file/ru/">
+												<span class="mr-1">86.5  Кб, xlsx</span>
+												<svg width="17" height="19" viewBox="0 0 17 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M14.1875 7.04219H12.3875C11.8475 7.04219 11.4875 7.40219 11.4875 7.94219C11.4875 8.48219 11.8475 8.84219 12.3875 8.84219H14.1875C14.7275 8.84219 15.0875 9.20219 15.0875 9.74219V16.0422C15.0875 16.5822 14.7275 16.9422 14.1875 16.9422H3.3875C2.8475 16.9422 2.4875 16.5822 2.4875 16.0422V9.74219C2.4875 9.20219 2.8475 8.84219 3.3875 8.84219H5.1875C5.7275 8.84219 6.0875 8.48219 6.0875 7.94219C6.0875 7.40219 5.7275 7.04219 5.1875 7.04219H3.3875C1.8575 7.04219 0.6875 8.21219 0.6875 9.74219V16.0422C0.6875 17.5722 1.8575 18.7422 3.3875 18.7422H14.1875C15.7175 18.7422 16.8875 17.5722 16.8875 16.0422V9.74219C16.8875 8.21219 15.7175 7.04219 14.1875 7.04219ZM5.4575 12.1722L8.1575 14.8722C8.3375 15.0522 8.5175 15.1422 8.7875 15.1422C9.0575 15.1422 9.2375 15.0522 9.4175 14.8722L12.1175 12.1722C12.4775 11.8122 12.4775 11.2722 12.1175 10.9122C11.7575 10.5522 11.2175 10.5522 10.8575 10.9122L9.6875 12.0822V1.64219C9.6875 1.10219 9.3275 0.742188 8.7875 0.742188C8.2475 0.742188 7.8875 1.10219 7.8875 1.64219V12.0822L6.7175 10.9122C6.3575 10.5522 5.8175 10.5522 5.4575 10.9122C5.0975 11.2722 5.0975 11.8122 5.4575 12.1722Z" fill="#4264D0"/>
+												</svg>
+											</a>
+										</div>
+									</div>
+																										<div class="divTableRow" id="bx_3218110189_280685">
+										<div class="divTableCell">
+											<a href="/api/iblock/element/280685/file/ru/">
+												Розничные цены на отдельные товары и услуги в Республике Казахстан (   декабрь 2024г.)											</a>
+                                            										</div>
+										<div class="divTableCell text-right">09.01.2025</div>
+										<div class="divTableCell text-right">
+											<a href="/api/iblock/element/280685/file/ru/">
+												<span class="mr-1">86.3  Кб, xlsx</span>
+												<svg width="17" height="19" viewBox="0 0 17 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M14.1875 7.04219H12.3875C11.8475 7.04219 11.4875 7.40219 11.4875 7.94219C11.4875 8.48219 11.8475 8.84219 12.3875 8.84219H14.1875C14.7275 8.84219 15.0875 9.20219 15.0875 9.74219V16.0422C15.0875 16.5822 14.7275 16.9422 14.1875 16.9422H3.3875C2.8475 16.9422 2.4875 16.5822 2.4875 16.0422V9.74219C2.4875 9.20219 2.8475 8.84219 3.3875 8.84219H5.1875C5.7275 8.84219 6.0875 8.48219 6.0875 7.94219C6.0875 7.40219 5.7275 7.04219 5.1875 7.04219H3.3875C1.8575 7.04219 0.6875 8.21219 0.6875 9.74219V16.0422C0.6875 17.5722 1.8575 18.7422 3.3875 18.7422H14.1875C15.7175 18.7422 16.8875 17.5722 16.8875 16.0422V9.74219C16.8875 8.21219 15.7175 7.04219 14.1875 7.04219ZM5.4575 12.1722L8.1575 14.8722C8.3375 15.0522 8.5175 15.1422 8.7875 15.1422C9.0575 15.1422 9.2375 15.0522 9.4175 14.8722L12.1175 12.1722C12.4775 11.8122 12.4775 11.2722 12.1175 10.9122C11.7575 10.5522 11.2175 10.5522 10.8575 10.9122L9.6875 12.0822V1.64219C9.6875 1.10219 9.3275 0.742188 8.7875 0.742188C8.2475 0.742188 7.8875 1.10219 7.8875 1.64219V12.0822L6.7175 10.9122C6.3575 10.5522 5.8175 10.5522 5.4575 10.9122C5.0975 11.2722 5.0975 11.8122 5.4575 12.1722Z" fill="#4264D0"/>
+												</svg>
+											</a>
+										</div>
+									</div>
+																										<div class="divTableRow" id="bx_3218110189_196835">
+										<div class="divTableCell">
+											<a href="/api/iblock/element/196835/file/ru/">
+												Розничные цены на отдельные товары и услуги в Республике Казахстан (ноябрь 2024г.)											</a>
+                                            										</div>
+										<div class="divTableCell text-right">09.12.2024</div>
+										<div class="divTableCell text-right">
+											<a href="/api/iblock/element/196835/file/ru/">
+												<span class="mr-1">87.2  Кб, xlsx</span>
+												<svg width="17" height="19" viewBox="0 0 17 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M14.1875 7.04219H12.3875C11.8475 7.04219 11.4875 7.40219 11.4875 7.94219C11.4875 8.48219 11.8475 8.84219 12.3875 8.84219H14.1875C14.7275 8.84219 15.0875 9.20219 15.0875 9.74219V16.0422C15.0875 16.5822 14.7275 16.9422 14.1875 16.9422H3.3875C2.8475 16.9422 2.4875 16.5822 2.4875 16.0422V9.74219C2.4875 9.20219 2.8475 8.84219 3.3875 8.84219H5.1875C5.7275 8.84219 6.0875 8.48219 6.0875 7.94219C6.0875 7.40219 5.7275 7.04219 5.1875 7.04219H3.3875C1.8575 7.04219 0.6875 8.21219 0.6875 9.74219V16.0422C0.6875 17.5722 1.8575 18.7422 3.3875 18.7422H14.1875C15.7175 18.7422 16.8875 17.5722 16.8875 16.0422V9.74219C16.8875 8.21219 15.7175 7.04219 14.1875 7.04219ZM5.4575 12.1722L8.1575 14.8722C8.3375 15.0522 8.5175 15.1422 8.7875 15.1422C9.0575 15.1422 9.2375 15.0522 9.4175 14.8722L12.1175 12.1722C12.4775 11.8122 12.4775 11.2722 12.1175 10.9122C11.7575 10.5522 11.2175 10.5522 10.8575 10.9122L9.6875 12.0822V1.64219C9.6875 1.10219 9.3275 0.742188 8.7875 0.742188C8.2475 0.742188 7.8875 1.10219 7.8875 1.64219V12.0822L6.7175 10.9122C6.3575 10.5522 5.8175 10.5522 5.4575 10.9122C5.0975 11.2722 5.0975 11.8122 5.4575 12.1722Z" fill="#4264D0"/>
+												</svg>
+											</a>
+										</div>
+									</div>
+																										<div class="divTableRow" id="bx_3218110189_184880">
+										<div class="divTableCell">
+											<a href="/api/iblock/element/184880/file/ru/">
+												Розничные цены на отдельные товары и услуги в Республике Казахстан (октябрь 2024г.   )											</a>
+                                            										</div>
+										<div class="divTableCell text-right">08.11.2024</div>
+										<div class="divTableCell text-right">
+											<a href="/api/iblock/element/184880/file/ru/">
+												<span class="mr-1">87.1  Кб, xlsx</span>
+												<svg width="17" height="19" viewBox="0 0 17 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M14.1875 7.04219H12.3875C11.8475 7.04219 11.4875 7.40219 11.4875 7.94219C11.4875 8.48219 11.8475 8.84219 12.3875 8.84219H14.1875C14.7275 8.84219 15.0875 9.20219 15.0875 9.74219V16.0422C15.0875 16.5822 14.7275 16.9422 14.1875 16.9422H3.3875C2.8475 16.9422 2.4875 16.5822 2.4875 16.0422V9.74219C2.4875 9.20219 2.8475 8.84219 3.3875 8.84219H5.1875C5.7275 8.84219 6.0875 8.48219 6.0875 7.94219C6.0875 7.40219 5.7275 7.04219 5.1875 7.04219H3.3875C1.8575 7.04219 0.6875 8.21219 0.6875 9.74219V16.0422C0.6875 17.5722 1.8575 18.7422 3.3875 18.7422H14.1875C15.7175 18.7422 16.8875 17.5722 16.8875 16.0422V9.74219C16.8875 8.21219 15.7175 7.04219 14.1875 7.04219ZM5.4575 12.1722L8.1575 14.8722C8.3375 15.0522 8.5175 15.1422 8.7875 15.1422C9.0575 15.1422 9.2375 15.0522 9.4175 14.8722L12.1175 12.1722C12.4775 11.8122 12.4775 11.2722 12.1175 10.9122C11.7575 10.5522 11.2175 10.5522 10.8575 10.9122L9.6875 12.0822V1.64219C9.6875 1.10219 9.3275 0.742188 8.7875 0.742188C8.2475 0.742188 7.8875 1.10219 7.8875 1.64219V12.0822L6.7175 10.9122C6.3575 10.5522 5.8175 10.5522 5.4575 10.9122C5.0975 11.2722 5.0975 11.8122 5.4575 12.1722Z" fill="#4264D0"/>
+												</svg>
+											</a>
+										</div>
+									</div>
+																										<div class="divTableRow" id="bx_3218110189_184060">
+										<div class="divTableCell">
+											<a href="/api/iblock/element/184060/file/ru/">
+												Розничные цены на отдельные товары и услуги в Республике Казахстан (сентябрь 2024 г. )											</a>
+                                            										</div>
+										<div class="divTableCell text-right">09.10.2024</div>
+										<div class="divTableCell text-right">
+											<a href="/api/iblock/element/184060/file/ru/">
+												<span class="mr-1">87.1  Кб, xlsx</span>
+												<svg width="17" height="19" viewBox="0 0 17 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M14.1875 7.04219H12.3875C11.8475 7.04219 11.4875 7.40219 11.4875 7.94219C11.4875 8.48219 11.8475 8.84219 12.3875 8.84219H14.1875C14.7275 8.84219 15.0875 9.20219 15.0875 9.74219V16.0422C15.0875 16.5822 14.7275 16.9422 14.1875 16.9422H3.3875C2.8475 16.9422 2.4875 16.5822 2.4875 16.0422V9.74219C2.4875 9.20219 2.8475 8.84219 3.3875 8.84219H5.1875C5.7275 8.84219 6.0875 8.48219 6.0875 7.94219C6.0875 7.40219 5.7275 7.04219 5.1875 7.04219H3.3875C1.8575 7.04219 0.6875 8.21219 0.6875 9.74219V16.0422C0.6875 17.5722 1.8575 18.7422 3.3875 18.7422H14.1875C15.7175 18.7422 16.8875 17.5722 16.8875 16.0422V9.74219C16.8875 8.21219 15.7175 7.04219 14.1875 7.04219ZM5.4575 12.1722L8.1575 14.8722C8.3375 15.0522 8.5175 15.1422 8.7875 15.1422C9.0575 15.1422 9.2375 15.0522 9.4175 14.8722L12.1175 12.1722C12.4775 11.8122 12.4775 11.2722 12.1175 10.9122C11.7575 10.5522 11.2175 10.5522 10.8575 10.9122L9.6875 12.0822V1.64219C9.6875 1.10219 9.3275 0.742188 8.7875 0.742188C8.2475 0.742188 7.8875 1.10219 7.8875 1.64219V12.0822L6.7175 10.9122C6.3575 10.5522 5.8175 10.5522 5.4575 10.9122C5.0975 11.2722 5.0975 11.8122 5.4575 12.1722Z" fill="#4264D0"/>
+												</svg>
+											</a>
+										</div>
+									</div>
+																										<div class="divTableRow" id="bx_3218110189_184006">
+										<div class="divTableCell">
+											<a href="/api/iblock/element/184006/file/ru/">
+												Розничные цены на отдельные товары и услуги в Республике Казахстан (август 2024г.)											</a>
+                                            										</div>
+										<div class="divTableCell text-right">09.09.2024</div>
+										<div class="divTableCell text-right">
+											<a href="/api/iblock/element/184006/file/ru/">
+												<span class="mr-1">89.8  Кб, xlsx</span>
+												<svg width="17" height="19" viewBox="0 0 17 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M14.1875 7.04219H12.3875C11.8475 7.04219 11.4875 7.40219 11.4875 7.94219C11.4875 8.48219 11.8475 8.84219 12.3875 8.84219H14.1875C14.7275 8.84219 15.0875 9.20219 15.0875 9.74219V16.0422C15.0875 16.5822 14.7275 16.9422 14.1875 16.9422H3.3875C2.8475 16.9422 2.4875 16.5822 2.4875 16.0422V9.74219C2.4875 9.20219 2.8475 8.84219 3.3875 8.84219H5.1875C5.7275 8.84219 6.0875 8.48219 6.0875 7.94219C6.0875 7.40219 5.7275 7.04219 5.1875 7.04219H3.3875C1.8575 7.04219 0.6875 8.21219 0.6875 9.74219V16.0422C0.6875 17.5722 1.8575 18.7422 3.3875 18.7422H14.1875C15.7175 18.7422 16.8875 17.5722 16.8875 16.0422V9.74219C16.8875 8.21219 15.7175 7.04219 14.1875 7.04219ZM5.4575 12.1722L8.1575 14.8722C8.3375 15.0522 8.5175 15.1422 8.7875 15.1422C9.0575 15.1422 9.2375 15.0522 9.4175 14.8722L12.1175 12.1722C12.4775 11.8122 12.4775 11.2722 12.1175 10.9122C11.7575 10.5522 11.2175 10.5522 10.8575 10.9122L9.6875 12.0822V1.64219C9.6875 1.10219 9.3275 0.742188 8.7875 0.742188C8.2475 0.742188 7.8875 1.10219 7.8875 1.64219V12.0822L6.7175 10.9122C6.3575 10.5522 5.8175 10.5522 5.4575 10.9122C5.0975 11.2722 5.0975 11.8122 5.4575 12.1722Z" fill="#4264D0"/>
+												</svg>
+											</a>
+										</div>
+									</div>
+																										<div class="divTableRow" id="bx_3218110189_183467">
+										<div class="divTableCell">
+											<a href="/api/iblock/element/183467/file/ru/">
+												Розничные цены на отдельные товары и услуги в Республике Казахстан (июль 2024г.)											</a>
+                                            										</div>
+										<div class="divTableCell text-right">09.08.2024</div>
+										<div class="divTableCell text-right">
+											<a href="/api/iblock/element/183467/file/ru/">
+												<span class="mr-1">87  Кб, xlsx</span>
+												<svg width="17" height="19" viewBox="0 0 17 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M14.1875 7.04219H12.3875C11.8475 7.04219 11.4875 7.40219 11.4875 7.94219C11.4875 8.48219 11.8475 8.84219 12.3875 8.84219H14.1875C14.7275 8.84219 15.0875 9.20219 15.0875 9.74219V16.0422C15.0875 16.5822 14.7275 16.9422 14.1875 16.9422H3.3875C2.8475 16.9422 2.4875 16.5822 2.4875 16.0422V9.74219C2.4875 9.20219 2.8475 8.84219 3.3875 8.84219H5.1875C5.7275 8.84219 6.0875 8.48219 6.0875 7.94219C6.0875 7.40219 5.7275 7.04219 5.1875 7.04219H3.3875C1.8575 7.04219 0.6875 8.21219 0.6875 9.74219V16.0422C0.6875 17.5722 1.8575 18.7422 3.3875 18.7422H14.1875C15.7175 18.7422 16.8875 17.5722 16.8875 16.0422V9.74219C16.8875 8.21219 15.7175 7.04219 14.1875 7.04219ZM5.4575 12.1722L8.1575 14.8722C8.3375 15.0522 8.5175 15.1422 8.7875 15.1422C9.0575 15.1422 9.2375 15.0522 9.4175 14.8722L12.1175 12.1722C12.4775 11.8122 12.4775 11.2722 12.1175 10.9122C11.7575 10.5522 11.2175 10.5522 10.8575 10.9122L9.6875 12.0822V1.64219C9.6875 1.10219 9.3275 0.742188 8.7875 0.742188C8.2475 0.742188 7.8875 1.10219 7.8875 1.64219V12.0822L6.7175 10.9122C6.3575 10.5522 5.8175 10.5522 5.4575 10.9122C5.0975 11.2722 5.0975 11.8122 5.4575 12.1722Z" fill="#4264D0"/>
+												</svg>
+											</a>
+										</div>
+									</div>
+																										<div class="divTableRow" id="bx_3218110189_182403">
+										<div class="divTableCell">
+											<a href="/api/iblock/element/182403/file/ru/">
+												Розничные цены на отдельные товары и услуги в Республике Казахстан (июнь 2024 г.)											</a>
+                                            										</div>
+										<div class="divTableCell text-right">09.07.2024</div>
+										<div class="divTableCell text-right">
+											<a href="/api/iblock/element/182403/file/ru/">
+												<span class="mr-1">86.8  Кб, xlsx</span>
+												<svg width="17" height="19" viewBox="0 0 17 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M14.1875 7.04219H12.3875C11.8475 7.04219 11.4875 7.40219 11.4875 7.94219C11.4875 8.48219 11.8475 8.84219 12.3875 8.84219H14.1875C14.7275 8.84219 15.0875 9.20219 15.0875 9.74219V16.0422C15.0875 16.5822 14.7275 16.9422 14.1875 16.9422H3.3875C2.8475 16.9422 2.4875 16.5822 2.4875 16.0422V9.74219C2.4875 9.20219 2.8475 8.84219 3.3875 8.84219H5.1875C5.7275 8.84219 6.0875 8.48219 6.0875 7.94219C6.0875 7.40219 5.7275 7.04219 5.1875 7.04219H3.3875C1.8575 7.04219 0.6875 8.21219 0.6875 9.74219V16.0422C0.6875 17.5722 1.8575 18.7422 3.3875 18.7422H14.1875C15.7175 18.7422 16.8875 17.5722 16.8875 16.0422V9.74219C16.8875 8.21219 15.7175 7.04219 14.1875 7.04219ZM5.4575 12.1722L8.1575 14.8722C8.3375 15.0522 8.5175 15.1422 8.7875 15.1422C9.0575 15.1422 9.2375 15.0522 9.4175 14.8722L12.1175 12.1722C12.4775 11.8122 12.4775 11.2722 12.1175 10.9122C11.7575 10.5522 11.2175 10.5522 10.8575 10.9122L9.6875 12.0822V1.64219C9.6875 1.10219 9.3275 0.742188 8.7875 0.742188C8.2475 0.742188 7.8875 1.10219 7.8875 1.64219V12.0822L6.7175 10.9122C6.3575 10.5522 5.8175 10.5522 5.4575 10.9122C5.0975 11.2722 5.0975 11.8122 5.4575 12.1722Z" fill="#4264D0"/>
+												</svg>
+											</a>
+										</div>
+									</div>
+																										<div class="divTableRow" id="bx_3218110189_182557">
+										<div class="divTableCell">
+											<a href="/api/iblock/element/182557/file/ru/">
+												Розничные цены на отдельные товары и услуги в Республике Казахстан (май 2024г.)											</a>
+                                            										</div>
+										<div class="divTableCell text-right">10.06.2024</div>
+										<div class="divTableCell text-right">
+											<a href="/api/iblock/element/182557/file/ru/">
+												<span class="mr-1">88.6  Кб, xlsx</span>
+												<svg width="17" height="19" viewBox="0 0 17 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M14.1875 7.04219H12.3875C11.8475 7.04219 11.4875 7.40219 11.4875 7.94219C11.4875 8.48219 11.8475 8.84219 12.3875 8.84219H14.1875C14.7275 8.84219 15.0875 9.20219 15.0875 9.74219V16.0422C15.0875 16.5822 14.7275 16.9422 14.1875 16.9422H3.3875C2.8475 16.9422 2.4875 16.5822 2.4875 16.0422V9.74219C2.4875 9.20219 2.8475 8.84219 3.3875 8.84219H5.1875C5.7275 8.84219 6.0875 8.48219 6.0875 7.94219C6.0875 7.40219 5.7275 7.04219 5.1875 7.04219H3.3875C1.8575 7.04219 0.6875 8.21219 0.6875 9.74219V16.0422C0.6875 17.5722 1.8575 18.7422 3.3875 18.7422H14.1875C15.7175 18.7422 16.8875 17.5722 16.8875 16.0422V9.74219C16.8875 8.21219 15.7175 7.04219 14.1875 7.04219ZM5.4575 12.1722L8.1575 14.8722C8.3375 15.0522 8.5175 15.1422 8.7875 15.1422C9.0575 15.1422 9.2375 15.0522 9.4175 14.8722L12.1175 12.1722C12.4775 11.8122 12.4775 11.2722 12.1175 10.9122C11.7575 10.5522 11.2175 10.5522 10.8575 10.9122L9.6875 12.0822V1.64219C9.6875 1.10219 9.3275 0.742188 8.7875 0.742188C8.2475 0.742188 7.8875 1.10219 7.8875 1.64219V12.0822L6.7175 10.9122C6.3575 10.5522 5.8175 10.5522 5.4575 10.9122C5.0975 11.2722 5.0975 11.8122 5.4575 12.1722Z" fill="#4264D0"/>
+												</svg>
+											</a>
+										</div>
+									</div>
+																										<div class="divTableRow" id="bx_3218110189_158484">
+										<div class="divTableCell">
+											<a href="/api/iblock/element/158484/file/ru/">
+												Розничные цены на отдельные товары и услуги в Республике Казахстан (апрель 2024г.)											</a>
+                                            										</div>
+										<div class="divTableCell text-right">10.05.2024</div>
+										<div class="divTableCell text-right">
+											<a href="/api/iblock/element/158484/file/ru/">
+												<span class="mr-1">85.1  Кб, xlsx</span>
+												<svg width="17" height="19" viewBox="0 0 17 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M14.1875 7.04219H12.3875C11.8475 7.04219 11.4875 7.40219 11.4875 7.94219C11.4875 8.48219 11.8475 8.84219 12.3875 8.84219H14.1875C14.7275 8.84219 15.0875 9.20219 15.0875 9.74219V16.0422C15.0875 16.5822 14.7275 16.9422 14.1875 16.9422H3.3875C2.8475 16.9422 2.4875 16.5822 2.4875 16.0422V9.74219C2.4875 9.20219 2.8475 8.84219 3.3875 8.84219H5.1875C5.7275 8.84219 6.0875 8.48219 6.0875 7.94219C6.0875 7.40219 5.7275 7.04219 5.1875 7.04219H3.3875C1.8575 7.04219 0.6875 8.21219 0.6875 9.74219V16.0422C0.6875 17.5722 1.8575 18.7422 3.3875 18.7422H14.1875C15.7175 18.7422 16.8875 17.5722 16.8875 16.0422V9.74219C16.8875 8.21219 15.7175 7.04219 14.1875 7.04219ZM5.4575 12.1722L8.1575 14.8722C8.3375 15.0522 8.5175 15.1422 8.7875 15.1422C9.0575 15.1422 9.2375 15.0522 9.4175 14.8722L12.1175 12.1722C12.4775 11.8122 12.4775 11.2722 12.1175 10.9122C11.7575 10.5522 11.2175 10.5522 10.8575 10.9122L9.6875 12.0822V1.64219C9.6875 1.10219 9.3275 0.742188 8.7875 0.742188C8.2475 0.742188 7.8875 1.10219 7.8875 1.64219V12.0822L6.7175 10.9122C6.3575 10.5522 5.8175 10.5522 5.4575 10.9122C5.0975 11.2722 5.0975 11.8122 5.4575 12.1722Z" fill="#4264D0"/>
+												</svg>
+											</a>
+										</div>
+									</div>
+																										<div class="divTableRow" id="bx_3218110189_157434">
+										<div class="divTableCell">
+											<a href="/api/iblock/element/157434/file/ru/">
+												Розничные цены на отдельные товары и услуги в Республике Казахстан (март 2024г.)											</a>
+                                            										</div>
+										<div class="divTableCell text-right">09.04.2024</div>
+										<div class="divTableCell text-right">
+											<a href="/api/iblock/element/157434/file/ru/">
+												<span class="mr-1">85.3  Кб, xlsx</span>
+												<svg width="17" height="19" viewBox="0 0 17 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M14.1875 7.04219H12.3875C11.8475 7.04219 11.4875 7.40219 11.4875 7.94219C11.4875 8.48219 11.8475 8.84219 12.3875 8.84219H14.1875C14.7275 8.84219 15.0875 9.20219 15.0875 9.74219V16.0422C15.0875 16.5822 14.7275 16.9422 14.1875 16.9422H3.3875C2.8475 16.9422 2.4875 16.5822 2.4875 16.0422V9.74219C2.4875 9.20219 2.8475 8.84219 3.3875 8.84219H5.1875C5.7275 8.84219 6.0875 8.48219 6.0875 7.94219C6.0875 7.40219 5.7275 7.04219 5.1875 7.04219H3.3875C1.8575 7.04219 0.6875 8.21219 0.6875 9.74219V16.0422C0.6875 17.5722 1.8575 18.7422 3.3875 18.7422H14.1875C15.7175 18.7422 16.8875 17.5722 16.8875 16.0422V9.74219C16.8875 8.21219 15.7175 7.04219 14.1875 7.04219ZM5.4575 12.1722L8.1575 14.8722C8.3375 15.0522 8.5175 15.1422 8.7875 15.1422C9.0575 15.1422 9.2375 15.0522 9.4175 14.8722L12.1175 12.1722C12.4775 11.8122 12.4775 11.2722 12.1175 10.9122C11.7575 10.5522 11.2175 10.5522 10.8575 10.9122L9.6875 12.0822V1.64219C9.6875 1.10219 9.3275 0.742188 8.7875 0.742188C8.2475 0.742188 7.8875 1.10219 7.8875 1.64219V12.0822L6.7175 10.9122C6.3575 10.5522 5.8175 10.5522 5.4575 10.9122C5.0975 11.2722 5.0975 11.8122 5.4575 12.1722Z" fill="#4264D0"/>
+												</svg>
+											</a>
+										</div>
+									</div>
+																										<div class="divTableRow" id="bx_3218110189_117645">
+										<div class="divTableCell">
+											<a href="/api/iblock/element/117645/file/ru/">
+												Розничные цены на отдельные товары и услуги в Республике Казахстан (февраль 2024г.)											</a>
+                                            										</div>
+										<div class="divTableCell text-right">11.03.2024</div>
+										<div class="divTableCell text-right">
+											<a href="/api/iblock/element/117645/file/ru/">
+												<span class="mr-1">78.4  Кб, xlsx</span>
+												<svg width="17" height="19" viewBox="0 0 17 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M14.1875 7.04219H12.3875C11.8475 7.04219 11.4875 7.40219 11.4875 7.94219C11.4875 8.48219 11.8475 8.84219 12.3875 8.84219H14.1875C14.7275 8.84219 15.0875 9.20219 15.0875 9.74219V16.0422C15.0875 16.5822 14.7275 16.9422 14.1875 16.9422H3.3875C2.8475 16.9422 2.4875 16.5822 2.4875 16.0422V9.74219C2.4875 9.20219 2.8475 8.84219 3.3875 8.84219H5.1875C5.7275 8.84219 6.0875 8.48219 6.0875 7.94219C6.0875 7.40219 5.7275 7.04219 5.1875 7.04219H3.3875C1.8575 7.04219 0.6875 8.21219 0.6875 9.74219V16.0422C0.6875 17.5722 1.8575 18.7422 3.3875 18.7422H14.1875C15.7175 18.7422 16.8875 17.5722 16.8875 16.0422V9.74219C16.8875 8.21219 15.7175 7.04219 14.1875 7.04219ZM5.4575 12.1722L8.1575 14.8722C8.3375 15.0522 8.5175 15.1422 8.7875 15.1422C9.0575 15.1422 9.2375 15.0522 9.4175 14.8722L12.1175 12.1722C12.4775 11.8122 12.4775 11.2722 12.1175 10.9122C11.7575 10.5522 11.2175 10.5522 10.8575 10.9122L9.6875 12.0822V1.64219C9.6875 1.10219 9.3275 0.742188 8.7875 0.742188C8.2475 0.742188 7.8875 1.10219 7.8875 1.64219V12.0822L6.7175 10.9122C6.3575 10.5522 5.8175 10.5522 5.4575 10.9122C5.0975 11.2722 5.0975 11.8122 5.4575 12.1722Z" fill="#4264D0"/>
+												</svg>
+											</a>
+										</div>
+									</div>
+																										<div class="divTableRow" id="bx_3218110189_117603">
+										<div class="divTableCell">
+											<a href="/api/iblock/element/117603/file/ru/">
+												Розничные цены на отдельные товары и услуги в Республике Казахстан (январь 2024г. )											</a>
+                                            										</div>
+										<div class="divTableCell text-right">09.02.2024</div>
+										<div class="divTableCell text-right">
+											<a href="/api/iblock/element/117603/file/ru/">
+												<span class="mr-1">78.3  Кб, xlsx</span>
+												<svg width="17" height="19" viewBox="0 0 17 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M14.1875 7.04219H12.3875C11.8475 7.04219 11.4875 7.40219 11.4875 7.94219C11.4875 8.48219 11.8475 8.84219 12.3875 8.84219H14.1875C14.7275 8.84219 15.0875 9.20219 15.0875 9.74219V16.0422C15.0875 16.5822 14.7275 16.9422 14.1875 16.9422H3.3875C2.8475 16.9422 2.4875 16.5822 2.4875 16.0422V9.74219C2.4875 9.20219 2.8475 8.84219 3.3875 8.84219H5.1875C5.7275 8.84219 6.0875 8.48219 6.0875 7.94219C6.0875 7.40219 5.7275 7.04219 5.1875 7.04219H3.3875C1.8575 7.04219 0.6875 8.21219 0.6875 9.74219V16.0422C0.6875 17.5722 1.8575 18.7422 3.3875 18.7422H14.1875C15.7175 18.7422 16.8875 17.5722 16.8875 16.0422V9.74219C16.8875 8.21219 15.7175 7.04219 14.1875 7.04219ZM5.4575 12.1722L8.1575 14.8722C8.3375 15.0522 8.5175 15.1422 8.7875 15.1422C9.0575 15.1422 9.2375 15.0522 9.4175 14.8722L12.1175 12.1722C12.4775 11.8122 12.4775 11.2722 12.1175 10.9122C11.7575 10.5522 11.2175 10.5522 10.8575 10.9122L9.6875 12.0822V1.64219C9.6875 1.10219 9.3275 0.742188 8.7875 0.742188C8.2475 0.742188 7.8875 1.10219 7.8875 1.64219V12.0822L6.7175 10.9122C6.3575 10.5522 5.8175 10.5522 5.4575 10.9122C5.0975 11.2722 5.0975 11.8122 5.4575 12.1722Z" fill="#4264D0"/>
+												</svg>
+											</a>
+										</div>
+									</div>
+																										<div class="divTableRow" id="bx_3218110189_113725">
+										<div class="divTableCell">
+											<a href="/api/iblock/element/113725/file/ru/">
+												Розничные цены на отдельные товары и услуги в Республике Казахстан (декабрь 2023г.)											</a>
+                                            										</div>
+										<div class="divTableCell text-right">09.01.2024</div>
+										<div class="divTableCell text-right">
+											<a href="/api/iblock/element/113725/file/ru/">
+												<span class="mr-1">77.9  Кб, xlsx</span>
+												<svg width="17" height="19" viewBox="0 0 17 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M14.1875 7.04219H12.3875C11.8475 7.04219 11.4875 7.40219 11.4875 7.94219C11.4875 8.48219 11.8475 8.84219 12.3875 8.84219H14.1875C14.7275 8.84219 15.0875 9.20219 15.0875 9.74219V16.0422C15.0875 16.5822 14.7275 16.9422 14.1875 16.9422H3.3875C2.8475 16.9422 2.4875 16.5822 2.4875 16.0422V9.74219C2.4875 9.20219 2.8475 8.84219 3.3875 8.84219H5.1875C5.7275 8.84219 6.0875 8.48219 6.0875 7.94219C6.0875 7.40219 5.7275 7.04219 5.1875 7.04219H3.3875C1.8575 7.04219 0.6875 8.21219 0.6875 9.74219V16.0422C0.6875 17.5722 1.8575 18.7422 3.3875 18.7422H14.1875C15.7175 18.7422 16.8875 17.5722 16.8875 16.0422V9.74219C16.8875 8.21219 15.7175 7.04219 14.1875 7.04219ZM5.4575 12.1722L8.1575 14.8722C8.3375 15.0522 8.5175 15.1422 8.7875 15.1422C9.0575 15.1422 9.2375 15.0522 9.4175 14.8722L12.1175 12.1722C12.4775 11.8122 12.4775 11.2722 12.1175 10.9122C11.7575 10.5522 11.2175 10.5522 10.8575 10.9122L9.6875 12.0822V1.64219C9.6875 1.10219 9.3275 0.742188 8.7875 0.742188C8.2475 0.742188 7.8875 1.10219 7.8875 1.64219V12.0822L6.7175 10.9122C6.3575 10.5522 5.8175 10.5522 5.4575 10.9122C5.0975 11.2722 5.0975 11.8122 5.4575 12.1722Z" fill="#4264D0"/>
+												</svg>
+											</a>
+										</div>
+									</div>
+																										<div class="divTableRow" id="bx_3218110189_6205">
+										<div class="divTableCell">
+											<a href="/api/iblock/element/6205/file/ru/">
+												Розничные цены на отдельные товары и услуги в Республике Казахстан (ноябрь 2023г.)											</a>
+                                            										</div>
+										<div class="divTableCell text-right">08.12.2023</div>
+										<div class="divTableCell text-right">
+											<a href="/api/iblock/element/6205/file/ru/">
+												<span class="mr-1">78.9  Кб, xlsx</span>
+												<svg width="17" height="19" viewBox="0 0 17 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M14.1875 7.04219H12.3875C11.8475 7.04219 11.4875 7.40219 11.4875 7.94219C11.4875 8.48219 11.8475 8.84219 12.3875 8.84219H14.1875C14.7275 8.84219 15.0875 9.20219 15.0875 9.74219V16.0422C15.0875 16.5822 14.7275 16.9422 14.1875 16.9422H3.3875C2.8475 16.9422 2.4875 16.5822 2.4875 16.0422V9.74219C2.4875 9.20219 2.8475 8.84219 3.3875 8.84219H5.1875C5.7275 8.84219 6.0875 8.48219 6.0875 7.94219C6.0875 7.40219 5.7275 7.04219 5.1875 7.04219H3.3875C1.8575 7.04219 0.6875 8.21219 0.6875 9.74219V16.0422C0.6875 17.5722 1.8575 18.7422 3.3875 18.7422H14.1875C15.7175 18.7422 16.8875 17.5722 16.8875 16.0422V9.74219C16.8875 8.21219 15.7175 7.04219 14.1875 7.04219ZM5.4575 12.1722L8.1575 14.8722C8.3375 15.0522 8.5175 15.1422 8.7875 15.1422C9.0575 15.1422 9.2375 15.0522 9.4175 14.8722L12.1175 12.1722C12.4775 11.8122 12.4775 11.2722 12.1175 10.9122C11.7575 10.5522 11.2175 10.5522 10.8575 10.9122L9.6875 12.0822V1.64219C9.6875 1.10219 9.3275 0.742188 8.7875 0.742188C8.2475 0.742188 7.8875 1.10219 7.8875 1.64219V12.0822L6.7175 10.9122C6.3575 10.5522 5.8175 10.5522 5.4575 10.9122C5.0975 11.2722 5.0975 11.8122 5.4575 12.1722Z" fill="#4264D0"/>
+												</svg>
+											</a>
+										</div>
+									</div>
+																										<div class="divTableRow" id="bx_3218110189_6204">
+										<div class="divTableCell">
+											<a href="/api/iblock/element/6204/file/ru/">
+												Розничные цены на отдельные товары и услуги в Республике Казахстан (октябрь 2023г.)											</a>
+                                            										</div>
+										<div class="divTableCell text-right">09.11.2023</div>
+										<div class="divTableCell text-right">
+											<a href="/api/iblock/element/6204/file/ru/">
+												<span class="mr-1">78.9  Кб, xlsx</span>
+												<svg width="17" height="19" viewBox="0 0 17 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M14.1875 7.04219H12.3875C11.8475 7.04219 11.4875 7.40219 11.4875 7.94219C11.4875 8.48219 11.8475 8.84219 12.3875 8.84219H14.1875C14.7275 8.84219 15.0875 9.20219 15.0875 9.74219V16.0422C15.0875 16.5822 14.7275 16.9422 14.1875 16.9422H3.3875C2.8475 16.9422 2.4875 16.5822 2.4875 16.0422V9.74219C2.4875 9.20219 2.8475 8.84219 3.3875 8.84219H5.1875C5.7275 8.84219 6.0875 8.48219 6.0875 7.94219C6.0875 7.40219 5.7275 7.04219 5.1875 7.04219H3.3875C1.8575 7.04219 0.6875 8.21219 0.6875 9.74219V16.0422C0.6875 17.5722 1.8575 18.7422 3.3875 18.7422H14.1875C15.7175 18.7422 16.8875 17.5722 16.8875 16.0422V9.74219C16.8875 8.21219 15.7175 7.04219 14.1875 7.04219ZM5.4575 12.1722L8.1575 14.8722C8.3375 15.0522 8.5175 15.1422 8.7875 15.1422C9.0575 15.1422 9.2375 15.0522 9.4175 14.8722L12.1175 12.1722C12.4775 11.8122 12.4775 11.2722 12.1175 10.9122C11.7575 10.5522 11.2175 10.5522 10.8575 10.9122L9.6875 12.0822V1.64219C9.6875 1.10219 9.3275 0.742188 8.7875 0.742188C8.2475 0.742188 7.8875 1.10219 7.8875 1.64219V12.0822L6.7175 10.9122C6.3575 10.5522 5.8175 10.5522 5.4575 10.9122C5.0975 11.2722 5.0975 11.8122 5.4575 12.1722Z" fill="#4264D0"/>
+												</svg>
+											</a>
+										</div>
+									</div>
+																										<div class="divTableRow" id="bx_3218110189_6203">
+										<div class="divTableCell">
+											<a href="/api/iblock/element/6203/file/ru/">
+												Розничные цены на отдельные товары и услуги в Республике Казахстан (сентябрь 2023г.)											</a>
+                                            										</div>
+										<div class="divTableCell text-right">09.10.2023</div>
+										<div class="divTableCell text-right">
+											<a href="/api/iblock/element/6203/file/ru/">
+												<span class="mr-1">86.3  Кб, xlsx</span>
+												<svg width="17" height="19" viewBox="0 0 17 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M14.1875 7.04219H12.3875C11.8475 7.04219 11.4875 7.40219 11.4875 7.94219C11.4875 8.48219 11.8475 8.84219 12.3875 8.84219H14.1875C14.7275 8.84219 15.0875 9.20219 15.0875 9.74219V16.0422C15.0875 16.5822 14.7275 16.9422 14.1875 16.9422H3.3875C2.8475 16.9422 2.4875 16.5822 2.4875 16.0422V9.74219C2.4875 9.20219 2.8475 8.84219 3.3875 8.84219H5.1875C5.7275 8.84219 6.0875 8.48219 6.0875 7.94219C6.0875 7.40219 5.7275 7.04219 5.1875 7.04219H3.3875C1.8575 7.04219 0.6875 8.21219 0.6875 9.74219V16.0422C0.6875 17.5722 1.8575 18.7422 3.3875 18.7422H14.1875C15.7175 18.7422 16.8875 17.5722 16.8875 16.0422V9.74219C16.8875 8.21219 15.7175 7.04219 14.1875 7.04219ZM5.4575 12.1722L8.1575 14.8722C8.3375 15.0522 8.5175 15.1422 8.7875 15.1422C9.0575 15.1422 9.2375 15.0522 9.4175 14.8722L12.1175 12.1722C12.4775 11.8122 12.4775 11.2722 12.1175 10.9122C11.7575 10.5522 11.2175 10.5522 10.8575 10.9122L9.6875 12.0822V1.64219C9.6875 1.10219 9.3275 0.742188 8.7875 0.742188C8.2475 0.742188 7.8875 1.10219 7.8875 1.64219V12.0822L6.7175 10.9122C6.3575 10.5522 5.8175 10.5522 5.4575 10.9122C5.0975 11.2722 5.0975 11.8122 5.4575 12.1722Z" fill="#4264D0"/>
+												</svg>
+											</a>
+										</div>
+									</div>
+																										<div class="divTableRow" id="bx_3218110189_6202">
+										<div class="divTableCell">
+											<a href="/api/iblock/element/6202/file/ru/">
+												Розничные цены на отдельные товары и услуги в Республике Казахстан (август 2023г.)											</a>
+                                            										</div>
+										<div class="divTableCell text-right">11.09.2023</div>
+										<div class="divTableCell text-right">
+											<a href="/api/iblock/element/6202/file/ru/">
+												<span class="mr-1">86.1  Кб, xlsx</span>
+												<svg width="17" height="19" viewBox="0 0 17 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M14.1875 7.04219H12.3875C11.8475 7.04219 11.4875 7.40219 11.4875 7.94219C11.4875 8.48219 11.8475 8.84219 12.3875 8.84219H14.1875C14.7275 8.84219 15.0875 9.20219 15.0875 9.74219V16.0422C15.0875 16.5822 14.7275 16.9422 14.1875 16.9422H3.3875C2.8475 16.9422 2.4875 16.5822 2.4875 16.0422V9.74219C2.4875 9.20219 2.8475 8.84219 3.3875 8.84219H5.1875C5.7275 8.84219 6.0875 8.48219 6.0875 7.94219C6.0875 7.40219 5.7275 7.04219 5.1875 7.04219H3.3875C1.8575 7.04219 0.6875 8.21219 0.6875 9.74219V16.0422C0.6875 17.5722 1.8575 18.7422 3.3875 18.7422H14.1875C15.7175 18.7422 16.8875 17.5722 16.8875 16.0422V9.74219C16.8875 8.21219 15.7175 7.04219 14.1875 7.04219ZM5.4575 12.1722L8.1575 14.8722C8.3375 15.0522 8.5175 15.1422 8.7875 15.1422C9.0575 15.1422 9.2375 15.0522 9.4175 14.8722L12.1175 12.1722C12.4775 11.8122 12.4775 11.2722 12.1175 10.9122C11.7575 10.5522 11.2175 10.5522 10.8575 10.9122L9.6875 12.0822V1.64219C9.6875 1.10219 9.3275 0.742188 8.7875 0.742188C8.2475 0.742188 7.8875 1.10219 7.8875 1.64219V12.0822L6.7175 10.9122C6.3575 10.5522 5.8175 10.5522 5.4575 10.9122C5.0975 11.2722 5.0975 11.8122 5.4575 12.1722Z" fill="#4264D0"/>
+												</svg>
+											</a>
+										</div>
+									</div>
+																										<div class="divTableRow" id="bx_3218110189_6201">
+										<div class="divTableCell">
+											<a href="/api/iblock/element/6201/file/ru/">
+												Розничные цены на отдельные товары и услуги в Республике Казахстан (июль 2023г.)											</a>
+                                            										</div>
+										<div class="divTableCell text-right">09.08.2023</div>
+										<div class="divTableCell text-right">
+											<a href="/api/iblock/element/6201/file/ru/">
+												<span class="mr-1">86.7  Кб, xlsx</span>
+												<svg width="17" height="19" viewBox="0 0 17 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M14.1875 7.04219H12.3875C11.8475 7.04219 11.4875 7.40219 11.4875 7.94219C11.4875 8.48219 11.8475 8.84219 12.3875 8.84219H14.1875C14.7275 8.84219 15.0875 9.20219 15.0875 9.74219V16.0422C15.0875 16.5822 14.7275 16.9422 14.1875 16.9422H3.3875C2.8475 16.9422 2.4875 16.5822 2.4875 16.0422V9.74219C2.4875 9.20219 2.8475 8.84219 3.3875 8.84219H5.1875C5.7275 8.84219 6.0875 8.48219 6.0875 7.94219C6.0875 7.40219 5.7275 7.04219 5.1875 7.04219H3.3875C1.8575 7.04219 0.6875 8.21219 0.6875 9.74219V16.0422C0.6875 17.5722 1.8575 18.7422 3.3875 18.7422H14.1875C15.7175 18.7422 16.8875 17.5722 16.8875 16.0422V9.74219C16.8875 8.21219 15.7175 7.04219 14.1875 7.04219ZM5.4575 12.1722L8.1575 14.8722C8.3375 15.0522 8.5175 15.1422 8.7875 15.1422C9.0575 15.1422 9.2375 15.0522 9.4175 14.8722L12.1175 12.1722C12.4775 11.8122 12.4775 11.2722 12.1175 10.9122C11.7575 10.5522 11.2175 10.5522 10.8575 10.9122L9.6875 12.0822V1.64219C9.6875 1.10219 9.3275 0.742188 8.7875 0.742188C8.2475 0.742188 7.8875 1.10219 7.8875 1.64219V12.0822L6.7175 10.9122C6.3575 10.5522 5.8175 10.5522 5.4575 10.9122C5.0975 11.2722 5.0975 11.8122 5.4575 12.1722Z" fill="#4264D0"/>
+												</svg>
+											</a>
+										</div>
+									</div>
+																										<div class="divTableRow" id="bx_3218110189_6200">
+										<div class="divTableCell">
+											<a href="/api/iblock/element/6200/file/ru/">
+												Розничные цены на отдельные товары и услуги в Республике Казахстан (июнь 2023г.)											</a>
+                                            										</div>
+										<div class="divTableCell text-right">10.07.2023</div>
+										<div class="divTableCell text-right">
+											<a href="/api/iblock/element/6200/file/ru/">
+												<span class="mr-1">86.5  Кб, xlsx</span>
+												<svg width="17" height="19" viewBox="0 0 17 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M14.1875 7.04219H12.3875C11.8475 7.04219 11.4875 7.40219 11.4875 7.94219C11.4875 8.48219 11.8475 8.84219 12.3875 8.84219H14.1875C14.7275 8.84219 15.0875 9.20219 15.0875 9.74219V16.0422C15.0875 16.5822 14.7275 16.9422 14.1875 16.9422H3.3875C2.8475 16.9422 2.4875 16.5822 2.4875 16.0422V9.74219C2.4875 9.20219 2.8475 8.84219 3.3875 8.84219H5.1875C5.7275 8.84219 6.0875 8.48219 6.0875 7.94219C6.0875 7.40219 5.7275 7.04219 5.1875 7.04219H3.3875C1.8575 7.04219 0.6875 8.21219 0.6875 9.74219V16.0422C0.6875 17.5722 1.8575 18.7422 3.3875 18.7422H14.1875C15.7175 18.7422 16.8875 17.5722 16.8875 16.0422V9.74219C16.8875 8.21219 15.7175 7.04219 14.1875 7.04219ZM5.4575 12.1722L8.1575 14.8722C8.3375 15.0522 8.5175 15.1422 8.7875 15.1422C9.0575 15.1422 9.2375 15.0522 9.4175 14.8722L12.1175 12.1722C12.4775 11.8122 12.4775 11.2722 12.1175 10.9122C11.7575 10.5522 11.2175 10.5522 10.8575 10.9122L9.6875 12.0822V1.64219C9.6875 1.10219 9.3275 0.742188 8.7875 0.742188C8.2475 0.742188 7.8875 1.10219 7.8875 1.64219V12.0822L6.7175 10.9122C6.3575 10.5522 5.8175 10.5522 5.4575 10.9122C5.0975 11.2722 5.0975 11.8122 5.4575 12.1722Z" fill="#4264D0"/>
+												</svg>
+											</a>
+										</div>
+									</div>
+																										<div class="divTableRow" id="bx_3218110189_6199">
+										<div class="divTableCell">
+											<a href="/api/iblock/element/6199/file/ru/">
+												Розничные цены на отдельные товары и услуги в Республике Казахстан (май 2023г.)											</a>
+                                            										</div>
+										<div class="divTableCell text-right">09.06.2023</div>
+										<div class="divTableCell text-right">
+											<a href="/api/iblock/element/6199/file/ru/">
+												<span class="mr-1">86.7  Кб, xlsx</span>
+												<svg width="17" height="19" viewBox="0 0 17 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M14.1875 7.04219H12.3875C11.8475 7.04219 11.4875 7.40219 11.4875 7.94219C11.4875 8.48219 11.8475 8.84219 12.3875 8.84219H14.1875C14.7275 8.84219 15.0875 9.20219 15.0875 9.74219V16.0422C15.0875 16.5822 14.7275 16.9422 14.1875 16.9422H3.3875C2.8475 16.9422 2.4875 16.5822 2.4875 16.0422V9.74219C2.4875 9.20219 2.8475 8.84219 3.3875 8.84219H5.1875C5.7275 8.84219 6.0875 8.48219 6.0875 7.94219C6.0875 7.40219 5.7275 7.04219 5.1875 7.04219H3.3875C1.8575 7.04219 0.6875 8.21219 0.6875 9.74219V16.0422C0.6875 17.5722 1.8575 18.7422 3.3875 18.7422H14.1875C15.7175 18.7422 16.8875 17.5722 16.8875 16.0422V9.74219C16.8875 8.21219 15.7175 7.04219 14.1875 7.04219ZM5.4575 12.1722L8.1575 14.8722C8.3375 15.0522 8.5175 15.1422 8.7875 15.1422C9.0575 15.1422 9.2375 15.0522 9.4175 14.8722L12.1175 12.1722C12.4775 11.8122 12.4775 11.2722 12.1175 10.9122C11.7575 10.5522 11.2175 10.5522 10.8575 10.9122L9.6875 12.0822V1.64219C9.6875 1.10219 9.3275 0.742188 8.7875 0.742188C8.2475 0.742188 7.8875 1.10219 7.8875 1.64219V12.0822L6.7175 10.9122C6.3575 10.5522 5.8175 10.5522 5.4575 10.9122C5.0975 11.2722 5.0975 11.8122 5.4575 12.1722Z" fill="#4264D0"/>
+												</svg>
+											</a>
+										</div>
+									</div>
+																										<div class="divTableRow" id="bx_3218110189_6198">
+										<div class="divTableCell">
+											<a href="/api/iblock/element/6198/file/ru/">
+												Розничные цены на отдельные товары и услуги в Республике Казахстан (апрель 2023г.)											</a>
+                                            										</div>
+										<div class="divTableCell text-right">10.05.2023</div>
+										<div class="divTableCell text-right">
+											<a href="/api/iblock/element/6198/file/ru/">
+												<span class="mr-1">86.2  Кб, xlsx</span>
+												<svg width="17" height="19" viewBox="0 0 17 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M14.1875 7.04219H12.3875C11.8475 7.04219 11.4875 7.40219 11.4875 7.94219C11.4875 8.48219 11.8475 8.84219 12.3875 8.84219H14.1875C14.7275 8.84219 15.0875 9.20219 15.0875 9.74219V16.0422C15.0875 16.5822 14.7275 16.9422 14.1875 16.9422H3.3875C2.8475 16.9422 2.4875 16.5822 2.4875 16.0422V9.74219C2.4875 9.20219 2.8475 8.84219 3.3875 8.84219H5.1875C5.7275 8.84219 6.0875 8.48219 6.0875 7.94219C6.0875 7.40219 5.7275 7.04219 5.1875 7.04219H3.3875C1.8575 7.04219 0.6875 8.21219 0.6875 9.74219V16.0422C0.6875 17.5722 1.8575 18.7422 3.3875 18.7422H14.1875C15.7175 18.7422 16.8875 17.5722 16.8875 16.0422V9.74219C16.8875 8.21219 15.7175 7.04219 14.1875 7.04219ZM5.4575 12.1722L8.1575 14.8722C8.3375 15.0522 8.5175 15.1422 8.7875 15.1422C9.0575 15.1422 9.2375 15.0522 9.4175 14.8722L12.1175 12.1722C12.4775 11.8122 12.4775 11.2722 12.1175 10.9122C11.7575 10.5522 11.2175 10.5522 10.8575 10.9122L9.6875 12.0822V1.64219C9.6875 1.10219 9.3275 0.742188 8.7875 0.742188C8.2475 0.742188 7.8875 1.10219 7.8875 1.64219V12.0822L6.7175 10.9122C6.3575 10.5522 5.8175 10.5522 5.4575 10.9122C5.0975 11.2722 5.0975 11.8122 5.4575 12.1722Z" fill="#4264D0"/>
+												</svg>
+											</a>
+										</div>
+									</div>
+																										<div class="divTableRow" id="bx_3218110189_6197">
+										<div class="divTableCell">
+											<a href="/api/iblock/element/6197/file/ru/">
+												Розничные цены на отдельные товары и услуги в Республике Казахстан (март 2023г.)											</a>
+                                            										</div>
+										<div class="divTableCell text-right">10.04.2023</div>
+										<div class="divTableCell text-right">
+											<a href="/api/iblock/element/6197/file/ru/">
+												<span class="mr-1">85.9  Кб, xlsx</span>
+												<svg width="17" height="19" viewBox="0 0 17 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M14.1875 7.04219H12.3875C11.8475 7.04219 11.4875 7.40219 11.4875 7.94219C11.4875 8.48219 11.8475 8.84219 12.3875 8.84219H14.1875C14.7275 8.84219 15.0875 9.20219 15.0875 9.74219V16.0422C15.0875 16.5822 14.7275 16.9422 14.1875 16.9422H3.3875C2.8475 16.9422 2.4875 16.5822 2.4875 16.0422V9.74219C2.4875 9.20219 2.8475 8.84219 3.3875 8.84219H5.1875C5.7275 8.84219 6.0875 8.48219 6.0875 7.94219C6.0875 7.40219 5.7275 7.04219 5.1875 7.04219H3.3875C1.8575 7.04219 0.6875 8.21219 0.6875 9.74219V16.0422C0.6875 17.5722 1.8575 18.7422 3.3875 18.7422H14.1875C15.7175 18.7422 16.8875 17.5722 16.8875 16.0422V9.74219C16.8875 8.21219 15.7175 7.04219 14.1875 7.04219ZM5.4575 12.1722L8.1575 14.8722C8.3375 15.0522 8.5175 15.1422 8.7875 15.1422C9.0575 15.1422 9.2375 15.0522 9.4175 14.8722L12.1175 12.1722C12.4775 11.8122 12.4775 11.2722 12.1175 10.9122C11.7575 10.5522 11.2175 10.5522 10.8575 10.9122L9.6875 12.0822V1.64219C9.6875 1.10219 9.3275 0.742188 8.7875 0.742188C8.2475 0.742188 7.8875 1.10219 7.8875 1.64219V12.0822L6.7175 10.9122C6.3575 10.5522 5.8175 10.5522 5.4575 10.9122C5.0975 11.2722 5.0975 11.8122 5.4575 12.1722Z" fill="#4264D0"/>
+												</svg>
+											</a>
+										</div>
+									</div>
+																										<div class="divTableRow" id="bx_3218110189_6196">
+										<div class="divTableCell">
+											<a href="/api/iblock/element/6196/file/ru/">
+												Розничные цены на отдельные товары и услуги в Республике Казахстан (февраль 2023г.)											</a>
+                                            										</div>
+										<div class="divTableCell text-right">09.03.2023</div>
+										<div class="divTableCell text-right">
+											<a href="/api/iblock/element/6196/file/ru/">
+												<span class="mr-1">85.9  Кб, xlsx</span>
+												<svg width="17" height="19" viewBox="0 0 17 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M14.1875 7.04219H12.3875C11.8475 7.04219 11.4875 7.40219 11.4875 7.94219C11.4875 8.48219 11.8475 8.84219 12.3875 8.84219H14.1875C14.7275 8.84219 15.0875 9.20219 15.0875 9.74219V16.0422C15.0875 16.5822 14.7275 16.9422 14.1875 16.9422H3.3875C2.8475 16.9422 2.4875 16.5822 2.4875 16.0422V9.74219C2.4875 9.20219 2.8475 8.84219 3.3875 8.84219H5.1875C5.7275 8.84219 6.0875 8.48219 6.0875 7.94219C6.0875 7.40219 5.7275 7.04219 5.1875 7.04219H3.3875C1.8575 7.04219 0.6875 8.21219 0.6875 9.74219V16.0422C0.6875 17.5722 1.8575 18.7422 3.3875 18.7422H14.1875C15.7175 18.7422 16.8875 17.5722 16.8875 16.0422V9.74219C16.8875 8.21219 15.7175 7.04219 14.1875 7.04219ZM5.4575 12.1722L8.1575 14.8722C8.3375 15.0522 8.5175 15.1422 8.7875 15.1422C9.0575 15.1422 9.2375 15.0522 9.4175 14.8722L12.1175 12.1722C12.4775 11.8122 12.4775 11.2722 12.1175 10.9122C11.7575 10.5522 11.2175 10.5522 10.8575 10.9122L9.6875 12.0822V1.64219C9.6875 1.10219 9.3275 0.742188 8.7875 0.742188C8.2475 0.742188 7.8875 1.10219 7.8875 1.64219V12.0822L6.7175 10.9122C6.3575 10.5522 5.8175 10.5522 5.4575 10.9122C5.0975 11.2722 5.0975 11.8122 5.4575 12.1722Z" fill="#4264D0"/>
+												</svg>
+											</a>
+										</div>
+									</div>
+																										<div class="divTableRow" id="bx_3218110189_6195">
+										<div class="divTableCell">
+											<a href="/api/iblock/element/6195/file/ru/">
+												Розничные цены на отдельные товары и услуги в Республике Казахстан (январь 2023г. )											</a>
+                                            										</div>
+										<div class="divTableCell text-right">09.02.2023</div>
+										<div class="divTableCell text-right">
+											<a href="/api/iblock/element/6195/file/ru/">
+												<span class="mr-1">86.4  Кб, xlsx</span>
+												<svg width="17" height="19" viewBox="0 0 17 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M14.1875 7.04219H12.3875C11.8475 7.04219 11.4875 7.40219 11.4875 7.94219C11.4875 8.48219 11.8475 8.84219 12.3875 8.84219H14.1875C14.7275 8.84219 15.0875 9.20219 15.0875 9.74219V16.0422C15.0875 16.5822 14.7275 16.9422 14.1875 16.9422H3.3875C2.8475 16.9422 2.4875 16.5822 2.4875 16.0422V9.74219C2.4875 9.20219 2.8475 8.84219 3.3875 8.84219H5.1875C5.7275 8.84219 6.0875 8.48219 6.0875 7.94219C6.0875 7.40219 5.7275 7.04219 5.1875 7.04219H3.3875C1.8575 7.04219 0.6875 8.21219 0.6875 9.74219V16.0422C0.6875 17.5722 1.8575 18.7422 3.3875 18.7422H14.1875C15.7175 18.7422 16.8875 17.5722 16.8875 16.0422V9.74219C16.8875 8.21219 15.7175 7.04219 14.1875 7.04219ZM5.4575 12.1722L8.1575 14.8722C8.3375 15.0522 8.5175 15.1422 8.7875 15.1422C9.0575 15.1422 9.2375 15.0522 9.4175 14.8722L12.1175 12.1722C12.4775 11.8122 12.4775 11.2722 12.1175 10.9122C11.7575 10.5522 11.2175 10.5522 10.8575 10.9122L9.6875 12.0822V1.64219C9.6875 1.10219 9.3275 0.742188 8.7875 0.742188C8.2475 0.742188 7.8875 1.10219 7.8875 1.64219V12.0822L6.7175 10.9122C6.3575 10.5522 5.8175 10.5522 5.4575 10.9122C5.0975 11.2722 5.0975 11.8122 5.4575 12.1722Z" fill="#4264D0"/>
+												</svg>
+											</a>
+										</div>
+									</div>
+																										<div class="divTableRow" id="bx_3218110189_6194">
+										<div class="divTableCell">
+											<a href="/api/iblock/element/6194/file/ru/">
+												Розничные цены на отдельные товары и услуги в Республике Казахстан (декабрь 2022г.)											</a>
+                                            										</div>
+										<div class="divTableCell text-right">09.01.2023</div>
+										<div class="divTableCell text-right">
+											<a href="/api/iblock/element/6194/file/ru/">
+												<span class="mr-1">68.4  Кб, xlsx</span>
+												<svg width="17" height="19" viewBox="0 0 17 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M14.1875 7.04219H12.3875C11.8475 7.04219 11.4875 7.40219 11.4875 7.94219C11.4875 8.48219 11.8475 8.84219 12.3875 8.84219H14.1875C14.7275 8.84219 15.0875 9.20219 15.0875 9.74219V16.0422C15.0875 16.5822 14.7275 16.9422 14.1875 16.9422H3.3875C2.8475 16.9422 2.4875 16.5822 2.4875 16.0422V9.74219C2.4875 9.20219 2.8475 8.84219 3.3875 8.84219H5.1875C5.7275 8.84219 6.0875 8.48219 6.0875 7.94219C6.0875 7.40219 5.7275 7.04219 5.1875 7.04219H3.3875C1.8575 7.04219 0.6875 8.21219 0.6875 9.74219V16.0422C0.6875 17.5722 1.8575 18.7422 3.3875 18.7422H14.1875C15.7175 18.7422 16.8875 17.5722 16.8875 16.0422V9.74219C16.8875 8.21219 15.7175 7.04219 14.1875 7.04219ZM5.4575 12.1722L8.1575 14.8722C8.3375 15.0522 8.5175 15.1422 8.7875 15.1422C9.0575 15.1422 9.2375 15.0522 9.4175 14.8722L12.1175 12.1722C12.4775 11.8122 12.4775 11.2722 12.1175 10.9122C11.7575 10.5522 11.2175 10.5522 10.8575 10.9122L9.6875 12.0822V1.64219C9.6875 1.10219 9.3275 0.742188 8.7875 0.742188C8.2475 0.742188 7.8875 1.10219 7.8875 1.64219V12.0822L6.7175 10.9122C6.3575 10.5522 5.8175 10.5522 5.4575 10.9122C5.0975 11.2722 5.0975 11.8122 5.4575 12.1722Z" fill="#4264D0"/>
+												</svg>
+											</a>
+										</div>
+									</div>
+																										<div class="divTableRow" id="bx_3218110189_5507">
+										<div class="divTableCell">
+											<a href="/api/iblock/element/5507/file/ru/">
+												Розничные цены на отдельные товары и услуги в Республике Казахстан (Ноябрь 2022г.)											</a>
+                                            										</div>
+										<div class="divTableCell text-right">15.12.2022</div>
+										<div class="divTableCell text-right">
+											<a href="/api/iblock/element/5507/file/ru/">
+												<span class="mr-1">68.5  Кб, xlsx</span>
+												<svg width="17" height="19" viewBox="0 0 17 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M14.1875 7.04219H12.3875C11.8475 7.04219 11.4875 7.40219 11.4875 7.94219C11.4875 8.48219 11.8475 8.84219 12.3875 8.84219H14.1875C14.7275 8.84219 15.0875 9.20219 15.0875 9.74219V16.0422C15.0875 16.5822 14.7275 16.9422 14.1875 16.9422H3.3875C2.8475 16.9422 2.4875 16.5822 2.4875 16.0422V9.74219C2.4875 9.20219 2.8475 8.84219 3.3875 8.84219H5.1875C5.7275 8.84219 6.0875 8.48219 6.0875 7.94219C6.0875 7.40219 5.7275 7.04219 5.1875 7.04219H3.3875C1.8575 7.04219 0.6875 8.21219 0.6875 9.74219V16.0422C0.6875 17.5722 1.8575 18.7422 3.3875 18.7422H14.1875C15.7175 18.7422 16.8875 17.5722 16.8875 16.0422V9.74219C16.8875 8.21219 15.7175 7.04219 14.1875 7.04219ZM5.4575 12.1722L8.1575 14.8722C8.3375 15.0522 8.5175 15.1422 8.7875 15.1422C9.0575 15.1422 9.2375 15.0522 9.4175 14.8722L12.1175 12.1722C12.4775 11.8122 12.4775 11.2722 12.1175 10.9122C11.7575 10.5522 11.2175 10.5522 10.8575 10.9122L9.6875 12.0822V1.64219C9.6875 1.10219 9.3275 0.742188 8.7875 0.742188C8.2475 0.742188 7.8875 1.10219 7.8875 1.64219V12.0822L6.7175 10.9122C6.3575 10.5522 5.8175 10.5522 5.4575 10.9122C5.0975 11.2722 5.0975 11.8122 5.4575 12.1722Z" fill="#4264D0"/>
+												</svg>
+											</a>
+										</div>
+									</div>
+																										<div class="divTableRow" id="bx_3218110189_1498">
+										<div class="divTableCell">
+											<a href="/api/iblock/element/1498/file/ru/">
+												Розничные цены на отдельные товары и услуги в Республике Казахстан (Октябрь 2022г.)											</a>
+                                            										</div>
+										<div class="divTableCell text-right">17.11.2022</div>
+										<div class="divTableCell text-right">
+											<a href="/api/iblock/element/1498/file/ru/">
+												<span class="mr-1">71.7  Кб, xlsx</span>
+												<svg width="17" height="19" viewBox="0 0 17 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M14.1875 7.04219H12.3875C11.8475 7.04219 11.4875 7.40219 11.4875 7.94219C11.4875 8.48219 11.8475 8.84219 12.3875 8.84219H14.1875C14.7275 8.84219 15.0875 9.20219 15.0875 9.74219V16.0422C15.0875 16.5822 14.7275 16.9422 14.1875 16.9422H3.3875C2.8475 16.9422 2.4875 16.5822 2.4875 16.0422V9.74219C2.4875 9.20219 2.8475 8.84219 3.3875 8.84219H5.1875C5.7275 8.84219 6.0875 8.48219 6.0875 7.94219C6.0875 7.40219 5.7275 7.04219 5.1875 7.04219H3.3875C1.8575 7.04219 0.6875 8.21219 0.6875 9.74219V16.0422C0.6875 17.5722 1.8575 18.7422 3.3875 18.7422H14.1875C15.7175 18.7422 16.8875 17.5722 16.8875 16.0422V9.74219C16.8875 8.21219 15.7175 7.04219 14.1875 7.04219ZM5.4575 12.1722L8.1575 14.8722C8.3375 15.0522 8.5175 15.1422 8.7875 15.1422C9.0575 15.1422 9.2375 15.0522 9.4175 14.8722L12.1175 12.1722C12.4775 11.8122 12.4775 11.2722 12.1175 10.9122C11.7575 10.5522 11.2175 10.5522 10.8575 10.9122L9.6875 12.0822V1.64219C9.6875 1.10219 9.3275 0.742188 8.7875 0.742188C8.2475 0.742188 7.8875 1.10219 7.8875 1.64219V12.0822L6.7175 10.9122C6.3575 10.5522 5.8175 10.5522 5.4575 10.9122C5.0975 11.2722 5.0975 11.8122 5.4575 12.1722Z" fill="#4264D0"/>
+												</svg>
+											</a>
+										</div>
+									</div>
+															</div>
+						</div>
+					</div>
+							</div>
+			</div>
+</div>
+
+	</div>
+</div>
+
+
+
+	
+			<div class="container">
+			<div class="partners">
+				<a href="https://akorda.kz/" class="partner-item way" target="_blank">
+    <img src="/local/templates/statgov_main/img/aqorda.svg" alt="" >
+</a>
+<a href="https://www.gov.kz/memleket/entities/aspr?lang=ru" class="partner-item way" target="_blank">
+    <img src="/local/templates/statgov_main/img/aspir.svg" alt="" >
+</a>
+<a href="https://www.gov.kz/memleket/entities/stat?lang=ru" class="partner-item way" target="_blank">
+    <img src="/local/templates/statgov_main/img/bns_gov_logo_ru.png" alt="" style="max-width: 200px;">
+</a>
+<!--<a href="https://sanaq.gov.kz/" class="partner-item way" target="_blank">-->
+<!--    <img src="--><!--/img/partner1.svg" alt="">-->
+<!--</a>-->
+<!--<a href="#" class="partner-item way" target="_blank">-->
+<!--    <img src="--><!--/img/partner2.svg" alt="" >-->
+<!--</a>-->
+<a href="https://taldau.stat.gov.kz" class="partner-item way" target="_blank">
+    <img src="/local/templates/statgov_main/img/taldau_wide.svg" alt="" >
+</a>
+<a href="https://www.statdata.kz/services" class="partner-item way" target="_blank">
+    <img src="/local/templates/statgov_main/img/partner6.svg" alt="" >
+</a>
+<!--<a href="--><!--" class="partner-item way" target="_blank">-->
+<!--    <img src="--><!--/img/partner5.svg" alt="" >-->
+<!--</a>-->
+			</div>
+		</div>
+		<footer class="footer">
+		<div class="container">
+			<div class="footer-block address-icon">
+				<div class="footer-item address">
+					<div class="footer-item__title">
+						Город Астана					</div>
+					<div class="footer-item__desc">
+						010000, Республика Казахстан, г.Астана,<br />
+Левый берег р.Ишим,<br />
+Проспект Мәңгілік ел, 8,<br />
+Дом Министерств, 4 подъезд,<br />
+E-mail: <a href="mailto:e.stat@aspire.gov.kz">e.stat@aspire.gov.kz</a>
+					</div>
+				</div>
+	<!--			<div class="footer-item ">-->
+	<!--				<div class="footer-item__title">-->
+	<!--					-->	<!--				</div>-->
+	<!--				<div class="footer-item__desc">-->
+	<!--					-->	<!--				</div>-->
+	<!--			</div>-->
+				<div class="footer-item ">
+					<div class="footer-item__title">
+						Единый контакт-центр					</div>
+					<div class="footer-item__desc">
+						<a href="tel:1446">1446</a> (бесплатно по Казахстану)<br />
+с 9:00 до 18:30<br />
+<!--<a href="#" class="online-consultant-trigger"  data-sitedir="/ru/" data-lang="ru">Онлайн консультант</a>-->					</div>
+					<div class="footer-item__desc">
+						<a href="https://t.me/statgovkz_bot" target="_blank">Telegram-bot: @statgovkz_bot</a>
+					</div>
+				</div>
+			</div>
+			<div class="footer-block">
+				
+				
+				<div class="footer-item ">
+					<div class="footer-item__title">
+						Пресс-служба					</div>
+					<div class="footer-item__desc">
+						Пн-Пт с 9:00 до 18:30, 13:00-14:30 – обеденный перерыв,<br />
+Тел. <a href="tel:+77172749002">+7 7172 749002</a>,<br />
+E-mail: <a href="mailto:e.press@aspire.gov.kz">e.press@aspire.gov.kz</a>
+					</div>
+				</div>
+
+				<div class="footer-item ">
+					<div class="footer-item__title">
+						Канцелярия					</div>
+					<div class="footer-item__desc">
+						Пн-Пт с 9:00 до 18:30, 13:00-14:30 – обеденный перерыв<br />
+Тел. <a href="tel:+77172749547">+7 7172 74 95 47</a><br />
+					</div>
+				</div>
+
+				<div class="footer-item ">
+                    <div class="footer-item__title">
+                        <a href="/ru/description/" class="text-white">Об использовании данных</a>
+                    </div>
+
+					<div class="footer-item__title">
+						<a href="/ru/sitemap/" class="text-white">Карта сайта</a>
+					</div>
+
+                    <div class="footer-item__title">
+                        <a data-fancybox href="https://www.youtube.com/watch?v=BzF2S300wms" class="text-white" target="_blank">
+                            Видеонавигация по сайту                        </a>
+                    </div>
+                                        <div class="footer-item__title">
+                        <a class="text-white" target="_blank" href="https://screenreader.tilqazyna.kz/#download">
+							Экранный диктор                        </a>
+                    </div>
+                </div>
+
+			</div>
+		</div>
+		<div class="footer-bottom">
+			<div class="container">
+				<div class="copyright">
+					2026 © Бюро национальной статистики Агентства по стратегическому планированию и реформам Республики Казахстан				</div>
+				<div class="soc-seti">
+					<a href="https://www.facebook.com/qazstatgov/" class="soc-seti__item" target="_blank">
+    <svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M1.35316 16.4997C1.35316 8.41 7.93735 1.82874 16.0241 1.82874C24.1166 1.82874 30.695 8.41 30.695 16.4997C30.695 24.5864 24.1166 31.1618 16.0241 31.1618C7.93735 31.1618 1.35316 24.5864 1.35316 16.4997ZM0 16.4997C0 25.3332 7.19047 32.5237 16.0241 32.5237C24.8606 32.5237 32.054 25.3332 32.054 16.4997C32.054 7.66313 24.8606 0.475586 16.0241 0.475586C7.19047 0.475586 0 7.66313 0 16.4997ZM17.6789 17.4691H20.8128L21.22 13.5239H17.6789V11.2042C17.6789 10.3255 18.2588 10.1234 18.6689 10.1234H21.1643V6.29533L17.7287 6.28069C13.9065 6.28069 13.0366 9.1393 13.0366 10.9611V13.5239H10.8311V17.4691H13.0366V28.6429H17.6789V17.4691Z" fill="white"></path>
+    </svg>
+</a>
+<a href="https://t.me/stat_gov_kz_official" class="soc-seti__item" target="_blank">
+    <svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M16.0329 1.46058C7.93735 1.46058 1.35609 8.04184 1.35609 16.1315C1.35609 24.2182 7.93735 30.7936 16.0329 30.7936C24.1166 30.7936 30.692 24.2182 30.692 16.1315C30.692 8.04184 24.1166 1.46058 16.0329 1.46058ZM16.0329 32.1556C7.18755 32.1556 0 24.9651 0 16.1315C0 7.29497 7.18755 0.107422 16.0329 0.107422C24.8577 0.107422 32.0511 7.29497 32.0511 16.1315C32.0511 24.9651 24.8577 32.1556 16.0329 32.1556Z" fill="white"></path>
+        <path d="M22.9034 10.5158L17.4808 23.2587C17.1118 24.1258 15.858 24.048 15.5991 23.1419L14.2776 18.5166C14.1827 18.1844 13.923 17.9247 13.5908 17.8298L8.96551 16.5083C8.05943 16.2494 7.98158 14.9956 8.84867 14.6266L21.5917 9.20406C22.42 8.85158 23.2558 9.68743 22.9034 10.5158Z" fill="white"></path>
+    </svg>
+</a>
+<a href="https://www.youtube.com/channel/UCktTEsE4VDBGHg2oAzMI8xA" class="soc-seti__item" target="_blank">
+    <svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M16.027 1.82874C7.93735 1.82874 1.35901 8.41 1.35901 16.4997C1.35901 24.5864 7.93735 31.1618 16.027 31.1618C24.1166 31.1618 30.695 24.5864 30.695 16.4997C30.695 8.41 24.1166 1.82874 16.027 1.82874ZM16.027 32.5237C7.18462 32.5237 0 25.3332 0 16.4997C0 7.66313 7.18462 0.475586 16.027 0.475586C24.8664 0.475586 32.0511 7.66313 32.0511 16.4997C32.0511 25.3332 24.8664 32.5237 16.027 32.5237ZM21.2902 13.8343V7.96481H20.23V12.4548C19.9927 12.7829 19.7643 12.9557 19.5593 12.9557L19.3044 12.7038C19.2927 12.6628 19.2927 12.5368 19.2927 12.2937V7.96481H18.2383V12.6071C18.2383 13.023 18.2676 13.3042 18.332 13.4829C18.4346 13.7816 18.6689 13.9222 19.0086 13.9222C19.4011 13.9222 19.8082 13.6791 20.23 13.2017V13.8343H21.2902ZM16.2935 12.1414C16.2935 12.6833 16.1266 12.9557 15.781 12.9557C15.4471 12.9557 15.2713 12.6833 15.2713 12.1414V9.66358C15.2713 9.1188 15.4471 8.85227 15.781 8.85227C16.1266 8.85227 16.2935 9.1188 16.2935 9.66358V12.1414ZM17.3479 11.9364V9.88325C17.3479 9.25353 17.2454 8.79369 17.0228 8.49494C16.727 8.09075 16.317 7.89159 15.781 7.89159C15.2538 7.89159 14.8466 8.09075 14.545 8.49494C14.3194 8.79369 14.2081 9.25353 14.2081 9.88325V11.9364C14.2081 12.5603 14.3194 13.023 14.545 13.3189C14.8466 13.7172 15.2538 13.9222 15.781 13.9222C16.317 13.9222 16.727 13.7172 17.0228 13.3189C17.2454 13.023 17.3479 12.5603 17.3479 11.9364ZM14.1994 5.95265H13.0044L12.2018 9.05436L11.3671 5.95265H10.1194C10.3004 6.47288 10.48 6.99606 10.6591 7.51801L10.6593 7.51845C10.7322 7.731 10.8051 7.94334 10.878 8.15519C11.2558 9.25353 11.493 10.0853 11.6014 10.6389V13.8343H12.7847V10.6389L14.1994 5.95265ZM17.4329 20.0583L17.9601 19.8064C18.2676 19.8064 18.4141 20.07 18.4141 20.5972V23.0809C18.4141 23.6081 18.2676 23.8629 17.9601 23.8629L17.4329 23.6081V20.0583ZM21.8731 19.8064C21.5128 19.8064 21.3371 20.07 21.3371 20.6118V21.1537H22.3886V20.6118C22.3886 20.07 22.2187 19.8064 21.8731 19.8064ZM21.3342 22.0294H23.4489V20.8286C23.4489 20.1989 23.3346 19.739 23.1179 19.4491C22.825 19.0507 22.4032 18.8574 21.8731 18.8574C21.3342 18.8574 20.9212 19.0507 20.6166 19.4491C20.3881 19.739 20.2856 20.1989 20.2856 20.8286V22.8583C20.2856 23.4792 20.4028 23.9332 20.6225 24.229C20.93 24.6274 21.3459 24.8265 21.9024 24.8265C22.456 24.8265 22.8865 24.6186 23.1706 24.188C23.2995 24.0065 23.3844 23.7926 23.4254 23.5554C23.4262 23.5271 23.4284 23.4888 23.4311 23.4408C23.4381 23.3151 23.4489 23.1232 23.4489 22.873V22.7265H22.371C22.371 23.0734 22.3549 23.2957 22.3478 23.3951C22.3463 23.4158 22.3452 23.4311 22.3447 23.4412C22.2831 23.7223 22.1308 23.8629 21.8731 23.8629C21.5099 23.8629 21.3342 23.5964 21.3342 23.0516V22.0294ZM19.363 24.1734C19.4304 23.9215 19.4714 23.5408 19.4714 22.996V20.6734C19.4714 20.1344 19.4304 19.739 19.363 19.5076C19.2195 19.0742 18.9442 18.8574 18.5224 18.8574C18.1329 18.8574 17.7697 19.0742 17.4358 19.4842V16.939H16.3785V24.7357H17.4358V24.1793C17.7814 24.6186 18.1534 24.8265 18.5224 24.8265C18.9442 24.8265 19.2195 24.6039 19.363 24.1734ZM14.4132 24.7357H15.4617V18.9277H14.4132V23.3679C14.1789 23.7018 13.9563 23.8629 13.7454 23.8629L13.4993 23.6169C13.4876 23.5847 13.4876 23.4529 13.4876 23.2069V18.9277H12.4332V23.5232C12.4332 23.9332 12.4684 24.2173 12.524 24.3872C12.6324 24.683 12.8667 24.8265 13.2094 24.8265C13.5989 24.8265 13.9885 24.5864 14.4132 24.106V24.7357ZM11.0156 18.0373H12.2868V16.939H8.60514V18.0373H9.847V24.7357H11.0156V18.0373ZM22.5643 15.1377C23.4664 15.2402 24.225 15.9285 24.4388 16.8482C24.7464 18.1691 24.7464 19.6072 24.7464 20.978C24.7464 22.3282 24.7464 23.7692 24.4388 25.0843C24.225 26.0186 23.4664 26.701 22.5555 26.8036C20.3969 27.0496 18.2061 27.0496 16.027 27.0496C13.8479 27.0496 11.6571 27.0496 9.49846 26.8036C8.58171 26.701 7.82605 26.0186 7.61517 25.0843C7.30763 23.7692 7.30763 22.3282 7.30763 20.978C7.30763 19.6072 7.31349 18.1691 7.61517 16.8482C7.83191 15.9285 8.59342 15.2402 9.49846 15.1377C11.6658 14.8917 13.8596 14.8917 16.0329 14.8917C18.2061 14.8917 20.3969 14.8917 22.5643 15.1377Z" fill="white"></path>
+    </svg>
+</a>
+<a href="https://www.instagram.com/statgov.kz/" class="soc-seti__item" target="_blank">
+    <svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M1.36194 16.4997C1.36194 8.41 7.94028 1.82874 16.0299 1.82874C24.1137 1.82874 30.695 8.41 30.695 16.4997C30.695 24.5864 24.1137 31.1618 16.0299 31.1618C7.94028 31.1618 1.36194 24.5864 1.36194 16.4997ZM0 16.4997C0 25.3332 7.18462 32.5237 16.0299 32.5237C24.8606 32.5237 32.0481 25.3332 32.0481 16.4997C32.0481 7.66313 24.8606 0.475586 16.0299 0.475586C7.18462 0.475586 0 7.66313 0 16.4997ZM12.5533 16.4586C12.5533 14.59 14.1173 13.0787 16.0358 13.0787C17.9777 13.0787 19.5358 14.59 19.5358 16.4586C19.5358 18.3302 17.9777 19.8445 16.0358 19.8445C14.1173 19.8445 12.5533 18.3302 12.5533 16.4586ZM21.22 15.1553H22.7518V22.5039C22.7518 22.8876 22.4413 23.1951 22.0606 23.1951H9.95537C9.57461 23.1951 9.26121 22.8876 9.26121 22.5039V15.1553H10.8663C10.7169 15.6327 10.6378 16.1335 10.6378 16.649C10.6378 19.5428 13.0542 21.8888 16.0358 21.8888C19.0291 21.8888 21.4513 19.5428 21.4513 16.649C21.4513 16.1335 21.3664 15.6327 21.22 15.1553ZM19.2166 10.5217C19.2166 10.0883 19.5681 9.73973 20.0015 9.73973H21.9639C22.3944 9.73973 22.7518 10.0883 22.7518 10.5217V12.3845C22.7518 12.8297 22.3944 13.1724 21.9639 13.1724H20.0015C19.5681 13.1724 19.2166 12.8297 19.2166 12.3845V10.5217ZM22.4882 7.81251H9.55996C8.34154 7.81251 7.33692 8.81126 7.33692 10.0355V22.9638C7.33692 24.188 8.34154 25.1956 9.55996 25.1956H22.4882C23.7183 25.1956 24.7229 24.188 24.7229 22.9638V10.0355C24.7229 8.81126 23.7183 7.81251 22.4882 7.81251Z" fill="white"></path>
+    </svg>
+</a>				</div>
+			</div>
+		</div>
+	</footer>
+
+	<div class="top_btn">
+		<svg width="18" height="11" viewBox="0 0 18 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<path d="M16.0873 10.1397C15.7625 10.1397 15.4673 10.0216 15.2311 9.78537L8.70631 2.99489L2.18156 9.78537C1.7387 10.2578 0.971057 10.2578 0.498676 9.8149C0.0262951 9.37204 0.0263023 8.60442 0.46916 8.13204L7.85011 0.455852C8.0863 0.219661 8.38155 0.101562 8.70631 0.101562C9.03107 0.101562 9.32632 0.219661 9.56251 0.455852L16.9435 8.13204C17.3863 8.60442 17.3863 9.34251 16.9139 9.8149C16.6778 10.0216 16.3825 10.1397 16.0873 10.1397Z" fill="#4264D0"/>
+		</svg>
+	</div>
+
+    
+    
+    <div class="ai-chatbot">
+        <div class="ai-chatbot__bubble" id="aiChatbotBubble">
+            <img
+                    src="/local/templates/statgov_main/img/ai_bot_bubble_ru.svg"
+                    alt=""
+                    class="ai-chatbot__bubble-img"
+                    loading="lazy"
+                    decoding="async"
+            >
+        </div>
+
+        <a href="#"
+           class="chatbot-popup"
+           data-lang="ru"
+           data-user="0"
+        >
+            <video autoplay loop muted playsinline class="chatbot__video">
+                <source src="/local/templates/statgov_main/img/ai-bot-3.webm" type="video/webm">
+            </video>
+            <img src="/local/templates/statgov_main/img/ai-bot-icon.png" class="ai-chatbot-icon"/>
+        </a>
+    </div>
+
+    <style>
+        .ai-chatbot {
+            z-index: 999;
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            width: 115px;
+            height: 115px;
+        }
+
+        .ai-chatbot-icon {
+            width: 60px;
+            position: absolute;
+            right: 0px;
+            bottom: 0px;
+            display: none;
+            animation: aiBotIconFloat 2.5s ease-in-out infinite;
+        }
+
+        .chatbot-popup {
+            display: block;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .ai-chatbot video,
+        .chatbot__video {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        .ai-chatbot__bubble {
+            position: absolute;
+            right: 15px;
+            bottom: 110px;
+            width: 220px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(12px) scale(0.96);
+            transition:
+                    opacity .45s ease,
+                    transform .45s ease,
+                    visibility .45s ease;
+            z-index: 3;
+        }
+
+        .ai-chatbot__bubble.is-visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+
+        .ai-chatbot__bubble-img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        @keyframes aiBotIconFloat {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-5px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .ai-chatbot {
+                right: 16px;
+                bottom: 16px;
+                width: 92px;
+                height: 92px;
+            }
+
+            .ai-chatbot__bubble {
+                width: 200px;
+                right: 5px;
+                bottom: 90px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .ai-chatbot-icon {
+                display: block;
+            }
+
+            .chatbot__video {
+                display: none!important;
+            }
+
+            .ai-chatbot__bubble {
+                width: 200px;
+                right: -10px;
+                bottom: 75px;
+            }
+        }
+    </style>
+
+    	<div class="modalDialog-overlay">
+		<div class="modalDialog-table">
+			<div class="modalDialog-cell">
+				<div class="modalDialog-modal">
+					   <div id="comp_b72c8f83ce71c7c105b136c8b2734a18">
+
+
+<form action="/ru/industries/economy/prices/spreadsheets/?name=19087" method="POST"><input type="hidden" name="bxajaxid" id="bxajaxid_b72c8f83ce71c7c105b136c8b2734a18_8BACKi" value="b72c8f83ce71c7c105b136c8b2734a18" /><input type="hidden" name="AJAX_CALL" value="Y" />
+    <input type="hidden" name="sessid" id="sessid" value="865b6192e38c7dd877a46a7ccf881c80" />
+    <label>Ошибка:</label>
+    <div>
+                    <p class="modalDialog-error-text"></p>
+            </div>
+
+    <label class="mt-1">Комментарий:</label>
+    <textarea name="COMMENT" maxlength="300" placeholder="Введите комментарий" rows="4"></textarea>
+
+    <input type="hidden" name="ERROR_TEXT" value="" id="error_text" maxlength="150">
+    <input type="hidden" name="PARAMS_HASH" value="8b4e165dfeb2314eb93dbfe40a7e00c0">
+
+    <div class="modalDialog-action">
+                    <button class="form-btn active" type="submit" name="submit" value="submit">Отправить</button>
+            <button class="form-btn" onclick="$('.modalDialog-overlay').css('display', 'none');">Отмена</button>
+            </div>
+
+</form>
+</div>				</div>
+			</div>
+		</div>
+	</div>
+
+<!--    <div class="notification-overlay">-->
+<!--        <div class="notification-table">-->
+<!--            <div class="notification-cell">-->
+<!--                <div class="notification-modal">-->
+<!--                    <div class="notification-close">-->
+<!--                        <button onclick="$('.notification-overlay').css('display','none');">-->
+<!--                            <svg class="notification-btn-close" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+<!--                                <path d="M18.9844 6.42188L13.4062 12L18.9844 17.5781L17.5781 18.9844L12 13.4062L6.42188 18.9844L5.01562 17.5781L10.5938 12L5.01562 6.42188L6.42188 5.01562L12 10.5938L17.5781 5.01562L18.9844 6.42188Z" fill="#4264D0"/>-->
+<!--                            </svg>-->
+<!--                            <svg class="notification-btn-cancel" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+<!--                                <path d="M17.0156 15.6094L13.4062 12L17.0156 8.39062L15.6094 6.98438L12 10.5938L8.39062 6.98438L6.98438 8.39062L10.5938 12L6.98438 15.6094L8.39062 17.0156L12 13.4062L15.6094 17.0156L17.0156 15.6094ZM4.92188 4.96875C6.89062 3 9.25 2.01562 12 2.01562C14.75 2.01562 17.0938 3 19.0312 4.96875C21 6.90625 21.9844 9.25 21.9844 12C21.9844 14.75 21 17.1094 19.0312 19.0781C17.0938 21.0156 14.75 21.9844 12 21.9844C9.25 21.9844 6.89062 21.0156 4.92188 19.0781C2.98438 17.1094 2.01562 14.75 2.01562 12C2.01562 9.25 2.98438 6.90625 4.92188 4.96875Z" fill="#4264D0"/>-->
+<!--                            </svg>-->
+<!--                        </button>-->
+<!--                    </div>-->
+<!--                    <div class="notification-title">--><!--</div>-->
+<!--                    <div class="notification-text">--><!--</div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+
+<!-- Yandex.Metrika counter -->
+<noscript><div><img src="https://mc.yandex.ru/watch/91900742" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
+<script>if(!window.BX)window.BX={};if(!window.BX.message)window.BX.message=function(mess){if(typeof mess==='object'){for(let i in mess) {BX.message[i]=mess[i];} return true;}};</script>
+<script>(window.BX||top.BX).message({"MAIN_BASELINE_BROWSER_OUTDATED":"Вы используете устаревшую версию браузера. Обновите его для безопасной и стабильной работы","MAIN_BASELINE_DETAILS":"Подробнее","MAIN_BASELINE_CLOSE":"Закрыть"});</script><script src="/bitrix/js/main/baseline/dist/baseline.bundle.js?17835174906900"></script><script>(window.BX||top.BX).message({"JS_CORE_LOADING":"Загрузка...","JS_CORE_NO_DATA":"- Нет данных -","JS_CORE_WINDOW_CLOSE":"Закрыть","JS_CORE_WINDOW_EXPAND":"Развернуть","JS_CORE_WINDOW_NARROW":"Свернуть в окно","JS_CORE_WINDOW_SAVE":"Сохранить","JS_CORE_WINDOW_CANCEL":"Отменить","JS_CORE_WINDOW_CONTINUE":"Продолжить","JS_CORE_H":"ч","JS_CORE_M":"м","JS_CORE_S":"с","JSADM_AI_HIDE_EXTRA":"Скрыть лишние","JSADM_AI_ALL_NOTIF":"Показать все","JSADM_AUTH_REQ":"Требуется авторизация!","JS_CORE_WINDOW_AUTH":"Войти","JS_CORE_IMAGE_FULL":"Полный размер"});</script><script src="/bitrix/js/main/core/core.js?1785482074333925"></script><script>BX.Runtime.registerExtension({"name":"main.core","namespace":"BX","loaded":true});</script>
+<script>BX.setJSList(["\/bitrix\/js\/main\/core\/core_ajax.js","\/bitrix\/js\/main\/core\/core_promise.js","\/bitrix\/js\/main\/polyfill\/promise\/js\/promise.js","\/bitrix\/js\/main\/loadext\/loadext.js","\/bitrix\/js\/main\/loadext\/extension.js","\/bitrix\/js\/main\/polyfill\/promise\/js\/promise.js","\/bitrix\/js\/main\/polyfill\/find\/js\/find.js","\/bitrix\/js\/main\/polyfill\/includes\/js\/includes.js","\/bitrix\/js\/main\/polyfill\/matches\/js\/matches.js","\/bitrix\/js\/ui\/polyfill\/closest\/js\/closest.js","\/bitrix\/js\/main\/polyfill\/fill\/main.polyfill.fill.js","\/bitrix\/js\/main\/polyfill\/find\/js\/find.js","\/bitrix\/js\/main\/polyfill\/matches\/js\/matches.js","\/bitrix\/js\/main\/polyfill\/core\/dist\/polyfill.bundle.js","\/bitrix\/js\/main\/core\/core.js","\/bitrix\/js\/main\/polyfill\/intersectionobserver\/js\/intersectionobserver.js","\/bitrix\/js\/main\/lazyload\/dist\/lazyload.bundle.js","\/bitrix\/js\/main\/polyfill\/core\/dist\/polyfill.bundle.js","\/bitrix\/js\/main\/parambag\/dist\/parambag.bundle.js"]);
+</script>
+<script>BX.Runtime.registerExtension({"name":"ui.a11y","namespace":"BX.UI.Accessibility","loaded":true});</script>
+<script>BX.Runtime.registerExtension({"name":"ui.design-tokens","namespace":"window","loaded":true});</script>
+<script>BX.Runtime.registerExtension({"name":"ui.fonts.opensans","namespace":"window","loaded":true});</script>
+<script>BX.Runtime.registerExtension({"name":"main.popup","namespace":"BX.Main","loaded":true});</script>
+<script>BX.Runtime.registerExtension({"name":"popup","namespace":"window","loaded":true});</script>
+<script>(window.BX||top.BX).message({"CORE_CLIPBOARD_COPY_SUCCESS":"Скопировано","CORE_CLIPBOARD_COPY_FAILURE":"Не удалось скопировать"});</script>
+<script>BX.Runtime.registerExtension({"name":"clipboard","namespace":"window","loaded":true});</script>
+<script>BX.Runtime.registerExtension({"name":"ui.design-tokens.air","namespace":"window","loaded":true});</script>
+<script>BX.Runtime.registerExtension({"name":"ui.icon-set","namespace":"","loaded":true});</script>
+<script>BX.Runtime.registerExtension({"name":"ui.icon-set.actions","namespace":"","loaded":true});</script>
+<script>BX.Runtime.registerExtension({"name":"ui.icon-set.main","namespace":"","loaded":true});</script>
+<script>BX.Runtime.registerExtension({"name":"ui.icon-set.outline","namespace":"","loaded":true});</script>
+<script>BX.Runtime.registerExtension({"name":"ui.system.skeleton","namespace":"BX.UI.System","loaded":true});</script>
+<script>(window.BX||top.BX).message({"MAIN_SIDEPANEL_CLOSE":"Закрыть","MAIN_SIDEPANEL_PRINT":"Печать","MAIN_SIDEPANEL_NEW_WINDOW":"Открыть в новом окне","MAIN_SIDEPANEL_COPY_LINK":"Скопировать ссылку","MAIN_SIDEPANEL_MINIMIZE":"Свернуть","MAIN_SIDEPANEL_REMOVE_ALL":"Удалить всё из быстрого доступа","MAIN_SIDEPANEL_TOOLBAR_TITLE":"Панель быстрого доступа","MAIN_SIDEPANEL_TOOLBAR_COLLAPSE":"Свернуть","MAIN_SIDEPANEL_TOOLBAR_REMOVE_ITEM":"Удалить","MAIN_SIDEPANEL_TOOLBAR_REMOVED_ARIA":"Элемент удален","MAIN_SIDEPANEL_TOOLBAR_MORE_ARIA":"Ещё"});</script>
+<script>BX.Runtime.registerExtension({"name":"main.sidepanel","namespace":"BX.SidePanel","loaded":true});</script>
+<script>BX.Runtime.registerExtension({"name":"sidepanel","namespace":"window","loaded":true});</script>
+<script>(window.BX||top.BX).message({"LANGUAGE_ID":"ru","FORMAT_DATE":"DD.MM.YYYY","FORMAT_DATETIME":"DD.MM.YYYY HH:MI:SS","COOKIE_PREFIX":"BITRIX_SM","SERVER_TZ_OFFSET":"18000","UTF_MODE":"Y","SITE_ID":"s2","SITE_DIR":"\/ru\/","USER_ID":"","SERVER_TIME":1793178889,"USER_TZ_OFFSET":0,"USER_TZ_AUTO":"Y","bitrix_sessid":"865b6192e38c7dd877a46a7ccf881c80"});</script><script src="/bitrix/js/ui/a11y/dist/a11y.bundle.js?178351748860327"></script>
+<script src="/bitrix/js/main/popup/dist/main.popup.bundle.js?1785482074117589"></script>
+<script src="/bitrix/js/main/core/core_clipboard.js?17688230934832"></script>
+<script src="/bitrix/js/ui/system/skeleton/dist/skeleton.bundle.js?17688230991764"></script>
+<script src="/bitrix/js/main/sidepanel/dist/side-panel.bundle.js?1783517490153714"></script>
+<script src="/local/templates/statgov_main/js/jquery-3.0.0.min.js?166971488186341"></script>
+<script src="/local/templates/statgov_main/js/highcharts/highcharts_11.4.1.js?1713776172275898"></script>
+<script src="/local/templates/statgov_main/js/highcharts/accessibility.js?1710182328139283"></script>
+<script src="/local/templates/statgov_main/js/slick.min.js?166971488141953"></script>
+<script src="/local/templates/statgov_main/js/jquery.waypoints.min.js?16697148819028"></script>
+<script src="/local/templates/statgov_main/js/jquery.inputmask.bundle.js?1669714881191387"></script>
+<script src="/local/templates/statgov_main/js/jquery.fancybox.min.js?166971488161486"></script>
+<script src="/local/templates/statgov_main/js/jquery.scrollTo.min.js?16697148813393"></script>
+<script src="/local/templates/statgov_main/js/tab.js?17005733691816"></script>
+<script src="/local/templates/statgov_main/js/script.js?173554600913013"></script>
+<script src="/local/templates/statgov_main/js/axios.min.js?166972934229592"></script>
+<script src="/local/templates/statgov_main/js/moment.min.js?167030506058103"></script>
+<script src="/local/templates/statgov_main/js/jsTree/jstree.min.js?1669914374141212"></script>
+<script src="/local/templates/statgov_main/js/letsee_ru.js?16813910336239"></script>
+<script src="/local/templates/statgov_main/js/sidepannel.js?178825966611304"></script>
+<script src="/local/templates/statgov_main/js/jquery.maskedinput.min.js?16697148814313"></script>
+<script src="/local/templates/statgov_main/js/auth.js?17479902552283"></script>
+<script src="/local/templates/statgov_main/js/custom.js?16892227063363"></script>
+
+<script type="application/javascript">
+			$(document).ready(function() {
+				$(".collections-filter-triger").on('change', function (event) {
+					let type        = "";
+					let year        = "";
+					let period      = "";
+					let name        = "";
+
+					type        = $("#collections-type-filter").val();
+					year        = $("#collections-year-filter").val();
+					period      = $("#collections-period-filter").val();
+					name        = $("#collections-name-filter").val();
+
+					window.location.href = "?year=" + year + "&name=" + name + "&period=" + period + "&type=" + type;
+				});
+			});
+		</script>
+
+<script>
+        $(function () {
+            const $bubble = $('#aiChatbotBubble');
+            const $chatbot = $('.chatbot-popup').first();
+
+            if (!$bubble.length || !$chatbot.length) {
+                return;
+            }
+
+            setTimeout(function () {
+                $bubble.addClass('is-visible');
+            }, 2000);
+
+            setTimeout(function () {
+                $bubble.removeClass('is-visible');
+            }, 12000);
+
+            $chatbot.on('click', function () {
+                $bubble.removeClass('is-visible');
+            });
+
+            $bubble.on('click', function () {
+                $bubble.removeClass('is-visible');
+                $chatbot.trigger('click');
+            });
+        });
+    </script>
+
+<script>
+function _processform_8BACKi(){
+	if (BX('bxajaxid_b72c8f83ce71c7c105b136c8b2734a18_8BACKi'))
+	{
+		var obForm = BX('bxajaxid_b72c8f83ce71c7c105b136c8b2734a18_8BACKi').form;
+		BX.bind(obForm, 'submit', function() {BX.ajax.submitComponentForm(this, 'comp_b72c8f83ce71c7c105b136c8b2734a18', true)});
+	}
+	BX.removeCustomEvent('onAjaxSuccess', _processform_8BACKi);
+}
+if (BX('bxajaxid_b72c8f83ce71c7c105b136c8b2734a18_8BACKi'))
+	_processform_8BACKi();
+else
+	BX.addCustomEvent('onAjaxSuccess', _processform_8BACKi);
+</script><script type="text/javascript" >
+    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+    ym(91900742, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true
+    });
+</script>
+</body>
+</html>

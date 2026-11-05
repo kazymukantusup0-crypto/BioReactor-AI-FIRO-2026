@@ -1,0 +1,85 @@
+{
+  "fault_injection": "Constructor failure after durable turn insert, before result handler",
+  "initial_http": 500,
+  "repeat_http": 409,
+  "repeat_body": {
+    "detail": "Предыдущий запрос уже принят; проверьте историю сессии."
+  },
+  "persisted_turns": [
+    {
+      "id": 1,
+      "session_id": "3f45824543724c4e84b479b6da97109b",
+      "request_id": "FAULT-INJECTION-construction",
+      "created_at": "2026-11-05T10:18:35.715049+00:00",
+      "question": "Проверь профиль навоза",
+      "status": "running",
+      "reply_json": null,
+      "extracted_entities_json": null,
+      "confirmed_parameters_json": null,
+      "pending_question_json": null,
+      "tool_results_json": null,
+      "reply": null
+    }
+  ],
+  "grass": {
+    "query": "У меня 470 л свежей травы и реактор 840 л. Стоит ли производить биогаз?",
+    "extraction": {
+      "language": "ru",
+      "intents": [
+        "process_guidance"
+      ],
+      "entities": [
+        {
+          "name": "market_commodity",
+          "value": "raw_biogas",
+          "unit": null,
+          "evidence": "У меня 470 л свежей травы и реактор 840 л. Стоит ли производить биогаз?",
+          "provenance": "USER_CONFIRMED"
+        },
+        {
+          "name": "quantity",
+          "value": 470.0,
+          "unit": "L",
+          "evidence": "470 л",
+          "provenance": "USER_CONFIRMED"
+        },
+        {
+          "name": "unit",
+          "value": "L",
+          "unit": null,
+          "evidence": "470 л",
+          "provenance": "USER_CONFIRMED"
+        },
+        {
+          "name": "reactor_total_volume_l",
+          "value": 840.0,
+          "unit": "L",
+          "evidence": "840 л",
+          "provenance": "USER_CONFIRMED"
+        }
+      ],
+      "correction": false,
+      "new_batch": false,
+      "validation_errors": []
+    },
+    "events": [
+      {
+        "type": "UpdatedPreviousValue",
+        "phase": "task_transition",
+        "field": "quantity",
+        "previous": 47.0,
+        "value": 470.0,
+        "evidence": "470 л"
+      },
+      {
+        "type": "UpdatedPreviousValue",
+        "phase": "task_transition",
+        "field": "reactor_total_volume_l",
+        "previous": 114.0,
+        "value": 840.0,
+        "evidence": "840 л"
+      }
+    ],
+    "active_material_before_scientific_bridge": "cattle_manure"
+  }
+}

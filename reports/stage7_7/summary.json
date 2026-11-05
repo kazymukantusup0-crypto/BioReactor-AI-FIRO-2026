@@ -1,0 +1,146 @@
+{
+  "checks": {
+    "backend": 340,
+    "frontend": 51,
+    "http": 50,
+    "chrome": 24
+  },
+  "performance": [
+    {
+      "question": "У меня 142 литра коровьего навоза. Сколько газа получится?",
+      "before_seconds": 7.600556200020947,
+      "after_seconds": 6.910974600003101,
+      "before_characters": 996,
+      "after_characters": 236,
+      "before_llm_generations": 1,
+      "after_llm_generations": 1,
+      "tools_after": [
+        "estimate_substrate_gas"
+      ]
+    },
+    {
+      "question": "Какая температура лучше?",
+      "before_seconds": 2.228231400018558,
+      "after_seconds": 0.09122820000629872,
+      "before_characters": 586,
+      "after_characters": 234,
+      "before_llm_generations": 1,
+      "after_llm_generations": 0,
+      "tools_after": [
+        "advise_substrate_conditions"
+      ]
+    },
+    {
+      "question": "Сколько дней потребуется?",
+      "before_seconds": 2.1796142000239342,
+      "after_seconds": 0.06519640004262328,
+      "before_characters": 586,
+      "after_characters": 136,
+      "before_llm_generations": 1,
+      "after_llm_generations": 0,
+      "tools_after": [
+        "advise_substrate_conditions"
+      ]
+    },
+    {
+      "question": "Добавь 20 кг пищевых отходов",
+      "before_seconds": 1.6068660999881104,
+      "after_seconds": 2.45337100001052,
+      "before_characters": 715,
+      "after_characters": 156,
+      "before_llm_generations": 1,
+      "after_llm_generations": 1,
+      "tools_after": [
+        "advise_substrate_conditions"
+      ]
+    },
+    {
+      "question": "А теперь сколько газа?",
+      "before_seconds": 2.2324533000355586,
+      "after_seconds": 0.066403100034222,
+      "before_characters": 715,
+      "after_characters": 261,
+      "before_llm_generations": 1,
+      "after_llm_generations": 0,
+      "tools_after": [
+        "estimate_substrate_gas"
+      ]
+    },
+    {
+      "question": "Что выгоднее — продать или переработать?",
+      "before_seconds": 1.9588449000148103,
+      "after_seconds": 0.1469550000037998,
+      "before_characters": 865,
+      "after_characters": 117,
+      "before_llm_generations": 1,
+      "after_llm_generations": 0,
+      "tools_after": [
+        "analyze_substrate_mixture"
+      ]
+    },
+    {
+      "question": "Объясни подробнее",
+      "before_seconds": 2.154754100018181,
+      "after_seconds": 0.11071259994059801,
+      "before_characters": 715,
+      "after_characters": 266,
+      "before_llm_generations": 1,
+      "after_llm_generations": 0,
+      "tools_after": []
+    },
+    {
+      "question": "Ответь одним предложением",
+      "before_seconds": 3.351417100057006,
+      "after_seconds": 0.09330549999140203,
+      "before_characters": 715,
+      "after_characters": 117,
+      "before_llm_generations": 1,
+      "after_llm_generations": 0,
+      "tools_after": []
+    }
+  ],
+  "before_total_seconds": 23.312737300177105,
+  "after_total_seconds": 9.938146400032565,
+  "preservation": {
+    "files": 325,
+    "changed_or_missing": [],
+    "tables": {
+      "observations": {
+        "original": 28,
+        "current": 28,
+        "all_original_rows_retained": true
+      },
+      "dashboard_sessions": {
+        "original": 2,
+        "current": 2,
+        "all_original_rows_retained": true
+      },
+      "dashboard_turns": {
+        "original": 12,
+        "current": 12,
+        "all_original_rows_retained": true
+      },
+      "scenarios": {
+        "original": 5,
+        "current": 5,
+        "all_original_rows_retained": true
+      },
+      "research_records": {
+        "original": 13,
+        "current": 13,
+        "all_original_rows_retained": true
+      },
+      "experiment_records": {
+        "original": 0,
+        "current": 0,
+        "all_original_rows_retained": true
+      },
+      "process_optimizer_runs": {
+        "original": 0,
+        "current": 0,
+        "all_original_rows_retained": true
+      }
+    },
+    "passed": true
+  }
+}

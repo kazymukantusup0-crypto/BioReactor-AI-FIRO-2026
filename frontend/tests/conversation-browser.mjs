@@ -1,0 +1,112 @@
+// Actual Chrome and actual local model, isolated backup of real market prices.
+import { chromium } from 'playwright-core'
+import assert from 'node:assert/strict'
+import fs from 'node:fs/promises'
+import path from 'node:path'
+const base = process.env.BIOREACTOR_QA_URL ?? 'http://127.0.0.1:8768'
+const out = path.resolve('../reports/stage5_6')
+const browser = await chromium.launch({ executablePath: process.env.CHROME_PATH ?? 'C:/Program Files/Google/Chrome/Application/chrome.exe', headless: true, args: ['--no-first-run', '--disable-background-networking'] })
+const context = await browser.newContext({ viewport: { width: 1366, height: 768 }, reducedMotion: 'reduce', locale: 'ru-RU' })
+const page = await context.newPage();const checks = [];const replies = [];const errors = [];const screenshots = [];const failedRequests = []
+page.on('pageerror', error => errors.push(error.message))
+page.on('console', message => { if (message.type() === 'error') errors.push(message.text()) })
+page.on('requestfailed', request => { if (request.failure()?.errorText !== 'net::ERR_ABORTED') failedRequests.push({ url: request.url(), error: request.failure()?.errorText }) })
+await context.route('**/*', route => ['127.0.0.1', 'localhost'].includes(new URL(route.request().url()).hostname) ? route.continue() : route.abort())
+const check = (name, condition = true) => { assert.ok(condition, name);checks.push(name) }
+const shot = async name => {
+  await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }))
+  await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))))
+  await page.screenshot({ path: path.join(out, name), fullPage: true, animations: 'disabled' });screenshots.push(name)
+}
+const postResponse = () => page.waitForResponse(r => /\/chat\/sessions\/[^/]+\/messages$/.test(r.url()) && r.request().method() === 'POST', { timeout: 125000 })
+async function send(message) {
+  await page.locator('#chat-input').fill(message)
+  const pending = postResponse();await page.getByRole('button', { name: 'Отправить сообщение' }).click()
+  const result = await (await pending).json();replies.push({ message, reply: result })
+  await page.getByRole('button', { name: 'Отправить сообщение' }).waitFor({ state: 'visible' })
+  await page.waitForFunction(() => !document.querySelector('#chat-input')?.disabled)
+  return result
+}
+try {
+  await page.goto(base + '/dashboard/#/chat', { waitUntil: 'networkidle' })
+  let reply = await send('У меня 800 литров навоза. Лучше продать или переработать? Какую температуру поставить?')
+  check('New UI uses conversational v5.6', reply.conversation_version === '5.6')
+  check('First turn asks only manure subtype', reply.pending_question.id === 'manure_subtype')
+  check('800 L are not converted into kg', reply.memory.facts.quantity.value === 800 && !reply.memory.derived.mass_kg)
+  check('Source-backed temperature guidance is separate from ML', reply.user_facing_answer.modes.includes('literature_guidance') && reply.user_facing_answer.sources.length > 0)
+  check('No unsupported ML/economic calculations', !reply.tools.some(t => ['predict_bmp', 'calculate_methane', 'compare_market_scenarios'].includes(t.tool)))
+  check('Internal field names not visible in prose', !(await page.locator('.conversation-prose').last().innerText()).match(/vs_mass_kg|gas_volume_basis|bmp_ml/))
+  check('Technical diagnostics closed by default', !await page.locator('.conversation-technical').last().getAttribute('open'))
+  await page.getByRole('button', { name: 'Коровий', exact: true }).waitFor()
+  await shot('chat_first_1366.png')
+  await page.setViewportSize({ width: 1920, height: 1080 });await shot('chat_first_1920.png')
+  check('1920 no horizontal overflow', await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1))
+  await page.setViewportSize({ width: 1366, height: 768 })
+  let pending = postResponse();await page.getByRole('button', { name: 'Коровий', exact: true }).click()
+  reply = await (await pending).json();replies.push({ message: 'Коровий [clarification button]', reply })
+  await page.waitForFunction(() => !document.querySelector('#chat-input')?.disabled)
+  check('One-word clarification keeps 800 L', reply.memory.facts.material.value === 'cattle_manure' && reply.memory.facts.quantity.value === 800)
+  check('Known manure subtype not asked again', reply.pending_question?.id !== 'manure_subtype')
+  await page.locator('.conversation-facts dd').filter({ hasText: 'Коровий навоз' }).waitFor()
+  await shot('chat_cow.png')
+
+  reply = await send('Я могу продать его за 15 000 тенге')
+  check('Offer retained without assuming its price basis', reply.memory.facts.sale_offer_amount.value === 15000 && reply.pending_question.id === 'sale_scope')
+  pending = postResponse();await page.getByRole('button', { name: 'За всю партию', exact: true }).click()
+  reply = await (await pending).json();replies.push({ message: 'За всю партию [clarification button]', reply })
+  await page.waitForFunction(() => !document.querySelector('#chat-input')?.disabled)
+  check('Batch offer is revenue, not invented profit', reply.memory.facts.sale_offer_scope.value === 'batch' && reply.answer.includes('выручки') && !reply.tools.some(t => t.tool === 'calculate_profitability'))
+  await shot('chat_offer.png')
+
+  reply = await send('А если у меня свиной навоз?')
+  check('Material correction invalidates prior offer', reply.memory.facts.material.value === 'swine_manure' && !reply.memory.facts.sale_offer_amount)
+  check('Material correction keeps raw volume', reply.memory.facts.quantity.value === 800)
+  reply = await send('А если реактор всего 90 литров?')
+  check('Feedstock volume and total reactor volume remain separate', reply.memory.facts.quantity.value === 800 && reply.memory.facts.reactor_total_volume_l.value === 90)
+  check('Capacity warning and working-volume clarification', reply.answer.includes('загрузить всё одновременно нельзя') && reply.pending_question.id === 'working_volume')
+  await shot('chat_capacity.png')
+  await page.getByRole('button', { name: 'Исправить материал и количество' }).click()
+  await page.getByLabel('Исправленный материал').selectOption('swine_manure')
+  await page.getByLabel('Исправленное количество').fill('600')
+  pending = postResponse();await page.getByRole('button', { name: 'Применить исправление' }).click()
+  reply = await (await pending).json();replies.push({ message: '600 L [correction editor]', reply })
+  await page.waitForFunction(() => !document.querySelector('#chat-input')?.disabled)
+  check('Correction editor changes current quantity, keeps history', reply.memory.facts.quantity.value === 600 && await page.locator('.chat-turn').count() === 7)
+  await page.reload({ waitUntil: 'networkidle' })
+  await page.locator('.conversation-facts dd').filter({ hasText: '600 L' }).first().waitFor()
+  check('Structured memory and full dialogue survive reload', await page.locator('.chat-turn').count() === 7)
+  await shot('chat_correction.png')
+  await page.locator('.conversation-technical>summary').last().click()
+  check('Executed tool details remain available', await page.locator('.tool-trace').last().isVisible())
+  await page.getByRole('button', { name: 'Новый диалог', exact: true }).click()
+  reply = await send('I have 5 kg of food waste. How much methane can I get?')
+  check('English user-facing answer without invented methane', reply.memory.language === 'en' && reply.answer.includes('Wet mass') && !reply.tools.some(t => t.tool === 'calculate_methane'))
+  await shot('chat_english.png')
+  await page.getByRole('button', { name: 'Новый диалог', exact: true }).click()
+  reply = await send('Менде 5 кг тағам қалдықтары бар. Қанша метан алуға болады?')
+  check('Kazakh answer and clarification', reply.memory.language === 'kk' && reply.answer.includes('өлшенген') && reply.pending_question.text.includes('партия'))
+  await shot('chat_kazakh.png')
+  await page.setViewportSize({ width: 390, height: 844 });await shot('chat_mobile.png')
+  check('Mobile chat has no horizontal overflow', await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1))
+  await page.setViewportSize({ width: 1366, height: 768 })
+
+  // Real backwards-compatible v4 session upgraded in place; prior reply is intact.
+  const oldResponse = await context.request.post(base + '/api/dashboard/chat/sessions', { data: { mode: 'no_llm', context: { material: 'manure_unspecified', material_volume_l: 800 }, conversation_version: '4' } })
+  const old = await oldResponse.json()
+  const archivedResponse = await context.request.post(base + `/api/dashboard/chat/sessions/${old.id}/messages`, { data: { message: '800 литров навоза. Что выгоднее?', request_id: 'browser_legacy_001' } })
+  const archivedReply = await archivedResponse.json()
+  await page.evaluate(id => localStorage.setItem('bioreactor_chat_session_v4', id), old.id)
+  await page.reload({ waitUntil: 'networkidle' })
+  const upgraded = await (await context.request.get(base + `/api/dashboard/chat/sessions/${old.id}`)).json()
+  check('Existing v4 sessions upgrade automatically', upgraded.conversation_version === '5.6')
+  check('Upgrade preserves historical assistant reply', JSON.stringify(upgraded.turns[0].reply) === JSON.stringify(archivedReply))
+  reply = await send('Коровий')
+  check('Upgraded session continues from old 800 L context', reply.memory.facts.material.value === 'cattle_manure' && reply.memory.facts.quantity.value === 800)
+  check('No console or uncaught JS errors', errors.length === 0)
+  check('No failed browser requests', failedRequests.length === 0)
+  await fs.writeFile(path.join(out, 'conversation_browser.json'), JSON.stringify({ passed: true, browser: await browser.version(), checks, screenshots, errors, failedRequests, replies, external_requests_blocked: true, base_url: base }, null, 2))
+  console.log(JSON.stringify({ passed: true, checks: checks.length, screenshots, actual_llm_generations: replies.filter(r => r.reply.mode === 'llm_tools').length }, null, 2))
+} catch (error) {
+  await shot('conversation_browser_failure.png')
+  await fs.writeFile(path.join(out, 'conversation_browser_failure.json'), JSON.stringify({ error: String(error), checks, errors, failedRequests, replies }, null, 2));throw error
+} finally { await browser.close() }

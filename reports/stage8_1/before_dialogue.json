@@ -1,0 +1,2802 @@
+[
+  {
+    "question": "У меня 100 литров жидкого свиного навоза. Сколько получится газа?",
+    "reply": {
+      "conversation_version": "7",
+      "analysis_version": "7.6",
+      "smart_agent_version": "7.7",
+      "mode": "deterministic_tools_no_llm",
+      "answer": "Полный выход пока не рассчитан: не хватает подходящих характеристик сырья. Следующий шаг — измерить состав или провести лабораторное испытание неподтверждённого компонента.",
+      "user_facing_answer": {
+        "paragraphs": [
+          "Полный выход пока не рассчитан: не хватает подходящих характеристик сырья. Следующий шаг — измерить состав или провести лабораторное испытание неподтверждённого компонента."
+        ],
+        "sections": [],
+        "question": null,
+        "sources": [
+          {
+            "id": "pham2013",
+            "doi": "10.5713/ajas.2012.12623",
+            "title": "Validation and Recommendation of Methods to Measure Biogas Production Potential of Animal Manure",
+            "authors": [
+              "C. H. Pham",
+              "J. M. Triolo",
+              "T. T. T. Cu",
+              "L. Pedersen",
+              "S. G. Sommer"
+            ],
+            "year": 2013,
+            "url": "https://doi.org/10.5713/ajas.2012.12623",
+            "review_url": "https://pdfs.semanticscholar.org/11ec/6cf5527fb8cd3d44f99641d82ec645b15b8f.pdf",
+            "verification_stage": "NUMERIC_DATA_VERIFIED",
+            "reviewed_sections": [
+              "Tables 2 and 3, Methods, Equation 1; table screenshots visually checked"
+            ],
+            "conditions": {
+              "temperature_c": 37,
+              "duration_days": null,
+              "endpoint": "Gas production rate below 1% of accumulated gas; no fixed universal number of days",
+              "reactor_type": "VDI 4630: 1 L glass bottles, 620 mL mixture, 150 mL medium; inoculum/substrate 2:1 VS",
+              "gas_basis": {
+                "temperature_k": 273,
+                "pressure_pa": 101300,
+                "moisture": "dry"
+              }
+            },
+            "limitations": "Fangel fattening pig sample, VDI method only; other methods and temperatures not pooled. Density absent."
+          }
+        ],
+        "modes": [],
+        "assumptions": []
+      },
+      "tools": [
+        {
+          "tool": "estimate_substrate_gas",
+          "status": "ok",
+          "cache_hit": false,
+          "input_origin": "validated_user_facts_and_scoped_evidence",
+          "result": {
+            "version": "7.7",
+            "status": "ok",
+            "message": "Requested quantities or studied conditions only; no actuator access",
+            "request": {
+              "components": [
+                {
+                  "id": "c1",
+                  "material": "swine_manure",
+                  "material_state": "unknown",
+                  "quantity": 100.0,
+                  "unit": "L",
+                  "animal": "pig",
+                  "physical_state": "unknown",
+                  "decay_state": "unknown",
+                  "bedding": "unknown",
+                  "data_mode": "LITERATURE_ESTIMATE",
+                  "properties": {
+                    "density_kg_l": null,
+                    "ts_fraction": null,
+                    "vs_fraction_wet": null,
+                    "vs_fraction_of_ts": null,
+                    "bmp_ml_g_vs": null,
+                    "carbon_fraction_wet": null,
+                    "nitrogen_fraction_wet": null,
+                    "gas_basis": null
+                  },
+                  "provenance": "USER_CONFIRMED",
+                  "evidence": "Confirmed single-material inventory"
+                }
+              ],
+              "allow_literature_transfer": true,
+              "assume_common_dry_gas_basis": false,
+              "reactor_total_volume_l": null,
+              "decision": {
+                "gas_use": "unknown",
+                "gas_basis": null,
+                "methane_fraction": null,
+                "composition_basis": null,
+                "assume_reference_compatibility": false,
+                "recovery_fraction": null,
+                "thermal_efficiency": null,
+                "electrical_efficiency": null,
+                "chp_thermal_efficiency": null,
+                "chp_electrical_efficiency": null,
+                "use_reference_scenarios": true,
+                "heating_value_kwh_m3": null,
+                "heating_value_type": "LHV",
+                "heating_value_basis": null,
+                "equipment_evidence": null,
+                "reactor": {
+                  "reactor_working_volume_l": null,
+                  "headspace_l": null,
+                  "inoculum_volume_l": null,
+                  "dilution_water_l": null,
+                  "resident_liquid_volume_l": null,
+                  "operating_mode": null,
+                  "reactor_type": null,
+                  "engineering_review_confirmed": false,
+                  "safety_review_required": false,
+                  "temperature_c": null,
+                  "initial_temperature_c": null,
+                  "ambient_temperature_c": null,
+                  "heated_mass_kg": null,
+                  "heat_capacity_kj_kg_k": null,
+                  "heat_loss_coefficient_w_k": null,
+                  "u_w_m2_k": null,
+                  "area_m2": null,
+                  "duration_days": null,
+                  "heater_efficiency": null,
+                  "heating_carrier": null,
+                  "auxiliary_energy_kwh": null,
+                  "loads": [],
+                  "loads_complete": false,
+                  "energy_scope": null,
+                  "provenance": "USER_REPORTED"
+                },
+                "quotes": {},
+                "price_ids": {},
+                "consumer_class": null,
+                "tax_basis": null,
+                "max_price_age_days": 30,
+                "costs": {},
+                "all_operating_costs_included": false,
+                "include_capital": false,
+                "capital_cost_per_batch": null,
+                "heat_demand_kwh": null,
+                "electricity_demand_kwh": null,
+                "assume_full_self_consumption": false,
+                "replacement_heat_source": "unknown",
+                "gas_sale_technical_confirmed": false,
+                "gas_sale_legal_confirmed": false,
+                "gas_quality_confirmed": false,
+                "gas_storage_transport_confirmed": false,
+                "digestate_mass_kg": null,
+                "digestate_quality_confirmed": false,
+                "digestate_market_allowed": false
+              },
+              "feeding_period_days": null,
+              "total_daily_liquid_feed_l": null,
+              "daily_feed_includes_all_liquid": false,
+              "inoculum_description": null,
+              "inoculum_adapted_temperature_c": null,
+              "temperature_control_confirmed": false,
+              "mixing_available": null,
+              "measured_ph": null,
+              "monitoring_confirmed": false,
+              "inhibition_warning": false,
+              "region": "KZ-Karaganda",
+              "region_confirmed": false,
+              "online": false,
+              "objectives": [
+                "methane",
+                "stability"
+              ]
+            },
+            "mixture": {
+              "components": [
+                {
+                  "id": "c1",
+                  "material": "swine_manure",
+                  "display_name": "Свиной навоз",
+                  "material_state": "unknown",
+                  "animal": "pig",
+                  "physical_state": "unknown",
+                  "decay_state": "unknown",
+                  "bedding": "unknown",
+                  "quantity": 100.0,
+                  "unit": "L",
+                  "wet_mass_kg": null,
+                  "volume_l": {
+                    "low": 100.0,
+                    "high": 100.0
+                  },
+                  "ts_mass_kg": null,
+                  "vs_mass_kg": null,
+                  "methane_reference_m3": null,
+                  "carbon_mass_kg": null,
+                  "nitrogen_mass_kg": null,
+                  "gas_basis": {
+                    "temperature_k": 273,
+                    "pressure_pa": 101300,
+                    "moisture": "dry"
+                  },
+                  "result_level": "HYPOTHETICAL_SCENARIO",
+                  "profile_id": "pham2013-pig-vdi",
+                  "properties_used": {
+                    "ts_fraction": {
+                      "range": {
+                        "low": 0.0318,
+                        "high": 0.0318
+                      },
+                      "provenance": "LITERATURE_ESTIMATE",
+                      "source_id": "pham2013",
+                      "locator": "Table 2: 3.18% total mass; SD .2 percentage points",
+                      "original_value": null,
+                      "original_unit": null
+                    },
+                    "vs_fraction_wet": {
+                      "range": {
+                        "low": 0.02275,
+                        "high": 0.02275
+                      },
+                      "provenance": "LITERATURE_ESTIMATE",
+                      "source_id": "pham2013",
+                      "locator": "Table 2: 22.75 g/kg fresh mass; SD .6 g/kg",
+                      "original_value": null,
+                      "original_unit": null
+                    },
+                    "bmp_ml_g_vs": {
+                      "range": {
+                        "low": 207.84,
+                        "high": 207.84
+                      },
+                      "provenance": "LITERATURE_ESTIMATE",
+                      "source_id": "pham2013",
+                      "locator": "Table 3: VDI CH4 pig, 207.84 NL/kg VS; reported SD 1.97, not a prediction interval",
+                      "original_value": null,
+                      "original_unit": null
+                    }
+                  },
+                  "assumptions": [
+                    "ts_fraction transferred from pham2013-pig-vdi",
+                    "vs_fraction_wet transferred from pham2013-pig-vdi",
+                    "bmp_ml_g_vs transferred from pham2013-pig-vdi",
+                    "Material state is assumed comparable to slurry"
+                  ],
+                  "missing": [
+                    "density_kg_l"
+                  ],
+                  "source": {
+                    "id": "pham2013",
+                    "doi": "10.5713/ajas.2012.12623",
+                    "title": "Validation and Recommendation of Methods to Measure Biogas Production Potential of Animal Manure",
+                    "authors": [
+                      "C. H. Pham",
+                      "J. M. Triolo",
+                      "T. T. T. Cu",
+                      "L. Pedersen",
+                      "S. G. Sommer"
+                    ],
+                    "year": 2013,
+                    "url": "https://doi.org/10.5713/ajas.2012.12623",
+                    "review_url": "https://pdfs.semanticscholar.org/11ec/6cf5527fb8cd3d44f99641d82ec645b15b8f.pdf",
+                    "verification_stage": "NUMERIC_DATA_VERIFIED",
+                    "reviewed_sections": [
+                      "Tables 2 and 3, Methods, Equation 1; table screenshots visually checked"
+                    ],
+                    "conditions": {
+                      "temperature_c": 37,
+                      "duration_days": null,
+                      "endpoint": "Gas production rate below 1% of accumulated gas; no fixed universal number of days",
+                      "reactor_type": "VDI 4630: 1 L glass bottles, 620 mL mixture, 150 mL medium; inoculum/substrate 2:1 VS",
+                      "gas_basis": {
+                        "temperature_k": 273,
+                        "pressure_pa": 101300,
+                        "moisture": "dry"
+                      }
+                    },
+                    "limitations": "Fangel fattening pig sample, VDI method only; other methods and temperatures not pooled. Density absent."
+                  },
+                  "cn_ratio_reference": null,
+                  "ph_reference": 7.71,
+                  "notice": "Single-component literature/measurement reference. A published sample point is not a universal population mean; no unreported SD is invented.",
+                  "methane_comparable_m3": null,
+                  "wet_mass_fraction": null
+                }
+              ],
+              "total_wet_mass_kg": null,
+              "sum_separate_volumes_l": {
+                "low": 100.0,
+                "high": 100.0
+              },
+              "total_ts_kg": null,
+              "total_vs_kg": null,
+              "cn_mass_ratio": null,
+              "mixture_ph": null,
+              "additive_methane_reference_m3": null,
+              "known_component_additive_subtotal_m3": null,
+              "complete_methane_reference": false,
+              "gas_basis": {
+                "temperature_k": 273,
+                "pressure_pa": 101300,
+                "moisture": "dry"
+              },
+              "normalization": [],
+              "olr_kg_vs_m3_day": null,
+              "synergy_factor": null,
+              "measured_mixture_bmp": null,
+              "result_level": "HYPOTHETICAL_SCENARIO",
+              "limitations": [
+                "Additive component references are not a validated methane yield of the mixture. No synergy coefficient is assumed.",
+                "Known-part subtotal is neither the full mixture prediction nor a lower bound on actual co-digestion yield.",
+                "Separate volumes may not add to final packed/liquid mixture volume; verify actual charge.",
+                "C/N requires carbon and nitrogen masses. pH cannot be averaged. Batch loading is not a daily OLR.",
+                "Sensitivity bounds have no verified probability coverage."
+              ]
+            },
+            "biogas": {
+              "potential_biogas_m3": null,
+              "methane_fraction": null,
+              "gas_basis": {
+                "temperature_k": 273.0,
+                "pressure_pa": 101300.0,
+                "moisture": "dry",
+                "description": ""
+              },
+              "status": "needs_input",
+              "result_level": null,
+              "compatibility": "missing_gas_basis",
+              "assumptions": [],
+              "scope": "Potential gas corresponding to laboratory methane potential, not collected plant gas. CH4 is part of biogas and must not be added again.",
+              "uncertainty": "Independent extrema envelope; unknown correlation and no validated probability coverage."
+            },
+            "sources": [
+              {
+                "id": "pham2013",
+                "doi": "10.5713/ajas.2012.12623",
+                "title": "Validation and Recommendation of Methods to Measure Biogas Production Potential of Animal Manure",
+                "authors": [
+                  "C. H. Pham",
+                  "J. M. Triolo",
+                  "T. T. T. Cu",
+                  "L. Pedersen",
+                  "S. G. Sommer"
+                ],
+                "year": 2013,
+                "url": "https://doi.org/10.5713/ajas.2012.12623",
+                "review_url": "https://pdfs.semanticscholar.org/11ec/6cf5527fb8cd3d44f99641d82ec645b15b8f.pdf",
+                "verification_stage": "NUMERIC_DATA_VERIFIED",
+                "reviewed_sections": [
+                  "Tables 2 and 3, Methods, Equation 1; table screenshots visually checked"
+                ],
+                "conditions": {
+                  "temperature_c": 37,
+                  "duration_days": null,
+                  "endpoint": "Gas production rate below 1% of accumulated gas; no fixed universal number of days",
+                  "reactor_type": "VDI 4630: 1 L glass bottles, 620 mL mixture, 150 mL medium; inoculum/substrate 2:1 VS",
+                  "gas_basis": {
+                    "temperature_k": 273,
+                    "pressure_pa": 101300,
+                    "moisture": "dry"
+                  }
+                },
+                "limitations": "Fangel fattening pig sample, VDI method only; other methods and temperatures not pooled. Density absent."
+              }
+            ],
+            "actuator_access": false
+          }
+        }
+      ],
+      "provider_status": [],
+      "missing": [],
+      "context": {
+        "material_volume_l": 100.0,
+        "material": "swine_manure",
+        "market_region": "KZ-Karaganda"
+      },
+      "context_updated": true,
+      "memory": {
+        "version": "7",
+        "conversation_id": null,
+        "language": "ru",
+        "facts": {
+          "material": {
+            "value": "swine_manure",
+            "unit": null,
+            "provenance": "USER_CONFIRMED",
+            "evidence": "свиного",
+            "recorded_at": "2026-10-30T04:53:23.835985+00:00",
+            "dependencies": []
+          },
+          "quantity": {
+            "value": 100.0,
+            "unit": "L",
+            "provenance": "USER_CONFIRMED",
+            "evidence": "100 литров",
+            "recorded_at": "2026-10-30T04:53:23.836036+00:00",
+            "dependencies": []
+          },
+          "unit": {
+            "value": "L",
+            "unit": null,
+            "provenance": "USER_CONFIRMED",
+            "evidence": "100 литров",
+            "recorded_at": "2026-10-30T04:53:23.836045+00:00",
+            "dependencies": []
+          }
+        },
+        "assumptions": {
+          "market_region": {
+            "value": "KZ-Karaganda",
+            "unit": null,
+            "provenance": "ASSUMED_FOR_SCENARIO",
+            "evidence": "Default dashboard region; not user-confirmed",
+            "recorded_at": "2026-10-30T04:53:23.801081+00:00",
+            "dependencies": []
+          }
+        },
+        "derived": {
+          "material_volume_l": {
+            "value": 100.0,
+            "unit": "L",
+            "provenance": "CALCULATED_FROM_CONFIRMED",
+            "evidence": "Unit arithmetic from explicit confirmed inputs",
+            "recorded_at": "2026-10-30T04:53:23.836069+00:00",
+            "dependencies": [
+              "quantity",
+              "unit"
+            ]
+          }
+        },
+        "estimates": {},
+        "source_verified": {},
+        "intents": [
+          "general"
+        ],
+        "pending_question": null,
+        "invalidated": [],
+        "decision_settings": {
+          "gas_use": "unknown",
+          "assume_reference_compatibility": false,
+          "use_reference_scenarios": true,
+          "heating_value_type": "LHV",
+          "reactor": {
+            "engineering_review_confirmed": false,
+            "safety_review_required": false,
+            "loads": [],
+            "loads_complete": false,
+            "provenance": "USER_REPORTED"
+          },
+          "quotes": {},
+          "price_ids": {},
+          "max_price_age_days": 30,
+          "costs": {},
+          "all_operating_costs_included": false,
+          "include_capital": false,
+          "assume_full_self_consumption": false,
+          "replacement_heat_source": "unknown",
+          "gas_sale_technical_confirmed": false,
+          "gas_sale_legal_confirmed": false,
+          "gas_quality_confirmed": false,
+          "gas_storage_transport_confirmed": false,
+          "digestate_quality_confirmed": false,
+          "digestate_market_allowed": false
+        },
+        "decision_unavailable": [],
+        "last_research_summary": {},
+        "mixture_components": [],
+        "mixture_scenario_components": [],
+        "mixture_revision": 0,
+        "mixture_history": [],
+        "advisor_inventory_mode": "none",
+        "advisor_pending_component": null,
+        "advisor_settings": {},
+        "smart_goals": [
+          "gas"
+        ],
+        "active_mixture_scenario": false,
+        "advanced": {}
+      },
+      "pending_question": null,
+      "technical_metadata": {
+        "smart_version": "7.7",
+        "intent_plan": {
+          "goals": [
+            "gas"
+          ],
+          "detail": false,
+          "one_sentence": false,
+          "edit": false,
+          "explicit": true,
+          "delegate_legacy": false,
+          "needs_interpretation": false
+        },
+        "cache_hits": 0,
+        "tool_calls": [
+          {
+            "tool": "estimate_substrate_gas",
+            "status": "ok",
+            "cache_hit": false,
+            "input_origin": "validated_user_facts_and_scoped_evidence",
+            "result": {
+              "version": "7.7",
+              "status": "ok",
+              "message": "Requested quantities or studied conditions only; no actuator access",
+              "request": {
+                "components": [
+                  {
+                    "id": "c1",
+                    "material": "swine_manure",
+                    "material_state": "unknown",
+                    "quantity": 100.0,
+                    "unit": "L",
+                    "animal": "pig",
+                    "physical_state": "unknown",
+                    "decay_state": "unknown",
+                    "bedding": "unknown",
+                    "data_mode": "LITERATURE_ESTIMATE",
+                    "properties": {
+                      "density_kg_l": null,
+                      "ts_fraction": null,
+                      "vs_fraction_wet": null,
+                      "vs_fraction_of_ts": null,
+                      "bmp_ml_g_vs": null,
+                      "carbon_fraction_wet": null,
+                      "nitrogen_fraction_wet": null,
+                      "gas_basis": null
+                    },
+                    "provenance": "USER_CONFIRMED",
+                    "evidence": "Confirmed single-material inventory"
+                  }
+                ],
+                "allow_literature_transfer": true,
+                "assume_common_dry_gas_basis": false,
+                "reactor_total_volume_l": null,
+                "decision": {
+                  "gas_use": "unknown",
+                  "gas_basis": null,
+                  "methane_fraction": null,
+                  "composition_basis": null,
+                  "assume_reference_compatibility": false,
+                  "recovery_fraction": null,
+                  "thermal_efficiency": null,
+                  "electrical_efficiency": null,
+                  "chp_thermal_efficiency": null,
+                  "chp_electrical_efficiency": null,
+                  "use_reference_scenarios": true,
+                  "heating_value_kwh_m3": null,
+                  "heating_value_type": "LHV",
+                  "heating_value_basis": null,
+                  "equipment_evidence": null,
+                  "reactor": {
+                    "reactor_working_volume_l": null,
+                    "headspace_l": null,
+                    "inoculum_volume_l": null,
+                    "dilution_water_l": null,
+                    "resident_liquid_volume_l": null,
+                    "operating_mode": null,
+                    "reactor_type": null,
+                    "engineering_review_confirmed": false,
+                    "safety_review_required": false,
+                    "temperature_c": null,
+                    "initial_temperature_c": null,
+                    "ambient_temperature_c": null,
+                    "heated_mass_kg": null,
+                    "heat_capacity_kj_kg_k": null,
+                    "heat_loss_coefficient_w_k": null,
+                    "u_w_m2_k": null,
+                    "area_m2": null,
+                    "duration_days": null,
+                    "heater_efficiency": null,
+                    "heating_carrier": null,
+                    "auxiliary_energy_kwh": null,
+                    "loads": [],
+                    "loads_complete": false,
+                    "energy_scope": null,
+                    "provenance": "USER_REPORTED"
+                  },
+                  "quotes": {},
+                  "price_ids": {},
+                  "consumer_class": null,
+                  "tax_basis": null,
+                  "max_price_age_days": 30,
+                  "costs": {},
+                  "all_operating_costs_included": false,
+                  "include_capital": false,
+                  "capital_cost_per_batch": null,
+                  "heat_demand_kwh": null,
+                  "electricity_demand_kwh": null,
+                  "assume_full_self_consumption": false,
+                  "replacement_heat_source": "unknown",
+                  "gas_sale_technical_confirmed": false,
+                  "gas_sale_legal_confirmed": false,
+                  "gas_quality_confirmed": false,
+                  "gas_storage_transport_confirmed": false,
+                  "digestate_mass_kg": null,
+                  "digestate_quality_confirmed": false,
+                  "digestate_market_allowed": false
+                },
+                "feeding_period_days": null,
+                "total_daily_liquid_feed_l": null,
+                "daily_feed_includes_all_liquid": false,
+                "inoculum_description": null,
+                "inoculum_adapted_temperature_c": null,
+                "temperature_control_confirmed": false,
+                "mixing_available": null,
+                "measured_ph": null,
+                "monitoring_confirmed": false,
+                "inhibition_warning": false,
+                "region": "KZ-Karaganda",
+                "region_confirmed": false,
+                "online": false,
+                "objectives": [
+                  "methane",
+                  "stability"
+                ]
+              },
+              "mixture": {
+                "components": [
+                  {
+                    "id": "c1",
+                    "material": "swine_manure",
+                    "display_name": "Свиной навоз",
+                    "material_state": "unknown",
+                    "animal": "pig",
+                    "physical_state": "unknown",
+                    "decay_state": "unknown",
+                    "bedding": "unknown",
+                    "quantity": 100.0,
+                    "unit": "L",
+                    "wet_mass_kg": null,
+                    "volume_l": {
+                      "low": 100.0,
+                      "high": 100.0
+                    },
+                    "ts_mass_kg": null,
+                    "vs_mass_kg": null,
+                    "methane_reference_m3": null,
+                    "carbon_mass_kg": null,
+                    "nitrogen_mass_kg": null,
+                    "gas_basis": {
+                      "temperature_k": 273,
+                      "pressure_pa": 101300,
+                      "moisture": "dry"
+                    },
+                    "result_level": "HYPOTHETICAL_SCENARIO",
+                    "profile_id": "pham2013-pig-vdi",
+                    "properties_used": {
+                      "ts_fraction": {
+                        "range": {
+                          "low": 0.0318,
+                          "high": 0.0318
+                        },
+                        "provenance": "LITERATURE_ESTIMATE",
+                        "source_id": "pham2013",
+                        "locator": "Table 2: 3.18% total mass; SD .2 percentage points",
+                        "original_value": null,
+                        "original_unit": null
+                      },
+                      "vs_fraction_wet": {
+                        "range": {
+                          "low": 0.02275,
+                          "high": 0.02275
+                        },
+                        "provenance": "LITERATURE_ESTIMATE",
+                        "source_id": "pham2013",
+                        "locator": "Table 2: 22.75 g/kg fresh mass; SD .6 g/kg",
+                        "original_value": null,
+                        "original_unit": null
+                      },
+                      "bmp_ml_g_vs": {
+                        "range": {
+                          "low": 207.84,
+                          "high": 207.84
+                        },
+                        "provenance": "LITERATURE_ESTIMATE",
+                        "source_id": "pham2013",
+                        "locator": "Table 3: VDI CH4 pig, 207.84 NL/kg VS; reported SD 1.97, not a prediction interval",
+                        "original_value": null,
+                        "original_unit": null
+                      }
+                    },
+                    "assumptions": [
+                      "ts_fraction transferred from pham2013-pig-vdi",
+                      "vs_fraction_wet transferred from pham2013-pig-vdi",
+                      "bmp_ml_g_vs transferred from pham2013-pig-vdi",
+                      "Material state is assumed comparable to slurry"
+                    ],
+                    "missing": [
+                      "density_kg_l"
+                    ],
+                    "source": {
+                      "id": "pham2013",
+                      "doi": "10.5713/ajas.2012.12623",
+                      "title": "Validation and Recommendation of Methods to Measure Biogas Production Potential of Animal Manure",
+                      "authors": [
+                        "C. H. Pham",
+                        "J. M. Triolo",
+                        "T. T. T. Cu",
+                        "L. Pedersen",
+                        "S. G. Sommer"
+                      ],
+                      "year": 2013,
+                      "url": "https://doi.org/10.5713/ajas.2012.12623",
+                      "review_url": "https://pdfs.semanticscholar.org/11ec/6cf5527fb8cd3d44f99641d82ec645b15b8f.pdf",
+                      "verification_stage": "NUMERIC_DATA_VERIFIED",
+                      "reviewed_sections": [
+                        "Tables 2 and 3, Methods, Equation 1; table screenshots visually checked"
+                      ],
+                      "conditions": {
+                        "temperature_c": 37,
+                        "duration_days": null,
+                        "endpoint": "Gas production rate below 1% of accumulated gas; no fixed universal number of days",
+                        "reactor_type": "VDI 4630: 1 L glass bottles, 620 mL mixture, 150 mL medium; inoculum/substrate 2:1 VS",
+                        "gas_basis": {
+                          "temperature_k": 273,
+                          "pressure_pa": 101300,
+                          "moisture": "dry"
+                        }
+                      },
+                      "limitations": "Fangel fattening pig sample, VDI method only; other methods and temperatures not pooled. Density absent."
+                    },
+                    "cn_ratio_reference": null,
+                    "ph_reference": 7.71,
+                    "notice": "Single-component literature/measurement reference. A published sample point is not a universal population mean; no unreported SD is invented.",
+                    "methane_comparable_m3": null,
+                    "wet_mass_fraction": null
+                  }
+                ],
+                "total_wet_mass_kg": null,
+                "sum_separate_volumes_l": {
+                  "low": 100.0,
+                  "high": 100.0
+                },
+                "total_ts_kg": null,
+                "total_vs_kg": null,
+                "cn_mass_ratio": null,
+                "mixture_ph": null,
+                "additive_methane_reference_m3": null,
+                "known_component_additive_subtotal_m3": null,
+                "complete_methane_reference": false,
+                "gas_basis": {
+                  "temperature_k": 273,
+                  "pressure_pa": 101300,
+                  "moisture": "dry"
+                },
+                "normalization": [],
+                "olr_kg_vs_m3_day": null,
+                "synergy_factor": null,
+                "measured_mixture_bmp": null,
+                "result_level": "HYPOTHETICAL_SCENARIO",
+                "limitations": [
+                  "Additive component references are not a validated methane yield of the mixture. No synergy coefficient is assumed.",
+                  "Known-part subtotal is neither the full mixture prediction nor a lower bound on actual co-digestion yield.",
+                  "Separate volumes may not add to final packed/liquid mixture volume; verify actual charge.",
+                  "C/N requires carbon and nitrogen masses. pH cannot be averaged. Batch loading is not a daily OLR.",
+                  "Sensitivity bounds have no verified probability coverage."
+                ]
+              },
+              "biogas": {
+                "potential_biogas_m3": null,
+                "methane_fraction": null,
+                "gas_basis": {
+                  "temperature_k": 273.0,
+                  "pressure_pa": 101300.0,
+                  "moisture": "dry",
+                  "description": ""
+                },
+                "status": "needs_input",
+                "result_level": null,
+                "compatibility": "missing_gas_basis",
+                "assumptions": [],
+                "scope": "Potential gas corresponding to laboratory methane potential, not collected plant gas. CH4 is part of biogas and must not be added again.",
+                "uncertainty": "Independent extrema envelope; unknown correlation and no validated probability coverage."
+              },
+              "sources": [
+                {
+                  "id": "pham2013",
+                  "doi": "10.5713/ajas.2012.12623",
+                  "title": "Validation and Recommendation of Methods to Measure Biogas Production Potential of Animal Manure",
+                  "authors": [
+                    "C. H. Pham",
+                    "J. M. Triolo",
+                    "T. T. T. Cu",
+                    "L. Pedersen",
+                    "S. G. Sommer"
+                  ],
+                  "year": 2013,
+                  "url": "https://doi.org/10.5713/ajas.2012.12623",
+                  "review_url": "https://pdfs.semanticscholar.org/11ec/6cf5527fb8cd3d44f99641d82ec645b15b8f.pdf",
+                  "verification_stage": "NUMERIC_DATA_VERIFIED",
+                  "reviewed_sections": [
+                    "Tables 2 and 3, Methods, Equation 1; table screenshots visually checked"
+                  ],
+                  "conditions": {
+                    "temperature_c": 37,
+                    "duration_days": null,
+                    "endpoint": "Gas production rate below 1% of accumulated gas; no fixed universal number of days",
+                    "reactor_type": "VDI 4630: 1 L glass bottles, 620 mL mixture, 150 mL medium; inoculum/substrate 2:1 VS",
+                    "gas_basis": {
+                      "temperature_k": 273,
+                      "pressure_pa": 101300,
+                      "moisture": "dry"
+                    }
+                  },
+                  "limitations": "Fangel fattening pig sample, VDI method only; other methods and temperatures not pooled. Density absent."
+                }
+              ],
+              "actuator_access": false
+            }
+          }
+        ],
+        "smart_result": {
+          "gas": {
+            "version": "7.7",
+            "status": "ok",
+            "message": "Requested quantities or studied conditions only; no actuator access",
+            "request": {
+              "components": [
+                {
+                  "id": "c1",
+                  "material": "swine_manure",
+                  "material_state": "unknown",
+                  "quantity": 100.0,
+                  "unit": "L",
+                  "animal": "pig",
+                  "physical_state": "unknown",
+                  "decay_state": "unknown",
+                  "bedding": "unknown",
+                  "data_mode": "LITERATURE_ESTIMATE",
+                  "properties": {
+                    "density_kg_l": null,
+                    "ts_fraction": null,
+                    "vs_fraction_wet": null,
+                    "vs_fraction_of_ts": null,
+                    "bmp_ml_g_vs": null,
+                    "carbon_fraction_wet": null,
+                    "nitrogen_fraction_wet": null,
+                    "gas_basis": null
+                  },
+                  "provenance": "USER_CONFIRMED",
+                  "evidence": "Confirmed single-material inventory"
+                }
+              ],
+              "allow_literature_transfer": true,
+              "assume_common_dry_gas_basis": false,
+              "reactor_total_volume_l": null,
+              "decision": {
+                "gas_use": "unknown",
+                "gas_basis": null,
+                "methane_fraction": null,
+                "composition_basis": null,
+                "assume_reference_compatibility": false,
+                "recovery_fraction": null,
+                "thermal_efficiency": null,
+                "electrical_efficiency": null,
+                "chp_thermal_efficiency": null,
+                "chp_electrical_efficiency": null,
+                "use_reference_scenarios": true,
+                "heating_value_kwh_m3": null,
+                "heating_value_type": "LHV",
+                "heating_value_basis": null,
+                "equipment_evidence": null,
+                "reactor": {
+                  "reactor_working_volume_l": null,
+                  "headspace_l": null,
+                  "inoculum_volume_l": null,
+                  "dilution_water_l": null,
+                  "resident_liquid_volume_l": null,
+                  "operating_mode": null,
+                  "reactor_type": null,
+                  "engineering_review_confirmed": false,
+                  "safety_review_required": false,
+                  "temperature_c": null,
+                  "initial_temperature_c": null,
+                  "ambient_temperature_c": null,
+                  "heated_mass_kg": null,
+                  "heat_capacity_kj_kg_k": null,
+                  "heat_loss_coefficient_w_k": null,
+                  "u_w_m2_k": null,
+                  "area_m2": null,
+                  "duration_days": null,
+                  "heater_efficiency": null,
+                  "heating_carrier": null,
+                  "auxiliary_energy_kwh": null,
+                  "loads": [],
+                  "loads_complete": false,
+                  "energy_scope": null,
+                  "provenance": "USER_REPORTED"
+                },
+                "quotes": {},
+                "price_ids": {},
+                "consumer_class": null,
+                "tax_basis": null,
+                "max_price_age_days": 30,
+                "costs": {},
+                "all_operating_costs_included": false,
+                "include_capital": false,
+                "capital_cost_per_batch": null,
+                "heat_demand_kwh": null,
+                "electricity_demand_kwh": null,
+                "assume_full_self_consumption": false,
+                "replacement_heat_source": "unknown",
+                "gas_sale_technical_confirmed": false,
+                "gas_sale_legal_confirmed": false,
+                "gas_quality_confirmed": false,
+                "gas_storage_transport_confirmed": false,
+                "digestate_mass_kg": null,
+                "digestate_quality_confirmed": false,
+                "digestate_market_allowed": false
+              },
+              "feeding_period_days": null,
+              "total_daily_liquid_feed_l": null,
+              "daily_feed_includes_all_liquid": false,
+              "inoculum_description": null,
+              "inoculum_adapted_temperature_c": null,
+              "temperature_control_confirmed": false,
+              "mixing_available": null,
+              "measured_ph": null,
+              "monitoring_confirmed": false,
+              "inhibition_warning": false,
+              "region": "KZ-Karaganda",
+              "region_confirmed": false,
+              "online": false,
+              "objectives": [
+                "methane",
+                "stability"
+              ]
+            },
+            "mixture": {
+              "components": [
+                {
+                  "id": "c1",
+                  "material": "swine_manure",
+                  "display_name": "Свиной навоз",
+                  "material_state": "unknown",
+                  "animal": "pig",
+                  "physical_state": "unknown",
+                  "decay_state": "unknown",
+                  "bedding": "unknown",
+                  "quantity": 100.0,
+                  "unit": "L",
+                  "wet_mass_kg": null,
+                  "volume_l": {
+                    "low": 100.0,
+                    "high": 100.0
+                  },
+                  "ts_mass_kg": null,
+                  "vs_mass_kg": null,
+                  "methane_reference_m3": null,
+                  "carbon_mass_kg": null,
+                  "nitrogen_mass_kg": null,
+                  "gas_basis": {
+                    "temperature_k": 273,
+                    "pressure_pa": 101300,
+                    "moisture": "dry"
+                  },
+                  "result_level": "HYPOTHETICAL_SCENARIO",
+                  "profile_id": "pham2013-pig-vdi",
+                  "properties_used": {
+                    "ts_fraction": {
+                      "range": {
+                        "low": 0.0318,
+                        "high": 0.0318
+                      },
+                      "provenance": "LITERATURE_ESTIMATE",
+                      "source_id": "pham2013",
+                      "locator": "Table 2: 3.18% total mass; SD .2 percentage points",
+                      "original_value": null,
+                      "original_unit": null
+                    },
+                    "vs_fraction_wet": {
+                      "range": {
+                        "low": 0.02275,
+                        "high": 0.02275
+                      },
+                      "provenance": "LITERATURE_ESTIMATE",
+                      "source_id": "pham2013",
+                      "locator": "Table 2: 22.75 g/kg fresh mass; SD .6 g/kg",
+                      "original_value": null,
+                      "original_unit": null
+                    },
+                    "bmp_ml_g_vs": {
+                      "range": {
+                        "low": 207.84,
+                        "high": 207.84
+                      },
+                      "provenance": "LITERATURE_ESTIMATE",
+                      "source_id": "pham2013",
+                      "locator": "Table 3: VDI CH4 pig, 207.84 NL/kg VS; reported SD 1.97, not a prediction interval",
+                      "original_value": null,
+                      "original_unit": null
+                    }
+                  },
+                  "assumptions": [
+                    "ts_fraction transferred from pham2013-pig-vdi",
+                    "vs_fraction_wet transferred from pham2013-pig-vdi",
+                    "bmp_ml_g_vs transferred from pham2013-pig-vdi",
+                    "Material state is assumed comparable to slurry"
+                  ],
+                  "missing": [
+                    "density_kg_l"
+                  ],
+                  "source": {
+                    "id": "pham2013",
+                    "doi": "10.5713/ajas.2012.12623",
+                    "title": "Validation and Recommendation of Methods to Measure Biogas Production Potential of Animal Manure",
+                    "authors": [
+                      "C. H. Pham",
+                      "J. M. Triolo",
+                      "T. T. T. Cu",
+                      "L. Pedersen",
+                      "S. G. Sommer"
+                    ],
+                    "year": 2013,
+                    "url": "https://doi.org/10.5713/ajas.2012.12623",
+                    "review_url": "https://pdfs.semanticscholar.org/11ec/6cf5527fb8cd3d44f99641d82ec645b15b8f.pdf",
+                    "verification_stage": "NUMERIC_DATA_VERIFIED",
+                    "reviewed_sections": [
+                      "Tables 2 and 3, Methods, Equation 1; table screenshots visually checked"
+                    ],
+                    "conditions": {
+                      "temperature_c": 37,
+                      "duration_days": null,
+                      "endpoint": "Gas production rate below 1% of accumulated gas; no fixed universal number of days",
+                      "reactor_type": "VDI 4630: 1 L glass bottles, 620 mL mixture, 150 mL medium; inoculum/substrate 2:1 VS",
+                      "gas_basis": {
+                        "temperature_k": 273,
+                        "pressure_pa": 101300,
+                        "moisture": "dry"
+                      }
+                    },
+                    "limitations": "Fangel fattening pig sample, VDI method only; other methods and temperatures not pooled. Density absent."
+                  },
+                  "cn_ratio_reference": null,
+                  "ph_reference": 7.71,
+                  "notice": "Single-component literature/measurement reference. A published sample point is not a universal population mean; no unreported SD is invented.",
+                  "methane_comparable_m3": null,
+                  "wet_mass_fraction": null
+                }
+              ],
+              "total_wet_mass_kg": null,
+              "sum_separate_volumes_l": {
+                "low": 100.0,
+                "high": 100.0
+              },
+              "total_ts_kg": null,
+              "total_vs_kg": null,
+              "cn_mass_ratio": null,
+              "mixture_ph": null,
+              "additive_methane_reference_m3": null,
+              "known_component_additive_subtotal_m3": null,
+              "complete_methane_reference": false,
+              "gas_basis": {
+                "temperature_k": 273,
+                "pressure_pa": 101300,
+                "moisture": "dry"
+              },
+              "normalization": [],
+              "olr_kg_vs_m3_day": null,
+              "synergy_factor": null,
+              "measured_mixture_bmp": null,
+              "result_level": "HYPOTHETICAL_SCENARIO",
+              "limitations": [
+                "Additive component references are not a validated methane yield of the mixture. No synergy coefficient is assumed.",
+                "Known-part subtotal is neither the full mixture prediction nor a lower bound on actual co-digestion yield.",
+                "Separate volumes may not add to final packed/liquid mixture volume; verify actual charge.",
+                "C/N requires carbon and nitrogen masses. pH cannot be averaged. Batch loading is not a daily OLR.",
+                "Sensitivity bounds have no verified probability coverage."
+              ]
+            },
+            "biogas": {
+              "potential_biogas_m3": null,
+              "methane_fraction": null,
+              "gas_basis": {
+                "temperature_k": 273.0,
+                "pressure_pa": 101300.0,
+                "moisture": "dry",
+                "description": ""
+              },
+              "status": "needs_input",
+              "result_level": null,
+              "compatibility": "missing_gas_basis",
+              "assumptions": [],
+              "scope": "Potential gas corresponding to laboratory methane potential, not collected plant gas. CH4 is part of biogas and must not be added again.",
+              "uncertainty": "Independent extrema envelope; unknown correlation and no validated probability coverage."
+            },
+            "sources": [
+              {
+                "id": "pham2013",
+                "doi": "10.5713/ajas.2012.12623",
+                "title": "Validation and Recommendation of Methods to Measure Biogas Production Potential of Animal Manure",
+                "authors": [
+                  "C. H. Pham",
+                  "J. M. Triolo",
+                  "T. T. T. Cu",
+                  "L. Pedersen",
+                  "S. G. Sommer"
+                ],
+                "year": 2013,
+                "url": "https://doi.org/10.5713/ajas.2012.12623",
+                "review_url": "https://pdfs.semanticscholar.org/11ec/6cf5527fb8cd3d44f99641d82ec645b15b8f.pdf",
+                "verification_stage": "NUMERIC_DATA_VERIFIED",
+                "reviewed_sections": [
+                  "Tables 2 and 3, Methods, Equation 1; table screenshots visually checked"
+                ],
+                "conditions": {
+                  "temperature_c": 37,
+                  "duration_days": null,
+                  "endpoint": "Gas production rate below 1% of accumulated gas; no fixed universal number of days",
+                  "reactor_type": "VDI 4630: 1 L glass bottles, 620 mL mixture, 150 mL medium; inoculum/substrate 2:1 VS",
+                  "gas_basis": {
+                    "temperature_k": 273,
+                    "pressure_pa": 101300,
+                    "moisture": "dry"
+                  }
+                },
+                "limitations": "Fangel fattening pig sample, VDI method only; other methods and temperatures not pooled. Density absent."
+              }
+            ],
+            "actuator_access": false
+          }
+        },
+        "component_inventory": [],
+        "scenario_inventory": [],
+        "extracted_entities": {
+          "language": "ru",
+          "intents": [],
+          "entities": [
+            {
+              "name": "material",
+              "value": "swine_manure",
+              "unit": null,
+              "evidence": "свиного",
+              "provenance": "USER_CONFIRMED"
+            },
+            {
+              "name": "quantity",
+              "value": 100.0,
+              "unit": "L",
+              "evidence": "100 литров",
+              "provenance": "USER_CONFIRMED"
+            },
+            {
+              "name": "unit",
+              "value": "L",
+              "unit": null,
+              "evidence": "100 литров",
+              "provenance": "USER_CONFIRMED"
+            }
+          ],
+          "correction": false,
+          "new_batch": false,
+          "validation_errors": []
+        },
+        "confirmed_parameters": {
+          "material": {
+            "value": "swine_manure",
+            "unit": null,
+            "provenance": "USER_CONFIRMED",
+            "evidence": "свиного",
+            "recorded_at": "2026-10-30T04:53:23.835985+00:00",
+            "dependencies": []
+          },
+          "quantity": {
+            "value": 100.0,
+            "unit": "L",
+            "provenance": "USER_CONFIRMED",
+            "evidence": "100 литров",
+            "recorded_at": "2026-10-30T04:53:23.836036+00:00",
+            "dependencies": []
+          },
+          "unit": {
+            "value": "L",
+            "unit": null,
+            "provenance": "USER_CONFIRMED",
+            "evidence": "100 литров",
+            "recorded_at": "2026-10-30T04:53:23.836045+00:00",
+            "dependencies": []
+          }
+        },
+        "llm_proposal": null,
+        "latency_seconds": 0.03936819999944419,
+        "research_result": {
+          "result_level": "HYPOTHETICAL_SCENARIO",
+          "methane_potential_m3": null
+        }
+      },
+      "actuator_access": false
+    }
+  },
+  {
+    "question": "У меня 50 кг сухого куриного помёта. Рассчитай газ, тепло и электричество",
+    "reply": {
+      "conversation_version": "7",
+      "smart_agent_version": "8.0",
+      "advanced_conversation_version": "8.0",
+      "mode": "deterministic_tools_no_llm",
+      "answer": "Масса сырья — около 50.0 кг. Полный выход газа пока неизвестен: для указанного состояния не хватает измеренных TS, VS, BMP или плотности.",
+      "user_facing_answer": {
+        "paragraphs": [
+          "Масса сырья — около 50.0 кг. Полный выход газа пока неизвестен: для указанного состояния не хватает измеренных TS, VS, BMP или плотности."
+        ],
+        "question": null,
+        "sources": [],
+        "modes": [
+          "conditional_reference"
+        ],
+        "assumptions": []
+      },
+      "tools": [
+        {
+          "tool": "estimate_advanced_gas",
+          "status": "ok",
+          "cache_hit": false,
+          "input_origin": "literal_facts_and_explicit_reference_scenarios",
+          "result": {
+            "status": "ok",
+            "message": "Additive laboratory reference; assumptions remain separate",
+            "mixture": {
+              "components": [
+                {
+                  "id": "c1",
+                  "material": "poultry_manure",
+                  "display_name": "Птичий помёт",
+                  "material_state": "dry",
+                  "animal": "poultry",
+                  "physical_state": "dry",
+                  "decay_state": "unknown",
+                  "bedding": "unknown",
+                  "quantity": 50.0,
+                  "unit": "kg",
+                  "wet_mass_kg": {
+                    "low": 50.0,
+                    "high": 50.0
+                  },
+                  "volume_l": null,
+                  "ts_mass_kg": null,
+                  "vs_mass_kg": null,
+                  "methane_reference_m3": null,
+                  "carbon_mass_kg": null,
+                  "nitrogen_mass_kg": null,
+                  "gas_basis": null,
+                  "result_level": "MEASURED",
+                  "profile_id": null,
+                  "properties_used": {},
+                  "assumptions": [],
+                  "missing": [
+                    "density_kg_l",
+                    "ts_fraction",
+                    "vs_fraction_wet",
+                    "bmp_ml_g_vs"
+                  ],
+                  "source": null,
+                  "cn_ratio_reference": null,
+                  "ph_reference": null,
+                  "notice": "Single-component literature/measurement reference. A published sample point is not a universal population mean; no unreported SD is invented.",
+                  "methane_comparable_m3": null,
+                  "wet_mass_fraction": {
+                    "low": 1.0,
+                    "high": 1.0
+                  }
+                }
+              ],
+              "total_wet_mass_kg": {
+                "low": 50.0,
+                "high": 50.0
+              },
+              "sum_separate_volumes_l": null,
+              "total_ts_kg": null,
+              "total_vs_kg": null,
+              "cn_mass_ratio": null,
+              "mixture_ph": null,
+              "additive_methane_reference_m3": null,
+              "known_component_additive_subtotal_m3": null,
+              "complete_methane_reference": false,
+              "gas_basis": {
+                "temperature_k": 273.2,
+                "pressure_pa": 101325,
+                "moisture": "dry",
+                "description": "Conditional common dry reference; not a measured mixture output"
+              },
+              "normalization": [],
+              "olr_kg_vs_m3_day": null,
+              "synergy_factor": null,
+              "measured_mixture_bmp": null,
+              "result_level": "MEASURED",
+              "limitations": [
+                "Additive component references are not a validated methane yield of the mixture. No synergy coefficient is assumed.",
+                "Known-part subtotal is neither the full mixture prediction nor a lower bound on actual co-digestion yield.",
+                "Separate volumes may not add to final packed/liquid mixture volume; verify actual charge.",
+                "C/N requires carbon and nitrogen masses. pH cannot be averaged. Batch loading is not a daily OLR.",
+                "Sensitivity bounds have no verified probability coverage."
+              ]
+            },
+            "biogas": {
+              "potential_biogas_m3": null,
+              "methane_fraction": {
+                "low": 0.6,
+                "high": 0.6,
+                "provenance": "HYPOTHETICAL_SCENARIO",
+                "evidence": "Selected composition illustration; not measured"
+              },
+              "gas_basis": {
+                "temperature_k": 273.2,
+                "pressure_pa": 101325.0,
+                "moisture": "dry",
+                "description": "Conditional common dry reference; not a measured mixture output"
+              },
+              "status": "needs_input",
+              "result_level": null,
+              "compatibility": "matched",
+              "assumptions": [],
+              "scope": "Potential gas corresponding to laboratory methane potential, not collected plant gas. CH4 is part of biogas and must not be added again.",
+              "uncertainty": "Independent extrema envelope; unknown correlation and no validated probability coverage."
+            },
+            "methane_fraction_assumed": true,
+            "scenario_assumptions": [],
+            "sources": [],
+            "geometry": {
+              "status": "UNKNOWN",
+              "violations": [],
+              "unknown": [
+                "reactor_working_volume_l",
+                "headspace_l",
+                "inoculum_volume_l",
+                "dilution_water_l",
+                "operating_mode",
+                "reactor_type",
+                "resident_liquid_volume_l"
+              ],
+              "known_charge_min_l": null,
+              "headspace_l": null,
+              "working_volume_l": null,
+              "total_volume_l": null,
+              "engineering_review_confirmed": false,
+              "operation_authorized": false,
+              "existing_constraints": {
+                "constraints": [
+                  {
+                    "kind": "UNKNOWN",
+                    "parameter": "reactor_total_volume_l",
+                    "status": "UNKNOWN",
+                    "message": "reactor_total_volume_l is not supplied; no operating approval is inferred."
+                  },
+                  {
+                    "kind": "UNKNOWN",
+                    "parameter": "reactor_working_volume_l",
+                    "status": "UNKNOWN",
+                    "message": "reactor_working_volume_l is not supplied; no operating approval is inferred."
+                  },
+                  {
+                    "kind": "UNKNOWN",
+                    "parameter": "reactor_type",
+                    "status": "UNKNOWN",
+                    "message": "reactor_type is not supplied; no operating approval is inferred."
+                  },
+                  {
+                    "kind": "UNKNOWN",
+                    "parameter": "operating_mode",
+                    "status": "UNKNOWN",
+                    "message": "operating_mode is not supplied; no operating approval is inferred."
+                  },
+                  {
+                    "kind": "UNKNOWN",
+                    "parameter": "inoculum_description",
+                    "status": "UNKNOWN",
+                    "message": "inoculum_description is not supplied; no operating approval is inferred."
+                  },
+                  {
+                    "kind": "UNKNOWN",
+                    "parameter": "gas_storage_conditions",
+                    "status": "UNKNOWN",
+                    "message": "gas_storage_conditions is not supplied; no operating approval is inferred."
+                  },
+                  {
+                    "kind": "UNKNOWN",
+                    "parameter": "ts_percent",
+                    "status": "UNKNOWN",
+                    "message": "No universal literature value is substituted for the missing measurement."
+                  },
+                  {
+                    "kind": "UNKNOWN",
+                    "parameter": "vs_percent",
+                    "status": "UNKNOWN",
+                    "message": "No universal literature value is substituted for the missing measurement."
+                  },
+                  {
+                    "kind": "UNKNOWN",
+                    "parameter": "ph",
+                    "status": "UNKNOWN",
+                    "message": "No universal literature value is substituted for the missing measurement."
+                  },
+                  {
+                    "kind": "UNKNOWN",
+                    "parameter": "temperature_c",
+                    "status": "UNKNOWN",
+                    "message": "No universal literature value is substituted for the missing measurement."
+                  },
+                  {
+                    "kind": "UNKNOWN",
+                    "parameter": "hrt_days",
+                    "status": "UNKNOWN",
+                    "message": "No universal literature value is substituted for the missing measurement."
+                  },
+                  {
+                    "kind": "UNKNOWN",
+                    "parameter": "olr_kg_vs_m3_day",
+                    "status": "UNKNOWN",
+                    "message": "No universal literature value is substituted for the missing measurement."
+                  }
+                ],
+                "critical_missing": [
+                  "reactor_total_volume_l",
+                  "reactor_working_volume_l",
+                  "reactor_type",
+                  "operating_mode",
+                  "inoculum_description",
+                  "gas_storage_conditions"
+                ],
+                "derived": {},
+                "feasibility_status": "INSUFFICIENT_DATA",
+                "status_scope": "Consistency and information availability only; not engineering safety certification."
+              },
+              "batch_plan": {
+                "status": "needs_input",
+                "batch_count": null,
+                "total_duration_days": null,
+                "missing": [
+                  "feedstock_volume_l",
+                  "reactor_working_volume_l",
+                  "operating_mode",
+                  "reactor_type",
+                  "inoculum_volume_l",
+                  "dilution_water_l",
+                  "resident_liquid_volume_l"
+                ],
+                "message": "Need working volume, loading mode, reactor type and explicit occupancy before assigning batches."
+              },
+              "scope": "One simultaneous charge only; serial processing can require a different plan. Geometric consistency is not a safety certification."
+            },
+            "actuator_access": false
+          }
+        },
+        {
+          "tool": "estimate_advanced_energy",
+          "status": "ok",
+          "cache_hit": false,
+          "input_origin": "literal_facts_and_explicit_reference_scenarios",
+          "result": {
+            "status": "ok",
+            "message": "Alternative uses of one fuel stream, not additive revenues",
+            "energy": {
+              "status": "needs_input",
+              "outputs": {},
+              "parameters": {
+                "recovery_fraction": {
+                  "low": 0.6,
+                  "high": 0.8,
+                  "provenance": "HYPOTHETICAL_SCENARIO",
+                  "evidence": "Selected illustrative equipment/recovery scenario, not a device measurement"
+                },
+                "thermal_efficiency": {
+                  "low": 0.8,
+                  "high": 0.8,
+                  "provenance": "HYPOTHETICAL_SCENARIO",
+                  "evidence": "Selected illustrative equipment/recovery scenario, not a device measurement"
+                },
+                "electrical_efficiency": {
+                  "low": 0.25,
+                  "high": 0.25,
+                  "provenance": "HYPOTHETICAL_SCENARIO",
+                  "evidence": "Selected illustrative equipment/recovery scenario, not a device measurement"
+                },
+                "chp_thermal_efficiency": {
+                  "low": 0.45,
+                  "high": 0.45,
+                  "provenance": "HYPOTHETICAL_SCENARIO",
+                  "evidence": "Selected illustrative equipment/recovery scenario, not a device measurement"
+                },
+                "chp_electrical_efficiency": {
+                  "low": 0.25,
+                  "high": 0.25,
+                  "provenance": "HYPOTHETICAL_SCENARIO",
+                  "evidence": "Selected illustrative equipment/recovery scenario, not a device measurement"
+                }
+              },
+              "heating_value": {
+                "value": 9.97,
+                "unit": "kWh/m3 CH4",
+                "type": "LHV",
+                "source": "FNR"
+              },
+              "gas_compatibility": "matched",
+              "gas_basis": {
+                "temperature_k": 273.2,
+                "pressure_pa": 101325.0,
+                "moisture": "dry",
+                "description": "Conditional common dry reference; not a measured mixture output"
+              },
+              "assumed_parameters": [
+                "recovery_fraction",
+                "thermal_efficiency",
+                "electrical_efficiency",
+                "chp_thermal_efficiency",
+                "chp_electrical_efficiency"
+              ],
+              "result_level": "HYPOTHETICAL_SCENARIO",
+              "allocation_policy": "Heat-only, electricity-only and CHP are alternative allocations of one fuel stream. Only CHP heat and electricity may be valued together.",
+              "uncertainty": "Sensitivity bounds, no independent probability or validated interval coverage."
+            },
+            "biogas": {
+              "potential_biogas_m3": null,
+              "methane_fraction": {
+                "low": 0.6,
+                "high": 0.6,
+                "provenance": "HYPOTHETICAL_SCENARIO",
+                "evidence": "Selected 60% methane illustration, not a measurement or matched composition study"
+              },
+              "gas_basis": {
+                "temperature_k": 273.2,
+                "pressure_pa": 101325.0,
+                "moisture": "dry",
+                "description": "Conditional common dry reference; not a measured mixture output"
+              },
+              "status": "needs_input",
+              "result_level": null,
+              "compatibility": "matched",
+              "assumptions": [],
+              "scope": "Potential gas corresponding to laboratory methane potential, not collected plant gas. CH4 is part of biogas and must not be added again.",
+              "uncertainty": "Independent extrema envelope; unknown correlation and no validated probability coverage."
+            },
+            "methane_fraction_assumed": true,
+            "actuator_access": false
+          }
+        }
+      ],
+      "provider_status": [],
+      "pending_question": null,
+      "context": {
+        "market_region": "KZ-Karaganda"
+      },
+      "context_updated": true,
+      "memory": {
+        "version": "7",
+        "conversation_id": null,
+        "language": "ru",
+        "facts": {},
+        "assumptions": {
+          "market_region": {
+            "value": "KZ-Karaganda",
+            "unit": null,
+            "provenance": "ASSUMED_FOR_SCENARIO",
+            "evidence": "Default dashboard region; not user-confirmed",
+            "recorded_at": "2026-10-30T04:53:23.847093+00:00",
+            "dependencies": []
+          }
+        },
+        "derived": {},
+        "estimates": {
+          "advanced_wet_mass_kg": {
+            "value": {
+              "low": 50.0,
+              "high": 50.0
+            },
+            "unit": null,
+            "provenance": "ASSUMED_FOR_SCENARIO",
+            "evidence": "Literature transfer / scenario, not measured plant output",
+            "recorded_at": "2026-10-30T04:53:23.857003+00:00",
+            "dependencies": [
+              "advanced_inventory"
+            ]
+          }
+        },
+        "source_verified": {},
+        "intents": [],
+        "pending_question": null,
+        "invalidated": [],
+        "decision_settings": {
+          "gas_use": "unknown",
+          "assume_reference_compatibility": false,
+          "use_reference_scenarios": true,
+          "heating_value_type": "LHV",
+          "reactor": {
+            "engineering_review_confirmed": false,
+            "safety_review_required": false,
+            "loads": [],
+            "loads_complete": false,
+            "provenance": "USER_REPORTED"
+          },
+          "quotes": {},
+          "price_ids": {},
+          "max_price_age_days": 30,
+          "costs": {},
+          "all_operating_costs_included": false,
+          "include_capital": false,
+          "assume_full_self_consumption": false,
+          "replacement_heat_source": "unknown",
+          "gas_sale_technical_confirmed": false,
+          "gas_sale_legal_confirmed": false,
+          "gas_quality_confirmed": false,
+          "gas_storage_transport_confirmed": false,
+          "digestate_quality_confirmed": false,
+          "digestate_market_allowed": false
+        },
+        "decision_unavailable": [],
+        "last_research_summary": {},
+        "mixture_components": [
+          {
+            "id": "c1",
+            "material": "poultry_manure",
+            "material_state": "dry",
+            "quantity": 50.0,
+            "unit": "kg",
+            "animal": "poultry",
+            "physical_state": "dry",
+            "decay_state": "unknown",
+            "bedding": "unknown",
+            "data_mode": "LITERATURE_ESTIMATE",
+            "properties": {
+              "density_kg_l": null,
+              "ts_fraction": null,
+              "vs_fraction_wet": null,
+              "vs_fraction_of_ts": null,
+              "bmp_ml_g_vs": null,
+              "carbon_fraction_wet": null,
+              "nitrogen_fraction_wet": null,
+              "gas_basis": null
+            },
+            "provenance": "USER_CONFIRMED",
+            "evidence": "У меня 50 кг сухого куриного помёта. Рассчитай газ, тепло и электричество"
+          }
+        ],
+        "mixture_scenario_components": [],
+        "mixture_revision": 0,
+        "mixture_history": [],
+        "advisor_inventory_mode": "none",
+        "advisor_pending_component": null,
+        "advisor_settings": {},
+        "smart_goals": [
+          "gas",
+          "heat",
+          "electricity"
+        ],
+        "smart_cache": {},
+        "active_mixture_scenario": false,
+        "advanced": {
+          "inventory": [
+            {
+              "id": "c1",
+              "material": "poultry_manure",
+              "material_state": "dry",
+              "quantity": 50.0,
+              "unit": "kg",
+              "animal": "poultry",
+              "physical_state": "dry",
+              "decay_state": "unknown",
+              "bedding": "unknown",
+              "data_mode": "LITERATURE_ESTIMATE",
+              "properties": {
+                "density_kg_l": null,
+                "ts_fraction": null,
+                "vs_fraction_wet": null,
+                "vs_fraction_of_ts": null,
+                "bmp_ml_g_vs": null,
+                "carbon_fraction_wet": null,
+                "nitrogen_fraction_wet": null,
+                "gas_basis": null
+              },
+              "provenance": "USER_CONFIRMED",
+              "evidence": "У меня 50 кг сухого куриного помёта. Рассчитай газ, тепло и электричество"
+            }
+          ],
+          "preferences": {},
+          "active_scenario": false,
+          "history": [
+            {
+              "at": "2026-10-30T04:53:23.850210+00:00",
+              "message": "У меня 50 кг сухого куриного помёта. Рассчитай газ, тепло и электричество",
+              "components": [
+                {
+                  "id": "c1",
+                  "material": "poultry_manure",
+                  "material_state": "dry",
+                  "quantity": 50.0,
+                  "unit": "kg",
+                  "animal": "poultry",
+                  "physical_state": "dry",
+                  "decay_state": "unknown",
+                  "bedding": "unknown",
+                  "data_mode": "LITERATURE_ESTIMATE",
+                  "properties": {
+                    "density_kg_l": null,
+                    "ts_fraction": null,
+                    "vs_fraction_wet": null,
+                    "vs_fraction_of_ts": null,
+                    "bmp_ml_g_vs": null,
+                    "carbon_fraction_wet": null,
+                    "nitrogen_fraction_wet": null,
+                    "gas_basis": null
+                  },
+                  "provenance": "USER_CONFIRMED",
+                  "evidence": "У меня 50 кг сухого куриного помёта. Рассчитай газ, тепло и электричество"
+                }
+              ],
+              "scenario": false
+            }
+          ],
+          "task": {
+            "id": "d17279945d9e4c80a0c652e6e4b785a6",
+            "original_text": "У меня 50 кг сухого куриного помёта. Рассчитай газ, тепло и электричество",
+            "goals": [
+              "gas",
+              "heat",
+              "electricity"
+            ],
+            "status": {
+              "gas": "partial_missing_properties",
+              "heat": "reference_calculated",
+              "electricity": "reference_calculated"
+            }
+          },
+          "last_goals": [
+            "gas",
+            "heat",
+            "electricity"
+          ],
+          "last_calculation_goals": [
+            "gas",
+            "heat",
+            "electricity"
+          ],
+          "assumptions": [],
+          "sources": [],
+          "results": {
+            "gas": {
+              "calculated_at": "2026-10-30T04:53:23.857045+00:00",
+              "kind": "CONDITIONAL_REFERENCE"
+            },
+            "energy": {
+              "calculated_at": "2026-10-30T04:53:23.857048+00:00",
+              "kind": "CONDITIONAL_REFERENCE"
+            }
+          },
+          "tasks": [
+            {
+              "id": "d17279945d9e4c80a0c652e6e4b785a6",
+              "original_text": "У меня 50 кг сухого куриного помёта. Рассчитай газ, тепло и электричество",
+              "goals": [
+                "gas",
+                "heat",
+                "electricity"
+              ],
+              "status": {
+                "gas": "partial_missing_properties",
+                "heat": "reference_calculated",
+                "electricity": "reference_calculated"
+              }
+            }
+          ],
+          "unfinished_tasks": [
+            {
+              "id": "d17279945d9e4c80a0c652e6e4b785a6",
+              "original_text": "У меня 50 кг сухого куриного помёта. Рассчитай газ, тепло и электричество",
+              "goals": {
+                "gas": "partial_missing_properties"
+              }
+            }
+          ]
+        }
+      },
+      "missing": [],
+      "actuator_access": false,
+      "policy_tool_plan": [
+        "estimate_advanced_gas",
+        "estimate_advanced_energy"
+      ],
+      "technical_metadata": {
+        "smart_version": "8.0",
+        "advanced_version": "8.0",
+        "tool_calls": [
+          {
+            "tool": "estimate_advanced_gas",
+            "status": "ok",
+            "cache_hit": false,
+            "input_origin": "literal_facts_and_explicit_reference_scenarios",
+            "result": {
+              "status": "ok",
+              "message": "Additive laboratory reference; assumptions remain separate",
+              "mixture": {
+                "components": [
+                  {
+                    "id": "c1",
+                    "material": "poultry_manure",
+                    "display_name": "Птичий помёт",
+                    "material_state": "dry",
+                    "animal": "poultry",
+                    "physical_state": "dry",
+                    "decay_state": "unknown",
+                    "bedding": "unknown",
+                    "quantity": 50.0,
+                    "unit": "kg",
+                    "wet_mass_kg": {
+                      "low": 50.0,
+                      "high": 50.0
+                    },
+                    "volume_l": null,
+                    "ts_mass_kg": null,
+                    "vs_mass_kg": null,
+                    "methane_reference_m3": null,
+                    "carbon_mass_kg": null,
+                    "nitrogen_mass_kg": null,
+                    "gas_basis": null,
+                    "result_level": "MEASURED",
+                    "profile_id": null,
+                    "properties_used": {},
+                    "assumptions": [],
+                    "missing": [
+                      "density_kg_l",
+                      "ts_fraction",
+                      "vs_fraction_wet",
+                      "bmp_ml_g_vs"
+                    ],
+                    "source": null,
+                    "cn_ratio_reference": null,
+                    "ph_reference": null,
+                    "notice": "Single-component literature/measurement reference. A published sample point is not a universal population mean; no unreported SD is invented.",
+                    "methane_comparable_m3": null,
+                    "wet_mass_fraction": {
+                      "low": 1.0,
+                      "high": 1.0
+                    }
+                  }
+                ],
+                "total_wet_mass_kg": {
+                  "low": 50.0,
+                  "high": 50.0
+                },
+                "sum_separate_volumes_l": null,
+                "total_ts_kg": null,
+                "total_vs_kg": null,
+                "cn_mass_ratio": null,
+                "mixture_ph": null,
+                "additive_methane_reference_m3": null,
+                "known_component_additive_subtotal_m3": null,
+                "complete_methane_reference": false,
+                "gas_basis": {
+                  "temperature_k": 273.2,
+                  "pressure_pa": 101325,
+                  "moisture": "dry",
+                  "description": "Conditional common dry reference; not a measured mixture output"
+                },
+                "normalization": [],
+                "olr_kg_vs_m3_day": null,
+                "synergy_factor": null,
+                "measured_mixture_bmp": null,
+                "result_level": "MEASURED",
+                "limitations": [
+                  "Additive component references are not a validated methane yield of the mixture. No synergy coefficient is assumed.",
+                  "Known-part subtotal is neither the full mixture prediction nor a lower bound on actual co-digestion yield.",
+                  "Separate volumes may not add to final packed/liquid mixture volume; verify actual charge.",
+                  "C/N requires carbon and nitrogen masses. pH cannot be averaged. Batch loading is not a daily OLR.",
+                  "Sensitivity bounds have no verified probability coverage."
+                ]
+              },
+              "biogas": {
+                "potential_biogas_m3": null,
+                "methane_fraction": {
+                  "low": 0.6,
+                  "high": 0.6,
+                  "provenance": "HYPOTHETICAL_SCENARIO",
+                  "evidence": "Selected composition illustration; not measured"
+                },
+                "gas_basis": {
+                  "temperature_k": 273.2,
+                  "pressure_pa": 101325.0,
+                  "moisture": "dry",
+                  "description": "Conditional common dry reference; not a measured mixture output"
+                },
+                "status": "needs_input",
+                "result_level": null,
+                "compatibility": "matched",
+                "assumptions": [],
+                "scope": "Potential gas corresponding to laboratory methane potential, not collected plant gas. CH4 is part of biogas and must not be added again.",
+                "uncertainty": "Independent extrema envelope; unknown correlation and no validated probability coverage."
+              },
+              "methane_fraction_assumed": true,
+              "scenario_assumptions": [],
+              "sources": [],
+              "geometry": {
+                "status": "UNKNOWN",
+                "violations": [],
+                "unknown": [
+                  "reactor_working_volume_l",
+                  "headspace_l",
+                  "inoculum_volume_l",
+                  "dilution_water_l",
+                  "operating_mode",
+                  "reactor_type",
+                  "resident_liquid_volume_l"
+                ],
+                "known_charge_min_l": null,
+                "headspace_l": null,
+                "working_volume_l": null,
+                "total_volume_l": null,
+                "engineering_review_confirmed": false,
+                "operation_authorized": false,
+                "existing_constraints": {
+                  "constraints": [
+                    {
+                      "kind": "UNKNOWN",
+                      "parameter": "reactor_total_volume_l",
+                      "status": "UNKNOWN",
+                      "message": "reactor_total_volume_l is not supplied; no operating approval is inferred."
+                    },
+                    {
+                      "kind": "UNKNOWN",
+                      "parameter": "reactor_working_volume_l",
+                      "status": "UNKNOWN",
+                      "message": "reactor_working_volume_l is not supplied; no operating approval is inferred."
+                    },
+                    {
+                      "kind": "UNKNOWN",
+                      "parameter": "reactor_type",
+                      "status": "UNKNOWN",
+                      "message": "reactor_type is not supplied; no operating approval is inferred."
+                    },
+                    {
+                      "kind": "UNKNOWN",
+                      "parameter": "operating_mode",
+                      "status": "UNKNOWN",
+                      "message": "operating_mode is not supplied; no operating approval is inferred."
+                    },
+                    {
+                      "kind": "UNKNOWN",
+                      "parameter": "inoculum_description",
+                      "status": "UNKNOWN",
+                      "message": "inoculum_description is not supplied; no operating approval is inferred."
+                    },
+                    {
+                      "kind": "UNKNOWN",
+                      "parameter": "gas_storage_conditions",
+                      "status": "UNKNOWN",
+                      "message": "gas_storage_conditions is not supplied; no operating approval is inferred."
+                    },
+                    {
+                      "kind": "UNKNOWN",
+                      "parameter": "ts_percent",
+                      "status": "UNKNOWN",
+                      "message": "No universal literature value is substituted for the missing measurement."
+                    },
+                    {
+                      "kind": "UNKNOWN",
+                      "parameter": "vs_percent",
+                      "status": "UNKNOWN",
+                      "message": "No universal literature value is substituted for the missing measurement."
+                    },
+                    {
+                      "kind": "UNKNOWN",
+                      "parameter": "ph",
+                      "status": "UNKNOWN",
+                      "message": "No universal literature value is substituted for the missing measurement."
+                    },
+                    {
+                      "kind": "UNKNOWN",
+                      "parameter": "temperature_c",
+                      "status": "UNKNOWN",
+                      "message": "No universal literature value is substituted for the missing measurement."
+                    },
+                    {
+                      "kind": "UNKNOWN",
+                      "parameter": "hrt_days",
+                      "status": "UNKNOWN",
+                      "message": "No universal literature value is substituted for the missing measurement."
+                    },
+                    {
+                      "kind": "UNKNOWN",
+                      "parameter": "olr_kg_vs_m3_day",
+                      "status": "UNKNOWN",
+                      "message": "No universal literature value is substituted for the missing measurement."
+                    }
+                  ],
+                  "critical_missing": [
+                    "reactor_total_volume_l",
+                    "reactor_working_volume_l",
+                    "reactor_type",
+                    "operating_mode",
+                    "inoculum_description",
+                    "gas_storage_conditions"
+                  ],
+                  "derived": {},
+                  "feasibility_status": "INSUFFICIENT_DATA",
+                  "status_scope": "Consistency and information availability only; not engineering safety certification."
+                },
+                "batch_plan": {
+                  "status": "needs_input",
+                  "batch_count": null,
+                  "total_duration_days": null,
+                  "missing": [
+                    "feedstock_volume_l",
+                    "reactor_working_volume_l",
+                    "operating_mode",
+                    "reactor_type",
+                    "inoculum_volume_l",
+                    "dilution_water_l",
+                    "resident_liquid_volume_l"
+                  ],
+                  "message": "Need working volume, loading mode, reactor type and explicit occupancy before assigning batches."
+                },
+                "scope": "One simultaneous charge only; serial processing can require a different plan. Geometric consistency is not a safety certification."
+              },
+              "actuator_access": false
+            }
+          },
+          {
+            "tool": "estimate_advanced_energy",
+            "status": "ok",
+            "cache_hit": false,
+            "input_origin": "literal_facts_and_explicit_reference_scenarios",
+            "result": {
+              "status": "ok",
+              "message": "Alternative uses of one fuel stream, not additive revenues",
+              "energy": {
+                "status": "needs_input",
+                "outputs": {},
+                "parameters": {
+                  "recovery_fraction": {
+                    "low": 0.6,
+                    "high": 0.8,
+                    "provenance": "HYPOTHETICAL_SCENARIO",
+                    "evidence": "Selected illustrative equipment/recovery scenario, not a device measurement"
+                  },
+                  "thermal_efficiency": {
+                    "low": 0.8,
+                    "high": 0.8,
+                    "provenance": "HYPOTHETICAL_SCENARIO",
+                    "evidence": "Selected illustrative equipment/recovery scenario, not a device measurement"
+                  },
+                  "electrical_efficiency": {
+                    "low": 0.25,
+                    "high": 0.25,
+                    "provenance": "HYPOTHETICAL_SCENARIO",
+                    "evidence": "Selected illustrative equipment/recovery scenario, not a device measurement"
+                  },
+                  "chp_thermal_efficiency": {
+                    "low": 0.45,
+                    "high": 0.45,
+                    "provenance": "HYPOTHETICAL_SCENARIO",
+                    "evidence": "Selected illustrative equipment/recovery scenario, not a device measurement"
+                  },
+                  "chp_electrical_efficiency": {
+                    "low": 0.25,
+                    "high": 0.25,
+                    "provenance": "HYPOTHETICAL_SCENARIO",
+                    "evidence": "Selected illustrative equipment/recovery scenario, not a device measurement"
+                  }
+                },
+                "heating_value": {
+                  "value": 9.97,
+                  "unit": "kWh/m3 CH4",
+                  "type": "LHV",
+                  "source": "FNR"
+                },
+                "gas_compatibility": "matched",
+                "gas_basis": {
+                  "temperature_k": 273.2,
+                  "pressure_pa": 101325.0,
+                  "moisture": "dry",
+                  "description": "Conditional common dry reference; not a measured mixture output"
+                },
+                "assumed_parameters": [
+                  "recovery_fraction",
+                  "thermal_efficiency",
+                  "electrical_efficiency",
+                  "chp_thermal_efficiency",
+                  "chp_electrical_efficiency"
+                ],
+                "result_level": "HYPOTHETICAL_SCENARIO",
+                "allocation_policy": "Heat-only, electricity-only and CHP are alternative allocations of one fuel stream. Only CHP heat and electricity may be valued together.",
+                "uncertainty": "Sensitivity bounds, no independent probability or validated interval coverage."
+              },
+              "biogas": {
+                "potential_biogas_m3": null,
+                "methane_fraction": {
+                  "low": 0.6,
+                  "high": 0.6,
+                  "provenance": "HYPOTHETICAL_SCENARIO",
+                  "evidence": "Selected 60% methane illustration, not a measurement or matched composition study"
+                },
+                "gas_basis": {
+                  "temperature_k": 273.2,
+                  "pressure_pa": 101325.0,
+                  "moisture": "dry",
+                  "description": "Conditional common dry reference; not a measured mixture output"
+                },
+                "status": "needs_input",
+                "result_level": null,
+                "compatibility": "matched",
+                "assumptions": [],
+                "scope": "Potential gas corresponding to laboratory methane potential, not collected plant gas. CH4 is part of biogas and must not be added again.",
+                "uncertainty": "Independent extrema envelope; unknown correlation and no validated probability coverage."
+              },
+              "methane_fraction_assumed": true,
+              "actuator_access": false
+            }
+          }
+        ],
+        "pending_task": {
+          "id": "d17279945d9e4c80a0c652e6e4b785a6",
+          "original_text": "У меня 50 кг сухого куриного помёта. Рассчитай газ, тепло и электричество",
+          "goals": [
+            "gas",
+            "heat",
+            "electricity"
+          ],
+          "status": {
+            "gas": "partial_missing_properties",
+            "heat": "reference_calculated",
+            "electricity": "reference_calculated"
+          }
+        },
+        "normalized_components": [
+          {
+            "id": "c1",
+            "material": "poultry_manure",
+            "material_state": "dry",
+            "quantity": 50.0,
+            "unit": "kg",
+            "animal": "poultry",
+            "physical_state": "dry",
+            "decay_state": "unknown",
+            "bedding": "unknown",
+            "data_mode": "LITERATURE_ESTIMATE",
+            "properties": {
+              "density_kg_l": null,
+              "ts_fraction": null,
+              "vs_fraction_wet": null,
+              "vs_fraction_of_ts": null,
+              "bmp_ml_g_vs": null,
+              "carbon_fraction_wet": null,
+              "nitrogen_fraction_wet": null,
+              "gas_basis": null
+            },
+            "provenance": "USER_CONFIRMED",
+            "evidence": "У меня 50 кг сухого куриного помёта. Рассчитай газ, тепло и электричество"
+          }
+        ],
+        "results": {
+          "gas": {
+            "status": "ok",
+            "message": "Additive laboratory reference; assumptions remain separate",
+            "mixture": {
+              "components": [
+                {
+                  "id": "c1",
+                  "material": "poultry_manure",
+                  "display_name": "Птичий помёт",
+                  "material_state": "dry",
+                  "animal": "poultry",
+                  "physical_state": "dry",
+                  "decay_state": "unknown",
+                  "bedding": "unknown",
+                  "quantity": 50.0,
+                  "unit": "kg",
+                  "wet_mass_kg": {
+                    "low": 50.0,
+                    "high": 50.0
+                  },
+                  "volume_l": null,
+                  "ts_mass_kg": null,
+                  "vs_mass_kg": null,
+                  "methane_reference_m3": null,
+                  "carbon_mass_kg": null,
+                  "nitrogen_mass_kg": null,
+                  "gas_basis": null,
+                  "result_level": "MEASURED",
+                  "profile_id": null,
+                  "properties_used": {},
+                  "assumptions": [],
+                  "missing": [
+                    "density_kg_l",
+                    "ts_fraction",
+                    "vs_fraction_wet",
+                    "bmp_ml_g_vs"
+                  ],
+                  "source": null,
+                  "cn_ratio_reference": null,
+                  "ph_reference": null,
+                  "notice": "Single-component literature/measurement reference. A published sample point is not a universal population mean; no unreported SD is invented.",
+                  "methane_comparable_m3": null,
+                  "wet_mass_fraction": {
+                    "low": 1.0,
+                    "high": 1.0
+                  }
+                }
+              ],
+              "total_wet_mass_kg": {
+                "low": 50.0,
+                "high": 50.0
+              },
+              "sum_separate_volumes_l": null,
+              "total_ts_kg": null,
+              "total_vs_kg": null,
+              "cn_mass_ratio": null,
+              "mixture_ph": null,
+              "additive_methane_reference_m3": null,
+              "known_component_additive_subtotal_m3": null,
+              "complete_methane_reference": false,
+              "gas_basis": {
+                "temperature_k": 273.2,
+                "pressure_pa": 101325,
+                "moisture": "dry",
+                "description": "Conditional common dry reference; not a measured mixture output"
+              },
+              "normalization": [],
+              "olr_kg_vs_m3_day": null,
+              "synergy_factor": null,
+              "measured_mixture_bmp": null,
+              "result_level": "MEASURED",
+              "limitations": [
+                "Additive component references are not a validated methane yield of the mixture. No synergy coefficient is assumed.",
+                "Known-part subtotal is neither the full mixture prediction nor a lower bound on actual co-digestion yield.",
+                "Separate volumes may not add to final packed/liquid mixture volume; verify actual charge.",
+                "C/N requires carbon and nitrogen masses. pH cannot be averaged. Batch loading is not a daily OLR.",
+                "Sensitivity bounds have no verified probability coverage."
+              ]
+            },
+            "biogas": {
+              "potential_biogas_m3": null,
+              "methane_fraction": {
+                "low": 0.6,
+                "high": 0.6,
+                "provenance": "HYPOTHETICAL_SCENARIO",
+                "evidence": "Selected composition illustration; not measured"
+              },
+              "gas_basis": {
+                "temperature_k": 273.2,
+                "pressure_pa": 101325.0,
+                "moisture": "dry",
+                "description": "Conditional common dry reference; not a measured mixture output"
+              },
+              "status": "needs_input",
+              "result_level": null,
+              "compatibility": "matched",
+              "assumptions": [],
+              "scope": "Potential gas corresponding to laboratory methane potential, not collected plant gas. CH4 is part of biogas and must not be added again.",
+              "uncertainty": "Independent extrema envelope; unknown correlation and no validated probability coverage."
+            },
+            "methane_fraction_assumed": true,
+            "scenario_assumptions": [],
+            "sources": [],
+            "geometry": {
+              "status": "UNKNOWN",
+              "violations": [],
+              "unknown": [
+                "reactor_working_volume_l",
+                "headspace_l",
+                "inoculum_volume_l",
+                "dilution_water_l",
+                "operating_mode",
+                "reactor_type",
+                "resident_liquid_volume_l"
+              ],
+              "known_charge_min_l": null,
+              "headspace_l": null,
+              "working_volume_l": null,
+              "total_volume_l": null,
+              "engineering_review_confirmed": false,
+              "operation_authorized": false,
+              "existing_constraints": {
+                "constraints": [
+                  {
+                    "kind": "UNKNOWN",
+                    "parameter": "reactor_total_volume_l",
+                    "status": "UNKNOWN",
+                    "message": "reactor_total_volume_l is not supplied; no operating approval is inferred."
+                  },
+                  {
+                    "kind": "UNKNOWN",
+                    "parameter": "reactor_working_volume_l",
+                    "status": "UNKNOWN",
+                    "message": "reactor_working_volume_l is not supplied; no operating approval is inferred."
+                  },
+                  {
+                    "kind": "UNKNOWN",
+                    "parameter": "reactor_type",
+                    "status": "UNKNOWN",
+                    "message": "reactor_type is not supplied; no operating approval is inferred."
+                  },
+                  {
+                    "kind": "UNKNOWN",
+                    "parameter": "operating_mode",
+                    "status": "UNKNOWN",
+                    "message": "operating_mode is not supplied; no operating approval is inferred."
+                  },
+                  {
+                    "kind": "UNKNOWN",
+                    "parameter": "inoculum_description",
+                    "status": "UNKNOWN",
+                    "message": "inoculum_description is not supplied; no operating approval is inferred."
+                  },
+                  {
+                    "kind": "UNKNOWN",
+                    "parameter": "gas_storage_conditions",
+                    "status": "UNKNOWN",
+                    "message": "gas_storage_conditions is not supplied; no operating approval is inferred."
+                  },
+                  {
+                    "kind": "UNKNOWN",
+                    "parameter": "ts_percent",
+                    "status": "UNKNOWN",
+                    "message": "No universal literature value is substituted for the missing measurement."
+                  },
+                  {
+                    "kind": "UNKNOWN",
+                    "parameter": "vs_percent",
+                    "status": "UNKNOWN",
+                    "message": "No universal literature value is substituted for the missing measurement."
+                  },
+                  {
+                    "kind": "UNKNOWN",
+                    "parameter": "ph",
+                    "status": "UNKNOWN",
+                    "message": "No universal literature value is substituted for the missing measurement."
+                  },
+                  {
+                    "kind": "UNKNOWN",
+                    "parameter": "temperature_c",
+                    "status": "UNKNOWN",
+                    "message": "No universal literature value is substituted for the missing measurement."
+                  },
+                  {
+                    "kind": "UNKNOWN",
+                    "parameter": "hrt_days",
+                    "status": "UNKNOWN",
+                    "message": "No universal literature value is substituted for the missing measurement."
+                  },
+                  {
+                    "kind": "UNKNOWN",
+                    "parameter": "olr_kg_vs_m3_day",
+                    "status": "UNKNOWN",
+                    "message": "No universal literature value is substituted for the missing measurement."
+                  }
+                ],
+                "critical_missing": [
+                  "reactor_total_volume_l",
+                  "reactor_working_volume_l",
+                  "reactor_type",
+                  "operating_mode",
+                  "inoculum_description",
+                  "gas_storage_conditions"
+                ],
+                "derived": {},
+                "feasibility_status": "INSUFFICIENT_DATA",
+                "status_scope": "Consistency and information availability only; not engineering safety certification."
+              },
+              "batch_plan": {
+                "status": "needs_input",
+                "batch_count": null,
+                "total_duration_days": null,
+                "missing": [
+                  "feedstock_volume_l",
+                  "reactor_working_volume_l",
+                  "operating_mode",
+                  "reactor_type",
+                  "inoculum_volume_l",
+                  "dilution_water_l",
+                  "resident_liquid_volume_l"
+                ],
+                "message": "Need working volume, loading mode, reactor type and explicit occupancy before assigning batches."
+              },
+              "scope": "One simultaneous charge only; serial processing can require a different plan. Geometric consistency is not a safety certification."
+            },
+            "actuator_access": false
+          },
+          "energy": {
+            "status": "ok",
+            "message": "Alternative uses of one fuel stream, not additive revenues",
+            "energy": {
+              "status": "needs_input",
+              "outputs": {},
+              "parameters": {
+                "recovery_fraction": {
+                  "low": 0.6,
+                  "high": 0.8,
+                  "provenance": "HYPOTHETICAL_SCENARIO",
+                  "evidence": "Selected illustrative equipment/recovery scenario, not a device measurement"
+                },
+                "thermal_efficiency": {
+                  "low": 0.8,
+                  "high": 0.8,
+                  "provenance": "HYPOTHETICAL_SCENARIO",
+                  "evidence": "Selected illustrative equipment/recovery scenario, not a device measurement"
+                },
+                "electrical_efficiency": {
+                  "low": 0.25,
+                  "high": 0.25,
+                  "provenance": "HYPOTHETICAL_SCENARIO",
+                  "evidence": "Selected illustrative equipment/recovery scenario, not a device measurement"
+                },
+                "chp_thermal_efficiency": {
+                  "low": 0.45,
+                  "high": 0.45,
+                  "provenance": "HYPOTHETICAL_SCENARIO",
+                  "evidence": "Selected illustrative equipment/recovery scenario, not a device measurement"
+                },
+                "chp_electrical_efficiency": {
+                  "low": 0.25,
+                  "high": 0.25,
+                  "provenance": "HYPOTHETICAL_SCENARIO",
+                  "evidence": "Selected illustrative equipment/recovery scenario, not a device measurement"
+                }
+              },
+              "heating_value": {
+                "value": 9.97,
+                "unit": "kWh/m3 CH4",
+                "type": "LHV",
+                "source": "FNR"
+              },
+              "gas_compatibility": "matched",
+              "gas_basis": {
+                "temperature_k": 273.2,
+                "pressure_pa": 101325.0,
+                "moisture": "dry",
+                "description": "Conditional common dry reference; not a measured mixture output"
+              },
+              "assumed_parameters": [
+                "recovery_fraction",
+                "thermal_efficiency",
+                "electrical_efficiency",
+                "chp_thermal_efficiency",
+                "chp_electrical_efficiency"
+              ],
+              "result_level": "HYPOTHETICAL_SCENARIO",
+              "allocation_policy": "Heat-only, electricity-only and CHP are alternative allocations of one fuel stream. Only CHP heat and electricity may be valued together.",
+              "uncertainty": "Sensitivity bounds, no independent probability or validated interval coverage."
+            },
+            "biogas": {
+              "potential_biogas_m3": null,
+              "methane_fraction": {
+                "low": 0.6,
+                "high": 0.6,
+                "provenance": "HYPOTHETICAL_SCENARIO",
+                "evidence": "Selected 60% methane illustration, not a measurement or matched composition study"
+              },
+              "gas_basis": {
+                "temperature_k": 273.2,
+                "pressure_pa": 101325.0,
+                "moisture": "dry",
+                "description": "Conditional common dry reference; not a measured mixture output"
+              },
+              "status": "needs_input",
+              "result_level": null,
+              "compatibility": "matched",
+              "assumptions": [],
+              "scope": "Potential gas corresponding to laboratory methane potential, not collected plant gas. CH4 is part of biogas and must not be added again.",
+              "uncertainty": "Independent extrema envelope; unknown correlation and no validated probability coverage."
+            },
+            "methane_fraction_assumed": true,
+            "actuator_access": false
+          }
+        },
+        "llm_proposal": null,
+        "latency_seconds": 0.010079399915412068,
+        "uncertainty_status": "Sensitivity scenario only; no verified probability coverage",
+        "validation_errors": []
+      }
+    }
+  },
+  {
+    "question": "Смешай 40 кг коровьего навоза и 20 кг птичьего помёта",
+    "reply": {
+      "conversation_version": "7",
+      "analysis_version": "7.6",
+      "smart_agent_version": "7.7",
+      "mode": "deterministic_tools_no_llm",
+      "answer": "Сохранил сырьё: 60 кг.",
+      "user_facing_answer": {
+        "paragraphs": [
+          "Сохранил сырьё: 60 кг."
+        ],
+        "sections": [],
+        "question": {
+          "id": "smart-goal",
+          "text": "Что рассчитать: выход газа, температуру, срок или экономику?",
+          "options": [
+            "Выход газа",
+            "Температуру"
+          ],
+          "fields": [
+            "goal"
+          ],
+          "reason": ""
+        },
+        "sources": [],
+        "modes": [],
+        "assumptions": []
+      },
+      "tools": [],
+      "provider_status": [],
+      "missing": [],
+      "context": {
+        "material": "mixture",
+        "market_region": "KZ-Karaganda"
+      },
+      "context_updated": true,
+      "memory": {
+        "version": "7",
+        "conversation_id": null,
+        "language": "ru",
+        "facts": {
+          "material": {
+            "value": "mixture",
+            "unit": null,
+            "provenance": "USER_CONFIRMED",
+            "evidence": "Смешай 40 кг коровьего навоза и 20 кг птичьего помёта",
+            "recorded_at": "2026-10-30T04:53:23.860015+00:00",
+            "dependencies": []
+          }
+        },
+        "assumptions": {
+          "market_region": {
+            "value": "KZ-Karaganda",
+            "unit": null,
+            "provenance": "ASSUMED_FOR_SCENARIO",
+            "evidence": "Default dashboard region; not user-confirmed",
+            "recorded_at": "2026-10-30T04:53:23.857326+00:00",
+            "dependencies": []
+          }
+        },
+        "derived": {},
+        "estimates": {},
+        "source_verified": {},
+        "intents": [
+          "general"
+        ],
+        "pending_question": {
+          "id": "smart-goal",
+          "text": "Что рассчитать: выход газа, температуру, срок или экономику?",
+          "options": [
+            "Выход газа",
+            "Температуру"
+          ],
+          "fields": [
+            "goal"
+          ],
+          "reason": ""
+        },
+        "invalidated": [],
+        "decision_settings": {
+          "gas_use": "unknown",
+          "assume_reference_compatibility": false,
+          "use_reference_scenarios": true,
+          "heating_value_type": "LHV",
+          "reactor": {
+            "engineering_review_confirmed": false,
+            "safety_review_required": false,
+            "loads": [],
+            "loads_complete": false,
+            "provenance": "USER_REPORTED"
+          },
+          "quotes": {},
+          "price_ids": {},
+          "max_price_age_days": 30,
+          "costs": {},
+          "all_operating_costs_included": false,
+          "include_capital": false,
+          "assume_full_self_consumption": false,
+          "replacement_heat_source": "unknown",
+          "gas_sale_technical_confirmed": false,
+          "gas_sale_legal_confirmed": false,
+          "gas_quality_confirmed": false,
+          "gas_storage_transport_confirmed": false,
+          "digestate_quality_confirmed": false,
+          "digestate_market_allowed": false
+        },
+        "decision_unavailable": [],
+        "last_research_summary": {},
+        "mixture_components": [
+          {
+            "id": "c1",
+            "material": "cattle_manure",
+            "material_state": "unknown",
+            "quantity": 40.0,
+            "unit": "kg",
+            "animal": "cattle",
+            "physical_state": "unknown",
+            "decay_state": "unknown",
+            "bedding": "unknown",
+            "data_mode": "LITERATURE_ESTIMATE",
+            "properties": {
+              "density_kg_l": null,
+              "ts_fraction": null,
+              "vs_fraction_wet": null,
+              "vs_fraction_of_ts": null,
+              "bmp_ml_g_vs": null,
+              "carbon_fraction_wet": null,
+              "nitrogen_fraction_wet": null,
+              "gas_basis": null
+            },
+            "provenance": "USER_CONFIRMED",
+            "evidence": "Смешай 40 кг коровьего навоза и 20 кг птичьего помёта"
+          },
+          {
+            "id": "c2",
+            "material": "poultry_manure",
+            "material_state": "unknown",
+            "quantity": 20.0,
+            "unit": "kg",
+            "animal": "poultry",
+            "physical_state": "unknown",
+            "decay_state": "unknown",
+            "bedding": "unknown",
+            "data_mode": "LITERATURE_ESTIMATE",
+            "properties": {
+              "density_kg_l": null,
+              "ts_fraction": null,
+              "vs_fraction_wet": null,
+              "vs_fraction_of_ts": null,
+              "bmp_ml_g_vs": null,
+              "carbon_fraction_wet": null,
+              "nitrogen_fraction_wet": null,
+              "gas_basis": null
+            },
+            "provenance": "USER_CONFIRMED",
+            "evidence": "ешай 40 кг коровьего навоза и 20 кг птичьего помёта"
+          }
+        ],
+        "mixture_scenario_components": [],
+        "mixture_revision": 1,
+        "mixture_history": [
+          {
+            "at": "2026-10-30T04:53:23.860198+00:00",
+            "action": "set",
+            "is_hypothetical": false,
+            "components": [
+              {
+                "id": "c1",
+                "material": "cattle_manure",
+                "material_state": "unknown",
+                "quantity": 40.0,
+                "unit": "kg",
+                "animal": "cattle",
+                "physical_state": "unknown",
+                "decay_state": "unknown",
+                "bedding": "unknown",
+                "data_mode": "LITERATURE_ESTIMATE",
+                "properties": {
+                  "density_kg_l": null,
+                  "ts_fraction": null,
+                  "vs_fraction_wet": null,
+                  "vs_fraction_of_ts": null,
+                  "bmp_ml_g_vs": null,
+                  "carbon_fraction_wet": null,
+                  "nitrogen_fraction_wet": null,
+                  "gas_basis": null
+                },
+                "provenance": "USER_CONFIRMED",
+                "evidence": "Смешай 40 кг коровьего навоза и 20 кг птичьего помёта"
+              },
+              {
+                "id": "c2",
+                "material": "poultry_manure",
+                "material_state": "unknown",
+                "quantity": 20.0,
+                "unit": "kg",
+                "animal": "poultry",
+                "physical_state": "unknown",
+                "decay_state": "unknown",
+                "bedding": "unknown",
+                "data_mode": "LITERATURE_ESTIMATE",
+                "properties": {
+                  "density_kg_l": null,
+                  "ts_fraction": null,
+                  "vs_fraction_wet": null,
+                  "vs_fraction_of_ts": null,
+                  "bmp_ml_g_vs": null,
+                  "carbon_fraction_wet": null,
+                  "nitrogen_fraction_wet": null,
+                  "gas_basis": null
+                },
+                "provenance": "USER_CONFIRMED",
+                "evidence": "ешай 40 кг коровьего навоза и 20 кг птичьего помёта"
+              }
+            ]
+          }
+        ],
+        "advisor_inventory_mode": "mixture",
+        "advisor_pending_component": null,
+        "advisor_settings": {},
+        "smart_goals": [],
+        "active_mixture_scenario": false,
+        "advanced": {}
+      },
+      "pending_question": {
+        "id": "smart-goal",
+        "text": "Что рассчитать: выход газа, температуру, срок или экономику?",
+        "options": [
+          "Выход газа",
+          "Температуру"
+        ],
+        "fields": [
+          "goal"
+        ],
+        "reason": ""
+      },
+      "technical_metadata": {
+        "smart_version": "7.7",
+        "intent_plan": {
+          "goals": [],
+          "detail": false,
+          "one_sentence": false,
+          "edit": false,
+          "explicit": false,
+          "delegate_legacy": false,
+          "needs_interpretation": false
+        },
+        "cache_hits": 0,
+        "tool_calls": [],
+        "smart_result": {},
+        "component_inventory": [
+          {
+            "id": "c1",
+            "material": "cattle_manure",
+            "material_state": "unknown",
+            "quantity": 40.0,
+            "unit": "kg",
+            "animal": "cattle",
+            "physical_state": "unknown",
+            "decay_state": "unknown",
+            "bedding": "unknown",
+            "data_mode": "LITERATURE_ESTIMATE",
+            "properties": {
+              "density_kg_l": null,
+              "ts_fraction": null,
+              "vs_fraction_wet": null,
+              "vs_fraction_of_ts": null,
+              "bmp_ml_g_vs": null,
+              "carbon_fraction_wet": null,
+              "nitrogen_fraction_wet": null,
+              "gas_basis": null
+            },
+            "provenance": "USER_CONFIRMED",
+            "evidence": "Смешай 40 кг коровьего навоза и 20 кг птичьего помёта"
+          },
+          {
+            "id": "c2",
+            "material": "poultry_manure",
+            "material_state": "unknown",
+            "quantity": 20.0,
+            "unit": "kg",
+            "animal": "poultry",
+            "physical_state": "unknown",
+            "decay_state": "unknown",
+            "bedding": "unknown",
+            "data_mode": "LITERATURE_ESTIMATE",
+            "properties": {
+              "density_kg_l": null,
+              "ts_fraction": null,
+              "vs_fraction_wet": null,
+              "vs_fraction_of_ts": null,
+              "bmp_ml_g_vs": null,
+              "carbon_fraction_wet": null,
+              "nitrogen_fraction_wet": null,
+              "gas_basis": null
+            },
+            "provenance": "USER_CONFIRMED",
+            "evidence": "ешай 40 кг коровьего навоза и 20 кг птичьего помёта"
+          }
+        ],
+        "scenario_inventory": [],
+        "extracted_entities": {
+          "language": "ru",
+          "intents": [],
+          "entities": [
+            {
+              "name": "material",
+              "value": "mixture",
+              "unit": null,
+              "evidence": "Смешай 40 кг коровьего навоза и 20 кг птичьего помёта",
+              "provenance": "USER_CONFIRMED"
+            }
+          ],
+          "correction": false,
+          "new_batch": false,
+          "validation_errors": []
+        },
+        "confirmed_parameters": {
+          "material": {
+            "value": "mixture",
+            "unit": null,
+            "provenance": "USER_CONFIRMED",
+            "evidence": "Смешай 40 кг коровьего навоза и 20 кг птичьего помёта",
+            "recorded_at": "2026-10-30T04:53:23.860015+00:00",
+            "dependencies": []
+          }
+        },
+        "llm_proposal": null,
+        "latency_seconds": 0.004140199976973236
+      },
+      "actuator_access": false
+    }
+  }
+]

@@ -1,0 +1,10 @@
+﻿{
+    "http_status":  200,
+    "pid":  53952,
+    "scheduler_enabled":  false,
+    "approved_profile_count":  6,
+    "url":  "http://127.0.0.1:8765/dashboard/#/chat",
+    "database":  "C:\\Users\\Kazhu\\Downloads\\face_dataset_you_noname\\face_dataset_project\\BioReactor_AI\\data\\market\\market.sqlite3",
+    "conversion_http_passed":  true,
+    "version":  "8.0"
+}

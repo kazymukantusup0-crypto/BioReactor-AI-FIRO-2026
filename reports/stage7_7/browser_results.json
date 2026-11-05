@@ -1,0 +1,30 @@
+{
+  "passed": true,
+  "checks": [
+    "Home uses lightweight health and price requests",
+    "Removed headings absent from main interface",
+    "One unified navigation entry",
+    "Retained link advisor redirects",
+    "Retained link mixtures redirects",
+    "Retained link prediction redirects",
+    "Retained link economics redirects",
+    "Retained link optimizer redirects",
+    "Retained link experiments redirects",
+    "Single form with two components",
+    "Real calculation uses 100 L and 20 kg",
+    "Conditional methane shown from Python",
+    "Detailed scientific cards closed in simple mode",
+    "Same result in scientific mode",
+    "Returning to simple mode closes scientific cards",
+    "Actual comparison retained",
+    "UI inventory survives page navigation",
+    "No horizontal overflow on mobile",
+    "Actual eight-turn dialogue visible",
+    "One-sentence answer stays short",
+    "Scientific trace closed by default",
+    "Browser follow-up remembers mixture",
+    "Browser follow-up runs only gas tool",
+    "No browser JavaScript errors"
+  ],
+  "errors": []
+}

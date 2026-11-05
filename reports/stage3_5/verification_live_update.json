@@ -1,0 +1,87 @@
+[
+  {
+    "category": "natural_gas",
+    "sources": [
+      {
+        "source": "bns_retail_gas",
+        "status": "rate_limited",
+        "inserted": 0,
+        "next_attempt_at": "2026-10-29T09:29:58.071528+00:00"
+      },
+      {
+        "source": "qazaqgaz_aimaq",
+        "status": "needs_configuration",
+        "inserted": 0
+      }
+    ],
+    "inserted": 0
+  },
+  {
+    "category": "electricity",
+    "sources": [
+      {
+        "source": "bns_retail_electricity",
+        "status": "rate_limited",
+        "inserted": 0,
+        "next_attempt_at": "2026-10-29T09:29:59.852382+00:00"
+      },
+      {
+        "source": "esalmaty_business",
+        "status": "rate_limited",
+        "inserted": 0,
+        "next_attempt_at": "2026-10-29T09:35:56.763213+00:00"
+      },
+      {
+        "source": "karaganda_zharyk_supply",
+        "status": "rate_limited",
+        "inserted": 0,
+        "next_attempt_at": "2026-10-29T09:30:18.739992+00:00"
+      },
+      {
+        "source": "krec_district_supply",
+        "status": "rate_limited",
+        "inserted": 0,
+        "next_attempt_at": "2026-10-29T09:30:21.435196+00:00"
+      }
+    ],
+    "inserted": 0
+  },
+  {
+    "category": "organic_fertilizer",
+    "sources": [
+      {
+        "source": "organic_verified_manual",
+        "status": "needs_configuration",
+        "inserted": 0
+      }
+    ],
+    "inserted": 0
+  },
+  {
+    "category": "mineral_fertilizer",
+    "sources": [
+      {
+        "source": "kosagro_verified_manual",
+        "status": "needs_configuration",
+        "inserted": 0
+      },
+      {
+        "source": "mineral_verified_manual",
+        "status": "needs_configuration",
+        "inserted": 0
+      }
+    ],
+    "inserted": 0
+  },
+  {
+    "category": "organic_feedstock",
+    "sources": [
+      {
+        "source": "feedstock_verified_manual",
+        "status": "needs_configuration",
+        "inserted": 0
+      }
+    ],
+    "inserted": 0
+  }
+]

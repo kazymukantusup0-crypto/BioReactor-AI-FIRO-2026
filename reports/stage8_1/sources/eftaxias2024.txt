@@ -1,0 +1,774 @@
+ 
+ 
+ 
+ 
+Appl. Sci. 2024, 14, 4957. https://doi.org/10.3390/app14114957 
+www.mdpi.com/journal/applsci 
+Article 
+Techno-Economic Assessment of Anaerobic Digestion  
+Technology for Small- and Medium-Sized Animal  
+Husbandry Enterprises 
+Alexandros Eftaxias 1,2, Iliana Kolokotroni 1, Christos Michailidis 1, Panagiotis Charitidis 2  
+and Vasileios Diamantis 1,2,* 
+1 Act4energy P.C., 45333 Ioannina, Greece; alexeftaxias@gmail.com (A.E.); ilianako98@gmail.com (I.K.);  
+christos.michailidis1@gmail.com (C.M.) 
+2 Department of Environmental Engineering, Democritus University of Thrace, 67132 Xanthi, Greece; 
+pan_har@outlook.com.gr 
+* Correspondence: bdiamant@env.duth.gr; Tel.: +30-25410-79376 
+Abstract: Investments in small and medium-sized anaerobic digestion facilities have the potential 
+to boost biogas production in Greece and other EU countries. This study aimed to evaluate the eco-
+nomic feasibility of anaerobic digestion facilities equipped with combined heat and power (CHP) 
+units ranging from 50 to 400 kW, while treating livestock waste. For this purpose, data were gath-
+ered from various livestock operations (dairy cattle, poultry, swine, dairy sheep and goats) regard-
+ing their annual production, revenues, electricity and fuel usage, and waste generation. Waste sam-
+ples were then collected and analyzed to assess their biochemical methane production potential. 
+The capital and operational costs of anaerobic digestion facilities, from 50 and 400 kW, were calcu-
+lated using the equations developed within the “eMT cluster” project. Findings indicate that current 
+feed-in tariffs (FITs) of 0.21 € kWh−1 are insufficient to incentivize investment in anaerobic digestion 
+facilities with capacities below 250 kW, highlighting the need for increased FIT rates or capital ex-
+penditure subsidies. Recommendations include shifting towards simplified technology and busi-
+ness models with reduced farmer involvement, coupled with supportive legislative framework and 
+long-term electricity price guarantees. These measures are expected to foster the implementation of 
+anaerobic digestion projects in the animal husbandry sector. 
+Keywords: anaerobic digestion; biogas; circular economy; manure; sustainable production; waste 
+management; cost equations 
+ 
+1. Introduction 
+Historically, the management and disposal of manures from small and dispersed 
+livestock farms was not considered a problem [1]. Besides, these wastes, both solid and 
+liquid, were rich in organic matter and nutrients, primarily nitrogen, phosphorus, and 
+potassium, making them valuable for maintaining soil fertility [1,2]. Until now, they are 
+typically spread on arable land after undergoing long-term stabilization in lagoons and 
+composting piles [3]. Unfortunately, in such cases, the energy content of manure is not 
+utilized, combined with the release of greenhouse gases, notably methane, and odors into 
+the atmosphere [4]. Incidents of surface and groundwater pollution are frequently re-
+ported when lagoons and composting pits lack proper insulation [5]. Nowadays, the im-
+portance of sustainable livestock waste management, environmental protection, and cre-
+ating value for farmers is increasingly recognized. 
+Energy recovery from animal waste can be achieved through thermal or biochemical 
+processes [6,7]. One widely used technology for livestock waste treatment is anaerobic 
+digestion, a biochemical process wherein organic compounds are converted into biogas 
+Citation: Eftaxias, A.;  
+Kolokotroni, I.; Michailidis, C.;  
+Charitidis, P.; Diamantis, V.  
+Techno-Economic Assessment of  
+Anaerobic Digestion Technology for 
+Small- and Medium-Sized Animal 
+Husbandry Enterprises.  
+Appl. Sci. 2024, 14, 4957. https:// 
+doi.org/10.3390/app14114957 
+Academic Editor: Francisco Jesús 
+Fernández Morales 
+Received: 6 May 2024 
+Revised: 31 May 2024 
+Accepted: 4 June 2024 
+Published: 6 June 2024 
+ 
+Copyright: © 2024 by the authors. 
+Licensee MDPI, Basel, Switzerland. 
+This article is an open access article 
+distributed under the terms and 
+conditions of the Creative Commons 
+Attribution 
+(CC 
+BY) 
+license 
+(https://creativecommons.org/license
+s/by/4.0/). 
+
+Appl. Sci. 2024, 14, 4957 
+2 of 12 
+ 
+and digestate. Biogas typically comprises methane (55–65%), carbon dioxide (45–35%) and 
+traces of other gases, like sulfide and ammonia [8]. The residue left after anaerobic diges-
+tion, known as digestate, is rich in organics and nutrients and can serve as a soil condi-
+tioner to enhance agricultural production [9]. Implementing anaerobic digestion technol-
+ogy offers several advantages, including waste volume reduction, odor control, decrease 
+in manure pathogens (especially during thermophilic processes), recovery of nutrients in 
+digestate, and energy production [10]. 
+Anaerobic digestion facilities represent complex technical systems that demand sub-
+stantial investments in infrastructure, such as buildings and tanks, mechanical and safety 
+equipment [11,12]. The setup of such a facility involves meticulous design, construction 
+of infrastructure, acquisition and installation of equipment, operation overseen by trained 
+personnel, and annual maintenance to minimize or address unforeseen breakdowns. Spe-
+cialized construction firms, known as EPC technology providers, collaborate with waste 
+producers (i.e., livestock farmers) to establish these facilities. Given the variations in live-
+stock farms regarding type and size, leading to the generation of diverse types and quan-
+tities of waste, technology providers implement customized solutions tailored to each cli-
+ent’s needs. These solutions encompass various aspects, including anaerobic digestion 
+technology (e.g., wet, dry, mesophilic, thermophilic) and waste pretreatment technology, 
+as well as equipment for biogas utilization (e.g., hot water production, electricity, and 
+heat, or biomethane upgrading). 
+According to the European Biogas Association (EBA), as of 2023, Europe hosted 
+~21,000 anaerobic digestion facilities generating approximately 21 billion cubic meters 
+(bcm) of biogas. While biogas was primarily utilized for electricity generation, there was 
+a growing trend of upgrading it to biomethane, which was either injected into the natural 
+gas grid or used as a vehicle fuel. The EBA reported a significant increase in biomethane 
+production from 0.9 to 4.2 bcm between 2013 and 2023. Despite this progress, the Repower 
+EU initiative has set a target of further increasing biomethane production to 35 bcm by 
+2030. Achieving this objective necessitates the establishment of an additional 14 bcm of 
+biogas production capacity, equivalent to the construction of ~14,000 new anaerobic di-
+gestion facilities, alongside the conversion of existing facilities into biomethane plants. 
+Many European countries, such as Greece, Ukraine, Latvia, Ireland and Serbia, lag behind 
+in biogas production, each hosting fewer than 60 biogas plants. Consequently, a consider-
+able amount of energy from manure remains untapped. The advantages of expanding an-
+aerobic digestion facilities are manifold and include bolstering the local economy, gener-
+ating new job opportunities (both during construction and operation), safeguarding the 
+environment and public health, reducing greenhouse gas emissions, and enhancing the 
+production of renewable fuels [13–16]. 
+Implementing anaerobic digestion for waste management in small and medium-
+sized animal husbandry operations presents significant challenges. Moreover, the EU 
+agro-food sector is characterized by a multitude of small and medium-sized enterprises 
+[17]. In such scenarios, the expenses associated with collecting and transporting waste to 
+large centralized anaerobic digestion facilities are substantial, ranging from 0.15 to 0.20 € 
+tn−1 km−1 [18]. For instance, for a 500-kW anaerobic digestion facility processing 30,000 tn 
+of livestock and/or agro-industrial waste annually, transportation costs could amount to 
+as much as 120,000 € per year [19]. Additionally, plant operators often resort to energy 
+crops to enhance biogas production, a practice that can potentially double operational ex-
+penditures, considering the utilization of 2000 tn of maize silage per year, with prices 
+ranging between 40 and 60 € tn−1 [19]. 
+Small-size anaerobic digestion facilities designed for individual farms do not neces-
+sitate additional raw materials or the use of energy crops. Consequently, operating costs 
+are primarily limited to electricity consumption (for mechanical equipment), labor sala-
+ries, equipment maintenance (including CHP unit, motors and pumps), the use of chemi-
+cals (e.g., for biogas desulfurization), and consulting services. These consulting services 
+
+Appl. Sci. 2024, 14, 4957 
+3 of 12 
+ 
+typically offer specialized expertise to optimize digester operation and may also provide 
+chemical additives aimed at enhancing biogas production efficiency. 
+This study aimed to assess the economic feasibility of small-size anaerobic digestion 
+facilities equipped with combined heat and power (CHP) engines ranging from 50 to 400 
+kW, for treating livestock waste from individual animal husbandry enterprises. To achieve 
+this goal, data were gathered from various livestock operations (including dairy cattle, 
+poultry, swine, dairy sheep and goats) regarding their annual production, revenues, elec-
+tricity and fuel usage, as well as waste generation. Additionally, waste samples were col-
+lected and analyzed to determine their biomethane production potential, thus estimating 
+the revenue from renewable electricity generation. The capital and operational costs of 
+anaerobic digestion facilities, ranging from 50 and 400 kW in capacity, were calculated 
+using the equations developed within the “eMT cluster” project. The economic feasibility 
+was further evaluated by computing the investment payback period, considering different 
+feed-in-tariffs for electricity fed into the grid (ranging from 0.21 to 0.26 € kWh−1), as well 
+as potential subsidies for the construction of anaerobic digestion plants. 
+2. Materials and Methods 
+2.1. Inventory on Animal-Husbandry Enterprises 
+To gather data on the operations of various animal husbandry enterprises, interviews 
+were conducted with the owners or managers of these facilities [20]. The interviews ad-
+dressed several aspects of the production process, including: 
+• 
+Herd size; 
+• 
+Type of products and annual production volumes; 
+• 
+Prices of products; 
+• 
+Annual quantity of animal feed; 
+• 
+Annual quantity of waste generated; 
+• 
+Annual electricity consumption; 
+• 
+Annual consumption of fossil fuels. 
+The data were normalized per tn of product to facilitate comparison across different 
+sectors. Electricity and fuel prices were based on the average market values in Greece, 
+which were 0.10 € kWh−1 for electricity and 1 € kg−1 for LPG or diesel oil. The carbon diox-
+ide footprint was calculated using emissions factors of 0.34 kg CO2-eq per kWh of electricity 
+and 2.0 kg CO2-eq per kg of fuel [21]. 
+2.2. Waste Sampling and Characterization 
+To assess the biochemical methane potential (BMP) of organic wastes, samples were 
+collected from various animal husbandry enterprises and analyzed for their physical and 
+chemical properties. The waste samples were stored in plastic containers at 4 °C until pro-
+cessing. The waste characterization involved determining the total solids (TS) and volatile 
+solids (VS) content using standard methods [22]. BMP tests were conducted in anaerobic 
+batch digesters with a working volume of 250 mL, placed inside an incubator (WITEG, 
+Wertheim, Germany) under mesophilic conditions (38 °C). The digesters were inoculated 
+with anaerobic sludge from an agricultural digester for treating manure and energy crops. 
+The substrate-to-inoculum ratio was kept constant at 0.25 kg VS substrate per kg VS inoc-
+ulum. During batch anaerobic digestion, mixing was applied manually once per day. Bi-
+ogas production was monitored daily over a 20-day period using an inverse water column 
+with acidic water (pH = 2), and the methane content of the biogas was determined using 
+an alkaline trap [23]. BMP was calculated as the cumulative methane production per gram 
+of VS added, converted to standard temperature and pressure conditions. 
+2.3. Anaerobic Digester Techno-Economic Assessment 
+The techno-economic assessment of anaerobic digestion facilities, ranging from 50 to 
+400 kW installed CHP electric power, entailed both capital (CAPEX) and operational 
+
+Appl. Sci. 2024, 14, 4957 
+4 of 12 
+ 
+(OPEX) expenditures. CAPEX included the engineering, procurement and construction of 
+various components, such as a buffer tank with a mixer and pumps, a digester tank with 
+a mixer, heat exchanger and a membrane gas holder [24–26]. Additionally, biogas equip-
+ment comprising a scrubber, dryer, and combined heat and power (CHP) unit was ac-
+counted for, along with monitoring equipment including liquid and gas flow meters, tem-
+perature, pressure and level sensors. Safety equipment, such as flare, pressure relief 
+valves, flame arresters, and explosivity sensors, were also included in the CAPEX assess-
+ment. CAPEX was determined using Equation (1): 
+CAPEX = VDG × [1000 – 40 × ln(VDG)], 
+(1) 
+where, VDG is the digester working volume (m3). The latter was determined using the fol-
+lowing equation: 
+VDG = 24 × QW × VS/OLR, 
+(2) 
+where QW = waste mass flow rate (tn h−1), VS = waste volatile solids content (kg tn−1), and 
+OLR = design organic loading rate (considered equal to 4 kg VS m−3 d−1, typical for CSTR 
+digesters [19]). Finally, CAPEX was converted to equivalent annual CAPEX (CAPEXan) 
+considering a 15-year life-time period and 6% interest [18]. 
+The annual operational expenditures (OPEX) encompass expenses related to electric-
+ity (for operating mixer, pumps, CHP unit, etc.), equipment maintenance (for CHP unit, 
+pumps, motors, etc.), labor, and consulting services. The installed electric power (P in kW) 
+of the anaerobic digestion facility’s production equipment was determined using the fol-
+lowing equation: 
+P = VDG [0.082 − 0.008 × ln(VDG)], 
+(3) 
+Thus, the annual electricity expenditures (E, in € yr−1) were determined as follows: 
+E = P × WP × EC, 
+(4) 
+where WP = the annual working hours of electrical equipment (considered equal to 8000 
+h), and EC = the cost for electricity (considered 0.10 € kWh−1). The annual costs for mainte-
+nance (M, in € yr−1), labor (L, in € yr−1) and consulting services (C, in € yr−1) were calculated 
+using Equations (5)–(7): 
+M = 27.5 × VDG − 0.0046 × (VDG)2, 
+(5) 
+L = 10,000 × ln(VDG) – 50,000, 
+(6) 
+C = 1800 × ln(VDG) – 5300, 
+(7) 
+The total cost, total income (from electricity introduction into the grid) and total profit 
+(before taxes) were determined using Equations (8)–(10): 
+Total cost = CAPEXan + E + M + L + C, 
+(8) 
+Total income = QW × VS × BMP × WP × CHPeff × FIT, 
+(9) 
+Total profit = Total income − Total cost, 
+(10) 
+where CHPeff = the efficiency of the CHP (range from 3.6 to 4.1 kWh-el m−3 CH4), and FIT = the 
+feed-in tariff for electricity introduction to the grid (considered equal to 0.21 € kWh−1). The 
+investment payback period (in years) was finally determined using Equation (11): 
+Investment payback period = Total profit/CAPEX,  
+(11)
+
+Appl. Sci. 2024, 14, 4957 
+5 of 12 
+ 
+3. Results 
+3.1. Waste Characteristics and Biochemical Methane Potential 
+Wastes generated by various animal husbandry enterprises were either liquid (from 
+dairy cows and swine) or solid (from poultry, dairy sheep, and goats). Table 1 provides a 
+summary of their characteristics and biochemical methane potential. Poultry and dairy 
+cattle wastes exhibited the highest BMP values, followed by sheep and goat manure. 
+Swine manure, on the other hand, showed low BMP values along with a high-water con-
+tent. As evidenced by the data provided in Figure 1, the methane production from the 
+examined substrates was completed within 20 d of anaerobic digestion time. The methane 
+content in biogas was on average 62 ± 3% in all samples tested. 
+Table 1. Concentration of total solids (TS), volatile solids (VS) and biochemical methane potential 
+(BMP) values for waste samples collected from different animal husbandry enterprises. 
+Waste 
+TS (g kg−1) 
+VS (g kg−1) 
+VS/TS 
+BMP (mL CH4 g−1 VS) 
+Dairy cattle 
+83.1 ± 4.6 
+70.1 ± 4.1 
+0.84 
+276 ± 3 
+Poultry 
+692.5 ± 4.1 
+554.6 ± 6.5 
+0.80 
+320 ± 19 
+Swine 
+22.3 ± 2.5 
+15.1 ± 3.5 
+0.68 
+172 ± 2 
+Sheep 
+352.2 ± 14.4 
+236.3 ± 8.9 
+0.67 
+252 ± 6 
+Goats 
+717.0 ± 3.4 
+606.0 ± 22.4 
+0.85 
+227 ± 9 
+ 
+Figure 1. Cumulative methane production curves from the batch anaerobic digestion of different 
+livestock wastes samples. 
+3.2. Techno-Economic Evaluation 
+According to Equation (1), the CAPEX of the anaerobic digester decreased from 6000 
+to 4500 € kW−1 (or from 800 to 700 € m−3) as the plant capacity increased from 50 to 400 kW, 
+reflecting economies of scale (Figure 2a). Similarly, operational expenses decreased from 
+700 to 350 € kW−1 with increasing plant capacity. Electricity and maintenance each ac-
+counted for 32% of the total OPEX, followed by labor (26%) and consulting services (10%) 
+(Figure 2b). 
+ 
+ 
+0
+50
+100
+150
+200
+250
+300
+350
+400
+0
+5
+10
+15
+20
+25
+BMP (mL g−1 VS)
+Time (d)
+Dairy cattle
+Poultry
+Swine
+Sheep
+Goat
+
+Appl. Sci. 2024, 14, 4957 
+6 of 12 
+ 
+(a) 
+(b) 
+Figure 2. (a) Capital expenses (CAPEX) in € per kW installed CHP electric power, and (b) opera-
+tional expenses (OPEX) per kW installed CHP electric power, for small-size anaerobic digestion fa-
+cilities, as a function of the CHP installed electric power. 
+Considering the above, it was possible to calculate the costs per m3 of biogas (me-
+thane) produced and per kWh of electricity generated (see Figure 3). The data indicate 
+that the cost of biogas (methane) production decreased from 0.55 to 0.35 € m−3 CH4 and 
+the cost of generating electricity decreased from 0.16 to 0.10 € kWh−1, as the digester ca-
+pacity increased from 50 to 400 kW. These values fall within the same range as natural gas 
+and electricity prices, particularly for larger CHP installations. Therefore, low prices of 
+natural gas and electricity represent significant barriers to the penetration of anaerobic 
+digestion into small-sized animal husbandry enterprises. Figure 3b show the energy sus-
+tainability index (ESI) of the examined anaerobic digestion facilities, representing the ratio 
+
+Appl. Sci. 2024, 14, 4957 
+7 of 12 
+ 
+of produced to consumed electricity. The data indicate that the ESI ranged between 4 and 
+8. The energy consumed accounted for 26% to 13% for the anaerobic digestion facilities 
+with installed CHP electric power capacities of 50 to 400 kW, respectively. 
+(a) 
+ 
+(b) 
+Figure 3. (a) Capital expenses (CAPEX), operational expenses (OPEX) and total cost (TOTAL) per 
+m3 of methane produced and kWh−1 electricity generated, and (b) energy sustainability index (ESI) 
+and electricity consumption as a percentage of produced electrical energy, for small-size anaerobic 
+digestion facilities, as a function of the CHP installed electric power. 
+Figure 4 depicts the investment payback period of anaerobic digester investments as 
+a function of CHP installed electrical power for various scenarios of financial support. In 
+the case of a feed-in tariff (FIT) equal to 0.21 € kWh−1, the payback period decreased from 
+15 to 5 years as the digester capacity increased from 50 to 400 kW. Consequently, facilities 
+below 250 kW become less attractive from an investment perspective. With an increase in 
+the FIT to 0.26 € kWh−1, the payback period for facilities under 250 kW remains between 5 
+and 7 years. Similar performance was observed when subsidizing 70% of the CAPEX for 
+
+Appl. Sci. 2024, 14, 4957 
+8 of 12 
+ 
+construction instead of electricity FIT. If both CAPEX subsidy (70%) and high electricity 
+prices are available, the overall payback period for the examined anaerobic digestion fa-
+cilities ranges between 3 and 5 years, rendering them financially attractive. 
+Figure 4. Investment payback period for anaerobic digestion facilities as a function of the CHP in-
+stalled electric power, for different feed-in tariffs (FIT) and construction subsidies. The FIT was con-
+sidered as 210 € MWh−1 (FIT210) or 260 € MWh−1 (FIT260) and the construction subsidy equal to 70% 
+of the CAPEX (CAPEX70). 
+3.3. Livestock Enterprise Inventory and Anaerobic Digester Economic Feasibility Assessment 
+Electricity consumption and fossil fuel usage are seldom major concerns for farmers. 
+In addition, the costs associated with electricity and fuel consumption represented less 
+than 3 and 5% of the annual turnover, respectively (see Table 2). Dairy cattle farming ex-
+hibited high electricity consumption per tn of product, while poultry farming showed 
+high fuel consumption, followed by dairy cattle. However, with the rise in electricity and 
+fossil fuel prices, as witnessed during 2022–2023 in Europe, their respective contributions 
+may significantly increase. 
+Table 2. Inventory on operational data from different types of animal husbandry enterprise in Greece. 
+Parameter 
+Dairy Cattle 
+Poultry 
+Swine 
+Sheep/Goats 
+Herd size 
+680 
+412,000 
+5550 
+2000 
+Product type 
+Milk 
+Meat a 
+Meat a 
+Milk 
+Price b (€ tn−1) 
+400–500 
+1500–2500 
+1200–1600 
+1200–1600 
+Production (tn yr−1) 
+2740 
+1200 a 
+1280 a 
+200 
+Feed (tn yr−1) 
+5300 
+200 
+4000 
+2,000 
+Wastes b (tn tn−1) 
+7.2 
+0.8 
+8.6 
+6.0 
+Electricity b (kWh tn−1) 
+119 
+96 
+140 
+100 
+Fuel b (kg tn−1) 
+13 
+83 
+9 
+20 
+a Expressed as live weight; b the price of product, the quantity of wastes generated, the quantity of 
+electricity and fuels consumed were expressed as per tn of product. 
+Table 3 represents the capital and operational expenses of small-size anaerobic diges-
+tion facilities applied to the examined animal husbandry enterprises. The annual profit in 
+all cases was calculated using a FIT of 0.26 € kWh−1 and an 70% investment subsidy for 
+CAPEX. The data demonstrate that a maximum profit of 18 and 22% of their annual 
+0
+2
+4
+6
+8
+10
+12
+14
+16
+0
+100
+200
+300
+400
+500
+Payback period (yr)
+CHP (kW)
+FIT210
+FIT210 + CAPEX70
+FIT260
+FIT260 + CAPEX70
+
+Appl. Sci. 2024, 14, 4957 
+9 of 12 
+ 
+turnover is possible for the dairy cattle and sheep/goat enterprises examined, respectively. 
+This is further reduced to 4% for poultry farms while the swine enterprise does not appear 
+eligible for a 50-kW anaerobic digestion facility and this case was not further assessed. 
+Table 3. Summary of techno-economic assessment for different livestock waste anaerobic digestion 
+facilities, considering a FIT of 0.26 € kWh−1 and a 70% investment subsidy for CAPEX. The case of 
+the swine enterprise was not further assessed since the capacity of the CHP required was below the 
+range examined in the study (50 to 400 kW). 
+Parameter 
+Dairy Cattle 
+Poultry 
+Swine 
+Sheep/Goats 
+Waste (tn yr−1) 
+20,000 
+960 
+11,000 
+1200 
+VS content (kg tn−1) 
+70 
+555 
+15 
+420 
+BMP (L kg−1 VS) 
+280 
+310 
+160 
+220 
+CH4 generated (m3 yr−1) 
+390,000 
+175,000 
+26,000 
+110,000 
+Electricity produced a (kWh yr−1) 
+1,500,000 
+660,000 
+90,000 
+400,000 
+CHP b (kW) 
+200 
+80 
+20 
+50 
+Digester CAPEX 
+1,000,000 
+550,000 
+-- 
+300,000 
+Annual CAPEX (€ yr−1) 
+100,000 
+55,000 
+-- 
+30,000 
+Annual OPEX (€ yr−1) 
+100,000 
+60,000 
+-- 
+40,000 
+Total cost (€ yr−1) 
+200,000 
+115,000 
+-- 
+70,000 
+Total income (€ yr−1) 
+390,000 
+170,000 
+-- 
+104,000 
+Total profit (€ yr−1) 
+260,000 
+93,000 
+-- 
+55,000 
+Annual turnover (ATO) 
+1,200,000 
+2,400,000 
+1,800,000 
+300,000 
+Profit c (% ATO) 
+22% 
+4% 
+-- 
+18% 
+a The electrical efficiency of the CHP engine was considered between 3.8 and 3.5 kWh-el m−3 CH4; b 
+CHP capacity was determined considering 8000 h of anaerobic digester operation per year; c Profit 
+was expressed as a percentage of the enterprise annual turnover (ATO). 
+4. Discussion 
+Organic waste management poses a significant challenge for the animal husbandry 
+sector, which produces substantial quantities of residues and wastes, both liquid and 
+solid, necessitating proper treatment and disposal [25]. Inadequate waste management 
+can result in greenhouse gas emissions, environmental pollution, health hazards, and eco-
+nomic losses [24]. Hence, there is a pressing need for sustainable and efficient solutions to 
+mitigate the environmental impact of waste while extracting value from it. 
+Anaerobic digestion is a promising technology for the valorization of organic waste, 
+which is widely distributed across various regions. The biogas generated (mainly me-
+thane) can be utilized for multiple purposes, including electricity generation, vehicle fuel, 
+natural gas substitution, heating, and cooking fuel [27,28]. These facilities are complex 
+technical systems requiring meticulous design and operation. The actual biogas yield 
+from a full-scale facility is influenced by several factors, such as digester design (e.g., hy-
+draulic residence time, residence time distribution, mixing intensity, presence of dead vol-
+umes/flow short-circuits), the conditions inside the digester (e.g., temperature, pH, salin-
+ity, concentration of inhibitors, like ammonia and sulfides), the presence of micronutrients 
+and trace elements, sludge activity and the accumulation of non-digestible vegetable fi-
+bers [20,29]. Properly designed and executed BMP tests can estimate the methane yield 
+under field conditions. Additionally, operating a pilot-scale facility with continuous sub-
+strate feeding can provide valuable data on long-term process performance, inhibitor ac-
+cumulation and the composition of both biogas and digestate [29]. 
+Sustainability, in terms of technology, economics and the environment, remains an open 
+question that requires further analysis and evaluation. New technologies, based on high-rate 
+digestion reactors, with low capital expenditure and low technological complexity, are crucial, 
+especially for small-scale projects. Energy sustainability, as expressed by the Energy Sustain-
+ability Index (ESI)—the ratio of electricity produced to the electricity consumed by the 
+
+Appl. Sci. 2024, 14, 4957 
+10 of 12 
+ 
+technology—is of particular importance [28]. The ESI for small-scale anaerobic digestion facil-
+ities examined in this work ranged between 4 and 8 for installed CHP electric power between 
+50 and 400 kW, respectively. Clearly, energy sustainability is crucial, as a technology with low 
+ESI (even below 1) can still be financially attractive due to incentives. 
+Considering the economic feasibility, the findings of this study reveal that a feed-in 
+tariff (FIT) of 0.21 € kWh−1 is inadequate to render investment in anaerobic digestion facil-
+ities financially attractive for capacities less than 250 kW. Hence, it is imperative to either 
+increase the FIT to 0.26 € kWh−1 or provide investment subsidies for capital expenditures 
+(CAPEX), or ideally, both. Investment in anaerobic digestion should yield value for the 
+farmer, accompanied by a short payback period, preferably under 5 years. As evidenced 
+by the results, significant economic returns are feasible for dairy cattle and sheep/goat 
+enterprises. Poultry farms, despite their substantial consumption of fossil fuels (primarily 
+for barn heating), incur overall fuel costs amounting to less than 5% of the annual turno-
+ver, thus mitigating the significance of this issue for farmers. Previous studies indicated 
+that small-scale anaerobic digestion facilities are rarely implemented due to their limited 
+financial attractiveness [30]. Nevzorova and Kutcherov [31] highlighted the barriers hin-
+dering the widespread adoption of anaerobic digestion technology in small and medium-
+sized livestock enterprises, including lack of interest by the farmer, high investment costs 
+(attributed to the scarcity of qualified construction companies), limited access to bank 
+loans, absence of suitable subsidies and support programs, and complex bureaucratic pro-
+cedures for financing and obtaining permits/licenses. 
+According to a survey conducted by Burg et al. [32] in Switzerland, farmers with a 
+small number of animals exhibit limited interest in biogas production. The primary moti-
+vation for adopting anaerobic digestion facilities is the potential income derived from sell-
+ing electricity to the grid. Similarly, factors contributing to the limited adoption of anaer-
+obic digestion technology include high investment costs, absence of subsidies, and diffi-
+culties in collaborating with neighboring companies to establish larger capacity plants. 
+Furthermore, investing in anaerobic digestion technology often requires significant in-
+volvement from the farmer, spanning the design, construction, and especially operation 
+phases, which may divert attention from their primary activities of animal breeding 
+and/or milk production. Therefore, for the successful implementation of anaerobic diges-
+tion projects in small and medium-sized livestock enterprises, it is crucial to ensure a pos-
+itive economic balance, coupled with low capital and operational expenses, while ensur-
+ing that farmers maintain their commitment to their core production activities. 
+5. Conclusions 
+Small-scale animal husbandry enterprises general large quantities of organic wastes 
+that require appropriate management and treatment. Anaerobic digestion facilities with 
+capacities between 50 and 400 kW installed CHP electric power were evaluated in terms 
+of capital and operational expenditures. Although anaerobic digestion facilities with a 
+CHP capacity of less than 250 kW are energy sustainable, they are rarely attractive from 
+an investment perspective. According to this study, it is possible to reduce the payback 
+period for investing in a 100–50 kW anaerobic digestion facility from 10–15 to 6–7 years 
+by increasing the feed-in tariff (FIT) from 0.21 to 0.26 € kWh−1, and to 4–5 years by addi-
+tionally providing financial support (a 70% subsidy) for capital expenditures (CAPEX). 
+These recommendations are viable if electricity prices are guaranteed for the duration of 
+the investment’s lifespan (at least 15 years) and if there is a robust legislative framework 
+mandating the construction of anaerobic digestion facilities. 
+Author Contributions: Conceptualization, V.D.; methodology, A.E.; investigation, A.E., I.K. and 
+C.M.; data curation, A.E. and P.C.; writing—original draft preparation, V.D.; writing—review and 
+editing, P.C.; Supervision, V.D. and A.E. All authors have read and agreed to the published version 
+of the manuscript. 
+
+Appl. Sci. 2024, 14, 4957 
+11 of 12 
+ 
+Funding: This research was co-financed by the European Regional Development Fund of the Euro-
+pean Union and Greek national funds through the Operational Program Competitiveness, Entre-
+preneurship, and Innovation, under the call “Collaborative Innovation Formations” (eMT cluster) 
+project code: ΓΓ2CL-0356133. 
+Data Availability Statement: Data included in this study are available to researchers upon request. 
+Acknowledgments: We acknowledge Dimitrios Dafnis for the development of the biogas calculator 
+application. 
+Conflicts of Interest: Authors A.E., I.K., C.M. and V.D. were employed by the company Act4energy 
+P.C. The remaining authors declare that the research was conducted in the absence of any commer-
+cial or financial relationships that could be construed as a potential conflict of interest. 
+References 
+1. 
+Jones, R. Manure Matters: Historical, Archaeological and Ethnographic Perspectives; Ashgate Publishing, Ltd.: Farnham, UK, 2013. 
+2. 
+Bayu, W.; Rethman, N.F.G.; Hammes, P.S. The role of animal manure in sustainable soil fertility management in sub-Saharan 
+Africa: A review. J. Sustain. Agric. 2005, 25, 113–136. https://doi.org/10.1300/J064v25n02_09. 
+3. 
+Varma, V.S.; Parajuli, R.; Scott, E.; Canter, T.; Lim, T.T.; Popp, J.; Thoma, G. Dairy and swine manure management—Challenges 
+and perspectives for sustainable treatment technology. Sci. Total Environ. 2021, 778, 146319. https://doi.org/10.1016/j.sci-
+totenv.2021.146319. 
+4. 
+Kupper, T.; Hani, C.; Neftel, A.; Kincaid, C.; Buhler, M.; Amon, B.; VanderZaag, A. Ammonia and greenhouse gas emissions 
+from slurry storage-A review. Agric. Ecosyst. Environ. 2020, 300, 106963. https://doi.org/10.1016/j.agee.2020.106963. 
+5. 
+Qi, J.; Yang, H.; Wang, X.; Zhu, H.; Wang, Z.; Zhao, C.; Li, B.; Liu, Z. State-of-the-art on animal manure pollution control and 
+resource utilization. J. Environ. Chem. Eng. 2023, 11, 110462. https://doi.org/10.1016/j.jece.2023.110462. 
+6. 
+Guo, J.; Zheng, L.; Li, Z.; Zhou, X.; Cheng, S.; Zhang, L.; Zhang, Q. Effects of various pyrolysis conditions and feedstock com-
+positions in the physicochemical characteristics of cow manure-derived biochar. J. Clean. Prod. 2021, 311, 127458. 
+https://doi.org/10.1016/j.jclepro.2021.127458. 
+7. 
+Kalogiannis, A.; Vasiliadou, I.A.; Spyridonidis, A.; Diamantis, V.; Stamatelatou, K. Biogas production from chicken manure 
+wastes using an LBR-CSTR two-stage system: Process efficiency, economic feasibility, and carbon dioxide footprint. J. Chem. 
+Technol. Biotechnol. 2022, 97, 2952–2961. https://doi.org/10.1002/jctb.7170. 
+8. 
+Calbry-Muzyka, A.; Madi, H.; Rusch-Pfund, F.; Gandiglio, M.; Biollaz, S. Biogas composition from agricultural sources and 
+organic fraction of municipal solid waste. Renew. Energy 2022, 181, 1000–1007. https://doi.org/10.1016/j.renene.2021.09.100. 
+9. 
+Tiong, Y.W.; Sharma, P.; Xu, S.; Bu, J.; An, S.; Foo, J.B.L.; Wee, B.K.; Wang, Y.; Lee, J.T.E.; Zhang, J.; et al. Enhancing sustainable 
+crop cultivation: The impact of renewable soil amendments and digestate fertilizer on crop growth and nutrient composition. 
+Environ. Pollut. 2024, 342, 123132. https://doi.org/10.1016/j.envpol.2023.123132. 
+10. 
+Hussain, Z.; Mishra, J.; Vanacore, E. Waste to energy and circular economy: The case of anaerobic digestion. J. Enterp. Inf. Manag. 
+2020, 33, 817–838. https://doi.org/10.1108/JEIM-02-2019-0049. 
+11. 
+Boscolo, M.; Bregant, L.; Miani, S.; Padoano, E.; Piller, M. An enquiry into the causes of an explosion accident occurred in a 
+biogas plant. Process Saf. Prog. 2020, 39, e12063. https://doi.org/10.1002/prs.12063. 
+12. 
+Obileke, K.; Nwokolo, N.; Makaka, G.; Mukumba, P.; Onyeaka, H. Anaerobic digestion: Technology for biogas production as a 
+source of renewable energy-A review. Energy Environ. 2021, 32, 191–225. https://doi.org/10.1177/0958305X20923117. 
+13. 
+Sorensen, J.F.L.; Jorgensen, H.P. Rural development potential in the bioeconomy in developed countries: The case of biogas 
+production in Denmark. Sustainability 2022, 14, 11077. https://doi.org/10.3390/su141711077. 
+14. 
+Winquist, E.; Van Galen, M.; Zielonka, S.; Rikkonen, P.; Oudendag, D.; Zhou, L.; Greijdanus, A. Expert views on the future 
+development of biogas business branch in Germany, The Netherlands, and Finland until 2030. Sustainability 2021, 13, 1148. 
+https://doi.org/10.3390/su13031148. 
+15. 
+Pavicic, J.; Novak Mavar, K.; Brkic, V.; Simon, K. Biogas and biomethane production and usage: Technology development, ad-
+vantages and challenges in Europe. Energies 2022, 15, 2940. https://doi.org/10.3390/en15082940. 
+16. 
+Bremond, U.; Bertrandias, A.; Steyer, J.P.; Bernet, N.; Carrere, H. A vision of European biogas sector development towards 2030: 
+Trends and challenges. J. Clean. Prod. 2021, 287, 125065. https://doi.org/10.1016/j.jclepro.2020.125065. 
+17. 
+Pellegrini, G.; de Mattos, C.S.; Otter, V.; Hagelaar, G. Exploring how EU agri-food SMEs approach technology-driven business 
+model innovation. Int. Food Agribus. Manag. Rev. 2023, 26, 577–595. 
+18. 
+Diamantis, V.; Erguder, T.H.; Aivasidis, A.; Verstraete, W.; Voudrias, E. Wastewater disposal to landfill-sites: A synergistic so-
+lution for centralized management of olive mill wastewater and enhanced production of landfill gas. J. Environ. Manag. 2013, 
+128, 427–434. https://doi.org/10.1016/j.jenvman.2013.05.051. 
+19. 
+Spyridonidis, A.; Vasiliadou, I.A.; Akratos, C.S.; Stamatelatou, K. Performance of a full-scale biogas plant operation in Greece 
+and its impact on the circular economy. Water 2020, 12, 3074. https://doi.org/10.3390/w12113074. 
+20. 
+Jasinska, A.; Grosser, A.; Meers, E. Possibilities and limitations of anaerobic co-digestion of animal manure—A critical review. 
+Energies 2023, 16, 3885. https://doi.org/10.3390/en16093885. 
+
+Appl. Sci. 2024, 14, 4957 
+12 of 12 
+ 
+21. 
+Tang, Y.; Li, Y.; Yuan, X.; Pimm, A.; Cockerill, T.T.; Wang, Q.; Ma, Q. Estimation of emissions factors from purchased electricity 
+for European countries: Impacts on emission reduction of electricity storage. Environ. Sci. Technol. 2022, 56, 5111–5122. 
+https://doi.org/10.1021/acs.est.1c06490. 
+22. 
+Rice, E.W.; Bridgewater, L.; American Public Health Association. (Eds.) Standard Methods for the Examination of Water and 
+Wastewater; American Public Health Association: Washington, DC, USA, 2012. 
+23. 
+Eftaxias, A.; Georgiou, D.; Diamantis, V.; Aivasidis, A. Performance of an anaerobic plug-flow reactor treating agro-industrial 
+wastes 
+supplemented 
+with 
+lipids 
+at 
+high 
+organic 
+loading 
+rate. 
+Waste 
+Manag. 
+Res. 
+2021, 
+39, 
+508–515. 
+https://doi.org/10.1177/0734242X21991898. 
+24. 
+Tan, W.E.; Liew, P.Y.; Tan, N.E.; Woon, K.S.; Mohammad Rozali, N.E.; Ho, W.S.; NorRuwaida, J. Life cycle assessment and 
+techno-economic analysis for anaerobic digestion as cow manure management system. Energies 2022, 15, 9586. 
+https://doi.org/10.3390/en15249586. 
+25. 
+Hernandez Regalado, R.E.; Haner, J.; Brugging, E.; Tranckner, J. Techno-economic assessment of solid-liquid biogas treatment 
+plants for the agro-industrial sector. Energies 2022, 15, 4413. https://doi.org/10.3390/en15124413. 
+26. 
+Sganzerla, W.G.; da Rosa, R.G.; Barroso, T.L.C.T.; Castro, L.E.N.; Forster-Carneiro, T. Techno-economic assessment of on-site 
+production of biomethane, bioenergy, and fertilizer from small-scale anaerobic digestion of jaboticaba by-product. Methane 
+2023, 2, 113–128. https://doi.org/10.3390/methane2020009. 
+27. 
+Tolessa, A.; Louw, T.M.; Goosen, N.J. Probabilistic techno-economic assessment of anaerobic digestion predicts economic ben-
+efits to smallholder farmers with quantifiable certainty. Waste Manag. 2023, 138, 8–18. https://doi.org/10.1016/j.was-
+man.2021.11.004. 
+28. 
+Gomez-Camacho, C.E.; Pirone, R.; Ruggeri, B. Is the Anaerobic Digestion (AD) sustainable from the energy point of view? 
+Energy Convers. Manag. 2021, 231, 113857. https://doi.org/10.1016/j.enconman.2021.113857. 
+29. 
+Aivasidis, A.; Diamantis, V.I. Biochemical reaction engineering and process development in anaerobic wastewater treatment. 
+Adv. Biochem. Eng./Biotechnol. 2005, 92, 49–76. https://doi.org/10.1007/b98919. 
+30. 
+Yousuf, A.; Sultana, S.; Monir, M.U.; Karim, A.; Rahmaddulla, S.R.B. Social business models for empowering the biogas tech-
+nology. Energy Source Part B 2017, 12, 99–109. https://doi.org/10.1080/15567249.2016.1255677. 
+31. 
+Nevzorova, T.; Kutcherov, V. Barriers to the wider implementation of biogas as a source of energy: A state-of-the-art review. 
+Energy Strateg. Rev. 2019, 26, 100414. https://doi.org/10.1016/j.esr.2019.100414. 
+32. 
+Burg, V.; Troitzsch, K.G.; Akyol, D.; Baier, U.; Hellweg, S.; Thees, O. Farmer’s willingness to adopt private and collective biogas 
+facilities: An agent-based modeling approach. Resour. Conserv. Recycl. 2021, 167, 105400. https://doi.org/10.1016/j.rescon-
+rec.2021.105400. 
+Disclaimer/Publisher’s Note: The statements, opinions and data contained in all publications are solely those of the individual au-
+thor(s) and contributor(s) and not of MDPI and/or the editor(s). MDPI and/or the editor(s) disclaim responsibility for any injury to 
+people or property resulting from any ideas, methods, instructions or products referred to in the content. 

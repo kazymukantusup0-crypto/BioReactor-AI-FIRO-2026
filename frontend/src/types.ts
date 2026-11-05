@@ -1,0 +1,45 @@
+export interface Price {
+  id: number; source_id: string; source_name: string; source_url: string; commodity: string;
+  category: string; region: string; value: string; unit: string; normalized_value: string; normalized_unit: string;
+  currency: string; published_at: string | null; effective_from: string; received_at: string; price_type: string;
+  validation_status: string; validation_reason: string; age_days: number; is_stale: boolean; is_test: number;
+  consumer_class: string; tax_basis: string; gas_volume_basis: string | null; evidence: string;
+}
+export interface SourceState { source_id: string; last_success_at: string | null; last_attempt_at: string | null; last_status: string; last_error: string | null; next_attempt_at: string | null }
+export interface Reactor { status: string; connected: boolean; mode: string; readings: null | Record<string, number>; measured_at: string | null; actuator_access: boolean; message: string }
+export interface SystemStatus {
+  checked_at: string; fastapi: { status: string }; sqlite: { status: string; observations: number; test_observations: number };
+  ollama: { model: string; available: boolean; service_available: boolean; generation_checked: boolean; status: string };
+  models: { id: string; available: boolean; status: string; version?: string }[]; sensors: Reactor;
+  market: { status: string; last_success_at: string | null; source_states: SourceState[]; validation_counts: Record<string, number> };
+  network_mode: string; internet_connection: string; online_provider_configured: boolean; actuator_access: boolean;
+}
+export interface Event { id: number; source_id: string; category: string; status: string; started_at: string; finished_at: string | null; error: string | null; inserted: number }
+export interface Source { title: string; url: string }
+export interface ToolResult { status: string; message: string; sources?: Source[]; warnings?: string[]; limitations?: string[]; bmp?: number; [key: string]: unknown }
+export interface ToolCall { tool: string; status: string; result: ToolResult; input_origin?: string }
+export interface AgentReply { mode: string; answer: string; tools: ToolCall[]; missing: string[]; provider_status: { provider: string; status: string; model?: string; actual_generation?: boolean; reason?: string }[]; context?: Record<string, unknown>; conversation_version?: string; user_facing_answer?: HumanAnswer; pending_question?: Clarification | null; memory?: ConversationMemory; technical_metadata?: ConversationMetadata }
+export interface AgentJob { id: string; request_id: string; conversation_id: string; task_id: string; status: string; current_stage: string; terminal: boolean; attempt_count: number; error_code: string | null; result_reference: string; result_available: boolean; partial_count: number; preview: ConversationMemory | null; heartbeat_at: string | null; updated_at: string; acknowledged_at: string | null; cancel_requested: number }
+export interface JobResult { id: string; status: string; terminal: boolean; reply: AgentReply | null; error_code: string | null; partial_results: unknown[] }
+export interface Turn { id: number; question: string; created_at: string; status: string; request_id: string; reply: AgentReply | null; job?: AgentJob; execution_result?: JobResult }
+export interface Session { id: string; mode: string; context: Record<string, unknown>; turns: Turn[]; state_version?: number; conversation_version?: string; memory?: ConversationMemory | null }
+export interface ModelField { name: string; label: string; unit: string; type: 'number' | 'category'; required: boolean; bounds: [number, number] | null; categories: string[] | null; role: string }
+export interface ModelSchema { model: string; version: string; algorithm: string; unit: string; fields: ModelField[]; limitations: string[]; context_fields: { name: string; label: string; unit: string }[]; context_notice: string }
+export interface Prediction extends ToolResult { prediction_id: number; bmp?: number; model?: string; model_version?: string; unit?: string; potential_methane_m3?: number; uncertainty?: { interval_90: number[] | null; explanation: string }; domain?: { out_of_distribution?: boolean; limited_support?: boolean }; used_features?: Record<string, string | number>; context_notice: string }
+export interface ScenarioRow { scenario: string; status: string; reason?: string; revenue?: number; total_cost?: number; net_profit: number | null; break_even_price?: number | null; break_even_price_to_match_sale?: number | null; break_even_unit?: string }
+export interface EconomicResult { status: string; scenarios: ScenarioRow[]; recommended_scenario: string | null; final_recommendation: string | null; is_final_recommendation: boolean; recommendation_scope: string; selected_prices: Record<string, Price>; currency: string; region: string; limitations: string[]; message: string; scenario_id: number; sensitivity: { scenario: string; price_role: string; price: number; net_profit_minus_20pct: number; net_profit_plus_20pct: number; method: string }[] }
+export interface SavedScenario { id: number; created_at: string; result_json: EconomicResult; input_json: Record<string, unknown> }
+export interface Overview { system: SystemStatus; reactor: Reactor; sensor_history: unknown[]; latest_prediction: { created_at: string; result_json: Prediction } | null; latest_economics: SavedScenario | null; market_prices: Price[]; events: Event[] }
+export interface Catalog { categories: string[]; commodities: { id: string; category: string; name: string; unit: string }[]; regions: { id: string; country: string }[] }
+export interface ChangeSeries { source_id: string; commodity: string; region: string; consumer_class: string; tax_basis: string; price_type: string; unit: string; gas_volume_basis: string | null; currency: string; percent_change: number | null; observations: number; windows_days: Record<string, { status: string; percent_change: number | null; from: string; to: string }> }
+export interface ModelMetadata { selected_model: string; model_version: string; test: { MAE: number; RMSE: number; R2: number; n: number } | null; nested_cv?: { MAE: number; RMSE: number; R2: number; macro_lab_MAE: number }; limitations: string[]; interval: { radius: number | null; limitation: string }; schema: { prediction_features?: string[] }; test_status?: string }
+export interface CVRow { family: string; MAE: number; RMSE: number; R2: number; n: number; macro_lab_MAE: number; fold?: number }
+export interface Science { dataset: { name: string; source_url: string; license: string; raw_rows: number; clean_rows: number; excluded_rows: number; laboratories: number; substrates: string[]; partitions: Record<string, { rows: number; labs: string[] }> }; stage1: ModelMetadata; stage1_5: ModelMetadata; nested_cv_comparison: CVRow[]; outer_folds: CVRow[]; figures: { id: string; url: string }[]; evaluation_notice: string }
+export interface Demo { label: string; recorded_at: string; transcript: { question: string; reply: AgentReply }; laboratory_example: Record<string, string | number>; example_notice: string; question: string }
+export interface EconomicField { name: string; label: string; type: 'number' | 'boolean' | 'string'; choices: string[] | null; constraints: Record<string, unknown> }
+export interface EconomicSchema { groups: Record<string, EconomicField[]>; notice: string }
+export interface DialogueFact { value: string | number | boolean | Record<string, unknown> | null; unit: string | null; provenance: 'USER_CONFIRMED' | 'SOURCE_VERIFIED' | 'MODEL_ESTIMATED' | 'ASSUMED_FOR_SCENARIO' | 'UNKNOWN' | 'CALCULATED_FROM_CONFIRMED'; evidence: string; recorded_at: string; dependencies: string[] }
+export interface Clarification { id: string; text: string; options: string[]; fields: string[]; reason: string }
+export interface ConversationMemory { version: string; conversation_id: string | null; language: 'ru' | 'en' | 'kk'; facts: Record<string, DialogueFact>; assumptions: Record<string, DialogueFact>; derived: Record<string, DialogueFact>; estimates: Record<string, DialogueFact>; source_verified: Record<string, DialogueFact>; intents: string[]; pending_question: Clarification | null; invalidated: string[]; mixture_components?: Record<string, unknown>[]; mixture_scenario_components?: Record<string, unknown>[]; active_mixture_scenario?: boolean; decision_settings?: Record<string, unknown>; advisor_settings?: Record<string, unknown>; advanced?: import('./AdvancedInventoryFacts').AdvancedMemory & { request_overrides?: Record<string, unknown>; reactor?: { total_volume_l?: number } } }
+export interface HumanAnswer { paragraphs: string[]; sections?: {title:string;body:string}[]; question: Clarification | null; sources: Source[]; modes: string[]; assumptions: string[] }
+export interface ConversationMetadata { tool_calls?: ToolCall[]; confirmed_parameters?: Record<string, DialogueFact>; derived_parameters?: Record<string, DialogueFact>; assumptions?: Record<string, DialogueFact>; missing_parameters?: string[]; validation_errors?: string[]; fallback_reason?: string | null; [key: string]: unknown }

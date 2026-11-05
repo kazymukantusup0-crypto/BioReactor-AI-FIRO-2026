@@ -1,0 +1,144 @@
+[
+  {
+    "args": [
+      "chat",
+      "--no-llm",
+      "--message",
+      "Статус датчиков",
+      "--json"
+    ],
+    "returncode": 0,
+    "output": {
+      "mode": "deterministic_tools_no_llm",
+      "provider_status": [],
+      "llm_proposed_tools": [],
+      "policy_tool_plan": [
+        "get_reactor_status"
+      ],
+      "response_order": [
+        "get_reactor_status"
+      ],
+      "answer": "В этом ответе LLM не используется. Работает ограниченный расчётный режим, не языковая модель.\n\nMock-режим: датчики не подключены, показаний нет. Агент не управляет нагревателем, насосом или клапанами.",
+      "tools": [
+        {
+          "tool": "get_reactor_status",
+          "input_origin": "explicit_user_context_and_verified_prior_tool_results",
+          "status": "ok",
+          "result": {
+            "status": "ok",
+            "mode": "mock",
+            "connected": false,
+            "readings": null,
+            "measured_at": null,
+            "actuator_access": false,
+            "message": "Mock-режим: датчики не подключены, показаний нет. Агент не управляет нагревателем, насосом или клапанами."
+          }
+        }
+      ],
+      "missing": [],
+      "context": {
+        "model": "stage1_5"
+      },
+      "actuator_access": false
+    },
+    "passed": true
+  },
+  {
+    "args": [
+      "chat",
+      "--mode",
+      "online",
+      "--message",
+      "Статус датчиков",
+      "--json"
+    ],
+    "returncode": 0,
+    "output": {
+      "mode": "deterministic_tools_no_llm",
+      "provider_status": [
+        {
+          "provider": "online",
+          "model": null,
+          "status": "not_configured"
+        }
+      ],
+      "llm_proposed_tools": [],
+      "policy_tool_plan": [
+        "get_reactor_status"
+      ],
+      "response_order": [
+        "get_reactor_status"
+      ],
+      "answer": "В этом ответе LLM не используется. Работает ограниченный расчётный режим, не языковая модель.\n\nMock-режим: датчики не подключены, показаний нет. Агент не управляет нагревателем, насосом или клапанами.",
+      "tools": [
+        {
+          "tool": "get_reactor_status",
+          "input_origin": "explicit_user_context_and_verified_prior_tool_results",
+          "status": "ok",
+          "result": {
+            "status": "ok",
+            "mode": "mock",
+            "connected": false,
+            "readings": null,
+            "measured_at": null,
+            "actuator_access": false,
+            "message": "Mock-режим: датчики не подключены, показаний нет. Агент не управляет нагревателем, насосом или клапанами."
+          }
+        }
+      ],
+      "missing": [],
+      "context": {
+        "model": "stage1_5"
+      },
+      "actuator_access": false
+    },
+    "passed": true
+  },
+  {
+    "args": [
+      "tool",
+      "search_scientific_sources",
+      "--query",
+      "BMP VS Hafner"
+    ],
+    "returncode": 0,
+    "output": {
+      "status": "ok",
+      "search_mode": "curated_local_catalogue",
+      "query": "BMP VS Hafner",
+      "sources": [
+        {
+          "id": "hafner",
+          "title": "Hafner et al. — Reliable biochemical methane potential testing (2026), original repository and dictionary",
+          "url": "https://github.com/AU-BCE-EE/Hafner-2026-IL-BMP",
+          "locator": "README: Contents and Column names; local preserved copy in data/raw/hafner_2026_il_bmp",
+          "verified_on": "2026-10-28",
+          "keywords": [
+            "bmp",
+            "vs",
+            "isr",
+            "модел",
+            "солом",
+            "сыворот",
+            "hafner",
+            "метан"
+          ],
+          "summary": "Бутылочные BMP общих субстратов от 31 лаборатории. Единица: мл метана на грамм добавленной VS субстрата. Это лабораторный потенциал, не выработка установки."
+        }
+      ],
+      "live_web_search": false,
+      "message": "Поиск по локально проверенному каталогу; свежий поиск публикаций в интернете не выполнялся."
+    },
+    "passed": true
+  },
+  {
+    "args": [
+      "chat",
+      "--no-llm"
+    ],
+    "input": "sensor status\n/exit\n",
+    "returncode": 0,
+    "output": "BioReactor AI Agent v2. /exit — выход; /reset — новая партия. Числа: имя=значение или JSON. Управления оборудованием нет.\nВы> В этом ответе LLM не используется. Работает ограниченный расчётный режим, не языковая модель.\n\nMock-режим: датчики не подключены, показаний нет. Агент не управляет нагревателем, насосом или клапанами.\nВы> ",
+    "passed": true
+  }
+]

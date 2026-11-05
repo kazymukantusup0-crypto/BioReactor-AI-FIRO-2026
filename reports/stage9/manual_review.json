@@ -1,0 +1,9 @@
+{
+  "scope":"Human inspection of saved real-Qwen outputs by the coding agent; not an independent blinded scientific panel. Automated PASS is not full scientific correctness.",
+  "reviews":[
+    {"artifact":"rc3_development_live.json","case":"D01","scientific_correctness":"partial","usefulness":2,"hallucination_observed":false,"notes":"Verified conditional methane and alternative gross values are provided with stale-price qualification. The wording about reactor volume should distinguish biochemical potential of fixed inventory from actual realized yield. Gas-sale confirmation is not required for self-consumption valuation, but complete costs are still unknown."},
+    {"artifact":"rc3_development_live.json","case":"D02","scientific_correctness":"pending_full_review","usefulness":null,"hallucination_observed":null,"notes":"Automated checks passed after the earlier rejected numerical drafts; do not infer complete semantic correctness from that status."},
+    {"artifact":"rc3_development_live.json","case":"D03","scientific_correctness":"partial","usefulness":1,"hallucination_observed":false,"rejected_draft_errors":["Unsupported profitability ranking","Methane quantity described as total biogas"],"notes":"Final delivered answer was explicitly an engine partial. Its displayed numbers are scoped, but the old fallback omitted the other material and available economics. This does not complete the comparison task."},
+    {"artifact":"rc3_development_live.json","case":"D04","scientific_correctness":"false","usefulness":1,"hallucination_observed":true,"notes":"The delivered phrase that 30 C is not optimal is unsupported. No optimum can be inferred from current evidence. A later development verifier change rejects this assertion; this first output remains recorded as a scientific failure."}
+  ]
+}

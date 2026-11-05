@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "changed_legacy_data": [],
+  "session_version_migrations_only": [
+    "6e7457968d3d42f788c58d4629fb1f2f"
+  ],
+  "changed_artifacts": [],
+  "protected_artifacts": 230,
+  "counts": {
+    "observations": 28,
+    "dashboard_sessions": 1,
+    "dashboard_turns": 3,
+    "research_records": 3
+  }
+}

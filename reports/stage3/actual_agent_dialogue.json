@@ -1,0 +1,247 @@
+{
+  "question": "У меня 20 кг пищевых отходов в Алматы. Что выгоднее: продать или переработать в биогаз?",
+  "reply": {
+    "mode": "llm_tools",
+    "provider_status": [
+      {
+        "provider": "online",
+        "model": null,
+        "status": "not_configured"
+      },
+      {
+        "provider": "offline",
+        "model": "qwen2.5:1.5b",
+        "status": "available",
+        "actual_generation": true
+      }
+    ],
+    "llm_proposed_tools": [
+      "analyze_substrate",
+      "predict_bmp",
+      "calculate_methane",
+      "calculate_profitability"
+    ],
+    "policy_tool_plan": [
+      "analyze_substrate",
+      "predict_bmp",
+      "calculate_methane",
+      "get_market_prices",
+      "compare_market_scenarios",
+      "explain_market_recommendation"
+    ],
+    "response_order": [
+      "predict_bmp",
+      "compare_market_scenarios",
+      "analyze_substrate",
+      "get_market_prices",
+      "calculate_methane",
+      "explain_market_recommendation"
+    ],
+    "answer": "Сырьё: пищевые отходы. Состав отходов меняется; BMP-модель Hafner для этой категории не обучена. Численный прогноз Hafner для этого материала отклоняется.\n\nПоследние сохранённые цены: electricity: 50.03 KZT/kWh, возраст 46 дн., не подтверждена как актуальная\n\nДля потенциального метана нужны BMP с единицами, измеренная масса VS и условия приведения газа.\n\nРыночные сценарии. A: Не заданы: sale_storage_cost, sale_transport_cost; B: Не заданы: preparation_cost, heating_cost, operating_cost, storage_cost, transport_cost, digestate_handling_cost, energy_use_kwh, recovery_fraction, gas_volume_basis; C: Не заданы: gas_sale_technical_confirmed, gas_sale_legal_confirmed, gas_sale_evidence; D: Не заданы: digestate_quality_confirmed, digestate_market_allowed, digestate_quality_evidence. Итоговая рекомендация не выдана: сравнение неполное. Доходы газа, электричества и дигестата не суммировались; B, C и D — альтернативы.\n\nНужны данные: bmp_ml_ch4_g_vs, vs_mass_kg, bmp_unit, gas_volume_basis. Ответьте JSON-объектом или полями имя=значение; строки с пробелами — в кавычках.\n\nИсточники:\n- EBMUD / US EPA (March 2008) — Anaerobic Digestion of Food Waste, final experimental report: https://www.epa.gov/system/files/documents/2024-08/ebmud-final-report-anaerobic-digestion-of-food-waste-2008-03.pdf\n- АО Алатау Жарық Компаниясы — Энергосбыт, небытовая группа 2: https://www.esalmaty.kz/ru/business-tariffs",
+    "tools": [
+      {
+        "tool": "analyze_substrate",
+        "input_origin": "explicit_user_context_and_verified_prior_tool_results",
+        "status": "ok",
+        "result": {
+          "status": "ok",
+          "material": "food_waste",
+          "name_ru": "пищевые отходы",
+          "category": "food_waste",
+          "dry_matter_fraction": null,
+          "vs_fraction": null,
+          "conditions": {
+            "process": "Справочные сведения из bench-scale испытаний подготовленной пищевой пульпы EBMUD",
+            "temperature_range_c": null,
+            "ph_range": [
+              7,
+              7.5
+            ],
+            "hrt_days": null,
+            "source_ids": [
+              "ebmud"
+            ]
+          },
+          "sources": [
+            {
+              "id": "ebmud",
+              "title": "EBMUD / US EPA (March 2008) — Anaerobic Digestion of Food Waste, final experimental report",
+              "url": "https://www.epa.gov/system/files/documents/2024-08/ebmud-final-report-anaerobic-digestion-of-food-waste-2008-03.pdf",
+              "locator": "Section 3.3 pH; scope: bench-scale processed food-waste pulp",
+              "verified_on": "2026-10-28",
+              "keywords": [
+                "пищ",
+                "food",
+                "ph",
+                "кислот"
+              ],
+              "summary": "Отчёт об опытах с подготовленной пульпой пищевых отходов: для метаногенов описан pH 7–7,5. Перенос на другое сырьё и установку требует отдельной проверки."
+            }
+          ],
+          "limitations": "Состав отходов меняется; BMP-модель Hafner для этой категории не обучена.",
+          "model_applicable": false,
+          "message": "Сырьё: пищевые отходы. Состав отходов меняется; BMP-модель Hafner для этой категории не обучена. Численный прогноз Hafner для этого материала отклоняется."
+        }
+      },
+      {
+        "tool": "predict_bmp",
+        "input_origin": "explicit_user_context_and_verified_prior_tool_results",
+        "status": "unsupported",
+        "result": {
+          "status": "unsupported",
+          "missing": [],
+          "message": "Сырьё: пищевые отходы. Состав отходов меняется; BMP-модель Hafner для этой категории не обучена. Численный прогноз Hafner для этого материала отклоняется.",
+          "model_called": false
+        }
+      },
+      {
+        "tool": "calculate_methane",
+        "input_origin": "explicit_user_context_and_verified_prior_tool_results",
+        "status": "needs_input",
+        "result": {
+          "status": "needs_input",
+          "missing": [
+            "bmp_ml_ch4_g_vs",
+            "vs_mass_kg",
+            "bmp_unit",
+            "gas_volume_basis"
+          ],
+          "message": "Для потенциального метана нужны BMP с единицами, измеренная масса VS и условия приведения газа."
+        }
+      },
+      {
+        "tool": "get_market_prices",
+        "input_origin": "explicit_user_context_and_verified_prior_tool_results",
+        "status": "ok",
+        "result": {
+          "status": "ok",
+          "missing": [],
+          "region": "KZ-Almaty",
+          "prices": [
+            {
+              "id": 2,
+              "source_id": "esalmaty_business",
+              "commodity": "electricity",
+              "region": "KZ-Almaty",
+              "country": "KZ",
+              "value": "50.03",
+              "currency": "KZT",
+              "unit": "kWh",
+              "normalized_value": "50.03",
+              "normalized_unit": "kWh",
+              "published_at": null,
+              "effective_from": "2026-09-12",
+              "valid_to": null,
+              "received_at": "2026-10-28T08:46:58.387489+00:00",
+              "price_type": "tariff",
+              "reliability": "verified_manual",
+              "consumer_class": "non_household_group2",
+              "tax_basis": "VAT_included",
+              "gas_volume_basis": null,
+              "source_url": "https://www.esalmaty.kz/ru/business-tariffs",
+              "evidence": "Manually checked on official supplier page using web tool, 2026-10-28. Non-household group 2, VAT included. Publication date not stated; not a current verified quote.",
+              "is_test": 0,
+              "fingerprint": "d91bd67ba31a047630761916d8bb0ff32ca23c62227b7d0a74b7c197b92ce23f",
+              "category": "electricity",
+              "source_name": "АО Алатау Жарық Компаниясы — Энергосбыт, небытовая группа 2",
+              "age_days": 46,
+              "publication_date_unknown": true,
+              "is_superseded": false,
+              "receipt_age_seconds": 1019.389289,
+              "is_stale": true,
+              "is_future": false,
+              "usable_as_current": false
+            }
+          ],
+          "sources": [
+            {
+              "title": "АО Алатау Жарық Компаниясы — Энергосбыт, небытовая группа 2",
+              "url": "https://www.esalmaty.kz/ru/business-tariffs"
+            }
+          ],
+          "message": "Последние сохранённые цены: electricity: 50.03 KZT/kWh, возраст 46 дн., не подтверждена как актуальная"
+        }
+      },
+      {
+        "tool": "compare_market_scenarios",
+        "input_origin": "explicit_user_context_and_verified_prior_tool_results",
+        "status": "needs_input",
+        "result": {
+          "status": "needs_input",
+          "scenarios": [
+            {
+              "scenario": "A",
+              "status": "needs_input",
+              "reason": "Не заданы: sale_storage_cost, sale_transport_cost",
+              "net_profit": null
+            },
+            {
+              "scenario": "B",
+              "status": "needs_input",
+              "reason": "Не заданы: preparation_cost, heating_cost, operating_cost, storage_cost, transport_cost, digestate_handling_cost, energy_use_kwh, recovery_fraction, gas_volume_basis",
+              "net_profit": null
+            },
+            {
+              "scenario": "C",
+              "status": "needs_input",
+              "reason": "Не заданы: gas_sale_technical_confirmed, gas_sale_legal_confirmed, gas_sale_evidence",
+              "net_profit": null
+            },
+            {
+              "scenario": "D",
+              "status": "needs_input",
+              "reason": "Не заданы: digestate_quality_confirmed, digestate_market_allowed, digestate_quality_evidence",
+              "net_profit": null
+            }
+          ],
+          "recommended_scenario": null,
+          "recommendation_scope": "explicit_assumptions_and_selected_quotes",
+          "currency": "KZT",
+          "region": "KZ-Almaty",
+          "potential_methane_m3": null,
+          "potential_provenance": "unavailable",
+          "selected_prices": {},
+          "sensitivity": [],
+          "double_counting_policy": "A/B/C/D are alternatives. B values only self-consumed electricity; C only gas sales; D only digestate benefit. No summed gas/electricity/digestate revenue.",
+          "limitations": [
+            "Нет гарантии фактической эффективности или юридической оценки: подтверждения задаёт пользователь.",
+            "Тариф покупки электроэнергии означает только экономию собственного потребления, не доход от продажи в сеть.",
+            "Минеральное удобрение не оценивает дигестат без подтверждённой эквивалентности; здесь такой пересчёт не выполняется."
+          ],
+          "message": "Рыночные сценарии. A: Не заданы: sale_storage_cost, sale_transport_cost; B: Не заданы: preparation_cost, heating_cost, operating_cost, storage_cost, transport_cost, digestate_handling_cost, energy_use_kwh, recovery_fraction, gas_volume_basis; C: Не заданы: gas_sale_technical_confirmed, gas_sale_legal_confirmed, gas_sale_evidence; D: Не заданы: digestate_quality_confirmed, digestate_market_allowed, digestate_quality_evidence. Итоговая рекомендация не выдана: сравнение неполное.",
+          "scenario_id": 4
+        }
+      },
+      {
+        "tool": "explain_market_recommendation",
+        "input_origin": "explicit_user_context_and_verified_prior_tool_results",
+        "status": "needs_input",
+        "result": {
+          "status": "needs_input",
+          "scenario_id": 4,
+          "recommended_scenario": null,
+          "selected_price_ids": {},
+          "limitations": [
+            "Нет гарантии фактической эффективности или юридической оценки: подтверждения задаёт пользователь.",
+            "Тариф покупки электроэнергии означает только экономию собственного потребления, не доход от продажи в сеть.",
+            "Минеральное удобрение не оценивает дигестат без подтверждённой эквивалентности; здесь такой пересчёт не выполняется."
+          ],
+          "message": "Рыночные сценарии. A: Не заданы: sale_storage_cost, sale_transport_cost; B: Не заданы: preparation_cost, heating_cost, operating_cost, storage_cost, transport_cost, digestate_handling_cost, energy_use_kwh, recovery_fraction, gas_volume_basis; C: Не заданы: gas_sale_technical_confirmed, gas_sale_legal_confirmed, gas_sale_evidence; D: Не заданы: digestate_quality_confirmed, digestate_market_allowed, digestate_quality_evidence. Итоговая рекомендация не выдана: сравнение неполное. Доходы газа, электричества и дигестата не суммировались; B, C и D — альтернативы."
+        }
+      }
+    ],
+    "missing": [
+      "bmp_ml_ch4_g_vs",
+      "vs_mass_kg",
+      "bmp_unit",
+      "gas_volume_basis"
+    ],
+    "context": {
+      "material": "food_waste",
+      "market_region": "KZ-Almaty",
+      "market_commodity": "raw_biogas",
+      "mass_kg": 20.0
+    },
+    "actuator_access": false
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "files": 325,
+  "changed_or_missing": [],
+  "tables": {
+    "observations": {
+      "original": 28,
+      "current": 28,
+      "all_original_rows_retained": true
+    },
+    "dashboard_sessions": {
+      "original": 2,
+      "current": 2,
+      "all_original_rows_retained": true
+    },
+    "dashboard_turns": {
+      "original": 12,
+      "current": 12,
+      "all_original_rows_retained": true
+    },
+    "scenarios": {
+      "original": 5,
+      "current": 5,
+      "all_original_rows_retained": true
+    },
+    "research_records": {
+      "original": 13,
+      "current": 13,
+      "all_original_rows_retained": true
+    },
+    "experiment_records": {
+      "original": 0,
+      "current": 0,
+      "all_original_rows_retained": true
+    },
+    "process_optimizer_runs": {
+      "original": 0,
+      "current": 0,
+      "all_original_rows_retained": true
+    }
+  },
+  "passed": true
+}

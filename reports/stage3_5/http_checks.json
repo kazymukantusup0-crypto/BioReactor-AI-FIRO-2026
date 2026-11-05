@@ -1,0 +1,189 @@
+{
+  "base_url": "http://127.0.0.1:59832",
+  "real_tcp_requests": 30,
+  "all_passed": true,
+  "database": "temporary backup of production prices, no fictitious observations",
+  "server_stopped": true,
+  "checks": [
+    {
+      "method": "GET",
+      "path": "/health",
+      "http_status": 200,
+      "expected": 200
+    },
+    {
+      "method": "GET",
+      "path": "/catalog",
+      "http_status": 200,
+      "expected": 200
+    },
+    {
+      "method": "GET",
+      "path": "/sources",
+      "http_status": 200,
+      "expected": 200
+    },
+    {
+      "method": "GET",
+      "path": "/sources/status",
+      "http_status": 200,
+      "expected": 200
+    },
+    {
+      "method": "GET",
+      "path": "/prices/current",
+      "http_status": 200,
+      "expected": 200
+    },
+    {
+      "method": "GET",
+      "path": "/prices/current?region=KZ-Karaganda",
+      "http_status": 200,
+      "expected": 200
+    },
+    {
+      "method": "GET",
+      "path": "/prices/current?region=KZ-Karaganda&commodity=natural_gas",
+      "http_status": 200,
+      "expected": 200
+    },
+    {
+      "method": "GET",
+      "path": "/prices/current?region=KZ-Karaganda&commodity=electricity",
+      "http_status": 200,
+      "expected": 200
+    },
+    {
+      "method": "GET",
+      "path": "/prices/current?region=KZ-national",
+      "http_status": 200,
+      "expected": 200
+    },
+    {
+      "method": "GET",
+      "path": "/prices/current?region=KZ-Karaganda-Abay-district",
+      "http_status": 200,
+      "expected": 200
+    },
+    {
+      "method": "GET",
+      "path": "/prices/current?region=KZ-Almaty",
+      "http_status": 200,
+      "expected": 200
+    },
+    {
+      "method": "GET",
+      "path": "/prices/current?region=KZ-Karaganda&max_age_days=0",
+      "http_status": 200,
+      "expected": 200
+    },
+    {
+      "method": "GET",
+      "path": "/prices/history?commodity=natural_gas&region=KZ-Karaganda",
+      "http_status": 200,
+      "expected": 200
+    },
+    {
+      "method": "GET",
+      "path": "/prices/history?commodity=electricity&region=KZ-Karaganda",
+      "http_status": 200,
+      "expected": 200
+    },
+    {
+      "method": "GET",
+      "path": "/prices/history?commodity=natural_gas&region=KZ-national",
+      "http_status": 200,
+      "expected": 200
+    },
+    {
+      "method": "GET",
+      "path": "/prices/history?commodity=electricity&region=KZ-Almaty",
+      "http_status": 200,
+      "expected": 200
+    },
+    {
+      "method": "GET",
+      "path": "/analytics/price-change?commodity=natural_gas&region=KZ-Karaganda",
+      "http_status": 200,
+      "expected": 200
+    },
+    {
+      "method": "GET",
+      "path": "/analytics/price-change?commodity=electricity&region=KZ-Karaganda&as_of=2026-09-30",
+      "http_status": 200,
+      "expected": 200
+    },
+    {
+      "method": "GET",
+      "path": "/analytics/price-change?commodity=electricity&region=KZ-Karaganda&as_of=2026-08-31",
+      "http_status": 200,
+      "expected": 200
+    },
+    {
+      "method": "GET",
+      "path": "/updates",
+      "http_status": 200,
+      "expected": 200
+    },
+    {
+      "method": "POST",
+      "path": "/scenarios/compare",
+      "http_status": 200,
+      "expected": 200
+    },
+    {
+      "method": "GET",
+      "path": "/scenarios",
+      "http_status": 200,
+      "expected": 200
+    },
+    {
+      "method": "GET",
+      "path": "/scenarios/5",
+      "http_status": 200,
+      "expected": 200
+    },
+    {
+      "method": "GET",
+      "path": "/scenarios/5/price-impact",
+      "http_status": 200,
+      "expected": 200
+    },
+    {
+      "method": "GET",
+      "path": "/scenarios/999999999/price-impact",
+      "http_status": 404,
+      "expected": 404
+    },
+    {
+      "method": "GET",
+      "path": "/prices/history?commodity=electricity&region=KZ-Karaganda&start=bad",
+      "http_status": 422,
+      "expected": 422
+    },
+    {
+      "method": "POST",
+      "path": "/prices",
+      "http_status": 422,
+      "expected": 422
+    },
+    {
+      "method": "POST",
+      "path": "/scenarios/compare",
+      "http_status": 422,
+      "expected": 422
+    },
+    {
+      "method": "POST",
+      "path": "/updates?category=bad",
+      "http_status": 422,
+      "expected": 422
+    },
+    {
+      "method": "POST",
+      "path": "/sources",
+      "http_status": 422,
+      "expected": 422
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "at": "2026-10-29T10:38:33.515204+00:00",
+  "passed": true,
+  "changed_legacy_rows": [],
+  "changed_protected_files": [],
+  "counts": {
+    "observations": 28,
+    "dashboard_sessions": 2,
+    "dashboard_turns": 8,
+    "research_records": 8
+  },
+  "server_pid": 56504
+}

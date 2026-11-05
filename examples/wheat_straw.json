@@ -1,0 +1,7 @@
+{
+  "substrate": "Wheat straw",
+  "c_vs_sub_m": 0.90,
+  "c_vs_sub_f": 0.91,
+  "c_vs_inoc": 0.02,
+  "ISR": 2.0
+}

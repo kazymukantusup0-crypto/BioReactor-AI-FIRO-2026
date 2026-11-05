@@ -1,0 +1,11 @@
+{
+  "seed": 2026,
+  "outer_folds": 4,
+  "inner_folds": 3,
+  "selection_metric": "Equal-laboratory mean absolute error from training-only nested OOF predictions",
+  "family_selection_bias": "Choosing best family from outer CV makes its reported CV optimistic; no new untouched test exists.",
+  "test": "Viewed during stage 1; not evaluated again, not used by this search.",
+  "validation": "Previously viewed; used once after family/configuration freeze for descriptive comparison only.",
+  "rare_rule": "Train labs <12 OR train rows <40; declared before fitting.",
+  "candidate_count": 21
+}

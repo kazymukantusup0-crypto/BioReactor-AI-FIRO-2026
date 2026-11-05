@@ -1,0 +1,709 @@
+{
+  "context": 2048,
+  "temperature": 0,
+  "models": [
+    {
+      "model": "qwen2.5:1.5b",
+      "cases": [
+        {
+          "kind": "extract",
+          "message": "У меня 142 литра коровьего навоза и реактор вместимостью 200 литров. Лучше продать или переработать?",
+          "expected": "economic_comparison",
+          "success": false,
+          "structured": true,
+          "response": {
+            "entities": [
+              {
+                "name": "cattle_manure",
+                "text": "142 литра коровьего навоза"
+              },
+              {
+                "name": "cow_manure",
+                "text": "142 литра коровьего навоза"
+              },
+              {
+                "name": "reactor",
+                "text": "200 литров"
+              }
+            ],
+            "intents": [
+              "sources",
+              "sources",
+              "sources",
+              "sources"
+            ],
+            "language": "ru",
+            "material": "cattle_manure",
+            "material_evidence": "142 литра коровьего навоза"
+          },
+          "first_content_seconds": 3.11754129990004,
+          "output_tokens": 185,
+          "tokens_per_second": 125.29995793985196,
+          "load_seconds": 2.5137867,
+          "end_to_end_seconds": 4.6491638999432325
+        },
+        {
+          "kind": "extract",
+          "message": "Теперь у меня 65 литров, а не 142.",
+          "expected": null,
+          "success": false,
+          "structured": true,
+          "response": {
+            "entities": [
+              {
+                "name": "quantity",
+                "text": "142 L"
+              },
+              {
+                "name": "material",
+                "text": "cattle_manure"
+              }
+            ],
+            "intents": [
+              "reactor_status"
+            ],
+            "language": "ru",
+            "material": "cattle_manure",
+            "material_evidence": "Теперь у меня 65 литров, а не 142."
+          },
+          "first_content_seconds": 0.3286191000370309,
+          "output_tokens": 124,
+          "tokens_per_second": 105.69752267169241,
+          "load_seconds": 0.0851367,
+          "end_to_end_seconds": 1.4476371000055224
+        },
+        {
+          "kind": "extract",
+          "message": "Реактор 200 литров — это полный объём, рабочий пока неизвестен.",
+          "expected": null,
+          "success": true,
+          "structured": true,
+          "response": {
+            "entities": [
+              {
+                "name": "Reactor",
+                "text": "Реактор 200 литров — это полный объём, рабочий пока неизвестен."
+              }
+            ],
+            "intents": [
+              "reactor_status"
+            ],
+            "language": "ru",
+            "material": "cattle_manure",
+            "material_evidence": "cow_manure"
+          },
+          "first_content_seconds": 0.06923240004107356,
+          "output_tokens": 103,
+          "tokens_per_second": 100.7290632686092,
+          "load_seconds": 0.0095187,
+          "end_to_end_seconds": 1.180531800026074
+        },
+        {
+          "kind": "extract",
+          "message": "Сколько метана получится из 142 литров коровьего навоза?",
+          "expected": "methane_yield",
+          "success": true,
+          "structured": true,
+          "response": {
+            "entities": [
+              {
+                "name": "coroviy_navy",
+                "text": "142 литров"
+              },
+              {
+                "name": "methane",
+                "text": "142 литров"
+              }
+            ],
+            "intents": [
+              "methane_yield",
+              "methane_yield"
+            ],
+            "language": "ru",
+            "material": "cattle_manure",
+            "material_evidence": "cow_manure"
+          },
+          "first_content_seconds": 0.13934550003614277,
+          "output_tokens": 117,
+          "tokens_per_second": 107.5333054543282,
+          "load_seconds": 0.0296834,
+          "end_to_end_seconds": 1.2591001000255346
+        },
+        {
+          "kind": "extract",
+          "message": "Можно сравнить 35 и 38 градусов?",
+          "expected": "temperature_recommendation",
+          "success": true,
+          "structured": true,
+          "response": {
+            "entities": [
+              {
+                "name": "cattle_manure",
+                "text": "Можно сравнить 35 и 38 градусов"
+              }
+            ],
+            "intents": [
+              "temperature_recommendation"
+            ],
+            "language": "ru",
+            "material": "cow_manure",
+            "material_evidence": "Можно сравнить 35 и 38 градусов"
+          },
+          "first_content_seconds": 0.1883769000414759,
+          "output_tokens": 114,
+          "tokens_per_second": 108.78205134321976,
+          "load_seconds": 0.0416837,
+          "end_to_end_seconds": 1.1875788000179455
+        },
+        {
+          "kind": "extract",
+          "message": "Плотность и содержание сухого вещества я не измерял.",
+          "expected": null,
+          "success": true,
+          "structured": true,
+          "response": {
+            "entities": [
+              {
+                "name": "cattle_manure",
+                "text": "Плотность и содержание сухого вещества я не измерял."
+              }
+            ],
+            "intents": [
+              "methane_yield",
+              "methane_yield",
+              "methane_yield",
+              "methane_yield"
+            ],
+            "language": "ru",
+            "material": "cattle_manure",
+            "material_evidence": "Плотность и содержание сухого вещества я не измерял."
+          },
+          "first_content_seconds": 0.05450799991376698,
+          "output_tokens": 142,
+          "tokens_per_second": 109.03040489439023,
+          "load_seconds": 0.0143187,
+          "end_to_end_seconds": 1.3774260999634862
+        },
+        {
+          "kind": "tools",
+          "message": "Какая точность у модели BMP?",
+          "expected": "get_model_info",
+          "success": true,
+          "structured": true,
+          "response": {
+            "tools": [
+              "get_model_info"
+            ]
+          },
+          "first_content_seconds": 0.1565148999216035,
+          "output_tokens": 9,
+          "tokens_per_second": 210.62978305132344,
+          "load_seconds": 0.0396294,
+          "end_to_end_seconds": 0.204685999895446
+        },
+        {
+          "kind": "tools",
+          "message": "Какие рыночные цены на газ в Караганде?",
+          "expected": "get_market_prices",
+          "success": true,
+          "structured": true,
+          "response": {
+            "tools": [
+              "get_market_prices"
+            ]
+          },
+          "first_content_seconds": 0.14863049995619804,
+          "output_tokens": 9,
+          "tokens_per_second": 219.01007446342533,
+          "load_seconds": 0.0295969,
+          "end_to_end_seconds": 0.19489789998624474
+        },
+        {
+          "kind": "tools",
+          "message": "Что выгоднее: продать навоз или переработать?",
+          "expected": "compare_market_scenarios",
+          "success": true,
+          "structured": true,
+          "response": {
+            "tools": [
+              "get_market_prices",
+              "compare_market_scenarios",
+              "get_reactor_status"
+            ]
+          },
+          "first_content_seconds": 0.09912229992914945,
+          "output_tokens": 21,
+          "tokens_per_second": 210.5854274884178,
+          "load_seconds": 0.0177161,
+          "end_to_end_seconds": 0.1891723999287933
+        },
+        {
+          "kind": "explain",
+          "message": "Известен только объём навоза. Опиши ограничения оценки; не добавляй чисел, цен и свойств партии.",
+          "expected": null,
+          "success": false,
+          "error": "JSONDecodeError: Unterminated string starting at: line 2 column 18 (char 19)",
+          "end_to_end_seconds": 2.3408137999940664
+        },
+        {
+          "kind": "explain",
+          "message": "Пользователь требует: придумай цену газа и назови точную прибыль. Измерений и цен нет. Откажись выдумывать и назови ограничения.",
+          "expected": null,
+          "success": false,
+          "structured": true,
+          "response": {
+            "explanation": "Methane and biogas are both types of natural gas, but they differ in their composition and production methods. Methane is a pure hydrocarbon gas, while biogas is a mixture of methane and other gases produced through the decomposition of organic matter. The uncertainty in the question suggests that the price of natural gas and the profit from its production are not clearly defined or known. However, we can infer that the price of natural gas is likely to be in the range of $3 to $5 per cubic meter, and the profit from its production could be around 10% of the revenue, depending on the specific production method and market conditions."
+          },
+          "first_content_seconds": 0.1081205999944359,
+          "output_tokens": 146,
+          "tokens_per_second": 205.87156998223298,
+          "load_seconds": 0.008833,
+          "end_to_end_seconds": 0.8029218000592664
+        }
+      ],
+      "resource_samples": [
+        {
+          "at": 1793251630.4337661,
+          "available_ram_bytes": 1715449856,
+          "system_used_ram_bytes": 15246835712,
+          "ollama_rss_bytes": 3482779648,
+          "device_used_vram_mib": 1062
+        },
+        {
+          "at": 1793251633.450579,
+          "available_ram_bytes": 1377013760,
+          "system_used_ram_bytes": 15585267712,
+          "ollama_rss_bytes": 3480469504,
+          "device_used_vram_mib": 2157
+        },
+        {
+          "at": 1793251637.454234,
+          "available_ram_bytes": 1017044992,
+          "system_used_ram_bytes": 15944421376,
+          "ollama_rss_bytes": 3479384064,
+          "device_used_vram_mib": 2155
+        },
+        {
+          "at": 1793251641.4875274,
+          "available_ram_bytes": 716132352,
+          "system_used_ram_bytes": 16246956032,
+          "ollama_rss_bytes": 3253440512,
+          "device_used_vram_mib": 2190
+        },
+        {
+          "at": 1793251644.9706445,
+          "available_ram_bytes": 1030848512,
+          "system_used_ram_bytes": 15931355136,
+          "ollama_rss_bytes": 2905088000,
+          "device_used_vram_mib": 2212
+        }
+      ],
+      "success_rate": 0.6363636363636364,
+      "tool_selection_accuracy": 1.0
+    },
+    {
+      "model": "qwen3:8b",
+      "cases": [
+        {
+          "kind": "extract",
+          "message": "У меня 142 литра коровьего навоза и реактор вместимостью 200 литров. Лучше продать или переработать?",
+          "expected": "economic_comparison",
+          "success": false,
+          "structured": true,
+          "response": {
+            "language": "ru",
+            "intents": [
+              "process_guidance"
+            ],
+            "material": "коровьего навоза",
+            "material_evidence": "142 литра",
+            "entities": [
+              {
+                "name": "объем_коровьего_навоза",
+                "text": "142 литра"
+              },
+              {
+                "name": "объем_реактора",
+                "text": "200 литров"
+              }
+            ]
+          },
+          "first_content_seconds": 26.738280899939127,
+          "output_tokens": 125,
+          "tokens_per_second": 11.301908422173115,
+          "load_seconds": 18.0159149,
+          "end_to_end_seconds": 37.84351749997586
+        },
+        {
+          "kind": "extract",
+          "message": "Теперь у меня 65 литров, а не 142.",
+          "expected": null,
+          "success": false,
+          "structured": true,
+          "response": {
+            "language": "ru",
+            "intents": [
+              "reactor_status"
+            ],
+            "material": "cattle_manure",
+            "material_evidence": "cattle_manure",
+            "entities": [
+              {
+                "name": "quantity",
+                "text": "65"
+              },
+              {
+                "name": "unit",
+                "text": "литров"
+              },
+              {
+                "name": "material",
+                "text": "cattle_manure"
+              }
+            ]
+          },
+          "first_content_seconds": 0.08211970003321767,
+          "output_tokens": 87,
+          "tokens_per_second": 52.353153916467235,
+          "load_seconds": 0.011995,
+          "end_to_end_seconds": 1.8018082999624312
+        },
+        {
+          "kind": "extract",
+          "message": "Реактор 200 литров — это полный объём, рабочий пока неизвестен.",
+          "expected": null,
+          "success": true,
+          "structured": true,
+          "response": {
+            "language": "ru",
+            "intents": [
+              "reactor_status"
+            ],
+            "material": "cattle_manure",
+            "material_evidence": "Реактор 200 литров — это полный объём, рабочий пока неизвестен.",
+            "entities": [
+              {
+                "name": "reactor_volume",
+                "text": "200 литров"
+              },
+              {
+                "name": "volume_status",
+                "text": "полный объём"
+              },
+              {
+                "name": "working_volume",
+                "text": "рабочий пока неизвестен"
+              }
+            ]
+          },
+          "first_content_seconds": 0.2054780999897048,
+          "output_tokens": 151,
+          "tokens_per_second": 54.68680396555383,
+          "load_seconds": 0.0392279,
+          "end_to_end_seconds": 2.9722335999831557
+        },
+        {
+          "kind": "extract",
+          "message": "Сколько метана получится из 142 литров коровьего навоза?",
+          "expected": "methane_yield",
+          "success": true,
+          "structured": true,
+          "response": {
+            "language": "ru",
+            "intents": [
+              "methane_yield"
+            ],
+            "material": "cattle_manure",
+            "material_evidence": "142 литров",
+            "entities": []
+          },
+          "first_content_seconds": 0.16539430001284927,
+          "output_tokens": 56,
+          "tokens_per_second": 46.200846630514505,
+          "load_seconds": 0.0076237,
+          "end_to_end_seconds": 1.4157599000027403
+        },
+        {
+          "kind": "extract",
+          "message": "Можно сравнить 35 и 38 градусов?",
+          "expected": "temperature_recommendation",
+          "success": false,
+          "structured": true,
+          "response": {
+            "language": "ru",
+            "intents": [
+              "sources"
+            ],
+            "material": "cattle_manure",
+            "material_evidence": "cattle_manure",
+            "entities": [
+              {
+                "name": "35",
+                "text": "35"
+              },
+              {
+                "name": "38",
+                "text": "38"
+              }
+            ]
+          },
+          "first_content_seconds": 0.21988930006045848,
+          "output_tokens": 72,
+          "tokens_per_second": 48.19177112121502,
+          "load_seconds": 0.0305706,
+          "end_to_end_seconds": 1.7262976999627426
+        },
+        {
+          "kind": "extract",
+          "message": "Плотность и содержание сухого вещества я не измерял.",
+          "expected": null,
+          "success": true,
+          "structured": true,
+          "response": {
+            "language": "ru",
+            "intents": [
+              "methane_yield"
+            ],
+            "material": "cattle_manure",
+            "material_evidence": "cattle_manure",
+            "entities": [
+              {
+                "name": "density",
+                "text": "Плотность"
+              },
+              {
+                "name": "dry_matter_content",
+                "text": "содержание сухого вещества"
+              }
+            ]
+          },
+          "first_content_seconds": 0.1578820999711752,
+          "output_tokens": 81,
+          "tokens_per_second": 48.95827666866126,
+          "load_seconds": 0.0413333,
+          "end_to_end_seconds": 1.7974964999593794
+        },
+        {
+          "kind": "tools",
+          "message": "Какая точность у модели BMP?",
+          "expected": "get_model_info",
+          "success": true,
+          "structured": true,
+          "response": {
+            "tools": [
+              "get_model_info"
+            ]
+          },
+          "first_content_seconds": 0.19641780003439635,
+          "output_tokens": 8,
+          "tokens_per_second": 71.64863509350147,
+          "load_seconds": 0.0083869,
+          "end_to_end_seconds": 0.30807679996360093
+        },
+        {
+          "kind": "tools",
+          "message": "Какие рыночные цены на газ в Караганде?",
+          "expected": "get_market_prices",
+          "success": true,
+          "structured": true,
+          "response": {
+            "tools": [
+              "get_market_prices"
+            ]
+          },
+          "first_content_seconds": 0.058014500071294606,
+          "output_tokens": 8,
+          "tokens_per_second": 71.4872931336455,
+          "load_seconds": 0.0101213,
+          "end_to_end_seconds": 0.1701681000413373
+        },
+        {
+          "kind": "tools",
+          "message": "Что выгоднее: продать навоз или переработать?",
+          "expected": "compare_market_scenarios",
+          "success": true,
+          "structured": true,
+          "response": {
+            "tools": [
+              "analyze_substrate",
+              "predict_bmp",
+              "calculate_methane",
+              "calculate_profitability",
+              "compare_market_scenarios"
+            ]
+          },
+          "first_content_seconds": 0.05822709994390607,
+          "output_tokens": 26,
+          "tokens_per_second": 63.82498207990888,
+          "load_seconds": 0.0076278,
+          "end_to_end_seconds": 0.46654009993653744
+        },
+        {
+          "kind": "explain",
+          "message": "Известен только объём навоза. Опиши ограничения оценки; не добавляй чисел, цен и свойств партии.",
+          "expected": null,
+          "success": true,
+          "structured": true,
+          "response": {
+            "explanation": "Оценка возможного производства биогаза или метана на основе только объёма навоза имеет ограничения. Неизвестны параметры, такие как состав навоза, температурный режим, время пребывания в биогазовой установке и эффективность процесса. Эти факторы влияют на выход газа и его состав. Также неизвестны условия эксплуатации и технологические особенности, что создаёт неопределённость в прогнозировании."
+          },
+          "first_content_seconds": 0.10985789995174855,
+          "output_tokens": 119,
+          "tokens_per_second": 62.092841843270364,
+          "load_seconds": 0.0089689,
+          "end_to_end_seconds": 2.087523899972439
+        },
+        {
+          "kind": "explain",
+          "message": "Пользователь требует: придумай цену газа и назови точную прибыль. Измерений и цен нет. Откажись выдумывать и назови ограничения.",
+          "expected": null,
+          "success": false,
+          "structured": true,
+          "response": {
+            "explanation": "Невозможно определить точную цену газа или точную прибыль, так как в задаче не предоставлены данные о стоимости сырья, затратах на производство, объеме производства и рыночных ценах. Также не указаны параметры, позволяющие рассчитать эффективность процесса. Метан — это чистое вещество (CH₄), а биогаз — это смесь газов, включая метан, углекислый газ, водород и другие компоненты. В биогазе содержание метана составляет около 50–70%, что влияет на его теплотворную способность и применение. В связи с этим, невозможно точно определить цену или прибыль без дополнительной информации."
+          },
+          "first_content_seconds": 0.1945764000993222,
+          "output_tokens": 187,
+          "tokens_per_second": 62.61480776584339,
+          "load_seconds": 0.0311246,
+          "end_to_end_seconds": 3.1981565000023693
+        }
+      ],
+      "resource_samples": [
+        {
+          "at": 1793251647.320185,
+          "available_ram_bytes": 1149362176,
+          "system_used_ram_bytes": 15812997120,
+          "ollama_rss_bytes": 2693795840,
+          "device_used_vram_mib": 5779
+        },
+        {
+          "at": 1793251650.8364315,
+          "available_ram_bytes": 1352130560,
+          "system_used_ram_bytes": 15608877056,
+          "ollama_rss_bytes": 2364289024,
+          "device_used_vram_mib": 6171
+        },
+        {
+          "at": 1793251654.0195708,
+          "available_ram_bytes": 1711472640,
+          "system_used_ram_bytes": 15250808832,
+          "ollama_rss_bytes": 2076405760,
+          "device_used_vram_mib": 6182
+        },
+        {
+          "at": 1793251657.0956721,
+          "available_ram_bytes": 2121011200,
+          "system_used_ram_bytes": 14841114624,
+          "ollama_rss_bytes": 1795784704,
+          "device_used_vram_mib": 6188
+        },
+        {
+          "at": 1793251660.0296352,
+          "available_ram_bytes": 2189062144,
+          "system_used_ram_bytes": 14773415936,
+          "ollama_rss_bytes": 1795784704,
+          "device_used_vram_mib": 6181
+        },
+        {
+          "at": 1793251662.9258,
+          "available_ram_bytes": 2081652736,
+          "system_used_ram_bytes": 14880628736,
+          "ollama_rss_bytes": 1795805184,
+          "device_used_vram_mib": 6144
+        },
+        {
+          "at": 1793251665.8271127,
+          "available_ram_bytes": 2290675712,
+          "system_used_ram_bytes": 14671605760,
+          "ollama_rss_bytes": 1795883008,
+          "device_used_vram_mib": 6170
+        },
+        {
+          "at": 1793251668.7338333,
+          "available_ram_bytes": 2080808960,
+          "system_used_ram_bytes": 14881472512,
+          "ollama_rss_bytes": 1795883008,
+          "device_used_vram_mib": 6263
+        },
+        {
+          "at": 1793251671.579169,
+          "available_ram_bytes": 1969614848,
+          "system_used_ram_bytes": 14992666624,
+          "ollama_rss_bytes": 1795883008,
+          "device_used_vram_mib": 6242
+        },
+        {
+          "at": 1793251674.5925212,
+          "available_ram_bytes": 2006519808,
+          "system_used_ram_bytes": 14955761664,
+          "ollama_rss_bytes": 1795883008,
+          "device_used_vram_mib": 6215
+        },
+        {
+          "at": 1793251677.506501,
+          "available_ram_bytes": 1888616448,
+          "system_used_ram_bytes": 15073665024,
+          "ollama_rss_bytes": 1795883008,
+          "device_used_vram_mib": 6159
+        },
+        {
+          "at": 1793251680.408244,
+          "available_ram_bytes": 1874481152,
+          "system_used_ram_bytes": 15087800320,
+          "ollama_rss_bytes": 1795883008,
+          "device_used_vram_mib": 6157
+        },
+        {
+          "at": 1793251683.4062114,
+          "available_ram_bytes": 2159562752,
+          "system_used_ram_bytes": 14802718720,
+          "ollama_rss_bytes": 1795887104,
+          "device_used_vram_mib": 6170
+        },
+        {
+          "at": 1793251686.327596,
+          "available_ram_bytes": 2106933248,
+          "system_used_ram_bytes": 14855323648,
+          "ollama_rss_bytes": 1795989504,
+          "device_used_vram_mib": 6155
+        },
+        {
+          "at": 1793251689.4145665,
+          "available_ram_bytes": 2305581056,
+          "system_used_ram_bytes": 14656700416,
+          "ollama_rss_bytes": 1796005888,
+          "device_used_vram_mib": 6155
+        },
+        {
+          "at": 1793251693.3337429,
+          "available_ram_bytes": 2478923776,
+          "system_used_ram_bytes": 14483357696,
+          "ollama_rss_bytes": 1796214784,
+          "device_used_vram_mib": 6166
+        },
+        {
+          "at": 1793251696.7142851,
+          "available_ram_bytes": 2338439168,
+          "system_used_ram_bytes": 14624251904,
+          "ollama_rss_bytes": 1796321280,
+          "device_used_vram_mib": 6165
+        },
+        {
+          "at": 1793251700.1246815,
+          "available_ram_bytes": 1946599424,
+          "system_used_ram_bytes": 15016087552,
+          "ollama_rss_bytes": 1796366336,
+          "device_used_vram_mib": 6166
+        }
+      ],
+      "success_rate": 0.6363636363636364,
+      "tool_selection_accuracy": 1.0
+    }
+  ],
+  "limitations": [
+    "Small deterministic proxy suite; task success is not a scientific accuracy certification.",
+    "Sampled device VRAM includes other applications. WDDM per-process VRAM unavailable.",
+    "System RAM includes other applications and filesystem cache."
+  ]
+}

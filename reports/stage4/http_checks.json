@@ -1,0 +1,128 @@
+{
+  "base_url": "http://127.0.0.1:62988",
+  "requests": 20,
+  "checks": [
+    {
+      "method": "GET",
+      "path": "/health",
+      "http_status": 200,
+      "bytes": 201
+    },
+    {
+      "method": "GET",
+      "path": "/dashboard/",
+      "http_status": 200,
+      "bytes": 1040
+    },
+    {
+      "method": "GET",
+      "path": "/catalog",
+      "http_status": 200,
+      "bytes": 1935
+    },
+    {
+      "method": "GET",
+      "path": "/sources/status",
+      "http_status": 200,
+      "bytes": 2556
+    },
+    {
+      "method": "GET",
+      "path": "/prices/current?region=KZ-Karaganda",
+      "http_status": 200,
+      "bytes": 6653
+    },
+    {
+      "method": "GET",
+      "path": "/prices/history?commodity=electricity&region=KZ-Karaganda",
+      "http_status": 200,
+      "bytes": 8524
+    },
+    {
+      "method": "GET",
+      "path": "/analytics/price-change?commodity=electricity&region=KZ-Karaganda",
+      "http_status": 200,
+      "bytes": 2760
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/status",
+      "http_status": 200,
+      "bytes": 3642
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/overview",
+      "http_status": 200,
+      "bytes": 16477
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/models/stage1/schema",
+      "http_status": 200,
+      "bytes": 2134
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/models/stage1_5/schema",
+      "http_status": 200,
+      "bytes": 2263
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/economics/schema",
+      "http_status": 200,
+      "bytes": 9393
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/reactor",
+      "http_status": 200,
+      "bytes": 388
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/reactor/contract",
+      "http_status": 200,
+      "bytes": 2714
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/scientific",
+      "http_status": 200,
+      "bytes": 12533
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/scientific/figures/stage1_test_errors",
+      "http_status": 200,
+      "bytes": 48475
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/demo",
+      "http_status": 200,
+      "bytes": 21351
+    },
+    {
+      "method": "POST",
+      "path": "/api/dashboard/chat/sessions",
+      "http_status": 201,
+      "bytes": 159
+    },
+    {
+      "method": "POST",
+      "path": "/api/dashboard/chat/sessions/c1bc2ab2b83c499c8caefb904ef4107f/messages",
+      "http_status": 200,
+      "bytes": 20440
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/chat/sessions/c1bc2ab2b83c499c8caefb904ef4107f",
+      "http_status": 200,
+      "bytes": 43059
+    }
+  ],
+  "server_stopped": true,
+  "data": "QA backup of actual market prices; no fictitious observations"
+}

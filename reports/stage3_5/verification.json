@@ -1,0 +1,14 @@
+{
+  "all_passed": true,
+  "tests_passed": 96,
+  "real_tcp_requests": 30,
+  "prior_artifacts_checked": 79,
+  "changed_artifacts": [],
+  "legacy_prices_checked": 2,
+  "legacy_prices_unchanged": true,
+  "models_retrained": false,
+  "production_observations": 28,
+  "production_test_observations": 0,
+  "selected_actual_electricity_price": "45.47",
+  "local_agent_mode": "llm_tools"
+}

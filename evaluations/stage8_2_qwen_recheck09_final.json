@@ -1,0 +1,106 @@
+{
+  "model": "qwen3:8b",
+  "provider": "Ollama loopback /api/chat",
+  "online_research": false,
+  "criteria": [
+    "real local model calls recorded",
+    "actual tool calls, validation errors and numeric grounding saved",
+    "no synthetic market or sensor data"
+  ],
+  "requested_case_ids": [
+    "09_dilution"
+  ],
+  "cases": [
+    {
+      "id": "09_dilution",
+      "turns": [
+        {
+          "prompt": "My 10 kg feed contains 2 kg volatile solids. If I add 5 litres of water, can you calculate the new VS concentration? State any density or volume assumptions.",
+          "answer": "The new VS concentration is 13.33% w/w under the stated assumptions.\n\nAssumptions: added-water density is approximated as 1.0 kg/L and no mass is lost. This is a wet-mass VS percentage; volumetric concentration needs feed volume or density.",
+          "mode": "qwen_autonomous_tools",
+          "analysis_version": "8.2",
+          "provider_calls": 4,
+          "tool_calls": [
+            {
+              "tool": "calculate_vs_concentration",
+              "status": "ok",
+              "input_origin": "validated_dialogue_state_and_typed_tool_request",
+              "result": {
+                "status": "ok",
+                "message": "Wet-mass VS concentration is 13.33% w/w under the stated water-density assumption. A volumetric concentration is not determined without feed volume or density.",
+                "vs_mass_kg": 2.0,
+                "assumptions": [
+                  "Added water density approximated as 1.0 kg/L; not measured for this batch.",
+                  "Complete mixing and no mass loss.",
+                  "Only explicit feed and water mass are included; inoculum or other additions are excluded."
+                ],
+                "sources": []
+              }
+            }
+          ],
+          "pending_question": null,
+          "memory_language": "en",
+          "numeric_claims_grounded": true,
+          "numeric_grounding_rejections": [],
+          "autonomous_termination": "provider_action_failed",
+          "validation_errors": [],
+          "generation_metrics": [
+            {
+              "input_characters": 3643,
+              "request_bytes": 4692,
+              "status": "ok",
+              "prompt_tokens": 914,
+              "output_tokens": 186,
+              "done_reason": "stop",
+              "load_seconds": 0.0047766,
+              "generation_seconds": 3.06868,
+              "tokens_per_second": 60.61238056754044,
+              "latency_seconds": 3.223733099992387
+            },
+            {
+              "input_characters": 3931,
+              "request_bytes": 4966,
+              "status": "ok",
+              "prompt_tokens": 996,
+              "output_tokens": 129,
+              "done_reason": "stop",
+              "load_seconds": 0.00375,
+              "generation_seconds": 2.216839,
+              "tokens_per_second": 58.19096470244344,
+              "latency_seconds": 2.3353132000193
+            },
+            {
+              "input_characters": 4194,
+              "request_bytes": 5157,
+              "status": "ok",
+              "prompt_tokens": 1049,
+              "output_tokens": 105,
+              "done_reason": "stop",
+              "load_seconds": 0.004155,
+              "generation_seconds": 1.739579,
+              "tokens_per_second": 60.35943179355465,
+              "latency_seconds": 1.8847998999990523
+            }
+          ],
+          "missing": [],
+          "latency_seconds": 10.501
+        }
+      ],
+      "latency_seconds": 10.501
+    }
+  ],
+  "status": "complete",
+  "summary": {
+    "completed_scenarios": 1,
+    "user_turns": 1,
+    "ollama_generation_calls": 4,
+    "autonomous_tool_turns": 1,
+    "tool_calls": 1,
+    "grounded_final_answers": 1,
+    "chat_calculator_agreement": null,
+    "termination_reasons": {
+      "provider_action_failed": 1
+    },
+    "elapsed_seconds": 10.5
+  }
+}

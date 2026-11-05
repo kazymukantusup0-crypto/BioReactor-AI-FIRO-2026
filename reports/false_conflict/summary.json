@@ -1,0 +1,266 @@
+{
+  "main_passed": 8,
+  "main_total": 8,
+  "all_recorded_passed": 9,
+  "all_recorded_total": 9,
+  "python": {
+    "name": "pytest",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0",
+    "tests": "482",
+    "time": "71.501",
+    "timestamp": "2026-11-05T14:39:39.661863+05:00",
+    "hostname": "Kazhuha"
+  },
+  "terminations": {
+    "numeric_grounding_fallback": 8,
+    "null": 1
+  },
+  "cases": [
+    {
+      "id": "A",
+      "passed": true,
+      "failed": [],
+      "tools": [
+        [
+          "assess_substrate_potential",
+          "ok"
+        ],
+        [
+          "evaluate_partial_economics",
+          "ok"
+        ],
+        [
+          "assess_process_evidence",
+          "ok"
+        ],
+        [
+          "assess_scientific_risks",
+          "ok"
+        ]
+      ],
+      "seconds": 120.07709739997517,
+      "methane_m3": [
+        {
+          "low": 9.839228479999997,
+          "high": 13.848520399999998
+        },
+        null
+      ]
+    },
+    {
+      "id": "B",
+      "passed": true,
+      "failed": [],
+      "tools": [
+        [
+          "assess_substrate_potential",
+          "ok"
+        ],
+        [
+          "evaluate_partial_economics",
+          "ok"
+        ],
+        [
+          "assess_process_evidence",
+          "ok"
+        ],
+        [
+          "assess_scientific_risks",
+          "ok"
+        ]
+      ],
+      "seconds": 120.14079400000628,
+      "methane_m3": [
+        {
+          "low": 0.9674555199999999,
+          "high": 1.3616746000000002
+        },
+        null
+      ]
+    },
+    {
+      "id": "C",
+      "passed": true,
+      "failed": [],
+      "tools": [
+        [
+          "assess_substrate_potential",
+          "ok"
+        ],
+        [
+          "evaluate_partial_economics",
+          "ok"
+        ],
+        [
+          "assess_process_evidence",
+          "ok"
+        ],
+        [
+          "assess_scientific_risks",
+          "ok"
+        ]
+      ],
+      "seconds": 120.1239224000019,
+      "methane_m3": [
+        {
+          "low": 0.9674555199999999,
+          "high": 1.3616746000000002
+        },
+        null
+      ]
+    },
+    {
+      "id": "D",
+      "passed": true,
+      "failed": [],
+      "tools": [
+        [
+          "assess_substrate_potential",
+          "ok"
+        ],
+        [
+          "evaluate_partial_economics",
+          "ok"
+        ],
+        [
+          "assess_process_evidence",
+          "ok"
+        ]
+      ],
+      "seconds": 120.13856299995678,
+      "methane_m3": [
+        {
+          "low": 0.9674555199999999,
+          "high": 1.3616746000000002
+        },
+        null
+      ]
+    },
+    {
+      "id": "E",
+      "passed": true,
+      "failed": [],
+      "tools": [
+        [
+          "assess_substrate_potential",
+          "ok"
+        ],
+        [
+          "search_substrate_profiles",
+          "ok"
+        ],
+        [
+          "compare_scientific_studies",
+          "ok"
+        ],
+        [
+          "assess_scientific_risks",
+          "ok"
+        ]
+      ],
+      "seconds": 120.10331929998938,
+      "methane_m3": [
+        {
+          "low": 9.839228479999997,
+          "high": 13.848520399999998
+        },
+        null
+      ]
+    },
+    {
+      "id": "F",
+      "passed": true,
+      "failed": [],
+      "tools": [
+        [
+          "search_substrate_profiles",
+          "ok"
+        ]
+      ],
+      "seconds": null,
+      "methane_m3": []
+    },
+    {
+      "id": "G",
+      "passed": true,
+      "failed": [],
+      "tools": [
+        [
+          "assess_substrate_potential",
+          "ok"
+        ],
+        [
+          "evaluate_partial_economics",
+          "ok"
+        ],
+        [
+          "assess_process_evidence",
+          "ok"
+        ]
+      ],
+      "seconds": 120.14846239995677,
+      "methane_m3": [
+        {
+          "low": 0.9674555199999999,
+          "high": 1.3616746000000002
+        },
+        null
+      ]
+    },
+    {
+      "id": "H_form",
+      "passed": true,
+      "failed": [],
+      "tools": [
+        [
+          "assess_substrate_potential",
+          "ok"
+        ],
+        [
+          "evaluate_partial_economics",
+          "ok"
+        ],
+        [
+          "assess_process_evidence",
+          "ok"
+        ]
+      ],
+      "seconds": 120.10756350000156,
+      "methane_m3": [
+        {
+          "low": 8.721883894022188,
+          "high": 8.721883894022188
+        }
+      ]
+    },
+    {
+      "id": "H",
+      "passed": true,
+      "failed": [],
+      "tools": [
+        [
+          "assess_substrate_potential",
+          "ok"
+        ],
+        [
+          "evaluate_partial_economics",
+          "ok"
+        ],
+        [
+          "assess_process_evidence",
+          "ok"
+        ]
+      ],
+      "seconds": 120.14866070001153,
+      "methane_m3": [
+        {
+          "low": 0.9674555199999999,
+          "high": 1.3616746000000002
+        },
+        null
+      ]
+    }
+  ]
+}

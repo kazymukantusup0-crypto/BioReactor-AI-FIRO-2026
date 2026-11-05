@@ -1,0 +1,10 @@
+from pathlib import Path
+p=Path('frontend/src/App.tsx');s=p.read_text(encoding='utf-8')
+s=s.replace("import { Badge } from './ui'", "import { Badge } from './ui'\nimport { DisplayModeProvider, DisplayModeToggle } from './DisplayMode'\nimport SubstrateAdvisor from './pages/SubstrateAdvisor'\nimport './advisor.css'")
+s=s.replace("const pages = [", "const pages = [\n  { id: 'advisor', title: 'Substrate Advisor', en: 'Substrate advisor', icon: FlaskConical },\n  { id: 'mixtures', title: 'Mixture Builder', en: 'Mixture builder', icon: Scale },")
+s=s.replace('export default function App() {', 'export default function App() { return <DisplayModeProvider><Workspace /></DisplayModeProvider> }\nfunction Workspace() {')
+s=s.replace('<div className="topbar-right">','<div className="topbar-right"><DisplayModeToggle />')
+s=s.replace("{page === 'chat' && <Chat />}","{page === 'chat' && <Chat />}{page === 'advisor' && <SubstrateAdvisor key='single' />}{page === 'mixtures' && <SubstrateAdvisor key='mixture' mixture />}")
+s=s.replace('v6.0 <span>','v7.6 <span>');p.write_text(s,encoding='utf-8')
+p=Path('frontend/src/pages/SubstrateAdvisor.tsx');s=p.read_text(encoding='utf-8').replace('m.name]))','m.name.ru]))').replace('materials_with_approved_profiles}</strong>','materials_with_approved_profiles.length}</strong>').replace('{m.name}</option>','{m.name.ru}</option>').replace('?.states??[]','?.physical_states??[]');p.write_text(s,encoding='utf-8')
+p=Path('frontend/src/AdvisorResults.tsx');s=p.read_text(encoding='utf-8').replace("BATCH_DIGESTION:","BATCH_EXPERIMENT:");p.write_text(s,encoding='utf-8')

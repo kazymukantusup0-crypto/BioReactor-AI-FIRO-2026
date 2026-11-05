@@ -1,0 +1,40 @@
+{
+  "setup": [
+    "test",
+    "set",
+    "lab_id",
+    "file_id",
+    "substrate",
+    "bottle_id",
+    "mass_inoc",
+    "mass_sub",
+    "c_vs_sub_m",
+    "c_vs_sub_f",
+    "c_vs_inoc",
+    "ISR"
+  ],
+  "bmp": [
+    "test",
+    "set",
+    "lab_id",
+    "file_id",
+    "substrate",
+    "bottle_id",
+    "fv_inoc",
+    "bmp_calc"
+  ],
+  "selected": [
+    "substrate",
+    "c_vs_sub_m",
+    "c_vs_sub_f",
+    "c_vs_inoc",
+    "ISR"
+  ],
+  "missing_selected_train": {
+    "substrate": 0,
+    "c_vs_sub_m": 0,
+    "c_vs_sub_f": 0,
+    "c_vs_inoc": 0,
+    "ISR": 0
+  }
+}

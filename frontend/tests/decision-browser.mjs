@@ -1,0 +1,37 @@
+import { chromium } from 'playwright-core'
+import assert from 'node:assert/strict'
+import fs from 'node:fs/promises'
+assert.equal(process.env.BIOREACTOR_QA_ISOLATED,'1')
+const base=process.env.BIOREACTOR_QA_URL;assert.match(base,/^http:\/\/127\.0\.0\.1:\d+$/)
+const browser=await chromium.launch({executablePath:'C:/Program Files/Google/Chrome/Application/chrome.exe',headless:true,args:['--no-first-run','--disable-background-networking']})
+const checks=[],errors=[];const check=(name,value=true)=>{assert.ok(value,name);checks.push(name)}
+try {
+ const context=await browser.newContext({viewport:{width:1366,height:900},locale:'ru-RU',reducedMotion:'reduce'}),page=await context.newPage()
+ page.on('pageerror',e=>errors.push(e.message));await context.route('**/*',route=>['localhost','127.0.0.1'].includes(new URL(route.request().url()).hostname)?route.continue():route.abort())
+ await page.goto(base+'/dashboard/#/chat');await page.evaluate(id=>localStorage.setItem('bioreactor_chat_session_v4',id),process.env.BIOREACTOR_QA_SESSION);await page.reload()
+ await page.getByTestId('decision-cards').last().waitFor({timeout:30000})
+ check('Actual persisted 142 L conversation renders decision cards',await page.getByTestId('decision-cards').count()===4)
+ check('Biogas range rendered from Python',/4[,.]87/.test(await page.getByTestId('biogas-yield').last().innerText()))
+ check('Conditional decision visible',await page.getByTestId('decision-recommendation').last().isVisible())
+ check('One current followup question',await page.locator('.clarification-card').last().count()===1)
+ const cards=page.getByTestId('decision-cards').last();await cards.getByText('Допущения, источники и чувствительность',{exact:true}).click()
+ check('Evidence and provenance expandable',await cards.getByRole('link',{name:'Faustzahlen Biogas',exact:true}).isVisible())
+ await page.screenshot({path:'../reports/stage7_5/decision_chat_1366.png',fullPage:true});await cards.locator('.decision-grid').screenshot({path:'../reports/stage7_5/decision_cards_1366.png'})
+ await page.getByLabel('Сообщение агенту').fill('Для отопления')
+ const pending=page.waitForResponse(r=>r.request().method()==='POST'&&r.url().endsWith('/messages'),{timeout:120000});await page.getByRole('button',{name:'Отправить сообщение'}).click();const reply=await (await pending).json()
+ check('Real browser followup changes gas use',reply.memory.decision_settings.gas_use==='heat')
+ check('Purpose change preserves 142 L',reply.memory.facts.quantity.value===142)
+ check('No new arbitrary reactor temperature',reply.memory.facts.temperature_c===undefined)
+ await page.getByTestId('decision-cards').last().getByText('Уточнить параметры расчёта',{exact:true}).click()
+ await page.getByTestId('decision-cards').last().getByLabel('Рабочий объём, л',{exact:true}).fill('160')
+ const sent=page.waitForResponse(r=>r.request().method()==='POST'&&r.url().endsWith('/messages'),{timeout:120000})
+ await page.getByTestId('decision-cards').last().getByRole('button',{name:'Передать введённые параметры'}).click()
+ const updated=await(await sent).json()
+ check('Real input form updates calculation',updated.technical_metadata.research_result.decision_analysis.feasibility.working_volume_l===160)
+ check('Form preserves original batch',updated.memory.facts.quantity.value===142)
+ await page.setViewportSize({width:390,height:844});await page.reload();await page.getByTestId('decision-cards').last().waitFor()
+ check('Mobile has no page overflow',await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1))
+ await page.screenshot({path:'../reports/stage7_5/decision_chat_390.png',fullPage:false})
+ check('No JavaScript page errors',errors.length===0)
+ await fs.writeFile('../reports/stage7_5/browser-results.json',JSON.stringify({passed:true,checks,errors},null,2));console.log(JSON.stringify({passed:true,checks:checks.length}))
+} finally {await browser.close()}

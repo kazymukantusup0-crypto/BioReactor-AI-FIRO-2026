@@ -1,0 +1,24 @@
+{
+  "protected_artifacts": 196,
+  "changed_artifacts": [],
+  "prior_rows_unchanged": {
+    "observations": true,
+    "dashboard_turns": true,
+    "scenarios": true
+  },
+  "production_prices": 28,
+  "production_test_prices": 0,
+  "backend_tests": 212,
+  "frontend_tests": 26,
+  "direct_http_checks": 23,
+  "cli_checks": 5,
+  "real_ollama_dialogue_turns": 4,
+  "browser_checks": 32,
+  "browser_verified": true,
+  "models_retrained": false,
+  "qa_server_stopped": true,
+  "test_database_was_isolated": true,
+  "build_reused": true,
+  "test_logs_reused": false,
+  "all_passed": true
+}

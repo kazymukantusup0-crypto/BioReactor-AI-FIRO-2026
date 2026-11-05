@@ -1,0 +1,69 @@
+{
+  "updates": [
+    {
+      "category": "natural_gas",
+      "sources": [
+        {
+          "source": "qazaqgaz_aimaq",
+          "status": "needs_configuration",
+          "inserted": 0
+        }
+      ],
+      "inserted": 0
+    },
+    {
+      "category": "electricity",
+      "sources": [
+        {
+          "source": "esalmaty_business",
+          "status": "error",
+          "error": "SourceError: Download failed: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Missing Authority Key Identifier (_ssl.c:1032)>",
+          "inserted": 0
+        }
+      ],
+      "inserted": 0
+    },
+    {
+      "category": "organic_fertilizer",
+      "sources": [
+        {
+          "source": "organic_verified_manual",
+          "status": "needs_configuration",
+          "inserted": 0
+        }
+      ],
+      "inserted": 0
+    },
+    {
+      "category": "mineral_fertilizer",
+      "sources": [
+        {
+          "source": "mineral_verified_manual",
+          "status": "needs_configuration",
+          "inserted": 0
+        }
+      ],
+      "inserted": 0
+    },
+    {
+      "category": "organic_feedstock",
+      "sources": [
+        {
+          "source": "feedstock_verified_manual",
+          "status": "needs_configuration",
+          "inserted": 0
+        }
+      ],
+      "inserted": 0
+    }
+  ],
+  "catalogue_probes": [
+    {
+      "id": "qazaqgaz_aimaq",
+      "catalogue_download": "error",
+      "error": "Download failed: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Missing Authority Key Identifier (_ssl.c:1032)>",
+      "numeric_price_extraction": "manual_DOC_review_required"
+    }
+  ],
+  "tls_verification_disabled": false
+}

@@ -1,0 +1,23 @@
+{
+  "changed_protected_artifacts": [],
+  "protected_artifacts": 142,
+  "prior_prices_unchanged": true,
+  "prior_chat_turns_unchanged": true,
+  "observations": 28,
+  "test_observations": 0,
+  "health": {
+    "status": "ok",
+    "database": "C:\\Users\\Kazhu\\Downloads\\face_dataset_you_noname\\face_dataset_project\\BioReactor_AI\\data\\market\\market.sqlite3",
+    "scheduler_enabled": true,
+    "interval_seconds": 86400.0,
+    "market": "KZ",
+    "price_forecasting": false
+  },
+  "sessions": [
+    {
+      "id": "6e7457968d3d42f788c58d4629fb1f2f",
+      "conversation_version": "5.6"
+    }
+  ],
+  "broken_doc_links": []
+}

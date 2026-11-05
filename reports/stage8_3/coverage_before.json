@@ -1,0 +1,332 @@
+[
+  {
+    "material": "cattle_manure",
+    "name": "Навоз КРС",
+    "profiles": [
+      {
+        "id": "oliveira-rm1-2025-v1",
+        "state": "slurry",
+        "keys": [
+          "density_kg_l",
+          "ts_fraction",
+          "vs_fraction_wet",
+          "bmp_ml_g_vs"
+        ]
+      },
+      {
+        "id": "baek2020-bedded-cattle",
+        "state": "bedded",
+        "keys": [
+          "ts_fraction",
+          "vs_fraction_wet",
+          "bmp_ml_g_vs"
+        ]
+      },
+      {
+        "id": "eftaxias2024-cattle",
+        "state": "slurry",
+        "keys": [
+          "ts_fraction",
+          "vs_fraction_wet",
+          "bmp_ml_g_vs"
+        ]
+      }
+    ],
+    "partial": [
+      {
+        "material": "cattle_manure",
+        "status": "PARTIAL_ONLY",
+        "density_profile_available": true,
+        "bmp_available": false,
+        "reason": "No coherent measured dry or straw-bedded cattle BMP/TS/VS/density set; dry and straw scenarios require explicit cross-study assumptions."
+      }
+    ],
+    "unknown_state_result": "ok"
+  },
+  {
+    "material": "swine_manure",
+    "name": "Свиной навоз",
+    "profiles": [
+      {
+        "id": "pham2013-pig-vdi",
+        "state": "slurry",
+        "keys": [
+          "ts_fraction",
+          "vs_fraction_wet",
+          "bmp_ml_g_vs"
+        ]
+      },
+      {
+        "id": "eftaxias2024-pig",
+        "state": "slurry",
+        "keys": [
+          "ts_fraction",
+          "vs_fraction_wet",
+          "bmp_ml_g_vs"
+        ]
+      }
+    ],
+    "partial": [
+      {
+        "material": "swine_manure",
+        "material_state": "slurry",
+        "source_id": "baek2020",
+        "verification_stage": "NUMERIC_DATA_VERIFIED",
+        "ts_fraction": 0.0706,
+        "vs_fraction_wet": 0.0565,
+        "cn_ratio": 22.1,
+        "ph": 7.6,
+        "locator": "Table 1",
+        "bmp_ml_g_vs": null,
+        "note": "Published model vertex 343.8 is a fitted coefficient, not a measured assay result; not substituted for measured BMP."
+      },
+      {
+        "material": "swine_manure",
+        "status": "PARTIAL_ONLY",
+        "density_profile_available": true,
+        "bmp_available": true,
+        "reason": "Pham VDI profile approved for slurry only; Baek pure-pig RSM vertex remains excluded."
+      },
+      {
+        "material": "swine_manure",
+        "status": "PARTIAL_SCOPE_REQUIRES_MEASUREMENTS",
+        "reason": "Liquid pig profiles available; solid/bedded/dry pig BMP not transferred from cattle."
+      }
+    ],
+    "unknown_state_result": "ok"
+  },
+  {
+    "material": "poultry_manure",
+    "name": "Птичий помёт",
+    "profiles": [
+      {
+        "id": "eftaxias2024-poultry",
+        "state": "fresh_solid",
+        "keys": [
+          "ts_fraction",
+          "vs_fraction_wet",
+          "bmp_ml_g_vs"
+        ]
+      },
+      {
+        "id": "ramos2019-layers-HD-sample1",
+        "state": "fresh_solid",
+        "keys": [
+          "ts_fraction",
+          "vs_fraction_wet",
+          "bmp_ml_g_vs"
+        ]
+      }
+    ],
+    "partial": [
+      {
+        "material": "poultry_manure",
+        "status": "PARTIAL_ONLY",
+        "density_profile_available": true,
+        "bmp_available": false,
+        "reason": "Reference density only; ammonia-sensitive material, no approved matched BMP set."
+      },
+      {
+        "material": "poultry_manure",
+        "status": "PARTIAL_SCOPE_REQUIRES_MEASUREMENTS",
+        "reason": "Broiler/turkey/bedded/moist slurry are not interchangeable with the two paired samples; specific conditions required."
+      }
+    ],
+    "unknown_state_result": "ok"
+  },
+  {
+    "material": "sheep_goat_manure",
+    "name": "Овечий и козий навоз",
+    "profiles": [
+      {
+        "id": "eftaxias2024-sheep",
+        "state": "fresh_solid",
+        "keys": [
+          "ts_fraction",
+          "vs_fraction_wet",
+          "bmp_ml_g_vs"
+        ]
+      },
+      {
+        "id": "eftaxias2024-goat",
+        "state": "fresh_solid",
+        "keys": [
+          "ts_fraction",
+          "vs_fraction_wet",
+          "bmp_ml_g_vs"
+        ]
+      }
+    ],
+    "partial": [
+      {
+        "material": "sheep_goat_manure",
+        "status": "PARTIAL_ONLY",
+        "density_profile_available": true,
+        "bmp_available": false,
+        "reason": "Reference density only; no approved local matched BMP set."
+      }
+    ],
+    "unknown_state_result": "ok"
+  },
+  {
+    "material": "horse_manure",
+    "name": "Конский навоз",
+    "profiles": [
+      {
+        "id": "monch2013-horse-dung-A",
+        "state": "fresh_solid",
+        "keys": [
+          "ts_fraction",
+          "vs_fraction_wet",
+          "bmp_ml_g_vs"
+        ]
+      }
+    ],
+    "partial": [],
+    "unknown_state_result": "ok"
+  },
+  {
+    "material": "food_waste",
+    "name": "Пищевые отходы",
+    "profiles": [
+      {
+        "id": "baek2020-food-pulp",
+        "state": "prepared_pulp",
+        "keys": [
+          "ts_fraction",
+          "vs_fraction_wet",
+          "bmp_ml_g_vs"
+        ]
+      }
+    ],
+    "partial": [],
+    "unknown_state_result": "ok"
+  },
+  {
+    "material": "vegetable_waste",
+    "name": "Овощные отходы",
+    "profiles": [],
+    "partial": [
+      {
+        "material": "vegetable_waste",
+        "status": "PARTIAL_SCOPE_REQUIRES_MEASUREMENTS",
+        "reason": "No approved paired profile for arbitrary vegetable mixture; measured TS/VS/BMP can be entered."
+      }
+    ],
+    "unknown_state_result": "needs_input"
+  },
+  {
+    "material": "fruit_waste",
+    "name": "Фруктовые отходы",
+    "profiles": [],
+    "partial": [
+      {
+        "material": "fruit_waste",
+        "status": "PARTIAL_SCOPE_REQUIRES_MEASUREMENTS",
+        "reason": "Fruit identity, preparation and inhibitors vary; no universal BMP assigned."
+      }
+    ],
+    "unknown_state_result": "needs_input"
+  },
+  {
+    "material": "plant_residue",
+    "name": "Растительные остатки",
+    "profiles": [],
+    "partial": [
+      {
+        "material": "plant_residue",
+        "status": "PARTIAL_ONLY",
+        "density_profile_available": false,
+        "bmp_available": false,
+        "reason": "No universal BMP for heterogeneous plant residues."
+      },
+      {
+        "material": "plant_residue",
+        "status": "PARTIAL_SCOPE_REQUIRES_MEASUREMENTS",
+        "reason": "Specific plant material and preparation required before transferring BMP."
+      }
+    ],
+    "unknown_state_result": "needs_input"
+  },
+  {
+    "material": "grass",
+    "name": "Трава",
+    "profiles": [],
+    "partial": [
+      {
+        "material": "grass",
+        "material_state": "shredded",
+        "source_id": "ulukardesler2023",
+        "verification_stage": "FULL_TEXT_REVIEWED",
+        "reported_ts": "41.73 wt%",
+        "reported_vs": "75.42; basis insufficiently explicit in table",
+        "bmp_ml_g_vs": null,
+        "note": "Mixture output is not assigned as a grass mono-substrate BMP."
+      },
+      {
+        "material": "grass",
+        "status": "PARTIAL_ONLY",
+        "density_profile_available": false,
+        "bmp_available": false,
+        "reason": "Existing co-digestion experiment is not mono grass BMP."
+      },
+      {
+        "material": "grass",
+        "status": "PARTIAL_SCOPE_REQUIRES_MEASUREMENTS",
+        "reason": "Existing mixed grass/cattle experiment not treated as mono grass BMP."
+      }
+    ],
+    "unknown_state_result": "needs_input"
+  },
+  {
+    "material": "straw",
+    "name": "Солома",
+    "profiles": [
+      {
+        "id": "monch2013-straw-A",
+        "state": "dry",
+        "keys": [
+          "ts_fraction",
+          "vs_fraction_wet",
+          "bmp_ml_g_vs"
+        ]
+      }
+    ],
+    "partial": [],
+    "unknown_state_result": "ok"
+  },
+  {
+    "material": "silage",
+    "name": "Силос",
+    "profiles": [],
+    "partial": [
+      {
+        "material": "silage",
+        "status": "PARTIAL_SCOPE_REQUIRES_MEASUREMENTS",
+        "reason": "Crop and ensiling conditions required; no general energy-crop BMP assigned."
+      }
+    ],
+    "unknown_state_result": "needs_input"
+  },
+  {
+    "material": "dairy_waste",
+    "name": "Отходы молочной промышленности",
+    "profiles": [],
+    "partial": [],
+    "unknown_state_result": "needs_input"
+  },
+  {
+    "material": "other_organic",
+    "name": "Другое органическое сырьё",
+    "profiles": [],
+    "partial": [],
+    "unknown_state_result": "needs_input"
+  },
+  {
+    "material": "manure",
+    "name": "Навоз: вид не уточнён",
+    "profiles": [],
+    "partial": [],
+    "unknown_state_result": "needs_input"
+  }
+]

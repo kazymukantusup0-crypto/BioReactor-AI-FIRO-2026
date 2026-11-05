@@ -1,0 +1,37 @@
+{
+  "status": "ok",
+  "message": "Live publication metadata only; full texts and quantitative applicability are not verified. No new estimation profile created.",
+  "sources": [
+    {
+      "title": "Intermittent illumination enables reversible carbon buffering by Rhodopseudomonas palustris for enhanced methane recovery from food waste anaerobic digestion.",
+      "url": "https://doi.org/10.1016/j.biortech.2026.136115",
+      "doi": "10.1016/j.biortech.2026.136115",
+      "pmcid": null,
+      "year": "2026",
+      "review_status": "UNREVIEWED_METADATA_ONLY",
+      "approved_for_calculation": false
+    },
+    {
+      "title": "Comparative analysis of the effect of thermal and wet oxidation pretreatment of anaerobic digestion of potato peel waste including the effect on life cycle analysis.",
+      "url": "https://doi.org/10.1016/j.wasman.2026.115933",
+      "doi": "10.1016/j.wasman.2026.115933",
+      "pmcid": null,
+      "year": "2027",
+      "review_status": "UNREVIEWED_METADATA_ONLY",
+      "approved_for_calculation": false
+    },
+    {
+      "title": "ZVI combined with alkaline pretreatment optimizes FW and RS anaerobic co-digestion: methanogenic potential, acidification mitigation, and microbial community regulation.",
+      "url": "https://doi.org/10.1080/09593330.2026.2749493",
+      "doi": "10.1080/09593330.2026.2749493",
+      "pmcid": null,
+      "year": "2026",
+      "review_status": "UNREVIEWED_METADATA_ONLY",
+      "approved_for_calculation": false
+    }
+  ],
+  "query": "(food waste) AND (anaerobic digestion OR methane potential)",
+  "retrieved_at": "2026-11-03T17:31:05.474689+00:00",
+  "live_search_performed": true,
+  "numerical_profile_created": false
+}

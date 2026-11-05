@@ -1,0 +1,18 @@
+[
+  {
+    "id": "wedwitschka2020",
+    "url": "https://pdfs.semanticscholar.org/f447/e85c63c088ca698e9513407cbbe5f23d9c7d.pdf",
+    "status": 200,
+    "final_url": "https://pdfs.semanticscholar.org/f447/e85c63c088ca698e9513407cbbe5f23d9c7d.pdf",
+    "sha256": "cf75bca0a22e5d1b2261d020bc1821acb95aa3bb2b5e7373f88d3ccc9a5cd615",
+    "pages": 16
+  },
+  {
+    "id": "eftaxias2024",
+    "url": "https://pdfs.semanticscholar.org/d80d/aff8cb9be2d3f88f64471a7656ff12ceec8a.pdf",
+    "status": 200,
+    "final_url": "https://pdfs.semanticscholar.org/d80d/aff8cb9be2d3f88f64471a7656ff12ceec8a.pdf",
+    "sha256": "6eecfa8350cb69f0faa285847fcaf331a6774af5bcce0a8e273365554473431a",
+    "pages": 12
+  }
+]

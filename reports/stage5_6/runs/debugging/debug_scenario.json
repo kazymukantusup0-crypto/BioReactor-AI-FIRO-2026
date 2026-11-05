@@ -1,0 +1,457 @@
+{
+  "conversation_version": "5.6",
+  "mode": "deterministic_tools_no_llm",
+  "answer": "Processing is worth considering, but I cannot yet establish that it beats selling: product yield, applicable prices and costs are needed. We can compare a hypothetical scenario if you explicitly supply its assumptions.\n\nWet mass or litres alone cannot determine methane volume. We need an applicable specific yield and measured volatile solids; I will not invent them for your batch.\n\nNo matching saved prices are available for this region.\n\nThe default market region is Karaganda; you have not confirmed it.\n\nSome parameters are scenario assumptions and have not been saved as measured facts.\n\nWhat material is it?",
+  "user_facing_answer": {
+    "paragraphs": [
+      "Processing is worth considering, but I cannot yet establish that it beats selling: product yield, applicable prices and costs are needed. We can compare a hypothetical scenario if you explicitly supply its assumptions.",
+      "Wet mass or litres alone cannot determine methane volume. We need an applicable specific yield and measured volatile solids; I will not invent them for your batch.",
+      "No matching saved prices are available for this region.",
+      "The default market region is Karaganda; you have not confirmed it.",
+      "Some parameters are scenario assumptions and have not been saved as measured facts."
+    ],
+    "question": {
+      "id": "material",
+      "text": "What material is it?",
+      "options": [],
+      "fields": [
+        "material"
+      ],
+      "reason": "material"
+    },
+    "sources": [],
+    "modes": [
+      "consultation"
+    ],
+    "assumptions": [
+      "The default market region is Karaganda; you have not confirmed it.",
+      "sale_price_per_kg: 2.0",
+      "potential_methane_m3: 3.0",
+      "recovery_fraction: 0.5",
+      "methane_price_per_m3: 20.0",
+      "preparation_cost: 1.0",
+      "heating_cost: 2.0",
+      "operating_cost: 3.0",
+      "currency: KZT",
+      "price_date: 2026-10-28",
+      "gas_volume_basis: TEST",
+      "price_gas_volume_basis: TEST."
+    ]
+  },
+  "technical_metadata": {
+    "tool_calls": [
+      {
+        "tool": "analyze_substrate",
+        "status": "needs_input",
+        "input_origin": "grounded_user_facts_and_verified_tool_results",
+        "result": {
+          "status": "needs_input",
+          "missing": [
+            "material"
+          ],
+          "message": "Укажите точное сырьё; по объёму нельзя определить материал или BMP."
+        }
+      },
+      {
+        "tool": "get_market_prices",
+        "status": "needs_input",
+        "input_origin": "grounded_user_facts_and_verified_tool_results",
+        "result": {
+          "status": "needs_input",
+          "missing": [
+            "verified_market_observations"
+          ],
+          "region": "KZ-Karaganda",
+          "prices": [],
+          "geographic_scope_warning": null,
+          "sources": [],
+          "message": "В регионе нет подходящих сохранённых цен; нужен проверенный импорт или успешное обновление источника."
+        }
+      }
+    ],
+    "model_versions": {},
+    "data_provenance": {},
+    "confirmed_parameters": {},
+    "assumptions": {
+      "market_region": {
+        "value": "KZ-Karaganda",
+        "unit": null,
+        "provenance": "ASSUMED_FOR_SCENARIO",
+        "evidence": "Default dashboard region; not user-confirmed",
+        "recorded_at": "2026-10-28T11:38:15.046767+00:00",
+        "dependencies": []
+      },
+      "sale_price_per_kg": {
+        "value": 2.0,
+        "unit": null,
+        "provenance": "ASSUMED_FOR_SCENARIO",
+        "evidence": "Допустим, условный сценарий: mass_kg=10 sale_price_per_kg=2 potential_methane_m3=3 recovery_fraction=0.5 methane_price_per_m3=20 preparation_cost=1 heating_cost=2 operating_cost=3 currency=KZT price_date=2026-10-28 gas_volume_basis=TEST price_gas_volume_basis=TEST. Какая прибыль?",
+        "recorded_at": "2026-10-28T11:38:15.046578+00:00",
+        "dependencies": []
+      },
+      "potential_methane_m3": {
+        "value": 3.0,
+        "unit": null,
+        "provenance": "ASSUMED_FOR_SCENARIO",
+        "evidence": "Допустим, условный сценарий: mass_kg=10 sale_price_per_kg=2 potential_methane_m3=3 recovery_fraction=0.5 methane_price_per_m3=20 preparation_cost=1 heating_cost=2 operating_cost=3 currency=KZT price_date=2026-10-28 gas_volume_basis=TEST price_gas_volume_basis=TEST. Какая прибыль?",
+        "recorded_at": "2026-10-28T11:38:15.046592+00:00",
+        "dependencies": []
+      },
+      "recovery_fraction": {
+        "value": 0.5,
+        "unit": null,
+        "provenance": "ASSUMED_FOR_SCENARIO",
+        "evidence": "Допустим, условный сценарий: mass_kg=10 sale_price_per_kg=2 potential_methane_m3=3 recovery_fraction=0.5 methane_price_per_m3=20 preparation_cost=1 heating_cost=2 operating_cost=3 currency=KZT price_date=2026-10-28 gas_volume_basis=TEST price_gas_volume_basis=TEST. Какая прибыль?",
+        "recorded_at": "2026-10-28T11:38:15.046597+00:00",
+        "dependencies": []
+      },
+      "methane_price_per_m3": {
+        "value": 20.0,
+        "unit": null,
+        "provenance": "ASSUMED_FOR_SCENARIO",
+        "evidence": "Допустим, условный сценарий: mass_kg=10 sale_price_per_kg=2 potential_methane_m3=3 recovery_fraction=0.5 methane_price_per_m3=20 preparation_cost=1 heating_cost=2 operating_cost=3 currency=KZT price_date=2026-10-28 gas_volume_basis=TEST price_gas_volume_basis=TEST. Какая прибыль?",
+        "recorded_at": "2026-10-28T11:38:15.046600+00:00",
+        "dependencies": []
+      },
+      "preparation_cost": {
+        "value": 1.0,
+        "unit": null,
+        "provenance": "ASSUMED_FOR_SCENARIO",
+        "evidence": "Допустим, условный сценарий: mass_kg=10 sale_price_per_kg=2 potential_methane_m3=3 recovery_fraction=0.5 methane_price_per_m3=20 preparation_cost=1 heating_cost=2 operating_cost=3 currency=KZT price_date=2026-10-28 gas_volume_basis=TEST price_gas_volume_basis=TEST. Какая прибыль?",
+        "recorded_at": "2026-10-28T11:38:15.046602+00:00",
+        "dependencies": []
+      },
+      "heating_cost": {
+        "value": 2.0,
+        "unit": null,
+        "provenance": "ASSUMED_FOR_SCENARIO",
+        "evidence": "Допустим, условный сценарий: mass_kg=10 sale_price_per_kg=2 potential_methane_m3=3 recovery_fraction=0.5 methane_price_per_m3=20 preparation_cost=1 heating_cost=2 operating_cost=3 currency=KZT price_date=2026-10-28 gas_volume_basis=TEST price_gas_volume_basis=TEST. Какая прибыль?",
+        "recorded_at": "2026-10-28T11:38:15.046606+00:00",
+        "dependencies": []
+      },
+      "operating_cost": {
+        "value": 3.0,
+        "unit": null,
+        "provenance": "ASSUMED_FOR_SCENARIO",
+        "evidence": "Допустим, условный сценарий: mass_kg=10 sale_price_per_kg=2 potential_methane_m3=3 recovery_fraction=0.5 methane_price_per_m3=20 preparation_cost=1 heating_cost=2 operating_cost=3 currency=KZT price_date=2026-10-28 gas_volume_basis=TEST price_gas_volume_basis=TEST. Какая прибыль?",
+        "recorded_at": "2026-10-28T11:38:15.046611+00:00",
+        "dependencies": []
+      },
+      "currency": {
+        "value": "KZT",
+        "unit": null,
+        "provenance": "ASSUMED_FOR_SCENARIO",
+        "evidence": "Допустим, условный сценарий: mass_kg=10 sale_price_per_kg=2 potential_methane_m3=3 recovery_fraction=0.5 methane_price_per_m3=20 preparation_cost=1 heating_cost=2 operating_cost=3 currency=KZT price_date=2026-10-28 gas_volume_basis=TEST price_gas_volume_basis=TEST. Какая прибыль?",
+        "recorded_at": "2026-10-28T11:38:15.046614+00:00",
+        "dependencies": []
+      },
+      "price_date": {
+        "value": "2026-10-28",
+        "unit": null,
+        "provenance": "ASSUMED_FOR_SCENARIO",
+        "evidence": "Допустим, условный сценарий: mass_kg=10 sale_price_per_kg=2 potential_methane_m3=3 recovery_fraction=0.5 methane_price_per_m3=20 preparation_cost=1 heating_cost=2 operating_cost=3 currency=KZT price_date=2026-10-28 gas_volume_basis=TEST price_gas_volume_basis=TEST. Какая прибыль?",
+        "recorded_at": "2026-10-28T11:38:15.046617+00:00",
+        "dependencies": []
+      },
+      "gas_volume_basis": {
+        "value": "TEST",
+        "unit": null,
+        "provenance": "ASSUMED_FOR_SCENARIO",
+        "evidence": "Допустим, условный сценарий: mass_kg=10 sale_price_per_kg=2 potential_methane_m3=3 recovery_fraction=0.5 methane_price_per_m3=20 preparation_cost=1 heating_cost=2 operating_cost=3 currency=KZT price_date=2026-10-28 gas_volume_basis=TEST price_gas_volume_basis=TEST. Какая прибыль?",
+        "recorded_at": "2026-10-28T11:38:15.046623+00:00",
+        "dependencies": []
+      },
+      "price_gas_volume_basis": {
+        "value": "TEST.",
+        "unit": null,
+        "provenance": "ASSUMED_FOR_SCENARIO",
+        "evidence": "Допустим, условный сценарий: mass_kg=10 sale_price_per_kg=2 potential_methane_m3=3 recovery_fraction=0.5 methane_price_per_m3=20 preparation_cost=1 heating_cost=2 operating_cost=3 currency=KZT price_date=2026-10-28 gas_volume_basis=TEST price_gas_volume_basis=TEST. Какая прибыль?",
+        "recorded_at": "2026-10-28T11:38:15.046626+00:00",
+        "dependencies": []
+      }
+    },
+    "derived_parameters": {},
+    "source_verified": {},
+    "model_estimated": {},
+    "missing_parameters": [
+      "material",
+      "verified_market_observations"
+    ],
+    "validation_errors": [],
+    "uncertainty_status": "not_quantified; no validated finite 90% interval",
+    "fallback_reason": "no_available_valid_structured_llm; deterministic_nlu_and_grounded_responses",
+    "grounding_rejections": [],
+    "extracted_entities": {
+      "language": "en",
+      "intents": [
+        "economic_comparison",
+        "methane_yield",
+        "market_prices"
+      ],
+      "entities": [
+        {
+          "name": "sale_price_per_kg",
+          "value": 2.0,
+          "unit": null,
+          "evidence": "Допустим, условный сценарий: mass_kg=10 sale_price_per_kg=2 potential_methane_m3=3 recovery_fraction=0.5 methane_price_per_m3=20 preparation_cost=1 heating_cost=2 operating_cost=3 currency=KZT price_date=2026-10-28 gas_volume_basis=TEST price_gas_volume_basis=TEST. Какая прибыль?",
+          "provenance": "ASSUMED_FOR_SCENARIO"
+        },
+        {
+          "name": "potential_methane_m3",
+          "value": 3.0,
+          "unit": null,
+          "evidence": "Допустим, условный сценарий: mass_kg=10 sale_price_per_kg=2 potential_methane_m3=3 recovery_fraction=0.5 methane_price_per_m3=20 preparation_cost=1 heating_cost=2 operating_cost=3 currency=KZT price_date=2026-10-28 gas_volume_basis=TEST price_gas_volume_basis=TEST. Какая прибыль?",
+          "provenance": "ASSUMED_FOR_SCENARIO"
+        },
+        {
+          "name": "recovery_fraction",
+          "value": 0.5,
+          "unit": null,
+          "evidence": "Допустим, условный сценарий: mass_kg=10 sale_price_per_kg=2 potential_methane_m3=3 recovery_fraction=0.5 methane_price_per_m3=20 preparation_cost=1 heating_cost=2 operating_cost=3 currency=KZT price_date=2026-10-28 gas_volume_basis=TEST price_gas_volume_basis=TEST. Какая прибыль?",
+          "provenance": "ASSUMED_FOR_SCENARIO"
+        },
+        {
+          "name": "methane_price_per_m3",
+          "value": 20.0,
+          "unit": null,
+          "evidence": "Допустим, условный сценарий: mass_kg=10 sale_price_per_kg=2 potential_methane_m3=3 recovery_fraction=0.5 methane_price_per_m3=20 preparation_cost=1 heating_cost=2 operating_cost=3 currency=KZT price_date=2026-10-28 gas_volume_basis=TEST price_gas_volume_basis=TEST. Какая прибыль?",
+          "provenance": "ASSUMED_FOR_SCENARIO"
+        },
+        {
+          "name": "preparation_cost",
+          "value": 1.0,
+          "unit": null,
+          "evidence": "Допустим, условный сценарий: mass_kg=10 sale_price_per_kg=2 potential_methane_m3=3 recovery_fraction=0.5 methane_price_per_m3=20 preparation_cost=1 heating_cost=2 operating_cost=3 currency=KZT price_date=2026-10-28 gas_volume_basis=TEST price_gas_volume_basis=TEST. Какая прибыль?",
+          "provenance": "ASSUMED_FOR_SCENARIO"
+        },
+        {
+          "name": "heating_cost",
+          "value": 2.0,
+          "unit": null,
+          "evidence": "Допустим, условный сценарий: mass_kg=10 sale_price_per_kg=2 potential_methane_m3=3 recovery_fraction=0.5 methane_price_per_m3=20 preparation_cost=1 heating_cost=2 operating_cost=3 currency=KZT price_date=2026-10-28 gas_volume_basis=TEST price_gas_volume_basis=TEST. Какая прибыль?",
+          "provenance": "ASSUMED_FOR_SCENARIO"
+        },
+        {
+          "name": "operating_cost",
+          "value": 3.0,
+          "unit": null,
+          "evidence": "Допустим, условный сценарий: mass_kg=10 sale_price_per_kg=2 potential_methane_m3=3 recovery_fraction=0.5 methane_price_per_m3=20 preparation_cost=1 heating_cost=2 operating_cost=3 currency=KZT price_date=2026-10-28 gas_volume_basis=TEST price_gas_volume_basis=TEST. Какая прибыль?",
+          "provenance": "ASSUMED_FOR_SCENARIO"
+        },
+        {
+          "name": "currency",
+          "value": "KZT",
+          "unit": null,
+          "evidence": "Допустим, условный сценарий: mass_kg=10 sale_price_per_kg=2 potential_methane_m3=3 recovery_fraction=0.5 methane_price_per_m3=20 preparation_cost=1 heating_cost=2 operating_cost=3 currency=KZT price_date=2026-10-28 gas_volume_basis=TEST price_gas_volume_basis=TEST. Какая прибыль?",
+          "provenance": "ASSUMED_FOR_SCENARIO"
+        },
+        {
+          "name": "price_date",
+          "value": "2026-10-28",
+          "unit": null,
+          "evidence": "Допустим, условный сценарий: mass_kg=10 sale_price_per_kg=2 potential_methane_m3=3 recovery_fraction=0.5 methane_price_per_m3=20 preparation_cost=1 heating_cost=2 operating_cost=3 currency=KZT price_date=2026-10-28 gas_volume_basis=TEST price_gas_volume_basis=TEST. Какая прибыль?",
+          "provenance": "ASSUMED_FOR_SCENARIO"
+        },
+        {
+          "name": "gas_volume_basis",
+          "value": "TEST",
+          "unit": null,
+          "evidence": "Допустим, условный сценарий: mass_kg=10 sale_price_per_kg=2 potential_methane_m3=3 recovery_fraction=0.5 methane_price_per_m3=20 preparation_cost=1 heating_cost=2 operating_cost=3 currency=KZT price_date=2026-10-28 gas_volume_basis=TEST price_gas_volume_basis=TEST. Какая прибыль?",
+          "provenance": "ASSUMED_FOR_SCENARIO"
+        },
+        {
+          "name": "price_gas_volume_basis",
+          "value": "TEST.",
+          "unit": null,
+          "evidence": "Допустим, условный сценарий: mass_kg=10 sale_price_per_kg=2 potential_methane_m3=3 recovery_fraction=0.5 methane_price_per_m3=20 preparation_cost=1 heating_cost=2 operating_cost=3 currency=KZT price_date=2026-10-28 gas_volume_basis=TEST price_gas_volume_basis=TEST. Какая прибыль?",
+          "provenance": "ASSUMED_FOR_SCENARIO"
+        }
+      ],
+      "correction": false,
+      "new_batch": false,
+      "validation_errors": []
+    },
+    "llm_proposal": null,
+    "invalidated_parameters": [],
+    "deferred_tools": [
+      "calculate_methane",
+      "compare_market_scenarios"
+    ],
+    "latency_seconds": 0.028417899971827865
+  },
+  "tools": [
+    {
+      "tool": "analyze_substrate",
+      "status": "needs_input",
+      "input_origin": "grounded_user_facts_and_verified_tool_results",
+      "result": {
+        "status": "needs_input",
+        "missing": [
+          "material"
+        ],
+        "message": "Укажите точное сырьё; по объёму нельзя определить материал или BMP."
+      }
+    },
+    {
+      "tool": "get_market_prices",
+      "status": "needs_input",
+      "input_origin": "grounded_user_facts_and_verified_tool_results",
+      "result": {
+        "status": "needs_input",
+        "missing": [
+          "verified_market_observations"
+        ],
+        "region": "KZ-Karaganda",
+        "prices": [],
+        "geographic_scope_warning": null,
+        "sources": [],
+        "message": "В регионе нет подходящих сохранённых цен; нужен проверенный импорт или успешное обновление источника."
+      }
+    }
+  ],
+  "provider_status": [],
+  "missing": [
+    "material",
+    "verified_market_observations"
+  ],
+  "context": {
+    "market_region": "KZ-Karaganda"
+  },
+  "pending_question": {
+    "id": "material",
+    "text": "What material is it?",
+    "options": [],
+    "fields": [
+      "material"
+    ],
+    "reason": "material"
+  },
+  "memory": {
+    "version": "5.6",
+    "conversation_id": null,
+    "language": "en",
+    "facts": {},
+    "assumptions": {
+      "market_region": {
+        "value": "KZ-Karaganda",
+        "unit": null,
+        "provenance": "ASSUMED_FOR_SCENARIO",
+        "evidence": "Default dashboard region; not user-confirmed",
+        "recorded_at": "2026-10-28T11:38:15.046767+00:00",
+        "dependencies": []
+      },
+      "sale_price_per_kg": {
+        "value": 2.0,
+        "unit": null,
+        "provenance": "ASSUMED_FOR_SCENARIO",
+        "evidence": "Допустим, условный сценарий: mass_kg=10 sale_price_per_kg=2 potential_methane_m3=3 recovery_fraction=0.5 methane_price_per_m3=20 preparation_cost=1 heating_cost=2 operating_cost=3 currency=KZT price_date=2026-10-28 gas_volume_basis=TEST price_gas_volume_basis=TEST. Какая прибыль?",
+        "recorded_at": "2026-10-28T11:38:15.046578+00:00",
+        "dependencies": []
+      },
+      "potential_methane_m3": {
+        "value": 3.0,
+        "unit": null,
+        "provenance": "ASSUMED_FOR_SCENARIO",
+        "evidence": "Допустим, условный сценарий: mass_kg=10 sale_price_per_kg=2 potential_methane_m3=3 recovery_fraction=0.5 methane_price_per_m3=20 preparation_cost=1 heating_cost=2 operating_cost=3 currency=KZT price_date=2026-10-28 gas_volume_basis=TEST price_gas_volume_basis=TEST. Какая прибыль?",
+        "recorded_at": "2026-10-28T11:38:15.046592+00:00",
+        "dependencies": []
+      },
+      "recovery_fraction": {
+        "value": 0.5,
+        "unit": null,
+        "provenance": "ASSUMED_FOR_SCENARIO",
+        "evidence": "Допустим, условный сценарий: mass_kg=10 sale_price_per_kg=2 potential_methane_m3=3 recovery_fraction=0.5 methane_price_per_m3=20 preparation_cost=1 heating_cost=2 operating_cost=3 currency=KZT price_date=2026-10-28 gas_volume_basis=TEST price_gas_volume_basis=TEST. Какая прибыль?",
+        "recorded_at": "2026-10-28T11:38:15.046597+00:00",
+        "dependencies": []
+      },
+      "methane_price_per_m3": {
+        "value": 20.0,
+        "unit": null,
+        "provenance": "ASSUMED_FOR_SCENARIO",
+        "evidence": "Допустим, условный сценарий: mass_kg=10 sale_price_per_kg=2 potential_methane_m3=3 recovery_fraction=0.5 methane_price_per_m3=20 preparation_cost=1 heating_cost=2 operating_cost=3 currency=KZT price_date=2026-10-28 gas_volume_basis=TEST price_gas_volume_basis=TEST. Какая прибыль?",
+        "recorded_at": "2026-10-28T11:38:15.046600+00:00",
+        "dependencies": []
+      },
+      "preparation_cost": {
+        "value": 1.0,
+        "unit": null,
+        "provenance": "ASSUMED_FOR_SCENARIO",
+        "evidence": "Допустим, условный сценарий: mass_kg=10 sale_price_per_kg=2 potential_methane_m3=3 recovery_fraction=0.5 methane_price_per_m3=20 preparation_cost=1 heating_cost=2 operating_cost=3 currency=KZT price_date=2026-10-28 gas_volume_basis=TEST price_gas_volume_basis=TEST. Какая прибыль?",
+        "recorded_at": "2026-10-28T11:38:15.046602+00:00",
+        "dependencies": []
+      },
+      "heating_cost": {
+        "value": 2.0,
+        "unit": null,
+        "provenance": "ASSUMED_FOR_SCENARIO",
+        "evidence": "Допустим, условный сценарий: mass_kg=10 sale_price_per_kg=2 potential_methane_m3=3 recovery_fraction=0.5 methane_price_per_m3=20 preparation_cost=1 heating_cost=2 operating_cost=3 currency=KZT price_date=2026-10-28 gas_volume_basis=TEST price_gas_volume_basis=TEST. Какая прибыль?",
+        "recorded_at": "2026-10-28T11:38:15.046606+00:00",
+        "dependencies": []
+      },
+      "operating_cost": {
+        "value": 3.0,
+        "unit": null,
+        "provenance": "ASSUMED_FOR_SCENARIO",
+        "evidence": "Допустим, условный сценарий: mass_kg=10 sale_price_per_kg=2 potential_methane_m3=3 recovery_fraction=0.5 methane_price_per_m3=20 preparation_cost=1 heating_cost=2 operating_cost=3 currency=KZT price_date=2026-10-28 gas_volume_basis=TEST price_gas_volume_basis=TEST. Какая прибыль?",
+        "recorded_at": "2026-10-28T11:38:15.046611+00:00",
+        "dependencies": []
+      },
+      "currency": {
+        "value": "KZT",
+        "unit": null,
+        "provenance": "ASSUMED_FOR_SCENARIO",
+        "evidence": "Допустим, условный сценарий: mass_kg=10 sale_price_per_kg=2 potential_methane_m3=3 recovery_fraction=0.5 methane_price_per_m3=20 preparation_cost=1 heating_cost=2 operating_cost=3 currency=KZT price_date=2026-10-28 gas_volume_basis=TEST price_gas_volume_basis=TEST. Какая прибыль?",
+        "recorded_at": "2026-10-28T11:38:15.046614+00:00",
+        "dependencies": []
+      },
+      "price_date": {
+        "value": "2026-10-28",
+        "unit": null,
+        "provenance": "ASSUMED_FOR_SCENARIO",
+        "evidence": "Допустим, условный сценарий: mass_kg=10 sale_price_per_kg=2 potential_methane_m3=3 recovery_fraction=0.5 methane_price_per_m3=20 preparation_cost=1 heating_cost=2 operating_cost=3 currency=KZT price_date=2026-10-28 gas_volume_basis=TEST price_gas_volume_basis=TEST. Какая прибыль?",
+        "recorded_at": "2026-10-28T11:38:15.046617+00:00",
+        "dependencies": []
+      },
+      "gas_volume_basis": {
+        "value": "TEST",
+        "unit": null,
+        "provenance": "ASSUMED_FOR_SCENARIO",
+        "evidence": "Допустим, условный сценарий: mass_kg=10 sale_price_per_kg=2 potential_methane_m3=3 recovery_fraction=0.5 methane_price_per_m3=20 preparation_cost=1 heating_cost=2 operating_cost=3 currency=KZT price_date=2026-10-28 gas_volume_basis=TEST price_gas_volume_basis=TEST. Какая прибыль?",
+        "recorded_at": "2026-10-28T11:38:15.046623+00:00",
+        "dependencies": []
+      },
+      "price_gas_volume_basis": {
+        "value": "TEST.",
+        "unit": null,
+        "provenance": "ASSUMED_FOR_SCENARIO",
+        "evidence": "Допустим, условный сценарий: mass_kg=10 sale_price_per_kg=2 potential_methane_m3=3 recovery_fraction=0.5 methane_price_per_m3=20 preparation_cost=1 heating_cost=2 operating_cost=3 currency=KZT price_date=2026-10-28 gas_volume_basis=TEST price_gas_volume_basis=TEST. Какая прибыль?",
+        "recorded_at": "2026-10-28T11:38:15.046626+00:00",
+        "dependencies": []
+      }
+    },
+    "derived": {},
+    "estimates": {},
+    "source_verified": {},
+    "intents": [
+      "economic_comparison",
+      "methane_yield",
+      "market_prices"
+    ],
+    "pending_question": {
+      "id": "material",
+      "text": "What material is it?",
+      "options": [],
+      "fields": [
+        "material"
+      ],
+      "reason": "material"
+    },
+    "invalidated": []
+  },
+  "context_updated": true,
+  "actuator_access": false,
+  "policy_tool_plan": [
+    "analyze_substrate",
+    "get_market_prices"
+  ]
+}

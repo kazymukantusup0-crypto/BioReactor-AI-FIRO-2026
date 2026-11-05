@@ -1,0 +1,970 @@
+211
+Chapter6.1
+Calculating Manure Application 
+Rates and Fertilizer Requirements
+Calculate manure application rates.
+Calculate amounts of residual nitrogen 		
+	
+and phosphorus applied.
+Determine whether available land base is 	
+ 
+sufficient. 
+Determine additional fertilizer requirements.
+•
+•
+•
+•
+learning objectives
+
+212
+Calculating Manure Application Rates and Fertilizer Requirements
+Important Terms
+Table 6.1.1 Key Terms and Definitions
+Term
+Definition
+N-Based Application
+A manure application rate calculated to meet the nitrogen (N) requirements of the crop.
+P-Based Application
+A manure application rate calculated to meet the phosphorus (P) requirements of the crop.
+Reference Nutrient
+The ‘nutrient’ on which the manure application rate was based or developed (e.g., nitrogen, 
+phosphorus).
+Threshold Application Rate
+A simple calculation to determine whether the eligible land base will be sufficient to 
+accommodate the total annual manure collected.
+One of the most critical tasks in manure nutrient 
+management planning is determining the appropriate 
+manure application rates to get the desired crop 
+productivity. It is also necessary in certain scenarios to 
+determine fertilizer application rates to meet any nutrient 
+requirements not met through manure application. These 
+activities involve using information discussed in earlier 
+chapters, including:
+available land base
+soil nutrient profile
+crop nutrient requirements
+nutrient content of manure
+application method and conditions
+This chapter will work through the procedure for 
+calculating manure application rates and determining 
+fertilizer requirements. A hypothetical case study will be 
+used to illustrate and reinforce the principles in each step. 
+Calculating Manure Application 
+Rates
+Calculating manure application rates involves four steps:
+Estimate available nutrient content of manure
+Determine crop nutrient requirements
+•
+•
+•
+•
+•
+1.
+2.
+Determine basis for application rate calculation
+Calculate manure application rate
+If manure is sampled during loading or application 
+use “book values” or historical information on bulk 
+density and manure nutrient content to calculate manure 
+application rates.  Once bulk density and manure analysis 
+information is available repeat the calculations using this 
+information to determine the correct manure and nutrient 
+application rates and determine whether additional 
+fertilizer is required.
+Once the application rate has been determined, estimate 
+the amount of nutrients that will become available in that 
+year plus subsequent years, from that application. If a 
+whole farm nutrient management plan is being developed 
+determine whether additional area is required to apply all 
+of the manure at agronomic rates.  
+Large surpluses of manure may suggest a need to:
+Build cooperative relationships with surrounding 
+landowners to secure additional land for manure 
+application.
+Consider alternative treatment measures, such as 
+solid-liquid separation technologies or composting 
+to increase the distance manure can be transported 
+economically.
+Develop marketing options for the manure produced.
+3.
+4.
+•
+•
+•
+
+213
+Chapter 6.1
+Estimate Available Nutrient Content of Manure
+Chapter 4.2 described techniques for manure sampling. 
+Once the results of the manure analysis are available the 
+amount of crop available nutrients in the manure can be 
+calculated, as illustrated in Chapter 4.3. Crop available 
+nutrient content is a main factor that will influence 
+manure application rate calculations.  
+Crop Available Nutrient Calculations
+Several equations used to estimate crop available nutrient 
+content of manure, originally presented in Chapter 4.3, 
+are presented here for reference purposes. For a more 
+detailed discussion of estimating crop available nutrient 
+content refer to Chapter 4.3.
+Crop Available N Calculations
+Organic N = Total N – NH4-N
+Available Organic N (year 1) = Organic N × 0.25
+Available Organic N (year 2) = Organic N × 0.12
+Available Organic N (year 3) = Organic N × 0.06
+Retained NH4-N	 =	NH4-N × Retention Factor 
+	
+	 (Table 4.3.4)
+Estimated Crop Available N	 =	Available Organic N 
+	
+	 (year 1) + Retained NH4-N
+Crop Available P Calculations:
+Estimated Crop-Available P (year 1) = Total P × 0.7
+Estimated Crop-Available P (year 2) = Total P × 0.2
+Estimated Crop-Available P (year 3) = Total P × 0.06
+Crop-Available K Calculations:
+Estimated Crop-Available K = Total K × 0.9
+»
+Crop Availability of Other Nutrients in Manure
+There is little need to be concerned about the crop 
+availability of Ca, Mg and micronutrients (e.g., iron, 
+zinc, copper) in manure. In Alberta soils deficient in 
+nutrients other than N, P, K are rare, particularly if 
+a field has received manure in recent memory.  
+Also due to the balance (or imbalance) of nutrients 
+in manure, if application rate is based on either N or 
+P, all other nutrients will likely be applied at rates 
+several times higher than agronomic requirements.
+
+214
+Calculating Manure Application Rates and Fertilizer Requirements
+Crop Available N
+Liquid manure source:
+Organic N (g/L) = 3.8 g/L – 1.9 g/L
+Organic N (g/L)  = 1.9 g/L
+Available Organic N, year 1 (g/L) = 1.9 g/L × 0.25
+Available Organic N, year 1 (g/L) = 0.5 g/L
+Since the intention is to inject manure during wet/
+cool spring conditions:
+Retained NH4-N (g/L) = 1.9 g/L × 1.00  
+(from Table 4.3.4)
+Retained NH4-N (g/L) = 1.9 g/L
+Crop Available N (g/L) = 0.5 g/L + 1.9 g/L
+Crop Available N (g/L)  = 2.4 g/L
+Solid manure source:
+Organic N (g/kg) = 8.3 kg/t – 2.0 kg/t
+Organic N (g/kg) = 6.3 kg/t
+Available Organic N, year 1 (kg/t) = 6.3 kg/t × 0.25
+Available Organic N, year 1 (kg/t) = 1.6 kg/t
+Since the intention is to surface apply during 
+wet/cool spring conditions and incorporate within 
+2 days:
+Retained NH4-N (g/kg) = 2.0 kg/t × 0.87  
+(from Table 4.3.4)
+Retained NH4-N (g/kg) = 1.7 kg/t
+Crop Available N (g/kg) = 1.6 kg/t + 1.7 kg/t
+Crop Available N (g/kg) = 3.3 kg/t
+Crop Available P
+Liquid manure source:
+Crop Available P (year 1) (g/L) = 1.0 g/L × 0.7
+Crop Available P (year 1) (g/L) = 0.7 g/L
+Solid manure source:
+Crop Available P (year 1) (g/kg) = 2.3 kg/t × 0.7
+Crop Available P (year 1) (g/kg) = 1.6 kg/t
+Crop Available K
+Liquid manure source:
+Crop Available K (g/L) = 4.3 g/L × 0.9
+Crop Available K (g/L) = 3.9 g/L
+Solid manure source:
+Crop Available K (kg/t) = 6.9 kg/t × 0.9
+Crop Available K (kg/t) = 6.2 kg/t
+Estimating Crop Available Nutrient Content
+Lab analysis of liquid and solid manure sources yielded the following nutrient content information:
+Source
+Moisture
+Total N
+(wet basis)
+NH4-N1
+(wet basis)
+Total P
+(wet basis)
+Total K
+(wet basis)
+Liquid
+92 %
+3.8 g/L
+1.9 g/L
+1.0 g/L
+4.3 g/L
+Solid
+50 %
+8.3 kg/t
+2.0 kg/t
+2.3 kg/t
+6.9 kg/t
+1	 NH4-N is Ammonium-Nitrogen
+
+215
+Chapter 6.1
+more info
+A useful online calculator 
+is available on Ropin’ the 
+Web, to estimate crop 
+uptake and or removal for several 
+crops at various yields.  To access 
+this calculator, visit Ropin’ the 
+Web and select the “Calculators” 
+tab from the horizontal toolbar 
+on the homepage.  The calculator 
+is called “Grains, Forage 
+and Straw Nutrient Use”.
+Summary of crop available nutrient content for 
+the solid and liquid manure sources in the year of 
+application:
+Source
+Crop 
+Available N
+Crop 
+Available P
+Crop 
+Available K
+Liquid 
+2.4 g/L
+0.7 g/L
+3.9 g/L
+Solid 
+3.3 kg/t
+1.6 kg/t
+6.2 kg/t
+It may be necessary to convert units appearing on the 
+lab report, depending on testing facility and the units 
+used in subsequent calculations. Many of the common 
+conversions were presented in Table 4.3.3  
+(Chapter 4.3).
+Determine Crop Nutrient Requirements
+Use fertilizer recommendations generated by a 
+testing facility based on representative soil samples to 
+determine crop nutrient requirements. Remember that 
+lab recommendations for P and K are reported as kg 
+or lb of P2O5 and K2O, respectively, which is not useful 
+when applying manure. Available P and K content of 
+manure must be converted to available P2O5 and K2O in 
+order to calculate manure application rate using fertilizer 
+recommendations.  
+To convert P to P2O5, and K to K2O, use the following 
+equations:
+P2O5 = P × 2.29
+K2O = K × 1.20
+For situations where, for one reason or another, soil 
+testing on an annual basis is either not possible or 
+practical, an alternative strategy will need to be used. In 
+order of preference, some alternatives are:
+Use fertilizer recommendations from comparable 
+soil analysis results. This could include past 
+recommendations for that field or recommendations 
+for neighbouring fields under similar management.
+Use historical application rates, provided historical 
+yield, quality (e.g., protein) and production factors 
+(e.g., lodging, maturity) suggest that these rates were 
+appropriate. 
+Apply manure nutrients so as to replace nutrients 
+removed by the crop at expected yields  
+(Appendix 6). Information on historical yields can 
+help estimate crop nutrient removal.
+Note that none of these approaches are acceptable 
+substitutes for soil testing in the long term but may be 
+reasonable compromises if annual sampling of all fields 
+is not possible. Remember that for a field to be eligible to 
+receive manure AOPA requires soil analysis from within 
+the last 3 years.
+•
+•
+•
+
+216
+Calculating Manure Application Rates and Fertilizer Requirements
+ 
+Case Study: Determining Crop Nutrient Requirements
+Based on the background information provided and results of the soil analysis the testing facility 
+recommended the following fertilizer rates for a field:
+Recommendations based on expected moisture conditions during growing season
+Dry (130 mm)
+Average (200 mm)
+Wet (270 mm)
+N
+P2O5
+K2O
+N
+P2O5
+K2O
+N
+P2O5
+K2O
+22 kg/ha  
+20 lb/ac
+22 kg/ha 
+20 lb/ac
+-
+44 kg/ha 
+40 lb/ac
+28 kg/ha 
+25 lb/ac 
+-
+78 kg/ha 
+70 lb/ac
+39 kg/ha 
+35 lb/ac
+-
+Based on long-term weather patterns, expected crop prices and the fact that the manure has only a small cost 
+associated with it (relative to fertilizer), manure application rate to be developed was based on the fertilizer 
+recommendations for wet conditions.   
+ 
+Determine Basis for Application Rate
+N-Based Application
+Current practice in Alberta is to base manure application 
+on crop available N, which is the first limiting nutrient 
+in most Alberta cropping scenarios. The impact this 
+practice has on levels of other nutrients in the soil should 
+be considered. By applying manure based on N, other 
+nutrients including P and K will be simultaneously 
+applied at rates that exceed crop removal. This is due 
+to the typical nutrient content of most manure. This has 
+three important implications:  
+Applying nutrients above their agronomic 
+requirement prevents the full economic value of 
+manure to be realized.  
+Research has clearly demonstrated that long-
+term application of P above agronomic rates is 
+contributing to P build-up in surface soil layers 
+to the point that the risk of runoff losses is 
+increased. Loss of P to surface water is a significant 
+environmental concern. 
+»
+•
+•
+High soil test levels of certain nutrients can impair 
+the crop’s ability to take up other essential nutrients 
+(e.g., high soil test P can impair zinc uptake).
+If manure is to be applied based on N, monitor soil test 
+P levels regularly. Crops generally do not respond to soil 
+test P levels above 112 kg/ha (100 lb/ac) in the top 15 cm 
+of soil and higher levels increase the risk of runoff losses. 
+Due to equipment limitations it may be necessary to 
+apply more than one-year’s worth of manure, particularly 
+if only small rates of manure application are suggested 
+for a particular field.
+P-Based Application
+One way of avoiding nutrient accumulation in soils is to 
+apply manure based on P. At present, however, there is no 
+one single prescribed strategy for applying manure on a P 
+basis. One of the major constraints to P-based application 
+is that current application technologies are not able to 
+consistently apply manure at the low rates that would 
+be required to meet agronomic P requirements for a 
+•
+»
+
+217
+Chapter 6.1
+single crop year. Even if technology allowed, it has been 
+estimated that doing so would likely increase the area 
+required for manure application by anywhere from 3 to 6 
+times compared to N-based application.
+A logical P-based application strategy, if land base 
+allows, would involve applying manure so as to supply 
+three to four years worth of P in a single application. One 
+consideration for using this approach is that while only 
+70 % of total manure P will be available in the year of 
+application, much of the remaining P will come available 
+over the subsequent two years.  
+A P-based application strategy that supplies three to four 
+years worth of P will require supplemental N fertilizer 
+applications to support subsequent crops. Annual soil 
+sampling is recommended to determine N fertilization 
+requirements and to monitor levels of soil test P. If 
+soil test P remains high after the third year subsequent 
+manure applications should be delayed. Whenever 
+applying multiple years worth of P take precautions 
+to minimize the risk of P losses in runoff by adopting 
+suitable land management practices (see Chapters 8.2  
+and 8.3).  
+If land base relative to manure production is restricted, 
+arrangements will likely need to be made with 
+neighbouring landowners to secure additional area.       
+Calculate Manure Application Rate
+Calculate application rate by dividing the 
+recommendation for the nutrient being used as the basis 
+for application (i.e., reference nutrient, N or P) by its 
+concentration in the manure.  
+The generic calculation of manure application rate is:
+Application rate =   
+Reference nutrient recommendation ÷ Reference manure 
+nutrient concentration
+Remember that if application is based on P, concentration 
+of available P in the manure must be converted to a P2O5 
+basis in order to use the fertilizer recommendations from 
+the soil analysis. In some instances, it may be also be 
+necessary to convert factors in the equation so that the 
+units are consistent. 
+Case Study: Calculating Manure 
+Application Rate
+Recall that manure application will take 
+place under wet, cool conditions, liquid manure will 
+be injected and solid manure is surface applied and 
+incorporated within two days. Application rates 
+will be calculated for the following scenarios:
+Single-year application based on manure 
+available N 
+One-time application of two years worth of 
+manure available N  
+One time, three-year application based on 
+manure available P
+ 
+To review:
+The liquid manure source contains: 
+	
+2.4 g/L crop available N 
+	
+0.7 g/L crop available P 
+	
+3.9 g/L crop available K
+The solid manure source contains:  
+	
+3.3 kg/t crop available N 
+	
+1.6 kg/t crop available P 
+	
+6.2 kg/t crop available K
+The fertilizer recommendations for the field, 
+based on soil test results were 78 kg/ha of N and 
+39 kg/ha of P2O5
+1.
+2.
+3.
+•
+•
+•
+
+218
+Calculating Manure Application Rates and Fertilizer Requirements
+ 
+ 
+Scenario 1: N-based; Single-Year Application Rate
+ 
+Liquid manure:
+The target application rate to supply one year’s worth of available N is:
+Application rate (metric units) = 78 kg/ha ÷ 2.4 kg/1,000 L*× 1,000
+ 
+Application rate (metric units) = 32,500 L/ha
+To convert this to imperial units:
+Application rate (imperial units) = 32,500 L/ha × 0.089 (Table 4.3.3)
+ 
+Application rate (imperial units) = 2,893 gal/ac    
+*Nutrient concentrations in g/L are the same as kg/1,000 L
+Solid manure:
+The target application rate to supply a single year’s worth of available N is:
+Application rate (metric units) = 78 kg/ha ÷ 3.3 kg/ t
+ 
+Application rate (metric units) = 23.6 t/ha
+To convert this to imperial units:
+Application rate (imperial units) = 23.6 t/ha × 0.4461 (Table 4.3.3)
+ 
+Application rate (imperial units) = 10.5 tn/ac 
+
+219
+Chapter 6.1
+ 
+Scenario 2: N-based; One Time, Two-Year Application Rate
+When applying multiple years’ worth of N do not exceed AOPA NO3-N limits for the soil zone  
+(Chapter 4.4). In calculating available manure N be sure to account for mineralization of organic N in the 
+year following the application. Since approximately 12% of the organic N fraction will become available in the 
+year following application, the crop available N estimate must be adjusted for additional N: 
+Available Organic N (years 1 and 2) = Total Organic N × (0.25 + 0.12)
+Crop Available N = Available Organic N (years 1 and 2) + Retained NH4-N
+Liquid manure
+Available Organic N, years 1 and 2 (g/L)	 = 1.9 g/L × (0.25 + 0.12)
+	
+	
+	
+	
+	
+= 0.7 g/kg
+Crop Available N (g/L) 		
+	
+= 0.7 g/L + 1.9 g/L
+	
+	
+	
+	
+	
+= 2.6 g/L
+The target application rate to supply 2 years worth of N would be:
+Application rate (metric units)	
+= 2 × 78 kg/ha ÷ 2.6 kg/1000 L*× 1000
+	
+= 60,000 L/ha
+ 
+Application rate (imperial units)	 = 60,000 L/ha × 0.089 (Table 4.3.3) 
+	
+= 5,340 gal/ac
+*Nutrient concentrations in g/L are equivalent to kg/1000 L 
+Solid manure
+Available Organic N, years 1 and 2 (g/kg) = 6.3 kg/t × (0.25 + 0.12)
+Available Organic N, years 1 and 2 (g/kg) = 2.3 kg/t 
+Crop Available N (g/kg) = 2.3 g/kg + 1.7 g/kg 
+Crop Available N (g/kg) = 4.0 kg/t 
+The target application rate to supply 2 years worth of N would be:
+Application rate (metric units)	
+= 2 × 78 kg/ha ÷ 4.0 kg/t 
+	
+= 39 t/ha
+Application rate (imperial units) 	 = 39 t/ha × 0.4461 (Table 4.3.3)
+	
+= 17.4 tn/ac
+
+220
+Calculating Manure Application Rates and Fertilizer Requirements
+ 
+Scenario 3: P-based; One Time, Three-Year Application Rate
+Since residual manure P will be mineralized in the years following application, the same procedure as in 
+the previous scenario is followed to correct the estimated crop available P content:
+Crop Available P (years 1, 2 and 3) = Total P × (0.7 + 0.2 + 0.06)
+Crop Available P2O5 (years 1, 2 and 3) = Crop Available P × 2.29
+Liquid manure:
+Crop Available P; years 1, 2 and 3 (g/L)	
+= 1.0 g/L × (0.7 + 0.2 + 0.06)
+	
+= 0.96 g/L 
+Crop Available P2O5, years 1, 2 and 3 (g/L)	
+= 0.96 g/L Available P × 2.29
+	
+= 2.20 g/L 
+The target application rate to supply 3 years worth of P would be:
+Application rate (metric units) 	
+= 3 × 40 kg/ha ÷ 2.20 kg/1,000 L*× 1,000 
+	
+= 54,545 L/ha
+Application rate (imperial units) 	
+= 54,545 L/ha × 0.089 (Table 4.3.3)
+	
+= 4,854 gal/ac  
+*Nutrient concentrations in g/L are equivalent to kg/1000 L  
+ 
+Solid manure:
+Adjusted Crop Available P (kg/t)	
+= 2.3 g/kg × (0.7 + 0.2 + 0.06)
+	
+= 2.21 kg/t 
+ 
+Crop Available P2O5, years 1,2 and 3 (kg/t) 	
+= 2.21 kg/t Available P × 2.29 
+	
+= 5.06 kg/t 
+The target application rate to supply 3 years worth of P would be:
+Application rate (metric units) 	
+= 3 × 40 kg/ha ÷ 5.06 kg/t
+	
+= 23.7 t/ha
+Application rate (imperial units) 	
+= 23.7 t/ha × 0.4461(Table 4.3.3)
+	
+= 10.6 tn/ac
+
+221
+Chapter 6.1
+Calculating Amounts of Residual N and P Applied
+There can be substantial excess application of certain nutrients depending on whether application rate is P-based or N-
+based. After calculating a target application rate, calculate the rates at which other nutrients will be applied.  
+Portions of residual organic N and P applied will become available in subsequent years. These will not be reflected in 
+subsequent soil tests, but will impact fertilizer requirements.
+Determining Application Rates of Other Manure Nutrients
+Using the calculated application rates for solid and liquid manure from scenario 1 of the previous 
+example, where manure application was based on a one-year supply of available N:
+Solid application rate = 23.6 t/ha
+Liquid Application rate = 32,500 L/ha
+Available N applied in both situations = 78 kg/ha
+The resulting application rates for total and available P and P2O5 are:
+Liquid manure
+Total P applied (kg/ha) = 32,500 L/ha ÷ 1,000 ×  
+1.0 kg/1,000 L
+Total P applied (kg/ha) = 32.6 kg/ha
+Total P2O5 applied (kg/ha) = 32.6 kg/ha × 2.29 
+Total P2O5 applied (kg/ha) = 74.7 kg/ha
+By using the factors presented earlier (Estimated 
+crop available P in: year 1 = Total P x 0.7, year 2 
+= Total P x 0.2, and year 3 = Total P x 0.16), this 
+translates to the following nutrient applied by the 
+liquid manure application:
+Year 1
+Year 2
+Year 3
+kg/ha
+kg/ha
+kg/ha
+Retained NH4-N 
+applied 
+61.8
+N/A
+N/A
+Available  
+organic N
+16.3
+7.4
+3.7
+Total crop  
+available N
+78
+7.4
+3.7
+Available P 
+22.8
+6.5
+2.0
+Available P2O5
+52.2
+14.9
+4.6
+Solid manure
+Total P applied (kg/ha) = 23.6 t/ha × 2.3 kg/t
+Total P applied (kg/ha) = 54.3 kg/ha
+Total P2O5 applied (kg/ha) = 54.3 kg/ha × 2.29 
+Total P2O5 applied (kg/ha) = 124.3 kg/ha
+By using the factors presented earlier (Estimated 
+crop available P in: year 1 = Total P x 0.7, year 2 
+= Total P x 0.2, and year 3 = Total P x 0.16), this 
+translates to the following nutrient applied by the 
+solid manure application: 
+Year 1
+Year 2
+Year 3
+kg/ha
+kg/ha
+kg/ha
+Retained NH4-N 
+applied 
+40.1
+n/a
+n/a
+Available  
+organic N
+37.2
+17.8
+8.9
+Total crop  
+available N
+78
+17.8
+8.9
+Available P 
+38.0
+10.9
+3.3
+Available P2O5
+87.0
+24.9
+7.5
+The rate at which other nutrients were 
+applied can also be calculated, provided 
+the concentrations of these in the 
+manure were analyzed and reported, 
+the application rate and availability 
+estimates (if applicable) are known.
+s
+i d e b a r
+
+222
+Calculating Manure Application Rates and Fertilizer Requirements
+For the solid manure source in the above example, total 
+P would be applied in excess of crop requirements. This 
+means that if this manure was applied annually, based on 
+a single year’s requirement of available N, P would begin 
+to accumulate in the soil. 
+This example illustrates the value of doing these 
+calculations as well as the value of soil and manure 
+testing. Depending on the natural risks (e.g., presence 
+of neighbouring water bodies, high soil test phosphorus) 
+associated with this field it might be advisable to consider 
+basing application on P recommendations. Remember 
+that if you choose a P-based application strategy soil N 
+and P status needs to be monitored to ensure adequate 
+nutrients for subsequent crops.
+Manure Supply versus Available Land Base
+If a farm-scale, multiple field nutrient management plan 
+is being developed it is important to determine whether 
+the supply of manure will exceed the available land base 
+eligible to receive manure.  
+Calculating the land base required to apply stockpiled 
+manure requires three pieces of information:
+manure application rate
+area eligible to receive manure
+total volume or weight of manure to be applied
+The method for calculating manure application rates 
+was described earlier in this chapter. The area eligible to 
+receive manure is determined during the site assessment, 
+taking into account physical limitations and legislated 
+application setbacks.
+Refer to Chapters 3.1 and 3.2 for more information on site 
+assessment and determining the area of a field eligible 
+to receive manure. Legislated constraints to manure 
+•
+•
+•
+application under the Agricultural Operation Practices 
+Act (AOPA), which also impacts area available for 
+application can be found in Chapter 4.4.  
+Use either standard estimates for manure production 
+or estimate volume directly using the procedures and 
+calculations outlined in Chapter 4.1 (preferred method).  
+Solid manure is expressed in terms of weight, which 
+requires that density of the material be considered. In 
+the absence of a measured density average values for 
+common livestock manures are presented in Table 6.1.2. 
+Table 6.1.2 Estimated Density of Selected Solid Manure Sources
+Species/Class
+Manure Density
+kg/m3
+lb/ft3
+Beef, cows/finishers
+655
+40.9
+Beef, feeders
+641
+40.0
+Swine, farrow-to-finish
+796
+49.7
+Swine, grow/finish
+772
+48.2
+Poultry, broilers/pullets
+320
+20.0
+Poultry, turkey toms
+248
+15.5
+Sheep, ewes/rams
+497
+31.0
+Goats, general
+497
+31.0
+Horses, feeders
+529
+33.0
+Derived from values presented in AOPA: 
+Manure Characteristics and Land Base Code (2006). 
+ 
+In the event that manure supply exceeds eligible 
+land base, additional land will need to be found in 
+order to apply manure sustainably. This may require 
+arrangements or formal agreements to be made with 
+neighbouring landowners.
+
+223
+Chapter 6.1
+If eligible land base exceeds manure supply the issue 
+then becomes how to prioritize fields for application to 
+maximize economic benefit. Fields can be prioritized 
+based on:
+distance to field from storage
+fertility requirements (e.g., high nutrient use crops, 
+high fertilizer recommendations)
+value of the crop to be grown
+the presence of degraded soils (e.g., eroded areas, 
+low organic matter,  poor tilth) that would benefit 
+from manure application
+the desire to minimize nuisance to neighbours or 
+environmental risk
+accessibility or flexibility in crop management
+Distance from the storage site to the application site 
+is probably the biggest single factor influencing the 
+economics of manure usage. In most situations, fields 
+closest to the manure source are manured the most. For 
+operations with a history of manure application, however, 
+applying manure to fields further away may help to 
+reduce nutrient build-up in fields closer to the manure 
+source. In addition, this may help to extract greater 
+economic benefit from manure nutrients since they will 
+be used to support crop growth rather than contributing 
+to nutrient surpluses in soil.
+Crops with higher economic value (e.g., canola) may 
+yield greater economic returns from the nutrients applied 
+than lower value crops (e.g., oats). Degraded or poor 
+quality soils can often benefit the most from manure 
+application. This is due to soil building properties of 
+manure as well as nutrient content, which help to improve 
+the general productivity of these areas.
+•
+•
+•
+•
+•
+•
+Fields may also be prioritized so as to minimize odour 
+complaints from neighbours. Selecting fields with 
+minimal natural environmental risk (e.g., slope or 
+proximity to water bodies or other sensitive areas) is 
+another strategy for prioritizing fields for application.   
+Different cropping scenarios (e.g., silage production, 
+fall cereals, forages) may offer potential for flexibility in 
+manure allocation strategy. Fields that are drier earlier in 
+the season may be given priority so manure application 
+can begin earlier in the spring, reducing compaction 
+issues and taking advantage of released nutrients. 
+Determining Whether Land Base is Sufficient
+A simple calculation can help a producer determine 
+whether the eligible land base will be sufficient to 
+accommodate annual manure production:
+Threshold Application Rate = 
+Annual Manure Production ÷ Eligible Application Area
+Based on the application strategy selected, if manure is 
+applied at rates higher than this threshold, the eligible 
+area will be sufficient.  If manure is to be applied at a 
+rate lower than this threshold, additional area will be 
+required.  
+»
+
+224
+Calculating Manure Application Rates and Fertilizer Requirements
+Determining Whether Available Land Base is Sufficient
+From the earlier case study, the liquid manure source contained 3,200,000 L, while the solid manure 
+source contained 984 t. The total area available for annual liquid manure application is 130 ha and the 
+total area available to receive solid manure on an annual basis is 106 ha. The threshold annual application rates for 
+these two manure sources and land bases are:
+Threshold application rate for liquid manure (L/ha) 	
+= 3,200,000 ÷ 130 ha 
+ 	
+= 24,600L/ha/yr
+Threshold application rate for solid manure (t/ha) 	
+= 984 t÷ 106 ha
+	
+= 9.28 t/ha/yr
+Compare these threshold application rates to the application rates calculated in the case study:
+Manure Source
+Application Scenario 1
+(N-based, single year 
+application)
+Application Scenario 2
+(N-based, two year 
+application)
+Application Scenario 3
+(P-based, three-year 
+application)
+Liquid
+32,500 L/ha/yr
+60,000 L/ha/2 yrs 
+(= 30,000 L/ha/yr)
+54,545 L/ha/3 yrs 
+(= 18,181 L/ha/yr)
+Solid
+23.6 t/ha/yr
+39 t/ha/2 yrs 
+(= 19.5 t/ha/yr)
+23.7 t/ha/3 yrs 
+(= 7.9 t/ha/yr)
+ 
+The total area of 130 ha, for the annual liquid manure application, has a threshold application rate of  
+24,600 L/ha/year. Therefore, there is sufficient land base avaialble for the one-year and two-year N based 
+application rates scenarios. Unfortunately, there is insufficient land base available for the liquid manure applied on 
+a three-year P based application scenario. An additional 46 ha would be required to accommodate all the manure 
+produced (3,200,000 L/year) if it was applied at the equivalent of 18,181 L/ha/year or 54,545 L/ha once every three 
+years.
+The total area of 106 ha, for the annual solid manure application, has a threshold application rate of  
+13.1 to/ha/year. Therefore, there is sufficient land base available for the one-year and two-year N based application 
+rates scenarios. Unfortunately, there is insufficient land base available for the solid manure applied on a three-year 
+P based application scenario. An additional 19 ha would be required to accommodate all the manure produced 
+(984 t/year) if it was applied at the equivalent of 7.9 t/ha/yr or 23.7 t/ha once every three years. 
+
+225
+Chapter 6.1
+Estimating Additional Land Base Required
+If it has been determined that the existing application 
+area controlled by the operations is insufficient to 
+accommodate annual manure production, the additional 
+area can be estimated:
+Additional Area Required = (Annual Manure Production 
+÷ Calculated Application Rate) - Current Eligible Area	
+ 
+ 
+Estimating Additional Land Base 
+Required
+The liquid manure source in the previous example 
+had a total volume of 3,200,000 L and the intention 
+is to apply this manure to meet the available P 
+needs, three year application. The calculated 
+application rate for this scenario is 18,181 L/ha, but 
+the operation currently only has access to 130 ha. 
+The additional land base required is:
+Additional Area Required (ha) 
+= 3,200,000 L/yr ÷ 18,181 L/ha – 130 ha
+= 176 ha/yr – 130 ha
+= 46 ha/yr
+»
+The two examples above touch on some important 
+calculations that CFO operators should consider. To apply 
+manure at agronomic or sustainable rates many CFO’s 
+may require additional land to accommodate annual 
+manure production.  This issue is likely to become of 
+greater concern to producers if legislation is introduced 
+in the future that requires manure application to be based 
+on phosphorus.  
+Estimating Remaining Fertilizer 
+Requirements
+Once manure nutrient application rates have been 
+calculated (or verified after the fact) identify remaining 
+nutrient deficits by subtracting nutrients applied (in 
+manure) from fertility recommendations on the soil 
+report. Fertilizer suppliers can typically develop a 
+fertilizer blend customized to meet specific needs.
+tip
+Remember to account 
+for nutrients that 
+mineralize from manure 
+with time when calculating 
+fertilizer application rates 
+for subsequent crops.
+
+226
+Calculating Manure Application Rates and Fertilizer Requirements
+When calculating manure application rates 
+consider the available nutrient content 
+of manure, soil test results, crop nutrient 
+recommendations and the application 
+strategy (application method and basis for 
+rate calculations).
+Once the basis for calculating application 
+rates has been determined the application 
+rates for N and P can be calculated by 
+multiplying their estimated content in the 
+manure by the application rate. If applying 
+multiple years worth of manure, be sure 
+to factor in mineralization of manure 
+nutrients.
+There can be substantial excess application 
+of certain nutrients depending on whether 
+application rate is P-based or N-based.  
+After calculating a target application rate, 
+calculate the rates at which other nutrients 
+will be applied. Portions of residual organic 
+N and P applied will become available in 
+subsequent years.  
+•
+•
+•
+Dividing the annual volume or weight of 
+manure to be applied by the available 
+land base will give the threshold application 
+rate for an operation. By comparing this to 
+the calculated application rate it is possible 
+to determine whether the available land 
+base will be sufficient.
+Estimating fertilizer requirements is easier 
+because fertilizer recommendations are 
+expressed on the same basis as fertilizer 
+nutrient content, fertilizer nutrients are in 
+crop-available forms and fertilizers can be 
+custom blended to achieve a particular 
+nutrient ratio. 
+•
+•
+summary

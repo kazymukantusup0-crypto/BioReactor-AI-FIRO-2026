@@ -1,0 +1,6 @@
+{
+  "material": "food_waste",
+  "mass_kg": 5,
+  "temperature_c": 37,
+  "reactor_volume_l": 90
+}

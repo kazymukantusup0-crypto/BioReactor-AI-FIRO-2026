@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "checks": [
+    "Independent animal, decay, bedding and data-mode controls present",
+    "Real form sends independent axes",
+    "Real form density is bedded-manure reference",
+    "Litres to kilograms shown",
+    "Scientific details initially closed",
+    "Mobile does not overflow",
+    "Actual pending task loaded",
+    "Clarification options rendered",
+    "Clicking species resumes all requested calculations",
+    "Sidebar shows confirmed 156 L instead of empty facts",
+    "No model MAE in prose",
+    "Technical trace stays closed",
+    "Browser edit preserves original 156 L and original goals",
+    "Browser reply warns about completely occupied vessel",
+    "Sidebar separates original stock from 200 L scenario",
+    "No JavaScript errors"
+  ],
+  "errors": []
+}

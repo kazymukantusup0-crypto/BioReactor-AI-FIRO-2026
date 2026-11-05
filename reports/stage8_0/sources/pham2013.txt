@@ -1,0 +1,1134 @@
+ 
+Copyright ©  2013 by Asian-Australasian Journal of Animal Sciences 
+ 
+ 
+864 
+INTRODUCTION 
+ 
+Increases in world population, changes in human diets 
+(Godfray et al., 2010) and new intensive livestock 
+production methods are causing a massive increase in 
+collected excreta (Bouwman et al., 2011). In Vietnam, the 
+amount of manure collected is also increasing, not only 
+because of the increase in livestock production, but also 
+because livestock is increasingly being raised in animal 
+houses. Manure management has to be adapted to the new 
+production systems in order to prevent the expansion in 
+livestock production from causing excessive pollution in the 
+form of greenhouse gases (GHG), eutrophication, the 
+spread of diseases and odour (Xiong et al., 2008; Davidson, 
+2009; Sutton et al., 2011). 
+One of the most cost-effective technologies for reducing 
+environmental pollution related to manure management is 
+biogas production, which is known to improve hygiene, 
+reduce odours and GHG emissions, and also reduce the 
+need for mineral fertilizers and pesticides (Sommer et al., 
+2004; Jiang et al., 2011; Triolo et al., 2012). In regions 
+without energy infrastructure, clean biogas energy is very 
+important in reducing the costly use of fossil fuels, limiting 
+deforestation and improving the livelihood of women 
+cooking food (Cu et al., 2012). Consequently, the 
+Vietnamese government supports the construction of biogas 
+digesters, with plans for 180,000 farm biogas digesters to be 
+in operation by 2011 (Cu et al., 2012). For similar reasons, 
+the Chinese government has supported the construction of 
+ 
+ 
+ 
+ 
+ 
+Asian Australas. J. Anim. Sci. 
+Vol. 26, No. 6 : 864-873 June 2013 
+http://dx.doi.org/10.5713/ajas.2012.12623 
+ 
+www.ajas.info 
+pISSN 1011-2367 eISSN 1976-5517 
+ 
+Validation and Recommendation of Methods to Measure 
+Biogas Production Potential of Animal Manure 
+ 
+C. H. Pham, J. M. Triolo1,*, T. T. T. Cu2, L. Pedersen1 and S. G. Sommer1 
+Ministry of Agriculture and Rural Development, National Institute of Animal Sciences, 
+Thuyphuong, Tuliem, Hanoi, Vietnam 
+ 
+ABSTRACT: In developing countries, biogas energy production is seen as a technology that can provide clean energy in poor regions 
+and reduce pollution caused by animal manure. Laboratories in these countries have little access to advanced gas measuring equipment, 
+which may limit research aimed at improving local adapted biogas production. They may also be unable to produce valid estimates of an 
+international standard that can be used for articles published in international peer-reviewed science journals. This study tested and 
+validated methods for measuring total biogas and methane (CH4) production using batch fermentation and for characterizing the 
+biomass. The biochemical methane potential (BMP) (CH4 NL kg-1 VS) of pig manure, cow manure and cellulose determined with the 
+Moller and VDI methods was not significantly different in this test (p>0.05). The biodegradability using a ratio of BMP and theoretical 
+BMP (TBMP) was slightly higher using the Hansen method, but differences were not significant. Degradation rate assessed by methane 
+formation rate showed wide variation within the batch method tested. The first-order kinetics constant k for the cumulative methane 
+production curve was highest when two animal manures were fermented using the VDI 4630 method, indicating that this method was 
+able to reach steady conditions in a shorter time, reducing fermentation duration. In precision tests, the repeatability of the relative 
+standard deviation (RSDr) for all batch methods was very low (4.8 to 8.1%), while the reproducibility of the relative standard deviation 
+(RSDR) varied widely, from 7.3 to 19.8%. In determination of biomethane concentration, the values obtained using the liquid 
+replacement method (LRM) were comparable to those obtained using gas chromatography (GC). This indicates that the LRM method 
+could be used to determine biomethane concentration in biogas in laboratories with limited access to GC. (Key Words: Batch 
+Fermentation Method, Biochemical Methane Potential, Precision, Reproducibility) 
+ 
+* Corresponding Author: J. M. Triolo. Tel: +45-4117-8867, 
+Fax: +45-6550-7354, E-mail: jmt@kbm.sdu.dk 
+1 University of Southern Denmark, Faculty of Engineering, 
+Institute of Chemical Engineering, Bio- and Environmental 
+Engineering, Campusvej 55, 5230 Odense M, Denmark. 
+2 Hanoi University of Agriculture, Faculty of Animal Science and 
+Aquaculture, Vietnam. 
+Submitted Nov. 1, 2012; Accepted Jan. 14, 2013; Revised Feb. 20, 2013 
+
+Pham et al. (2013) Asian Australas. J. Anim. Sci. 26:864-873 
+ 
+865 
+30 million small biogas plants, and in India about 4 million 
+biogas plants are planned or already in operation 
+(Bhattacharya and Jana, 2009; Jiang et al., 2011). Due to the 
+many benefits of biogas digestion, it is anticipated that this 
+technology will also be promoted in other developing 
+countries, such as the Philippines, Thailand, Nepal and 
+Brazil. However, to support efficient use of the technology, 
+there must be strong local competence to assess the biogas 
+production 
+potential 
+and 
+to 
+develop 
+appropriate 
+management schemes. 
+At present, end-users in Vietnam, China and India often 
+fail to control the technology efficiently, due to poor 
+management competence (Jiang et al., 2011). This leads to 
+production being inadequate in periods of high demand in 
+low temperature regions during winter, and excessive 
+during periods of high temperature and high production of 
+excreta (Cu et al., 2012). There is thus a need to improve 
+knowledge about biogas production potential using local 
+biomass, in order to develop digesters adapted to the local 
+environment and individual management schemes, thus 
+ensuring production of the gas needed for cooking, heating 
+and light (Vu et al., 2007; Cu et al., 2012). Hence, there is 
+an associated need to review, develop and validate methods 
+to assess biogas production which can be used in 
+laboratories with limited access to analytical instruments. 
+Research carried out at laboratories in regions with limited 
+access to high-tech instruments must be of international 
+standard, so as to ensure useful results and contribute to 
+progress in development of the technology.  
+Biochemical methane potential (BMP), the maximum 
+methane production capacity of each feedstock, is a key 
+parameter in designing and operating a successful real-scale 
+biogas plant. A recent study using data from different 
+laboratories gave the impression that the data may vary 
+between laboratories (Triolo et al., 2011), confirming 
+observations by Angelidaki et al. (2009). Thus BMP values 
+determined by different researchers and institutes cannot 
+usually be compared, due to differences in the experimental 
+design and equipment used and variations in temperature 
+and experimental conditions (Hansen et al., 2006; 
+Kiilholma, 2009; Raposo et al., 2011). 
+The aim of the present study was therefore to test and 
+validate methods and analytical procedures suitable for use 
+in simple laboratories. The specific objective was to 
+determine and compare the analytical precision of the most 
+widely used BMP and gas volume measurement methods. 
+Determination of methane concentration in biogas by gas 
+chromatography (GC) and by absorption of CO2 in alkaline 
+liquid was compared in order to test the precision of an 
+alternative method for determining methane concentration 
+in laboratories with limited access to analytical equipment.  
+ 
+MATERIAL AND METHODS 
+ 
+Overview of methods tested 
+The fermentation procedures, gas volume measurement 
+methods and precision tests evaluated are summarised in 
+Table 1. Regarding the fermentation procedures, the three 
+most widely used were tested, which were the German 
+standard procedure VDI 4630 (VDI, 2006) (‘VDI method’), 
+the BMP procedure used by Møller et al. (2004) (‘Moller 
+method’) and the procedure proposed by Hansen et al. 
+(2004) (‘Hansen method’). Regarding the gas volume 
+measurement methods, two liquid replacement tests were 
+compared with the large syringe method. The precision of 
+gas concentrations determined by absorbing CO2 in alkaline 
+liquid was tested by comparing the results obtained by GC; 
+the gas-tightness of liquid replacement was tested using 
+different tubes; and the analytical precision in determination 
+of dry matter (DM) and volatile solids (VS) was tested.  
+ 
+Comparison of BMP by different batch protocols  
+Substrate and inoculum used: The fattening pig manure 
+(‘pig manure’) and dairy cow manure (‘cow manure’) used 
+as substrates were collected from Fangel biogas plant. 
+Microcrystalline Cellulose (Sigma Aldrich) was used as a 
+standard substrate for all three methods according to VDI 
+4630 (VDI 2006). Microcrystalline Cellulose is commonly 
+used reference substrate to estimate quality of batch 
+experiment. Most widely used two different digestion 
+temperatures were chosen, thermophilic (55C) and 
+mesophilic (35C). Since the Hansen and Moller methods 
+describe anaerobic digestion at thermophilic and mesophilic 
+conditions, respectively, thermophilic digestions were 
+carried out for the Hansen method and mesophilic 
+digestions for the Moller method. VID4630 (VDI2006) 
+describes both thermophilic and mesophilic conditions, 
+hence the mesophilic condition was chosen for VDI 4630.  
+Two different inocula were used, mesophilic inoculum from 
+Fangel biogas plant for the VDI and Moller methods, and 
+thermophilic inoculum from Linko biogas plant for the 
+Table 1. Summary of test batch procedures and gas measurement 
+techniques compared in the study 
+BMP procedures  
+and techniques 
+Procedures and methods 
+BMP procedures 
+• German standard procedure, VDI 4630  
+(VDI, 2006) 
+• Moller method (Møller et al., 2004) 
+• Hansen method (Hansen et al., 2004) 
+Gas volume  
+measurement 
+methods  
+• Liquid replacement at intervals (LRS) 
+• Liquid replacement continuously (CLRS) 
+• Large syringe at intervals 
+CH4 concentration • Gas chromatograph (GC) 
+• Absorption of CO2 in alkaline liquid (LRM) 
+
+Pham et al. (2013) Asian Australas. J. Anim. Sci. 26:864-873 
+ 
+866 
+Hansen method. The average pH, total ammoniacal nitrogen 
+(TAN = NH3+NH4
+), DM and VS content of the mesophilic 
+inoculum obtained was 8.01, 3.29g/kg, 3.98% (of total 
+mass) and 63.9% (of DM), respectively. The pH of the 
+thermophilic inoculum was 7.92, TAN 2.64 g/kg, DM 
+4.60% (of total mass) and VS 64.4% (of DM).  
+Prior to the BMP test, biochemical and physiochemical 
+analyses of the pig manure and cow manure were carried 
+out (Table 2). DM, VS, crude lipid, total ammoniacal 
+nitrogen (TAN = NH3+NH4
+) and total Kjeldahl nitrogen 
+(TKN) were determined according to standard procedures 
+(APHA, 2005). “The protein content was determined by 
+multiplying the difference between TAN, and TKN with 
+factor 6.25” (Triolo et al., 2011).  
+Volatile fatty acids (VFA) were determined according to 
+the method of Lahav et al. (2002) Ash-free acid detergent 
+lignin (ADL) was determined by acid detergent extraction, 
+as described in ISO Standard 13906 (ISO13906, 2009). 
+BMP assays: Each of the three methods was monitored 
+by triplicate measurements of gas production from each of 
+the substrates (pig manure, cow manure and cellulose). 
+Twelve 1-litre digester glass bottles (reactors) were used for 
+each of the batch fermentation tests.  
+VDI 4630: The preparations for fermentation were carried 
+out according to VDI 4630 (VDI, 2006). A test medium was 
+prepared to ensure sufficient nutrients for bacterial growth 
+and 
+standard 
+pH 
+buffer 
+capacity 
+following 
+the 
+recommendations of VDI 4630 and ISO Standard 11734 
+(ISO11734, 1995). The composition of the medium used 
+was as follows: anhydrous potassium dihydrogen phosphate 
+(KH2PO4) 
+0.27 g; 
+disodium 
+hydrogen 
+phosphate 
+dodecahydrate 
+(Na2HPO412H2O) 
+1.12 g; 
+ammonium 
+chloride (NH4Cl) 0.53 g; calcium chloride dihydrate 
+(CaCl22H2O) 0.075 g; magnesium chloride hexahydrate 
+(MgCl26H2O) 0.10 g; iron (II) chloride tetrahydrate 
+(FeCl24H2O) 
+0.02 g; 
+sodium 
+sulphide 
+nonahydrate 
+(Na2S9H2O) 0.1 g. The constituents were added to 1 liter 
+distilled water containing less than 1 mg/L dissolved 
+oxygen. The test medium prepared was flushed with 
+nitrogen before the batch test to remove oxygen, and then 
+150 ml of the prepared test medium were added to reactors. 
+The inoculum was degassed for two weeks. The inoculum 
+and substrate (i.e. manure and test substrate) were added at 
+a ratio of 2:1 (VS basis), allowing the volume of mixture of 
+inoculum and substrate to be 620 ml. Three reactors 
+containing 620 ml inoculum were used to measure gas 
+production from the inoculum. 
+Moller method: The preparations of fermentation were 
+carried out according to Møller et al. (2004). The same 
+inoculum as used for VDI 4630 was applied. The difference 
+between the Moller and VDI methods is in the I:SR and 
+buffer solution. The inoculum and substrate was added at a 
+ratio of 1:1 (VS basis) and buffer solution was not added. 
+The reactors were each filled with 770 ml inoculum, which 
+was gently homogenised.  
+Hansen method: The preparations for fermentation were 
+carried out according to Hansen et al. (2004). Thermophilic 
+inoculum was degassed for 3 days at 55C prior to the batch 
+test. Then 50 ml of each pig and cow manure sample were 
+mixed with 200 ml inoculum and the mixture was 
+homogenised by mixing carefully. Buffer solution was not 
+added.  
+After mixing substrates with inoculum according to 
+three different methods, all reactors were closed carefully 
+with butyl rubber bungs. The headspace of all reactors was 
+flushed with nitrogen gas to ensure anaerobic conditions. 
+The reactors were placed in a climate chamber at 37C for 
+the Moller method and at 55C for the Hansen method, and 
+in a thermostat-controlled water bath at 37C for the VDI 
+method. 
+In the Moller and Hansen methods, the volume of 
+biogas was measured using a 1,000-ml syringe (Hamilton 
+Super Syringe) supplied with a tube with a needle at the 
+open end. Gas volume produced using the VDI method was 
+measured by continuous connection to a liquid replacement 
+system (CLRS). For all three methods, the gas yield was 
+measured daily during the first week of incubation, every 2 
+or 3 d in the second week, and then weekly or every 
+2 weeks during the following incubation period. Incubation 
+was stopped when the gas production rate was less than 1% 
+of the accumulated gas produced. 
+The methane concentration in the collected biogas was 
+measured weekly over the whole experimental period for all 
+three methods. The gas samples were stored in 10-ml vials 
+with butyl bungs, which were filled by flushing gas through 
+the vial using a 1,000-ml syringe. The CH4 and CO2 
+concentrations were measured using a gas chromatograph 
+(HP 6890 series) equipped with a thermal conductivity 
+Table 2. Characteristics of the manure samples used in the study 
+(SD in brackets) 
+ 
+Cow manure 
+Pig manure 
+pH 
+8.06(0.0) 
+7.71(0.1) 
+DM (% in total mass) 
+7.72 (0.1) 
+3.18 (0.2) 
+VS (g/kg) 
+64.70 (0.8) 
+22.75 (0.6) 
+VFA (g/kg) 
+2.67 (0.1) 
+6.65 (0.3) 
+TKN (g/kg) 
+3.79 (0.1) 
+3.83 (0.1) 
+TAN (g/kg) 
+2.64 (0.1) 
+3.68 (0.0) 
+Crude protein (g/kg) 
+7.2 (0.9) 
+0.9(0.3) 
+Crude lipid (% in DM) 
+6.13 (0.7) 
+14.02 (0.6) 
+Lignin (% in DM) 
+13.06 (0.9) 
+9.57 (0.5) 
+Carbohydrates* (g/kg) 
+39.6(1.5) 
+7.8(0.7) 
+TBMP (CH4 NL (kg VS)-1) 
+514.7 
+565.2 
+NL = Norm litre (273K, 1.013 bar). TBMP = Theoretical BMP. 
+Carbohydrates* = VS-protein-lipid-VFA-lignin 
+
+Pham et al. (2013) Asian Australas. J. Anim. Sci. 26:864-873 
+ 
+867 
+detector (TCD) and a 30 m0.32 mm column (J&W 113-
+4332). The carrier gas was helium (30 cm/s). Injector 
+temperature was 110C, and detector and oven temperature 
+was 250C. Injection volume was 0.4 ml and the split rate 
+was 1:100. 
+ 
+Methods to measure volume of biogas produced 
+Three techniques were used to measure the biogas 
+produced. For each technique, the VDI batch fermentation 
+method was used to ferment pig manure, cow manure, 
+cellulose and inoculum samples in triplicate. The 
+measurements of biogas produced were carried out using a 
+syringe, the liquid replacement system used intermittently 
+(LRS), and a liquid replacement system continuously 
+connected to the reactors (CLRS). 
+Intermittent measurements with syringe: Biogas volume 
+was measured using a 1,000-ml syringe. The syringe was 
+connected to the reactors by injecting the needle through the 
+butyl bung, then drawing the plunger out until the pressure 
+in the headspace dropped to ambient pressure. The volume 
+of gas in the syringe was taken as a measurement of the gas 
+produced. 
+Intermittent measurements with liquid replacement 
+system (LRS): Biogas volume was measured using a LRS, 
+which was connected to the reactors with a needle for each 
+measurement time. The volume of gas produced was 
+measured by replacing liquid, i.e. the headspace of the batch 
+fermentation flask was connected to a cylindrical flask 
+filled with the liquid and with the opening connected with a 
+hanging tube to a container of the same liquid; the biogas 
+produced flowed from the headspace up into the cylindrical 
+flask and replaced the liquid. The hanging tube prevented 
+the gas from flowing from the cylindrical measuring flask 
+to the liquid container. The volume of gas was taken as the 
+volume of released water. LRS was connected to reactors at 
+the same time intervals as when measuring biogas volume 
+production using a syringe. 
+Continuous measurements with liquid replacement 
+system (CLRS): Biogas volume was measured using a 
+CLRS, which was permanently connected to reactors for the 
+entire experimental period. 
+ 
+Wet chemistry CH4 measuring method 
+The concentration of CH4 in biogas was often measured 
+by absorbing CO2 in an alkaline liquid (Guwy, 2004; Rozzi 
+and Remigi, 2004; Raposo et al., 2011). A cylindrical flask 
+was filled with liquid and placed with the opening in the 
+same liquid in a container (Figure 1), so that the flask 
+remains full of liquid. To the inside of the cylindrical flask 
+was attached a tube closed with a clamp and with a syringe 
+at the other end. The syringe was injected through the butyl 
+bung of the reactor, the clamp was opened, and the gas 
+produced flows into the cylindrical flask and replaces the 
+liquid. The amount of liquid replaced corresponds to the 
+volume of gas produced. If the liquid was acid, the volume 
+of biogas produced was measured, while if the liquid was 
+basic, the CH4 production was measured. 
+In the test, a 50-ml graduated measuring cylinder and a 
+1liter container were used, as described above. About 
+700 ml 0.5 M hydrochloric acid (HCl) were used to fill the 
+cylinder and added to the container. On injecting the needle 
+into the bung of a reactor, biogas bubbles through the liquid 
+and fills the cylinder, replacing the liquid, and the gas 
+volume can then be read (V1, ml). Thereafter, KOH was 
+added to increase pH to above 9 and to absorb CO2 and H2S. 
+This absorption reduces the volume of gas in the measuring 
+cylinder (V2, ml). The volume V2 was an estimate of CH4 in 
+the gas; the difference between initial and final volume 
+corresponds to the CO2 content in the biogas, i.e. H2S 
+concentration wa taken as negligible compared with CO2 
+concentration. 
+ 
+Statistical analysis 
+Data were evaluated using analysis of variance 
+(ANOVA) followed by the Ryan-Einot-Gabriel-Welsch 
+multiple-range test where appropriate (SAS 9.2 TS Level 
+2M0). In all cases, a significance level of  = 0.05 was used. 
+When necessary, data were transformed to obtain normality 
+and homogeneity of variances.  
+Calculating the methane potential in terms of standard 
+temperature and pressure (STP): The ultimate methane and 
+biogas production in terms of standard temperature and 
+pressure (STP) (eq. 1), litres of CH4 and biogas per kg 
+Figure 1. Method for determining the CH4 concentration in biogas
+samples, through adsorption of CO2 in water with added KOH: (a)
+cylinder filled with 0.5 M HCl, (b) the tube is inserted under the 
+cylinder and collects about 45 ml of biogas from the reactor, (c) 
+adjusted cylinder height for the same liquid level, (d) after adding 
+KOH, readjusting the height of the cylinder to achieve the same 
+liquid level. 
+
+Pham et al. (2013) Asian Australas. J. Anim. Sci. 26:864-873 
+ 
+868 
+organic matter expressed as volatile solids (VS) were 
+presented in Table 3: 
+ 
+V0
+dr = V((P-Pw)T0/(p0T))                    (1) 
+ 
+where V0
+dr was the volume of the dry gas in the normal 
+state (NL); V was the volume of the gas as read off (ml); P 
+was the pressure of the gas phase at the time of reading 
+(hPa); Pw was the vapour pressure of the water as a function 
+of the temperature of the ambient space (hPa); T0 was 
+normal temperature (= 273K), p0 was normal pressure 
+(= 1,013 hPa), and T was the temperature of the 
+fermentation gas or of the ambient space (K). 
+Biodegradability and the rate of methane production: 
+Anaerobic 
+biodegradability 
+can 
+be 
+determined 
+by 
+comparing the ratio of BMP obtained to theoretical BMP 
+(TBMP) ((BMP/TBMP)100(%)) (Triolo et al., 2011; Triolo 
+et al., 2012). In the present study, TBMP was determined 
+according to Triolo et al. (2011) as: 
+ 
+TBMP = (Lipid1014+Protein496 
++Carbohydrate415+Lignin727)0.001    (2) 
+ 
+with TBMP as CH4 NL (kg VS)-1, and lipid, protein, 
+carbohydrate and lignin as g (kg VS)-1. 
+The coefficients in equation (2) were unit methane 
+formations derived from Buswell’s anaerobic degradation 
+equation (Symons and Buswell, 1933) for each organic 
+compound, using an average formula. The empirical 
+formula of lignin was C10H13O3 according to Triolo et al. 
+(2011). 
+Anaerobic degradation rate of each BMP method was 
+compared, employing a nonlinear regression test using 
+Sigma Plot 5 (GraphPad Software, USA). Cumulative 
+methane production curves were fitted to the first-order 
+kinetic model and first-order kinetic constants (k) were 
+obtained, assuming hydrolysis to be the rate-limiting step 
+(eq. 3): 
+ 
+Bt = B0(1-exp(-kt))                         (3) 
+ 
+where Bt (CH4 NL (kg VS)-1) was the cumulative 
+methane yield at time t, B0 (CH4 NL (kg VS)-1) was the 
+maximum value of BMP, k (d-1) was the first-order kinetic 
+constant, and t was the time (days). 
+Evaluation of precision: A method for assessing the 
+detection limit, repeatability and reproducibility of biogas 
+measurements has been developed by Hansen et al. (2004). 
+This method can be used by researchers who have access to 
+Excel data treatment programs. 
+Repeatability: The repeatability and reproducibility of 
+the batch fermentation methods can be determined using the 
+series of triplicate measurements of the methane potential of 
+cellulose, which was the biomass at its most homogeneous, 
+i.e. biomass characteristics do not contribute to variation in 
+measurements. The repeatability (r) was defined as ‘the 
+uncertainty of repeated measurements of the same sample 
+within the same analytical series’ (ISO5725-2, 1994; 
+Hansen et al., 2004). The repeatability of two measurements 
+of one sample was (eq. 4): 
+ 
+r
+1
+s 2
+√
+ 
+1.96
+ = r
+ 
+ 
+where sr was the standard deviation of the average of the 
+cellulose measurements from the series of measurements 
+carried out using a specific method. This repeatability 
+represents the interval r1, where two measurements of the 
+same sample are similar. 
+The repeatability r2 of three samples is (eq. 5): 
+ 
+r
+2
+s 
+3
+2
+ 
+1.96
+ = 
+r
+ 
+ 
+Reproducibility: 
+The 
+reproducibility 
+of 
+the 
+measurements can also be estimated using the standard 
+deviation sR of the measured gas production between series 
+Table 3. Ultimate biogas (B0) and biochemical methane production (BMP) (NL kg-1 (VS), meanSD) of inoculum, pig manure, cow 
+manure and cellulose with different batch fermentation procedures 
+Method 
+Gas produced 
+Inoculum 
+Pig manure 
+Cow manure 
+Cellulose 
+NL kg-1 VS 
+Møller 
+Biogas 
+107.83.71b 
+284.827.57a 
+237.502.35b 
+522.820.06a 
+Hansen 
+Biogas 
+202.706.50a 
+220.7918.17b 
+287.187.15a 
+404.1630.94b 
+VDI 
+Biogas 
+103.684.52b 
+284.887.49a 
+215.9413.11c 
+537.799.10a 
+Mean 
+Biogas 
+138.05c 
+263.49b 
+246.88b 
+488.24a 
+Møller 
+CH4 
+75.213.28b 
+200.7119.32a 
+154.501.10b 
+362.0751.61a 
+Hansen 
+CH4 
+107.654.97a 
+172.1421.93a 
+198.67 4.36a 
+254.1117.69c 
+VDI 
+CH4 
+73.393.48b 
+207.841.97a 
+155.476.90b 
+371.8233.64a 
+Mean 
+CH4 
+85.42c 
+193.56b 
+169.54b 
+329.33a 
+a,b,c Means in the same column for each substrate for either CH4 or Biogas with different superscripts are significantly different (p<0.05). 
+a,b,c Means of each substrate in the same row for either biogas or CH4 with different superscripts are significantly different (p<0.05). 
+
+Pham et al. (2013) Asian Australas. J. Anim. Sci. 26:864-873 
+ 
+869 
+of measurements of biogas production from fermentation of 
+cellulose. Hansen et al. (2004) recommend the use of the 
+ISO 5725 formula (ISO5725-2, 1994): 
+ 
+R
+s 2
+√
+ 
+1.96
+ = 
+R
+ 
+ 
+where R was the reproducibility, which reflects 
+variation in measurements due to differences caused by the 
+data coming from measurements not being carried out in the 
+same series (period), adding effects such as variation in 
+inoculum, variation in environment (e.g. incubators 
+performing slightly differently between series) and effects 
+of management. The R value indicates the interval where 
+two average values from two series are equal. 
+In the present study, the precision of BMP results was 
+estimated by employing the repeatability relative standard 
+deviation (RSDr) and reproducibility relative standard 
+deviation (RSDR) according to the practical guide for ISO 
+2005 (ISO/TR22971, 2005). 
+RSDr was calculated using equation (7): 
+ 
+100%
+o
+SD
+ = 
+RSD
+ 
+%
+r
+r
+                       (7) 
+ 
+Where o  was the mean of triplicate values and SDr 
+was repeatability standard deviation from triplicate results. 
+RSDR was calculated using equation (8): 
+ 
+100%
+o
+SD
+ = 
+RSD
+ 
+%
+R
+R
+                       (8) 
+ 
+where o  was the overall mean and SDR was 
+reproducibility standard deviation between triplicates from 
+the different groups. 
+ 
+RESULTS AND DISCUSSION 
+ 
+BMP results using different fermentation protocols 
+The results for BMP showed large variations depending 
+on the procedure used (Table 3). These large differences in 
+BMP measured by different procedures are in agreement 
+with Raposo et al. (2011), who reported that the relative 
+reproducibility standard deviation of BMP measured by 
+different laboratories was large, ranging from 15 to 34% 
+with outliers, and from 8% to 11% excluding outliers. 
+Overall results of cumulative methane production of pig 
+manure and dairy cow manure using three different batch 
+fermentation techniques were present in Figure 2, where 
+they fit very well to the first-order kinetic curves as can be 
+seen in Figure 3.   
+The BMP (CH4 NL kg-1 VS) of pig manure, cow manure 
+and cellulose determined with the Moller and VDI methods 
+was not significantly different in this test (p>0.05) (Table 3). 
+However, the CH4 production from cow manure and 
+cellulose measured with the Hansen method differed 
+ 
+Figure 3. Curve of cumulative methane production from pig and 
+cow manure using the different batch methods and their best fitted 
+first-order kinetic curves (k: first-order kinetic constant). 
+ 
+Figure 2. Methane production of pig manure (left) and dairy cow manure (right) using three different batch fermentation techniques 
+according to Møller et al. (2004) (‘Moller’); Hansen et al. (2004) (‘Hansen’); and VDI 4630 (VDI, 2006) (‘VDI 4630’). 
+
+Pham et al. (2013) Asian Australas. J. Anim. Sci. 26:864-873 
+ 
+870 
+significantly from the Moller or VDI methods. All methods 
+gave similar estimates of biogas production from pig 
+manure. The BMP measured with the Hansen method was 
+higher for cow manure and lower for cellulose than 
+estimates using the VDI or Moller methods. 
+Some recent studies have indicated that high-
+temperature incubation increases gas production from 
+organic matter with a high concentration of slowly 
+digestible organic matter (Alvarez and Lidén, 2008; Ferrer 
+et al., 2008). Thus the results obtained here with the Hansen 
+method can be expected, as the cow manure with its higher 
+concentration of slowly digestible organic material 
+produced more gas than the two other substrates. The low 
+gas production from pig manure measured with the Hansen 
+method was probably due to NH3 inhibition, as can be seen 
+in Table 3. Similarly, Angelidaki and Ahring (1994) 
+reported increasing NH3 inhibition at increasing temperature. 
+Hence, it was often the case that biogas digesters fed with 
+pig manure are run at mesophilic temperatures (35 to 37C). 
+Precision: The precision of the batch methods tested 
+was evaluated employing RSDr, RSDR and the ratio 
+between BMP and TBMP, using cellulose as the standard 
+substrate (Table 4). RSDr for all the batch methods was very 
+low (4.8 to 8.1%). On the other hand, RSDR showed large 
+variation, ranging from 7.3 to 19.8%. Nevertheless, 
+BMP/TBMP was close to 0.90 using the Moller and VDI 
+methods. Thus a fraction of the VS is not transformed into 
+biogas, due to the use of carbon for growth of the 
+microorganisms. VDI 4630 (VDI, 2006) states that 
+BMP/TBMP must reach at least 80% in control batches. 
+BMP/TBMP was only 0.61 in the Hansen method and this 
+together with a very low RSDR shows that the BMP 
+obtained was consistently low. The low BMP of cellulose 
+results obtained using the Hansen method could have been 
+caused by a large amount of gas production at the start of 
+the fermentation period. This gas production results in high 
+pressure in the headspace of the batch reactors at high 
+temperature and with active inoculums, as rising pressure 
+creates a back-pressure resulting in higher gas losses (VDI, 
+2006). Such gas production probably occurred for complex 
+reasons, including the thermophilic conditions; gas 
+production from the inoculum being subjected to only 
+3 days of degassing; and fast degradation of cellulose. 
+Biodegradability 
+and 
+degradation 
+rate: 
+The 
+biodegradability according to BMP/TBMP ratio was 
+slightly higher using the Hansen method, but there was no 
+clear difference between methods. The values obtained 
+were 34.2 (1.14)% for the Hansen method, 32.9 (7.9)% 
+for the Moller method and 33.8 (9.1)% for the VDI 
+method. On the other hand, biodegradability clearly varied 
+within the two manures tested, being 37.4 (3.5)% for pig 
+manure to 29.9 (4.4)% for cow manure. 
+Degradation rate assessed by methane formation rate 
+showed wide variation between the three batch methods. 
+The curve of cumulative methane production of pig and 
+cow manure using each batch method and the best fitted 
+first-order kinetic curves are presented in Figure 3. As can 
+be seen from the diagram, the curve of cumulative methane 
+production using the Moller method fitted the first-order 
+kinetic curves best. However, all cumulative methane 
+production curves also showed good agreement with first-
+order kinetic curves for the Hansen and VDI methods. The 
+coefficient of determination (R2) between the cumulative 
+methane production curve and first-order kinetic curves was 
+highest for the Moller method, i.e. 0.9713 for pig manure 
+and 0.9827 for cow manure. For the Hansen method, the 
+values obtained were similar, 0.9654 for pig manure and 
+0.9815 for cow manure, while for the VDI method, R2 was 
+comparatively low, 0.9256 for pig manure and 0.9591 for 
+cow manure. There was a tendency for cow manure to have 
+slightly higher R2. The results may indicate that hydrolysis 
+was the dominant rate-limiting step for the degradation of 
+cow manure, while the lower R2 of pig manure shows that 
+the methanogenesis from a high content of hydrolyzed 
+components, i.e. VFA, could be the dominant and rate-
+limiting step at the beginning of the fermentation procedure. 
+The first-order kinetic constant k was highest when the 
+two animal manures were fermented using the VDI method, 
+showing rapid degradation of substrate. The results indicate 
+that the VDI method reached steady conditions in a shorter 
+time, reducing the fermentation duration. The reason for the 
+higher degradation rate with the VDI method is probably 
+the higher I:SR, giving a kinetic advantage due to a larger 
+bacterial population within the substrate (Raposo et al., 
+2006). This study showed that increasing I:SR to some 
+extent has a positive influence on shortening duration of the 
+fermentation. Thus, the medium added as buffer solution for 
+the VDI method could accelerate microbial activity, 
+resulting in increased degradation rate. 
+Surprisingly, the Hansen method had a slightly lower k 
+value than the VDI method, even though thermophilic 
+conditions provide a kinetic advantage for the degradation 
+rate. This could be because the degassing period of 3 days 
+was short, allowing considerably higher methane potential 
+for the inoculum itself, which consequently delayed 
+degradation of the substrate. 
+ 
+Table 4. Summary of results on precision estimation using 
+cellulose for the different batch tests 
+Overall average 
+Moller 
+VDI 
+Hansen 
+(CH4 NL kg-1 (VS)) 
+362.1 
+371.8 
+254.1 
+RSDr (%) 
+4.8 
+5.8 
+8.1 
+RSDR (%) 
+19.8 
+12.0 
+7.3 
+BMP/TBMP 
+0.87 
+0.90 
+0.61 
+Overall average: Average of two series of triplicate batch tests. 
+
+Pham et al. (2013) Asian Australas. J. Anim. Sci. 26:864-873 
+ 
+871 
+Comparison of biogas volume determination with three 
+different measurement techniques 
+CLRS and syringe extraction were two widely used 
+methods for measuring biogas volume in different studies 
+related to biogas research (Abu-Dahrieh et al., 2011), but 
+LRS was used for this purpose the first time in the present 
+study.  
+The differences in gas volumes obtained using these 
+three different measurement techniques were much less 
+than the differences caused by different fermentation 
+procedures and gas measurement techniques (Figure 4). 
+Nevertheless, LRS showed a tendency for higher gas 
+volume measurements than the syringe and CLRS methods. 
+The reason could be that the syringe plunger was not 
+withdrawn far enough to get the total production in each test 
+and left a higher pressure in the headspace. The CLRS 
+method is more subject to small leaks in the set-up, as the 
+biogas is contained not only in the digester but also through 
+the whole water replacement system.  
+Test of gas concentration measuring techniques: Most 
+researchers measure CH4 concentration in biogas by GC, 
+which is precise at the concentration levels in the gas 
+(Shahriari et al., 2012). Alternatively, CH4 concentration can 
+be determined by the liquid replacement method (Demirer 
+et al., 2000), whereby the biogas volume produced is 
+determined by replacement of an acid liquid, then a base 
+was added to the liquid and CO2 is absorbed in the liquid. 
+This wet chemistry method can be used in all laboratories 
+where scientists have access to acids and bases and was 
+simple and cheap compared with the GC method. Therefore, 
+the accuracy of the method was tested here. The results 
+showed that if raw data from the liquid replacement method 
+(LRM) were used when comparing the methods, then the 
+CH4 concentration (%) measured with LRM was linearly 
+related to that measured with GC (Figure 4).  
+This was the case for measurements of CH4 gas 
+production from each substrate and of pooled estimates. 
+There are gases other than CH4 and CO2 in the biogas, i.e. 
+H2O, NH3, H2S and NO2 (VDI, 2006; Chen et al., 2008). 
+H2S will also be absorbed in the basic liquid and, of the 
+remaining gases, H2O was without doubt the most abundant. 
+By assessing the water gas concentration of the gas, the 
+CH4 determined was slightly higher using the LRM method 
+(68.00%) than the GC method (64.94%). Standard deviation 
+and relative standard deviation between the two methods 
+were 3.15% and 4.70%, respectively, showing that the 
+differences were not very great. Nevertheless, there was a 
+tendency for higher CH4 concentrations to be measured 
+when using LRM than when using GC. This could be due to 
+a low amount of CO2 (less than 5%) not being dissolved in 
+the base liquid. In addition, trace gases such as NH3 and 
+N2O could affect the results to some extent. However, the 
+very low differences when using LRM indicate that in 
+laboratories with limited access to expensive equipment 
+such as GC, the simple, cheap and affordable LRM method 
+could be used to measure biogas content. 
+ 
+CONCLUSIONS 
+ 
+Biodegradability was slightly higher using the Hansen 
+method, but the differences were not significant. The higher 
+degradation rate combined with no apparent system 
+instability of the VDI method suggests that it could be the 
+most suitable batch method to determine the BMP for pig 
+slurry, with the shortest fermentation duration. However, 
+the Hansen method could be preferable for determining the 
+BMP of cow slurry, which contain highly resistant organic 
+compounds and a little TAN. With regard to determination 
+Table 5. Total biogas volume measured (NL kg-1 (VS), meanSD) for inoculum, pig manure, cow manure and cellulose with different 
+biogas measurement techniques 
+Biogas measuring  
+techniques 
+Inoculum 
+Pig manure 
+Cow manure 
+Cellulose 
+NL kg-1 (VS) 
+CLRS 
+103.684.52  
+284.887.49  
+215.9413.11 
+537.799.10  
+LRS 
+125.861.18  
+308.098.91 
+238.336.47  
+571.3610.24  
+Syringe 
+112.745.39  
+268.1316.05  
+198.4314.50  
+583.765.94  
+Mean 
+114.10  
+287.03 
+217.57  
+564.30  
+ 
+Figure 4. Methane concentration (%) in biogas from fermentation 
+of pig and cattle manure, cellulose and inoculum, determined with 
+the liquid replacement method and by gas chromatography (GC). 
+
+Pham et al. (2013) Asian Australas. J. Anim. Sci. 26:864-873 
+ 
+872 
+of biomethane concentrations, the LRM method differed 
+only slightly from GC and could thus be used to determine 
+biomethane concentrations in biogas in laboratories with 
+limited access to GC.  
+ 
+ACKNOWLEDGEMENTS 
+ 
+This study was funded by the Council for Development 
+Research (RUF) - Danish Ministry of Foreign Affairs via 
+the SUSANE research project (Sustainable, sanitary and 
+efficient management of animal manure for plant nutrition). 
+ 
+REFERENCES 
+ 
+Abu-Dahrieh, J., A. Orozco, E. Groom and D. Rooney. 2011. 
+Batch and continuous biogas production from grass silage 
+liquor. Bioresour. Technol. 102:10922-10928. 
+Angelidaki, I. and B. K. Ahring. 1994. Anaerobic thermophilic 
+digestion of manure at different ammonia loads: effect of 
+temperature. Water Res. 28:727-731. 
+Angelidaki, I., M. Alves, D. Bolzonella, I. Borzacconi, J. L. 
+Campos, A.J. Guwy, S. Kalyuzhnyi, P. Jenicek and J. B. van 
+Lier. 2009. Defining the biomethane potential (BMP) of solid 
+organic wastes and energy crops: a proposed protocol for batch 
+assays. Water Sci. Technol. 59:927-934. 
+APHA 2005. Standard Methods for the Examination of Water and 
+Wastewater (21st ed.). Washington, DC: American Public 
+Health Association. 
+Bhattacharya, S. C. and C. Jana. 2009. Renewable energy in India: 
+historical developments and prospects. Energy 34:981-991. 
+Bouwman, A. F., K. K. Goldewijk, K. W. Van der Hoek, A. H.W. 
+Beusen, D. P. Van Vuuren, J. Willems, M. C. Rufino and E. 
+Stehfest. 2012. Exploring global changes in nitrogen and 
+phosphorus cycles in agriculture induced by livestock 
+production over the 1900-2050 period. Proc. Natl. Acad. Sci. 
+USA. 
+Chen, Y., J. J. Cheng and K. S. Creamer. 2008. Inhibition of 
+anaerobic digestion process: a review. Bioresour. Technol. 
+99:4044-4064. 
+Cu, T. T. T., H. C. Pham, T. H. Le, V. C. Nguyen, X. A. Le, X. T. 
+Nguyen and S. G. Sommer. 2012. Manure management 
+practices on biogas and non-biogas pig farms in developing 
+countries - using livestock farms in Vietnam as an example. J. 
+Clean Prod. 27:64-71. 
+Davidson, E. A. 2009. The contribution of manure and fertilizer 
+nitrogen to atmospheric nitrous oxide since 1860. Nat. Geosci. 
+2:659-662. 
+Demirer, G. N., M. Duran, T. H. Ergüder, E. Güven, O. Ugurlu, 
+and U. Tezel. 2000. Anaerobic treatability and biogas 
+production potential studies of different agro-industrial 
+wastewaters in Turkey. Biodegradation 11:401-405. 
+Godfray, H. C., J. R. Beddington, I. R. Crute, L. Haddad, D. 
+Lawrence, J. F. Muir, J. Pretty, S. Robinson, S. M. Thomas and 
+C. Toulmin. 2010. Food security: The challenge of feeding 9 
+billion people. Science 327:812-818. 
+Guwy, A. J. 2004. Equipment used for testing anaerobic 
+biodegradability and activity. Rev. Environ. Sci. Biotechnol. 
+3:131-139. 
+Hansen, T. L., J. E. Schmidt, I. Angelidaki, E. Marca, J. C. Jansen, 
+H. Mosbæ k and T. H. Christensen. 2004. Method for 
+determination of methane potentials of solid organic waste. 
+Waste Manag. 24:393-400. 
+Hansen, T. L., S. G. Sommer, S. Gabriel and T. H. Christensen, 
+2006. Methane production during storage of anaerobically 
+digested municipal organic waste. J. Environ. Qual. 35:830-
+836. 
+Jiang, X., S. G. Sommer and K. V. Christensen. 2011. A review of 
+the biogas industry in China. Energy Policy 39:6073-6081. 
+Kiilholma, J. K. 2009. Hygienic Aspects of Effluent Use from 
+Small-Scale Biogas Digesters in Northern Vietnam. Master’s 
+thesis, University of Copenhagen, Denmark. 
+Lahav, O., B. E. Morgan and R. E. Loewenthal. 2002. Rapid, 
+simple and accurate method for measurement of VFA and 
+carbonate alkalinity in anaerobic reactors. Environ. Sci. 
+Technol. 36:2736-2741. 
+Møller, H. B., S. G. Sommer and B. K. Ahring. 2004. Methane 
+productivity of manure, straw and solid fractions of manure. 
+Biomass Bioenergy 26:485-495. 
+Raposo, F., C. J. Banks, I. Siegert, S. Heaven and R. Borja. 2006. 
+Influence of inoculum to substrate ratio on the biochemical 
+methane potential of maize in batch tests. Process Biochem. 
+41:1444-1450. 
+Raposo, F., V. Fernández-Cegrí, M. A. De la Rubia, R. Borja, F. 
+Béline, C. Cavinato, G. Demirer, B. Fernández, M. Fernández-
+Polanco, J. C. Frigon, R. Ganesh, P. Kaparaju, J. Koubova, R. 
+Méndez, G. Menin, A. Peene, P. Scherer, M. Torrijos, H. 
+Uellendahl, I. Wierinck and V. de Wilde. 2011. Biochemical 
+methane potential (BMP) of solid organic substrates: 
+evaluation of anaerobic biodegradability using data from an 
+international inter-laboratory study. J. Chem. Technol. 
+Biotechnol. 86:1088-1098. 
+Rozzi, A. and E. Remigi. 2004. Methods of assessing microbial 
+activity and inhibition under anaerobic conditions: a literature 
+review. Rev. Environ. Sci. Biotechnol. 3:93-115. 
+Shahriari, S., M. Warith, M. Hamoda and K. J. Kennedy. 2012. 
+Anaerobic digestion of organic fraction of municipal solid 
+waste 
+combining 
+two 
+pretreatment 
+modalities, 
+high 
+temperature microwave and hydrogen peroxide. Waste Manag. 
+32:41-52. 
+Sommer, S. G., S. O. Petersen and H. B. Møller. 2004. Algorithms 
+for calculating methane and nitrous oxide emissions from 
+manure management. Nutr. Cycl. Agroecosyst. 69:143-154. 
+Sutton, M. A., O. Oenema, J. W. Erisman, A. Leip, H. van 
+Grinsven and W. Winiwarter. 2011. Too much of a good thing. 
+Nature 472:159-161. 
+Symons, G. E. and A. M. Buswell. 1933. The methane 
+fermentation of carbohydrates. J. Am. Chem. Soc. 55:2028-
+2036. 
+Triolo, J. M., S. G. Sommer, H. B. Møller, M. R. Weisbjerg and X. 
+Y. 
+Jiang. 
+2011. 
+A 
+new 
+algorithm 
+to 
+characterize 
+biodegradability of biomass during anaerobic digestion: 
+Influence of lignin concentration on methane production 
+potential. Bioresour. Technol. 102:9395-9402. 
+Triolo, J. M., L. Pedersen, H. Qu and S. G. Sommer. 2012. 
+Biochemical methane potential and anaerobic biodegradability 
+of non-herbaceous and herbaceous phytomass in biogas 
+production. Bioresour. Technol. 125:226-232. 
+
+Pham et al. (2013) Asian Australas. J. Anim. Sci. 26:864-873 
+ 
+873 
+VDI 2006. VDI 4630: Fermentation of organic materials - 
+Characterisation of the substrate, sampling, collection of 
+material data, fermentation tests. In: Verein Deutscher 
+Ingenieure (VDI) (Ed.), VDI Handbuch Energietechnik. 
+Berlin: Beuth Verlag GmbH:44-59. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Vu, T. K. V., M. T. Tran and T. T. S. Dang. 2007. A survey of 
+manure management on pig farms in northern Vietnam. Livest. 
+Sci. 112:288-297. 
+Xiong, Z. Q., J. R. Freney, A. R. Mosier, Z. L. Zhu, Y. Lee and K. 
+Yagi. 2008. Impacts of population growth, changing food 
+preferences and agricultural practices on the nitrogen cycle in 
+East Asia. Nutr. Cycl. Agroecosyst. 80:189-198. 
+ 
+ 
+ 

@@ -1,0 +1,1750 @@
+{
+  "checks": [
+    {
+      "name": "Short submit returns persisted job",
+      "passed": true
+    },
+    {
+      "name": "Reload restores same request automatically",
+      "passed": true
+    },
+    {
+      "name": "Backend crash retries persisted job",
+      "passed": true
+    },
+    {
+      "name": "Recovery is present in durable event history",
+      "passed": true
+    },
+    {
+      "name": "Real Qwen participates",
+      "passed": true
+    },
+    {
+      "name": "Numeric tool output reaches real chat",
+      "passed": true
+    },
+    {
+      "name": "No duplicate turn after reload",
+      "passed": true
+    },
+    {
+      "name": "Calculator transfer enabled after result",
+      "passed": true
+    },
+    {
+      "name": "Calculator retains exact mass",
+      "passed": true
+    },
+    {
+      "name": "Calculator retains vessel capacity",
+      "passed": true
+    },
+    {
+      "name": "Route overview",
+      "passed": true
+    },
+    {
+      "name": "Route market",
+      "passed": true
+    },
+    {
+      "name": "Route reactor",
+      "passed": true
+    },
+    {
+      "name": "Route science",
+      "passed": true
+    },
+    {
+      "name": "Route system",
+      "passed": true
+    },
+    {
+      "name": "No browser exceptions",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "session": "aeb4e98f2ce44821a95a2ce1502f51af",
+  "job": {
+    "id": "e14221dd33d944d2895a40b88edf8899",
+    "request_id": "41e40d2a-e986-47a8-8c4e-9bd1e5d64e86",
+    "conversation_id": "aeb4e98f2ce44821a95a2ce1502f51af",
+    "task_id": "a91242d5cd4846208c75095a9c58a53c",
+    "message": "Есть 4 кг пищевых отходов и реактор 70 литров. Сколько метана и какова ценность энергии?",
+    "created_at": "2026-11-05T16:17:12.835185+00:00",
+    "updated_at": "2026-11-05T16:17:12.835185+00:00",
+    "status": "QUEUED",
+    "current_stage": "queued",
+    "attempt_count": 0,
+    "error_code": null,
+    "result_reference": "/api/dashboard/jobs/e14221dd33d944d2895a40b88edf8899/result",
+    "reply_json": null,
+    "preview_json": null,
+    "heartbeat_at": null,
+    "cancel_requested": 0,
+    "acknowledged_at": null,
+    "expected_state_version": 0,
+    "preview": null,
+    "terminal": false,
+    "partial_count": 0,
+    "result_available": false
+  },
+  "reply": {
+    "conversation_version": "7",
+    "analysis_version": "9.0",
+    "mode": "qwen_autonomous_tools",
+    "answer": "Метан может быть получен из пищевых отходов, но точное количество не определено. Энергетическая ценность зависит от эффективности преобразования, но прибыльность не установлена из-за неизвестных операционных затрат.\n\nПищевые отходы: потенциал метана: 0.25451 м³ CH₄ (условный сценарий).\n\nПищевые отходы: масса VS: 0.4824 кг VS (условный сценарий).\n\nПищевые отходы: номинальная ёмкость (ограничивает загрузку, не задаёт метан): 70 л (по сообщённым данным).\n\nИнформация о метане и энергии доступна, но требуется дополнительная информация для определения прибыльности.\n\nНеизвестные операционные затраты\n\nНе подтверждено использование газа\n\nКаковы операционные затраты на обработку пищевых отходов в данном регионе?",
+    "user_facing_answer": {
+      "paragraphs": [
+        "Метан может быть получен из пищевых отходов, но точное количество не определено. Энергетическая ценность зависит от эффективности преобразования, но прибыльность не установлена из-за неизвестных операционных затрат.",
+        "Пищевые отходы: потенциал метана: 0.25451 м³ CH₄ (условный сценарий).",
+        "Пищевые отходы: масса VS: 0.4824 кг VS (условный сценарий).",
+        "Пищевые отходы: номинальная ёмкость (ограничивает загрузку, не задаёт метан): 70 л (по сообщённым данным).",
+        "Информация о метане и энергии доступна, но требуется дополнительная информация для определения прибыльности.",
+        "Неизвестные операционные затраты",
+        "Не подтверждено использование газа"
+      ],
+      "sections": [],
+      "question": {
+        "id": "v9-793b758a8879e5",
+        "text": "Каковы операционные затраты на обработку пищевых отходов в данном регионе?",
+        "options": [],
+        "fields": [],
+        "reason": "Model-selected next useful clarification"
+      },
+      "sources": [
+        {
+          "title": "Treatment of Cattle Manure by Anaerobic Co-Digestion with Food Waste and Pig Manure: Methane Yield and Synergistic Effect",
+          "url": "https://www.mdpi.com/1660-4601/17/13/4737"
+        }
+      ],
+      "modes": [
+        "verified_model_synthesis"
+      ],
+      "assumptions": [
+        "market_region"
+      ]
+    },
+    "tools": [
+      {
+        "tool": "assess_substrate_potential",
+        "status": "ok",
+        "input_origin": "validated_scientific_state",
+        "result": {
+          "status": "ok",
+          "local_experiments": {
+            "status": "checked",
+            "records_checked": 0,
+            "candidates": [],
+            "automatic_transfer": false,
+            "reason": "Existing experiment schema records gas observations, not a reviewed substrate BMP profile with preparation, blank correction and structured gas basis. Matching names alone cannot establish transferability."
+          },
+          "message": "Reviewed same-material profiles evaluated as explicit scenarios; unavailable properties remain missing.",
+          "catalog_checked": true,
+          "comparison_mode": "mixture",
+          "scenarios": [
+            {
+              "id": "s1",
+              "result_level": "HYPOTHETICAL_SCENARIO",
+              "label": "Пищевые отходы",
+              "profile_ids": [
+                "baek2020-food-pulp"
+              ],
+              "components": [
+                {
+                  "id": "c1",
+                  "material": "food_waste",
+                  "display_name": "Пищевые отходы",
+                  "material_state": "prepared_pulp",
+                  "animal": "unknown",
+                  "physical_state": "unknown",
+                  "decay_state": "unknown",
+                  "bedding": "unknown",
+                  "quantity": 4,
+                  "unit": "kg",
+                  "wet_mass_kg": {
+                    "low": 4,
+                    "high": 4
+                  },
+                  "volume_l": null,
+                  "ts_mass_kg": {
+                    "low": 0.5056,
+                    "high": 0.5056
+                  },
+                  "vs_mass_kg": {
+                    "low": 0.4824,
+                    "high": 0.4824
+                  },
+                  "methane_reference_m3": {
+                    "low": 0.254466,
+                    "high": 0.254466
+                  },
+                  "carbon_mass_kg": null,
+                  "nitrogen_mass_kg": null,
+                  "gas_basis": {
+                    "temperature_k": 273.15,
+                    "pressure_pa": 101325,
+                    "moisture": "unknown"
+                  },
+                  "result_level": "HYPOTHETICAL_SCENARIO",
+                  "profile_id": "baek2020-food-pulp",
+                  "properties_used": {
+                    "ts_fraction": {
+                      "range": {
+                        "low": 0.1264,
+                        "high": 0.1264
+                      },
+                      "provenance": "LITERATURE_ESTIMATE",
+                      "source_id": "baek2020",
+                      "locator": "Table 1",
+                      "original_value": "126.4 (SD 4.5)",
+                      "original_unit": "g TS/kg wet"
+                    },
+                    "vs_fraction_wet": {
+                      "range": {
+                        "low": 0.1206,
+                        "high": 0.1206
+                      },
+                      "provenance": "LITERATURE_ESTIMATE",
+                      "source_id": "baek2020",
+                      "locator": "Table 1",
+                      "original_value": "120.6 (SD 3.7)",
+                      "original_unit": "g VS/kg wet"
+                    },
+                    "bmp_ml_g_vs": {
+                      "range": {
+                        "low": 527.5,
+                        "high": 527.5
+                      },
+                      "provenance": "LITERATURE_ESTIMATE",
+                      "source_id": "baek2020",
+                      "locator": "Results 3.2, pure FW run 2, PDF page 5",
+                      "original_value": "527.5",
+                      "original_unit": "L CH4/kg VS"
+                    }
+                  },
+                  "assumptions": [
+                    "ts_fraction transferred from baek2020-food-pulp",
+                    "vs_fraction_wet transferred from baek2020-food-pulp",
+                    "bmp_ml_g_vs transferred from baek2020-food-pulp",
+                    "Quantity is hypothetical, not confirmed inventory"
+                  ],
+                  "missing": [
+                    "density_kg_l"
+                  ],
+                  "source": {
+                    "id": "baek2020",
+                    "doi": "10.3390/ijerph17134737",
+                    "title": "Treatment of Cattle Manure by Anaerobic Co-Digestion with Food Waste and Pig Manure: Methane Yield and Synergistic Effect",
+                    "authors": [
+                      "Gahyun Baek",
+                      "Danbee Kim",
+                      "Jinsu Kim",
+                      "Hanwoong Kim",
+                      "Changsoo Lee"
+                    ],
+                    "year": 2020,
+                    "published_at": "2020-07-01",
+                    "url": "https://www.mdpi.com/1660-4601/17/13/4737",
+                    "review_url": "https://pdfs.semanticscholar.org/8c32/8da3dc70a2964a51e0cfd2807c009edd691c.pdf",
+                    "reviewed_sections": [
+                      "Tables 1-2, Methods 2.1-2.3, Results 3.2, Equations 1-2"
+                    ],
+                    "verification_stage": "NUMERIC_DATA_VERIFIED",
+                    "review_method": "Primary article PDF read through browser document extraction. Programmatic mirror download redirected across origins and was not followed. Publisher 429 and PMC CAPTCHA were not bypassed.",
+                    "conditions": {
+                      "temperature_c": 35,
+                      "duration_days": 30,
+                      "duration_kind": "BMP_INCUBATION",
+                      "reactor_type": "250 mL bottles, 200 mL working volume; triplicate and blank corrected",
+                      "inoculum": "Digestate from mesophilic food/pig-manure plant; 100 mL inoculum plus 100 mL substrate diluted to 10 g VS/L",
+                      "mixing": "daily manual shaking",
+                      "gas_basis": {
+                        "temperature_k": 273.15,
+                        "pressure_pa": 101325,
+                        "moisture": "unknown"
+                      },
+                      "mixing_ratio_basis": "total solids, not wet mass"
+                    }
+                  },
+                  "source_stp_claimed": false,
+                  "source_basis_missing": false,
+                  "cn_ratio_reference": 17.9,
+                  "ph_reference": 4.5,
+                  "notice": "Single-component literature/measurement reference. A published sample point is not a universal population mean; no unreported SD is invented.",
+                  "methane_comparable_m3": {
+                    "low": 0.2545125799011533,
+                    "high": 0.2545125799011533
+                  },
+                  "wet_mass_fraction": {
+                    "low": 1,
+                    "high": 1
+                  }
+                }
+              ],
+              "methane_m3": {
+                "low": 0.2545125799011533,
+                "high": 0.2545125799011533
+              },
+              "known_component_subtotal_m3": {
+                "low": 0.2545125799011533,
+                "high": 0.2545125799011533
+              },
+              "complete": true,
+              "wet_mass_kg": {
+                "low": 4,
+                "high": 4
+              },
+              "vs_mass_kg": {
+                "low": 0.4824,
+                "high": 0.4824
+              },
+              "ts_mass_kg": {
+                "low": 0.5056,
+                "high": 0.5056
+              },
+              "gas_basis": {
+                "temperature_k": 273.2,
+                "pressure_pa": 101325,
+                "moisture": "dry",
+                "description": "Conditional common dry reference; not a measured mixture output"
+              },
+              "assumptions": [
+                "Physical form and preparation assumed comparable to Ground cafeteria food mainly rice, flour products, soup, vegetables and meat; diluted BMP, not an untreated mixed municipal waste",
+                "Literature sample transferred to this batch; actual composition and plant recovery are unmeasured.",
+                "ts_fraction transferred from baek2020-food-pulp",
+                "vs_fraction_wet transferred from baek2020-food-pulp",
+                "bmp_ml_g_vs transferred from baek2020-food-pulp",
+                "Quantity is hypothetical, not confirmed inventory",
+                "Unknown source gas moisture treated as dry for the explicitly conditional common-basis calculation."
+              ],
+              "missing": [],
+              "biogas": {
+                "potential_biogas_m3": null,
+                "methane_fraction": null,
+                "gas_basis": {
+                  "temperature_k": 273.2,
+                  "pressure_pa": 101325,
+                  "moisture": "dry",
+                  "description": "Conditional common dry reference; not a measured mixture output"
+                },
+                "status": "needs_input",
+                "result_level": null,
+                "compatibility": "missing_gas_basis",
+                "assumptions": [],
+                "scope": "Potential gas corresponding to laboratory methane potential, not collected plant gas. CH4 is part of biogas and must not be added again.",
+                "uncertainty": "Independent extrema envelope; unknown correlation and no validated probability coverage."
+              },
+              "request": {
+                "components": [
+                  {
+                    "id": "c1",
+                    "material": "food_waste",
+                    "material_state": "prepared_pulp",
+                    "quantity": 4,
+                    "unit": "kg",
+                    "animal": "unknown",
+                    "poultry_type": "unknown",
+                    "reference_profile_id": "baek2020-food-pulp",
+                    "physical_state": "unknown",
+                    "decay_state": "unknown",
+                    "bedding": "unknown",
+                    "data_mode": "LITERATURE_ESTIMATE",
+                    "properties": {
+                      "density_kg_l": null,
+                      "ts_fraction": null,
+                      "vs_fraction_wet": null,
+                      "vs_fraction_of_ts": null,
+                      "bmp_ml_g_vs": null,
+                      "carbon_fraction_wet": null,
+                      "nitrogen_fraction_wet": null,
+                      "gas_basis": null
+                    },
+                    "provenance": "ASSUMED_FOR_SCENARIO",
+                    "evidence": ""
+                  }
+                ],
+                "allow_literature_transfer": true,
+                "allow_conditional_profiles": false,
+                "target_ts_fraction": null,
+                "assume_common_dry_gas_basis": true,
+                "assume_unreported_gas_basis": false,
+                "reactor_total_volume_l": 70,
+                "decision": {
+                  "gas_use": "unknown",
+                  "gas_basis": null,
+                  "methane_fraction": null,
+                  "composition_basis": null,
+                  "assume_reference_compatibility": false,
+                  "recovery_fraction": null,
+                  "thermal_efficiency": null,
+                  "electrical_efficiency": null,
+                  "chp_thermal_efficiency": null,
+                  "chp_electrical_efficiency": null,
+                  "use_reference_scenarios": true,
+                  "heating_value_kwh_m3": null,
+                  "heating_value_type": "LHV",
+                  "heating_value_basis": null,
+                  "equipment_evidence": null,
+                  "reactor": {
+                    "reactor_working_volume_l": null,
+                    "headspace_l": null,
+                    "inoculum_volume_l": null,
+                    "dilution_water_l": null,
+                    "resident_liquid_volume_l": null,
+                    "operating_mode": null,
+                    "reactor_type": null,
+                    "engineering_review_confirmed": false,
+                    "safety_review_required": false,
+                    "temperature_c": null,
+                    "initial_temperature_c": null,
+                    "ambient_temperature_c": null,
+                    "heated_mass_kg": null,
+                    "heat_capacity_kj_kg_k": null,
+                    "heat_loss_coefficient_w_k": null,
+                    "u_w_m2_k": null,
+                    "area_m2": null,
+                    "duration_days": null,
+                    "heater_efficiency": null,
+                    "heating_carrier": null,
+                    "auxiliary_energy_kwh": null,
+                    "loads": [],
+                    "loads_complete": false,
+                    "energy_scope": null,
+                    "provenance": "USER_REPORTED"
+                  },
+                  "quotes": {},
+                  "price_ids": {},
+                  "consumer_class": null,
+                  "tax_basis": null,
+                  "max_price_age_days": 30,
+                  "costs": {},
+                  "all_operating_costs_included": false,
+                  "include_capital": false,
+                  "capital_cost_per_batch": null,
+                  "heat_demand_kwh": null,
+                  "electricity_demand_kwh": null,
+                  "assume_full_self_consumption": false,
+                  "replacement_heat_source": "unknown",
+                  "gas_sale_technical_confirmed": false,
+                  "gas_sale_legal_confirmed": false,
+                  "gas_quality_confirmed": false,
+                  "gas_storage_transport_confirmed": false,
+                  "digestate_mass_kg": null,
+                  "digestate_quality_confirmed": false,
+                  "digestate_market_allowed": false
+                },
+                "feeding_period_days": null,
+                "total_daily_liquid_feed_l": null,
+                "daily_feed_includes_all_liquid": false,
+                "inoculum_description": null,
+                "inoculum_adapted_temperature_c": null,
+                "temperature_control_confirmed": false,
+                "mixing_available": null,
+                "measured_ph": null,
+                "monitoring_confirmed": false,
+                "inhibition_warning": false,
+                "region": "KZ-Karaganda",
+                "region_confirmed": false,
+                "online": false,
+                "objectives": [
+                  "methane",
+                  "stability"
+                ]
+              },
+              "mixture": {
+                "components": [
+                  {
+                    "id": "c1",
+                    "material": "food_waste",
+                    "display_name": "Пищевые отходы",
+                    "material_state": "prepared_pulp",
+                    "animal": "unknown",
+                    "physical_state": "unknown",
+                    "decay_state": "unknown",
+                    "bedding": "unknown",
+                    "quantity": 4,
+                    "unit": "kg",
+                    "wet_mass_kg": {
+                      "low": 4,
+                      "high": 4
+                    },
+                    "volume_l": null,
+                    "ts_mass_kg": {
+                      "low": 0.5056,
+                      "high": 0.5056
+                    },
+                    "vs_mass_kg": {
+                      "low": 0.4824,
+                      "high": 0.4824
+                    },
+                    "methane_reference_m3": {
+                      "low": 0.254466,
+                      "high": 0.254466
+                    },
+                    "carbon_mass_kg": null,
+                    "nitrogen_mass_kg": null,
+                    "gas_basis": {
+                      "temperature_k": 273.15,
+                      "pressure_pa": 101325,
+                      "moisture": "unknown"
+                    },
+                    "result_level": "HYPOTHETICAL_SCENARIO",
+                    "profile_id": "baek2020-food-pulp",
+                    "properties_used": {
+                      "ts_fraction": {
+                        "range": {
+                          "low": 0.1264,
+                          "high": 0.1264
+                        },
+                        "provenance": "LITERATURE_ESTIMATE",
+                        "source_id": "baek2020",
+                        "locator": "Table 1",
+                        "original_value": "126.4 (SD 4.5)",
+                        "original_unit": "g TS/kg wet"
+                      },
+                      "vs_fraction_wet": {
+                        "range": {
+                          "low": 0.1206,
+                          "high": 0.1206
+                        },
+                        "provenance": "LITERATURE_ESTIMATE",
+                        "source_id": "baek2020",
+                        "locator": "Table 1",
+                        "original_value": "120.6 (SD 3.7)",
+                        "original_unit": "g VS/kg wet"
+                      },
+                      "bmp_ml_g_vs": {
+                        "range": {
+                          "low": 527.5,
+                          "high": 527.5
+                        },
+                        "provenance": "LITERATURE_ESTIMATE",
+                        "source_id": "baek2020",
+                        "locator": "Results 3.2, pure FW run 2, PDF page 5",
+                        "original_value": "527.5",
+                        "original_unit": "L CH4/kg VS"
+                      }
+                    },
+                    "assumptions": [
+                      "ts_fraction transferred from baek2020-food-pulp",
+                      "vs_fraction_wet transferred from baek2020-food-pulp",
+                      "bmp_ml_g_vs transferred from baek2020-food-pulp",
+                      "Quantity is hypothetical, not confirmed inventory"
+                    ],
+                    "missing": [
+                      "density_kg_l"
+                    ],
+                    "source": {
+                      "id": "baek2020",
+                      "doi": "10.3390/ijerph17134737",
+                      "title": "Treatment of Cattle Manure by Anaerobic Co-Digestion with Food Waste and Pig Manure: Methane Yield and Synergistic Effect",
+                      "authors": [
+                        "Gahyun Baek",
+                        "Danbee Kim",
+                        "Jinsu Kim",
+                        "Hanwoong Kim",
+                        "Changsoo Lee"
+                      ],
+                      "year": 2020,
+                      "published_at": "2020-07-01",
+                      "url": "https://www.mdpi.com/1660-4601/17/13/4737",
+                      "review_url": "https://pdfs.semanticscholar.org/8c32/8da3dc70a2964a51e0cfd2807c009edd691c.pdf",
+                      "reviewed_sections": [
+                        "Tables 1-2, Methods 2.1-2.3, Results 3.2, Equations 1-2"
+                      ],
+                      "verification_stage": "NUMERIC_DATA_VERIFIED",
+                      "review_method": "Primary article PDF read through browser document extraction. Programmatic mirror download redirected across origins and was not followed. Publisher 429 and PMC CAPTCHA were not bypassed.",
+                      "conditions": {
+                        "temperature_c": 35,
+                        "duration_days": 30,
+                        "duration_kind": "BMP_INCUBATION",
+                        "reactor_type": "250 mL bottles, 200 mL working volume; triplicate and blank corrected",
+                        "inoculum": "Digestate from mesophilic food/pig-manure plant; 100 mL inoculum plus 100 mL substrate diluted to 10 g VS/L",
+                        "mixing": "daily manual shaking",
+                        "gas_basis": {
+                          "temperature_k": 273.15,
+                          "pressure_pa": 101325,
+                          "moisture": "unknown"
+                        },
+                        "mixing_ratio_basis": "total solids, not wet mass"
+                      }
+                    },
+                    "source_stp_claimed": false,
+                    "source_basis_missing": false,
+                    "cn_ratio_reference": 17.9,
+                    "ph_reference": 4.5,
+                    "notice": "Single-component literature/measurement reference. A published sample point is not a universal population mean; no unreported SD is invented.",
+                    "methane_comparable_m3": {
+                      "low": 0.2545125799011533,
+                      "high": 0.2545125799011533
+                    },
+                    "wet_mass_fraction": {
+                      "low": 1,
+                      "high": 1
+                    }
+                  }
+                ],
+                "total_wet_mass_kg": {
+                  "low": 4,
+                  "high": 4
+                },
+                "sum_separate_volumes_l": null,
+                "total_ts_kg": {
+                  "low": 0.5056,
+                  "high": 0.5056
+                },
+                "total_vs_kg": {
+                  "low": 0.4824,
+                  "high": 0.4824
+                },
+                "cn_mass_ratio": null,
+                "mixture_ph": null,
+                "additive_methane_reference_m3": {
+                  "low": 0.2545125799011533,
+                  "high": 0.2545125799011533
+                },
+                "known_component_additive_subtotal_m3": {
+                  "low": 0.2545125799011533,
+                  "high": 0.2545125799011533
+                },
+                "complete_methane_reference": true,
+                "gas_basis": {
+                  "temperature_k": 273.2,
+                  "pressure_pa": 101325,
+                  "moisture": "dry",
+                  "description": "Conditional common dry reference; not a measured mixture output"
+                },
+                "normalization": [
+                  {
+                    "component": "c1",
+                    "factor": 1.0001830496064434,
+                    "assumption": "Unknown source moisture treated as comparable dry gas; ideal-gas T/P normalization only"
+                  }
+                ],
+                "olr_kg_vs_m3_day": null,
+                "synergy_factor": null,
+                "measured_mixture_bmp": null,
+                "result_level": "HYPOTHETICAL_SCENARIO",
+                "limitations": [
+                  "Additive component references are not a validated methane yield of the mixture. No synergy coefficient is assumed.",
+                  "Known-part subtotal is neither the full mixture prediction nor a lower bound on actual co-digestion yield.",
+                  "Separate volumes may not add to final packed/liquid mixture volume; verify actual charge.",
+                  "C/N requires carbon and nitrogen masses. pH cannot be averaged. Batch loading is not a daily OLR.",
+                  "Sensitivity bounds have no verified probability coverage."
+                ]
+              },
+              "engineering": {
+                "status": "REQUIRES_REVIEW",
+                "total_volume_l": 70,
+                "working_volume_l": null,
+                "headspace_required_l": null,
+                "known_feed_volume_l": {
+                  "low": 0,
+                  "high": 0
+                },
+                "known_charge_present": false,
+                "known_charge_volume_l": {
+                  "low": 0,
+                  "high": 0
+                },
+                "complete_charge_volume_l": null,
+                "remaining_total_volume_l": null,
+                "fill_fraction": null,
+                "missing": [
+                  "volume_or_density:c1",
+                  "inoculum_volume_l",
+                  "dilution_water_l",
+                  "resident_liquid_volume_l",
+                  "operating_mode",
+                  "reactor_working_volume_l",
+                  "headspace_l"
+                ],
+                "violations": [],
+                "warnings": [],
+                "feed_plus_water_mass_kg": null,
+                "feed_plus_water_ts_fraction": null,
+                "feed_plus_water_vs_fraction": null,
+                "additional_water_to_target_ts_kg": null,
+                "target_ts_fraction": null,
+                "water_density_assumption_kg_l": null,
+                "necessary_mean_feed_density_kg_l": {
+                  "low": 0.05714285714285714,
+                  "high": 0.05714285714285714
+                },
+                "density_constraint_scope": "Necessary mean density for the unvolumed feed to fit after known volumes only. Unmeasured inoculum/water still reduce capacity; this is not measured density or authorization to load.",
+                "scope": "Separate volumes are additive bookkeeping, not a packing measurement. Dilution solids exclude inoculum/resident material: their TS/VS are unknown. Water density 1 kg/L is an explicit approximation. Target TS is user-selected, not an operating recommendation.",
+                "operation_authorized": false
+              }
+            }
+          ],
+          "sources": [
+            {
+              "id": "baek2020",
+              "doi": "10.3390/ijerph17134737",
+              "title": "Treatment of Cattle Manure by Anaerobic Co-Digestion with Food Waste and Pig Manure: Methane Yield and Synergistic Effect",
+              "authors": [
+                "Gahyun Baek",
+                "Danbee Kim",
+                "Jinsu Kim",
+                "Hanwoong Kim",
+                "Changsoo Lee"
+              ],
+              "year": 2020,
+              "published_at": "2020-07-01",
+              "url": "https://www.mdpi.com/1660-4601/17/13/4737",
+              "review_url": "https://pdfs.semanticscholar.org/8c32/8da3dc70a2964a51e0cfd2807c009edd691c.pdf",
+              "reviewed_sections": [
+                "Tables 1-2, Methods 2.1-2.3, Results 3.2, Equations 1-2"
+              ],
+              "verification_stage": "NUMERIC_DATA_VERIFIED",
+              "review_method": "Primary article PDF read through browser document extraction. Programmatic mirror download redirected across origins and was not followed. Publisher 429 and PMC CAPTCHA were not bypassed.",
+              "conditions": {
+                "temperature_c": 35,
+                "duration_days": 30,
+                "duration_kind": "BMP_INCUBATION",
+                "reactor_type": "250 mL bottles, 200 mL working volume; triplicate and blank corrected",
+                "inoculum": "Digestate from mesophilic food/pig-manure plant; 100 mL inoculum plus 100 mL substrate diluted to 10 g VS/L",
+                "mixing": "daily manual shaking",
+                "gas_basis": {
+                  "temperature_k": 273.15,
+                  "pressure_pa": 101325,
+                  "moisture": "unknown"
+                },
+                "mixing_ratio_basis": "total solids, not wet mass"
+              }
+            }
+          ],
+          "reactor_total_volume_l": 70,
+          "candidate_count": 1,
+          "truncated": false,
+          "reactor_role": "Vessel capacity is not feed volume, VS mass, daily throughput or methane storage capacity. Working volume, inoculum, dilution and headspace must be checked.",
+          "uncertainty": "Points or sensitivity ranges from named samples; no validated prediction interval."
+        }
+      }
+    ],
+    "provider_status": [
+      {
+        "provider": "offline",
+        "model": "qwen3:8b",
+        "status": "available",
+        "actual_generation": true,
+        "phase": "structured_nlu",
+        "requests": [
+          {
+            "input_characters": 630,
+            "request_bytes": 2122,
+            "status": "ok",
+            "prompt_tokens": 177,
+            "output_tokens": 128,
+            "done_reason": "stop",
+            "load_seconds": 9.3220234,
+            "generation_seconds": 12.693612,
+            "tokens_per_second": 10.083812235634744,
+            "latency_seconds": 23.084419999970123
+          }
+        ]
+      },
+      {
+        "provider": "offline",
+        "model": "qwen3:8b",
+        "phase": "v9_tool_selection",
+        "actual_generation": true,
+        "requests": [
+          {
+            "input_characters": 4508,
+            "request_bytes": 5675,
+            "status": "ok",
+            "prompt_tokens": 1085,
+            "output_tokens": 63,
+            "done_reason": "stop",
+            "load_seconds": 0.0112558,
+            "generation_seconds": 6.948069,
+            "tokens_per_second": 9.067267466687507,
+            "latency_seconds": 11.808929499995429
+          }
+        ]
+      },
+      {
+        "provider": "offline",
+        "model": "qwen3:8b",
+        "phase": "v9_tool_selection",
+        "actual_generation": true,
+        "requests": [
+          {
+            "input_characters": 6931,
+            "request_bytes": 8293,
+            "status": "ok",
+            "prompt_tokens": 1823,
+            "output_tokens": 73,
+            "done_reason": "stop",
+            "load_seconds": 0.0112201,
+            "generation_seconds": 9.191482,
+            "tokens_per_second": 7.942135990692251,
+            "latency_seconds": 14.73554049996892
+          }
+        ]
+      },
+      {
+        "provider": "offline",
+        "model": "qwen3:8b",
+        "phase": "v9_synthesis",
+        "actual_generation": true,
+        "requests": [
+          {
+            "input_characters": 4730,
+            "request_bytes": 6492,
+            "status": "ok",
+            "prompt_tokens": 1395,
+            "output_tokens": 200,
+            "done_reason": "stop",
+            "load_seconds": 0.0092222,
+            "generation_seconds": 24.432504,
+            "tokens_per_second": 8.185816730041259,
+            "latency_seconds": 30.916327100014314
+          }
+        ]
+      }
+    ],
+    "memory": {
+      "version": "7",
+      "task_id": "6a42144796f04337a1100207debb5068",
+      "task_history": [],
+      "conversation_id": "aeb4e98f2ce44821a95a2ce1502f51af",
+      "language": "ru",
+      "facts": {
+        "material": {
+          "value": "food_waste",
+          "unit": null,
+          "provenance": "USER_CONFIRMED",
+          "evidence": "пищевых отходов",
+          "recorded_at": "2026-11-05T16:18:46.045847+00:00",
+          "dependencies": []
+        },
+        "quantity": {
+          "value": 4,
+          "unit": "kg",
+          "provenance": "USER_CONFIRMED",
+          "evidence": "4 кг",
+          "recorded_at": "2026-11-05T16:18:46.045875+00:00",
+          "dependencies": []
+        },
+        "unit": {
+          "value": "kg",
+          "unit": null,
+          "provenance": "USER_CONFIRMED",
+          "evidence": "4 кг",
+          "recorded_at": "2026-11-05T16:18:46.045884+00:00",
+          "dependencies": []
+        },
+        "reactor_total_volume_l": {
+          "value": 70,
+          "unit": "L",
+          "provenance": "USER_CONFIRMED",
+          "evidence": "70 литров",
+          "recorded_at": "2026-11-05T16:18:46.045890+00:00",
+          "dependencies": []
+        }
+      },
+      "assumptions": {
+        "market_region": {
+          "value": "KZ-Karaganda",
+          "unit": null,
+          "provenance": "ASSUMED_FOR_SCENARIO",
+          "evidence": "Default dashboard region; not user-confirmed",
+          "recorded_at": "2026-11-05T16:18:22.870749+00:00",
+          "dependencies": []
+        }
+      },
+      "derived": {
+        "mass_kg": {
+          "value": 4,
+          "unit": "kg",
+          "provenance": "CALCULATED_FROM_CONFIRMED",
+          "evidence": "Unit arithmetic from explicit confirmed inputs",
+          "recorded_at": "2026-11-05T16:18:46.045913+00:00",
+          "dependencies": [
+            "quantity",
+            "unit"
+          ]
+        }
+      },
+      "estimates": {},
+      "source_verified": {},
+      "intents": [
+        "methane_yield"
+      ],
+      "pending_question": {
+        "id": "v9-793b758a8879e5",
+        "text": "Каковы операционные затраты на обработку пищевых отходов в данном регионе?",
+        "options": [],
+        "fields": [],
+        "reason": "Model-selected next useful clarification"
+      },
+      "invalidated": [],
+      "decision_settings": {
+        "gas_use": "unknown",
+        "assume_reference_compatibility": false,
+        "use_reference_scenarios": true,
+        "heating_value_type": "LHV",
+        "reactor": {
+          "engineering_review_confirmed": false,
+          "safety_review_required": false,
+          "loads": [],
+          "loads_complete": false,
+          "provenance": "USER_REPORTED"
+        },
+        "quotes": {},
+        "price_ids": {},
+        "max_price_age_days": 30,
+        "costs": {},
+        "all_operating_costs_included": false,
+        "include_capital": false,
+        "assume_full_self_consumption": false,
+        "replacement_heat_source": "unknown",
+        "gas_sale_technical_confirmed": false,
+        "gas_sale_legal_confirmed": false,
+        "gas_quality_confirmed": false,
+        "gas_storage_transport_confirmed": false,
+        "digestate_quality_confirmed": false,
+        "digestate_market_allowed": false
+      },
+      "decision_unavailable": [],
+      "last_research_summary": {},
+      "mixture_components": [],
+      "mixture_scenario_components": [],
+      "mixture_revision": 0,
+      "mixture_history": [],
+      "advisor_inventory_mode": "none",
+      "advisor_pending_component": null,
+      "advisor_settings": {},
+      "smart_goals": [],
+      "smart_cache": {},
+      "active_mixture_scenario": false,
+      "advanced": {
+        "research_dialogue": {
+          "asked": [
+            "v9-793b758a8879e5"
+          ],
+          "last_turn_type": "new_question",
+          "known_cost_categories": [],
+          "unpriced_categories": [],
+          "last_question_id": "v9-793b758a8879e5"
+        }
+      },
+      "analytical_mode": "mixture"
+    },
+    "context": {
+      "mass_kg": 4,
+      "material": "food_waste",
+      "reactor_volume_l": 70,
+      "market_region": "KZ-Karaganda"
+    },
+    "context_updated": true,
+    "pending_question": {
+      "id": "v9-793b758a8879e5",
+      "text": "Каковы операционные затраты на обработку пищевых отходов в данном регионе?",
+      "options": [],
+      "fields": [],
+      "reason": "Model-selected next useful clarification"
+    },
+    "missing": [],
+    "actuator_access": false,
+    "technical_metadata": {
+      "agent_version": "9.0",
+      "smart_version": "9.0",
+      "final_author": "qwen_verified",
+      "research_actions": [
+        {
+          "tool": "assess_substrate_potential",
+          "purpose": "Preliminary methane yield estimate from food waste in 70L reactor",
+          "elapsed_seconds": 34.991158900025766
+        }
+      ],
+      "verification": {
+        "status": "ok",
+        "checks": [
+          {
+            "scenario": "s1",
+            "component": "c1",
+            "check": "VS_kg_times_BMP_ml_per_g_times_0.001",
+            "expected_m3": {
+              "low": 0.254466,
+              "high": 0.254466
+            },
+            "observed_m3": {
+              "low": 0.254466,
+              "high": 0.254466
+            },
+            "passed": true
+          },
+          {
+            "check": "no_actuation_authorized",
+            "passed": true,
+            "scenario": "s1"
+          },
+          {
+            "check": "profile_identity_and_form",
+            "passed": true,
+            "scenario": "s1",
+            "component": "c1"
+          },
+          {
+            "check": "source_belongs_to_profile",
+            "passed": true,
+            "scenario": "s1",
+            "component": "c1"
+          },
+          {
+            "check": "vs_not_larger_than_wet_mass",
+            "passed": true,
+            "scenario": "s1"
+          }
+        ],
+        "checked": true,
+        "scope": "Arithmetic, source identity, material/form, energy allocation and cost completeness; not biological validation, interval coverage or operating safety."
+      },
+      "diagnostics": [],
+      "synthesis_rejections": [],
+      "resource_termination": "investigation_complete",
+      "primary_evidence_unchecked": [],
+      "verified_display_references": [
+        {
+          "id": "s1.methane",
+          "label": "Пищевые отходы: потенциал метана",
+          "value": {
+            "low": 0.2545125799011533,
+            "high": 0.2545125799011533
+          },
+          "unit": "м³ CH₄",
+          "level": "SCENARIO_ASSUMPTION",
+          "scenario": "s1"
+        },
+        {
+          "id": "s1.vs",
+          "label": "Пищевые отходы: масса VS",
+          "value": {
+            "low": 0.4824,
+            "high": 0.4824
+          },
+          "unit": "кг VS",
+          "level": "SCENARIO_ASSUMPTION",
+          "scenario": "s1"
+        },
+        {
+          "id": "s1.vessel",
+          "label": "Пищевые отходы: номинальная ёмкость (ограничивает загрузку, не задаёт метан)",
+          "value": {
+            "low": 70,
+            "high": 70
+          },
+          "unit": "л",
+          "level": "MEASURED",
+          "scenario": "s1"
+        }
+      ],
+      "scientific_details": {
+        "assess_substrate_potential": {
+          "status": "ok",
+          "local_experiments": {
+            "status": "checked",
+            "records_checked": 0,
+            "candidates": [],
+            "automatic_transfer": false,
+            "reason": "Existing experiment schema records gas observations, not a reviewed substrate BMP profile with preparation, blank correction and structured gas basis. Matching names alone cannot establish transferability."
+          },
+          "message": "Reviewed same-material profiles evaluated as explicit scenarios; unavailable properties remain missing.",
+          "catalog_checked": true,
+          "comparison_mode": "mixture",
+          "scenarios": [
+            {
+              "id": "s1",
+              "result_level": "HYPOTHETICAL_SCENARIO",
+              "label": "Пищевые отходы",
+              "profile_ids": [
+                "baek2020-food-pulp"
+              ],
+              "components": [
+                {
+                  "id": "c1",
+                  "material": "food_waste",
+                  "display_name": "Пищевые отходы",
+                  "material_state": "prepared_pulp",
+                  "animal": "unknown",
+                  "physical_state": "unknown",
+                  "decay_state": "unknown",
+                  "bedding": "unknown",
+                  "quantity": 4,
+                  "unit": "kg",
+                  "wet_mass_kg": {
+                    "low": 4,
+                    "high": 4
+                  },
+                  "volume_l": null,
+                  "ts_mass_kg": {
+                    "low": 0.5056,
+                    "high": 0.5056
+                  },
+                  "vs_mass_kg": {
+                    "low": 0.4824,
+                    "high": 0.4824
+                  },
+                  "methane_reference_m3": {
+                    "low": 0.254466,
+                    "high": 0.254466
+                  },
+                  "carbon_mass_kg": null,
+                  "nitrogen_mass_kg": null,
+                  "gas_basis": {
+                    "temperature_k": 273.15,
+                    "pressure_pa": 101325,
+                    "moisture": "unknown"
+                  },
+                  "result_level": "HYPOTHETICAL_SCENARIO",
+                  "profile_id": "baek2020-food-pulp",
+                  "properties_used": {
+                    "ts_fraction": {
+                      "range": {
+                        "low": 0.1264,
+                        "high": 0.1264
+                      },
+                      "provenance": "LITERATURE_ESTIMATE",
+                      "source_id": "baek2020",
+                      "locator": "Table 1",
+                      "original_value": "126.4 (SD 4.5)",
+                      "original_unit": "g TS/kg wet"
+                    },
+                    "vs_fraction_wet": {
+                      "range": {
+                        "low": 0.1206,
+                        "high": 0.1206
+                      },
+                      "provenance": "LITERATURE_ESTIMATE",
+                      "source_id": "baek2020",
+                      "locator": "Table 1",
+                      "original_value": "120.6 (SD 3.7)",
+                      "original_unit": "g VS/kg wet"
+                    },
+                    "bmp_ml_g_vs": {
+                      "range": {
+                        "low": 527.5,
+                        "high": 527.5
+                      },
+                      "provenance": "LITERATURE_ESTIMATE",
+                      "source_id": "baek2020",
+                      "locator": "Results 3.2, pure FW run 2, PDF page 5",
+                      "original_value": "527.5",
+                      "original_unit": "L CH4/kg VS"
+                    }
+                  },
+                  "assumptions": [
+                    "ts_fraction transferred from baek2020-food-pulp",
+                    "vs_fraction_wet transferred from baek2020-food-pulp",
+                    "bmp_ml_g_vs transferred from baek2020-food-pulp",
+                    "Quantity is hypothetical, not confirmed inventory"
+                  ],
+                  "missing": [
+                    "density_kg_l"
+                  ],
+                  "source": {
+                    "id": "baek2020",
+                    "doi": "10.3390/ijerph17134737",
+                    "title": "Treatment of Cattle Manure by Anaerobic Co-Digestion with Food Waste and Pig Manure: Methane Yield and Synergistic Effect",
+                    "authors": [
+                      "Gahyun Baek",
+                      "Danbee Kim",
+                      "Jinsu Kim",
+                      "Hanwoong Kim",
+                      "Changsoo Lee"
+                    ],
+                    "year": 2020,
+                    "published_at": "2020-07-01",
+                    "url": "https://www.mdpi.com/1660-4601/17/13/4737",
+                    "review_url": "https://pdfs.semanticscholar.org/8c32/8da3dc70a2964a51e0cfd2807c009edd691c.pdf",
+                    "reviewed_sections": [
+                      "Tables 1-2, Methods 2.1-2.3, Results 3.2, Equations 1-2"
+                    ],
+                    "verification_stage": "NUMERIC_DATA_VERIFIED",
+                    "review_method": "Primary article PDF read through browser document extraction. Programmatic mirror download redirected across origins and was not followed. Publisher 429 and PMC CAPTCHA were not bypassed.",
+                    "conditions": {
+                      "temperature_c": 35,
+                      "duration_days": 30,
+                      "duration_kind": "BMP_INCUBATION",
+                      "reactor_type": "250 mL bottles, 200 mL working volume; triplicate and blank corrected",
+                      "inoculum": "Digestate from mesophilic food/pig-manure plant; 100 mL inoculum plus 100 mL substrate diluted to 10 g VS/L",
+                      "mixing": "daily manual shaking",
+                      "gas_basis": {
+                        "temperature_k": 273.15,
+                        "pressure_pa": 101325,
+                        "moisture": "unknown"
+                      },
+                      "mixing_ratio_basis": "total solids, not wet mass"
+                    }
+                  },
+                  "source_stp_claimed": false,
+                  "source_basis_missing": false,
+                  "cn_ratio_reference": 17.9,
+                  "ph_reference": 4.5,
+                  "notice": "Single-component literature/measurement reference. A published sample point is not a universal population mean; no unreported SD is invented.",
+                  "methane_comparable_m3": {
+                    "low": 0.2545125799011533,
+                    "high": 0.2545125799011533
+                  },
+                  "wet_mass_fraction": {
+                    "low": 1,
+                    "high": 1
+                  }
+                }
+              ],
+              "methane_m3": {
+                "low": 0.2545125799011533,
+                "high": 0.2545125799011533
+              },
+              "known_component_subtotal_m3": {
+                "low": 0.2545125799011533,
+                "high": 0.2545125799011533
+              },
+              "complete": true,
+              "wet_mass_kg": {
+                "low": 4,
+                "high": 4
+              },
+              "vs_mass_kg": {
+                "low": 0.4824,
+                "high": 0.4824
+              },
+              "ts_mass_kg": {
+                "low": 0.5056,
+                "high": 0.5056
+              },
+              "gas_basis": {
+                "temperature_k": 273.2,
+                "pressure_pa": 101325,
+                "moisture": "dry",
+                "description": "Conditional common dry reference; not a measured mixture output"
+              },
+              "assumptions": [
+                "Physical form and preparation assumed comparable to Ground cafeteria food mainly rice, flour products, soup, vegetables and meat; diluted BMP, not an untreated mixed municipal waste",
+                "Literature sample transferred to this batch; actual composition and plant recovery are unmeasured.",
+                "ts_fraction transferred from baek2020-food-pulp",
+                "vs_fraction_wet transferred from baek2020-food-pulp",
+                "bmp_ml_g_vs transferred from baek2020-food-pulp",
+                "Quantity is hypothetical, not confirmed inventory",
+                "Unknown source gas moisture treated as dry for the explicitly conditional common-basis calculation."
+              ],
+              "missing": [],
+              "biogas": {
+                "potential_biogas_m3": null,
+                "methane_fraction": null,
+                "gas_basis": {
+                  "temperature_k": 273.2,
+                  "pressure_pa": 101325,
+                  "moisture": "dry",
+                  "description": "Conditional common dry reference; not a measured mixture output"
+                },
+                "status": "needs_input",
+                "result_level": null,
+                "compatibility": "missing_gas_basis",
+                "assumptions": [],
+                "scope": "Potential gas corresponding to laboratory methane potential, not collected plant gas. CH4 is part of biogas and must not be added again.",
+                "uncertainty": "Independent extrema envelope; unknown correlation and no validated probability coverage."
+              },
+              "request": {
+                "components": [
+                  {
+                    "id": "c1",
+                    "material": "food_waste",
+                    "material_state": "prepared_pulp",
+                    "quantity": 4,
+                    "unit": "kg",
+                    "animal": "unknown",
+                    "poultry_type": "unknown",
+                    "reference_profile_id": "baek2020-food-pulp",
+                    "physical_state": "unknown",
+                    "decay_state": "unknown",
+                    "bedding": "unknown",
+                    "data_mode": "LITERATURE_ESTIMATE",
+                    "properties": {
+                      "density_kg_l": null,
+                      "ts_fraction": null,
+                      "vs_fraction_wet": null,
+                      "vs_fraction_of_ts": null,
+                      "bmp_ml_g_vs": null,
+                      "carbon_fraction_wet": null,
+                      "nitrogen_fraction_wet": null,
+                      "gas_basis": null
+                    },
+                    "provenance": "ASSUMED_FOR_SCENARIO",
+                    "evidence": ""
+                  }
+                ],
+                "allow_literature_transfer": true,
+                "allow_conditional_profiles": false,
+                "target_ts_fraction": null,
+                "assume_common_dry_gas_basis": true,
+                "assume_unreported_gas_basis": false,
+                "reactor_total_volume_l": 70,
+                "decision": {
+                  "gas_use": "unknown",
+                  "gas_basis": null,
+                  "methane_fraction": null,
+                  "composition_basis": null,
+                  "assume_reference_compatibility": false,
+                  "recovery_fraction": null,
+                  "thermal_efficiency": null,
+                  "electrical_efficiency": null,
+                  "chp_thermal_efficiency": null,
+                  "chp_electrical_efficiency": null,
+                  "use_reference_scenarios": true,
+                  "heating_value_kwh_m3": null,
+                  "heating_value_type": "LHV",
+                  "heating_value_basis": null,
+                  "equipment_evidence": null,
+                  "reactor": {
+                    "reactor_working_volume_l": null,
+                    "headspace_l": null,
+                    "inoculum_volume_l": null,
+                    "dilution_water_l": null,
+                    "resident_liquid_volume_l": null,
+                    "operating_mode": null,
+                    "reactor_type": null,
+                    "engineering_review_confirmed": false,
+                    "safety_review_required": false,
+                    "temperature_c": null,
+                    "initial_temperature_c": null,
+                    "ambient_temperature_c": null,
+                    "heated_mass_kg": null,
+                    "heat_capacity_kj_kg_k": null,
+                    "heat_loss_coefficient_w_k": null,
+                    "u_w_m2_k": null,
+                    "area_m2": null,
+                    "duration_days": null,
+                    "heater_efficiency": null,
+                    "heating_carrier": null,
+                    "auxiliary_energy_kwh": null,
+                    "loads": [],
+                    "loads_complete": false,
+                    "energy_scope": null,
+                    "provenance": "USER_REPORTED"
+                  },
+                  "quotes": {},
+                  "price_ids": {},
+                  "consumer_class": null,
+                  "tax_basis": null,
+                  "max_price_age_days": 30,
+                  "costs": {},
+                  "all_operating_costs_included": false,
+                  "include_capital": false,
+                  "capital_cost_per_batch": null,
+                  "heat_demand_kwh": null,
+                  "electricity_demand_kwh": null,
+                  "assume_full_self_consumption": false,
+                  "replacement_heat_source": "unknown",
+                  "gas_sale_technical_confirmed": false,
+                  "gas_sale_legal_confirmed": false,
+                  "gas_quality_confirmed": false,
+                  "gas_storage_transport_confirmed": false,
+                  "digestate_mass_kg": null,
+                  "digestate_quality_confirmed": false,
+                  "digestate_market_allowed": false
+                },
+                "feeding_period_days": null,
+                "total_daily_liquid_feed_l": null,
+                "daily_feed_includes_all_liquid": false,
+                "inoculum_description": null,
+                "inoculum_adapted_temperature_c": null,
+                "temperature_control_confirmed": false,
+                "mixing_available": null,
+                "measured_ph": null,
+                "monitoring_confirmed": false,
+                "inhibition_warning": false,
+                "region": "KZ-Karaganda",
+                "region_confirmed": false,
+                "online": false,
+                "objectives": [
+                  "methane",
+                  "stability"
+                ]
+              },
+              "mixture": {
+                "components": [
+                  {
+                    "id": "c1",
+                    "material": "food_waste",
+                    "display_name": "Пищевые отходы",
+                    "material_state": "prepared_pulp",
+                    "animal": "unknown",
+                    "physical_state": "unknown",
+                    "decay_state": "unknown",
+                    "bedding": "unknown",
+                    "quantity": 4,
+                    "unit": "kg",
+                    "wet_mass_kg": {
+                      "low": 4,
+                      "high": 4
+                    },
+                    "volume_l": null,
+                    "ts_mass_kg": {
+                      "low": 0.5056,
+                      "high": 0.5056
+                    },
+                    "vs_mass_kg": {
+                      "low": 0.4824,
+                      "high": 0.4824
+                    },
+                    "methane_reference_m3": {
+                      "low": 0.254466,
+                      "high": 0.254466
+                    },
+                    "carbon_mass_kg": null,
+                    "nitrogen_mass_kg": null,
+                    "gas_basis": {
+                      "temperature_k": 273.15,
+                      "pressure_pa": 101325,
+                      "moisture": "unknown"
+                    },
+                    "result_level": "HYPOTHETICAL_SCENARIO",
+                    "profile_id": "baek2020-food-pulp",
+                    "properties_used": {
+                      "ts_fraction": {
+                        "range": {
+                          "low": 0.1264,
+                          "high": 0.1264
+                        },
+                        "provenance": "LITERATURE_ESTIMATE",
+                        "source_id": "baek2020",
+                        "locator": "Table 1",
+                        "original_value": "126.4 (SD 4.5)",
+                        "original_unit": "g TS/kg wet"
+                      },
+                      "vs_fraction_wet": {
+                        "range": {
+                          "low": 0.1206,
+                          "high": 0.1206
+                        },
+                        "provenance": "LITERATURE_ESTIMATE",
+                        "source_id": "baek2020",
+                        "locator": "Table 1",
+                        "original_value": "120.6 (SD 3.7)",
+                        "original_unit": "g VS/kg wet"
+                      },
+                      "bmp_ml_g_vs": {
+                        "range": {
+                          "low": 527.5,
+                          "high": 527.5
+                        },
+                        "provenance": "LITERATURE_ESTIMATE",
+                        "source_id": "baek2020",
+                        "locator": "Results 3.2, pure FW run 2, PDF page 5",
+                        "original_value": "527.5",
+                        "original_unit": "L CH4/kg VS"
+                      }
+                    },
+                    "assumptions": [
+                      "ts_fraction transferred from baek2020-food-pulp",
+                      "vs_fraction_wet transferred from baek2020-food-pulp",
+                      "bmp_ml_g_vs transferred from baek2020-food-pulp",
+                      "Quantity is hypothetical, not confirmed inventory"
+                    ],
+                    "missing": [
+                      "density_kg_l"
+                    ],
+                    "source": {
+                      "id": "baek2020",
+                      "doi": "10.3390/ijerph17134737",
+                      "title": "Treatment of Cattle Manure by Anaerobic Co-Digestion with Food Waste and Pig Manure: Methane Yield and Synergistic Effect",
+                      "authors": [
+                        "Gahyun Baek",
+                        "Danbee Kim",
+                        "Jinsu Kim",
+                        "Hanwoong Kim",
+                        "Changsoo Lee"
+                      ],
+                      "year": 2020,
+                      "published_at": "2020-07-01",
+                      "url": "https://www.mdpi.com/1660-4601/17/13/4737",
+                      "review_url": "https://pdfs.semanticscholar.org/8c32/8da3dc70a2964a51e0cfd2807c009edd691c.pdf",
+                      "reviewed_sections": [
+                        "Tables 1-2, Methods 2.1-2.3, Results 3.2, Equations 1-2"
+                      ],
+                      "verification_stage": "NUMERIC_DATA_VERIFIED",
+                      "review_method": "Primary article PDF read through browser document extraction. Programmatic mirror download redirected across origins and was not followed. Publisher 429 and PMC CAPTCHA were not bypassed.",
+                      "conditions": {
+                        "temperature_c": 35,
+                        "duration_days": 30,
+                        "duration_kind": "BMP_INCUBATION",
+                        "reactor_type": "250 mL bottles, 200 mL working volume; triplicate and blank corrected",
+                        "inoculum": "Digestate from mesophilic food/pig-manure plant; 100 mL inoculum plus 100 mL substrate diluted to 10 g VS/L",
+                        "mixing": "daily manual shaking",
+                        "gas_basis": {
+                          "temperature_k": 273.15,
+                          "pressure_pa": 101325,
+                          "moisture": "unknown"
+                        },
+                        "mixing_ratio_basis": "total solids, not wet mass"
+                      }
+                    },
+                    "source_stp_claimed": false,
+                    "source_basis_missing": false,
+                    "cn_ratio_reference": 17.9,
+                    "ph_reference": 4.5,
+                    "notice": "Single-component literature/measurement reference. A published sample point is not a universal population mean; no unreported SD is invented.",
+                    "methane_comparable_m3": {
+                      "low": 0.2545125799011533,
+                      "high": 0.2545125799011533
+                    },
+                    "wet_mass_fraction": {
+                      "low": 1,
+                      "high": 1
+                    }
+                  }
+                ],
+                "total_wet_mass_kg": {
+                  "low": 4,
+                  "high": 4
+                },
+                "sum_separate_volumes_l": null,
+                "total_ts_kg": {
+                  "low": 0.5056,
+                  "high": 0.5056
+                },
+                "total_vs_kg": {
+                  "low": 0.4824,
+                  "high": 0.4824
+                },
+                "cn_mass_ratio": null,
+                "mixture_ph": null,
+                "additive_methane_reference_m3": {
+                  "low": 0.2545125799011533,
+                  "high": 0.2545125799011533
+                },
+                "known_component_additive_subtotal_m3": {
+                  "low": 0.2545125799011533,
+                  "high": 0.2545125799011533
+                },
+                "complete_methane_reference": true,
+                "gas_basis": {
+                  "temperature_k": 273.2,
+                  "pressure_pa": 101325,
+                  "moisture": "dry",
+                  "description": "Conditional common dry reference; not a measured mixture output"
+                },
+                "normalization": [
+                  {
+                    "component": "c1",
+                    "factor": 1.0001830496064434,
+                    "assumption": "Unknown source moisture treated as comparable dry gas; ideal-gas T/P normalization only"
+                  }
+                ],
+                "olr_kg_vs_m3_day": null,
+                "synergy_factor": null,
+                "measured_mixture_bmp": null,
+                "result_level": "HYPOTHETICAL_SCENARIO",
+                "limitations": [
+                  "Additive component references are not a validated methane yield of the mixture. No synergy coefficient is assumed.",
+                  "Known-part subtotal is neither the full mixture prediction nor a lower bound on actual co-digestion yield.",
+                  "Separate volumes may not add to final packed/liquid mixture volume; verify actual charge.",
+                  "C/N requires carbon and nitrogen masses. pH cannot be averaged. Batch loading is not a daily OLR.",
+                  "Sensitivity bounds have no verified probability coverage."
+                ]
+              },
+              "engineering": {
+                "status": "REQUIRES_REVIEW",
+                "total_volume_l": 70,
+                "working_volume_l": null,
+                "headspace_required_l": null,
+                "known_feed_volume_l": {
+                  "low": 0,
+                  "high": 0
+                },
+                "known_charge_present": false,
+                "known_charge_volume_l": {
+                  "low": 0,
+                  "high": 0
+                },
+                "complete_charge_volume_l": null,
+                "remaining_total_volume_l": null,
+                "fill_fraction": null,
+                "missing": [
+                  "volume_or_density:c1",
+                  "inoculum_volume_l",
+                  "dilution_water_l",
+                  "resident_liquid_volume_l",
+                  "operating_mode",
+                  "reactor_working_volume_l",
+                  "headspace_l"
+                ],
+                "violations": [],
+                "warnings": [],
+                "feed_plus_water_mass_kg": null,
+                "feed_plus_water_ts_fraction": null,
+                "feed_plus_water_vs_fraction": null,
+                "additional_water_to_target_ts_kg": null,
+                "target_ts_fraction": null,
+                "water_density_assumption_kg_l": null,
+                "necessary_mean_feed_density_kg_l": {
+                  "low": 0.05714285714285714,
+                  "high": 0.05714285714285714
+                },
+                "density_constraint_scope": "Necessary mean density for the unvolumed feed to fit after known volumes only. Unmeasured inoculum/water still reduce capacity; this is not measured density or authorization to load.",
+                "scope": "Separate volumes are additive bookkeeping, not a packing measurement. Dilution solids exclude inoculum/resident material: their TS/VS are unknown. Water density 1 kg/L is an explicit approximation. Target TS is user-selected, not an operating recommendation.",
+                "operation_authorized": false
+              }
+            }
+          ],
+          "sources": [
+            {
+              "id": "baek2020",
+              "doi": "10.3390/ijerph17134737",
+              "title": "Treatment of Cattle Manure by Anaerobic Co-Digestion with Food Waste and Pig Manure: Methane Yield and Synergistic Effect",
+              "authors": [
+                "Gahyun Baek",
+                "Danbee Kim",
+                "Jinsu Kim",
+                "Hanwoong Kim",
+                "Changsoo Lee"
+              ],
+              "year": 2020,
+              "published_at": "2020-07-01",
+              "url": "https://www.mdpi.com/1660-4601/17/13/4737",
+              "review_url": "https://pdfs.semanticscholar.org/8c32/8da3dc70a2964a51e0cfd2807c009edd691c.pdf",
+              "reviewed_sections": [
+                "Tables 1-2, Methods 2.1-2.3, Results 3.2, Equations 1-2"
+              ],
+              "verification_stage": "NUMERIC_DATA_VERIFIED",
+              "review_method": "Primary article PDF read through browser document extraction. Programmatic mirror download redirected across origins and was not followed. Publisher 429 and PMC CAPTCHA were not bypassed.",
+              "conditions": {
+                "temperature_c": 35,
+                "duration_days": 30,
+                "duration_kind": "BMP_INCUBATION",
+                "reactor_type": "250 mL bottles, 200 mL working volume; triplicate and blank corrected",
+                "inoculum": "Digestate from mesophilic food/pig-manure plant; 100 mL inoculum plus 100 mL substrate diluted to 10 g VS/L",
+                "mixing": "daily manual shaking",
+                "gas_basis": {
+                  "temperature_k": 273.15,
+                  "pressure_pa": 101325,
+                  "moisture": "unknown"
+                },
+                "mixing_ratio_basis": "total solids, not wet mass"
+              }
+            }
+          ],
+          "reactor_total_volume_l": 70,
+          "candidate_count": 1,
+          "truncated": false,
+          "reactor_role": "Vessel capacity is not feed volume, VS mass, daily throughput or methane storage capacity. Working volume, inoculum, dilution and headspace must be checked.",
+          "uncertainty": "Points or sensitivity ranges from named samples; no validated prediction interval."
+        }
+      },
+      "latency_seconds": 80.78331790002994,
+      "uncertainty_status": "No calibrated interval coverage; literature transfer and scenario bounds remain conditional.",
+      "diagnostic_events": [
+        {
+          "type": "HttpRequestAccepted",
+          "phase": "dashboard_api",
+          "session_id": "aeb4e98f2ce44821a95a2ce1502f51af",
+          "request_id": "41e40d2a-e986-47a8-8c4e-9bd1e5d64e86",
+          "conversation_version": "7"
+        },
+        {
+          "type": "RequestReceived",
+          "phase": "conversation_api",
+          "characters": 88
+        },
+        {
+          "type": "ParametersExtracted",
+          "phase": "parameter_extraction",
+          "entities": [
+            {
+              "name": "material",
+              "value": "food_waste",
+              "unit": null,
+              "evidence": "пищевых отходов",
+              "provenance": "USER_CONFIRMED"
+            },
+            {
+              "name": "quantity",
+              "value": 4,
+              "unit": "kg",
+              "evidence": "4 кг",
+              "provenance": "USER_CONFIRMED"
+            },
+            {
+              "name": "unit",
+              "value": "kg",
+              "unit": null,
+              "evidence": "4 кг",
+              "provenance": "USER_CONFIRMED"
+            },
+            {
+              "name": "reactor_total_volume_l",
+              "value": 70,
+              "unit": "L",
+              "evidence": "70 литров",
+              "provenance": "USER_CONFIRMED"
+            }
+          ]
+        },
+        {
+          "type": "Clarification",
+          "phase": "task_transition",
+          "task_id": "6a42144796f04337a1100207debb5068"
+        },
+        {
+          "type": "ModelUnderstandingStarted",
+          "phase": "model_understanding",
+          "configured": true
+        },
+        {
+          "type": "ModelUnderstandingFinished",
+          "phase": "model_understanding",
+          "proposal_received": true,
+          "providers": [
+            {
+              "provider": "offline",
+              "model": "qwen3:8b",
+              "status": "available",
+              "actual_generation": true,
+              "phase": "structured_nlu",
+              "requests": [
+                {
+                  "input_characters": 630,
+                  "request_bytes": 2122,
+                  "status": "ok",
+                  "prompt_tokens": 177,
+                  "output_tokens": 128,
+                  "done_reason": "stop",
+                  "load_seconds": 9.3220234,
+                  "generation_seconds": 12.693612,
+                  "tokens_per_second": 10.083812235634744,
+                  "latency_seconds": 23.084419999970123
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "PlanningStarted",
+          "phase": "agent_planning",
+          "task_id": "6a42144796f04337a1100207debb5068"
+        },
+        {
+          "type": "ToolExecuted",
+          "phase": "tool_execution",
+          "tool": "assess_substrate_potential",
+          "status": "ok"
+        },
+        {
+          "type": "ResponseCreated",
+          "phase": "response",
+          "mode": "qwen_autonomous_tools",
+          "tool_count": 1
+        }
+      ]
+    },
+    "state_version": 1
+  },
+  "browser": "156.0.8078.80"
+}

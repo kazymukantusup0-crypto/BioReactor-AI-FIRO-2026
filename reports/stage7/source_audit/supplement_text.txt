@@ -1,0 +1,263 @@
+Supplementary Material
+Moderate thermal, alkaline and thermal-alkaline pretreatment of cattle manure: effects on methane production and economic feasibility
+
+Helena Rodrigues Oliveira  a, b, c, * , Thuane Mendes Anacleto  b, c, * , Lisa Åsenius  d , Alex Enrich-Prast  c, d, e, f
+
+a  Centro Federal de Educação Tecnológica Celso Suckow da Fonseca - CEFET/RJ, Rio de Janeiro, Brazil.
+b  Programa de Pós-Graduação em Biotecnologia Vegetal e Bioprocessos, Universidade Federal do Rio de Janeiro, Rio de Janeiro, Brazil
+c  Unidade Multiusuário de Análises Ambientais, Universidade Federal do Rio de Janeiro, Rio de Janeiro, Brazil
+d  Department of Thematic Studies – Environmental Change, Linköping University, Linköping, Sweden
+e  Biogas Solutions Research Center (BSRC), Linköping University, Linköping, Sweden
+f  Institute of Marine Science, Federal University of São Paulo (IMar/UNIFESP), Santos, Brazil
+
+* Both authors contributed equally to this work.
+
+Corresponding author:  alex.enrich.prast@liu.se  (Alex Enrich-Prast)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Table  S SEQ Table \* ARABIC 1 : Characteristics of cattle manure after thermal, chemical and thermal-chemical pretreatments. (*) marks values statistically different from control. TS: total solids. VS: volatile solids. VFA: volatile fatty acids.
+Treatment
+TS (%)
+VS (%)
+Acetic acid (mM)
+VFA (mM)
+55-8
+13.34 ± 0.10
+10.8 ± 0.03
+111.7 ± 3.2
+135.9 ± 4.3
+55-24
+13.18 ± 0.19
+10.56 ± 0.11
+142.7 ± 6.5 *
+179.9 ± 7.1 *
+70-8
+13.46 ± 0.41
+10.93 ± 0.14
+117.4 ± 3.9
+139.2 ± 3.3
+70-24
+12.99 ± 0.21
+10.44 ± 0.17
+143 ± 7.4 *
+166.5 ± 9.0 *
+C3
+13.71 ± 0.11
+10.89 ± 0.08
+137.7 ± 5.5
+169.1 ± 8.8 *
+C6
+13.88 ± 0.29
+10.75 ± 0.04
+138.9 ± 2.8 *
+167.4 ± 2.7 *
+C9
+13.94 ± 0.12
+10.52 ± 0.04
+137.2 ± 5.9
+163 ± 7.1
+C3-55-8
+13.55 ± 0.23 *
+10.75 ± 0.27 *
+113.9 ± 11.2
+141.3 ± 11.6 
+C3-55-24
+12.92 ± 0.18
+10.19 ± 0.04
+142.7 ± 6.5 *
+199.7 ± 13.1 *
+C3-70-8 
+12.76 ± 0.07
+9.95 ± 0.06
+119.7 ± 5.3 *
+178.8 ± 13.6 *
+C3-70-24
+12.58 ± 0.2
+9.95 ± 0.08
+134.1 ± 8.6 *
+198.9 ± 20.8 *
+C9-55-8
+14 ± 0.09 *
+10.66 ± 0.18 *
+117.7 ± 10.3 *
+173.6 ± 20.8 *
+C9-55-24
+13.48 ± 0.34 *
+10.15 ± 0.24
+158.9 ± 8.7 *
+218.5 ± 18.5 *
+C9-70-8
+13.56 ± 0.13 *
+10.09 ± 0.17
+149.6 ± 12 *
+179 ± 14.8 *
+C9-70-24
+13.82 ± 0.17 *
+10.41 ± 0.09
+169.1 ± 17.8 *
+205.3 ± 14.6 *
+
+
+
+
+
+
+Table   S SEQ Table \* ARABIC 2 : Characteristics of slurry after batch anaerobic digestion of raw manure (RM) and pretreated cattle manure. (*) marks values statistically different from control. TS: total solids. VS: volatile solids. VFA: volatile fatty acids.  T COD:  Total  chemical oxygen demand. TAN: total ammonia nitrogen.
+Treatment
+TS (%)
+VS (%)
+Acetic acid (mM)
+VFA (mM)
+T COD (g/L)
+TAN
+(g NH4 + -N/L)
+RM A
+6.07 ± 0.35
+3.54 ± 0.07
+0.5 ± 0
+0.8 ± 0.2
+47.26 ± 5.95
+2.96 ± 0.32
+55-8
+4.72 ± 0.2
+3.52 ± 0.08
+0.5 ± 0
+0.6 ± 0.1
+61.62 ± 3.20 *
+2.82 ± 0.03
+55-24
+4.76 ± 0.27
+3.41 ± 0.10
+0.5 ± 0.1
+0.6 ± 0.1
+50.28 ± 3.45
+2.82 ± 0.16
+70-8
+4.74 ± 0.16
+3.44 ± 0.05
+0.4 ± 0
+0.5 ± 0
+60.08 ± 3.95 *
+2.81 ± 0.07
+70-24
+4.58 ± 0.14
+3.28 ± 0.12
+0.5 ± 0.1
+0.6 ± 0.1
+51.76 ± 2.14
+2.7 ± 0.07 *
+C3
+4.93 ± 0.17
+3.53 ± 0.05
+0.5 ± 0
+0.6 ± 0
+60.67 ± 4.59 *
+3.01 ± 0.11
+C6
+5.07 ± 0.11
+3.64 ± 0.08
+0.6 ± 0.1
+0.7 ± 0.1
+58.88 ± 3.62 *
+2.98 ± 0.05
+C9
+5.11 ± 0.12
+3.58 ± 0.13
+0.5 ± 0.1
+0.6 ± 0.1
+57.67 ± 0.77 *
+2.89 ± 0.08
+RM B
+-
+4.07 ± 0.11
+0.6 ± 0
+-
+43.24 ± 6.19
+2.98 ± 0.23
+C3-55-8
+5.93 ± 0.35 *
+4.39 ± 0.13
+0.6 ± 0.1
+1 ± 0.2
+63.18 ± 5.59 *
+2.88 ± 0.15
+C3-55-24
+5.63 ± 0.04
+4.22 ± 0.02
+0.6 ± 0
+1 ± 0.1
+48.39 ± 4.4 *
+2.8 ± 0.23
+C3-70-8 
+5.32 ± 0.08
+3.93 ± 0.05
+0.6 ± 0.1
+1 ± 0.1
+42.22 ± 2.94
+2.97 ± 0.25
+C3-70-24
+5.53 ± 0.22
+4.1 ± 0.19
+0.6 ± 0
+1.1 ± 0
+43.73 ± 0.33
+2.8 ± 0.06
+C9-55-8
+5.51 ± 0.03
+3.96 ± 0.02
+0.7 ± 0.1
+1.1 ± 0.1
+45.71 ± 3.64
+2.9 ± 0.08
+C9-55-24
+5.66 ± 0.21
+4.08 ± 0.25
+0.7 ± 0
+1.1 ± 0.1
+43.99 ± 2.25
+2.9 ± 0.13
+C9-70-8
+5.61 ± 0.19
+4 ± 0.13
+0.6 ± 0.1
+1 ± 0.2
+48.98 ± 2.58 *
+2.7 ± 0.12 *
+C9-70-24
+5.58 ± 0.14
+4.02 ± 0.14
+0.6 ± 0.1
+1 ± 0.1
+50.21 ± 3.91 *
+2.84 ± 0.18
+

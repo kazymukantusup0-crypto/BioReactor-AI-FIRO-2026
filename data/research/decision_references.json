@@ -1,0 +1,91 @@
+{
+  "schema_version": "7.5",
+  "sources": [
+    {
+      "id": "fnr-cattle-slurry-composition-2024",
+      "title": "Basisdaten Bioenergie Deutschland 2024",
+      "organization": "Fachagentur Nachwachsende Rohstoffe e. V.",
+      "year": 2023,
+      "url": "https://www.fnr.de/fileadmin/Projekte/2023/Mediathek/Broschuere_Basisdaten_Bioenergie_2023_web.pdf",
+      "locator": "Biogasausbeuten: Rindergülle, Methangehalt; source KTBL 2015",
+      "original_value": "55",
+      "original_unit": "vol-% CH4",
+      "normalized_value": 0.55,
+      "material": "cattle slurry",
+      "verification_status": "REVIEWED_PRIMARY_REFERENCE",
+      "limitations": "Reference calculation, not RM1 measurement. Process and moisture/reference conditions not specified sufficiently for direct transfer.",
+      "edition_year": 2024
+    },
+    {
+      "id": "fnr-cattle-slurry-composition-2006",
+      "title": "Handreichung Biogasgewinnung und -nutzung",
+      "organization": "FNR",
+      "year": 2006,
+      "url": "https://www.big-east.eu/downloads/FNR_HR_Biogas.pdf",
+      "locator": "Table 4-3: Gasertrag und Methangehalt von Wirtschaftsdüngern, Rindergülle",
+      "original_value": "60",
+      "original_unit": "vol-% CH4",
+      "normalized_value": 0.6,
+      "material": "cattle slurry",
+      "verification_status": "REVIEWED_PUBLISHER_REFERENCE_MIRROR",
+      "limitations": "Historical handbook reference, not same RM1 sample; gas moisture not explicit. 55–60% is a cross-reference sensitivity scenario, not a statistical interval."
+    },
+    {
+      "id": "fnr-energy-lhv",
+      "title": "Faustzahlen Biogas",
+      "organization": "FNR",
+      "year": null,
+      "url": "https://biogas.fnr.de/daten-und-fakten/faustzahlen",
+      "locator": "General conversions: 1 m3 methane, 9.97 kWh; Heizwert 36 MJ/m3 and 50 MJ/kg",
+      "original_value": "9.97",
+      "original_unit": "kWh/m3 CH4",
+      "normalized_value": 9.97,
+      "energy_basis": "LHV (Heizwert)",
+      "verification_status": "REVIEWED_PRIMARY_REFERENCE",
+      "limitations": "Dry/reference-volume compatibility with RM1 is assumed only in marked scenarios; no unconditional energy conversion from unknown wet/actual gas."
+    },
+    {
+      "id": "doe-sensible-heat",
+      "title": "DOE Fundamentals Handbook, Thermodynamics, Heat Transfer and Fluid Flow, Vol. 1",
+      "organization": "US Department of Energy",
+      "year": 1992,
+      "url": "https://www.energy.gov/documents/doe-hdbk-1012-92vol1",
+      "locator": "Sensible heat and heat capacity",
+      "verification_status": "ENGINEERING_FORMULA_REFERENCE",
+      "limitations": "Not a measured slurry heat capacity or vessel UA."
+    },
+    {
+      "id": "pnnl-heat-flow",
+      "title": "Building Science: Introduction to Heat Flow",
+      "organization": "Pacific Northwest National Laboratory",
+      "year": null,
+      "url": "https://basc.pnnl.gov/information/building-science-introduction-heat-flow",
+      "locator": "Steady heat transmission",
+      "verification_status": "ENGINEERING_FORMULA_REFERENCE",
+      "limitations": "Q_loss = UA deltaT time is a simplified steady approximation; geometry, insulation and UA are not inferred from vessel litres."
+    }
+  ],
+  "rejected_automatic_transfer": [
+    {
+      "url": "https://value4farm.eu/wp-content/uploads/2025/01/V4F-D2.6-PU.pdf",
+      "locator": "Table 10",
+      "reason": "Header labels heat capacity J/kg K but values 3.7, 4.0 and contextual average 3.81 kJ/kg K conflict. Do not silently copy as a measured property."
+    }
+  ],
+  "default_scenarios": {
+    "recovery_fraction": [
+      0.6,
+      0.8
+    ],
+    "methane_fraction": [
+      0.55,
+      0.6
+    ],
+    "thermal_efficiency": 0.8,
+    "electrical_efficiency": 0.25,
+    "chp_electrical_efficiency": 0.25,
+    "chp_thermal_efficiency": 0.45,
+    "basis": "HYPOTHETICAL_SCENARIO",
+    "notice": "Selected calculation scenarios, not measured device specifications, validated population bounds, or operating recommendations."
+  }
+}

@@ -1,0 +1,1884 @@
+{
+  "status": "ok",
+  "message": "Study-specific local evidence; no live internet search performed.",
+  "dossiers": [
+    {
+      "material": "cattle_manure",
+      "name": "Навоз КРС",
+      "scope_status": "CORE",
+      "selection_rationale": "Livestock manure; several distinct slurry and bedded studies.",
+      "physical_states": [
+        "slurry",
+        "bedded",
+        "fresh_solid",
+        "dry"
+      ],
+      "studies": [
+        {
+          "profile_id": "oliveira-rm1-2025-v1",
+          "source_id": "doi:10.1007/s43153-025-00592-x",
+          "physical_state": "slurry",
+          "animal_scope": null,
+          "preparation": "Untreated refrigerated cattle slurry; other forms excluded",
+          "ts_fraction": {
+            "original_value": "13.3 ± 0.61",
+            "original_unit": "% wet weight",
+            "low": 0.1269,
+            "high": 0.1391,
+            "normalized_unit": "kg TS/kg wet",
+            "locator": "Table 1, PDF page 3, journal page 739",
+            "method": "REPORTED_MEAN_PLUS_MINUS_SD_SENSITIVITY; not confidence bounds"
+          },
+          "vs_fraction_wet": {
+            "original_value": "10.8 ± 0.64",
+            "original_unit": "% wet weight",
+            "low": 0.1016,
+            "high": 0.1144,
+            "normalized_unit": "kg VS/kg wet",
+            "locator": "Table 1, PDF page 3, journal page 739",
+            "method": "REPORTED_MEAN_PLUS_MINUS_SD_SENSITIVITY; not percent TS, not confidence bounds"
+          },
+          "vs_fraction_of_ts": null,
+          "bmp_ml_ch4_g_vs": {
+            "original_value": "Untreated RM1 bar between major gridlines 200 and 250",
+            "original_unit": "NmL CH4/g VS",
+            "low": 200,
+            "high": 250,
+            "normalized_unit": "mL CH4/g VS at stated reference",
+            "locator": "Figure 1a, untreated RM1 bar only",
+            "method": "GRAPH_READ_ENVELOPE; coarse major-gridline bracket, not reported exact mean or uncertainty interval",
+            "asset_url": "https://media.springernature.com/lw685/springer-static/image/art%3A10.1007%2Fs43153-025-00592-x/MediaObjects/43153_2025_592_Fig1_HTML.jpg"
+          },
+          "density_kg_l": {
+            "original_value": "1.013",
+            "original_unit": "g/mL",
+            "low": 1.013,
+            "high": 1.013,
+            "normalized_unit": "kg/L",
+            "locator": "Materials and methods, economic analysis, Eq. 1",
+            "method": "REPORTED_POINT; variation not reported"
+          },
+          "conditions": {
+            "country": "Sweden",
+            "sample": "RM1 untreated raw cattle slurry, Sjukulla; refrigerated 4 °C for 12 days",
+            "bmp_method": "AMPTS II, triplicate, inoculum blank corrected",
+            "temperature_c": 37,
+            "duration_days": 27,
+            "ISR_VS": 1,
+            "gas_reference": "273.2 K; 1.01325 bar",
+            "gas_moisture_basis": "not explicitly stated",
+            "pretreatment": "none",
+            "limitations": "Single material and laboratory; frozen RM2 and treated samples excluded. Not a full-scale recovery guarantee."
+          },
+          "quality": "Reviewed local extraction of published experiment; not independent replication",
+          "gas_basis": null,
+          "provenance": "PUBLISHED_EXPERIMENT",
+          "transfer_limitations": []
+        },
+        {
+          "profile_id": "baek2020-bedded-cattle",
+          "source_id": "baek2020",
+          "physical_state": "bedded",
+          "animal_scope": null,
+          "preparation": "Manure with lignocellulosic bedding from beef/dairy pens; sample collection and pretreatment differ from RM1",
+          "ts_fraction": {
+            "low": 0.31,
+            "high": 0.31,
+            "original_value": "310.0 (SD 5.3)",
+            "original_unit": "g TS/kg wet",
+            "locator": "Table 1"
+          },
+          "vs_fraction_wet": {
+            "low": 0.2353,
+            "high": 0.2353,
+            "original_value": "235.3 (SD 5.8)",
+            "original_unit": "g VS/kg wet",
+            "locator": "Table 1"
+          },
+          "vs_fraction_of_ts": null,
+          "bmp_ml_ch4_g_vs": {
+            "low": 109.2,
+            "high": 109.2,
+            "original_value": "109.2",
+            "original_unit": "L CH4/kg VS",
+            "locator": "Results 3.2, pure CM run 1, PDF page 5",
+            "method": "REPORTED_EXPERIMENTAL_POINT; no invented uncertainty"
+          },
+          "density_kg_l": null,
+          "conditions": {
+            "temperature_c": 35,
+            "duration_days": 30,
+            "duration_kind": "BMP_INCUBATION",
+            "reactor_type": "250 mL bottles, 200 mL working volume; triplicate and blank corrected",
+            "inoculum": "Digestate from mesophilic food/pig-manure plant; 100 mL inoculum plus 100 mL substrate diluted to 10 g VS/L",
+            "mixing": "daily manual shaking",
+            "gas_basis": {
+              "temperature_k": 273.15,
+              "pressure_pa": 101325,
+              "moisture": "unknown"
+            },
+            "mixing_ratio_basis": "total solids, not wet mass"
+          },
+          "quality": "Reviewed local extraction of published experiment; not independent replication",
+          "gas_basis": {
+            "temperature_k": 273.15,
+            "pressure_pa": 101325,
+            "moisture": "unknown"
+          },
+          "provenance": "PUBLISHED_EXPERIMENT",
+          "transfer_limitations": []
+        },
+        {
+          "profile_id": "eftaxias2024-cattle",
+          "source_id": "eftaxias2024",
+          "physical_state": "slurry",
+          "animal_scope": [
+            "cattle"
+          ],
+          "preparation": "Specific Greek farm sample, refrigerated at4 C; paired TS/VS/BMP, subtype/bedding unspecified",
+          "ts_fraction": {
+            "low": 0.0831,
+            "high": 0.0831,
+            "locator": "Table1 p5",
+            "reported_spread": 0.0046,
+            "spread_type": "unspecified reported +/-; not interval"
+          },
+          "vs_fraction_wet": {
+            "low": 0.0701,
+            "high": 0.0701,
+            "locator": "Table1 p5",
+            "reported_spread": 0.0040999999999999995,
+            "spread_type": "unspecified reported +/-; not interval"
+          },
+          "vs_fraction_of_ts": null,
+          "bmp_ml_ch4_g_vs": {
+            "low": 276,
+            "high": 276,
+            "locator": "Table1 p5",
+            "reported_spread": 3,
+            "spread_type": "unspecified reported +/-; not interval"
+          },
+          "density_kg_l": null,
+          "conditions": {
+            "temperature_c": 38,
+            "duration_days": 20,
+            "duration_kind": "BMP_INCUBATION",
+            "reactor_type": "Anaerobic batch digesters, working volume 250 mL",
+            "inoculum": "Agricultural anaerobic digester treating manure and energy crops",
+            "substrate_to_inoculum_vs_ratio": 0.25,
+            "storage": "4 C in plastic containers until processing",
+            "mixing": "Manually once a day",
+            "measurement": "Inverse water column, acidic water pH2; alkaline trap for methane",
+            "gas_reference_text": "Converted to standard temperature and pressure conditions",
+            "gas_basis": null,
+            "gas_basis_missing": [
+              "Numerical STP temperature",
+              "Numerical STP pressure",
+              "Moisture correction not explicitly stated"
+            ]
+          },
+          "quality": "Reviewed local extraction of published experiment; not independent replication",
+          "gas_basis": null,
+          "provenance": "PUBLISHED_EXPERIMENT",
+          "transfer_limitations": [
+            "No density or packing information",
+            "Bird purpose and bedding of poultry sample unspecified",
+            "TS/VS/BMP are paired rows for study samples, not population intervals",
+            "Reported plus/minus type not defined in reviewed table; retain separately",
+            "Do not use Table3 technoeconomic rounded assumptions instead of measured Table1 values"
+          ]
+        }
+      ],
+      "partial_characterizations": [
+        {
+          "material": "cattle_manure",
+          "status": "PARTIAL_ONLY",
+          "density_profile_available": true,
+          "bmp_available": false,
+          "reason": "No coherent measured dry or straw-bedded cattle BMP/TS/VS/density set; dry and straw scenarios require explicit cross-study assumptions."
+        }
+      ],
+      "sources": [
+        {
+          "id": "doi:10.1007/s43153-025-00592-x",
+          "title": "Moderate thermal, alkaline and thermal-alkaline pretreatment of cattle manure: effects on methane production and economic feasibility",
+          "authors": [
+            "Helena Rodrigues Oliveira",
+            "Thuane Mendes Anacleto",
+            "Lisa Åsenius",
+            "Alex Enrich-Prast"
+          ],
+          "year": 2025,
+          "online_published": "2025-09-11",
+          "issue_year": 2026,
+          "doi": "10.1007/s43153-025-00592-x",
+          "url": "https://link.springer.com/article/10.1007/s43153-025-00592-x",
+          "license": "CC BY 4.0",
+          "review_method": "Manual review of primary article and original Figure 1; not an automatic full-text extraction",
+          "verification_status": "REVIEWED_PRIMARY",
+          "retrieval_limit": "Publisher robots disallows programmatic article/PDF downloads; no bypass. Public figure host was accessible under its own robots policy."
+        },
+        {
+          "id": "baek2020",
+          "doi": "10.3390/ijerph17134737",
+          "title": "Treatment of Cattle Manure by Anaerobic Co-Digestion with Food Waste and Pig Manure: Methane Yield and Synergistic Effect",
+          "authors": [
+            "Gahyun Baek",
+            "Danbee Kim",
+            "Jinsu Kim",
+            "Hanwoong Kim",
+            "Changsoo Lee"
+          ],
+          "year": 2020,
+          "published_at": "2020-07-01",
+          "url": "https://www.mdpi.com/1660-4601/17/13/4737",
+          "review_url": "https://pdfs.semanticscholar.org/8c32/8da3dc70a2964a51e0cfd2807c009edd691c.pdf",
+          "reviewed_sections": [
+            "Tables 1-2, Methods 2.1-2.3, Results 3.2, Equations 1-2"
+          ],
+          "verification_stage": "NUMERIC_DATA_VERIFIED",
+          "review_method": "Primary article PDF read through browser document extraction. Programmatic mirror download redirected across origins and was not followed. Publisher 429 and PMC CAPTCHA were not bypassed.",
+          "conditions": {
+            "temperature_c": 35,
+            "duration_days": 30,
+            "duration_kind": "BMP_INCUBATION",
+            "reactor_type": "250 mL bottles, 200 mL working volume; triplicate and blank corrected",
+            "inoculum": "Digestate from mesophilic food/pig-manure plant; 100 mL inoculum plus 100 mL substrate diluted to 10 g VS/L",
+            "mixing": "daily manual shaking",
+            "gas_basis": {
+              "temperature_k": 273.15,
+              "pressure_pa": 101325,
+              "moisture": "unknown"
+            },
+            "mixing_ratio_basis": "total solids, not wet mass"
+          }
+        },
+        {
+          "id": "eftaxias2024",
+          "doi": "10.3390/app14114957",
+          "title": "Techno-Economic Assessment of Anaerobic Digestion Technology for Small- and Medium-Sized Animal Husbandry Enterprises",
+          "authors": [
+            "Alexandros Eftaxias",
+            "Iliana Kolokotroni",
+            "Christos Michailidis",
+            "Panagiotis Charitidis",
+            "Vasileios Diamantis"
+          ],
+          "year": 2024,
+          "published_at": "2024-06-06",
+          "url": "https://doi.org/10.3390/app14114957",
+          "review_url": "https://pdfs.semanticscholar.org/d80d/aff8cb9be2d3f88f64471a7656ff12ceec8a.pdf",
+          "reviewed_sections": [
+            "Methods 2.2 (printed p3)",
+            "Table 1 and Figure 1 (printed p5)"
+          ],
+          "local_pdf": "reports/stage8_1/sources/eftaxias2024.pdf",
+          "conditions": {
+            "temperature_c": 38,
+            "duration_days": 20,
+            "duration_kind": "BMP_INCUBATION",
+            "reactor_type": "Anaerobic batch digesters, working volume 250 mL",
+            "inoculum": "Agricultural anaerobic digester treating manure and energy crops",
+            "substrate_to_inoculum_vs_ratio": 0.25,
+            "storage": "4 C in plastic containers until processing",
+            "mixing": "Manually once a day",
+            "measurement": "Inverse water column, acidic water pH2; alkaline trap for methane",
+            "gas_reference_text": "Converted to standard temperature and pressure conditions",
+            "gas_basis": null,
+            "gas_basis_missing": [
+              "Numerical STP temperature",
+              "Numerical STP pressure",
+              "Moisture correction not explicitly stated"
+            ]
+          },
+          "methane_fraction_reference": {
+            "mean": 0.62,
+            "reported_plus_minus": 0.03,
+            "scope": "Overall average across ALL tested samples; not material-specific and not a range with verified coverage"
+          },
+          "limitations": [
+            "No density or packing information",
+            "Bird purpose and bedding of poultry sample unspecified",
+            "TS/VS/BMP are paired rows for study samples, not population intervals",
+            "Reported plus/minus type not defined in reviewed table; retain separately",
+            "Do not use Table3 technoeconomic rounded assumptions instead of measured Table1 values"
+          ],
+          "pdf_sha256": "6eecfa8350cb69f0faa285847fcaf331a6774af5bcce0a8e273365554473431a"
+        }
+      ],
+      "inhibition_risks": [
+        "bedding and slow hydrolysis",
+        "ammonia; verify composition"
+      ],
+      "organic_loading_limit": null,
+      "loading_limit_note": "No universal safe OLR established. Study-specific loading, ISR and duration belong to their original reactor and feeding regime.",
+      "co_digestion": "No universal synergy or compatible mixing ratio inferred; compare specific mixed-substrate studies before transfer.",
+      "unknowns": [
+        "batch composition",
+        "inoculum activity",
+        "plant recovery",
+        "safe loading limit"
+      ],
+      "search_scope": "LOCAL_REVIEWED_CORPUS",
+      "live_search_performed": false
+    },
+    {
+      "material": "swine_manure",
+      "name": "Свиной навоз",
+      "scope_status": "CORE",
+      "selection_rationale": "Livestock manure; independent slurry experiments and method comparison.",
+      "physical_states": [
+        "slurry",
+        "fresh_solid"
+      ],
+      "studies": [
+        {
+          "profile_id": "pham2013-pig-vdi",
+          "source_id": "pham2013",
+          "physical_state": "slurry",
+          "animal_scope": null,
+          "preparation": "Fattening pig manure from Fangel biogas plant; VDI assay at 37 C",
+          "ts_fraction": {
+            "low": 0.0318,
+            "high": 0.0318,
+            "locator": "Table 2: 3.18% total mass; SD .2 percentage points"
+          },
+          "vs_fraction_wet": {
+            "low": 0.02275,
+            "high": 0.02275,
+            "locator": "Table 2: 22.75 g/kg fresh mass; SD .6 g/kg"
+          },
+          "vs_fraction_of_ts": null,
+          "bmp_ml_ch4_g_vs": {
+            "low": 207.84,
+            "high": 207.84,
+            "locator": "Table 3: VDI CH4 pig, 207.84 NL/kg VS; reported SD 1.97, not a prediction interval"
+          },
+          "density_kg_l": null,
+          "conditions": {
+            "temperature_c": 37,
+            "duration_days": null,
+            "endpoint": "Gas production rate below 1% of accumulated gas; no fixed universal number of days",
+            "reactor_type": "VDI 4630: 1 L glass bottles, 620 mL mixture, 150 mL medium; inoculum/substrate 2:1 VS",
+            "gas_basis": {
+              "temperature_k": 273,
+              "pressure_pa": 101300,
+              "moisture": "dry"
+            }
+          },
+          "quality": "Reviewed local extraction of published experiment; not independent replication",
+          "gas_basis": {
+            "temperature_k": 273,
+            "pressure_pa": 101300,
+            "moisture": "dry"
+          },
+          "provenance": "PUBLISHED_EXPERIMENT",
+          "transfer_limitations": "Fangel fattening pig sample, VDI method only; other methods and temperatures not pooled. Density absent."
+        },
+        {
+          "profile_id": "eftaxias2024-pig",
+          "source_id": "eftaxias2024",
+          "physical_state": "slurry",
+          "animal_scope": [
+            "pig"
+          ],
+          "preparation": "Specific Greek farm sample, refrigerated at4 C; paired TS/VS/BMP, subtype/bedding unspecified",
+          "ts_fraction": {
+            "low": 0.0223,
+            "high": 0.0223,
+            "locator": "Table1 p5",
+            "reported_spread": 0.0025,
+            "spread_type": "unspecified reported +/-; not interval"
+          },
+          "vs_fraction_wet": {
+            "low": 0.015099999999999999,
+            "high": 0.015099999999999999,
+            "locator": "Table1 p5",
+            "reported_spread": 0.0035,
+            "spread_type": "unspecified reported +/-; not interval"
+          },
+          "vs_fraction_of_ts": null,
+          "bmp_ml_ch4_g_vs": {
+            "low": 172,
+            "high": 172,
+            "locator": "Table1 p5",
+            "reported_spread": 2,
+            "spread_type": "unspecified reported +/-; not interval"
+          },
+          "density_kg_l": null,
+          "conditions": {
+            "temperature_c": 38,
+            "duration_days": 20,
+            "duration_kind": "BMP_INCUBATION",
+            "reactor_type": "Anaerobic batch digesters, working volume 250 mL",
+            "inoculum": "Agricultural anaerobic digester treating manure and energy crops",
+            "substrate_to_inoculum_vs_ratio": 0.25,
+            "storage": "4 C in plastic containers until processing",
+            "mixing": "Manually once a day",
+            "measurement": "Inverse water column, acidic water pH2; alkaline trap for methane",
+            "gas_reference_text": "Converted to standard temperature and pressure conditions",
+            "gas_basis": null,
+            "gas_basis_missing": [
+              "Numerical STP temperature",
+              "Numerical STP pressure",
+              "Moisture correction not explicitly stated"
+            ]
+          },
+          "quality": "Reviewed local extraction of published experiment; not independent replication",
+          "gas_basis": null,
+          "provenance": "PUBLISHED_EXPERIMENT",
+          "transfer_limitations": [
+            "No density or packing information",
+            "Bird purpose and bedding of poultry sample unspecified",
+            "TS/VS/BMP are paired rows for study samples, not population intervals",
+            "Reported plus/minus type not defined in reviewed table; retain separately",
+            "Do not use Table3 technoeconomic rounded assumptions instead of measured Table1 values"
+          ]
+        }
+      ],
+      "partial_characterizations": [
+        {
+          "material": "swine_manure",
+          "material_state": "slurry",
+          "source_id": "baek2020",
+          "verification_stage": "NUMERIC_DATA_VERIFIED",
+          "ts_fraction": 0.0706,
+          "vs_fraction_wet": 0.0565,
+          "cn_ratio": 22.1,
+          "ph": 7.6,
+          "locator": "Table 1",
+          "bmp_ml_g_vs": null,
+          "note": "Published model vertex 343.8 is a fitted coefficient, not a measured assay result; not substituted for measured BMP."
+        },
+        {
+          "material": "swine_manure",
+          "status": "PARTIAL_ONLY",
+          "density_profile_available": true,
+          "bmp_available": true,
+          "reason": "Pham VDI profile approved for slurry only; Baek pure-pig RSM vertex remains excluded."
+        },
+        {
+          "material": "swine_manure",
+          "status": "PARTIAL_SCOPE_REQUIRES_MEASUREMENTS",
+          "reason": "Liquid pig profiles available; solid/bedded/dry pig BMP not transferred from cattle."
+        }
+      ],
+      "sources": [
+        {
+          "id": "pham2013",
+          "doi": "10.5713/ajas.2012.12623",
+          "title": "Validation and Recommendation of Methods to Measure Biogas Production Potential of Animal Manure",
+          "authors": [
+            "C. H. Pham",
+            "J. M. Triolo",
+            "T. T. T. Cu",
+            "L. Pedersen",
+            "S. G. Sommer"
+          ],
+          "year": 2013,
+          "url": "https://doi.org/10.5713/ajas.2012.12623",
+          "review_url": "https://pdfs.semanticscholar.org/11ec/6cf5527fb8cd3d44f99641d82ec645b15b8f.pdf",
+          "verification_stage": "NUMERIC_DATA_VERIFIED",
+          "reviewed_sections": [
+            "Tables 2 and 3, Methods, Equation 1; table screenshots visually checked"
+          ],
+          "conditions": {
+            "temperature_c": 37,
+            "duration_days": null,
+            "endpoint": "Gas production rate below 1% of accumulated gas; no fixed universal number of days",
+            "reactor_type": "VDI 4630: 1 L glass bottles, 620 mL mixture, 150 mL medium; inoculum/substrate 2:1 VS",
+            "gas_basis": {
+              "temperature_k": 273,
+              "pressure_pa": 101300,
+              "moisture": "dry"
+            }
+          },
+          "limitations": "Fangel fattening pig sample, VDI method only; other methods and temperatures not pooled. Density absent."
+        },
+        {
+          "id": "eftaxias2024",
+          "doi": "10.3390/app14114957",
+          "title": "Techno-Economic Assessment of Anaerobic Digestion Technology for Small- and Medium-Sized Animal Husbandry Enterprises",
+          "authors": [
+            "Alexandros Eftaxias",
+            "Iliana Kolokotroni",
+            "Christos Michailidis",
+            "Panagiotis Charitidis",
+            "Vasileios Diamantis"
+          ],
+          "year": 2024,
+          "published_at": "2024-06-06",
+          "url": "https://doi.org/10.3390/app14114957",
+          "review_url": "https://pdfs.semanticscholar.org/d80d/aff8cb9be2d3f88f64471a7656ff12ceec8a.pdf",
+          "reviewed_sections": [
+            "Methods 2.2 (printed p3)",
+            "Table 1 and Figure 1 (printed p5)"
+          ],
+          "local_pdf": "reports/stage8_1/sources/eftaxias2024.pdf",
+          "conditions": {
+            "temperature_c": 38,
+            "duration_days": 20,
+            "duration_kind": "BMP_INCUBATION",
+            "reactor_type": "Anaerobic batch digesters, working volume 250 mL",
+            "inoculum": "Agricultural anaerobic digester treating manure and energy crops",
+            "substrate_to_inoculum_vs_ratio": 0.25,
+            "storage": "4 C in plastic containers until processing",
+            "mixing": "Manually once a day",
+            "measurement": "Inverse water column, acidic water pH2; alkaline trap for methane",
+            "gas_reference_text": "Converted to standard temperature and pressure conditions",
+            "gas_basis": null,
+            "gas_basis_missing": [
+              "Numerical STP temperature",
+              "Numerical STP pressure",
+              "Moisture correction not explicitly stated"
+            ]
+          },
+          "methane_fraction_reference": {
+            "mean": 0.62,
+            "reported_plus_minus": 0.03,
+            "scope": "Overall average across ALL tested samples; not material-specific and not a range with verified coverage"
+          },
+          "limitations": [
+            "No density or packing information",
+            "Bird purpose and bedding of poultry sample unspecified",
+            "TS/VS/BMP are paired rows for study samples, not population intervals",
+            "Reported plus/minus type not defined in reviewed table; retain separately",
+            "Do not use Table3 technoeconomic rounded assumptions instead of measured Table1 values"
+          ],
+          "pdf_sha256": "6eecfa8350cb69f0faa285847fcaf331a6774af5bcce0a8e273365554473431a"
+        },
+        {
+          "id": "baek2020",
+          "doi": "10.3390/ijerph17134737",
+          "title": "Treatment of Cattle Manure by Anaerobic Co-Digestion with Food Waste and Pig Manure: Methane Yield and Synergistic Effect",
+          "authors": [
+            "Gahyun Baek",
+            "Danbee Kim",
+            "Jinsu Kim",
+            "Hanwoong Kim",
+            "Changsoo Lee"
+          ],
+          "year": 2020,
+          "published_at": "2020-07-01",
+          "url": "https://www.mdpi.com/1660-4601/17/13/4737",
+          "review_url": "https://pdfs.semanticscholar.org/8c32/8da3dc70a2964a51e0cfd2807c009edd691c.pdf",
+          "reviewed_sections": [
+            "Tables 1-2, Methods 2.1-2.3, Results 3.2, Equations 1-2"
+          ],
+          "verification_stage": "NUMERIC_DATA_VERIFIED",
+          "review_method": "Primary article PDF read through browser document extraction. Programmatic mirror download redirected across origins and was not followed. Publisher 429 and PMC CAPTCHA were not bypassed.",
+          "conditions": {
+            "temperature_c": 35,
+            "duration_days": 30,
+            "duration_kind": "BMP_INCUBATION",
+            "reactor_type": "250 mL bottles, 200 mL working volume; triplicate and blank corrected",
+            "inoculum": "Digestate from mesophilic food/pig-manure plant; 100 mL inoculum plus 100 mL substrate diluted to 10 g VS/L",
+            "mixing": "daily manual shaking",
+            "gas_basis": {
+              "temperature_k": 273.15,
+              "pressure_pa": 101325,
+              "moisture": "unknown"
+            },
+            "mixing_ratio_basis": "total solids, not wet mass"
+          }
+        }
+      ],
+      "inhibition_risks": [
+        "ammonia",
+        "volatile fatty acids"
+      ],
+      "organic_loading_limit": null,
+      "loading_limit_note": "No universal safe OLR established. Study-specific loading, ISR and duration belong to their original reactor and feeding regime.",
+      "co_digestion": "No universal synergy or compatible mixing ratio inferred; compare specific mixed-substrate studies before transfer.",
+      "unknowns": [
+        "batch composition",
+        "inoculum activity",
+        "plant recovery",
+        "safe loading limit"
+      ],
+      "search_scope": "LOCAL_REVIEWED_CORPUS",
+      "live_search_performed": false
+    },
+    {
+      "material": "poultry_manure",
+      "name": "Птичий помёт",
+      "scope_status": "CORE",
+      "selection_rationale": "Poultry farming; fresh droppings and dry-batch evidence must remain separate.",
+      "physical_states": [
+        "fresh_solid",
+        "bedded",
+        "dry"
+      ],
+      "studies": [
+        {
+          "profile_id": "eftaxias2024-poultry",
+          "source_id": "eftaxias2024",
+          "physical_state": "fresh_solid",
+          "animal_scope": [
+            "poultry"
+          ],
+          "preparation": "Specific Greek farm sample, refrigerated at4 C; paired TS/VS/BMP, subtype/bedding unspecified",
+          "ts_fraction": {
+            "low": 0.6925,
+            "high": 0.6925,
+            "locator": "Table1 p5",
+            "reported_spread": 0.0040999999999999995,
+            "spread_type": "unspecified reported +/-; not interval"
+          },
+          "vs_fraction_wet": {
+            "low": 0.5546,
+            "high": 0.5546,
+            "locator": "Table1 p5",
+            "reported_spread": 0.0065,
+            "spread_type": "unspecified reported +/-; not interval"
+          },
+          "vs_fraction_of_ts": null,
+          "bmp_ml_ch4_g_vs": {
+            "low": 320,
+            "high": 320,
+            "locator": "Table1 p5",
+            "reported_spread": 19,
+            "spread_type": "unspecified reported +/-; not interval"
+          },
+          "density_kg_l": null,
+          "conditions": {
+            "temperature_c": 38,
+            "duration_days": 20,
+            "duration_kind": "BMP_INCUBATION",
+            "reactor_type": "Anaerobic batch digesters, working volume 250 mL",
+            "inoculum": "Agricultural anaerobic digester treating manure and energy crops",
+            "substrate_to_inoculum_vs_ratio": 0.25,
+            "storage": "4 C in plastic containers until processing",
+            "mixing": "Manually once a day",
+            "measurement": "Inverse water column, acidic water pH2; alkaline trap for methane",
+            "gas_reference_text": "Converted to standard temperature and pressure conditions",
+            "gas_basis": null,
+            "gas_basis_missing": [
+              "Numerical STP temperature",
+              "Numerical STP pressure",
+              "Moisture correction not explicitly stated"
+            ]
+          },
+          "quality": "Reviewed local extraction of published experiment; not independent replication",
+          "gas_basis": null,
+          "provenance": "PUBLISHED_EXPERIMENT",
+          "transfer_limitations": [
+            "No density or packing information",
+            "Bird purpose and bedding of poultry sample unspecified",
+            "TS/VS/BMP are paired rows for study samples, not population intervals",
+            "Reported plus/minus type not defined in reviewed table; retain separately",
+            "Do not use Table3 technoeconomic rounded assumptions instead of measured Table1 values"
+          ]
+        },
+        {
+          "profile_id": "ramos2019-layers-HD-sample1",
+          "source_id": "ramos2019",
+          "physical_state": "fresh_solid",
+          "animal_scope": [
+            "poultry"
+          ],
+          "preparation": "Crushed, wet diluted assay on fresh conveyor-belt laying-hen Sample1; frozen after characterization",
+          "ts_fraction": {
+            "low": 0.386,
+            "high": 0.386,
+            "locator": "SupplementTableS1 HD Sample1",
+            "reported_spread": 0.021,
+            "spread_type": "unspecified reported +/-; not interval"
+          },
+          "vs_fraction_wet": {
+            "low": 0.286798,
+            "high": 0.286798,
+            "locator": "Derived from paired SupplementTableS1 TS*VS/TS Sample1"
+          },
+          "vs_fraction_of_ts": null,
+          "bmp_ml_ch4_g_vs": {
+            "low": 282.1,
+            "high": 282.1,
+            "locator": "BMP results p6",
+            "reported_spread": 3.98,
+            "spread_type": "standard error"
+          },
+          "density_kg_l": null,
+          "conditions": {
+            "temperature_c": 37,
+            "duration_days": 56,
+            "duration_kind": "BMP_INCUBATION",
+            "reactor_type": "500 mL reactors; wet diluted crushed substrates",
+            "inoculum": "Gran Canaria OFMSW/wastewater sludge mesophilic digester, pre-digested",
+            "substrate_to_inoculum_vs_max_ratio": 0.5,
+            "storage": "Fresh conveyor-belt hen droppings, TS/VS measured before freezing at -20 C",
+            "mixing": "Daily manual stirring",
+            "measurement": "Inverted 500 mL cylinders, NaOH2.5% absorbs CO2, volumetric CH4",
+            "replicates": "Hen droppings triplicate; inoculum blanks duplicate",
+            "gas_reference_text": "No explicit standardization reference found in reviewed full text",
+            "gas_basis": null,
+            "gas_basis_missing": [
+              "Reference temperature",
+              "Reference pressure",
+              "Moisture correction"
+            ]
+          },
+          "quality": "Reviewed local extraction of published experiment; not independent replication",
+          "gas_basis": null,
+          "provenance": "PUBLISHED_EXPERIMENT",
+          "transfer_limitations": [
+            "Laying hens, conventional cage farms, Canary Islands; not broiler litter",
+            "No density",
+            "No declared bed material; droppings collected directly from belts",
+            "Sample1 match is supported by first-sample C/N7.18 and Table1 charge24.3g with6.95gVS; do not pool later Sample2/3 used in continuous-stage mixtures",
+            "56d is assay duration, not recommended full-scale cycle",
+            "All gas values need explicit reference-compatibility assumption before pooling with normal volumes"
+          ]
+        }
+      ],
+      "partial_characterizations": [
+        {
+          "material": "poultry_manure",
+          "status": "PARTIAL_ONLY",
+          "density_profile_available": true,
+          "bmp_available": false,
+          "reason": "Reference density only; ammonia-sensitive material, no approved matched BMP set."
+        },
+        {
+          "material": "poultry_manure",
+          "status": "PARTIAL_SCOPE_REQUIRES_MEASUREMENTS",
+          "reason": "Broiler/turkey/bedded/moist slurry are not interchangeable with the two paired samples; specific conditions required."
+        }
+      ],
+      "sources": [
+        {
+          "id": "eftaxias2024",
+          "doi": "10.3390/app14114957",
+          "title": "Techno-Economic Assessment of Anaerobic Digestion Technology for Small- and Medium-Sized Animal Husbandry Enterprises",
+          "authors": [
+            "Alexandros Eftaxias",
+            "Iliana Kolokotroni",
+            "Christos Michailidis",
+            "Panagiotis Charitidis",
+            "Vasileios Diamantis"
+          ],
+          "year": 2024,
+          "published_at": "2024-06-06",
+          "url": "https://doi.org/10.3390/app14114957",
+          "review_url": "https://pdfs.semanticscholar.org/d80d/aff8cb9be2d3f88f64471a7656ff12ceec8a.pdf",
+          "reviewed_sections": [
+            "Methods 2.2 (printed p3)",
+            "Table 1 and Figure 1 (printed p5)"
+          ],
+          "local_pdf": "reports/stage8_1/sources/eftaxias2024.pdf",
+          "conditions": {
+            "temperature_c": 38,
+            "duration_days": 20,
+            "duration_kind": "BMP_INCUBATION",
+            "reactor_type": "Anaerobic batch digesters, working volume 250 mL",
+            "inoculum": "Agricultural anaerobic digester treating manure and energy crops",
+            "substrate_to_inoculum_vs_ratio": 0.25,
+            "storage": "4 C in plastic containers until processing",
+            "mixing": "Manually once a day",
+            "measurement": "Inverse water column, acidic water pH2; alkaline trap for methane",
+            "gas_reference_text": "Converted to standard temperature and pressure conditions",
+            "gas_basis": null,
+            "gas_basis_missing": [
+              "Numerical STP temperature",
+              "Numerical STP pressure",
+              "Moisture correction not explicitly stated"
+            ]
+          },
+          "methane_fraction_reference": {
+            "mean": 0.62,
+            "reported_plus_minus": 0.03,
+            "scope": "Overall average across ALL tested samples; not material-specific and not a range with verified coverage"
+          },
+          "limitations": [
+            "No density or packing information",
+            "Bird purpose and bedding of poultry sample unspecified",
+            "TS/VS/BMP are paired rows for study samples, not population intervals",
+            "Reported plus/minus type not defined in reviewed table; retain separately",
+            "Do not use Table3 technoeconomic rounded assumptions instead of measured Table1 values"
+          ],
+          "pdf_sha256": "6eecfa8350cb69f0faa285847fcaf331a6774af5bcce0a8e273365554473431a"
+        },
+        {
+          "id": "ramos2019",
+          "doi": "10.5424/sjar/2019172-14577",
+          "title": "Evaluation of poultry manure and goat cheese whey anaerobic co-digestion",
+          "authors": [
+            "Juan L. Ramos-Suárez",
+            "Claudia L. Vargas-Avendaño",
+            "Javier Mata-González",
+            "Ángeles Camacho-Pérez"
+          ],
+          "year": 2019,
+          "url": "https://doi.org/10.5424/sjar/2019172-14577",
+          "review_url": "https://sjar.revistas.csic.es/index.php/sjar/article/download/14577/4402/",
+          "supplement_url": "https://sjar.revistas.csic.es/index.php/sjar/article/download/14577/5559/",
+          "reviewed_sections": [
+            "Substrates and inoculum pp2-3",
+            "BMP assays and Table1 p3",
+            "BMP results p6",
+            "Supplementary Table S1, HD Sample1"
+          ],
+          "local_pdf": "reports/stage8_1/sources/ramos2019.pdf",
+          "conditions": {
+            "temperature_c": 37,
+            "duration_days": 56,
+            "duration_kind": "BMP_INCUBATION",
+            "reactor_type": "500 mL reactors; wet diluted crushed substrates",
+            "inoculum": "Gran Canaria OFMSW/wastewater sludge mesophilic digester, pre-digested",
+            "substrate_to_inoculum_vs_max_ratio": 0.5,
+            "storage": "Fresh conveyor-belt hen droppings, TS/VS measured before freezing at -20 C",
+            "mixing": "Daily manual stirring",
+            "measurement": "Inverted 500 mL cylinders, NaOH2.5% absorbs CO2, volumetric CH4",
+            "replicates": "Hen droppings triplicate; inoculum blanks duplicate",
+            "gas_reference_text": "No explicit standardization reference found in reviewed full text",
+            "gas_basis": null,
+            "gas_basis_missing": [
+              "Reference temperature",
+              "Reference pressure",
+              "Moisture correction"
+            ]
+          },
+          "limitations": [
+            "Laying hens, conventional cage farms, Canary Islands; not broiler litter",
+            "No density",
+            "No declared bed material; droppings collected directly from belts",
+            "Sample1 match is supported by first-sample C/N7.18 and Table1 charge24.3g with6.95gVS; do not pool later Sample2/3 used in continuous-stage mixtures",
+            "56d is assay duration, not recommended full-scale cycle",
+            "All gas values need explicit reference-compatibility assumption before pooling with normal volumes"
+          ],
+          "pdf_sha256": "391f49721a2f1813dce69f9963ad918908a992452202b47d829037b88c7a3c62"
+        }
+      ],
+      "inhibition_risks": [
+        "nitrogen/ammonia; measure before loading"
+      ],
+      "organic_loading_limit": null,
+      "loading_limit_note": "No universal safe OLR established. Study-specific loading, ISR and duration belong to their original reactor and feeding regime.",
+      "co_digestion": "No universal synergy or compatible mixing ratio inferred; compare specific mixed-substrate studies before transfer.",
+      "unknowns": [
+        "batch composition",
+        "inoculum activity",
+        "plant recovery",
+        "safe loading limit"
+      ],
+      "search_scope": "LOCAL_REVIEWED_CORPUS",
+      "live_search_performed": false
+    },
+    {
+      "material": "sheep_goat_manure",
+      "name": "Овечий и козий навоз",
+      "scope_status": "CORE",
+      "selection_rationale": "Sheep/goat husbandry relevant to Kazakhstan; species-specific samples retained.",
+      "physical_states": [
+        "fresh_solid",
+        "dry"
+      ],
+      "studies": [
+        {
+          "profile_id": "eftaxias2024-sheep",
+          "source_id": "eftaxias2024",
+          "physical_state": "fresh_solid",
+          "animal_scope": [
+            "sheep"
+          ],
+          "preparation": "Specific Greek farm sample, refrigerated at4 C; paired TS/VS/BMP, subtype/bedding unspecified",
+          "ts_fraction": {
+            "low": 0.3522,
+            "high": 0.3522,
+            "locator": "Table1 p5",
+            "reported_spread": 0.0144,
+            "spread_type": "unspecified reported +/-; not interval"
+          },
+          "vs_fraction_wet": {
+            "low": 0.2363,
+            "high": 0.2363,
+            "locator": "Table1 p5",
+            "reported_spread": 0.0089,
+            "spread_type": "unspecified reported +/-; not interval"
+          },
+          "vs_fraction_of_ts": null,
+          "bmp_ml_ch4_g_vs": {
+            "low": 252,
+            "high": 252,
+            "locator": "Table1 p5",
+            "reported_spread": 6,
+            "spread_type": "unspecified reported +/-; not interval"
+          },
+          "density_kg_l": null,
+          "conditions": {
+            "temperature_c": 38,
+            "duration_days": 20,
+            "duration_kind": "BMP_INCUBATION",
+            "reactor_type": "Anaerobic batch digesters, working volume 250 mL",
+            "inoculum": "Agricultural anaerobic digester treating manure and energy crops",
+            "substrate_to_inoculum_vs_ratio": 0.25,
+            "storage": "4 C in plastic containers until processing",
+            "mixing": "Manually once a day",
+            "measurement": "Inverse water column, acidic water pH2; alkaline trap for methane",
+            "gas_reference_text": "Converted to standard temperature and pressure conditions",
+            "gas_basis": null,
+            "gas_basis_missing": [
+              "Numerical STP temperature",
+              "Numerical STP pressure",
+              "Moisture correction not explicitly stated"
+            ]
+          },
+          "quality": "Reviewed local extraction of published experiment; not independent replication",
+          "gas_basis": null,
+          "provenance": "PUBLISHED_EXPERIMENT",
+          "transfer_limitations": [
+            "No density or packing information",
+            "Bird purpose and bedding of poultry sample unspecified",
+            "TS/VS/BMP are paired rows for study samples, not population intervals",
+            "Reported plus/minus type not defined in reviewed table; retain separately",
+            "Do not use Table3 technoeconomic rounded assumptions instead of measured Table1 values"
+          ]
+        },
+        {
+          "profile_id": "eftaxias2024-goat",
+          "source_id": "eftaxias2024",
+          "physical_state": "fresh_solid",
+          "animal_scope": [
+            "goat"
+          ],
+          "preparation": "Specific Greek farm sample, refrigerated at4 C; paired TS/VS/BMP, subtype/bedding unspecified",
+          "ts_fraction": {
+            "low": 0.717,
+            "high": 0.717,
+            "locator": "Table1 p5",
+            "reported_spread": 0.0034,
+            "spread_type": "unspecified reported +/-; not interval"
+          },
+          "vs_fraction_wet": {
+            "low": 0.606,
+            "high": 0.606,
+            "locator": "Table1 p5",
+            "reported_spread": 0.0224,
+            "spread_type": "unspecified reported +/-; not interval"
+          },
+          "vs_fraction_of_ts": null,
+          "bmp_ml_ch4_g_vs": {
+            "low": 227,
+            "high": 227,
+            "locator": "Table1 p5",
+            "reported_spread": 9,
+            "spread_type": "unspecified reported +/-; not interval"
+          },
+          "density_kg_l": null,
+          "conditions": {
+            "temperature_c": 38,
+            "duration_days": 20,
+            "duration_kind": "BMP_INCUBATION",
+            "reactor_type": "Anaerobic batch digesters, working volume 250 mL",
+            "inoculum": "Agricultural anaerobic digester treating manure and energy crops",
+            "substrate_to_inoculum_vs_ratio": 0.25,
+            "storage": "4 C in plastic containers until processing",
+            "mixing": "Manually once a day",
+            "measurement": "Inverse water column, acidic water pH2; alkaline trap for methane",
+            "gas_reference_text": "Converted to standard temperature and pressure conditions",
+            "gas_basis": null,
+            "gas_basis_missing": [
+              "Numerical STP temperature",
+              "Numerical STP pressure",
+              "Moisture correction not explicitly stated"
+            ]
+          },
+          "quality": "Reviewed local extraction of published experiment; not independent replication",
+          "gas_basis": null,
+          "provenance": "PUBLISHED_EXPERIMENT",
+          "transfer_limitations": [
+            "No density or packing information",
+            "Bird purpose and bedding of poultry sample unspecified",
+            "TS/VS/BMP are paired rows for study samples, not population intervals",
+            "Reported plus/minus type not defined in reviewed table; retain separately",
+            "Do not use Table3 technoeconomic rounded assumptions instead of measured Table1 values"
+          ]
+        }
+      ],
+      "partial_characterizations": [
+        {
+          "material": "sheep_goat_manure",
+          "status": "PARTIAL_ONLY",
+          "density_profile_available": true,
+          "bmp_available": false,
+          "reason": "Reference density only; no approved local matched BMP set."
+        }
+      ],
+      "sources": [
+        {
+          "id": "eftaxias2024",
+          "doi": "10.3390/app14114957",
+          "title": "Techno-Economic Assessment of Anaerobic Digestion Technology for Small- and Medium-Sized Animal Husbandry Enterprises",
+          "authors": [
+            "Alexandros Eftaxias",
+            "Iliana Kolokotroni",
+            "Christos Michailidis",
+            "Panagiotis Charitidis",
+            "Vasileios Diamantis"
+          ],
+          "year": 2024,
+          "published_at": "2024-06-06",
+          "url": "https://doi.org/10.3390/app14114957",
+          "review_url": "https://pdfs.semanticscholar.org/d80d/aff8cb9be2d3f88f64471a7656ff12ceec8a.pdf",
+          "reviewed_sections": [
+            "Methods 2.2 (printed p3)",
+            "Table 1 and Figure 1 (printed p5)"
+          ],
+          "local_pdf": "reports/stage8_1/sources/eftaxias2024.pdf",
+          "conditions": {
+            "temperature_c": 38,
+            "duration_days": 20,
+            "duration_kind": "BMP_INCUBATION",
+            "reactor_type": "Anaerobic batch digesters, working volume 250 mL",
+            "inoculum": "Agricultural anaerobic digester treating manure and energy crops",
+            "substrate_to_inoculum_vs_ratio": 0.25,
+            "storage": "4 C in plastic containers until processing",
+            "mixing": "Manually once a day",
+            "measurement": "Inverse water column, acidic water pH2; alkaline trap for methane",
+            "gas_reference_text": "Converted to standard temperature and pressure conditions",
+            "gas_basis": null,
+            "gas_basis_missing": [
+              "Numerical STP temperature",
+              "Numerical STP pressure",
+              "Moisture correction not explicitly stated"
+            ]
+          },
+          "methane_fraction_reference": {
+            "mean": 0.62,
+            "reported_plus_minus": 0.03,
+            "scope": "Overall average across ALL tested samples; not material-specific and not a range with verified coverage"
+          },
+          "limitations": [
+            "No density or packing information",
+            "Bird purpose and bedding of poultry sample unspecified",
+            "TS/VS/BMP are paired rows for study samples, not population intervals",
+            "Reported plus/minus type not defined in reviewed table; retain separately",
+            "Do not use Table3 technoeconomic rounded assumptions instead of measured Table1 values"
+          ],
+          "pdf_sha256": "6eecfa8350cb69f0faa285847fcaf331a6774af5bcce0a8e273365554473431a"
+        }
+      ],
+      "inhibition_risks": [
+        "specific composition and bedding need review"
+      ],
+      "organic_loading_limit": null,
+      "loading_limit_note": "No universal safe OLR established. Study-specific loading, ISR and duration belong to their original reactor and feeding regime.",
+      "co_digestion": "No universal synergy or compatible mixing ratio inferred; compare specific mixed-substrate studies before transfer.",
+      "unknowns": [
+        "batch composition",
+        "inoculum activity",
+        "plant recovery",
+        "safe loading limit"
+      ],
+      "search_scope": "LOCAL_REVIEWED_CORPUS",
+      "live_search_performed": false
+    },
+    {
+      "material": "horse_manure",
+      "name": "Конский навоз",
+      "scope_status": "CORE",
+      "selection_rationale": "Horse husbandry; dung, bedding and storage have distinct evidence.",
+      "physical_states": [
+        "bedded",
+        "fresh_solid"
+      ],
+      "studies": [
+        {
+          "profile_id": "monch2013-horse-dung-A",
+          "source_id": "monch2013",
+          "physical_state": "fresh_solid",
+          "animal_scope": null,
+          "preparation": "Barn A; dried 60 C, milled 1 mm before HBT. No population interval.",
+          "ts_fraction": {
+            "low": 0.2319,
+            "high": 0.2319,
+            "locator": "Tables 3 and 8, barn A: TS 23.19% FM, VS 20.51% FM, observed 0.176 Nm3 CH4/kg VS"
+          },
+          "vs_fraction_wet": {
+            "low": 0.2051,
+            "high": 0.2051,
+            "locator": "Tables 3 and 8, barn A: TS 23.19% FM, VS 20.51% FM, observed 0.176 Nm3 CH4/kg VS"
+          },
+          "vs_fraction_of_ts": null,
+          "bmp_ml_ch4_g_vs": {
+            "low": 176,
+            "high": 176,
+            "locator": "Tables 3 and 8, barn A: TS 23.19% FM, VS 20.51% FM, observed 0.176 Nm3 CH4/kg VS"
+          },
+          "density_kg_l": null,
+          "conditions": {
+            "temperature_c": 37,
+            "temperature_tolerance_c": 0.5,
+            "duration_days": 35,
+            "duration_kind": "BMP_INCUBATION",
+            "reactor_type": "HBT 100 mL glass syringes; 30 g inoculum + 600 mg dried milled sample",
+            "gas_basis": {
+              "temperature_k": 273.15,
+              "pressure_pa": 101300,
+              "moisture": "unknown"
+            },
+            "preparation": "Dried at 60 C for 48 h, milled to 1 mm; Stuttgart barns"
+          },
+          "quality": "Reviewed local extraction of published experiment; not independent replication",
+          "gas_basis": {
+            "temperature_k": 273.15,
+            "pressure_pa": 101300,
+            "moisture": "unknown"
+          },
+          "provenance": "PUBLISHED_EXPERIMENT",
+          "transfer_limitations": "Preparation affects hydrolysis; barn A paired measurements only, not universal raw feedstock BMP."
+        }
+      ],
+      "partial_characterizations": [],
+      "sources": [
+        {
+          "id": "monch2013",
+          "title": "Investigation of the methane potential of horse manure",
+          "authors": [
+            "Matthias Mönch-Tegeder",
+            "Andreas Lemmer",
+            "Hans Oechsner",
+            "Thomas Jungbluth"
+          ],
+          "year": 2013,
+          "url": "https://cigrjournal.org/index.php/Ejounral/article/view/2445",
+          "review_url": "https://cigrjournal.org/index.php/Ejounral/article/download/2445/1736/8047",
+          "verification_stage": "NUMERIC_DATA_VERIFIED",
+          "reviewed_sections": [
+            "Methods 2.1-2.3; Tables 2, 3, 7, 8"
+          ],
+          "conditions": {
+            "temperature_c": 37,
+            "temperature_tolerance_c": 0.5,
+            "duration_days": 35,
+            "duration_kind": "BMP_INCUBATION",
+            "reactor_type": "HBT 100 mL glass syringes; 30 g inoculum + 600 mg dried milled sample",
+            "gas_basis": {
+              "temperature_k": 273.15,
+              "pressure_pa": 101300,
+              "moisture": "unknown"
+            },
+            "preparation": "Dried at 60 C for 48 h, milled to 1 mm; Stuttgart barns"
+          },
+          "limitations": "Preparation affects hydrolysis; barn A paired measurements only, not universal raw feedstock BMP."
+        }
+      ],
+      "inhibition_risks": [
+        "lignocellulosic bedding and slow hydrolysis"
+      ],
+      "organic_loading_limit": null,
+      "loading_limit_note": "No universal safe OLR established. Study-specific loading, ISR and duration belong to their original reactor and feeding regime.",
+      "co_digestion": "No universal synergy or compatible mixing ratio inferred; compare specific mixed-substrate studies before transfer.",
+      "unknowns": [
+        "batch composition",
+        "inoculum activity",
+        "plant recovery",
+        "safe loading limit"
+      ],
+      "search_scope": "LOCAL_REVIEWED_CORPUS",
+      "live_search_performed": false
+    },
+    {
+      "material": "food_waste",
+      "name": "Пищевые отходы",
+      "scope_status": "CORE",
+      "selection_rationale": "Catering and household organic waste; only prepared pulp currently quantified.",
+      "physical_states": [
+        "prepared_pulp",
+        "fresh_solid"
+      ],
+      "studies": [
+        {
+          "profile_id": "baek2020-food-pulp",
+          "source_id": "baek2020",
+          "physical_state": "prepared_pulp",
+          "animal_scope": null,
+          "preparation": "Ground cafeteria food mainly rice, flour products, soup, vegetables and meat; diluted BMP, not an untreated mixed municipal waste",
+          "ts_fraction": {
+            "low": 0.1264,
+            "high": 0.1264,
+            "original_value": "126.4 (SD 4.5)",
+            "original_unit": "g TS/kg wet",
+            "locator": "Table 1"
+          },
+          "vs_fraction_wet": {
+            "low": 0.1206,
+            "high": 0.1206,
+            "original_value": "120.6 (SD 3.7)",
+            "original_unit": "g VS/kg wet",
+            "locator": "Table 1"
+          },
+          "vs_fraction_of_ts": null,
+          "bmp_ml_ch4_g_vs": {
+            "low": 527.5,
+            "high": 527.5,
+            "original_value": "527.5",
+            "original_unit": "L CH4/kg VS",
+            "locator": "Results 3.2, pure FW run 2, PDF page 5",
+            "method": "REPORTED_EXPERIMENTAL_POINT; no invented uncertainty"
+          },
+          "density_kg_l": null,
+          "conditions": {
+            "temperature_c": 35,
+            "duration_days": 30,
+            "duration_kind": "BMP_INCUBATION",
+            "reactor_type": "250 mL bottles, 200 mL working volume; triplicate and blank corrected",
+            "inoculum": "Digestate from mesophilic food/pig-manure plant; 100 mL inoculum plus 100 mL substrate diluted to 10 g VS/L",
+            "mixing": "daily manual shaking",
+            "gas_basis": {
+              "temperature_k": 273.15,
+              "pressure_pa": 101325,
+              "moisture": "unknown"
+            },
+            "mixing_ratio_basis": "total solids, not wet mass"
+          },
+          "quality": "Reviewed local extraction of published experiment; not independent replication",
+          "gas_basis": {
+            "temperature_k": 273.15,
+            "pressure_pa": 101325,
+            "moisture": "unknown"
+          },
+          "provenance": "PUBLISHED_EXPERIMENT",
+          "transfer_limitations": []
+        }
+      ],
+      "partial_characterizations": [],
+      "sources": [
+        {
+          "id": "baek2020",
+          "doi": "10.3390/ijerph17134737",
+          "title": "Treatment of Cattle Manure by Anaerobic Co-Digestion with Food Waste and Pig Manure: Methane Yield and Synergistic Effect",
+          "authors": [
+            "Gahyun Baek",
+            "Danbee Kim",
+            "Jinsu Kim",
+            "Hanwoong Kim",
+            "Changsoo Lee"
+          ],
+          "year": 2020,
+          "published_at": "2020-07-01",
+          "url": "https://www.mdpi.com/1660-4601/17/13/4737",
+          "review_url": "https://pdfs.semanticscholar.org/8c32/8da3dc70a2964a51e0cfd2807c009edd691c.pdf",
+          "reviewed_sections": [
+            "Tables 1-2, Methods 2.1-2.3, Results 3.2, Equations 1-2"
+          ],
+          "verification_stage": "NUMERIC_DATA_VERIFIED",
+          "review_method": "Primary article PDF read through browser document extraction. Programmatic mirror download redirected across origins and was not followed. Publisher 429 and PMC CAPTCHA were not bypassed.",
+          "conditions": {
+            "temperature_c": 35,
+            "duration_days": 30,
+            "duration_kind": "BMP_INCUBATION",
+            "reactor_type": "250 mL bottles, 200 mL working volume; triplicate and blank corrected",
+            "inoculum": "Digestate from mesophilic food/pig-manure plant; 100 mL inoculum plus 100 mL substrate diluted to 10 g VS/L",
+            "mixing": "daily manual shaking",
+            "gas_basis": {
+              "temperature_k": 273.15,
+              "pressure_pa": 101325,
+              "moisture": "unknown"
+            },
+            "mixing_ratio_basis": "total solids, not wet mass"
+          }
+        }
+      ],
+      "inhibition_risks": [
+        "rapid acidification",
+        "lipids and loading"
+      ],
+      "organic_loading_limit": null,
+      "loading_limit_note": "No universal safe OLR established. Study-specific loading, ISR and duration belong to their original reactor and feeding regime.",
+      "co_digestion": "No universal synergy or compatible mixing ratio inferred; compare specific mixed-substrate studies before transfer.",
+      "unknowns": [
+        "batch composition",
+        "inoculum activity",
+        "plant recovery",
+        "safe loading limit"
+      ],
+      "search_scope": "LOCAL_REVIEWED_CORPUS",
+      "live_search_performed": false
+    },
+    {
+      "material": "straw",
+      "name": "Солома",
+      "scope_status": "CORE",
+      "selection_rationale": "Cereal residues; wheat straw preparation and slow hydrolysis are central constraints.",
+      "physical_states": [
+        "dry",
+        "shredded"
+      ],
+      "studies": [
+        {
+          "profile_id": "monch2013-straw-A",
+          "source_id": "monch2013",
+          "physical_state": "dry",
+          "animal_scope": null,
+          "preparation": "Barn A; dried 60 C, milled 1 mm before HBT. No population interval.",
+          "ts_fraction": {
+            "low": 0.8177,
+            "high": 0.8177,
+            "locator": "Tables 2 and 7, barn A: TS 81.77% FM, VS 75.61% FM, observed 0.214 Nm3 CH4/kg VS"
+          },
+          "vs_fraction_wet": {
+            "low": 0.7561,
+            "high": 0.7561,
+            "locator": "Tables 2 and 7, barn A: TS 81.77% FM, VS 75.61% FM, observed 0.214 Nm3 CH4/kg VS"
+          },
+          "vs_fraction_of_ts": null,
+          "bmp_ml_ch4_g_vs": {
+            "low": 214,
+            "high": 214,
+            "locator": "Tables 2 and 7, barn A: TS 81.77% FM, VS 75.61% FM, observed 0.214 Nm3 CH4/kg VS"
+          },
+          "density_kg_l": null,
+          "conditions": {
+            "temperature_c": 37,
+            "temperature_tolerance_c": 0.5,
+            "duration_days": 35,
+            "duration_kind": "BMP_INCUBATION",
+            "reactor_type": "HBT 100 mL glass syringes; 30 g inoculum + 600 mg dried milled sample",
+            "gas_basis": {
+              "temperature_k": 273.15,
+              "pressure_pa": 101300,
+              "moisture": "unknown"
+            },
+            "preparation": "Dried at 60 C for 48 h, milled to 1 mm; Stuttgart barns"
+          },
+          "quality": "Reviewed local extraction of published experiment; not independent replication",
+          "gas_basis": {
+            "temperature_k": 273.15,
+            "pressure_pa": 101300,
+            "moisture": "unknown"
+          },
+          "provenance": "PUBLISHED_EXPERIMENT",
+          "transfer_limitations": "Preparation affects hydrolysis; barn A paired measurements only, not universal raw feedstock BMP."
+        }
+      ],
+      "partial_characterizations": [],
+      "sources": [
+        {
+          "id": "monch2013",
+          "title": "Investigation of the methane potential of horse manure",
+          "authors": [
+            "Matthias Mönch-Tegeder",
+            "Andreas Lemmer",
+            "Hans Oechsner",
+            "Thomas Jungbluth"
+          ],
+          "year": 2013,
+          "url": "https://cigrjournal.org/index.php/Ejounral/article/view/2445",
+          "review_url": "https://cigrjournal.org/index.php/Ejounral/article/download/2445/1736/8047",
+          "verification_stage": "NUMERIC_DATA_VERIFIED",
+          "reviewed_sections": [
+            "Methods 2.1-2.3; Tables 2, 3, 7, 8"
+          ],
+          "conditions": {
+            "temperature_c": 37,
+            "temperature_tolerance_c": 0.5,
+            "duration_days": 35,
+            "duration_kind": "BMP_INCUBATION",
+            "reactor_type": "HBT 100 mL glass syringes; 30 g inoculum + 600 mg dried milled sample",
+            "gas_basis": {
+              "temperature_k": 273.15,
+              "pressure_pa": 101300,
+              "moisture": "unknown"
+            },
+            "preparation": "Dried at 60 C for 48 h, milled to 1 mm; Stuttgart barns"
+          },
+          "limitations": "Preparation affects hydrolysis; barn A paired measurements only, not universal raw feedstock BMP."
+        }
+      ],
+      "inhibition_risks": [
+        "slow hydrolysis",
+        "preparation energy"
+      ],
+      "organic_loading_limit": null,
+      "loading_limit_note": "No universal safe OLR established. Study-specific loading, ISR and duration belong to their original reactor and feeding regime.",
+      "co_digestion": "No universal synergy or compatible mixing ratio inferred; compare specific mixed-substrate studies before transfer.",
+      "unknowns": [
+        "batch composition",
+        "inoculum activity",
+        "plant recovery",
+        "safe loading limit"
+      ],
+      "search_scope": "LOCAL_REVIEWED_CORPUS",
+      "live_search_performed": false
+    },
+    {
+      "material": "grass",
+      "name": "Трава",
+      "scope_status": "CORE",
+      "selection_rationale": "Seasonal green residues; several separately characterized samples available.",
+      "physical_states": [
+        "fresh_solid",
+        "shredded",
+        "silage",
+        "dry"
+      ],
+      "studies": [
+        {
+          "profile_id": "lallement2023-grass-1",
+          "source_id": "lallement2023",
+          "physical_state": "fresh_solid",
+          "animal_scope": null,
+          "preparation": "ENSI grass sample, cooled/frozen laboratory storage; harvest, ensiling and size preparation not specified per sample",
+          "ts_fraction": {
+            "low": 0.278,
+            "high": 0.278,
+            "locator": "Table A1 p209, Grass row1",
+            "original_unit": "% fresh mass /100"
+          },
+          "vs_fraction_wet": {
+            "low": 0.247,
+            "high": 0.247,
+            "locator": "Table A1 p209, Grass row1",
+            "original_unit": "% fresh mass /100"
+          },
+          "vs_fraction_of_ts": null,
+          "bmp_ml_ch4_g_vs": {
+            "low": 264.3,
+            "high": 264.3,
+            "locator": "Table A1 p209, Grass row1",
+            "original_unit": "Nm3 CH4/t VS = mL CH4/g VS",
+            "reported_spread": 15,
+            "spread_type": "SD of duplicate assays; not prediction interval"
+          },
+          "density_kg_l": null,
+          "conditions": {
+            "temperature_c": 39,
+            "duration_days": null,
+            "duration_kind": "BMP_INCUBATION",
+            "reactor_type": "500 mL bottles, 300 mL charge, duplicate tests",
+            "inoculum": "APESA, maintained at38 +/-1 C; inoculum/substrate3 gVS/gVS",
+            "storage": "5 C for <=3 days, otherwise -20 C and thawed at6 C",
+            "mixing": "Manual daily",
+            "endpoint": "Daily gas change below0.5% for three consecutive days",
+            "gas_reference_text": "Normal liters at0 C and printed1.013 hPa. Pressure unit is ambiguous; no silent correction applied.",
+            "gas_basis": null,
+            "gas_basis_missing": [
+              "Unambiguous normal pressure (printed1.013 hPa)",
+              "Moisture correction"
+            ]
+          },
+          "quality": "Reviewed local extraction of published experiment; not independent replication",
+          "gas_basis": null,
+          "provenance": "PUBLISHED_EXPERIMENT",
+          "transfer_limitations": [
+            "Grass rows are individual ENSI samples; exact harvest/ensiling state and packing density are not identified. State transfer is conditional, never a matched fresh-grass measurement.",
+            "DM and VS both percent fresh mass. Paired values retained per row.",
+            "BMP standard deviations refer to duplicate assays, not a population or prediction interval.",
+            "Normal pressure is printed with an ambiguous unit; numerical common-basis normalization requires an explicit assumption.",
+            "No universal grass density or actual reactor recovery is supplied."
+          ]
+        },
+        {
+          "profile_id": "lallement2023-grass-2",
+          "source_id": "lallement2023",
+          "physical_state": "fresh_solid",
+          "animal_scope": null,
+          "preparation": "ENSI grass sample, cooled/frozen laboratory storage; harvest, ensiling and size preparation not specified per sample",
+          "ts_fraction": {
+            "low": 0.172,
+            "high": 0.172,
+            "locator": "Table A1 p209, Grass row2",
+            "original_unit": "% fresh mass /100"
+          },
+          "vs_fraction_wet": {
+            "low": 0.135,
+            "high": 0.135,
+            "locator": "Table A1 p209, Grass row2",
+            "original_unit": "% fresh mass /100"
+          },
+          "vs_fraction_of_ts": null,
+          "bmp_ml_ch4_g_vs": {
+            "low": 406.3,
+            "high": 406.3,
+            "locator": "Table A1 p209, Grass row2",
+            "original_unit": "Nm3 CH4/t VS = mL CH4/g VS",
+            "reported_spread": 4.8,
+            "spread_type": "SD of duplicate assays; not prediction interval"
+          },
+          "density_kg_l": null,
+          "conditions": {
+            "temperature_c": 39,
+            "duration_days": null,
+            "duration_kind": "BMP_INCUBATION",
+            "reactor_type": "500 mL bottles, 300 mL charge, duplicate tests",
+            "inoculum": "APESA, maintained at38 +/-1 C; inoculum/substrate3 gVS/gVS",
+            "storage": "5 C for <=3 days, otherwise -20 C and thawed at6 C",
+            "mixing": "Manual daily",
+            "endpoint": "Daily gas change below0.5% for three consecutive days",
+            "gas_reference_text": "Normal liters at0 C and printed1.013 hPa. Pressure unit is ambiguous; no silent correction applied.",
+            "gas_basis": null,
+            "gas_basis_missing": [
+              "Unambiguous normal pressure (printed1.013 hPa)",
+              "Moisture correction"
+            ]
+          },
+          "quality": "Reviewed local extraction of published experiment; not independent replication",
+          "gas_basis": null,
+          "provenance": "PUBLISHED_EXPERIMENT",
+          "transfer_limitations": [
+            "Grass rows are individual ENSI samples; exact harvest/ensiling state and packing density are not identified. State transfer is conditional, never a matched fresh-grass measurement.",
+            "DM and VS both percent fresh mass. Paired values retained per row.",
+            "BMP standard deviations refer to duplicate assays, not a population or prediction interval.",
+            "Normal pressure is printed with an ambiguous unit; numerical common-basis normalization requires an explicit assumption.",
+            "No universal grass density or actual reactor recovery is supplied."
+          ]
+        },
+        {
+          "profile_id": "lallement2023-grass-3",
+          "source_id": "lallement2023",
+          "physical_state": "fresh_solid",
+          "animal_scope": null,
+          "preparation": "ENSI grass sample, cooled/frozen laboratory storage; harvest, ensiling and size preparation not specified per sample",
+          "ts_fraction": {
+            "low": 0.17600000000000002,
+            "high": 0.17600000000000002,
+            "locator": "Table A1 p209, Ray-grass row",
+            "original_unit": "% fresh mass /100"
+          },
+          "vs_fraction_wet": {
+            "low": 0.16699999999999998,
+            "high": 0.16699999999999998,
+            "locator": "Table A1 p209, Ray-grass row",
+            "original_unit": "% fresh mass /100"
+          },
+          "vs_fraction_of_ts": null,
+          "bmp_ml_ch4_g_vs": {
+            "low": 393.3,
+            "high": 393.3,
+            "locator": "Table A1 p209, Ray-grass row",
+            "original_unit": "Nm3 CH4/t VS = mL CH4/g VS",
+            "reported_spread": 26.5,
+            "spread_type": "SD of duplicate assays; not prediction interval"
+          },
+          "density_kg_l": null,
+          "conditions": {
+            "temperature_c": 39,
+            "duration_days": null,
+            "duration_kind": "BMP_INCUBATION",
+            "reactor_type": "500 mL bottles, 300 mL charge, duplicate tests",
+            "inoculum": "APESA, maintained at38 +/-1 C; inoculum/substrate3 gVS/gVS",
+            "storage": "5 C for <=3 days, otherwise -20 C and thawed at6 C",
+            "mixing": "Manual daily",
+            "endpoint": "Daily gas change below0.5% for three consecutive days",
+            "gas_reference_text": "Normal liters at0 C and printed1.013 hPa. Pressure unit is ambiguous; no silent correction applied.",
+            "gas_basis": null,
+            "gas_basis_missing": [
+              "Unambiguous normal pressure (printed1.013 hPa)",
+              "Moisture correction"
+            ]
+          },
+          "quality": "Reviewed local extraction of published experiment; not independent replication",
+          "gas_basis": null,
+          "provenance": "PUBLISHED_EXPERIMENT",
+          "transfer_limitations": [
+            "Grass rows are individual ENSI samples; exact harvest/ensiling state and packing density are not identified. State transfer is conditional, never a matched fresh-grass measurement.",
+            "DM and VS both percent fresh mass. Paired values retained per row.",
+            "BMP standard deviations refer to duplicate assays, not a population or prediction interval.",
+            "Normal pressure is printed with an ambiguous unit; numerical common-basis normalization requires an explicit assumption.",
+            "No universal grass density or actual reactor recovery is supplied."
+          ]
+        },
+        {
+          "profile_id": "lallement2023-grass-4",
+          "source_id": "lallement2023",
+          "physical_state": "fresh_solid",
+          "animal_scope": null,
+          "preparation": "ENSI grass sample, cooled/frozen laboratory storage; harvest, ensiling and size preparation not specified per sample",
+          "ts_fraction": {
+            "low": 0.213,
+            "high": 0.213,
+            "locator": "Table A1 p210, Grass row1",
+            "original_unit": "% fresh mass /100"
+          },
+          "vs_fraction_wet": {
+            "low": 0.18899999999999997,
+            "high": 0.18899999999999997,
+            "locator": "Table A1 p210, Grass row1",
+            "original_unit": "% fresh mass /100"
+          },
+          "vs_fraction_of_ts": null,
+          "bmp_ml_ch4_g_vs": {
+            "low": 461.2,
+            "high": 461.2,
+            "locator": "Table A1 p210, Grass row1",
+            "original_unit": "Nm3 CH4/t VS = mL CH4/g VS",
+            "reported_spread": 3.7,
+            "spread_type": "SD of duplicate assays; not prediction interval"
+          },
+          "density_kg_l": null,
+          "conditions": {
+            "temperature_c": 39,
+            "duration_days": null,
+            "duration_kind": "BMP_INCUBATION",
+            "reactor_type": "500 mL bottles, 300 mL charge, duplicate tests",
+            "inoculum": "APESA, maintained at38 +/-1 C; inoculum/substrate3 gVS/gVS",
+            "storage": "5 C for <=3 days, otherwise -20 C and thawed at6 C",
+            "mixing": "Manual daily",
+            "endpoint": "Daily gas change below0.5% for three consecutive days",
+            "gas_reference_text": "Normal liters at0 C and printed1.013 hPa. Pressure unit is ambiguous; no silent correction applied.",
+            "gas_basis": null,
+            "gas_basis_missing": [
+              "Unambiguous normal pressure (printed1.013 hPa)",
+              "Moisture correction"
+            ]
+          },
+          "quality": "Reviewed local extraction of published experiment; not independent replication",
+          "gas_basis": null,
+          "provenance": "PUBLISHED_EXPERIMENT",
+          "transfer_limitations": [
+            "Grass rows are individual ENSI samples; exact harvest/ensiling state and packing density are not identified. State transfer is conditional, never a matched fresh-grass measurement.",
+            "DM and VS both percent fresh mass. Paired values retained per row.",
+            "BMP standard deviations refer to duplicate assays, not a population or prediction interval.",
+            "Normal pressure is printed with an ambiguous unit; numerical common-basis normalization requires an explicit assumption.",
+            "No universal grass density or actual reactor recovery is supplied."
+          ]
+        },
+        {
+          "profile_id": "lallement2023-grass-5",
+          "source_id": "lallement2023",
+          "physical_state": "fresh_solid",
+          "animal_scope": null,
+          "preparation": "ENSI grass sample, cooled/frozen laboratory storage; harvest, ensiling and size preparation not specified per sample",
+          "ts_fraction": {
+            "low": 0.23399999999999999,
+            "high": 0.23399999999999999,
+            "locator": "Table A1 p210, Grass row2",
+            "original_unit": "% fresh mass /100"
+          },
+          "vs_fraction_wet": {
+            "low": 0.213,
+            "high": 0.213,
+            "locator": "Table A1 p210, Grass row2",
+            "original_unit": "% fresh mass /100"
+          },
+          "vs_fraction_of_ts": null,
+          "bmp_ml_ch4_g_vs": {
+            "low": 403.2,
+            "high": 403.2,
+            "locator": "Table A1 p210, Grass row2",
+            "original_unit": "Nm3 CH4/t VS = mL CH4/g VS",
+            "reported_spread": 14.2,
+            "spread_type": "SD of duplicate assays; not prediction interval"
+          },
+          "density_kg_l": null,
+          "conditions": {
+            "temperature_c": 39,
+            "duration_days": null,
+            "duration_kind": "BMP_INCUBATION",
+            "reactor_type": "500 mL bottles, 300 mL charge, duplicate tests",
+            "inoculum": "APESA, maintained at38 +/-1 C; inoculum/substrate3 gVS/gVS",
+            "storage": "5 C for <=3 days, otherwise -20 C and thawed at6 C",
+            "mixing": "Manual daily",
+            "endpoint": "Daily gas change below0.5% for three consecutive days",
+            "gas_reference_text": "Normal liters at0 C and printed1.013 hPa. Pressure unit is ambiguous; no silent correction applied.",
+            "gas_basis": null,
+            "gas_basis_missing": [
+              "Unambiguous normal pressure (printed1.013 hPa)",
+              "Moisture correction"
+            ]
+          },
+          "quality": "Reviewed local extraction of published experiment; not independent replication",
+          "gas_basis": null,
+          "provenance": "PUBLISHED_EXPERIMENT",
+          "transfer_limitations": [
+            "Grass rows are individual ENSI samples; exact harvest/ensiling state and packing density are not identified. State transfer is conditional, never a matched fresh-grass measurement.",
+            "DM and VS both percent fresh mass. Paired values retained per row.",
+            "BMP standard deviations refer to duplicate assays, not a population or prediction interval.",
+            "Normal pressure is printed with an ambiguous unit; numerical common-basis normalization requires an explicit assumption.",
+            "No universal grass density or actual reactor recovery is supplied."
+          ]
+        },
+        {
+          "profile_id": "lallement2023-grass-6",
+          "source_id": "lallement2023",
+          "physical_state": "fresh_solid",
+          "animal_scope": null,
+          "preparation": "ENSI grass sample, cooled/frozen laboratory storage; harvest, ensiling and size preparation not specified per sample",
+          "ts_fraction": {
+            "low": 0.39899999999999997,
+            "high": 0.39899999999999997,
+            "locator": "Table A1 p210, Grass row3",
+            "original_unit": "% fresh mass /100"
+          },
+          "vs_fraction_wet": {
+            "low": 0.361,
+            "high": 0.361,
+            "locator": "Table A1 p210, Grass row3",
+            "original_unit": "% fresh mass /100"
+          },
+          "vs_fraction_of_ts": null,
+          "bmp_ml_ch4_g_vs": {
+            "low": 187.2,
+            "high": 187.2,
+            "locator": "Table A1 p210, Grass row3",
+            "original_unit": "Nm3 CH4/t VS = mL CH4/g VS",
+            "reported_spread": 11.5,
+            "spread_type": "SD of duplicate assays; not prediction interval"
+          },
+          "density_kg_l": null,
+          "conditions": {
+            "temperature_c": 39,
+            "duration_days": null,
+            "duration_kind": "BMP_INCUBATION",
+            "reactor_type": "500 mL bottles, 300 mL charge, duplicate tests",
+            "inoculum": "APESA, maintained at38 +/-1 C; inoculum/substrate3 gVS/gVS",
+            "storage": "5 C for <=3 days, otherwise -20 C and thawed at6 C",
+            "mixing": "Manual daily",
+            "endpoint": "Daily gas change below0.5% for three consecutive days",
+            "gas_reference_text": "Normal liters at0 C and printed1.013 hPa. Pressure unit is ambiguous; no silent correction applied.",
+            "gas_basis": null,
+            "gas_basis_missing": [
+              "Unambiguous normal pressure (printed1.013 hPa)",
+              "Moisture correction"
+            ]
+          },
+          "quality": "Reviewed local extraction of published experiment; not independent replication",
+          "gas_basis": null,
+          "provenance": "PUBLISHED_EXPERIMENT",
+          "transfer_limitations": [
+            "Grass rows are individual ENSI samples; exact harvest/ensiling state and packing density are not identified. State transfer is conditional, never a matched fresh-grass measurement.",
+            "DM and VS both percent fresh mass. Paired values retained per row.",
+            "BMP standard deviations refer to duplicate assays, not a population or prediction interval.",
+            "Normal pressure is printed with an ambiguous unit; numerical common-basis normalization requires an explicit assumption.",
+            "No universal grass density or actual reactor recovery is supplied."
+          ]
+        }
+      ],
+      "partial_characterizations": [
+        {
+          "material": "grass",
+          "material_state": "shredded",
+          "source_id": "ulukardesler2023",
+          "verification_stage": "FULL_TEXT_REVIEWED",
+          "reported_ts": "41.73 wt%",
+          "reported_vs": "75.42; basis insufficiently explicit in table",
+          "bmp_ml_g_vs": null,
+          "note": "Mixture output is not assigned as a grass mono-substrate BMP."
+        },
+        {
+          "material": "grass",
+          "status": "PARTIAL_ONLY",
+          "density_profile_available": false,
+          "bmp_available": false,
+          "reason": "Existing co-digestion experiment is not mono grass BMP."
+        },
+        {
+          "material": "grass",
+          "status": "PARTIAL_SCOPE_REQUIRES_MEASUREMENTS",
+          "reason": "Existing mixed grass/cattle experiment not treated as mono grass BMP."
+        }
+      ],
+      "sources": [
+        {
+          "id": "lallement2023",
+          "doi": "10.3390/waste1010014",
+          "title": "A Detailed Database of the Chemical Properties and Methane Potential of Biomasses Covering a Large Range of Common Agricultural Biogas Plant Feedstocks",
+          "authors": [
+            "Audrey Lallement",
+            "Christine Peyrelasse",
+            "Camille Lagnet",
+            "Abdellatif Barakat",
+            "Blandine Schraauwers",
+            "Samuel Maunas",
+            "Florian Monlau"
+          ],
+          "year": 2023,
+          "url": "https://doi.org/10.3390/waste1010014",
+          "review_url": "https://pdfs.semanticscholar.org/7db4/f1330e4ad1a5fe147448c28a98dede996d8d.pdf",
+          "reviewed_sections": [
+            "Methods 2.3",
+            "Appendix A Table A1, pp209-210, six individual ENSI Grass rows (not Mix Grass)"
+          ],
+          "local_pdf": "reports/stage8_3/sources/database2023.pdf",
+          "pdf_sha256": "8585ff941672d65497e60f33fa319e7bbceb5bc3b46f63c451614898775d1313",
+          "conditions": {
+            "temperature_c": 39,
+            "duration_days": null,
+            "duration_kind": "BMP_INCUBATION",
+            "reactor_type": "500 mL bottles, 300 mL charge, duplicate tests",
+            "inoculum": "APESA, maintained at38 +/-1 C; inoculum/substrate3 gVS/gVS",
+            "storage": "5 C for <=3 days, otherwise -20 C and thawed at6 C",
+            "mixing": "Manual daily",
+            "endpoint": "Daily gas change below0.5% for three consecutive days",
+            "gas_reference_text": "Normal liters at0 C and printed1.013 hPa. Pressure unit is ambiguous; no silent correction applied.",
+            "gas_basis": null,
+            "gas_basis_missing": [
+              "Unambiguous normal pressure (printed1.013 hPa)",
+              "Moisture correction"
+            ]
+          },
+          "limitations": [
+            "Grass rows are individual ENSI samples; exact harvest/ensiling state and packing density are not identified. State transfer is conditional, never a matched fresh-grass measurement.",
+            "DM and VS both percent fresh mass. Paired values retained per row.",
+            "BMP standard deviations refer to duplicate assays, not a population or prediction interval.",
+            "Normal pressure is printed with an ambiguous unit; numerical common-basis normalization requires an explicit assumption.",
+            "No universal grass density or actual reactor recovery is supplied."
+          ]
+        },
+        {
+          "id": "ulukardesler2023",
+          "doi": "10.1038/s41598-023-33169-0",
+          "title": "Anaerobic co-digestion of grass and cow manure: kinetic and GHG calculations",
+          "authors": [
+            "Ayse Hilal Ulukardesler"
+          ],
+          "year": 2023,
+          "url": "https://www.nature.com/articles/s41598-023-33169-0",
+          "verification_stage": "FULL_TEXT_REVIEWED",
+          "reviewed_sections": [
+            "Methods, Tables 1-2"
+          ],
+          "conditions": {
+            "materials": [
+              "cattle_manure",
+              "grass"
+            ],
+            "temperature_c": 35,
+            "temperature_tolerance_c": 1,
+            "duration_days": 65,
+            "duration_kind": "BATCH_EXPERIMENT",
+            "reactor_type": "10 L laboratory batch, 7 L working",
+            "preparation": "Festuca arundinacea garden grass, shredded 0.5-2 mm; cow manure and yeast-factory anaerobic sludge",
+            "grass_manure_ratios_percent": [
+              5,
+              10,
+              15,
+              20,
+              25
+            ]
+          },
+          "limitation": "No verified mono-digestion BMP for arbitrary grass. TS/VS table basis requires further checking; mixture yield is not a grass property.",
+          "published_at": "2023-04-18",
+          "metadata_url": "https://pubmed.ncbi.nlm.nih.gov/37072450/"
+        }
+      ],
+      "inhibition_risks": [
+        "lignocellulose",
+        "seasonality and preparation"
+      ],
+      "organic_loading_limit": null,
+      "loading_limit_note": "No universal safe OLR established. Study-specific loading, ISR and duration belong to their original reactor and feeding regime.",
+      "co_digestion": "No universal synergy or compatible mixing ratio inferred; compare specific mixed-substrate studies before transfer.",
+      "unknowns": [
+        "batch composition",
+        "inoculum activity",
+        "plant recovery",
+        "safe loading limit"
+      ],
+      "search_scope": "LOCAL_REVIEWED_CORPUS",
+      "live_search_performed": false
+    }
+  ],
+  "core_materials": [
+    "cattle_manure",
+    "swine_manure",
+    "poultry_manure",
+    "sheep_goat_manure",
+    "horse_manure",
+    "food_waste",
+    "straw",
+    "grass"
+  ],
+  "universal_profile_created": false
+}

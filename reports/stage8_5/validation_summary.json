@@ -1,0 +1,1573 @@
+{
+  "generated_utc": "2026-11-05T09:12:09.467673+00:00",
+  "normal_cases": 40,
+  "normal_passed": 40,
+  "normal_actual_qwen_generations": 40,
+  "fault_or_budget_cases": 4,
+  "fault_or_budget_passed": 4,
+  "terminations": {
+    "computed_evidence_projection": 6,
+    "model_final": 11,
+    "tool_call_limit": 8,
+    "numeric_grounding_fallback": 18,
+    "provider_unavailable_local_fallback": 1
+  },
+  "python": [
+    {
+      "name": "pytest",
+      "errors": "0",
+      "failures": "0",
+      "skipped": "0",
+      "tests": "468",
+      "time": "57.753",
+      "timestamp": "2026-11-04T15:11:37.257432+05:00",
+      "hostname": "Kazhuha"
+    }
+  ],
+  "browser": {
+    "passed": true,
+    "checks": [
+      "Simple mode default",
+      "Mode switch preserves quantity",
+      "Mode switch preserves source profile",
+      "Calculation sends typed state",
+      "Scientific calculation returns methane",
+      "Calculator to chat keeps full component",
+      "Calculator to chat keeps region and capacity",
+      "Chat to calculator retains material form and profile",
+      "Chat to calculator retains amount capacity region",
+      "Chat import opens scientific mode",
+      "No browser JavaScript exceptions",
+      "Browser chat uses actual Qwen3 8B",
+      "Browser chat computes same methane",
+      "Browser chat retains known region"
+    ],
+    "errors": [],
+    "values": {
+      "material-0": "food_waste",
+      "state-0": "prepared_pulp",
+      "profile-0": "baek2020-food-pulp",
+      "quantity-0": "5",
+      "reactor-total": "90",
+      "market-region": "KZ-Karaganda-oblast"
+    },
+    "browser": "156.0.8078.80"
+  },
+  "cases": [
+    {
+      "id": "01_batch",
+      "passed": true,
+      "failed_checks": [],
+      "actual_qwen_generation": true,
+      "tools": [
+        {
+          "tool": "assess_substrate_potential",
+          "status": "ok"
+        },
+        {
+          "tool": "evaluate_partial_economics",
+          "status": "ok"
+        }
+      ],
+      "termination": "computed_evidence_projection",
+      "seconds": 95.61615979997441,
+      "diagnostics": [],
+      "question": {
+        "id": "market-region",
+        "text": "В каком регионе находится установка?",
+        "options": [],
+        "fields": [
+          "market_region"
+        ],
+        "reason": "Region affects which stored market observations are applicable."
+      }
+    },
+    {
+      "id": "02_batch",
+      "passed": true,
+      "failed_checks": [],
+      "actual_qwen_generation": true,
+      "tools": [
+        {
+          "tool": "assess_substrate_potential",
+          "status": "ok"
+        },
+        {
+          "tool": "evaluate_partial_economics",
+          "status": "ok"
+        }
+      ],
+      "termination": "model_final",
+      "seconds": 49.39986780000618,
+      "diagnostics": [],
+      "question": {
+        "id": "operating-costs",
+        "text": "Какие полные расходы на эту партию: подготовка, транспорт, нагрев и обслуживание?",
+        "options": [],
+        "fields": [
+          "operating_costs"
+        ],
+        "reason": "Full costs are required to establish net profit."
+      }
+    },
+    {
+      "id": "03_batch",
+      "passed": true,
+      "failed_checks": [],
+      "actual_qwen_generation": true,
+      "tools": [
+        {
+          "tool": "assess_substrate_potential",
+          "status": "ok"
+        },
+        {
+          "tool": "evaluate_partial_economics",
+          "status": "ok"
+        },
+        {
+          "tool": "search_substrate_profiles",
+          "status": "ok"
+        },
+        {
+          "tool": "calculate_dilution_plan",
+          "status": "ok"
+        }
+      ],
+      "termination": "computed_evidence_projection",
+      "seconds": 90.24590909999097,
+      "diagnostics": [
+        {
+          "stage": "budget",
+          "reason": "tool_call_limit"
+        },
+        {
+          "stage": "clarification",
+          "reason": "repeated_question_suppressed",
+          "question_id": "operating-costs"
+        }
+      ],
+      "question": {
+        "id": "heating-kwh",
+        "text": "Сколько кВт·ч уходит на нагрев одной партии?",
+        "fields": [
+          "auxiliary_energy_kwh"
+        ],
+        "options": [],
+        "reason": "A numerical heat demand can change the economic conclusion."
+      }
+    },
+    {
+      "id": "04_batch",
+      "passed": true,
+      "failed_checks": [],
+      "actual_qwen_generation": true,
+      "tools": [
+        {
+          "tool": "assess_substrate_potential",
+          "status": "ok"
+        },
+        {
+          "tool": "evaluate_partial_economics",
+          "status": "ok"
+        },
+        {
+          "tool": "search_substrate_profiles",
+          "status": "ok"
+        },
+        {
+          "tool": "calculate_dilution_plan",
+          "status": "ok"
+        }
+      ],
+      "termination": "computed_evidence_projection",
+      "seconds": 100.23869859997649,
+      "diagnostics": [
+        {
+          "stage": "budget",
+          "reason": "tool_call_limit"
+        },
+        {
+          "stage": "clarification",
+          "reason": "repeated_question_suppressed",
+          "question_id": "operating-costs"
+        }
+      ],
+      "question": null
+    },
+    {
+      "id": "05_batch",
+      "passed": true,
+      "failed_checks": [],
+      "actual_qwen_generation": true,
+      "tools": [
+        {
+          "tool": "assess_substrate_potential",
+          "status": "ok"
+        },
+        {
+          "tool": "evaluate_partial_economics",
+          "status": "ok"
+        },
+        {
+          "tool": "assess_scientific_risks",
+          "status": "ok"
+        },
+        {
+          "tool": "calculate_dilution_plan",
+          "status": "ok"
+        }
+      ],
+      "termination": "tool_call_limit",
+      "seconds": 58.43475920002675,
+      "diagnostics": [
+        {
+          "stage": "budget",
+          "reason": "tool_call_limit"
+        },
+        {
+          "stage": "clarification",
+          "reason": "repeated_question_suppressed",
+          "question_id": "operating-costs"
+        }
+      ],
+      "question": null
+    },
+    {
+      "id": "06_batch",
+      "passed": true,
+      "failed_checks": [],
+      "actual_qwen_generation": true,
+      "tools": [
+        {
+          "tool": "assess_substrate_potential",
+          "status": "ok"
+        },
+        {
+          "tool": "search_substrate_profiles",
+          "status": "ok"
+        },
+        {
+          "tool": "advise_substrate_conditions",
+          "status": "ok"
+        },
+        {
+          "tool": "calculate_dilution_plan",
+          "status": "ok"
+        }
+      ],
+      "termination": "numeric_grounding_fallback",
+      "seconds": 120.09255709999707,
+      "diagnostics": [
+        {
+          "stage": "budget",
+          "reason": "tool_call_limit"
+        }
+      ],
+      "question": {
+        "id": "model-question-c4cb80faf834",
+        "text": "Какой состав и влажность у сырья вашей партии?",
+        "fields": [],
+        "options": [],
+        "reason": "Model-selected clarification retained after available analysis."
+      }
+    },
+    {
+      "id": "07_batch",
+      "passed": true,
+      "failed_checks": [],
+      "actual_qwen_generation": true,
+      "tools": [
+        {
+          "tool": "assess_process_evidence",
+          "status": "ok"
+        },
+        {
+          "tool": "search_substrate_profiles",
+          "status": "ok"
+        },
+        {
+          "tool": "assess_scientific_risks",
+          "status": "ok"
+        }
+      ],
+      "termination": "numeric_grounding_fallback",
+      "seconds": 120.08390849997522,
+      "diagnostics": [
+        {
+          "stage": "tool_selection",
+          "error": "Provider unreachable or invalid JSON: TimeoutError",
+          "type": "ProviderError"
+        },
+        {
+          "stage": "clarification",
+          "reason": "repeated_question_suppressed",
+          "question_id": "model-question-c4cb80faf834"
+        }
+      ],
+      "question": null
+    },
+    {
+      "id": "08_batch",
+      "passed": true,
+      "failed_checks": [],
+      "actual_qwen_generation": true,
+      "tools": [
+        {
+          "tool": "assess_substrate_potential",
+          "status": "ok"
+        },
+        {
+          "tool": "assess_process_evidence",
+          "status": "ok"
+        },
+        {
+          "tool": "verify_scientific_sources",
+          "status": "ok"
+        }
+      ],
+      "termination": "numeric_grounding_fallback",
+      "seconds": 120.04855409997981,
+      "diagnostics": [
+        {
+          "stage": "tool_selection",
+          "error": "Provider unreachable or invalid JSON: TimeoutError",
+          "type": "ProviderError"
+        }
+      ],
+      "question": {
+        "id": "working-volume",
+        "text": "Какой подтверждённый рабочий объём реактора, отдельно от номинального?",
+        "options": [],
+        "fields": [
+          "reactor_working_volume_l"
+        ],
+        "reason": "Nominal volume does not establish safe working capacity."
+      }
+    },
+    {
+      "id": "09_batch",
+      "passed": true,
+      "failed_checks": [],
+      "actual_qwen_generation": true,
+      "tools": [
+        {
+          "tool": "assess_process_evidence",
+          "status": "ok"
+        },
+        {
+          "tool": "search_substrate_profiles",
+          "status": "ok"
+        },
+        {
+          "tool": "verify_scientific_sources",
+          "status": "ok"
+        },
+        {
+          "tool": "compare_scientific_studies",
+          "status": "ok"
+        }
+      ],
+      "termination": "tool_call_limit",
+      "seconds": 93.31270960002439,
+      "diagnostics": [
+        {
+          "stage": "budget",
+          "reason": "tool_call_limit"
+        }
+      ],
+      "question": null
+    },
+    {
+      "id": "10_batch",
+      "passed": true,
+      "failed_checks": [],
+      "actual_qwen_generation": true,
+      "tools": [
+        {
+          "tool": "assess_substrate_potential",
+          "status": "ok"
+        },
+        {
+          "tool": "assess_process_evidence",
+          "status": "ok"
+        },
+        {
+          "tool": "assess_scientific_risks",
+          "status": "ok"
+        },
+        {
+          "tool": "calculate_dilution_plan",
+          "status": "ok"
+        }
+      ],
+      "termination": "numeric_grounding_fallback",
+      "seconds": 120.06193090003217,
+      "diagnostics": [
+        {
+          "stage": "budget",
+          "reason": "tool_call_limit"
+        },
+        {
+          "stage": "clarification",
+          "reason": "repeated_question_suppressed",
+          "question_id": "working-volume"
+        }
+      ],
+      "question": null
+    },
+    {
+      "id": "11_dry",
+      "passed": true,
+      "failed_checks": [],
+      "actual_qwen_generation": true,
+      "tools": [
+        {
+          "tool": "assess_substrate_potential",
+          "status": "needs_input"
+        },
+        {
+          "tool": "search_substrate_profiles",
+          "status": "ok"
+        },
+        {
+          "tool": "assess_scientific_risks",
+          "status": "ok"
+        },
+        {
+          "tool": "compare_scientific_studies",
+          "status": "ok"
+        }
+      ],
+      "termination": "numeric_grounding_fallback",
+      "seconds": 120.05312450003112,
+      "diagnostics": [
+        {
+          "stage": "budget",
+          "reason": "tool_call_limit"
+        }
+      ],
+      "question": {
+        "id": "working-volume",
+        "text": "Какой подтверждённый рабочий объём реактора, отдельно от номинального?",
+        "options": [],
+        "fields": [
+          "reactor_working_volume_l"
+        ],
+        "reason": "Nominal volume does not establish safe working capacity."
+      }
+    },
+    {
+      "id": "12_pig",
+      "passed": true,
+      "failed_checks": [],
+      "actual_qwen_generation": true,
+      "tools": [
+        {
+          "tool": "assess_substrate_potential",
+          "status": "ok"
+        },
+        {
+          "tool": "search_substrate_profiles",
+          "status": "ok"
+        }
+      ],
+      "termination": "model_final",
+      "seconds": 66.14672869996866,
+      "diagnostics": [],
+      "question": {
+        "id": "working-volume",
+        "text": "Какой подтверждённый рабочий объём реактора, отдельно от номинального?",
+        "options": [],
+        "fields": [
+          "reactor_working_volume_l"
+        ],
+        "reason": "Nominal volume does not establish safe working capacity."
+      }
+    },
+    {
+      "id": "13_pig",
+      "passed": true,
+      "failed_checks": [],
+      "actual_qwen_generation": true,
+      "tools": [
+        {
+          "tool": "assess_substrate_potential",
+          "status": "ok"
+        },
+        {
+          "tool": "search_substrate_profiles",
+          "status": "ok"
+        }
+      ],
+      "termination": "model_final",
+      "seconds": 60.18025959999068,
+      "diagnostics": [
+        {
+          "stage": "clarification",
+          "reason": "repeated_question_suppressed",
+          "question_id": "working-volume"
+        }
+      ],
+      "question": null
+    },
+    {
+      "id": "14_compare",
+      "passed": true,
+      "failed_checks": [],
+      "actual_qwen_generation": true,
+      "tools": [
+        {
+          "tool": "assess_substrate_potential",
+          "status": "ok"
+        },
+        {
+          "tool": "evaluate_partial_economics",
+          "status": "ok"
+        }
+      ],
+      "termination": "computed_evidence_projection",
+      "seconds": 120.11951250000857,
+      "diagnostics": [
+        {
+          "stage": "tool_selection",
+          "error": "Provider unreachable or invalid JSON: TimeoutError",
+          "type": "ProviderError"
+        }
+      ],
+      "question": {
+        "id": "market-region",
+        "text": "В каком регионе находится установка?",
+        "options": [],
+        "fields": [
+          "market_region"
+        ],
+        "reason": "Region affects which stored market observations are applicable."
+      }
+    },
+    {
+      "id": "15_mixture",
+      "passed": true,
+      "failed_checks": [],
+      "actual_qwen_generation": true,
+      "tools": [
+        {
+          "tool": "assess_substrate_potential",
+          "status": "ok"
+        },
+        {
+          "tool": "calculate_dilution_plan",
+          "status": "ok"
+        }
+      ],
+      "termination": "model_final",
+      "seconds": 66.9121769000194,
+      "diagnostics": [],
+      "question": {
+        "id": "working-volume",
+        "text": "Какой подтверждённый рабочий объём реактора, отдельно от номинального?",
+        "options": [],
+        "fields": [
+          "reactor_working_volume_l"
+        ],
+        "reason": "Nominal volume does not establish safe working capacity."
+      }
+    },
+    {
+      "id": "16_mixture",
+      "passed": true,
+      "failed_checks": [],
+      "actual_qwen_generation": true,
+      "tools": [
+        {
+          "tool": "assess_substrate_potential",
+          "status": "ok"
+        }
+      ],
+      "termination": "model_final",
+      "seconds": 48.53465560002951,
+      "diagnostics": [
+        {
+          "stage": "clarification",
+          "reason": "repeated_question_suppressed",
+          "question_id": "working-volume"
+        }
+      ],
+      "question": null
+    },
+    {
+      "id": "17_mixture",
+      "passed": true,
+      "failed_checks": [],
+      "actual_qwen_generation": true,
+      "tools": [
+        {
+          "tool": "assess_scientific_risks",
+          "status": "ok"
+        },
+        {
+          "tool": "assess_substrate_potential",
+          "status": "ok"
+        },
+        {
+          "tool": "search_substrate_profiles",
+          "status": "ok"
+        },
+        {
+          "tool": "compare_scientific_studies",
+          "status": "ok"
+        }
+      ],
+      "termination": "computed_evidence_projection",
+      "seconds": 104.79043120000279,
+      "diagnostics": [
+        {
+          "stage": "budget",
+          "reason": "tool_call_limit"
+        },
+        {
+          "stage": "clarification",
+          "reason": "repeated_question_suppressed",
+          "question_id": "working-volume"
+        }
+      ],
+      "question": null
+    },
+    {
+      "id": "18_cattle",
+      "passed": true,
+      "failed_checks": [],
+      "actual_qwen_generation": true,
+      "tools": [
+        {
+          "tool": "assess_substrate_potential",
+          "status": "ok"
+        },
+        {
+          "tool": "assess_scientific_risks",
+          "status": "ok"
+        },
+        {
+          "tool": "calculate_dilution_plan",
+          "status": "ok"
+        },
+        {
+          "tool": "search_substrate_profiles",
+          "status": "ok"
+        }
+      ],
+      "termination": "tool_call_limit",
+      "seconds": 97.25849590002326,
+      "diagnostics": [
+        {
+          "stage": "budget",
+          "reason": "tool_call_limit"
+        }
+      ],
+      "question": {
+        "id": "working-volume",
+        "text": "Какой подтверждённый рабочий объём реактора, отдельно от номинального?",
+        "options": [],
+        "fields": [
+          "reactor_working_volume_l"
+        ],
+        "reason": "Nominal volume does not establish safe working capacity."
+      }
+    },
+    {
+      "id": "19_sheep",
+      "passed": true,
+      "failed_checks": [],
+      "actual_qwen_generation": true,
+      "tools": [
+        {
+          "tool": "assess_substrate_potential",
+          "status": "ok"
+        },
+        {
+          "tool": "calculate_dilution_plan",
+          "status": "ok"
+        }
+      ],
+      "termination": "model_final",
+      "seconds": 70.68098599999212,
+      "diagnostics": [],
+      "question": {
+        "id": "working-volume",
+        "text": "Какой подтверждённый рабочий объём реактора, отдельно от номинального?",
+        "options": [],
+        "fields": [
+          "reactor_working_volume_l"
+        ],
+        "reason": "Nominal volume does not establish safe working capacity."
+      }
+    },
+    {
+      "id": "20_goat",
+      "passed": true,
+      "failed_checks": [],
+      "actual_qwen_generation": true,
+      "tools": [
+        {
+          "tool": "assess_substrate_potential",
+          "status": "ok"
+        }
+      ],
+      "termination": "model_final",
+      "seconds": 29.565950499963947,
+      "diagnostics": [],
+      "question": {
+        "id": "working-volume",
+        "text": "Какой подтверждённый рабочий объём реактора, отдельно от номинального?",
+        "options": [],
+        "fields": [
+          "reactor_working_volume_l"
+        ],
+        "reason": "Nominal volume does not establish safe working capacity."
+      }
+    },
+    {
+      "id": "21_horse",
+      "passed": true,
+      "failed_checks": [],
+      "actual_qwen_generation": true,
+      "tools": [
+        {
+          "tool": "estimate_advanced_gas",
+          "status": "ok"
+        },
+        {
+          "tool": "search_substrate_profiles",
+          "status": "ok"
+        },
+        {
+          "tool": "analyze_substrate_mixture",
+          "status": "ok"
+        }
+      ],
+      "termination": "numeric_grounding_fallback",
+      "seconds": 120.09767699998338,
+      "diagnostics": [
+        {
+          "stage": "tool_selection",
+          "error": "Provider unreachable or invalid JSON: TimeoutError",
+          "type": "ProviderError"
+        }
+      ],
+      "question": null
+    },
+    {
+      "id": "22_straw",
+      "passed": true,
+      "failed_checks": [],
+      "actual_qwen_generation": true,
+      "tools": [
+        {
+          "tool": "assess_substrate_potential",
+          "status": "ok"
+        },
+        {
+          "tool": "calculate_dilution_plan",
+          "status": "ok"
+        },
+        {
+          "tool": "assess_scientific_risks",
+          "status": "ok"
+        }
+      ],
+      "termination": "model_final",
+      "seconds": 80.67000610003015,
+      "diagnostics": [],
+      "question": {
+        "id": "working-volume",
+        "text": "Какой подтверждённый рабочий объём реактора, отдельно от номинального?",
+        "options": [],
+        "fields": [
+          "reactor_working_volume_l"
+        ],
+        "reason": "Nominal volume does not establish safe working capacity."
+      }
+    },
+    {
+      "id": "23_grass",
+      "passed": true,
+      "failed_checks": [],
+      "actual_qwen_generation": true,
+      "tools": [
+        {
+          "tool": "assess_substrate_potential",
+          "status": "ok"
+        },
+        {
+          "tool": "assess_scientific_risks",
+          "status": "ok"
+        }
+      ],
+      "termination": "numeric_grounding_fallback",
+      "seconds": 120.1244462999748,
+      "diagnostics": [
+        {
+          "stage": "tool_selection",
+          "error": "Provider unreachable or invalid JSON: TimeoutError",
+          "type": "ProviderError"
+        }
+      ],
+      "question": {
+        "id": "working-volume",
+        "text": "Какой подтверждённый рабочий объём реактора, отдельно от номинального?",
+        "options": [],
+        "fields": [
+          "reactor_working_volume_l"
+        ],
+        "reason": "Nominal volume does not establish safe working capacity."
+      }
+    },
+    {
+      "id": "24_unknown",
+      "passed": true,
+      "failed_checks": [],
+      "actual_qwen_generation": true,
+      "tools": [
+        {
+          "tool": "assess_substrate_potential",
+          "status": "needs_input"
+        },
+        {
+          "tool": "search_substrate_profiles",
+          "status": "ok"
+        },
+        {
+          "tool": "assess_scientific_risks",
+          "status": "ok"
+        },
+        {
+          "tool": "verify_scientific_sources",
+          "status": "ok"
+        }
+      ],
+      "termination": "numeric_grounding_fallback",
+      "seconds": 120.10354940005345,
+      "diagnostics": [
+        {
+          "stage": "budget",
+          "reason": "tool_call_limit"
+        }
+      ],
+      "question": {
+        "id": "model-question-c4cb80faf834",
+        "text": "Какой состав и влажность у сырья вашей партии?",
+        "fields": [],
+        "options": [],
+        "reason": "Model-selected clarification retained after available analysis."
+      }
+    },
+    {
+      "id": "25_plastic",
+      "passed": true,
+      "failed_checks": [],
+      "actual_qwen_generation": true,
+      "tools": [
+        {
+          "tool": "assess_substrate_potential",
+          "status": "needs_input"
+        },
+        {
+          "tool": "search_substrate_profiles",
+          "status": "ok"
+        },
+        {
+          "tool": "verify_scientific_calculations",
+          "status": "ok"
+        },
+        {
+          "tool": "assess_scientific_risks",
+          "status": "ok"
+        }
+      ],
+      "termination": "tool_call_limit",
+      "seconds": 25.496156300010625,
+      "diagnostics": [
+        {
+          "stage": "budget",
+          "reason": "tool_call_limit"
+        }
+      ],
+      "question": null
+    },
+    {
+      "id": "26_small",
+      "passed": true,
+      "failed_checks": [],
+      "actual_qwen_generation": true,
+      "tools": [
+        {
+          "tool": "assess_substrate_potential",
+          "status": "ok"
+        },
+        {
+          "tool": "assess_scientific_risks",
+          "status": "ok"
+        },
+        {
+          "tool": "calculate_dilution_plan",
+          "status": "ok"
+        },
+        {
+          "tool": "search_substrate_profiles",
+          "status": "ok"
+        }
+      ],
+      "termination": "tool_call_limit",
+      "seconds": 21.92198789998656,
+      "diagnostics": [
+        {
+          "stage": "budget",
+          "reason": "tool_call_limit"
+        }
+      ],
+      "question": {
+        "id": "working-volume",
+        "text": "Какой подтверждённый рабочий объём реактора, отдельно от номинального?",
+        "options": [],
+        "fields": [
+          "reactor_working_volume_l"
+        ],
+        "reason": "Nominal volume does not establish safe working capacity."
+      }
+    },
+    {
+      "id": "27_volume",
+      "passed": true,
+      "failed_checks": [],
+      "actual_qwen_generation": true,
+      "tools": [
+        {
+          "tool": "assess_substrate_potential",
+          "status": "ok"
+        },
+        {
+          "tool": "assess_scientific_risks",
+          "status": "ok"
+        },
+        {
+          "tool": "calculate_dilution_plan",
+          "status": "ok"
+        }
+      ],
+      "termination": "model_final",
+      "seconds": 21.765563900000416,
+      "diagnostics": [],
+      "question": null
+    },
+    {
+      "id": "28_water",
+      "passed": true,
+      "failed_checks": [],
+      "actual_qwen_generation": true,
+      "tools": [
+        {
+          "tool": "assess_substrate_potential",
+          "status": "ok"
+        },
+        {
+          "tool": "assess_process_evidence",
+          "status": "ok"
+        },
+        {
+          "tool": "calculate_dilution_plan",
+          "status": "ok"
+        },
+        {
+          "tool": "assess_scientific_risks",
+          "status": "ok"
+        }
+      ],
+      "termination": "tool_call_limit",
+      "seconds": 52.01350000000093,
+      "diagnostics": [
+        {
+          "stage": "answer_contract",
+          "reason": "calculation_evidence_not_checked",
+          "missing_tools": [
+            "assess_process_evidence"
+          ]
+        },
+        {
+          "stage": "budget",
+          "reason": "tool_call_limit"
+        }
+      ],
+      "question": {
+        "id": "working-volume",
+        "text": "Какой подтверждённый рабочий объём реактора, отдельно от номинального?",
+        "options": [],
+        "fields": [
+          "reactor_working_volume_l"
+        ],
+        "reason": "Nominal volume does not establish safe working capacity."
+      }
+    },
+    {
+      "id": "29_heat",
+      "passed": true,
+      "failed_checks": [],
+      "actual_qwen_generation": true,
+      "tools": [
+        {
+          "tool": "assess_process_evidence",
+          "status": "ok"
+        },
+        {
+          "tool": "search_substrate_profiles",
+          "status": "ok"
+        },
+        {
+          "tool": "assess_scientific_risks",
+          "status": "ok"
+        },
+        {
+          "tool": "verify_scientific_sources",
+          "status": "ok"
+        }
+      ],
+      "termination": "tool_call_limit",
+      "seconds": 117.98064690001775,
+      "diagnostics": [
+        {
+          "stage": "budget",
+          "reason": "tool_call_limit"
+        }
+      ],
+      "question": null
+    },
+    {
+      "id": "30_heat",
+      "passed": true,
+      "failed_checks": [],
+      "actual_qwen_generation": true,
+      "tools": [
+        {
+          "tool": "assess_substrate_potential",
+          "status": "ok"
+        },
+        {
+          "tool": "assess_process_evidence",
+          "status": "ok"
+        },
+        {
+          "tool": "evaluate_partial_economics",
+          "status": "ok"
+        }
+      ],
+      "termination": "numeric_grounding_fallback",
+      "seconds": 120.13751030003186,
+      "diagnostics": [
+        {
+          "stage": "tool_selection",
+          "error": "Provider unreachable or invalid JSON: TimeoutError",
+          "type": "ProviderError"
+        }
+      ],
+      "question": {
+        "id": "market-region",
+        "text": "В каком регионе находится установка?",
+        "options": [],
+        "fields": [
+          "market_region"
+        ],
+        "reason": "Region affects which stored market observations are applicable."
+      }
+    },
+    {
+      "id": "31_money",
+      "passed": true,
+      "failed_checks": [],
+      "actual_qwen_generation": true,
+      "tools": [
+        {
+          "tool": "assess_substrate_potential",
+          "status": "ok"
+        },
+        {
+          "tool": "evaluate_partial_economics",
+          "status": "ok"
+        },
+        {
+          "tool": "assess_scientific_risks",
+          "status": "ok"
+        }
+      ],
+      "termination": "numeric_grounding_fallback",
+      "seconds": 120.0970167000196,
+      "diagnostics": [
+        {
+          "stage": "tool_selection",
+          "error": "Provider unreachable or invalid JSON: TimeoutError",
+          "type": "ProviderError"
+        }
+      ],
+      "question": {
+        "id": "operating-costs",
+        "text": "Какие полные расходы на эту партию: подготовка, транспорт, нагрев и обслуживание?",
+        "options": [],
+        "fields": [
+          "operating_costs"
+        ],
+        "reason": "Full costs are required to establish net profit."
+      }
+    },
+    {
+      "id": "32_money",
+      "passed": true,
+      "failed_checks": [],
+      "actual_qwen_generation": true,
+      "tools": [
+        {
+          "tool": "assess_substrate_potential",
+          "status": "ok"
+        },
+        {
+          "tool": "evaluate_partial_economics",
+          "status": "ok"
+        },
+        {
+          "tool": "search_substrate_profiles",
+          "status": "ok"
+        }
+      ],
+      "termination": "numeric_grounding_fallback",
+      "seconds": 120.12271409999812,
+      "diagnostics": [
+        {
+          "stage": "tool_selection",
+          "error": "Provider unreachable or invalid JSON: TimeoutError",
+          "type": "ProviderError"
+        },
+        {
+          "stage": "clarification",
+          "reason": "repeated_question_suppressed",
+          "question_id": "operating-costs"
+        }
+      ],
+      "question": null
+    },
+    {
+      "id": "33_sources",
+      "passed": true,
+      "failed_checks": [],
+      "actual_qwen_generation": true,
+      "tools": [
+        {
+          "tool": "assess_substrate_potential",
+          "status": "ok"
+        },
+        {
+          "tool": "compare_scientific_studies",
+          "status": "ok"
+        }
+      ],
+      "termination": "numeric_grounding_fallback",
+      "seconds": 120.13185399997747,
+      "diagnostics": [
+        {
+          "stage": "tool_selection",
+          "error": "Provider unreachable or invalid JSON: TimeoutError",
+          "type": "ProviderError"
+        }
+      ],
+      "question": {
+        "id": "working-volume",
+        "text": "Какой подтверждённый рабочий объём реактора, отдельно от номинального?",
+        "options": [],
+        "fields": [
+          "reactor_working_volume_l"
+        ],
+        "reason": "Nominal volume does not establish safe working capacity."
+      }
+    },
+    {
+      "id": "34_sources",
+      "passed": true,
+      "failed_checks": [],
+      "actual_qwen_generation": true,
+      "tools": [
+        {
+          "tool": "assess_substrate_potential",
+          "status": "ok"
+        }
+      ],
+      "termination": "numeric_grounding_fallback",
+      "seconds": 101.56239969999297,
+      "diagnostics": [
+        {
+          "stage": "clarification",
+          "reason": "repeated_question_suppressed",
+          "question_id": "working-volume"
+        }
+      ],
+      "question": null
+    },
+    {
+      "id": "35_limits",
+      "passed": true,
+      "failed_checks": [],
+      "actual_qwen_generation": true,
+      "tools": [
+        {
+          "tool": "search_substrate_profiles",
+          "status": "ok"
+        },
+        {
+          "tool": "assess_scientific_risks",
+          "status": "ok"
+        },
+        {
+          "tool": "verify_scientific_sources",
+          "status": "ok"
+        }
+      ],
+      "termination": "model_final",
+      "seconds": 115.2025117999874,
+      "diagnostics": [],
+      "question": null
+    },
+    {
+      "id": "36_density",
+      "passed": true,
+      "failed_checks": [],
+      "actual_qwen_generation": true,
+      "tools": [
+        {
+          "tool": "assess_substrate_potential",
+          "status": "ok"
+        },
+        {
+          "tool": "assess_scientific_risks",
+          "status": "ok"
+        },
+        {
+          "tool": "calculate_dilution_plan",
+          "status": "ok"
+        }
+      ],
+      "termination": "numeric_grounding_fallback",
+      "seconds": 120.08929299999727,
+      "diagnostics": [
+        {
+          "stage": "tool_selection",
+          "error": "Provider unreachable or invalid JSON: TimeoutError",
+          "type": "ProviderError"
+        }
+      ],
+      "question": {
+        "id": "working-volume",
+        "text": "Какой подтверждённый рабочий объём реактора, отдельно от номинального?",
+        "options": [],
+        "fields": [
+          "reactor_working_volume_l"
+        ],
+        "reason": "Nominal volume does not establish safe working capacity."
+      }
+    },
+    {
+      "id": "37_density",
+      "passed": true,
+      "failed_checks": [],
+      "actual_qwen_generation": true,
+      "tools": [
+        {
+          "tool": "assess_substrate_potential",
+          "status": "ok"
+        },
+        {
+          "tool": "assess_scientific_risks",
+          "status": "ok"
+        },
+        {
+          "tool": "verify_scientific_sources",
+          "status": "ok"
+        },
+        {
+          "tool": "search_scientific_sources",
+          "status": "ok"
+        }
+      ],
+      "termination": "numeric_grounding_fallback",
+      "seconds": 120.08132169995224,
+      "diagnostics": [
+        {
+          "stage": "budget",
+          "reason": "tool_call_limit"
+        }
+      ],
+      "question": null
+    },
+    {
+      "id": "38_clarify",
+      "passed": true,
+      "failed_checks": [],
+      "actual_qwen_generation": true,
+      "tools": [
+        {
+          "tool": "analyze_substrate",
+          "status": "ok"
+        },
+        {
+          "tool": "research_scientific_evidence",
+          "status": "ok"
+        },
+        {
+          "tool": "get_substrate_catalog",
+          "status": "ok"
+        },
+        {
+          "tool": "research_and_estimate",
+          "status": "needs_input"
+        }
+      ],
+      "termination": "numeric_grounding_fallback",
+      "seconds": 120.09156560001429,
+      "diagnostics": [
+        {
+          "stage": "budget",
+          "reason": "tool_call_limit"
+        }
+      ],
+      "question": {
+        "id": "batch-quantity",
+        "text": "Какова масса партии в килограммах?",
+        "fields": [
+          "quantity",
+          "unit"
+        ],
+        "options": [],
+        "reason": "Quantity is the missing input needed to scale the available scientific evidence."
+      }
+    },
+    {
+      "id": "39_clarify",
+      "passed": true,
+      "failed_checks": [],
+      "actual_qwen_generation": true,
+      "tools": [
+        {
+          "tool": "assess_substrate_potential",
+          "status": "ok"
+        },
+        {
+          "tool": "assess_scientific_risks",
+          "status": "ok"
+        },
+        {
+          "tool": "calculate_dilution_plan",
+          "status": "ok"
+        }
+      ],
+      "termination": "model_final",
+      "seconds": 84.59558059996925,
+      "diagnostics": [],
+      "question": {
+        "id": "working-volume",
+        "text": "Какой подтверждённый рабочий объём реактора, отдельно от номинального?",
+        "options": [],
+        "fields": [
+          "reactor_working_volume_l"
+        ],
+        "reason": "Nominal volume does not establish safe working capacity."
+      }
+    },
+    {
+      "id": "40_noactuator",
+      "passed": true,
+      "failed_checks": [],
+      "actual_qwen_generation": true,
+      "tools": [
+        {
+          "tool": "analyze_substrate",
+          "status": "ok"
+        },
+        {
+          "tool": "assess_substrate_potential",
+          "status": "ok"
+        },
+        {
+          "tool": "assess_scientific_risks",
+          "status": "ok"
+        },
+        {
+          "tool": "calculate_dilution_plan",
+          "status": "ok"
+        }
+      ],
+      "termination": "numeric_grounding_fallback",
+      "seconds": 120.08963499998208,
+      "diagnostics": [
+        {
+          "stage": "budget",
+          "reason": "tool_call_limit"
+        }
+      ],
+      "question": null
+    },
+    {
+      "id": "41_fault_or_budget",
+      "passed": true,
+      "failed_checks": [],
+      "actual_qwen_generation": true,
+      "tools": [
+        {
+          "tool": "assess_substrate_potential",
+          "status": "error"
+        },
+        {
+          "tool": "recover_local_scientific_analysis",
+          "status": "ok"
+        },
+        {
+          "tool": "evaluate_partial_economics",
+          "status": "ok"
+        },
+        {
+          "tool": "assess_scientific_risks",
+          "status": "ok"
+        }
+      ],
+      "termination": "numeric_grounding_fallback",
+      "seconds": 120.1389063000097,
+      "diagnostics": [
+        {
+          "stage": "tool_execution",
+          "tool": "assess_substrate_potential",
+          "error": "TEST FAULT INJECTION: local evidence service unavailable",
+          "error_type": "InjectedReadFailure"
+        },
+        {
+          "stage": "replanning",
+          "reason": "primary_science_recovered_locally",
+          "tool": "recover_local_scientific_analysis"
+        },
+        {
+          "stage": "tool_selection",
+          "error": "Provider unreachable or invalid JSON: TimeoutError",
+          "type": "ProviderError"
+        }
+      ],
+      "question": {
+        "id": "market-region",
+        "text": "В каком регионе находится установка?",
+        "options": [],
+        "fields": [
+          "market_region"
+        ],
+        "reason": "Region affects which stored market observations are applicable."
+      }
+    },
+    {
+      "id": "42_fault_or_budget",
+      "passed": true,
+      "failed_checks": [],
+      "actual_qwen_generation": true,
+      "tools": [
+        {
+          "tool": "assess_substrate_potential",
+          "status": "ok"
+        },
+        {
+          "tool": "evaluate_partial_economics",
+          "status": "error"
+        },
+        {
+          "tool": "recover_partial_economics",
+          "status": "ok"
+        }
+      ],
+      "termination": "computed_evidence_projection",
+      "seconds": 113.75508109998191,
+      "diagnostics": [
+        {
+          "stage": "tool_execution",
+          "tool": "evaluate_partial_economics",
+          "error": "TEST FAULT INJECTION: local evidence service unavailable",
+          "error_type": "InjectedReadFailure"
+        },
+        {
+          "stage": "replanning",
+          "reason": "partial_economics_recovered_locally",
+          "tool": "recover_partial_economics"
+        }
+      ],
+      "question": {
+        "id": "market-region",
+        "text": "В каком регионе находится установка?",
+        "options": [],
+        "fields": [
+          "market_region"
+        ],
+        "reason": "Region affects which stored market observations are applicable."
+      }
+    },
+    {
+      "id": "43_fault_or_budget",
+      "passed": true,
+      "failed_checks": [],
+      "actual_qwen_generation": true,
+      "tools": [
+        {
+          "tool": "assess_substrate_potential",
+          "status": "ok"
+        }
+      ],
+      "termination": "tool_call_limit",
+      "seconds": 66.22397270001238,
+      "diagnostics": [
+        {
+          "stage": "budget",
+          "reason": "tool_call_limit"
+        }
+      ],
+      "question": {
+        "id": "working-volume",
+        "text": "Какой подтверждённый рабочий объём реактора, отдельно от номинального?",
+        "options": [],
+        "fields": [
+          "reactor_working_volume_l"
+        ],
+        "reason": "Nominal volume does not establish safe working capacity."
+      }
+    },
+    {
+      "id": "44_fault_or_budget",
+      "passed": true,
+      "failed_checks": [],
+      "actual_qwen_generation": false,
+      "tools": [],
+      "termination": "provider_unavailable_local_fallback",
+      "seconds": 1.037111800047569,
+      "diagnostics": [
+        {
+          "stage": "provider",
+          "reason": "no_valid_structured_understanding",
+          "provider_status": [
+            {
+              "provider": "offline",
+              "model": "qwen3:8b",
+              "status": "unavailable_or_incompatible",
+              "phase": "structured_nlu",
+              "reason": "Provider unreachable or invalid JSON: TimeoutError",
+              "requests": [
+                {
+                  "input_characters": 618,
+                  "request_bytes": 2098,
+                  "status": "error",
+                  "error": "Provider unreachable or invalid JSON: TimeoutError",
+                  "latency_seconds": 1.0285991000127979
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "question": null
+    }
+  ],
+  "scope": "Latest recorded attempt per case. Prior attempts are archived. A one-second timeout case checks an actual request, not completed generation."
+}

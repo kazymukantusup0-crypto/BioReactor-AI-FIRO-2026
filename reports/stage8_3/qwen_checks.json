@@ -1,0 +1,1515 @@
+{
+  "source_status": "complete",
+  "cases": [
+    {
+      "id": "cattle48",
+      "turns": [
+        {
+          "tools": [
+            "assess_substrate_potential",
+            "analyze_substrate",
+            "search_scientific_sources",
+            "evaluate_partial_economics"
+          ],
+          "issues": [],
+          "api_comparisons": [
+            {
+              "scenario": "s1",
+              "mixture_and_geometry_equal": true
+            },
+            {
+              "scenario": "s2",
+              "mixture_and_geometry_equal": true
+            },
+            {
+              "scenario": "s3",
+              "mixture_and_geometry_equal": true
+            }
+          ],
+          "methane_m3": [
+            {
+              "low": 0.9880396799999998,
+              "high": 1.3906463999999998
+            },
+            {
+              "low": 0.8758377132072489,
+              "high": 0.8758377132072489
+            },
+            null
+          ],
+          "profiles": [
+            [
+              "oliveira-rm1-2025-v1"
+            ],
+            [
+              "baek2020-bedded-cattle"
+            ],
+            [
+              "eftaxias2024-cattle"
+            ]
+          ],
+          "missing": [
+            [],
+            [],
+            [
+              "density_kg_l"
+            ]
+          ],
+          "latency_seconds": 10.743157299992163
+        }
+      ],
+      "passed": true
+    },
+    {
+      "id": "grass58",
+      "turns": [
+        {
+          "tools": [
+            "assess_substrate_potential"
+          ],
+          "issues": [],
+          "api_comparisons": [
+            {
+              "scenario": "s1",
+              "mixture_and_geometry_equal": true
+            },
+            {
+              "scenario": "s2",
+              "mixture_and_geometry_equal": true
+            },
+            {
+              "scenario": "s3",
+              "mixture_and_geometry_equal": true
+            },
+            {
+              "scenario": "s4",
+              "mixture_and_geometry_equal": true
+            },
+            {
+              "scenario": "s5",
+              "mixture_and_geometry_equal": true
+            },
+            {
+              "scenario": "s6",
+              "mixture_and_geometry_equal": true
+            }
+          ],
+          "methane_m3": [
+            {
+              "low": 3.7863618000000003,
+              "high": 3.7863618000000003
+            },
+            {
+              "low": 3.1813290000000003,
+              "high": 3.1813290000000003
+            },
+            {
+              "low": 3.8095037999999994,
+              "high": 3.8095037999999994
+            },
+            {
+              "low": 5.055674399999999,
+              "high": 5.055674399999999
+            },
+            {
+              "low": 4.981132799999999,
+              "high": 4.981132799999999
+            },
+            {
+              "low": 3.9195936,
+              "high": 3.9195936
+            }
+          ],
+          "profiles": [
+            [
+              "lallement2023-grass-1"
+            ],
+            [
+              "lallement2023-grass-2"
+            ],
+            [
+              "lallement2023-grass-3"
+            ],
+            [
+              "lallement2023-grass-4"
+            ],
+            [
+              "lallement2023-grass-5"
+            ],
+            [
+              "lallement2023-grass-6"
+            ]
+          ],
+          "missing": [
+            [],
+            [],
+            [],
+            [],
+            [],
+            []
+          ],
+          "latency_seconds": 4.30701799999224
+        }
+      ],
+      "passed": true
+    },
+    {
+      "id": "poultry50",
+      "turns": [
+        {
+          "tools": [
+            "assess_substrate_potential"
+          ],
+          "issues": [],
+          "api_comparisons": [
+            {
+              "scenario": "s1",
+              "mixture_and_geometry_equal": true
+            },
+            {
+              "scenario": "s2",
+              "mixture_and_geometry_equal": true
+            }
+          ],
+          "methane_m3": [
+            {
+              "low": 8.8736,
+              "high": 8.8736
+            },
+            {
+              "low": 4.04528579,
+              "high": 4.04528579
+            }
+          ],
+          "profiles": [
+            [
+              "eftaxias2024-poultry"
+            ],
+            [
+              "ramos2019-layers-HD-sample1"
+            ]
+          ],
+          "missing": [
+            [],
+            []
+          ],
+          "latency_seconds": 5.602497100015171
+        }
+      ],
+      "passed": true
+    },
+    {
+      "id": "food5",
+      "turns": [
+        {
+          "tools": [
+            "assess_substrate_potential",
+            "analyze_substrate",
+            "search_scientific_sources",
+            "evaluate_partial_economics"
+          ],
+          "issues": [],
+          "api_comparisons": [
+            {
+              "scenario": "s1",
+              "mixture_and_geometry_equal": true
+            }
+          ],
+          "methane_m3": [
+            {
+              "low": 0.3181407248764415,
+              "high": 0.3181407248764415
+            }
+          ],
+          "profiles": [
+            [
+              "baek2020-food-pulp"
+            ]
+          ],
+          "missing": [
+            []
+          ],
+          "latency_seconds": 16.6540145999752
+        }
+      ],
+      "passed": true
+    },
+    {
+      "id": "mixture",
+      "turns": [
+        {
+          "tools": [
+            "assess_substrate_potential"
+          ],
+          "issues": [],
+          "api_comparisons": [
+            {
+              "scenario": "s1",
+              "mixture_and_geometry_equal": true
+            },
+            {
+              "scenario": "s2",
+              "mixture_and_geometry_equal": true
+            },
+            {
+              "scenario": "s3",
+              "mixture_and_geometry_equal": true
+            },
+            {
+              "scenario": "s4",
+              "mixture_and_geometry_equal": true
+            },
+            {
+              "scenario": "s5",
+              "mixture_and_geometry_equal": true
+            },
+            {
+              "scenario": "s6",
+              "mixture_and_geometry_equal": true
+            },
+            {
+              "scenario": "s7",
+              "mixture_and_geometry_equal": true
+            },
+            {
+              "scenario": "s8",
+              "mixture_and_geometry_equal": true
+            }
+          ],
+          "methane_m3": [
+            {
+              "low": 0.2754723449752883,
+              "high": 0.3085923449752883
+            },
+            {
+              "low": 0.2546091449752883,
+              "high": 0.28772914497528834
+            },
+            {
+              "low": 0.27627034497528835,
+              "high": 0.30939034497528833
+            },
+            {
+              "low": 0.31924174497528834,
+              "high": 0.35236174497528827
+            },
+            {
+              "low": 0.31667134497528826,
+              "high": 0.3497913449752883
+            },
+            {
+              "low": 0.2800665449752884,
+              "high": 0.3131865449752883
+            },
+            {
+              "low": 0.29699019863811094,
+              "high": 0.29699019863811094
+            },
+            {
+              "low": 0.27612699863811097,
+              "high": 0.27612699863811097
+            }
+          ],
+          "profiles": [
+            [
+              "oliveira-rm1-2025-v1",
+              "lallement2023-grass-1",
+              "baek2020-food-pulp"
+            ],
+            [
+              "oliveira-rm1-2025-v1",
+              "lallement2023-grass-2",
+              "baek2020-food-pulp"
+            ],
+            [
+              "oliveira-rm1-2025-v1",
+              "lallement2023-grass-3",
+              "baek2020-food-pulp"
+            ],
+            [
+              "oliveira-rm1-2025-v1",
+              "lallement2023-grass-4",
+              "baek2020-food-pulp"
+            ],
+            [
+              "oliveira-rm1-2025-v1",
+              "lallement2023-grass-5",
+              "baek2020-food-pulp"
+            ],
+            [
+              "oliveira-rm1-2025-v1",
+              "lallement2023-grass-6",
+              "baek2020-food-pulp"
+            ],
+            [
+              "baek2020-bedded-cattle",
+              "lallement2023-grass-1",
+              "baek2020-food-pulp"
+            ],
+            [
+              "baek2020-bedded-cattle",
+              "lallement2023-grass-2",
+              "baek2020-food-pulp"
+            ]
+          ],
+          "missing": [
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            []
+          ],
+          "latency_seconds": 13.628078999987338
+        }
+      ],
+      "passed": true
+    },
+    {
+      "id": "overfill",
+      "turns": [
+        {
+          "tools": [
+            "assess_substrate_potential"
+          ],
+          "issues": [],
+          "api_comparisons": [
+            {
+              "scenario": "s1",
+              "mixture_and_geometry_equal": true
+            },
+            {
+              "scenario": "s2",
+              "mixture_and_geometry_equal": true
+            }
+          ],
+          "methane_m3": [
+            {
+              "low": 1.6467327999999999,
+              "high": 2.317744
+            },
+            null
+          ],
+          "profiles": [
+            [
+              "oliveira-rm1-2025-v1"
+            ],
+            [
+              "eftaxias2024-cattle"
+            ]
+          ],
+          "missing": [
+            [],
+            [
+              "density_kg_l"
+            ]
+          ],
+          "latency_seconds": 15.320840000000317
+        }
+      ],
+      "passed": true
+    },
+    {
+      "id": "water",
+      "turns": [
+        {
+          "tools": [
+            "assess_substrate_potential"
+          ],
+          "issues": [],
+          "api_comparisons": [
+            {
+              "scenario": "s1",
+              "mixture_and_geometry_equal": true
+            }
+          ],
+          "methane_m3": [
+            {
+              "low": 0.3181407248764415,
+              "high": 0.3181407248764415
+            }
+          ],
+          "profiles": [
+            [
+              "baek2020-food-pulp"
+            ]
+          ],
+          "missing": [
+            []
+          ],
+          "latency_seconds": 12.28773329994874
+        },
+        {
+          "tools": [
+            "assess_process_evidence",
+            "assess_substrate_potential"
+          ],
+          "issues": [],
+          "api_comparisons": [
+            {
+              "scenario": "s1",
+              "mixture_and_geometry_equal": true
+            }
+          ],
+          "methane_m3": [
+            {
+              "low": 0.3181407248764415,
+              "high": 0.3181407248764415
+            }
+          ],
+          "profiles": [
+            [
+              "baek2020-food-pulp"
+            ]
+          ],
+          "missing": [
+            []
+          ],
+          "latency_seconds": 20.499267100007273
+        }
+      ],
+      "passed": true
+    },
+    {
+      "id": "compare",
+      "turns": [
+        {
+          "tools": [
+            "assess_substrate_potential",
+            "search_scientific_sources",
+            "evaluate_partial_economics"
+          ],
+          "issues": [],
+          "api_comparisons": [
+            {
+              "scenario": "s1",
+              "mixture_and_geometry_equal": true
+            },
+            {
+              "scenario": "s2",
+              "mixture_and_geometry_equal": true
+            },
+            {
+              "scenario": "s3",
+              "mixture_and_geometry_equal": true
+            },
+            {
+              "scenario": "s4",
+              "mixture_and_geometry_equal": true
+            }
+          ],
+          "methane_m3": [
+            {
+              "low": 0.2032,
+              "high": 0.2860000000000001
+            },
+            {
+              "low": 0.25699463415705665,
+              "high": 0.25699463415705665
+            },
+            {
+              "low": 0.193476,
+              "high": 0.193476
+            },
+            {
+              "low": 0.636281449752883,
+              "high": 0.636281449752883
+            }
+          ],
+          "profiles": [
+            [
+              "oliveira-rm1-2025-v1"
+            ],
+            [
+              "baek2020-bedded-cattle"
+            ],
+            [
+              "eftaxias2024-cattle"
+            ],
+            [
+              "baek2020-food-pulp"
+            ]
+          ],
+          "missing": [
+            [],
+            [],
+            [],
+            []
+          ],
+          "latency_seconds": 31.48513779998757
+        }
+      ],
+      "passed": true
+    },
+    {
+      "id": "temperature",
+      "turns": [
+        {
+          "tools": [
+            "assess_process_evidence"
+          ],
+          "issues": [],
+          "api_comparisons": [],
+          "methane_m3": [],
+          "profiles": [],
+          "missing": [],
+          "latency_seconds": 10.972907999996096
+        }
+      ],
+      "passed": true
+    },
+    {
+      "id": "costs",
+      "turns": [
+        {
+          "tools": [
+            "get_market_prices",
+            "assess_substrate_potential",
+            "analyze_substrate",
+            "search_scientific_sources",
+            "evaluate_partial_economics"
+          ],
+          "issues": [],
+          "api_comparisons": [
+            {
+              "scenario": "s1",
+              "mixture_and_geometry_equal": true
+            }
+          ],
+          "methane_m3": [
+            {
+              "low": 0.3181407248764415,
+              "high": 0.3181407248764415
+            }
+          ],
+          "profiles": [
+            [
+              "baek2020-food-pulp"
+            ]
+          ],
+          "missing": [
+            []
+          ],
+          "latency_seconds": 42.914373800042085
+        },
+        {
+          "tools": [
+            "get_market_prices",
+            "analyze_substrate",
+            "assess_substrate_potential",
+            "search_scientific_sources",
+            "evaluate_partial_economics"
+          ],
+          "issues": [],
+          "api_comparisons": [
+            {
+              "scenario": "s1",
+              "mixture_and_geometry_equal": true
+            }
+          ],
+          "methane_m3": [
+            {
+              "low": 0.3181407248764415,
+              "high": 0.3181407248764415
+            }
+          ],
+          "profiles": [
+            [
+              "baek2020-food-pulp"
+            ]
+          ],
+          "missing": [
+            []
+          ],
+          "latency_seconds": 42.91688770003384
+        }
+      ],
+      "passed": true
+    },
+    {
+      "id": "pig8",
+      "turns": [
+        {
+          "tools": [
+            "assess_substrate_potential"
+          ],
+          "issues": [],
+          "api_comparisons": [
+            {
+              "scenario": "s1",
+              "mixture_and_geometry_equal": true
+            },
+            {
+              "scenario": "s2",
+              "mixture_and_geometry_equal": true
+            }
+          ],
+          "methane_m3": [
+            {
+              "low": 0.03784525210560079,
+              "high": 0.03784525210560079
+            },
+            {
+              "low": 0.0207776,
+              "high": 0.0207776
+            }
+          ],
+          "profiles": [
+            [
+              "pham2013-pig-vdi"
+            ],
+            [
+              "eftaxias2024-pig"
+            ]
+          ],
+          "missing": [
+            [],
+            []
+          ],
+          "latency_seconds": 18.509251199953724
+        }
+      ],
+      "passed": true
+    },
+    {
+      "id": "horse",
+      "turns": [
+        {
+          "tools": [
+            "assess_substrate_potential"
+          ],
+          "issues": [],
+          "api_comparisons": [
+            {
+              "scenario": "s1",
+              "mixture_and_geometry_equal": true
+            }
+          ],
+          "methane_m3": [
+            {
+              "low": 0.2526670974158391,
+              "high": 0.2526670974158391
+            }
+          ],
+          "profiles": [
+            [
+              "monch2013-horse-dung-A"
+            ]
+          ],
+          "missing": [
+            []
+          ],
+          "latency_seconds": 17.125633599993307
+        }
+      ],
+      "passed": true
+    },
+    {
+      "id": "goat",
+      "turns": [
+        {
+          "tools": [
+            "assess_substrate_potential"
+          ],
+          "issues": [],
+          "api_comparisons": [
+            {
+              "scenario": "s1",
+              "mixture_and_geometry_equal": true
+            },
+            {
+              "scenario": "s2",
+              "mixture_and_geometry_equal": true
+            }
+          ],
+          "methane_m3": [
+            {
+              "low": 0.17864280000000002,
+              "high": 0.17864280000000002
+            },
+            {
+              "low": 0.41268600000000005,
+              "high": 0.41268600000000005
+            }
+          ],
+          "profiles": [
+            [
+              "eftaxias2024-sheep"
+            ],
+            [
+              "eftaxias2024-goat"
+            ]
+          ],
+          "missing": [
+            [],
+            []
+          ],
+          "latency_seconds": 18.562146799988113
+        }
+      ],
+      "passed": true
+    },
+    {
+      "id": "straw",
+      "turns": [
+        {
+          "tools": [
+            "assess_substrate_potential"
+          ],
+          "issues": [],
+          "api_comparisons": [
+            {
+              "scenario": "s1",
+              "mixture_and_geometry_equal": true
+            }
+          ],
+          "methane_m3": [
+            {
+              "low": 0.3235901774570593,
+              "high": 0.3235901774570593
+            }
+          ],
+          "profiles": [
+            [
+              "monch2013-straw-A"
+            ]
+          ],
+          "missing": [
+            []
+          ],
+          "latency_seconds": 20.706880800018553
+        }
+      ],
+      "passed": true
+    },
+    {
+      "id": "silage",
+      "turns": [
+        {
+          "tools": [
+            "assess_substrate_potential"
+          ],
+          "issues": [],
+          "api_comparisons": [
+            {
+              "scenario": "s1",
+              "mixture_and_geometry_equal": true
+            }
+          ],
+          "methane_m3": [
+            null
+          ],
+          "profiles": [
+            [
+              null
+            ]
+          ],
+          "missing": [
+            [
+              "bmp_ml_g_vs",
+              "ts_fraction",
+              "vs_fraction_wet"
+            ]
+          ],
+          "latency_seconds": 17.55362530000275
+        }
+      ],
+      "passed": true
+    },
+    {
+      "id": "vegetables",
+      "turns": [
+        {
+          "tools": [
+            "assess_substrate_potential"
+          ],
+          "issues": [],
+          "api_comparisons": [
+            {
+              "scenario": "s1",
+              "mixture_and_geometry_equal": true
+            }
+          ],
+          "methane_m3": [
+            null
+          ],
+          "profiles": [
+            [
+              null
+            ]
+          ],
+          "missing": [
+            [
+              "bmp_ml_g_vs",
+              "ts_fraction",
+              "vs_fraction_wet"
+            ]
+          ],
+          "latency_seconds": 18.083812600001693
+        }
+      ],
+      "passed": true
+    },
+    {
+      "id": "fruit",
+      "turns": [
+        {
+          "tools": [
+            "assess_substrate_potential"
+          ],
+          "issues": [],
+          "api_comparisons": [
+            {
+              "scenario": "s1",
+              "mixture_and_geometry_equal": true
+            }
+          ],
+          "methane_m3": [
+            null
+          ],
+          "profiles": [
+            [
+              null
+            ]
+          ],
+          "missing": [
+            [
+              "bmp_ml_g_vs",
+              "ts_fraction",
+              "vs_fraction_wet"
+            ]
+          ],
+          "latency_seconds": 16.024804100045003
+        }
+      ],
+      "passed": true
+    },
+    {
+      "id": "whey",
+      "turns": [
+        {
+          "tools": [
+            "assess_substrate_potential"
+          ],
+          "issues": [],
+          "api_comparisons": [
+            {
+              "scenario": "s1",
+              "mixture_and_geometry_equal": true
+            }
+          ],
+          "methane_m3": [
+            null
+          ],
+          "profiles": [
+            [
+              null
+            ]
+          ],
+          "missing": [
+            [
+              "bmp_ml_g_vs",
+              "density_kg_l",
+              "ts_fraction",
+              "vs_fraction_wet"
+            ]
+          ],
+          "latency_seconds": 14.70942130003823
+        }
+      ],
+      "passed": true
+    },
+    {
+      "id": "plant",
+      "turns": [
+        {
+          "tools": [
+            "assess_substrate_potential"
+          ],
+          "issues": [],
+          "api_comparisons": [
+            {
+              "scenario": "s1",
+              "mixture_and_geometry_equal": true
+            }
+          ],
+          "methane_m3": [
+            null
+          ],
+          "profiles": [
+            [
+              null
+            ]
+          ],
+          "missing": [
+            [
+              "bmp_ml_g_vs",
+              "ts_fraction",
+              "vs_fraction_wet"
+            ]
+          ],
+          "latency_seconds": 17.842052899999544
+        }
+      ],
+      "passed": true
+    },
+    {
+      "id": "unknown",
+      "turns": [
+        {
+          "tools": [
+            "assess_substrate_potential"
+          ],
+          "issues": [],
+          "api_comparisons": [
+            {
+              "scenario": "s1",
+              "mixture_and_geometry_equal": true
+            }
+          ],
+          "methane_m3": [
+            null
+          ],
+          "profiles": [
+            [
+              null
+            ]
+          ],
+          "missing": [
+            [
+              "bmp_ml_g_vs",
+              "ts_fraction",
+              "vs_fraction_wet"
+            ]
+          ],
+          "latency_seconds": 18.82604580000043
+        }
+      ],
+      "passed": true
+    },
+    {
+      "id": "grass_litres",
+      "turns": [
+        {
+          "tools": [
+            "assess_substrate_potential"
+          ],
+          "issues": [],
+          "api_comparisons": [
+            {
+              "scenario": "s1",
+              "mixture_and_geometry_equal": true
+            },
+            {
+              "scenario": "s2",
+              "mixture_and_geometry_equal": true
+            },
+            {
+              "scenario": "s3",
+              "mixture_and_geometry_equal": true
+            },
+            {
+              "scenario": "s4",
+              "mixture_and_geometry_equal": true
+            },
+            {
+              "scenario": "s5",
+              "mixture_and_geometry_equal": true
+            },
+            {
+              "scenario": "s6",
+              "mixture_and_geometry_equal": true
+            }
+          ],
+          "methane_m3": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "profiles": [
+            [
+              "lallement2023-grass-1"
+            ],
+            [
+              "lallement2023-grass-2"
+            ],
+            [
+              "lallement2023-grass-3"
+            ],
+            [
+              "lallement2023-grass-4"
+            ],
+            [
+              "lallement2023-grass-5"
+            ],
+            [
+              "lallement2023-grass-6"
+            ]
+          ],
+          "missing": [
+            [
+              "density_kg_l"
+            ],
+            [
+              "density_kg_l"
+            ],
+            [
+              "density_kg_l"
+            ],
+            [
+              "density_kg_l"
+            ],
+            [
+              "density_kg_l"
+            ],
+            [
+              "density_kg_l"
+            ]
+          ],
+          "latency_seconds": 15.377055599994492
+        }
+      ],
+      "passed": true
+    },
+    {
+      "id": "poultry_litres",
+      "turns": [
+        {
+          "tools": [
+            "assess_substrate_potential"
+          ],
+          "issues": [],
+          "api_comparisons": [
+            {
+              "scenario": "s1",
+              "mixture_and_geometry_equal": true
+            },
+            {
+              "scenario": "s2",
+              "mixture_and_geometry_equal": true
+            }
+          ],
+          "methane_m3": [
+            {
+              "low": 1.6682367999999996,
+              "high": 1.6682367999999996
+            },
+            {
+              "low": 0.76051372852,
+              "high": 0.76051372852
+            }
+          ],
+          "profiles": [
+            [
+              "eftaxias2024-poultry"
+            ],
+            [
+              "ramos2019-layers-HD-sample1"
+            ]
+          ],
+          "missing": [
+            [],
+            []
+          ],
+          "latency_seconds": 16.66432869998971
+        }
+      ],
+      "passed": true
+    },
+    {
+      "id": "food_grams",
+      "turns": [
+        {
+          "tools": [
+            "assess_substrate_potential"
+          ],
+          "issues": [],
+          "api_comparisons": [
+            {
+              "scenario": "s1",
+              "mixture_and_geometry_equal": true
+            }
+          ],
+          "methane_m3": [
+            {
+              "low": 0.03181407248764416,
+              "high": 0.03181407248764416
+            }
+          ],
+          "profiles": [
+            [
+              "baek2020-food-pulp"
+            ]
+          ],
+          "missing": [
+            []
+          ],
+          "latency_seconds": 21.000135100039188
+        }
+      ],
+      "passed": true
+    },
+    {
+      "id": "pig_tonnes",
+      "turns": [
+        {
+          "tools": [
+            "assess_substrate_potential"
+          ],
+          "issues": [],
+          "api_comparisons": [
+            {
+              "scenario": "s1",
+              "mixture_and_geometry_equal": true
+            },
+            {
+              "scenario": "s2",
+              "mixture_and_geometry_equal": true
+            }
+          ],
+          "methane_m3": [
+            {
+              "low": 0.47306565132000983,
+              "high": 0.47306565132000983
+            },
+            {
+              "low": 0.25971999999999995,
+              "high": 0.25971999999999995
+            }
+          ],
+          "profiles": [
+            [
+              "pham2013-pig-vdi"
+            ],
+            [
+              "eftaxias2024-pig"
+            ]
+          ],
+          "missing": [
+            [],
+            []
+          ],
+          "latency_seconds": 16.735943700012285
+        }
+      ],
+      "passed": true
+    },
+    {
+      "id": "addition",
+      "turns": [
+        {
+          "tools": [
+            "assess_substrate_potential"
+          ],
+          "issues": [],
+          "api_comparisons": [
+            {
+              "scenario": "s1",
+              "mixture_and_geometry_equal": true
+            }
+          ],
+          "methane_m3": [
+            {
+              "low": 0.3181407248764415,
+              "high": 0.3181407248764415
+            }
+          ],
+          "profiles": [
+            [
+              "baek2020-food-pulp"
+            ]
+          ],
+          "missing": [
+            []
+          ],
+          "latency_seconds": 15.145295800000895
+        },
+        {
+          "tools": [
+            "assess_substrate_potential"
+          ],
+          "issues": [],
+          "api_comparisons": [
+            {
+              "scenario": "s1",
+              "mixture_and_geometry_equal": true
+            }
+          ],
+          "methane_m3": [
+            {
+              "low": 0.6730847248764416,
+              "high": 0.6730847248764416
+            }
+          ],
+          "profiles": [
+            [
+              "baek2020-food-pulp",
+              "eftaxias2024-poultry"
+            ]
+          ],
+          "missing": [
+            []
+          ],
+          "latency_seconds": 13.284072099952027
+        }
+      ],
+      "passed": true
+    },
+    {
+      "id": "correction",
+      "turns": [
+        {
+          "tools": [
+            "assess_substrate_potential"
+          ],
+          "issues": [],
+          "api_comparisons": [
+            {
+              "scenario": "s1",
+              "mixture_and_geometry_equal": true
+            }
+          ],
+          "methane_m3": [
+            {
+              "low": 0.3181407248764415,
+              "high": 0.3181407248764415
+            }
+          ],
+          "profiles": [
+            [
+              "baek2020-food-pulp"
+            ]
+          ],
+          "missing": [
+            []
+          ],
+          "latency_seconds": 15.388168100034818
+        },
+        {
+          "tools": [
+            "assess_substrate_potential"
+          ],
+          "issues": [],
+          "api_comparisons": [
+            {
+              "scenario": "s1",
+              "mixture_and_geometry_equal": true
+            }
+          ],
+          "methane_m3": [
+            {
+              "low": 0.19088443492586493,
+              "high": 0.19088443492586493
+            }
+          ],
+          "profiles": [
+            [
+              "baek2020-food-pulp"
+            ]
+          ],
+          "missing": [
+            []
+          ],
+          "latency_seconds": 12.335251999960747
+        }
+      ],
+      "passed": true
+    },
+    {
+      "id": "temperature_context",
+      "turns": [
+        {
+          "tools": [
+            "assess_substrate_potential"
+          ],
+          "issues": [],
+          "api_comparisons": [
+            {
+              "scenario": "s1",
+              "mixture_and_geometry_equal": true
+            },
+            {
+              "scenario": "s2",
+              "mixture_and_geometry_equal": true
+            }
+          ],
+          "methane_m3": [
+            {
+              "low": 0.03784525210560079,
+              "high": 0.03784525210560079
+            },
+            {
+              "low": 0.0207776,
+              "high": 0.0207776
+            }
+          ],
+          "profiles": [
+            [
+              "pham2013-pig-vdi"
+            ],
+            [
+              "eftaxias2024-pig"
+            ]
+          ],
+          "missing": [
+            [],
+            []
+          ],
+          "latency_seconds": 19.24267659999896
+        },
+        {
+          "tools": [
+            "assess_substrate_potential",
+            "assess_process_evidence",
+            "evaluate_partial_economics"
+          ],
+          "issues": [],
+          "api_comparisons": [
+            {
+              "scenario": "s1",
+              "mixture_and_geometry_equal": true
+            },
+            {
+              "scenario": "s2",
+              "mixture_and_geometry_equal": true
+            }
+          ],
+          "methane_m3": [
+            {
+              "low": 0.03784525210560079,
+              "high": 0.03784525210560079
+            },
+            {
+              "low": 0.0207776,
+              "high": 0.0207776
+            }
+          ],
+          "profiles": [
+            [
+              "pham2013-pig-vdi"
+            ],
+            [
+              "eftaxias2024-pig"
+            ]
+          ],
+          "missing": [
+            [],
+            []
+          ],
+          "latency_seconds": 26.676404599973466
+        }
+      ],
+      "passed": true
+    },
+    {
+      "id": "dry_grass",
+      "turns": [
+        {
+          "tools": [
+            "assess_substrate_potential"
+          ],
+          "issues": [],
+          "api_comparisons": [
+            {
+              "scenario": "s1",
+              "mixture_and_geometry_equal": true
+            }
+          ],
+          "methane_m3": [
+            null
+          ],
+          "profiles": [
+            [
+              null
+            ]
+          ],
+          "missing": [
+            [
+              "bmp_ml_g_vs",
+              "ts_fraction",
+              "vs_fraction_wet"
+            ]
+          ],
+          "latency_seconds": 16.242260700033512
+        }
+      ],
+      "passed": true
+    },
+    {
+      "id": "compost",
+      "turns": [
+        {
+          "tools": [
+            "assess_substrate_potential"
+          ],
+          "issues": [],
+          "api_comparisons": [
+            {
+              "scenario": "s1",
+              "mixture_and_geometry_equal": true
+            }
+          ],
+          "methane_m3": [
+            null
+          ],
+          "profiles": [
+            [
+              null
+            ]
+          ],
+          "missing": [
+            [
+              "bmp_ml_g_vs",
+              "ts_fraction",
+              "vs_fraction_wet"
+            ]
+          ],
+          "latency_seconds": 17.229349199973512
+        }
+      ],
+      "passed": true
+    },
+    {
+      "id": "mixture_unknown",
+      "turns": [
+        {
+          "tools": [
+            "assess_substrate_potential"
+          ],
+          "issues": [],
+          "api_comparisons": [
+            {
+              "scenario": "s1",
+              "mixture_and_geometry_equal": true
+            }
+          ],
+          "methane_m3": [
+            null
+          ],
+          "profiles": [
+            [
+              "baek2020-food-pulp",
+              null
+            ]
+          ],
+          "missing": [
+            [
+              "bmp_ml_g_vs",
+              "ts_fraction",
+              "vs_fraction_wet"
+            ]
+          ],
+          "latency_seconds": 17.759882599988487
+        }
+      ],
+      "passed": true
+    }
+  ],
+  "passed": 30,
+  "total": 30
+}

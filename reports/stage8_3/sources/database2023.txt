@@ -1,0 +1,1733 @@
+Article
+A Detailed Database of the Chemical Properties and Methane
+Potential of Biomasses Covering a Large Range of Common
+Agricultural Biogas Plant Feedstocks
+
+Audrey Lallement 1, Christine Peyrelasse 1, Camille Lagnet 1, Abdellatif Barakat 2, Blandine Schraauwers 1,
+Samuel Maunas 1 and Florian Monlau 1,*
+
+
+                                            1  APESA, Plateau Technique, Cap Ecologia, Avenue Fréderic Joliot Curie, 64230 Lescar, France
+                                            2  INRAE, UMR IATE, Place Pierre Viala, CEDEX 02, 34060 Montpellier, France
+                                     *   Correspondence: ﬂorian.monlau@apesa.fr
+
+
+                                Abstract: Agricultural biogas plants are increasingly being used in Europe as an alternative source of
+                                 energy. To optimize the sizing and operation of existing or future biogas plants, a better knowledge of
+                                   different feedstocks is needed. Our aim is to characterize 132 common agricultural feedstocks in terms
+                                 of their chemical composition (proteins, ﬁbers, elemental analysis, etc.) and biochemical methane
+                                 potential shared in ﬁve families: agro-industrial products, silage and energy crops, lignocellulosic
+                              biomass, manure, and slurries. Among the families investigated, manures and slurries exhibited the
+                                highest ash and protein contents (10.3–13.7% DM). High variabilities in C/N were observed among
+                               the various families (19.5% DM for slurries and 131.7% DM for lignocellulosic biomass). Methane
+                                  potentials have been reported to range from 63 Nm3 CH4/t VS (green waste) to 551 Nm3 CH4/t VS
+                             (duck slurry), with a mean value of 284 Nm3 CH4/t VS. In terms of biodegradability, lower values of
+                       52% and 57% were reported for lignocelluloses biomasses and manures, respectively, due to their
+                              high ﬁber content, especially lignin. By contrast, animal slurries, silage, and energy crops exhibited a
+                               higher biodegradability of 70%. This database will be useful for project owners during the pre-study
+Citation: Lallement, A.; Peyrelasse,
+                             phases and during the operation of future agricultural biogas plants.
+C.; Lagnet, C.; Barakat, A.;
+
+Schraauwers, B.; Maunas, S.; Monlau,
+                           Keywords: anaerobic digestion; agricultural inputs; biochemical methane potential; biodegradability;
+F. A Detailed Database of the
+                                   lignocellulosic biomasses; manures
+Chemical Properties and Methane
+
+Potential of Biomasses Covering a
+
+Large Range of Common
+
+Agricultural Biogas Plant Feedstocks.
+Waste 2023, 1, 195–227. https://        1. Introduction
+doi.org/10.3390/waste1010014            Biogas production has increased in the European Union, encouraged by the European
+Academic Editors: Dimitris P. Makris   “Green Deal” and the renewable energy policies [1,2]. Between 2000 and 2017, global
+and Vassilis Athanasiadis           biogas production quadrupled, from 78 to 364 TW h, which corresponds to a global yearly
+                       volume of 61 billion m3 biogas; it is shared mainly among Europe (54%), Asia (31%), and
+Received: 6 November 2022          the Americas (14%) [1]. Anaerobic digestion (AD) unit numbers are increasing in Europe,
+Revised: 20 December 2022         supported by the need to improve green energy supplies. Among the typologies of biogas
+Accepted: 22 December 2022          plants, agricultural biogas plants are gaining increasing interest as a valuable technology to
+Published: 10 January 2023
+                                 treat agricultural residues and co-products, thereby generating energy and fertilizers and
+                          improving farmers’ incomes. In 2021, France had approximately 401 AD on farms and 285
+                             centralized or territorial AD (Source: SINOE). In parallel, in 2018, 1555 and 9500 biogas
+Copyright: © 2023 by the authors.   plants were reported in Italy and Germany, respectively [1]. Nonetheless, it appears that
+Licensee MDPI, Basel,  Switzerland.   the biogas sector is facing a shift in its development paradigm [1]. At the European level,
+This article is an open access article   the biogas sector is still dominated mainly by a model based on energy crops, high feed-in
+distributed  under  the  terms  and    tariffs, and local electrical production via combined heat and power units. However, the
+conditions of the Creative Commons   biogas sector is now moving towards a different model, where organic wastes, agricultural
+Attribution (CC BY) license (https://   by-products, as well as sequential crops are used mainly as feedstocks, and biogas is
+creativecommons.org/licenses/by/    upgraded to biomethane for various applications (transportation, chemical production,
+4.0/).                           heat, etc.) [1].
+
+
+
+
+
+Waste 2023, 1, 195–227. https://doi.org/10.3390/waste1010014                                       https://www.mdpi.com/journal/waste
+Waste 2023, 1                                                                                                                     196
+
+
+
+                         As the number of biogas plants has increased, securing deposits and the need for
+                              alternative feedstocks are growing. The main families of inputs for agricultural biogas
+                            plants are animal wastes (manures and slurries), lignocellulosic biomasses, energy and
+                             sequential crops and silages, and agricultural co-products. To help industrial and biogas
+                             operators, a better knowledge of the main chemical properties (organic matter, ﬁbers,
+                              proteins, elemental analysis, C/N, COD, etc.) along with biochemical methane potential
+                                  tests are needed. The C/N ratio of feedstock is another important parameter, and for a good
+                           anaerobic digestion process, the C/N ratio must be between 20 and 30 [3,4]. Indeed, if a
+                            biogas reactor has a low C/N ratio, there is potential inhibition from ammonia [3,5]. Among
+                            the chemical parameters, the content of ﬁbers (cellulose, hemicelluloses, and lignin) and
+                              proteins is another important issue that can affect the ﬁnal biodegradability of substrates [6].
+                                  Finally, the information of the elemental analysis (C, H, N, S, and O) is of prime importance,
+                             as it will allow determination of both the theoretical chemical oxygen demand (COD) and
+                            the theoretical methane potential according to the Buswell equation [7].
+                              Aside from chemical properties, the determination of the methane potential through
+                  BMP (biochemical methane potential) tests is important. BMPs allow laboratory-scale
+                         measurement of the maximum production of methane generated by the digestion of a single
+                               substrate, and in recent decades, several national and international inter-laboratory studies
+                         have been carried out to optimize the protocol and deﬁne good practices [8–10]. BMP tests
+                              are a popular technique to determine the methane potential and biodegradability of organic
+                             substrates [11]. Currently, the BMP test is used for the technical and economic analysis
+                              of a project, for the design of agricultural biogas plants, and for evaluation of the process
+                          performance [8]. BMP tests can also be useful when the biogas plant unit is operating and
+                     new biomasses are to be introduced. Table 1 lists recent studies that provided detailed BMP
+                           data of different organic wastes along with the ISR (inoculum-to-substrate ratio) applied.
+                            Indeed, the ISR of the BMP is one of the crucial parameters, and the generally recommended
+                            values are between 2 and 4 [9,11]. In parallel with classical BMP tests, a theoretical one can
+                              also be estimated according to the elemental composition and the Buswell equation [12] or
+                             the COD [13], the chemical composition (lipids, carbohydrates, and proteins) [13], or using
+                         McCarty’s method [14], allowing determination of the biodegradation rate of a selected
+                               substrate.
+                                             It is of interest to note that a few publications have provided detailed methane po-
+                                tentials per substrate categories, and they generally provide only min., max., and mean
+                             values. Among these publications, Allen et al. (2016) reported methane potentials for 83
+                            organic substrates covering different categories from ﬁrst-, second-, and third-generation
+                           biomasses with agricultural wastes, agro-industrial wastes, food residues, and seaweeds [5].
+                            In parallel, Garcia et al. (2019) reported a detailed methane potential database of more
+                          than 50 agricultural and food processing substrates [15]. Similarly, Godin et al. (2015)
+                            referenced the methane potential of 569 plant biomasses [16]. In parallel, other studies
+                            reported exhaustive lists of the methane potentials of 56 agricultural wastes [17], 48 maize
+                        sample silages [18], 43 crop species [19], 12 lignocellulosic biomasses [6], and 30 organic
+                          wastes [14].
+                             To date, there is clearly a lack of information in the literature regarding data about the
+                           chemical and methane potentials of a large spectrum of agricultural biogas plant feedstocks.
+                           This publication aims to highlight the characterization of 132 substrates shared by ﬁve
+                               different families: cereal and residue (CER), energy crop and silage (ENSI), lignocellulosic
+                           matter (LCM), manure (MAN), and slurry (SLU). The selection of substrates was based on
+                                their frequency of inclusion in agricultural biogas plants. First, various chemical properties
+                            (organic matter, ﬁbers, proteins, elemental analysis, C/N, COD, etc.) were analyzed
+                              for the 131 substrates. Then, methane potentials were assessed on these substrates and
+                             biodegradability rates (deﬁned as the ratio of the BMP assay yield to the theoretical Buswell
+                               yield) were calculated.
+Waste 2023, 1                                                                                                                     197
+
+
+
+
+                             Table 1. Literature data on large sets of BMP references for organic substrates. N.: number of samples,
+                                ISR: inoculum–substrate ratio, MSW: municipal solid wastes, and WWTP: wastewater treatment
+                                  plant. Description of the samples can be found in the Appendix B.
+
+
+                                                                  N.                  Mean BMP
+                 Data                                                   Min              Max
+   Reference                     Sample Description                 (Total     ISR         (Nm3 CH4/t                 Access                                          BMP            BMP
+                                                         Number)                    VS)
+
+                             30 organic substrates, including 2 raw
+                             manures, 9 food residues, 5 invasive
+       [14]          Yes                                                 22         1     122        341        649
+                                 aquatic plants, and 6 other organic
+                                           wastes
+       [20]          Yes             Reed canary grasses                 14          0.8     283        348        417
+       [21]          Yes                    11 crops                      41         2     177        311        401
+       [22]          Yes          4 grasses and 2 legume species            61         2     265        338        422
+                             Biomasses from ﬁrst-, second-, and
+                               third-generation: 6 cereal crops, 3 oilseed
+                                 rapes, 7 root crops, 5 grass silages, 2
+                             baled silages, 8 other grass substrates, 7
+                              dairy slurries, 4 other agricultural wastes,
+        [5]          Yes                                                 83         2      99         328        805
+                              4 milk processing wastes, 4 abattoir
+                                 wastes, 7 miscellaneous wastes, 10
+                            domestic and commercial food wastes, 3
+                                   alternative waste substrates, and 12
+                                       seaweeds
+                                                                                  2–
+       [23]          Yes               20 sludge samples                  20                58         181        318
+                                                                                                  2.5
+                   Yes      18 plants, 12 grasses, 5 bushes, 16 trees, 4
+       [17]                                                              57         3     104        219        479
+                 51/57                 cereals, and 1 straw
+                               5 energy crops, 8 lignocellulosic
+                              biomasses, 7 herbaceous and vegetable
+       [15]          Yes         by-products, 7 fruit by-products, 6          50         2      71         325        729
+                                    livestock efﬂuents, and 18 food
+                                         by-products
+                            46 energy crops and silages, 5 slurries, 31
+                            manures, 17 cereal and agro-industrial
+   This study       Yes                                                 131         3      63         283        551
+                                    residues, and 32 lignocellulosic
+                                         biomasses
+                            3 animal manures, 3 crop straws, 5 food
+                   Yes
+                         and green wastes, 2 processing organic
+       [24]      Appendix                                              16         2      49         317        811
+                                   wastes, 1 energy grass, and 2
+                          *
+                                        lignocellulosic biomasses
+                   Yes
+                            48 maize genotypes selected for diverse
+       [18]      Appendix                                              204             -      295        329        355
+                               maturity and biomass production
+                          *
+                            17 Miscanthus, 16 switch grasses, 36 spelt
+                   Yes
+                                  straws, 37 ﬁber sorghums, 369 tall
+       [16]      Appendix                                           569 (588)      2     147        389        589
+                                 fescues, 21 immature ryes, and 73 ﬁber
+                          *
+                                             corns
+                   Yes
+       [19]      Appendix       405 silages from 43 crop species            43         2     143        304        425
+                          *
+                           68 municipal solid wastes, 7 MSW mix, 9
+       [25]       No      raw substrates, and 18 lignocellulosic       20 (102)       0.5     87         257        226
+                                           wastes
+       [26]       No               95 meadow grasses                 95              -      51         288        406
+Waste 2023, 1                                                                                                                     198
+
+
+
+
+                             Table 1. Cont.
+
+
+                                                                  N.                  Mean BMP
+                 Data                                                   Min              Max
+   Reference                     Sample Description                 (Total     ISR         (Nm3 CH4/t                 Access                                          BMP            BMP
+                                                         Number)                    VS)
+
+                                57 agro-industrial biomasses, 1
+                             macroalgae, 20 biowastes, 4 energy crops,
+                               11 fatty wastes, 14 meat wastes, 2
+       [27]       No         co-digestion mixtures, 66 WWTP, 42         296        2–5     0         291        1344
+                              plants and vegetables, 18 agro-industrial
+                               sludges, 30 sewage sludge WWTP, and 31
+                                   municipal solid wastes
+                              33 energy crops, 15 lawn grasses, 19
+       [28]       No                                                 88         3     104        251        502
+                           hedge trimmings, and 21 wild plants
+                               23 anaerobic sludges, 30 standard
+                          compounds, 50 household wastes, 10
+       [29]       No                                                 138         2      39         361        943
+                                agriculture wastes, 19 sewage sludges,
+                               and 6 lipid-rich wastes
+                       48% agricultural residues, 29% animal
+                            beading wastes, 6% AD feedstock, AD
+       [30]       No                                                 289         2.8     56         287        879
+                                 digestates, lipid wastes, algae, MSW, and
+                                        agro-industrial wastes
+        [6]        No           12 lignocellulosic biomasses             12         2     155        225        300
+
+                                          * data are not provided directly in the publication but in an appendix of the authors publications.
+
+
+                                   2. Materials and Methods
+                                   2.1. Sampling
+
+                               Feedstocks were collected in thirty agricultural biogas plant units operating with
+                              agricultural feedstocks on the national level. Of these, 75% were operating in wet AD
+                       and 25% in dry AD. These 132 inputs are regrouped into ﬁve main families: cereal and
+                             agro-industrial co-products (CER), energy crop and silage (ENSI), lignocellulosic matter
+                        (LCM), manure (MAN), and slurry (SLU). A description of the dataset is available in the
+                        Appendix A (Tables A1 and A2).
+
+                                   2.2. Elemental Composition and Fiber Analysis
+
+                            The elemental composition of each feedstock was assessed by an elemental apparatus
+                           (varioMicro V4.0.2, Elementar®, Langenselbold, Germany), after being dried at 60 ◦C
+                               until constant weight and ground into 1 mm particles using a centrifuge mill (SR 200,
+                             Retsch, Haan, Germany). Each COD was then calculated on the basis of this analysis using
+                          Equation (1) [31]:
+                                        gCOD           4x + y −2z
+                               COD        = 8 ×                                         (1)
+                                            gCxHyOz        12x + 4 + 16z
+
+                            The protein content was estimated on the basis of the nitrogen elemental composition
+                            multiplied by 6.25 [32].
+                              For ﬁber analysis (e.g., cellulose, hemicelluloses, and lignin-like), 80 mg of sample
+                       was hydrolyzed with 0.85 mL of H2SO4 acid (72%) for 1 h at 30 ◦C in continuously shaken
+                           tubes for thorough mixing (450 rpm) using closed vessels to prevent evaporation. Then,
+                               23.8 mL of deionized water was added, and the vessels were heated to 121 ◦C for one hour
+                        under magnetic agitation (450 rpm). After cooling, the insoluble residue was separated
+                       by ﬁltration through 1 µm glass ﬁber paper (GFF, WHATMAN®, Maldstone, UK) into a
+                             soluble phase (structural carbohydrates) and a solid phase (lignin and ash). The ﬁltrate was
+                              further ﬁltered using nylon ﬁlters (0.2 µm) and analyzed for glucose, xylose, and arabinose
+                       by high-performance liquid chromatography (1260 inﬁnity II technology, Agilent, Santa
+                              Clara, CA, USA) equipped with a Hi.Plex H coupled to a UV detector. The crucible and the
+                             ﬁberglass paper were dried at 105 ◦C for 24 h to determine the content of Klason lignin-like
+Waste 2023, 1                                                                                                                     199
+
+
+
+                             material by weighing. The cellulose-like and hemicelluloses-like contents were determined
+                           using the following equations:
+
+                                                                      Glucose (% DM)
+                                                  Cellulose −like (% DM) =                                           (2)
+                                                                                       1.11
+
+                                                                 Xylose (% DM) + Arabinose (% DM)
+                                   Hemicelluloses −like (% DM) =                                                   (3)
+                                                                                          1.13
+                       where 1.11 is the conversion factor of polymers based on glucose-to-glucose monomers,
+                       and 1.13 is the factor for converting polymers based on xylose (arabinose and xylose) into
+                      monomers [33].
+
+                                   2.3. Biochemical Methane Potential Measurement (BMPexp)
+
+                           The procedure for BMP tests has been well-documented in a previous study [30] and
+                          followed the inter-laboratory study recommendations [8,34]. Feedstocks were stored at
+                          5 ◦C if the storage period was less than or equal to three days or at −20 ◦C if the storage
+                           period exceeded three days and thawed at 6 ◦C before testing. Used inoculum was agitated,
+                          maintained at 38 ± 1 ◦C, and fed regularly with green grass and wastewater sludge at the
+                            laboratory of APESA facility. Regular checks were performed by measuring the pH, dry
+                             matter, and volatile solids. DM and vs. were obtained by loss on ignition (same as for
+                               feedstocks), and the pH was assessed using a 340i pH meter ﬁtted with Sentix® electrodes
+                     (WTW, Weilheim, Germany). The main properties of the inoculum were TS (% fresh mass):
+                               3.8 ± 0.3%; vs. (% TS): 64.4 ± 1.5%; pH: 8.3 ± 0.2; volatile fatty acids (VFAs): 300 mg eq.
+                              acetate L−1; and ammonium content: 2.1 g N-NH4+ L−1. The inocula complied with the
+                             quality criteria proposed by [10].
+                            The BMP tests were carried out under mesophilic conditions in duplicate, and 500 mL
+                               reactors were ﬁlled with 300 mL of an inoculum/substrate ratio of 3 g VS/g VS. After ﬁlling,
+                          each bottle was ﬂushed with N2 gas for 30 s, incubated at 39 ◦C, and degassed after 1 h.
+                         Each day, manual homogenization was performed, and biogas production followed using
+                        an electronic manometer device (Digitron 2023P, Digital Instrumentation Ltd., London,
+                      UK) and expressed in normal liters (at 0 ◦C, 1.013 hPa). Once a week, the gas composition
+                       was analyzed by gas chromatography (Varian GC-CP4900, Agilent, Santa Clara, CA, USA)
+                        equipped with two columns. For O2, N2, and CH4, a Molsieve 5A PLOT column at 110
+                      ◦C was used, and for CO2 analysis, a HayeSep A set at 70 ◦C was used. The injector and
+                             detector temperatures were set at 110 ◦C and 55 ◦C, respectively. Two standard gases for
+                               calibration were used: one composed of 9.5% CO2, 0.5% O2, 81% N2, and 10% CH4, and the
+                             other composed of 35% CO2, 5% O2, 20% N2, and 40% CH4 (special gas from Air Liquide®,
+                                Paris, France). The BMP tests concluded when the biogas production reached a stationary
+                                state and did not vary for more than 0.5% during three consecutive days. Blank (inoculum
+                             only) and positive controls (cellulose, Tembec®, Montréal, QC, Canada) were run in parallel
+                              in duplicate.
+                           The theoretical BMP was calculated on the basis of the elemental characterization
+                       (CxHyOzNnSs) using Equation (4) (Achinas and Euverink, 2016):
+
+                                                                          22.4 ×  2x + y8 −z4 −3n8 −s4                                 BMPth (LCH4/kg VS) =                                                  (4)
+                                                                 12x + y + 16z + 14n + 32s
+
+                        where 22.4 is the molar volume of an ideal gas.
+                                      Finally, the percentage of biodegradation is the ratio between the experimental BMP
+                       and the theoretical BMP.
+
+                                                        BMPexp
+                                                       Biodegradation (%) =                                          (5)
+                                                         BMPth
+Waste 2023, 1                                                                                                                     200
+
+
+
+                                   3. Results
+                                   3.1. Chemical Composition of the Various Biomasses
+
+                            The feedstock compositions are described in Figure 1 (overall and for each family, more
+                           data are available in SD Table 1). Among the ﬁve families, the distribution was as follows:
+                     47% energy crops and silages, 32% lignocellulosic biomasses, 31% manures, 17% cereal
+                            co-products and residues, and 5% slurries. The minimum, maximum, and average values
+                              of the different chemical properties (DM, VS, C/N, ﬁbers, proteins, and COD) are shown
+                               for all the families in Tables A1 and A2. In order to have a better sense of the inter-family
+                                  variability, the most important parameters (i.e., VS/DM, COD, C/N, and protein content)
+                             are presented as boxplots (Figure 1) and the ﬁber compositions as radar graphs (Figure 2).
+
+
+
+
+
+                              Figure 1. (A–D) Boxplots of chemical composition variabilities: VS/DM, COD, C/N, and protein
+                                  content. Medians are the horizontal lines and means are represented by squares. Families: cereal and
+                               residue (CER), energy crop and silage (ENSI), lignocellulosic matter (LCM), manure (MAN), and
+                                 slurry (SLU).
+Waste 2023, 1                                                                                                                     201
+
+
+
+                                       First of all, higher ash contents were reported for manures and slurries compared with
+                             the other families investigated. In terms of proteins, higher contents were also reported for
+                        manures and slurries. Indeed, mean protein contents of 10.4 and 13.7% DM were reported
+                              for animal manures and slurries, respectively. By contrast, lignocellulosic biomasses
+                            exhibited the lowest protein content, at 3.9% DM. Allen et al. (2016) reported protein
+                             contents varying from 12.3% DM to 18.5% DM for different animal slurries [5]. Similarly, Li
+                                et al. (2013) estimated protein contents of 13.7% DM, 17.5% DM, and 21% DM for swine,
+                                dairy, and chicken manures, respectively. Li et al. (2013), on the other hand, reported lower
+                            values ranging from 2.5% DM to 5.6% DM for lignocellulosic biomasses [24]. The chemical
+                        oxygen demand is another important parameter in anaerobic digestion monitoring, as
+                                          it can allow determination of mass balances and the theoretical methane potential [13].
+                                  Little variability in the main COD was observed for the ﬁve families, with values ranging
+                        from 1.3 to 1.5 g/g VS. Scarce information is available in the literature regarding these
+                            parameters, as only Labatut et al. (2011) have reported it for a range of 30 substrates (mono-
+                       and co-digestion). For manure, they found a COD ranging from 0.7 to 1.3 g/g, with a
+                     mean of 1.0, which is considerably lower than our values, and higher values for biowaste
+                              substrates, with a mean of 6.4, ranging from 0.9 to 28.8 g/g [14]. The ﬁber content (i.e.,
+                               cellulose, hemicelluloses, and lignin) was also reported for the ﬁve families, and higher
+                            contents were observed for lignocellulosic biomasses and manures, similar to the values
+                            previously reported in the literature [6,14,24].
+                                      Finally, the C/N ratio was also reported for the ﬁve families. The C/N ratio is a very
+                          important parameter for the long-term continuous digestibility of a substrate. Ideally, it
+                          should be between 25:1 and 30:1 to facilitate optimal growth of micro-organisms [5]. For this
+                            parameter, high variabilities were observed with higher values of C/N for lignocellulosic
+                           biomasses, with a median of approximately 90 and an average of 132.  All the other
+                         groups have means or averages between 19 and 40. Yet, the C/N ratio is based on the
+                            elemental analysis, requiring dry samples. Volatilization of ammoniacal nitrogen or volatile
+                      compounds can differ depending on the substrate. A comparison of these results with
+                  C/N ratios in the literature points out that an overestimation occurred for slurry and
+                       manure families [15,35,36]; similar results are obtained for CER and LCM [5,15], whereas
+                       ENSI family C/N ratios are underestimated [5,15,37,38]. Extrapolations cannot be readily
+                           performed, as they can depend on the feedstock composition, type, harvest, storage, etc. As
+                        an example, manure C/N ratio means have been found to be approximately 16 for cattle
+                         manure, 9 for poultry manure, and they are higher for horse manure (between 15 to 150,
+                         depending on the type and proportion of litter) [35,36,39].
+
+
+
+
+
+                              Figure 2. Means of the different family composition of ﬁbers. Families: cereal and residue (CER),
+                             energy crop and silage (ENSI), lignocellulosic matter (LCM), manure (MAN), and slurry (SLU).
+Waste 2023, 1                                                                                                                     202
+
+
+
+                                   3.2. Biochemical Methane Potential of Feedstock
+
+                            Another important parameter in the monitoring and optimization of agricultural
+                           biogas plants is the value of the methane potential. Methane potentials were assessed in
+                                 this study by BMP tests performed on the 132 agricultural substrates shared in ﬁve families:
+                               cereals and agro-industrial co-products, lignocellulosic biomass, energy crops and silages,
+                          animal manures, and slurries (Figure 3).
+
+
+
+
+
+                              Figure 3. Methane potentials of the different categories of the ﬁve families. Families: cereal and
+                                  agro-industrial residue in grey (CER), energy crop and silage in blue (ENSI), lignocellulosic matter in
+                              green (LCM), manure in red (MAN), and slurry in yellow (SLU).
+
+                          As shown in Table 1, a large variability in methane potentials was observed among the
+                               different families, with methane potentials ranging from 63 Nm3 CH4/t VS (green waste)
+                              to 551 Nm3 CH4/t VS (duck slurry), with a mean value for the 132 organic samples of
+                          284 Nm3 CH4/t VS.
+
+                                   3.2.1. Cereal and Agro-Industrial Residues (CER)
+
+                           The ﬁrst family investigated was cereal and agro-industrial residues (n = 17). The
+                              cereals were obtained from the cereal agro-industry and silos, whereas the maize was
+Waste 2023, 1                                                                                                                     203
+
+
+                        from the sweet corn industry. Methane potentials of 298, 301, and 318 Nm3 CH4/t VS
+                        were reported for cereal residues, sweet corn residues, and wheat residues, respectively.
+                           Garcia et al. (2019) reported a similar methane potential, with values of 345 Nm3 CH4/t
+                     VS for a mix of cereals [15]. Luna DeRisco et al. (2011) also investigated the methane
+                              potentials of grain mill residues, and methane potentials of 274–386 Nm3 CH4/t VS were
+                           reported [40]. In parallel, Garcia et al. (2019) also reported methane potentials ranging
+                        from 204 to 345 Nm3 CH4/t VS for ten agro-industrial co-products (from the vegetables
+                       and fruits industry) [15].
+
+                                   3.2.2. Manures (MAN)
+
+                           The methane potential of various animal manures was investigated. Manures are
+                           organic matter, derived mostly from animal feces and urine but also normally contain-
+                           ing plant materials (generally wheat straw) that have been used as bedding for animals.
+                       Methane potentials of 173, 210, 217, 230, 235, and 250 Nm3 CH4/t VS were determined
+                              for turkey, cattle, pig, poultry, zoo, and horse manures. Such data are in the same range
+                            as the values reported in the literature [24,41,42]. Kaﬂe and Chen (2016) investigated the
+                        methane potential of ﬁve different livestock manures (dairy manure (DM), horse manure
+                        (HM), goat manure (GM), chicken manure (CM), and swine manure (SM)). The BMPs of
+                    DM, HM, GM, CM, and SM were determined to be 204, 155, 159, 259, and 323 Nm3 CH4/t
+                           VS, respectively [41]. Similarly, Cu et al. (2015) also reported methane potentials of various
+                          animal manures, and the highest BMP in this study was from piglet manure at 443.6 Nm3
+                       CH4/t VS, followed by cow, sow, chicken, rabbit, buffalo, and sheep manures at 222, 177.7,
+                             173, 172.8, 153, and 150.5 Nm3 CH4/t VS, respectively [42]. Similarly, Garcia et al. (2019)
+                            reported methane potentials of 97, 128, 200, and 208 Nm3 CH4/t VS for bovine, pig, rabbit,
+                       and poultry manures, respectively [15]. Yang et al., 2021 also reported methane potentials
+                               of 160 Nm3 CH4/t VS for dairy manure, 200 Nm3 CH4/t VS for goat manure, and 325 Nm3
+                      CH4/t VS for swine manure [43]. It can be observed that the methane potentials of our
+                             studies are in the same range as the literature data, although some differences can be
+                          observed for the same manure families, as the methane potential can be inﬂuenced by the
+                           type of farm, the duration of storage, and the storage method. Finally, Carabeo-Perez et al.
+                             (2021) also investigated the methane potential from various herbivorous animal manures.
+                        Methane yield potentials of 245, 326, and 112 Nm3 CH4/t VS were obtained for horse, rab-
+                                     bit, and goat manures, respectively, inﬂuenced by the difference in their digestive systems
+                               to digest the grass feedstock [44]. Finally, Li et al. (2013) determined methane potentials of
+                                51, 295, and 321 Nm3 CH4/t VS for dairy, chicken, and swine manure, respectively [24].
+
+                                   3.2.3. Animal Slurries (SLU)
+
+                           Animal slurries are manure in liquid form, i.e., a mixture of excrements and urine
+                             of domestic animals, including water and/or small amounts of litter. Slurry methane
+                              potentials were also investigated in this study, with methane potentials ranging from 263
+                              to 551 Nm3 CH4/t VS. As shown in Figure 3, a high variability was observed for cattle
+                                 slurries, which can be explained by differences in the storage type and duration. In terms
+                             of liquid manures, little information is available in the literature [5,14]. Labatut et al.
+                             (2011) reported a methane potential of 261 Nm3 CH4/t VS for liquid dairy manure. Allen
+                                 et al. (2016) investigated the methane potentials of different slurries (dairy, pig, and beef).
+                       Methane potentials of 99 and 311 Nm3 CH4/t VS were reported for pig and beef slurries,
+                               respectively. In terms of dairy slurries, methane potentials ranging from 136 to 239 have
+                         been reported [5]. Garcia et al. (2019) also reported methane potentials of 35 and 137 Nm3
+                       CH4/t VS for bovine and pig slurries, respectively [15].
+
+                                   3.2.4. Silages and Energy Crops (ENSI)
+
+                                   Silages and energy crops are another type of substrate generally found in agricultural
+                            biogas plants. In our study, of the 46 organic substrates investigated, the methane potentials
+                         ranged from 187 Nm3 CH4/t VS to 461 Nm3 CH4/t VS. For instance, average methane
+Waste 2023, 1                                                                                                                     204
+
+
+                              potentials of 320, 342, and 352 Nm3 CH4/t VS were reported for sorghum, corn, and grass
+                            samples, respectively. The methane potentials of silages and energy crops have been widely
+                             investigated in the literature in recent decades, and the values obtained in this study are
+                              in the same order [5,15,18,19]. For instance, Garcia et al. (2019) investigated the methane
+                             potential of ﬁve energy crops and reported methane potentials ranging from 253 Nm3
+                       CH4/t VS (millet, Panicum milliaceum L.) to 351 Nm3 CH4/t VS (triticale, Triticum aestivum
+                                     L.). Similarly, Allen et al. (2016) reported the methane potential of 18 energy crops, and the
+                        methane potentials ranged from 281 Nm3 CH4/t VS (winter oats) to 398 Nm3 CH4/t VS
+                                (turnips). Similarly, Allen et al. (2016) also investigated the methane potentials of different
+                              silages and reported methane potentials varying from 311 Nm3 CH4/t VS (Savazi grass
+                               silage) to 433 Nm3 CH4/t VS (silage bales). Finally, Hermann et al. also investigated the
+                        methane potentials of 43 crops, including main and secondary crops, catch crops, annual
+                               grass, and perennial crops [19].
+
+                                   3.2.5. Lignocellulosic Biomasses (LCM)
+
+                           The methane potentials of 33 lignocellulosic biomasses were also investigated. The
+                        methane potentials ranged from 63 Nm3 CH4/t VS (green waste) to 330 Nm3 CH4/t VS
+                             (barley straw). Lower methane potentials were observed for green waste residues, likely
+                       due to their high content in ﬁbers, and especially in lignin, which has been shown to be
+                           poorly degraded in the anaerobic digestion process [19,45]. Similar methane potentials on
+                              lignocellulosic biomasses have been reported previously in the literature [6,15]. Indeed,
+                      Monlau et al. (2012) reported the methane potentials of twelve lignocellulosic biomasses
+                          ranging from 155 Nm3 CH4/t VS (sunﬂower stalks) to 300 Nm3 CH4/t VS (Jerusalem
+                             artichoke tubers). Similarly, Garcia et al. (2019) reported methane potentials ranging from
+                          282 Nm3 CH4/t VS (coconut ﬁbers) to 425 Nm3 CH4/t VS (corn, Zea mays L.). Similarly,
+                          Dinuccio et al. (2010) reported methane potentials ranging from 225 to 424 Nm3 CH4/t
+                     VS [46]. Perennial crops exhibited the lowest methane potentials, with values ranging
+                        from 203 Nm3 CH4/t VS (cup plant) to 260 Nm3 CH4/t VS (tall wheatgrass). The highest
+                         methane potential of the various crops investigated was reported for forage triticale, with a
+                        methane potential of 371 Nm3 CH4/t VS.
+
+                                   3.3. Practical Implementation of this Database
+
+                             To assist the reader and user in exploiting this publication, a summary table is provided
+                              in Table 2 with the main physicochemical parameter and methane potential values for the
+                            various substrate families investigated in this study. As previously discussed, the methane
+                               potentials ranged from 63 Nm3 CH4/t VS (green waste) to 551 Nm3 CH4/t VS (duck slurry),
+                          with a mean value for the 132 organic samples of 284 Nm3 CH4/t VS.
+                            To better understand the ability of the various organic wastes that were tested to be
+                         degraded in the AD process, a biodegradation yield (based on the ratio of the experimental
+                        and theoretical BMP) was calculated using the Buswell formula. The family biodegradation
+                              yields are presented in Figure 4.
+Waste 2023, 1                                                                                                                     205
+
+
+
+
+                             Table 2. Chemical composition of the families (FM: fresh matter; DM: dry matter; and VS: volatile
+                                     solids). Families: cereals and residues (CER), energy crops and silage (ENSI), lignocellulosic matter
+                           (LCM), manures (MAN), and slurries (SLU).
+
+
+      Family          CER            ENSI         LCM        MAN           SLU
+
+   Sample number           17                 46                 33                 31                  5
+     DM               21.9–89.4             15.5–69.0             28.4–90.6              8.0–81.6              4.7–26.3
+      (% FM)                 57.2                  27.3                  71.2                  39.2                  13.2
+       VS                21.4–85.4             13.5–62.4             26.4–86.0              5.3–69.1              3.5–24.2
+      (% FM)                 54.3                  25.0                  64.3                  31.8                  11.4
+      C                 40.2–44.6             38.7–46.7             34.5–45.0             28.7–43.5             35.9–42.1
+     (% DM)                42.8                  42.6                  42.2                  38.7                  39.9
+     H                  5.8–6.9                5.2–6.6                4.5–6.3                3.8–6.3                5.1–6.0
+     (% DM)                  6.5                    5.9                    5.8                    5.4                    5.6
+     N                  0.6–3.8                0.5–2.3                0.1–2.3                0.4–4.6                1.6–2.8
+     (% DM)                  1.4                    1.2                    0.6                    1.6                    2.2
+         S                   0.1–0.7                0.1–0.9                0.1–1.0                0.2–1.6                0.4–0.7
+     (% DM)                  0.2                    0.2                    0.3                    0.5                    0.5
+                            11.4–57.8             19.1–79.4            17.6–497.8             8.2–79.1             14.2–27.3
+     C/N
+                               37.3                  39.2                 131.7                  31.4                  19.5
+    Cellulose-like           25.8–60.9             11.2–52.3             15.4–33.6             13.6–35.0              8.7–26.4
+      (% VS)                 39.0                  27.1                  27.4                  23.4                  17.3
+  Hemicellulose-like         6.0–21.3              6.4–20.5              7.8–26.0              8.8–21.5              7.7–23.5
+      (% VS)                 13.7                  12.6                  17.5                  15.7                  15.5
+      Lignin-like             5.5–21.4             11.4–28.9             14.7–50.2             20.0–56.5             19.1–38.6
+      (% VS)                 14.1                  20.3                  24.2                  34.9                  29.8
+       Proteins              4.5–22.5              3.5–14.1              0.6–13.6              3.1–28.1              9.0–18.6
+     (% DM)                  9.1                    7.7                    3.9                   10.4                  13.7
+     COD                 1.2–1.5                1.2–1.7                1.2–2.8                1.2–2.0                1.0–1.8
+   (g/g (CxHyOz))             1.3                    1.3                    1.4                    1.4                    1.5
+       Family           CER             ENSI          LCM         MAN            SLU
+      BMPth             407–469            410–582            400–920            397–659            320–568
+  (Nm3 CH4/t VS)          434                449                466                466                483
+     BMP              250–336             187–461             63–330             132–366             224–551
+  (Nm3 CH4/t VS)          300                324                251                237                362
+     BMP              56–278             41–169             23–254             13–178              10–54
+  (Nm3 CH4/t FM)          164                 78                 167                 75                 35
+
+
+
+
+
+                              Figure 4. Boxplots of biodegradation yields of the ﬁve families. Medians are the horizontal lines
+                          and means are represented by squares. Families: cereal and residue (CER), energy crops and silage
+                                (ENSI), lignocellulosic matter (LCM), manure (MAN), and slurry (SLU).
+Waste 2023, 1                                                                                                                     206
+
+
+
+                   A majority of families presented a good biodegradation rate, with means between
+                          52 and 73%. Lower degradation rates of only 52 and 56% were reported for manure and
+                               lignocellulosic matter, respectively. As manure is a mixture of feces and bedding material,
+                         depending on the bedding material used and its concentration, it is not surprising to ﬁnd
+                              similar results between these two families [47]. The biodegradability of organic substrates
+                          has been well-documented in the literature for various organic substrates [5,14,15,17,24].
+                          Regarding lignocellulosic biomasses, Triolo et al. (2012) reported biodegradability indices
+                             of 32.7%, 39.9%, 44.9%, and 66.6% for wood cuttings, hedge cuttings, wild plants, and
+                        lawn cuttings, respectively. Similarly, Li et al. (2013) reported biodegradability indices of
+                         51%, 54%, and 62% for corn stover, wheat straw, and rice straw, respectively. Similarly, Li
+                                 et al. (2013) reported biodegradation rates of 10%, 63%, and 68% for dairy manure, chicken
+                          manure, and swine manure, respectively. Garcia et al. (2019) also reported biodegradability
+                             indices varying from 30% to 70% for different animal manures samples. Such lower
+                           biodegradation rates for LCM and MAN families can be explained by the higher ﬁber
+                            contents in such biomasses, especially lignin content, which is poorly degraded in the AD
+                           process [6,45]. The high nitrogen concentration in animal manures can also be a limiting
+                               factor of the expression of the methane potential [42].
+                                  In parallel, other families investigated in this study exhibited higher biodegradability
+                                rates of 69%, 72%, and 73% for cereal and agro-industrial residues, energy crops and silages,
+                       and slurries, respectively. Allen et al. (2016) reported biodegradability indices for sixteen
+                                silages from second-generation crops, and three-quarters of the samples exhibited biodegra-
+                           dation rates higher than 75%. Similarly, Garcia et al. (2019) reported biodegradabilities
+                          varying from 80% to 100% for various energy crops (i.e., millet, barley, maize, sorghum,
+                       and triticale). Garcia et al. (2019) also reported high biodegradabilities of 80% and 90%
+                              for ﬂour and cereals. In terms of slurry samples, the results in the literature are more
+                             contrasted [5,15]. Indeed, biodegradabilities varying from 20% to 60% have been reported.
+                         Such variation can be explained by the difference in the origins of animal slurries as well as
+                            the storage duration and typology.
+
+                                   4. Discussion
+
+                            At the end of 2018, annual production of biomethane from AD in the EU corresponded
+                              to 2.3 billion m3, with 18,202 biogas plants in operation [1]. Europe is the world leader
+                              in biogas electricity production, far ahead of the USA (2.4 GW) and China (0.6 GW) [1].
+                        At the European level, the methanization sector will greatly develop in the years to come
+                          with projections up to 64.2 billion m3 in the EU by 2050; this would represent an energetic
+                             potential of approximately 640 TW h/year and would require a 30-fold growth of the
+                             current biomethane sector [1].
+                    AD will continue to grow in the future, but it is clear that the sector should have better
+                              control of not only the management and the use of the deposits but also the identiﬁcation
+                              of new sources of deposit. The BMP test remains an essential tool for characterizing new
+                            deposits and determining their pricing.
+                                 This publication and the results (Table 1) are intended to contribute to providing data to
+                             the scientiﬁc community and biogas developers regarding the values of methane potentials
+                        and biodegradability indices of different organic substrates and complete previous studies
+                       on the subject (Table A3 in Appendix B). In parallel, this study is intended to be a tool for
+                            the sizing, optimization, and operation of the biogas sector. All the data obtained for the
+                               different feedstocks are available in the Appendix A.
+                                             It could be interesting in the future to extend this work and to generate an overall
+                            synthesis of all the BMP values listed in the literature by taking into account the studies
+                           using a protocol based on the recommendations of interlaboratory guidelines carried out at
+                            the international level [10,34]. In parallel, the growing development of the biogas sector
+                              requires the mobilization of new resources and organic biomasses, and it will be interesting
+                              in the future to focus studies on the evaluation of the methanogenic potential of atypical
+                          biomasses (i.e., algae, paper sludges, biodegradable plastics, insect excrements, etc.). An
+Waste 2023, 1                                                                                                                     207
+
+
+
+                         extended open-source BMP database (based on BMP values validated by experts) could
+                         be very useful in the future in order to improve the biogas development as well as the
+                          monitoring of the energetic performances of biogas plants. Indeed, Holliger et al. (2017)
+                        compared methane production from BMPs with biogas production from the same organic
+                              materials in full-scale installations [48]. Holliger et al. (2017) highlighted that the measured
+                        weekly methane production accounted for 94.0 ± 6.8 and 89.3 ± 5.7% of the calculated
+                         weekly methane production for two biogas plants, respectively [48].
+                               Short-term (i.e., 1–2 months), batch-mode anaerobic digestion tests, such as the bio-
+                          chemical methane potential (BMP) assay, are intended primarily to determine methane
+                              yields and the biodegradability of substrates [14]. Nonetheless, such testing may fail to truly
+                              predict the performance of full-scale anaerobic reactors. For this purpose, semi-continuous
+                              laboratory-scale experimental methods are complementary to chemical and BMP analysis.
+                           Semi-continuous ﬂow reactors are designed to emulate the conditions of commercial-scale
+                              digesters and study their overall performance over time, taking into account co-digestion
+                           beneﬁts and potential inhibition.
+
+                                   5. Conclusions
+
+                                  In this study, a characterization of 132 common agricultural feedstocks (shared in ﬁve
+                              families) was carried out in terms of physical properties and methane potentials. Of the
+                           various families investigated, manures and slurries exhibited the highest ash and protein
+                            contents (10.3–13.7% DM). A high degree of variability in terms of the C/N ratio was
+                         observed among the various families, with values ranging from 19.5% DM (slurries) to
+                          131.7% DM (lignocellulosic biomass). In terms of biodegradability, lower values of 52% and
+                      57% were reported for lignocelluloses biomasses, and manures due to their high content in
+                              ﬁbers, especially lignin. The AD sector will continue to grow in the future, and such studies
+                          can be used as a reference for any operator/manager of units or public authority/ﬁnancial
+                           provider in the future.
+
+
+                           Author Contributions: A.L., validation, investigation, and writing—original draft; C.P., investigation
+                         and writing—original draft; C.L., supervision and investigation; A.B., investigation and writing—
+                            review and editing; B.S., methodology, analysis, and investigation; S.M., methodology, analysis,
+                          and investigation; F.M., ﬁnancial support, supervision, conceptualization, and writing—review and
+                                   editing. All authors have read and agreed to the published version of the manuscript.
+
+                            Funding: This work is incorporated in the SPIRALE project funded by the ADEME (GRAINE 2018;
+                              1806C0002).
+
+                           Informed Consent Statement: Not applicable.
+
+                           Data Availability Statement: All the data are described in Figures and Tables or in the appendix.
+
+                          Acknowledgments: This work is incorporated in the SPIRALE project funded by the ADEME
+                       (GRAINE 2018; 1806C0002), whom we thank for their support along with the two other partner
+                                   projects: Green Tropism and INSA Toulouse. The APESA also thanks the various operators who
+                             provided the biomasses used in this study.
+
+                             Conﬂicts of Interest: The authors declare no conﬂict of interest.
+Waste 2023, 1                                                                                                                                                                                   208
+
+
+
+                       Appendix A
+
+                             Table A1. Description of the substrates analyzed within the families, where SD is standard deviation, DM is dry matter, FM is fresh matter, VS is volatile solids, BMP
+                           exp is the BMP measured, and BMP is the maximum methane potential based on CHNS composition.
+
+                        DM   VS   VS/DM    BMP exp                             Carbon    Hydrogen    Nitrogen      Sulfur    Oxygen
+                                                                                        Biodegradation  C/N
+                                 Mean  Mean  Mean  Mean  SD                          Mean  SD  Mean  SD  Mean  SD  Mean  SD  Mean
+ Family    Type        Sub Type                                     CV(%)
+                                                      (Nm3 CH4/t                                        (% FM)                      %             (% DM)    (% DM)     (% DM)     (% DM)    (% DM)
+                                                             VS)
+
+  ENSI      Millet      —             22.9     20.8     0.91    267.9   11.9   4%          61          54.1    42.7    0.1     5.3     0.1     0.8     0.1     0.2     0.1     41.9
+  ENSI   Sorghum      —             18.4     16.2     0.88    361.8    4.1    1%          79          28.2    42.3    0.0     5.6     0.2     1.5     0.1     0.3     0.2     38.5
+                      Sorghum, Millet,
+  ENSI     Mix                               16.5     14.9     0.90     406    10.9   3%          87          19.1    43.1    0.1     6.0     0.0     2.3     0.0     0.3     0.0     38.8
+                    and Sunﬂower mix
+  ENSI   Sorghum      Sucro variety        15.5     14.3     0.92    351.3    8.5    2%          79          25.1    42.6    0.3     6.0     0.0     1.7     0.0     0.2     0.0     41.8
+  ENSI   Sorghum      Vega variety        16.1     14.8     0.92    360.4    6.4    2%          79          19.5    43.4    0.1     5.9     0.0     2.2     0.1     0.2     0.0     39.9
+                       Vega sorghum
+                           variety and San
+  ENSI     Mix                               21.5     19.1     0.89    286.9   17.1   6%          67          25.3    41.5    0.1     5.3     0.1     1.6     0.2     0.3     0.1     40.4
+                       Lucas sunﬂower
+                               variety
+                      Sunﬂower, Millet,
+  ENSI     Mix        and Guizotia        16.7     14.5     0.87    312.7    4.6    1%          68          27.6    42.0    0.1     5.4     0.2     1.5     0.1     0.4     0.3     37.6
+                             abyssinica
+                      Sunﬂower, Millet,
+  ENSI     Mix        and Guizotia        17.6     15.7     0.89    318.4    0.9    0%          69          30.4    42.8    0.2     5.5     0.0     1.4     0.1     0.2     0.1     39.1
+                             abyssinica
+  ENSI     Mix       —             18.6     16.5     0.89    337.1   32.1   10%          70          32.8    42.5    0.1     6.1     0.1     1.3     0.2     0.2     0.0     38.6
+           Millet and
+  ENSI            —             15.9     14.1     0.89    374.1    1.7    0%          85          26.6    40.6    0.0     5.8     0.2     1.5     0.3     0.2     0.0     40.6
+            Clover
+  ENSI     Maize      —             35.2     33.9     0.96    272.1    5    2%          63          47.5    42.6    0.3     6.5     0.1     0.9     0.2     0.1     0.0     46.2
+  ENSI     Mix           Residue          23.3     22.9     0.98    371.5   16.9   5%          81          62.4    45.5    0.2     6.6     0.1     0.7     0.1     0.1     0.0     45.1
+  ENSI   Sorghum      Sucro variety        31.3     29.9     0.96    332.7   21.5   6%          79          73.8    43.5    0.3     5.8     0.0     0.6     0.0     0.2     0.0     45.6
+                    Sorghum (Paciﬁc
+                             graze), Millet
+  ENSI     Mix        (Robusta), Vetch      26.6     23.9     0.90    269.4    3.3    1%          64          27.1    40.3    0.0     5.7     0.1     1.5     0.1     0.2     0.0     42.4
+                       (Bingo and Massa),
+                    and Clover (Tabor)
+           Millet and
+  ENSI            —             29.7     26.0     0.88    275.8    4.1    1%          61          21.9    41.4    0.0     5.5     0.2     1.9     0.2     0.6     0.0     38.3
+            Clover
+Waste 2023, 1                                                                                                                                                                                   209
+
+
+
+
+                             Table A1. Cont.
+
+                        DM   VS   VS/DM    BMP exp                            Carbon    Hydrogen    Nitrogen      Sulfur    Oxygen
+                                                                                        Biodegradation C/N
+                                 Mean  Mean  Mean  Mean  SD                          Mean  SD  Mean  SD  Mean  SD  Mean  SD  Mean
+ Family    Type        Sub Type                                     CV(%)
+                                                       (Nm3 CH4/t                                         (% FM)                     %             (% DM)    (% DM)     (% DM)     (% DM)    (% DM)
+                                                             VS)
+
+           Millet and
+  ENSI            —              27.1     24.9     0.92    303.7   17.3   6%          69         23.3    42.6    0.2     5.8     0.2     1.8     0.2     0.3     0.2     41.3
+            Clover
+           Millet and
+  ENSI            —              27.1     24.9     0.92    285.2    4    1%          65         31.5    42.9    0.1     5.6     0.0     1.4     0.1     0.2     0.0     42.1
+            Clover
+  ENSI   Sorghum      —              19.8     18.0     0.91    285.6    2.1    1%          64         54.5    41.8    0.0     6.0     0.1     0.8     0.1     0.1     0.0     42.2
+  ENSI     Maize      —              36.5     35.3     0.97     336    20.4   6%          82         47.9    41.8    0.2     6.4     0.2     0.9     0.2     0.2     0.1     47.4
+          Rye and
+  ENSI            —              49.4     45.9     0.93    255.1   10.9   4%          62         40.2    42.3    0.3     5.3     0.2     1.1     0.1     0.2     0.0     44.1
+            Vetch
+          Rye and
+  ENSI            —              28.3     26.7     0.94    284.6   14.7   5%          68         58.8    42.8    0.2     5.6     0.3     0.7     0.1     0.2     0.1     45.0
+            Vetch
+  ENSI     Mix       —              28.9     25.8     0.89    368.7    4.3    1%          81         57.0    41.8    0.2     5.8     0.1     0.7     0.1     0.2     0.0     40.7
+                     Faba bean, Rye, and
+  ENSI     Mix                                20.3     18.8     0.92    300.1    0.7    0%          72         29.4    42.0    0.2     5.5     0.0     1.4     0.1     0.2     0.0     43.2
+                           Radish
+                     Faba bean, Triticale,
+  ENSI     Mix                                17.5     16.1     0.91    294.3    6.2    2%          70         30.2    41.0    0.3     5.7     0.1     1.4     0.1     0.3     0.0     43.1
+                       and Radish
+  ENSI     Mix            Grass            54.6     46.6     0.85    253.9   14.4   6%          55         25.7    39.7    0.2     5.8     0.1     1.5     0.2     0.3     0.0     37.9
+  ENSI     Mix     Sorghum and Maize    32.1     28.4     0.89    315.9    1.8    1%          74         51.5    38.7    0.2     6.1     0.2     0.8     0.2     0.3     0.2     42.8
+                          Peas, Vetch, Oats,
+  ENSI     Mix                                27.0     24.5     0.91     331    15    5%          67         20.6    45.0    0.0     6.1     0.0     2.2     0.2     0.2     0.0     37.4
+                        and Beans
+  ENSI     Maize      —              33.0     32.1     0.97    319.1   10.7   3%          73         44.4    44.4    0.2     6.4     0.1     1.0     0.0     0.1     0.0     45.4
+  ENSI   Sorghum      —              35.9     33.1     0.92    272.6    3.7    1%          62         51.7    43.9    0.3     5.3     0.1     0.8     0.0     0.2     0.2     42.0
+  ENSI     Mix      Moha and Clover      50.3     44.8     0.89    282.5   11.2   4%          58         34.9    43.9    0.2     6.0     0.1     1.3     0.1     0.2     0.0     37.7
+  ENSI   Rapeseed      —              18.2     17.2     0.94    432.5    5.6    1%          93         79.4    44.4    0.3     6.4     0.2     0.6     0.1     0.5     0.5     42.4
+  ENSI     Grass       —              27.8     24.7     0.89    264.3    15    6%          57         25.2    41.5    0.2     6.1     0.1     1.6     0.2     0.2     0.0     39.3
+  ENSI   Sorghum      —              23.6     21.2     0.90    305.3    3    1%          69         45.0    40.8    0.0     6.0     0.0     0.9     0.1     0.2     0.1     41.8
+  ENSI   Sunﬂower      —              15.6     14.1     0.90    290.7    0.9    0%          63         44.1    41.7    0.2     6.3     0.0     0.9     0.1     0.2     0.0     41.2
+  ENSI     Grass       —              17.2     13.5     0.78    406.3    4.8    1%          70         34.6    42.8    0.1     5.8     0.2     1.2     0.0     0.2     0.0     28.2
+  ENSI     Maize      —              28.5     27.2     0.96    376.3   31.1   8%          89         43.3    43.1    0.1     5.9     0.3     1.0     0.1     0.1     0.0     45.4
+  ENSI      Alfalfa      —              69.0     62.4     0.90     271     0.1    0%          60         26.7    42.9    0.2     5.7     0.0     1.6     0.1     0.2     0.0     40.0
+  ENSI   Sorghum      —              24.7     23.3     0.94    289.8   10.9   4%          67         43.3    43.6    0.1     5.8     0.1     1.0     0.1     0.2     0.1     43.7
+  ENSI     Grass          Ray-grass          17.6     16.7     0.95    393.3   26.5   7%          87         66.5    44.5    0.0     6.0     0.0     0.7     0.1     0.2     0.1     43.1
+  ENSI     Maize      —              19.8     19.4     0.98     418     4.2    1%          90         42.1    46.8    0.1     6.3     0.1     1.1     0.1     0.2     0.1     43.4
+Waste 2023, 1                                                                                                                                                                                   210
+
+
+
+
+                             Table A1. Cont.
+
+                        DM   VS   VS/DM    BMP exp                            Carbon    Hydrogen    Nitrogen      Sulfur    Oxygen
+                                                                                        Biodegradation C/N
+                                 Mean  Mean  Mean  Mean  SD                          Mean  SD  Mean  SD  Mean  SD  Mean  SD  Mean
+ Family    Type        Sub Type                                     CV(%)
+                                                       (Nm3 CH4/t                                         (% FM)                     %             (% DM)    (% DM)     (% DM)     (% DM)    (% DM)
+                                                             VS)
+
+  ENSI     Grass       —              21.3     18.9     0.89    461.2    3.7    1%         100         23.8    41.4    0.2     5.9     0.0     1.7     0.0     0.4     0.1     39.2
+  ENSI     Maize      —              33.6     32.4     0.96    383.9    1.5    0%          85         45.6    44.6    0.2     6.4     0.2     1.0     0.1     0.1     0.0     44.4
+  ENSI     Maize      —              30.2     28.8     0.95    335.1    10    3%          75         42.2    43.6    0.2     6.5     0.1     1.0     0.1     0.1     0.0     43.9
+  ENSI     Grass       —              23.4     21.3     0.91    403.2   14.2   4%          90         29.3    42.9    0.2     5.7     0.1     1.5     0.2     0.3     0.0     40.8
+  ENSI     Grass       —              39.9     36.1     0.91    187.2   11.5   6%          40         49.5    42.4    0.3     6.4     0.1     0.9     0.0     0.3     0.0     40.6
+  ENSI     Maize      —              32.0     30.3     0.95    301.1    7.4    2%          71         37.7    42.2    0.1     6.2     0.1     1.1     0.2     0.3     0.0     44.9
+ MAN     Mix     Manure and Spates     32.1     17.3     0.54    253.4   14.9   6%          38         27.2    31.7    0.1     4.4     0.2     1.2     0.1     0.4     0.0     16.2
+                            After phase
+ MAN      Cattle                               15.3     13.8     0.90    321.9   16.8   5%          80         15.8    39.8    0.0     5.4     0.0     2.5     0.1     0.5     0.0     41.8
+                          separation, Straw
+ MAN     Horse      —               8.0      5.3     0.66    237.6   14.3   6%          42         22.4    35.8    0.1     5.0     0.2     1.6     0.1     0.3     0.0     23.8
+ MAN      Cattle           Straw            27.7     25.1     0.91    257.7   14.9   6%          63         45.9    40.3    0.2     5.5     0.2     0.9     0.1     0.2     0.0     43.7
+ MAN      Cattle           Straw            16.6     14.3     0.86     236    21.7   9%          51         30.7    41.8    0.1     5.3     0.3     1.4     0.0     0.2     0.1     37.8
+ MAN      Cattle            Fern            27.6     24.1     0.87     162     5.7    4%          33         32.6    43.2    0.3     5.6     0.0     1.3     0.2     0.2     0.0     36.9
+ MAN      Cattle           Straw            43.1     34.5     0.80    191.3    8.4    4%          39         54.2    40.6    0.1     4.8     0.2     0.7     0.1     1.4     0.3     32.7
+ MAN     Horse      —              81.6     69.1     0.85    258.2   11.9   5%          57         49.6    40.8    0.1     5.1     0.2     0.8     0.1     0.8     0.1     37.1
+ MAN     Poultry      —              57.2     35.3     0.62    216.8    6.9    3%          49         12.0    28.7    0.3     4.0     0.3     2.4     0.0     0.4     0.1     26.2
+ MAN     Poultry      —              75.9     58.0     0.76    263.8    1.9    1%          63         15.3    34.7    0.3     4.7     0.2     2.3     0.0     0.6     0.1     34.3
+ MAN      Pig       —              31.6     27.0     0.85    217.8   13.5   6%          50         19.5    38.8    0.1     5.6     0.1     2.0     0.3     0.4     0.0     38.7
+                        Straw, after 1 month
+ MAN      Cattle                               17.0     13.0     0.76    198.6   17.3   9%          38         29.2    39.5    0.1     5.3     0.0     1.4     0.3     0.7     0.2     29.7
+                           conservation
+ MAN    Turkey      —              68.3     52.3     0.77     173     1.1    1%          37         13.5    36.6    0.2     5.1     0.1     2.7     0.3     0.5     0.0     31.6
+ MAN     Mix       —              15.3     13.8     0.90    243.3    1    0%          56         21.4    40.9    0.1     5.9     0.0     1.9     0.0     0.3     0.0     40.9
+ MAN     Poultry      —              71.2     58.3     0.82     211    16.1   8%          49          8.2     36.7    0.2     5.6     0.1     4.5     0.1     0.6     0.0     34.4
+ MAN     Poultry      —              60.3     50.4     0.84    274.1    13    5%          69         15.5    35.3    0.0     5.6     0.1     2.3     0.3     1.0     0.2     39.5
+ MAN      Cattle           Straw            45.6     34.2     0.75    131.9    1.4    1%          21         51.3    43.5    0.3     5.8     0.0     0.8     0.3     0.3     0.0     24.6
+ MAN     Horse      —              20.2     16.4     0.81    182.6    9.9    5%          41         27.5    39.5    0.0     4.5     0.2     1.4     0.0     0.5     0.0     35.2
+ MAN      Cattle           Straw            69.8     61.7     0.88    233.2   15.3   7%          55         34.0    40.6    0.3     5.2     0.0     1.2     0.2     0.6     0.1     40.9
+ MAN     Poultry      —              49.6     40.5     0.82    185.6    8.8    5%          42         15.3    37.7    0.2     5.4     0.1     2.5     0.2     0.7     0.0     35.4
+ MAN     Horse      —              34.4     29.1     0.85    308.4   15.3   5%          65         55.3    40.9    0.0     5.5     0.0     0.7     0.1     0.4     0.1     37.1
+ MAN     Horse      —              33.2     27.0     0.81    281.2   16.2   6%          57         79.1    39.6    0.3     5.6     0.2     0.5     0.0     0.3     0.1     35.3
+ MAN     Zoo       —              31.3     25.5     0.81    235.3   10.7   5%          51         30.8    38.7    0.3     5.3     0.2     1.3     0.3     0.3     0.1     35.6
+ MAN      Cattle           Straw            22.8     20.1     0.88    166.9    7.3    4%          38         39.2    41.2    0.2     5.5     0.1     1.1     0.1     0.3     0.1     40.1
+Waste 2023, 1                                                                                                                                                                                   211
+
+
+
+
+                             Table A1. Cont.
+
+                        DM   VS   VS/DM    BMP exp                            Carbon    Hydrogen    Nitrogen      Sulfur    Oxygen
+                                                                                        Biodegradation C/N
+                                 Mean  Mean  Mean  Mean  SD                          Mean  SD  Mean  SD  Mean  SD  Mean  SD  Mean
+ Family    Type        Sub Type                                     CV(%)
+                                                       (Nm3 CH4/t                                         (% FM)                     %             (% DM)    (% DM)     (% DM)     (% DM)    (% DM)
+                                                             VS)
+
+ MAN     Mix            Straw            22.3     19.4     0.87    346.9   15.9   5%          73         18.6    41.1    0.1     6.1     0.2     2.2     0.1     0.3     0.1     37.2
+ MAN     Mix            Straw            20.9     18.1     0.86     366     7.1    2%          72         20.1    42.8    0.0     6.2     0.1     2.1     0.3     0.3     0.1     35.0
+ MAN     Horse      —              57.6     50.3     0.87    281.1    10    4%          62         62.4    40.7    0.1     5.7     0.2     0.7     0.1     0.5     0.0     39.8
+ MAN     Horse      —              51.0     44.8     0.88    240.9   13.6   6%          57         75.1    39.3    0.2     5.6     0.2     0.5     0.1     0.6     0.2     41.8
+ MAN      Cattle           Straw            43.1     34.5     0.80    191.4    8.3    4%          46         17.2    35.0    0.2     5.3     0.0     2.0     0.3     0.5     0.0     37.3
+ MAN      Cattle           Straw            33.7     27.9     0.83    223.8    9    4%          49         21.2    38.4    0.1     5.8     0.0     1.8     0.1     0.4     0.0     36.6
+ MAN     Horse      —              31.5     26.0     0.83    250.6   18.6   7%          60         13.5    36.2    0.0     5.6     0.1     2.7     0.3     0.6     0.0     37.3
+           Maize
+  CER                           Follicle           73.9     71.7     0.97    279.2    19    7%          64         33.1    43.1    0.2     6.8     0.1     1.3     0.0     0.2     0.0     45.6
+           Residues
+                        Contaminated
+  CER     Wheat                              86.2     84.0     0.97    317.7    2.1    1%          78         22.9    41.2    0.1     6.8     0.0     1.8     0.1     0.2     0.0     47.4
+                               culture
+  CER      Mix            Cereals           75.6     72.5     0.96    285.9   15.8   6%          64         29.4    43.0    0.3     6.7     0.1     1.5     0.0     0.1     0.0     44.5
+  CER      Mix          Cereal dust         89.4     80.1     0.90    300.1    5.6    2%          66         42.6    41.9    0.0     5.8     0.1     1.0     0.1     0.1     0.0     40.8
+  CER      Mix         Cereal residue       72.0     64.7     0.90    250.2    9.3    4%          57         11.4    40.6    0.3     6.2     0.1     3.6     0.2     0.3     0.0     39.2
+                        Fresh residue from
+  CER     Maize                               24.6     24.2     0.98     314    20    6%          77         53.1    43.5    0.2     6.0     0.1     0.8     0.0     0.1     0.0     47.9
+                          sweet corn
+                        Fresh residue from
+  CER     Maize                               21.9     21.4     0.98    262.7    0.1    0%          63         43.3    43.5    0.2     6.2     0.1     1.0     0.0     0.2     0.1     46.6
+                          sweet corn
+                        Fresh residue from
+  CER     Maize                               23.9     23.3     0.97     306     5.4    2%          71         43.7    43.8    0.0     6.4     0.1     1.0     0.1     0.1     0.0     46.3
+                          sweet corn
+                        Fresh residue from
+  CER     Maize                               26.7     26.3     0.99    335.5    5.4    2%          78         49.6    44.6    0.2     6.3     0.0     0.9     0.1     0.1     0.0     46.5
+                          sweet corn
+                        Fresh residue from
+  CER     Maize                               23.6     23.1     0.98    312.3    14    4%          69         36.9    44.6    0.2     6.7     0.1     1.2     0.0     0.6     0.2     44.7
+                          sweet corn
+                        Fresh residue from
+  CER     Maize                               21.9     21.4     0.98    263.7   24.5   9%          60         57.8    44.0    0.3     6.7     0.0     0.8     0.2    0.04     0.1     46.4
+                          sweet corn
+                        Fresh residue from
+  CER     Maize                               26.5     26.0     0.98    306.8    5.2    2%          71         56.7    43.7    0.3     6.7     0.1     0.8     0.2     0.1     0.1     46.9
+                          sweet corn
+  CER      Mix            Cereals           87.0     80.6     0.93    313.3    7.8    2%          67         12.1    43.3    0.0     6.7     0.0     3.6     0.3     0.2     0.0     38.9
+  CER     Maize            Flour            87.0     85.4     0.98    325.4   28.8   9%          80         37.8    41.4    0.2     6.8     0.0     1.1     0.1     0.1     0.0     48.8
+  CER      Mix            Cereals           77.0     71.9     0.93    328.4    7.2    2%          73         18.3    43.2    0.1     6.4     0.1     2.4     0.2     0.2     0.0     41.3
+  CER      Mix             Silo’s lose          79.8     74.1     0.93    320.4   14.7   5%          77         56.2    40.2    0.0     6.2     0.0     0.7     0.1     0.3     0.0     45.4
+Waste 2023, 1                                                                                                                                                                                   212
+
+
+
+
+                             Table A1. Cont.
+
+                        DM   VS   VS/DM    BMP exp                            Carbon    Hydrogen    Nitrogen      Sulfur    Oxygen
+                                                                                        Biodegradation C/N
+                                 Mean  Mean  Mean  Mean  SD                          Mean  SD  Mean  SD  Mean  SD  Mean  SD  Mean
+ Family    Type        Sub Type                                     CV(%)
+                                                       (Nm3 CH4/t                                         (% FM)                     %             (% DM)    (% DM)     (% DM)     (% DM)    (% DM)
+                                                             VS)
+
+  CER      Mix            Cereals           75.6     72.5     0.96    285.9   15.8   6%          66         29.8    42.4    0.1     6.7     0.1     1.4     0.1     0.3     0.0     44.9
+  SLU      Cattle      —               4.7      3.5     0.74     291     3    1%          51         15.7    40.5    0.2     5.4     0.1     2.6     0.1     0.5     0.0     25.6
+  SLU      Rabbit      —              18.4     15.9     0.86    263.8    4.7    2%          55         24.1    41.6    0.2     5.9     0.0     1.7     0.1     0.5     0.1     36.7
+  SLU      Cattle      —              26.3     24.2     0.92    224.1    3.7    2%          70         16.0    35.9    0.2     5.1     0.1     2.2     0.2     0.6     0.0     48.0
+  SLU     Duck       —               6.2      5.2     0.84    551.2   26.3   5%         100         14.2    42.1    0.2     6.1     0.1     3.0     0.2     0.4     0.1     31.9
+  SLU      Cattle      —              10.4      8.1     0.78     481    10.2   2%          91         27.3    39.5    0.1     5.8     0.0     1.4     0.3     0.5     0.2     30.6
+           Maize
+ LCM                   Cob             28.4     27.7     0.98    272.2    2.1    1%          63         497.8   44.1    0.2     6.3     0.1     0.1     0.0     0.1     0.1     47.2
+           Residue
+ LCM    Hemp           Dust            88.1     69.0     0.78    184.4    4.5    2%          36         48.5    39.6    0.1     5.3     0.0     0.8     0.0     0.2     0.0     32.5
+ LCM     Straw        Plant residues        88.0     83.9     0.95    277.6    7.6    3%          68         60.0    42.2    0.0     5.8     0.1     0.7     0.1     0.3     0.0     46.4
+ LCM     Straw       —              87.6     84.6     0.97    274.1    2.2    1%          67         77.8    42.7    0.1     6.0     0.0     0.5     0.0     0.3     0.1     47.1
+ LCM     Maize           Beans            42.0     36.4     0.87    246.8   13.3   5%          51         165.7   42.8    0.1     5.5     0.3     0.3     0.1     0.8     0.1     37.3
+           Bagasse
+ LCM            —              52.2     48.3     0.92    188.1    9.1    5%          42         245.9   43.3    0.1     5.7     0.2     0.2     0.1     0.3     0.1     43.0
+         and Straw
+ LCM    Bagasse      —              43.2     40.9     0.95    173.7    7.2    4%          39         376.8   44.6    0.2     5.9     0.2     0.1     0.0     0.2     0.1     44.0
+ LCM     Straw       —              54.0     47.5     0.88    199.8    8.8    4%          42         193.6   43.4    0.1     5.4     0.2     0.2     0.0     0.2     0.0     38.7
+ LCM    Bagasse      —              56.7     41.2     0.73    250.6   16.5   7%          39         297.1   42.8    0.2     5.5     0.2     0.1     0.0     0.1     0.0     24.1
+ LCM     Straw           Waste            79.2     71.8     0.91    329.8    0.8    0%          72         79.1    42.8    0.1     5.8     0.0     0.5     0.1     0.2     0.1     41.4
+           Green
+ LCM            —              37.9     35.2     0.93    212.1    1.8    1%          47         136.8   43.4    0.0     5.8     0.1     0.3     0.1     0.6     0.1     42.7
+            waste
+ LCM     Straw       —              86.5     82.2     0.95    277.6   21.8   8%          67         64.0    43.0    0.3     5.7     0.1     0.7     0.1     0.1     0.0     45.5
+ LCM     Hay        Meadow          86.0     80.4     0.93     289     7.1    2%          65         51.4    42.6    0.1     6.3     0.0     0.8     0.1     0.1     0.0     43.7
+ LCM     Straw        Plant residues        89.0     85.1     0.96    292.7   27.4   9%          70         89.0    42.5    0.1     6.1     0.3     0.5     0.0     0.2     0.2     46.4
+ LCM     Straw        Plant residues        87.2     83.2     0.95    298.9    2.3    1%          69         89.3    42.9    0.1     6.2     0.1     0.5     0.0     0.1     0.1     45.6
+ LCM     Straw       —              88.3     84.0     0.95    302.1    5.9    2%          72         73.6    42.3    0.2     6.0     0.3     0.6     0.1     0.3     0.3     46.0
+ LCM     Straw       —              88.8     86.0     0.97    290.6    7.1    2%          69         132.0   43.0    0.1     6.3     0.0     0.3     0.0     0.1     0.0     47.1
+ LCM     Straw       —              75.9     70.4     0.93    305.5    6.4    2%          70         102.2   42.9    0.0     5.7     0.1     0.4     0.0     0.2     0.0     43.5
+ LCM     Straw           Waste            84.9     81.3     0.96    293.7    1    0%          67         126.8   44.2    0.2     5.9     0.0     0.3     0.0     0.1     0.0     45.2
+           Flower
+ LCM                   Lavender          88.7     81.2     0.92    200.5    9.6    5%          42         41.5    45.0    0.1     6.0     0.0     1.1     0.2     0.3     0.1     39.3
+            residue
+ LCM     Maize            Leaf            37.8     35.0     0.93    286.3   23.3   8%          65         56.5    43.2    0.1     5.8     0.0     0.8     0.0     0.1     0.0     42.8
+ LCM     Straw        Plant residues        86.3     82.3     0.95    280.5    2.9    1%          69         68.3    41.5    0.3     6.0     0.1     0.6     0.1     0.2     0.1     47.1
+Waste 2023, 1                                                                                                                                                                                   213
+
+
+
+
+                             Table A1. Cont.
+
+                        DM   VS   VS/DM    BMP exp                            Carbon    Hydrogen    Nitrogen      Sulfur    Oxygen
+                                                                                        Biodegradation C/N
+                                 Mean  Mean  Mean  Mean  SD                          Mean  SD  Mean  SD  Mean  SD  Mean  SD  Mean
+ Family    Type        Sub Type                                     CV(%)
+                                                       (Nm3 CH4/t                                         (% FM)                     %             (% DM)    (% DM)     (% DM)     (% DM)    (% DM)
+                                                             VS)
+
+ LCM     Straw           Waste            84.5     77.3     0.92     306    23.1   8%          66         128.8   43.5    0.3     5.9     0.0     0.3     0.0     0.1     0.0     41.7
+ LCM     Straw       Rapeseed waste       71.9     62.9     0.87    241.4    3    1%          54         31.1    40.0    0.2     5.8     0.2     1.3     0.0     0.4     0.2     40.0
+ LCM     Straw       —              85.0     81.2     0.96    309.7   10.1   3%          72         162.8   43.8    0.3     5.9     0.0     0.3     0.1     0.1     0.0     45.6
+ LCM     Straw           Waste            83.9     78.2     0.93    283.8    8.8    3%          62         119.4   43.6    0.1     6.3     0.0     0.4     0.2     0.2     0.1     42.8
+           Green
+ LCM            —              44.6     34.5     0.77    178.2    0.1    0%          33         23.9    40.3    0.1     5.5     0.1     1.7     0.2     0.1     0.0     29.7
+            waste
+ LCM     Mix         Green waste        34.4     26.4     0.77    218.9   11.6   5%          45         21.9    37.5    0.3     5.3     0.2     1.7     0.1     0.2     0.0     31.9
+           Green
+ LCM            —              80.6     36.9     0.46     63.1     3.4    5%          7          29.2    34.5    0.0     4.5     0.0     1.2     0.2     0.3     0.0      5.3
+            waste
+           Flower
+ LCM                  Pomace           47.1     39.6     0.84    281.1    1.7    1%          64         17.6    38.3    0.1     5.5     0.0     2.2     0.1     0.6     0.0     37.3
+            residue
+ LCM     Straw       —              90.6     85.8     0.95     240     6.3    3%          60         406.3   41.2    0.3     5.7     0.3     0.1     0.0     0.8     0.3     46.9
+           Flower
+ LCM                   Lavender          82.8     78.2     0.94    171.3   12.4   7%          37         68.8    44.3    0.0     6.3     0.0     0.6     0.3     0.6     0.1     42.6
+            residue
+ LCM     Straw           Waste            88.8     82.3     0.93     267     7.4    3%          64         263.7   40.3    0.1     6.1     0.3     0.2     0.1     0.8     0.1     45.3
+Waste 2023, 1                                                                                                                                                                                   214
+
+
+
+
+                             Table A2. Description of the substrates analyzed within the families: ﬁbers, protein content, and COD, where SD is standard deviation, DM is dry matter, VS is
+                                   volatile solids, and COD is the chemical oxygen demand.
+
+                                                                                       Cellulose         Hemicelluloses           Lignin          Protein      COD
+
+   Family          Type                      Sub Type                Mean    SD     Mean     SD     Mean     SD     Calculated     Calculated
+
+                                                                                         (g/100g DM)         (g/100g DM)           (g/100g DM)      (% DM)   (g COD/g CxHyOz)
+
+   ENSI             Millet               —                            28.6       1.4        17.7         1.1         22.3         0.3          4.9                1.3
+   ENSI         Sorghum              —                            21.7       0.0        10.8         0.2         21.1         0.3          9.4                1.4
+   ENSI           Mix              Sorghum, Millet, and Sunﬂower mix           22.7       0.3        12.7         0.2         19.4         0.1         14.1               1.4
+   ENSI         Sorghum                       Sucro variety                       25.1       0.5        12.1         0.6         18.1         0.1         10.6               1.3
+   ENSI         Sorghum                      Vega variety                       22.8       0.7        13.7         0.4         20.0         0.9         13.9               1.4
+                                 Vega sorghum variety and San Lucas sunﬂower
+   ENSI           Mix                                                                  24.7       0.2        10.1         0.1         26.7         0.7         10.3               1.3
+                                                           variety
+   ENSI           Mix            Sunﬂower, Millet, and Guizotia abyssinica        17.3       0.3         7.1          0.1         26.6         1.3          9.5                1.4
+   ENSI           Mix            Sunﬂower, Millet, and Guizotia abyssinica        17.9       0.1         8.6          0.2         25.6         0.3          8.8                1.4
+   ENSI           Mix               —                            22.6       0.8         9.2          0.2         25.1         0.3          8.1                1.4
+   ENSI       Millet and Clover            —                            29.6       0.2        19.1         0.3         19.6         0.5          9.5                1.3
+   ENSI          Maize               —                            47.7       1.5        11.5         0.5         11.4         0.2          5.6                1.3
+   ENSI           Mix                            Residue                          13.5       0.3         9.0          0.2         14.0         0.1          4.6                1.3
+   ENSI         Sorghum                       Sucro variety                       31.4       0.4        18.0         0.5         17.8         0.1          3.7                1.2
+                              Sorghum (Paciﬁc graze), Millet (Robusta), Vetch
+   ENSI           Mix                                                                  30.3       2.5        14.2         0.5         19.7         0.8          9.3                1.3
+                                        (Bingo and Massa), and Clover (Tabor)
+   ENSI       Millet and Clover            —                            22.4       0.4        15.4         0.3         22.2         1.0         11.8               1.4
+   ENSI       Millet and Clover            —                            12.9       0.4         6.6          0.1         18.6         1.8         11.4               1.3
+   ENSI       Millet and Clover            —                            11.2       0.1         6.4          0.1         21.0         0.2          8.5                1.3
+   ENSI         Sorghum              —                            28.3       0.6        17.2         0.4         18.7         0.1          4.8                1.3
+   ENSI          Maize               —                            49.9       0.6        12.6         0.4         11.4         0.2          5.5                1.2
+   ENSI       Rye and Vetch             —                            25.8       0.0        15.1         0.0         22.1         0.1          6.6                1.2
+   ENSI       Rye and Vetch             —                            26.7       0.0        17.4         0.0         20.6         0.1          4.5                1.2
+   ENSI           Mix               —                            22.3       0.4        13.3         0.5         19.5         0.4          4.6                1.3
+   ENSI           Mix                  Faba bean, Rye, and Radish                19.6       0.6        10.6         0.1         22.4         0.1          8.9                1.2
+   ENSI           Mix                 Faba bean, Triticale, and Radish              17.5       0.0         8.8          0.0         18.1         0.2          8.5                1.2
+   ENSI           Mix                             Grass                           21.7       0.0        12.3         0.0         28.9         0.5          9.6                1.4
+   ENSI           Mix                   Sorghum and Maize                   22.0       0.5        15.4         0.3         17.8         0.3          4.7                1.2
+   ENSI           Mix                     Peas, Vetch, Oats, and Beans               21.9       0.3        10.7         0.3         20.2         0.8         13.7               1.5
+   ENSI          Maize               —                            45.5       1.0        10.5         0.3         13.3         0.4          6.2                1.3
+   ENSI         Sorghum              —                            30.5       0.6        20.5         0.2         24.5         0.5          5.3                1.3
+   ENSI           Mix                  Moha and Clover                     28.4       0.1        13.5         0.5         19.2         1.0          7.9                1.5
+Waste 2023, 1                                                                                                                                                                                   215
+
+
+
+
+                             Table A2. Cont.
+
+                                                                                       Cellulose         Hemicelluloses           Lignin          Protein      COD
+
+   Family          Type                      Sub Type                Mean    SD     Mean     SD     Mean     SD     Calculated     Calculated
+
+                                                                                         (g/100g DM)         (g/100g DM)           (g/100g DM)      (% DM)   (g COD/g CxHyOz)
+
+   ENSI         Rapeseed              —                            25.7       1.2        10.2         1.0         27.4         0.3          3.5                1.4
+   ENSI            Grass               —                            21.5       0.5        11.7         0.2         27.1         0.2         10.3               1.4
+   ENSI         Sorghum              —                            31.6       0.2        14.0         0.1         22.9         0.3          5.7                1.3
+   ENSI        Sunﬂower              —                            20.9       0.4         9.1          0.2         22.8         0.8          5.9                1.4
+   ENSI            Grass               —                            29.9       0.2        16.9         0.2         25.7         1.6          7.7                1.7
+   ENSI          Maize               —                            41.1       0.4        11.7         0.8         16.5         0.8          6.2                1.2
+   ENSI             Alfalfa               —                            23.6       0.7         9.2          0.1         21.5         0.6         10.1               1.4
+   ENSI         Sorghum              —                            29.8       0.3        13.1         0.8         16.8         0.4          6.3                1.3
+   ENSI            Grass                           Ray-grass                         31.9       1.6        14.1         0.9         21.9         1.6          4.2                1.3
+   ENSI          Maize               —                            27.3       0.2        18.4         0.1         20.0         0.7          6.9                1.4
+   ENSI            Grass               —                            24.9       0.2        14.8         0.5         19.5         0.3         10.9               1.4
+   ENSI          Maize               —                            52.3       3.5        11.2         0.9         15.4         0.6          6.1                1.3
+   ENSI          Maize               —                            41.3       1.2         9.6          0.4         13.1         1.3          6.5                1.3
+   ENSI            Grass               —                            21.1       0.7         9.7          0.2         18.1         0.7          9.1                1.3
+   ENSI            Grass               —                            26.0       0.4        13.7         0.3         18.4         1.1          5.3                1.4
+   ENSI          Maize               —                            37.1       0.5        11.6         0.0         19.9         1.3          7.0                1.3
+  MAN          Mix                    Manure and Spates                    28.7       0.8        14.8         0.4         52.3         2.9          7.3                2.0
+  MAN             Cattle                   After phase separation, Straw               24.5       0.6        17.5         0.5         26.0         0.7         15.7               1.2
+  MAN          Horse               —                            25.3       2.5        14.2         0.6         48.7         2.2         10.0               1.7
+  MAN             Cattle                           Straw                           25.6       0.1        18.2         0.2         29.4         1.0          5.5                1.2
+  MAN             Cattle                           Straw                           22.5       1.8        15.3         0.0         34.9         0.6          8.5                1.4
+  MAN             Cattle                            Fern                           20.0       0.7        14.5         1.1         36.3         1.2          8.3                1.4
+  MAN             Cattle                           Straw                           29.2       1.4        16.3         0.6         34.9         0.4          4.7                1.5
+  MAN          Horse               —                            29.1       0.9        17.1         0.5         32.3         0.3          5.1                1.4
+  MAN           Poultry              —                            16.6       0.4        13.6         0.2         35.4         2.9         14.9               1.4
+  MAN           Poultry              —                            16.8       0.1        13.5         0.2         36.3         0.5         14.2               1.3
+  MAN             Pig               —                            19.6       1.7        11.6         0.8         36.8         0.1         12.4               1.3
+  MAN             Cattle                 Straw, after 1 month conservation             18.8       0.8        13.6         0.3         48.5         2.6          8.5                1.6
+  MAN          Turkey               —                            21.7       0.7        21.5         0.2         22.8         0.5         17.0               1.5
+  MAN          Mix               —                            19.6       0.6        12.8         0.0         31.2         2.3         12.0               1.3
+  MAN           Poultry              —                            20.1       0.2        14.4         0.1         23.5         0.6         28.1               1.4
+  MAN           Poultry              —                            22.1       1.0        17.4         0.7         20.0         0.4         14.2               1.2
+  MAN             Cattle                           Straw                           13.6       0.1         8.8          0.1         52.0         1.9          5.3                1.9
+Waste 2023, 1                                                                                                                                                                                   216
+
+
+
+
+                             Table A2. Cont.
+
+                                                                                       Cellulose         Hemicelluloses           Lignin          Protein      COD
+
+   Family          Type                      Sub Type                Mean    SD     Mean     SD     Mean     SD     Calculated     Calculated
+
+                                                                                         (g/100g DM)         (g/100g DM)           (g/100g DM)      (% DM)   (g COD/g CxHyOz)
+
+  MAN          Horse               —                            20.0       0.5        12.7         0.4         56.5         3.7          9.0                1.3
+  MAN             Cattle                           Straw                           29.2       1.4        16.9         0.2         30.4         0.3          7.5                1.3
+  MAN           Poultry              —                            19.1       0.3        17.1         0.1         26.4         0.2         15.4               1.4
+  MAN          Horse               —                            35.0       1.3        20.0         1.3         27.2         1.3          4.6                1.4
+  MAN          Horse               —                            31.8       0.0        18.9         0.0         27.1         0.1          3.1                1.4
+  MAN          Zoo               —                            21.9       0.2        15.2         0.1         38.6         1.6          7.8                1.4
+  MAN             Cattle                           Straw                           19.1       0.3        11.5         0.1         40.1         4.0          6.6                1.3
+  MAN          Mix                            Straw                           20.2       0.2        14.9         0.4         28.6         0.1         13.8               1.4
+  MAN          Mix                            Straw                           18.9       0.2        12.7         0.1         35.7         2.7         13.3               1.5
+  MAN          Horse               —                            31.6       0.2        20.0         0.1         27.1         0.5          4.1                1.3
+  MAN          Horse               —                            29.6       0.6        19.9         0.1         34.6         0.3          3.3                1.2
+  MAN             Cattle                           Straw                           28.5       0.2        15.7         0.1         36.4         0.0         12.8               1.3
+  MAN             Cattle                           Straw                           25.0       1.0        18.1         0.6         43.2         0.2         11.3               1.4
+  MAN          Horse               —                            20.7       0.5        16.4         0.4         28.3         0.7         16.8               1.3
+   CER       Maize Residues                             Follicle                          49.0       1.2        10.8         0.5         12.0         0.0          8.2                1.3
+   CER          Wheat                    Contaminated culture                   59.3       1.1         6.0          0.1          5.5          0.5         11.3               1.2
+   CER           Mix                              Cereals                          50.2       0.6         7.9          0.3         14.2         0.0          9.1                1.3
+   CER           Mix                            Cereal dust                        29.7       0.4        21.3         0.3         21.4         1.2          6.1                1.3
+   CER           Mix                           Cereal residue                      33.3       1.7        14.7         1.2         16.1         0.1         22.3               1.4
+   CER           Maize                  Fresh residue from sweet corn              29.5       1.5        16.1         1.5         15.4         0.4          5.1                1.2
+   CER           Maize                  Fresh residue from sweet corn              25.8       0.4        18.9         0.2         16.4         0.0          6.3                1.2
+   CER           Maize                  Fresh residue from sweet corn              29.5       0.1        19.0         0.2         16.2         0.1          6.3                1.3
+   CER           Maize                  Fresh residue from sweet corn              29.5       0.2        20.5         0.0         12.2         0.1          5.6                1.3
+   CER           Maize                  Fresh residue from sweet corn              29.0       0.3        19.9         0.0         12.9         0.3          7.6                1.3
+   CER           Maize                  Fresh residue from sweet corn              27.6       0.4        16.8         0.6         16.3         0.2          4.8                1.3
+   CER           Maize                  Fresh residue from sweet corn              28.4       0.1        18.9         0.1         14.0         0.1          4.8                1.3
+   CER           Mix                              Cereals                          29.3       0.9        10.9         0.3         18.7         0.4         22.3               1.5
+   CER           Maize                             Flour                           60.9       0.4         7.2          0.1          6.2          0.5          6.8                1.2
+   CER           Mix                              Cereals                          50.6       1.3         7.3          0.6         10.6         0.1         14.8               1.4
+   CER           Mix                                   Silo’s lose                         51.6       0.7        10.7         0.5         18.7         0.5          4.5                1.2
+   CER           Mix                              Cereals                          49.3       1.9         6.8          0.3         13.3         0.3          8.9                1.3
+   SLU              Cattle               —                              8.7        0.0         7.7          0.3         38.6         1.1         16.1               1.8
+   SLU            Rabbit               —                            20.6       0.7        13.5         0.1         28.6         0.0         10.8               1.4
+Waste 2023, 1                                                                                                                                                                                   217
+
+
+
+
+                             Table A2. Cont.
+
+                                                                                       Cellulose         Hemicelluloses           Lignin          Protein      COD
+
+   Family          Type                      Sub Type                Mean    SD     Mean     SD     Mean     SD     Calculated     Calculated
+
+                                                                                         (g/100g DM)         (g/100g DM)           (g/100g DM)      (% DM)   (g COD/g CxHyOz)
+
+   SLU              Cattle               —                            26.4       0.7        20.0         0.9         28.8         0.1         14.0               1.0
+   SLU          Duck               —                            13.2       0.1        23.5         1.3         19.1         0.1         18.6               1.6
+   SLU              Cattle               —                            17.8       0.0        12.7         1.0         33.8         0.9          9.0                1.6
+   LCM       Maize Residue                     Cob                            29.0       0.6        26.0         0.4         19.8         0.1          0.6                1.2
+   LCM        Hemp                           Dust                           19.5       0.8         8.9          0.0         28.2         0.0          5.1                1.5
+   LCM           Straw                           Plant residues                      28.5       0.3        17.5         0.2         16.3         0.3          4.4                1.2
+   LCM           Straw               —                            30.9       0.5        18.3         0.2         17.0         0.4          3.4                1.2
+   LCM           Maize                           Beans                           33.6       1.5        22.7         0.7         19.4         0.5          1.6                1.4
+   LCM      Bagasse and Straw            —                            30.1       2.5        18.2         1.7         17.6         1.5          1.1                1.3
+   LCM           Bagasse              —                            32.1       0.2        15.7         0.2         22.8         0.7          0.7                1.3
+   LCM           Straw               —                            31.7       0.2        20.6         0.3         23.1         0.4          1.4                1.4
+   LCM           Bagasse              —                            33.4       0.6        21.2         0.4         30.9         2.9          0.9                1.9
+   LCM           Straw                           Waste                           25.3       1.7        24.1         1.8         21.3         2.1          3.4                1.3
+   LCM        Green waste             —                            31.9       0.7        13.8         0.4         17.9         1.3          2.0                1.3
+   LCM           Straw               —                            30.5       0.8        18.5         0.3         18.8         0.5          4.2                1.2
+   LCM          Hay                     Meadow                         26.8       2.0        19.9         1.9         23.7         2.2          5.2                1.3
+   LCM           Straw                           Plant residues                      30.1       0.3        17.8         0.1         18.3         0.5          3.0                1.2
+   LCM           Straw                           Plant residues                      31.3       0.0        17.4         0.1         18.3         1.2          3.0                1.3
+   LCM           Straw               —                            29.2       0.9        18.9         0.3         14.7         0.4          3.6                1.2
+   LCM           Straw               —                            32.3       0.7        18.3         0.4         15.7         0.6          2.0                1.2
+   LCM           Straw               —                            30.3       0.0        20.2         0.1         24.6         1.1          2.6                1.3
+   LCM           Straw                           Waste                           31.4       0.9        22.0         0.7         18.4         0.3          2.2                1.3
+   LCM       Flower residue                     Lavender                         20.8       0.7        12.1         0.5         30.8         0.1          6.8                1.4
+   LCM           Maize                              Leaf                           25.7       1.7        20.8         1.5         27.5         1.8          4.8                1.3
+   LCM           Straw                           Plant residues                      26.2       1.1        16.6         0.9         19.5         1.4          3.8                1.2
+   LCM           Straw                           Waste                           30.2       1.7        23.8         1.1         26.0         1.1          2.1                1.3
+   LCM           Straw                      Rapeseed waste                      24.5       1.5        11.7         0.8         23.7         2.0          8.1                1.3
+   LCM           Straw               —                            29.8       0.2        19.7         0.3         20.9         1.1          1.7                1.2
+   LCM           Straw                           Waste                           27.8       2.1        21.5         1.4         23.7         1.3          2.3                1.3
+   LCM        Green waste             —                            18.3       1.2        11.1         0.7         46.0         0.2         10.6               1.6
+   LCM           Mix                        Green waste                       16.8       1.6        12.5         1.1         50.2         4.2         10.7               1.5
+   LCM        Green waste             —                            15.4       0.8        12.9         0.9         42.1         1.5          7.4                2.8
+   LCM       Flower residue                    Pomace                          17.1       0.8         7.8          0.0         17.1         0.6         13.6               1.3
+Waste 2023, 1                                                                                                                                                                                   218
+
+
+
+
+                             Table A2. Cont.
+
+                                                                                       Cellulose         Hemicelluloses           Lignin          Protein      COD
+
+   Family          Type                      Sub Type                Mean    SD     Mean     SD     Mean     SD     Calculated     Calculated
+
+                                                                                         (g/100g DM)         (g/100g DM)           (g/100g DM)      (% DM)   (g COD/g CxHyOz)
+
+   LCM           Straw               —                            31.5       0.7        17.0         0.7         27.9         2.5          0.6                1.2
+   LCM       Flower residue                     Lavender                         24.5       0.9        10.7         0.5         30.0         0.1          4.0                1.4
+   LCM           Straw                           Waste                           29.2       0.3        20.1         0.0         26.6         0.1          1.0                1.2
+
+
+                       Appendix B
+
+                             Table A3. Literature references of BMP performed on large samples, biogas production and biochemical characterization are indicated for each families of substrates.
+                      DM: dry matter; VS: volatile solids, HCell: hemicellulose, Cell: cellulose, COD: chemical oxygen demand, Prot: proteins, and BMP: biochemical methane potential.
+
+                                                                                                           BMP
+  Reference     N.     Sample Familly       Sample Description      DM       VS        HCell         Cell        Lignin     COD        Prot     (mL CH4/g
+                                                                                                                                              VS)
+
+                                           Dairy and Separated liquid       58–124       41–102                                             71–129                  243–261
+                 2        Manures                                                    10% VS     32% VS     14% VS              6% VS
+                                             manure               91 g/kg      71 g/kg                                           100 g/kg                   252
+                                       Cheese whey, Plain pasta, Meat
+                                                 pasta, Used vegetable oil, Ice
+                                                                          71–991       60–989        0–0         0–36         0–0        91–2880      0–19       216–649
+      [14]         9      Food residue      cream, Fresh dog food, Cola
+                                                                         274 g/kg     274 g/kg    0% VS     3% VS     0% VS      642 g/kg    10% VS        390
+                                               beverage, Cabbage, and
+                                                       Potatoes
+                 1        Switchgras              Switchgrass            930 g/kg     905 g/kg    42% VS     49% VS     8% VS      707 g/kg    1% VS        122
+                 1            Silage               Corn silage            217 g/kg     201 g/kg               12% VS                                 -       14% VS        296
+                                                                                                                                                     29–89
+                        Municipal solid                                    94–99        53–90                             ND–0.4      38–279                   87–357
+      [25]        20                          Municipal solid wastes                                                       -                  -                                  52 g/g
+                            wastes                                97% RM    74% RM                                    0.1 g/g VS   145 g/g VS                  226
+                                                                                                                         VS
+      [26]        95          Grass           Meadow grass              51          288                -                  -                  -                  -                 -           406
+      [18]        204                                                        295          329                                                                        355
+Waste 2023, 1                                                                                                                                                                                   219
+
+
+
+
+                             Table A3. Cont.
+
+                                                                                                           BMP
+  Reference     N.     Sample Familly       Sample Description      DM       VS        HCell         Cell        Lignin     COD        Prot     (mL CH4/g
+                                                                                                                                              VS)
+
+                                Meadow grass, Grass mixture,
+                                                                                                                                                                 298–404
+                 9     Lawn cuttings       White clover, and Short                -                  -       22% VS     28% VS     6% VS              -       16% VS
+                                                                                                                                                                   333
+                                                      bluegrass
+                                           Oval-leaved privet, Ivy, Beech
+                                                                                                                                                                 149–277
+                 9     Hedge cuttings       hedge, Chokeberry, and                -                  -       12% VS     28% VS     16% VS              -       12% VS
+                                                                                                                                                                   203
+                                                Ground-elder
+                                              Birch tree, Plane tree, Willow,                                                                                             138–245
+                 16     Wood cuttings                                                          -                  -       12% VS     24% VS     24% VS              -       10% VS      [17]                                     and Cypress                                                                                                       177
+                                          Northern bluegrass, Green
+                                                      foxtail, Bamboo, Common reed,
+                                                                                                                                                                 106–319
+                 17       Wild plants      Tufted hair-grass, Reed canary            -                  -       24% VS     38% VS     10% VS         z      8% VS
+                                                                                                                                                                   227
+                                                  grass, Chrysanthemum, and
+                                                 Dandelion
+                                          Maize, Wheat straw, and Sugar                                                                                            223–479
+                 6          Crops                                                                -                  -       30% VS     28% VS     4% VS              -       8% VS
+                                                          beet                                                                                                          404
+                                               Solid food processing waste
+                          Agro-industrial                                                 4–99                                                                      66–845
+                 58                       and non-conformed end                -                                     -                  -                  -                  -                 -
+                            wastes                                          52% DM                                                                      396
+                                                    products
+                 1        Macroaglae                            -                               -       56% DM             -                  -                  -                  -                 -           238
+                                                                                       3–88                                                                      185–845
+                 20        Biowaste        Household organic waste               -                                     -                  -                  -                  -                 -
+                                                                      42% DM                                                                      370
+                                                                                       89–94                                                                     211–370
+                 4       Energy crops       Maize and switch grass                -                                     -                  -                  -                  -                 -
+                                                                      92% DM                                                                      264
+                                               Industrial sludge digester with                   0–29                                                                      53–1321
+      [27]        11        Fatty waste                                                            -                                     -                  -                  -                  -                 -
+                                                           fatty feedstock                   13% DM                                                                      475
+                                           Slaughterhouse waste or stale                   23–96                                                                     172–594
+                 14       Meat waste                                                            -                                     -                  -                  -                  -                 -
+                                                meat                       70% DM                                                                      475
+                           Co-digestion
+                 2                                                                                       -       83% DM             -                  -                  -                  -                 -           185
+                          mix
+                                            Fresh wastes collected from
+                        Municipal solid                                                 15–85                                                                      26–423
+                 66                           different localisation and after            -                                     -                  -                  -                  -                 -
+                            wastes                                          60% DM                                                                      211
+                                                       different treatment
+Waste 2023, 1                                                                                                                                                                                   220
+
+
+
+
+                             Table A3. Cont.
+
+                                                                                                           BMP
+  Reference     N.     Sample Familly       Sample Description      DM       VS        HCell         Cell        Lignin     COD        Prot     (mL CH4/g
+                                                                                                                                              VS)
+
+                             Plant and       Wheat and barley residues,                    42–95                                                                      0–449
+                 42                                                                                       -                                     -                  -                  -                  -                 -
+                            Vegetable          Potatoes, Tomatoes, etc.                81% DM                                                                      264
+                          Agro-industrial       Sludges produced from                      2–80                                                                       0–687
+                 18                                                                                       -                                     -                  -                  -                  -                 -
+                             sludges            agro-industrial WWTP                 18% DM                                                                      317
+                                                Different WWTP at different
+                      Sewage sludge                                                 11–84                                                                      13–343
+                 30                         process steps (pre-treated or             -                                     -                  -                  -                  -                 -
+                 WWTP                                          66% DM                                                                      172
+                                                            not)
+                               Stabilised
+                                                                                       14–66                                                                      0–264
+                 31      municipal solid          Landﬁll drillings                     -                                     -                  -                  -                  -                 -
+                                                                      40% DM                                                                      132
+                            waste
+                                                                                                   22–36        16–29         1–5                                321–388
+                              Leaf             Reed canary grass                    -                  -                                                                           -                 -
+                                                                                31% DM    26% DM    3% DM                                 352      [20]        14
+                                                                                                   24–34        21–41        1–10                                283–417
+                          Steam            Reed canary grass                    -                  -                                                                           -                 -
+                                                                                30% DM    35% DM    7% DM                                 344
+                                            Chicken, Dairy, and Swine       26–39        20–29        15–28        11–20        2–17                    13–20       51–322
+                 3        Manures                                                                                                                                                             -
+                                               manures           32% FM     23% FM    22% DM    17% DM    8% DM              17% DM       223
+                                     Corn stover, Wheat straw, and      85–93        77–82        25–30        41–42        8–11                     3–6        241–281
+                 3       Crops straws                                                                                                                                                          -
+                                                      Rice straw           89% FM     79% FM    27% DM    42% DM    10% DM             4% DM        256
+                                             Kitchen waste, Fruit and
+                     Food and green           vegetable, Used            4–100        3–100        0–20         0–21         0–11                     0–21       183–811
+                 5                                                                                                                                                                                       -
+      [24]                    wastes       animal/vegetable oil, and Yard   60% FM     57% FM    7% DM     10% DM    5% DM             9% DM        531
+                                                   waste
+                            Processing                                      90–92        74–85        18–33        23–41        12–20                    3–12        49–253
+                 2                        Vinegar residue and Rice husk                                                                                                           -
+                          organic wastes                             91% FM     80% FM    26% DM    32% DM    16% DM             7% DM        151
+                 1       Energy crops             Switchgrass          91% FM    87% FM    32% DM    43% DM    11% DM             -      3% DM        246
+                           Lignocellulosic   Chenopodium album leaf, seed,     84–86        78–83        17–19        20–39        8–16                     3–17       171–262
+                 2                                                                                                                                                                                       -
+                           biomass              and stalk           85% FM     81% FM    18% DM    30% DM    12% DM              10% DM       217
+                                                                                       87–96                     9–76                                             104–502
+      [28]        88            All                                                                  -                                                                                              -                 -
+                                                                      92% DM               57% DM                                             251
+Waste 2023, 1                                                                                                                                                                                   221
+
+
+
+
+                             Table A3. Cont.
+
+                                                                                                           BMP
+  Reference     N.     Sample Familly       Sample Description      DM       VS        HCell         Cell        Lignin     COD        Prot     (mL CH4/g
+                                                                                                                                              VS)
+
+                 18       Miscanthus         Miscanthus giganteus                 -                  -       25% DM    44% DM    9% DM              -      4% DM        263
+                 16       Switchgrass                                                            -                  -       33% DM    40% DM    7% DM              -      4% DM        213
+                 36         Spelt straw                                                            -                  -       31% DM    44% DM    7% DM              -      2% DM        275
+                                                                                                   22–25        33–42         5–7                      4–7        363–438
+                 37       Fiber sorghum        Winter and Autumn                  -                  -                                                                           -
+      [16]                                                                         24% DM    37% DM    6% DM             5% DM        400
+                                                                                                   22–25        25–29         4–4                     9–11       400–425
+                369         Tall Fescue      Spring, Summer, and Autumn            -                  -                                                                           -
+                                                                                24% DM    27% DM    4% DM              10% DM       408
+                 21      Immature rye                                                           -                  -       18% DM    22% DM    2% DM              -      9% DM        525
+                                                                                                    2–4         20–20        18–18                     5–7        313–400
+                 73         Fiber corn          Winter and Autumn                  -                  -                                                                           -
+                                                                          3% DM     20% DM    18% DM             6% DM        356
+                          Anaerobic         Efﬂuent from anaerobic                                                                                                32–214
+                 23                                                                                       -                  -                  -                  -                  -                  -                 -
+                             sludges                   digesters                                                                                                         73
+                           Standard                                                                                                                              289–407
+                 30                          Cellulose, Starch, and Gelatine            -                  -                  -                  -                  -                  -                 -
+                      compounds                                                                                                                               361
+                                                Fruit and vegetable waste, Milk
+                        Household                                                                                                                             214–900
+      [29]        50                            waste, Meat waste, and                -                  -                  -                  -                  -                  -                 -
+                            wastes                                                                                                                                 461
+                                                Co-digestion mixtures
+                            Agriculture     Wheat straw, Bamboo waste,                                                                                             139–300
+                 10                                                                                       -                  -                  -                  -                  -                  -                 -
+                            wastes            and Banana stem                                                                                                     224
+                                        Primary and secondary Sludge                                                                                            171–429
+                 19     Sewage sludges                                                         -                  -                  -                  -                  -                  -                 -
+                                      and Co-digestion mixtures                                                                                                353
+                                                                                                                                                                 793–943
+                 6      Lipid rich wastes        Butter and Oil wastes                  -                  -                  -                  -                  -                  -                 -
+                                                                                                                                                                   891
+                                                  Barley, Wheat, Triticale, and       54–69        49–67                                                                     281–366
+                 6        Cereal crops                                                                                                  -                  -                  -                  -                 -
+                                                    Oats             62% FM     58% FM                                                                      336
+                                           Macerated, Whole crop, and       88–93        85–89                                                                     215–646
+                 3       Oil seed rapes                                                                                                 -                  -                  -                  -                 -
+                                           Not macerated         91% FM     87% FM                                                                      393
+                                               Potatoes, Turnips, Sugar beet,      11–26        10–25                                                                     306–399
+       [5]         7        Root crops                                                                                                   -                  -                  -                  -                 -
+                                        Energy beet, and Fodder beet    19% FM     18% FM                                                                      349
+                                                                          12–29        11–27                                                                     368–400
+                 5       Grass silages      Grass silage and Fresh grass                                                   -                  -                  -                  -                 -
+                                                           19% FM     18% FM                                                                      385
+                                                                          17–17        15–16                                                                     428–433
+                 2       Baled silages                           -                                                                     -                  -                  -                  -                 -
+                                                           17% FM     15% FM                                                                      431
+Waste 2023, 1                                                                                                                                                                                   222
+
+
+
+
+                             Table A3. Cont.
+
+                                                                                                           BMP
+  Reference     N.     Sample Familly       Sample Description      DM       VS        HCell         Cell        Lignin     COD        Prot     (mL CH4/g
+                                                                                                                                              VS)
+
+                                                  Silage, Hay, Savazi grass, Silage
+                         Other grass                                      6–87         3–82                                                                      127–394
+                 8                          efﬂuent, Grass digestate, Fresh                                                  -                  -                  -                  -                 -
+                              substrates                               29% FM     27% FM                                                                      324
+                                              maize, and Maize silage
+                                                                           6–9          4–7                                                                      136–239
+                 7       Dairy slurries                          -                                                                     -                  -                  -                  -                 -
+                                                       7% FM     6% FM                                                                       201
+                            Other
+                                            Beef slurry, Pig slurry, Poultry      5–51         4–30                                                                      99–311
+                 4         agricultural                                                                                                  -                  -                  -                  -                 -
+                                        manure, and Farm yard manure   21% FM    14% FM                                                                      194
+                            wastes
+                       Milk processing      Sludges with or without         4–16         3–9                                                                      189–787
+                 4                                                                                                                             -                  -                  -                  -                 -
+                            wastes            dissolved air ﬂoatation      9% FM     7% FM                                                                       473
+                                            Mix, paunch content, and        13–20        11–18                                                                     166–404
+                 4       Abattoir wastes                                                                                                -                  -                  -                  -                 -
+                                                    Sludges            17% FM     15% FM                                                                      286
+                                        Bakery waste, Brewing stillage,
+                          Miscellaneous     Grocery waste, Fish offal mix,      9–66         7–64                                                                      247–592
+                 7                                                                                                                             -                  -                  -                  -                 -
+                            wastes        Bread waste, Park and grass    32% FM     29% FM                                                                      396
+                                                  waste, and WWTP
+                                           Rural and urban food waste,
+                        Domestic and    Food wastes from canteens and
+                                                                          22–95        19–88                                                                     274–535
+                 10     commercial food     restaurants, and Centralised                                                   -                  -                  -                  -                 -
+                                                           37% FM     32% FM                                                                      329
+                            wastes         collection centre combining the
+                                          two types or not
+                             Alternative      Recycled paper, Used cooking     27–100       26–99                                                                     254–805
+                 3                                                                                                                             -                  -                  -                  -                 -
+                            wastes             oil, and Grease trap wastes     72% FM     68% FM                                                                      434
+                                                                          13–78        8–46                                                                      101–341
+                 12        Seaweeds       9 brown & 3 green Seaweeds                                                   -                  -                  -                  -                 -
+                                                           23% FM    15% FM                                                                      213
+                                         Sugar beet, Barley/ryegrass,
+                                          Maize, Triticale, Marrow stem
+                                                   kale, Rye/triticale, Potatoes,
+                                         Oat/forage Pea/false ﬂax, Rye,
+                       Main and      Sundangrass, Forage sorghum,      9–59        81–97        2–25         3–37         1–13                     4–19       210–399
+      [19]        24                                                                                                                                                                                      -
+                        secondary crops        Rye/fodder vetch,        33% FM    92% DM    15% DM    27% DM    6% DM             9% DM        294
+                                              Barley/turnip rape, Oat,
+                                       Amaranth, Quinoa, Rapeseed,
+                                         Sunﬂower, Forage pea, and
+                                              Buckwheat
+Waste 2023, 1                                                                                                                                                                                   223
+
+
+
+
+                             Table A3. Cont.
+
+                                                                                                           BMP
+  Reference     N.     Sample Familly       Sample Description      DM       VS        HCell         Cell        Lignin     COD        Prot     (mL CH4/g
+                                                                                                                                              VS)
+
+                                                             Triticale, Barley, Rye,
+                                         Landsberger mix, Sudengrass
+                                                hybrid, Forage sorgum,         9–58        73–96        0–24        24–34         2–9                     5–26       235–376
+                 10       Catch crops                                                                                                                                                           -
+                                              Ryegrass, Phacelia, Fodder     24% FM    90% DM    17% DM    30% DM    5% DM              11% DM       311
+                                                         radish, and
+                                             Buckwheat/phacelia
+                       Annual grass     Ryegrass, Clover, Alfalfa clover,     15–48        85–93        11–18        26–29         4–7                     7–20       240–388
+                 4                                                                                                                                                                                       -
+                     and legume mix          and Alfalfa           28% FM    90% DM    14% DM    28% DM    5% DM              14% DM       307
+                                                       Tall wheatgrass, Countru
+                                                                          14–40        85–97        5–24        28–42        7–13                     4–15       179–259
+                 5       Perennial crops    mallow, Jerusalem artichoke,                                                                                                            -
+                                                           28% FM    90% DM    16% DM    33% DM    10% DM             9% DM        228
+                                            Miscanthus, and Cup plant
+                                                                                                                                                                 129–366
+                 58       Solid manure                                                                                                 -                  -                  -                  -                 -
+                                                                                                                                                                   225
+                                                                                                                                                                 225–551
+                 7      Animal slurries                                                                                                -                  -                  -                  -                 -
+                                                                                                                                                                   293
+                         Slaughterhouse                                                                                                                           186–664
+                 3                                                                                                                             -                  -                  -                  -                 -
+                            waste                                                                                                                                  349
+                       Mix of AD                                                                                                                              90–253
+                 16                                                                                                                             -                  -                  -                  -                 -
+                             feedstock                                                                                                                                101
+      [30]                                                                                                                                                         214–405
+                 6     AD digestats                               2–99% FM   1–92% DM           -                  -                  -                  -                 -
+                                                                                                                                                                   304
+                           Grass and
+                                                                                                                                                                 191–444
+                 36       intermediate                                                                                                 -                  -                  -                  -                 -
+                                                                                                                                                                   304
+                              crops
+                         Cereals and crop                                                                                                                           191–388
+                 24                                                                                                                             -                  -                  -                  -                 -
+                              residues                                                                                                                                304
+                                                                                                                                                                 186–495
+                 26           Silages                                                                                                     -                  -                  -                  -                 -
+                                                                                                                                                                   338
+Waste 2023, 1                                                                                                                                                                                   224
+
+
+
+
+                             Table A3. Cont.
+
+                                                                                                           BMP
+  Reference     N.     Sample Familly       Sample Description      DM       VS        HCell         Cell        Lignin     COD        Prot     (mL CH4/g
+                                                                                                                                              VS)
+
+                           Lignocellulosic                                                                                                                            62–326
+                 38                                                                                                                             -                  -                  -                  -                 -
+                               plants                                                                                                                                 270
+                                                                                                                                                                  79–219
+                 15      Grape marcs                                                                                                  -                  -                  -                  -                 -
+                                                                                                                                                                   129
+                                                                                                                                                                 146–169
+                 3          Algae                                                                                                      -                  -                  -                  -                 -
+                                                                                                                                                                   165
+                     Food wastes and                                                                                                                           96–518
+                 25                                                                                                                             -                  -                  -                  -                 -
+                           biowastes                                                                                                                                338
+                                                                                                                                                                  56–776
+                 10         Sludges                                                                                                     -                  -                  -                  -                 -
+      [30]                                                                                                                                                           259
+                                                                                                                                                                 225–281
+                 3         Efﬂuents                                                                                                    -                  -                  -                  -                 -
+                                                                                                                                                                   276
+                            Fat and lipid                                                                                                                            596–878
+                 3                                                                                                                             -                  -                  -                  -                 -
+                            wastes                                                                                                                                 630
+                          Products and
+                                                                                                                                                                 203–388
+                 2        wastes from                                                                                                  -                  -                  -                  -                 -
+                                                                                                                                                                   293
+                          meat
+                        Organic fraction
+                 2        of municipal                                                                                                  -                  -                  -                  -                 -           281
+                            waste
+                                                    Barley, Clover, Cup plant,
+                                              Grassland, Maize, Millet,        88–94        79–89        3–28         5–39         0–11                     4–20       177–401
+      [21]        41      Energy crops                                                                                                                                                          -
+                                                 Potatoes, Rye, Sugar beet,     91% FM     85% FM    18% DM    27% DM    4% DM             9% DM        311
+                                          Sunﬂower, and Triticale
+                                         Lolium perenne, Dactylis
+                                                                          87–94        78–88        21–32        20–36         2–7                     6–20       314–422
+                 43         Grasses        glomerata, Poa pratensis, and                                                                                                            -
+                                                           91% FM     84% FM    26% DM    29% DM    4% DM              11% DM       353
+      [22]                                         Fescuta pratensis
+                                                                          88–93        80–85        3–22        16–33         5–9                     13–29       265–346
+                 18       Legumes       Trifolium pratense and Repens                                                                                                           -
+                                                           90% FM     82% FM    11% DM    25% DM    7% DM              21% DM       301
+Waste 2023, 1                                                                                                                                                                                   225
+
+
+
+
+                             Table A3. Cont.
+
+                                                                                                           BMP
+  Reference     N.     Sample Familly       Sample Description      DM       VS        HCell         Cell        Lignin     COD        Prot     (mL CH4/g
+                                                                                                                                              VS)
+
+                                       Banana peel waste, Tomato                                                                     2 g O2/g
+                 2         Biowaste                               11% FM    83% DM             -                  -                  -                                    -           329
+                                                      waste, and                                                               VS
+                                                                                                                                        3 g O2/g
+                 1         Efﬂuent           Winery wastewater       3% FM     65% DM             -                  -                  -                                    -           251
+                                                                                                               VS
+                                                                                                                                                                 111–379
+                 10           Plants                                                ?             ?             ?             ?             ?             ?            ?
+                                                                                                                                                                   229
+                                                                                                                                                                 186–443
+                 21        Vegetables                                             ?             ?             ?             ?             ?             ?            ?
+                                                                                                                                                                   314
+                                                                                                                                                                 185–529
+                 24            Fruits                                                ?             ?             ?             ?             ?             ?            ?
+                                                                                                                                                                   314
+                                                                                                                                                                 261–325
+      [13]         7          Cereals                                               ?             ?             ?             ?             ?             ?            ?                                                                                                                                                                   293
+                                                                                                                                                                 154–325
+                 12        Manures                                              ?             ?             ?             ?             ?             ?            ?
+                                                                                                                                                                   211
+                                                                                                                                                                 250–775
+                 17           Diet                                                 ?             ?             ?             ?             ?             ?            ?
+                                                                                                                                                                   432
+                                                                                                                                                                 164–711
+                 10         Sludges                                               ?             ?             ?             ?             ?             ?            ?
+                                                                                                                                                                   411
+                           Beverage                                                                                                                              250–593
+                 4                                                                 ?             ?             ?             ?             ?             ?            ?
+                         wastewaters                                                                                                                               411
+                        Organic fraction
+                                                                                                                                                                 175–571
+                 18        of municipal                                            ?             ?             ?             ?             ?             ?            ?
+                                                                                                                                                                   464
+                              solid wastes
+                                                                                                                                                                 207–443
+                 8          Other                                                ?             ?             ?             ?             ?             ?            ?
+                                                                                                                                                                   379
+                                                                                                                                                      0–60
+                                          10 primary and 10 bioglogical      5–46         4–33                                               1–2        28 mg       58–318
+      [23]        20         Sludges                                                                                                     -                  -                  -
+                                                    Sludges            21% FM    15% FM                                 2% VS     BSA/g        181
+                                                                                                                         VS
+Waste 2023, 1                                                                                                                     226
+
+
+
+References
+
+1.   Brémond, U.; Bertrandias, A.; Steyer, J.-P.; Bernet, N.; Carrere, H. A vision of European biogas sector development towards 2030:
+     Trends and challenges. J. Clean. Prod. 2021, 287, 125065. [CrossRef]
+2.    Scarlat, N.; Dallemand, J.-F.; Fahl, F. Biogas: Developments and perspectives in Europe. Renew. Energy 2018, 129, 457–472.
+     [CrossRef]
+3.   Wang, X.; Lu, X.; Li, F.; Yang, G. Effects of Temperature and Carbon-Nitrogen (C/N) Ratio on the Performance of Anaerobic
+     Co-Digestion of Dairy Manure, Chicken Manure and Rice Straw: Focusing on Ammonia Inhibition. PLoS ONE 2014, 9, e97265.
+     [CrossRef] [PubMed]
+4.   Wang, X.; Yang, G.; Feng, Y.; Ren, G.; Han, X. Optimizing feeding composition and carbon–nitrogen ratios for improved methane
+     yield during anaerobic co-digestion of dairy, chicken manure and wheat straw. Bioresour. Technol. 2012, 120, 78–83. [CrossRef]
+5.    Allen, E.; Wall, D.M.; Herrmann, C.; Murphy, J.D. A detailed assessment of resource of biomethane from ﬁrst, second and third
+     generation substrates. Renew. Energy 2016, 87, 656–665. [CrossRef]
+6.   Monlau, F.; Sambusiti, C.; Barakat, A.; Guo, X.M.; Latrille, E.; Trably, E.; Steyer, J.-P.; Carrere, H. Predictive Models of Biohydrogen
+    and Biomethane Production Based on the Compositional and Structural Features of Lignocellulosic Materials. Environ. Sci.
+      Technol. 2012, 46, 12217–12225. [CrossRef]
+7.   Achinas, S.; Euverink, G.J.W. Theoretical analysis of biogas potential prediction from agricultural waste. Resour.-Efﬁc. Technol.
+     2016, 2, 143–147. [CrossRef]
+8.   Cresson, R.; Pommier, S.; Beline, F.; Bouchez, T.; Bufﬁère, P.; Rivero, J.A.C.; Patricia, C.; Pauss, A.; Pouech, P.; Ribeiro, T. Etude
+      Interlaboratoires Pour l’harmonisation Des Protocoles de Mesure Du Potentiel Méthanogène Des Matrices Solides Hétérogènes.
+     In Proceedings of the Journées Recherche Industrie Biogaz et Méthanisation, Rennes, France, 3–5 February 2015.
+9.    Holliger, C.; Astals, S.; de Laclos, H.F.; Hafner, S.D.; Koch, K.; Weinrich, S. Towards a standardization of biomethane potential
+       tests: A commentary. Water Sci. Technol. 2021, 83, 247–250. [CrossRef]
+10.   Holliger, C.; Alves, M.; Andrade, D.; Angelidaki, I.; Astals, S.; Baier, U.; Bougrier, C.; Bufﬁère, P.; Carballa, M.; De Wilde, V.; et al.
+    Towards a standardization of biomethane potential tests. Water Sci. Technol. 2016, 74, 2515–2522. [CrossRef]
+11.   Filer, J.; Ding, H.H.; Chang, S. Biochemical Methane Potential (BMP) Assay Method for Anaerobic Digestion Research. Water
+     2019, 11, 921. [CrossRef]
+12.  Bond, T.; Brouckaert, C.J.; Foxon, K.M.; Buckley, C. A critical review of experimental and predicted methane generation from
+     anaerobic codigestion. Water Sci. Technol. 2012, 65, 183–189. [CrossRef]
+13.  Rodrigues, R.; Klepacz-Smolka, A.; Martins, R.; Quina, M. Comparative analysis of methods and models for predicting
+     biochemical methane potential of various organic substrates. Sci. Total. Environ. 2019, 649, 1599–1608. [CrossRef]
+14.  Labatut, R.A.; Angenent, L.T.; Scott, N.R. Biochemical methane potential and biodegradability of complex organic substrates.
+      Bioresour. Technol. 2011, 102, 2255–2264. [CrossRef]
+15.   Garcia, N.H.; Mattioli, A.; Gil, A.; Frison, N.; Battista, F.; Bolzonella, D. Evaluation of the methane potential of different agricultural
+    and food processing substrates for improved biogas production in rural areas. Renew. Sustain. Energy Rev. 2019, 112, 1–10.
+     [CrossRef]
+16.  Godin, B.; Mayer, F.; Agneessens, R.; Gerin, P.; Dardenne, P.; Delfosse, P.; Delcarte, J. Biochemical methane potential prediction of
+     plant biomasses: Comparing chemical composition versus near infrared methods and linear versus non-linear models. Bioresour.
+      Technol. 2015, 175, 382–390. [CrossRef]
+17.   Triolo, J.M.; Pedersen, L.; Qu, H.; Sommer, S.G. Biochemical methane potential and anaerobic biodegradability of non-herbaceous
+    and herbaceous phytomass in biogas production. Bioresour. Technol. 2012, 125, 226–232. [CrossRef]
+18.   Grieder, C.; Mittweg, G.; Dhillon, B.S.; Montes, J.M.; Orsini, E.; Melchinger, A.E. Kinetics of methane fermentation yield in biogas
+      reactors: Genetic variation and association with chemical composition in maize. Biomass-Bioenergy 2012, 37, 132–141. [CrossRef]
+19.  Herrmann, C.; Idler, C.; Heiermann, M. Biogas crops grown in energy crop rotations: Linking chemical composition and methane
+     production characteristics. Bioresour. Technol. 2016, 206, 23–35. [CrossRef]
+20.  Kandel, T.P.; Sutaryo, S.; Møller, H.B.; Jørgensen, U.; Lærke, P.E. Chemical composition and methane yield of reed canary grass as
+     inﬂuenced by harvesting time and harvest frequency. Bioresour. Technol. 2013, 130, 659–666. [CrossRef]
+21.  Dandikas, V.; Heuwinkel, H.; Lichti, F.; Drewes, J.; Koch, K. Correlation between biogas yield and chemical composition of energy
+      crops. Bioresour. Technol. 2014, 174, 316–320. [CrossRef]
+22.  Dandikas, V.; Heuwinkel, H.; Lichti, F.; Drewes, J.E.; Koch, K. Correlation between Biogas Yield and Chemical Composition of
+     Grassland Plant Species. Energy Fuels 2015, 29, 7221–7229. [CrossRef]
+23.   Catenacci, A.; Azzellino, A.; Malpei, F. Development of statistical predictive models for estimating the methane yield of Italian
+     municipal sludges from chemical composition: A preliminary study. Water Sci. Technol. 2019, 79, 435–447. [CrossRef] [PubMed]
+24.   Li, Y.; Zhang, R.; Liu, G.; Chen, C.; He, Y.; Liu, X. Comparison of methane production potential, biodegradability, and kinetics of
+      different organic substrates. Bioresour. Technol. 2013, 149, 565–569. [CrossRef]
+25.   Lesteur, M.; Latrille, E.; Maurel, V.B.; Roger, J.; Gonzalez, C.; Junqua, G.; Steyer, J. First step towards a fast analytical method for
+     the determination of Biochemical Methane Potential of solid wastes by near infrared spectroscopy. Bioresour. Technol. 2011, 102,
+     2280–2288. [CrossRef] [PubMed]
+Waste 2023, 1                                                                                                                     227
+
+
+
+
+26.  Raju, C.S.; Ward, A.J.; Nielsen, L.; Møller, H.B. Comparison of near infra-red spectroscopy, neutral detergent ﬁbre assay and
+      in-vitro organic matter digestibility assay for rapid determination of the biochemical methane potential of meadow grasses.
+      Bioresour. Technol. 2011, 102, 7835–7839. [CrossRef]
+27.  Doublet, J.; Boulanger, A.; Ponthieux, A.; Laroche, C.; Poitrenaud, M.; Rivero, J.C. Predicting the biochemical methane potential
+      of wide range of organic substrates by near infrared spectroscopy. Bioresour. Technol. 2013, 128, 252–258. [CrossRef]
+28.   Triolo, J.M.; Ward, A.J.; Pedersen, L.; Løkke, M.M.; Qu, H.; Sommer, S.G. Near Infrared Reﬂectance Spectroscopy (NIRS) for rapid
+     determination of biochemical methane potential of plant biomass. Appl. Energy 2014, 116, 52–57. [CrossRef]
+29.  Strömberg, S.; Nistor, M.; Liu, J. Early prediction of Biochemical Methane Potential through statistical and kinetic modelling of
+       initial gas production. Bioresour. Technol. 2015, 176, 233–241. [CrossRef]
+30.   Mortreuil, P.; Baggio, S.; Lagnet, C.; Schraauwers, B.; Monlau, F. Fast prediction of organic wastes methane potential by near
+     infrared reﬂectance spectroscopy: A successful tool for farm-scale biogas plant monitoring. Waste Manag. Res. 2018, 36, 800–809.
+     [CrossRef]
+31.  Wei, Z.; Li, Y.; Hou, Y. Quick estimation for pollution load contributions of aromatic organics in wastewater from pulp and paper
+      industry. Nord. Pulp Pap. Res. J. 2018, 33, 568–572. [CrossRef]
+32.   Jain, R.; Goomer, S. Evaluation of Food Nitrogen and Its Protein Quality Assessment Methods. Int. J. Food Sci. Nutr. 2019, 6, 68–74.
+33.   Sluiter, A.; Hames, B.; Ruiz, R.; Scarlata, C.; Sluiter, J.; Templeton, D.; Crocker, D. Determination of Structural Carbohydrates and
+     Lignin in Biomass; Technical Report NREL/TP-510-42618; National Renewable Energy Laboratory: Golden, CO, USA, 2012.
+34.  Hafner, S.D.; De Laclos, H.F.; Koch, K.; Holliger, C. Improving Inter-Laboratory Reproducibility in Measurement of Biochemical
+    Methane Potential (BMP). Water 2020, 12, 1752. [CrossRef]
+35.  ADEME. Méthanisation de Fumiers Bovin et Volaille—Impact Du Stockage Du Fumier et Essais Pilote et Potentiel Énergétique; ADEME
+     Bourgogne: Dijon, France, 2013.
+36.   Teurki, R.; Agricultures & Territoires Chambre d’Agriculture Somme; Agricultures & Territoires Chambre d’Agriculture Nord-Pas
+     de Calais; Agence de l’eau Picardie; Agence de l’eau Seine Normandie. Satege Les Efﬂuents D’élevage: Mieux Les Connaître Pour
+     Bien Les Valoriser. 2013.
+37.  Corno, L. Arundo Donax L.(Giant Cane) as a Feedstock for Bioenergy and Green Chemistry; University of Milano: Milano, Italy, 2016.
+38.   Hutˇnan, M. Maize Silage as Substrate for Biogas Production. Adv. Silage Prod. Util. 2016, 16, 173–196.
+39.   Doligez, P. Réussir Le Compostage de Fumier Équin. Available online: https://equipedia.ifce.fr/infrastructure-et-equipement/
+     installation-et-environnement/efﬂuents-delevage/reussir-le-compostage-de-fumier-equin?tx__%5Baction%5D=&tx__%
+     5Bcontroller%5D=Standard&cHash=113657bc00a1d6a39f98a694daa686fb (accessed on 7 May 2021).
+40.  Luna-de Risco, M.; Normak, A.; Orupõld, K. Biochemical Methane Potential of Different Organic Wastes and Energy Crops from
+      Estonia. Agron. Res. 2011, 9, 331–342.
+41.  Kaﬂe, G.K.; Chen, L. Comparison on batch anaerobic digestion of ﬁve different livestock manures and prediction of biochemical
+    methane potential (BMP) using different statistical models. Waste Manag. 2016, 48, 492–502. [CrossRef]
+42.  Cu, T.T.T.; Nguyen, T.X.; Triolo, J.M.; Pedersen, L.; Le, V.D.; Le, P.D.; Sommer, S.G. Biogas Production from Vietnamese Animal
+     Manure, Plant Residues and Organic Waste: Inﬂuence of Biomass Composition on Methane Yield. Asian-Australas. J. Anim. Sci.
+     2015, 28, 280–289. [CrossRef]
+43.  Yang, G.; Li, Y.; Zhen, F.; Xu, Y.; Liu, J.; Li, N.; Sun, Y.; Luo, L.; Wang, M.; Zhang, L. Biochemical methane potential prediction for
+    mixed feedstocks of straw and manure in anaerobic co-digestion. Bioresour. Technol. 2021, 326, 124745. [CrossRef]
+44.  Carabeo-Pérez, A.; Odales-Bernal, L.; López-Dávila, E.; Jiménez, J. Biomethane potential from herbivorous animal’s manures:
+    Cuban case study. J. Mater. Cycles Waste Manag. 2021, 23, 1404–1411. [CrossRef]
+45.  Barakat, A.; Monlau, F.; Steyer, J.-P.; Carrere, H. Effect of lignin-derived and furan compounds found in lignocellulosic hy-
+     drolysates on biomethane production. Bioresour. Technol. 2012, 104, 90–99. [CrossRef]
+46.  Dinuccio, E.; Balsari, P.; Gioelli, F.; Menardo, S. Evaluation of the biogas productivity potential of some Italian agro-industrial
+     biomasses. Bioresour. Technol. 2010, 101, 3780–3783. [CrossRef]
+47.  Böske, J.; Wirth, B.; Garlipp, F.; Mumme, J.; Weghe, H.V.D. Anaerobic digestion of horse dung mixed with different bedding
+     materials in an upﬂow solid-state (UASS) reactor at mesophilic conditions. Bioresour. Technol. 2014, 158, 111–118. [CrossRef]
+    [PubMed]
+48.   Holliger, C.; De Laclos, H.F.; Hack, G. Methane Production of Full-Scale Anaerobic Digestion Plants Calculated from Substrate’s
+     Biomethane Potentials Compares Well with the One Measured On-Site. Front. Energy Res. 2017, 5, 12. [CrossRef]
+
+
+Disclaimer/Publisher’s Note: The statements, opinions and data contained in all publications are solely those of the individual
+author(s) and contributor(s) and not of MDPI and/or the editor(s). MDPI and/or the editor(s) disclaim responsibility for any injury to
+people or property resulting from any ideas, methods, instructions or products referred to in the content.

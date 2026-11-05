@@ -1,0 +1,130 @@
+{
+  "reviews": [
+    {
+      "doi": "10.3390/ijerph17134737",
+      "title": "Treatment of Cattle Manure by Anaerobic Co-Digestion with Food Waste and Pig Manure: Methane Yield and Synergistic Effect",
+      "authors": [
+        "Gahyun Baek",
+        "Danbee Kim",
+        "Jinsu Kim",
+        "Hanwoong Kim",
+        "Changsoo Lee"
+      ],
+      "year": 2020,
+      "profile_id": "baek2020-food-pulp",
+      "verification_stage": "APPROVED_FOR_ESTIMATION",
+      "reviews": [
+        {
+          "reviewer": "Codex primary-source analysis, scoped manual inspection; not an automatic LLM ingestion",
+          "reviewed_at": "2026-10-29",
+          "evidence": "https://pdfs.semanticscholar.org/8c32/8da3dc70a2964a51e0cfd2807c009edd691c.pdf; Table 1 and Results 3.2, PDF pages 3/5",
+          "units_checked": true,
+          "material_checked": true,
+          "conditions_checked": true,
+          "locator": "Table 1 + Results 3.2",
+          "approved_scope": "Conditional transfer of one measured prepared cafeteria-food sample; not all food waste",
+          "manual_review": true
+        },
+        {
+          "reviewer": "Codex primary-source analysis, scoped manual inspection; not an automatic LLM ingestion",
+          "reviewed_at": "2026-10-29",
+          "evidence": "https://pdfs.semanticscholar.org/8c32/8da3dc70a2964a51e0cfd2807c009edd691c.pdf; Table 1 and Results 3.2, PDF pages 3/5",
+          "units_checked": true,
+          "material_checked": true,
+          "conditions_checked": true,
+          "locator": "Table 1 + Results 3.2",
+          "approved_scope": "Conditional transfer of one measured prepared cafeteria-food sample; not all food waste",
+          "manual_review": true
+        },
+        {
+          "reviewer": "Codex primary-source analysis, scoped manual inspection; not an automatic LLM ingestion",
+          "reviewed_at": "2026-10-29",
+          "evidence": "https://pdfs.semanticscholar.org/8c32/8da3dc70a2964a51e0cfd2807c009edd691c.pdf; Table 1 and Results 3.2, PDF pages 3/5",
+          "units_checked": true,
+          "material_checked": true,
+          "conditions_checked": true,
+          "locator": "Table 1 + Results 3.2",
+          "approved_scope": "Conditional transfer of one measured prepared cafeteria-food sample; not all food waste",
+          "manual_review": true
+        },
+        {
+          "reviewer": "Codex primary-source analysis, scoped manual inspection; not an automatic LLM ingestion",
+          "reviewed_at": "2026-10-29",
+          "evidence": "https://pdfs.semanticscholar.org/8c32/8da3dc70a2964a51e0cfd2807c009edd691c.pdf; Table 1 and Results 3.2, PDF pages 3/5",
+          "units_checked": true,
+          "material_checked": true,
+          "conditions_checked": true,
+          "locator": "Table 1 + Results 3.2",
+          "approved_scope": "Conditional transfer of one measured prepared cafeteria-food sample; not all food waste",
+          "manual_review": true
+        }
+      ]
+    },
+    {
+      "doi": "10.3390/ijerph17134737",
+      "title": "Treatment of Cattle Manure by Anaerobic Co-Digestion with Food Waste and Pig Manure: Methane Yield and Synergistic Effect",
+      "authors": [
+        "Gahyun Baek",
+        "Danbee Kim",
+        "Jinsu Kim",
+        "Hanwoong Kim",
+        "Changsoo Lee"
+      ],
+      "year": 2020,
+      "profile_id": "baek2020-bedded-cattle",
+      "verification_stage": "APPROVED_FOR_ESTIMATION",
+      "reviews": [
+        {
+          "reviewer": "Codex primary-source analysis, scoped manual inspection; not an automatic LLM ingestion",
+          "reviewed_at": "2026-10-29",
+          "evidence": "https://pdfs.semanticscholar.org/8c32/8da3dc70a2964a51e0cfd2807c009edd691c.pdf; Table 1 and Results 3.2, PDF pages 3/5",
+          "units_checked": true,
+          "material_checked": true,
+          "conditions_checked": true,
+          "locator": "Table 1 + Results 3.2",
+          "approved_scope": "Conditional transfer of aged Korean cattle manure containing sawdust/bedding and possible lime; not raw slurry",
+          "manual_review": true
+        },
+        {
+          "reviewer": "Codex primary-source analysis, scoped manual inspection; not an automatic LLM ingestion",
+          "reviewed_at": "2026-10-29",
+          "evidence": "https://pdfs.semanticscholar.org/8c32/8da3dc70a2964a51e0cfd2807c009edd691c.pdf; Table 1 and Results 3.2, PDF pages 3/5",
+          "units_checked": true,
+          "material_checked": true,
+          "conditions_checked": true,
+          "locator": "Table 1 + Results 3.2",
+          "approved_scope": "Conditional transfer of aged Korean cattle manure containing sawdust/bedding and possible lime; not raw slurry",
+          "manual_review": true
+        },
+        {
+          "reviewer": "Codex primary-source analysis, scoped manual inspection; not an automatic LLM ingestion",
+          "reviewed_at": "2026-10-29",
+          "evidence": "https://pdfs.semanticscholar.org/8c32/8da3dc70a2964a51e0cfd2807c009edd691c.pdf; Table 1 and Results 3.2, PDF pages 3/5",
+          "units_checked": true,
+          "material_checked": true,
+          "conditions_checked": true,
+          "locator": "Table 1 + Results 3.2",
+          "approved_scope": "Conditional transfer of aged Korean cattle manure containing sawdust/bedding and possible lime; not raw slurry",
+          "manual_review": true
+        },
+        {
+          "reviewer": "Codex primary-source analysis, scoped manual inspection; not an automatic LLM ingestion",
+          "reviewed_at": "2026-10-29",
+          "evidence": "https://pdfs.semanticscholar.org/8c32/8da3dc70a2964a51e0cfd2807c009edd691c.pdf; Table 1 and Results 3.2, PDF pages 3/5",
+          "units_checked": true,
+          "material_checked": true,
+          "conditions_checked": true,
+          "locator": "Table 1 + Results 3.2",
+          "approved_scope": "Conditional transfer of aged Korean cattle manure containing sawdust/bedding and possible lime; not raw slurry",
+          "manual_review": true
+        }
+      ]
+    }
+  ],
+  "review_limits": [
+    "No external human laboratory validation",
+    "Primary Baek PDF read via public browser extraction; programmatic cross-origin redirect not followed",
+    "PMC challenges and publisher limits not bypassed",
+    "Moset/Ulukardesler data provide studied conditions, not operating approval"
+  ]
+}

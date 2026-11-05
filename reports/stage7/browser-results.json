@@ -1,0 +1,13 @@
+{
+  "checks": [
+    "Hypothetical result badge visible",
+    "Literature result badge visible",
+    "Primary DOI source link visible",
+    "Real calculated methane range rendered",
+    "Actual Chrome sends persisted v7 research turn",
+    "Mobile chat has no page overflow",
+    "No browser page errors"
+  ],
+  "errors": [],
+  "passed": true
+}

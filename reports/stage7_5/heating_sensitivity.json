@@ -1,0 +1,16 @@
+[
+  {
+    "ua": 0.2,
+    "energy_kwh": 5.596577777777777,
+    "energy_cost_kzt": 114.11422088888888,
+    "other_cost_budget_low": 70.41038688034759,
+    "other_cost_budget_high": 320.44296901925827
+  },
+  {
+    "ua": 1.0,
+    "energy_kwh": 13.276577777777778,
+    "energy_cost_kzt": 270.70942088888887,
+    "other_cost_budget_low": -86.1848131196524,
+    "other_cost_budget_high": 163.8477690192583
+  }
+]

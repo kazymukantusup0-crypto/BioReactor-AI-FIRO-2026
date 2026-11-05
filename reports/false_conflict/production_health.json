@@ -1,0 +1,8 @@
+{
+  "status": "ok",
+  "database": "C:\\Users\\Kazhu\\Downloads\\face_dataset_you_noname\\face_dataset_project\\BioReactor_AI\\data\\market\\market.sqlite3",
+  "scheduler_enabled": true,
+  "interval_seconds": 86400.0,
+  "market": "KZ",
+  "price_forecasting": false
+}

@@ -1,0 +1,31 @@
+[
+  {
+    "id": "alberta2005",
+    "url": "https://www1.agric.gov.ab.ca/$department/deptdocs.nsf/all/agdex8875/$file/400_27-1.pdf?OpenElement=",
+    "status": 200,
+    "final_url": "https://www1.agric.gov.ab.ca/$department/deptdocs.nsf/all/agdex8875/$file/400_27-1.pdf?OpenElement=",
+    "sha256": "cf877c148a502b730b736d5d85bb8ef51a6e60a038f384268bcf32f1a0976890",
+    "pages": 27
+  },
+  {
+    "id": "alberta_nmp",
+    "url": "https://www1.agriculture.alberta.ca/$department/deptdocs.nsf/all/epw11920/$FILE/6-1.pdf",
+    "status": 200,
+    "final_url": "https://www1.agriculture.alberta.ca/$department/deptdocs.nsf/all/epw11920/$FILE/6-1.pdf",
+    "sha256": "4058bfd289dbd591215df014f0698c894dca23e288175d7f0a89dc48b100b6aa",
+    "pages": 16
+  },
+  {
+    "id": "monch2013",
+    "url": "https://cigrjournal.org/index.php/Ejounral/article/download/2445/1736/8047",
+    "error": "ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))"
+  },
+  {
+    "id": "pham2013",
+    "url": "https://pdfs.semanticscholar.org/11ec/6cf5527fb8cd3d44f99641d82ec645b15b8f.pdf",
+    "status": 200,
+    "final_url": "https://pdfs.semanticscholar.org/11ec/6cf5527fb8cd3d44f99641d82ec645b15b8f.pdf",
+    "sha256": "6d20ce400bd9f4c6666bea6f21c414980782b5bfce5ffaa20eecdd4e64d6452a",
+    "pages": 10
+  }
+]

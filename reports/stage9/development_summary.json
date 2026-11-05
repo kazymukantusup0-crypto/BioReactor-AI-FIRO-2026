@@ -1,0 +1,8 @@
+{
+  "cases": 5,
+  "automated_passes": 3,
+  "scope": "Automated contract checks, not exhaustive scientific or hallucination adjudication.",
+  "median_turn_latency_s": 73.7425786999811,
+  "qwen_synthesis_cases": 3,
+  "terminal_timeouts": 0
+}

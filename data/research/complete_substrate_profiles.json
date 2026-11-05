@@ -1,0 +1,481 @@
+{
+  "version": "8.1",
+  "sources": [
+    {
+      "id": "eftaxias2024",
+      "doi": "10.3390/app14114957",
+      "title": "Techno-Economic Assessment of Anaerobic Digestion Technology for Small- and Medium-Sized Animal Husbandry Enterprises",
+      "authors": [
+        "Alexandros Eftaxias",
+        "Iliana Kolokotroni",
+        "Christos Michailidis",
+        "Panagiotis Charitidis",
+        "Vasileios Diamantis"
+      ],
+      "year": 2024,
+      "published_at": "2024-06-06",
+      "url": "https://doi.org/10.3390/app14114957",
+      "review_url": "https://pdfs.semanticscholar.org/d80d/aff8cb9be2d3f88f64471a7656ff12ceec8a.pdf",
+      "reviewed_sections": [
+        "Methods 2.2 (printed p3)",
+        "Table 1 and Figure 1 (printed p5)"
+      ],
+      "local_pdf": "reports/stage8_1/sources/eftaxias2024.pdf",
+      "conditions": {
+        "temperature_c": 38,
+        "duration_days": 20,
+        "duration_kind": "BMP_INCUBATION",
+        "reactor_type": "Anaerobic batch digesters, working volume 250 mL",
+        "inoculum": "Agricultural anaerobic digester treating manure and energy crops",
+        "substrate_to_inoculum_vs_ratio": 0.25,
+        "storage": "4 C in plastic containers until processing",
+        "mixing": "Manually once a day",
+        "measurement": "Inverse water column, acidic water pH2; alkaline trap for methane",
+        "gas_reference_text": "Converted to standard temperature and pressure conditions",
+        "gas_basis": null,
+        "gas_basis_missing": [
+          "Numerical STP temperature",
+          "Numerical STP pressure",
+          "Moisture correction not explicitly stated"
+        ]
+      },
+      "methane_fraction_reference": {
+        "mean": 0.62,
+        "reported_plus_minus": 0.03,
+        "scope": "Overall average across ALL tested samples; not material-specific and not a range with verified coverage"
+      },
+      "limitations": [
+        "No density or packing information",
+        "Bird purpose and bedding of poultry sample unspecified",
+        "TS/VS/BMP are paired rows for study samples, not population intervals",
+        "Reported plus/minus type not defined in reviewed table; retain separately",
+        "Do not use Table3 technoeconomic rounded assumptions instead of measured Table1 values"
+      ],
+      "pdf_sha256": "6eecfa8350cb69f0faa285847fcaf331a6774af5bcce0a8e273365554473431a"
+    },
+    {
+      "id": "ramos2019",
+      "doi": "10.5424/sjar/2019172-14577",
+      "title": "Evaluation of poultry manure and goat cheese whey anaerobic co-digestion",
+      "authors": [
+        "Juan L. Ramos-Suárez",
+        "Claudia L. Vargas-Avendaño",
+        "Javier Mata-González",
+        "Ángeles Camacho-Pérez"
+      ],
+      "year": 2019,
+      "url": "https://doi.org/10.5424/sjar/2019172-14577",
+      "review_url": "https://sjar.revistas.csic.es/index.php/sjar/article/download/14577/4402/",
+      "supplement_url": "https://sjar.revistas.csic.es/index.php/sjar/article/download/14577/5559/",
+      "reviewed_sections": [
+        "Substrates and inoculum pp2-3",
+        "BMP assays and Table1 p3",
+        "BMP results p6",
+        "Supplementary Table S1, HD Sample1"
+      ],
+      "local_pdf": "reports/stage8_1/sources/ramos2019.pdf",
+      "conditions": {
+        "temperature_c": 37,
+        "duration_days": 56,
+        "duration_kind": "BMP_INCUBATION",
+        "reactor_type": "500 mL reactors; wet diluted crushed substrates",
+        "inoculum": "Gran Canaria OFMSW/wastewater sludge mesophilic digester, pre-digested",
+        "substrate_to_inoculum_vs_max_ratio": 0.5,
+        "storage": "Fresh conveyor-belt hen droppings, TS/VS measured before freezing at -20 C",
+        "mixing": "Daily manual stirring",
+        "measurement": "Inverted 500 mL cylinders, NaOH2.5% absorbs CO2, volumetric CH4",
+        "replicates": "Hen droppings triplicate; inoculum blanks duplicate",
+        "gas_reference_text": "No explicit standardization reference found in reviewed full text",
+        "gas_basis": null,
+        "gas_basis_missing": [
+          "Reference temperature",
+          "Reference pressure",
+          "Moisture correction"
+        ]
+      },
+      "limitations": [
+        "Laying hens, conventional cage farms, Canary Islands; not broiler litter",
+        "No density",
+        "No declared bed material; droppings collected directly from belts",
+        "Sample1 match is supported by first-sample C/N7.18 and Table1 charge24.3g with6.95gVS; do not pool later Sample2/3 used in continuous-stage mixtures",
+        "56d is assay duration, not recommended full-scale cycle",
+        "All gas values need explicit reference-compatibility assumption before pooling with normal volumes"
+      ],
+      "pdf_sha256": "391f49721a2f1813dce69f9963ad918908a992452202b47d829037b88c7a3c62"
+    },
+    {
+      "id": "wedwitschka2020",
+      "doi": "10.3390/bioengineering7030106",
+      "title": "Material Characterization and Substrate Suitability Assessment of Chicken Manure for Dry Batch Anaerobic Digestion Processes",
+      "authors": [
+        "Harald Wedwitschka",
+        "Daniela Gallegos Ibanez",
+        "Franziska Schäfer",
+        "Earl Jenson",
+        "Michael Nelles"
+      ],
+      "year": 2020,
+      "published_at": "2020-09-07",
+      "url": "https://doi.org/10.3390/bioengineering7030106",
+      "review_url": "https://pdfs.semanticscholar.org/f447/e85c63c088ca698e9513407cbbe5f23d9c7d.pdf",
+      "reviewed_sections": [
+        "Methods2.4",
+        "Table2 p7",
+        "Table4 p12",
+        "Results3.3.2 pp11-12"
+      ],
+      "local_pdf": "reports/stage8_1/sources/wedwitschka2020.pdf",
+      "conditions": {
+        "temperature_c": 37,
+        "duration_days": 35,
+        "duration_kind": "OBSERVED_DRY_PERCOLATION_BATCH",
+        "reactor_type": "Two approx13L substrate-capacity percolate digesters;2kg charge;7.6L circulating biologically active percolate;no solid inoculum;no secondary methanization",
+        "gas_basis": {
+          "temperature_k": 273.15,
+          "pressure_pa": 101325,
+          "moisture": "dry"
+        }
+      },
+      "limitations": [
+        "NOT a standardized ultimate BMP assay",
+        "Methane had NOT reached a plateau at35d",
+        "No numeric density",
+        "Table2 pooled characterization 50samples cannot be paired to control C1/C2 yields",
+        "Text calls48.3% water while Table2 labels48.3%TS; preserve table label and flag inconsistency",
+        "Do not invert VS/FM yield ratios to invent measured TS/VS",
+        "68%CH4 is a maximum reached during experiment, not representative constant fraction"
+      ],
+      "pdf_sha256": "cf75bca0a22e5d1b2261d020bc1821acb95aa3bb2b5e7373f88d3ccc9a5cd615"
+    }
+  ],
+  "profiles": [
+    {
+      "id": "eftaxias2024-cattle",
+      "material": "cattle_manure",
+      "animals": [
+        "cattle"
+      ],
+      "source_id": "eftaxias2024",
+      "material_state": "slurry",
+      "verification_stage": "APPROVED_FOR_ESTIMATION",
+      "approved_scope": "Paired sample means; no population or predictive interval; see source conditions and limits",
+      "density_kg_l": null,
+      "cn_ratio": null,
+      "ph": null,
+      "preparation": "Specific Greek farm sample, refrigerated at4 C; paired TS/VS/BMP, subtype/bedding unspecified",
+      "matching_states": [
+        "slurry"
+      ],
+      "ts_fraction": {
+        "low": 0.0831,
+        "high": 0.0831,
+        "locator": "Table1 p5",
+        "reported_spread": 0.0046,
+        "spread_type": "unspecified reported +/-; not interval"
+      },
+      "vs_fraction_wet": {
+        "low": 0.0701,
+        "high": 0.0701,
+        "locator": "Table1 p5",
+        "reported_spread": 0.0040999999999999995,
+        "spread_type": "unspecified reported +/-; not interval"
+      },
+      "bmp_ml_g_vs": {
+        "low": 276,
+        "high": 276,
+        "locator": "Table1 p5",
+        "reported_spread": 3,
+        "spread_type": "unspecified reported +/-; not interval"
+      },
+      "source_stp_claimed": true
+    },
+    {
+      "id": "eftaxias2024-poultry",
+      "material": "poultry_manure",
+      "animals": [
+        "poultry"
+      ],
+      "source_id": "eftaxias2024",
+      "material_state": "fresh_solid",
+      "verification_stage": "APPROVED_FOR_ESTIMATION",
+      "approved_scope": "Paired sample means; no population or predictive interval; see source conditions and limits",
+      "density_kg_l": null,
+      "cn_ratio": null,
+      "ph": null,
+      "preparation": "Specific Greek farm sample, refrigerated at4 C; paired TS/VS/BMP, subtype/bedding unspecified",
+      "matching_states": [
+        "fresh_solid",
+        "dry"
+      ],
+      "ts_fraction": {
+        "low": 0.6925,
+        "high": 0.6925,
+        "locator": "Table1 p5",
+        "reported_spread": 0.0040999999999999995,
+        "spread_type": "unspecified reported +/-; not interval"
+      },
+      "vs_fraction_wet": {
+        "low": 0.5546,
+        "high": 0.5546,
+        "locator": "Table1 p5",
+        "reported_spread": 0.0065,
+        "spread_type": "unspecified reported +/-; not interval"
+      },
+      "bmp_ml_g_vs": {
+        "low": 320,
+        "high": 320,
+        "locator": "Table1 p5",
+        "reported_spread": 19,
+        "spread_type": "unspecified reported +/-; not interval"
+      },
+      "poultry_types": [
+        "unknown",
+        "chicken"
+      ],
+      "conditional_states": [
+        "dry"
+      ],
+      "beddings": [
+        "unknown",
+        "none"
+      ],
+      "state_transfer_note": "Высокосухой образец с TS69.25% сопоставлен с сухим помётом; это не образец после специальной сушки и не профиль бройлерной подстилки.",
+      "source_stp_claimed": true
+    },
+    {
+      "id": "eftaxias2024-pig",
+      "material": "swine_manure",
+      "animals": [
+        "pig"
+      ],
+      "source_id": "eftaxias2024",
+      "material_state": "slurry",
+      "verification_stage": "APPROVED_FOR_ESTIMATION",
+      "approved_scope": "Paired sample means; no population or predictive interval; see source conditions and limits",
+      "density_kg_l": null,
+      "cn_ratio": null,
+      "ph": null,
+      "preparation": "Specific Greek farm sample, refrigerated at4 C; paired TS/VS/BMP, subtype/bedding unspecified",
+      "matching_states": [
+        "slurry"
+      ],
+      "ts_fraction": {
+        "low": 0.0223,
+        "high": 0.0223,
+        "locator": "Table1 p5",
+        "reported_spread": 0.0025,
+        "spread_type": "unspecified reported +/-; not interval"
+      },
+      "vs_fraction_wet": {
+        "low": 0.015099999999999999,
+        "high": 0.015099999999999999,
+        "locator": "Table1 p5",
+        "reported_spread": 0.0035,
+        "spread_type": "unspecified reported +/-; not interval"
+      },
+      "bmp_ml_g_vs": {
+        "low": 172,
+        "high": 172,
+        "locator": "Table1 p5",
+        "reported_spread": 2,
+        "spread_type": "unspecified reported +/-; not interval"
+      },
+      "source_stp_claimed": true
+    },
+    {
+      "id": "eftaxias2024-sheep",
+      "material": "sheep_goat_manure",
+      "animals": [
+        "sheep"
+      ],
+      "source_id": "eftaxias2024",
+      "material_state": "fresh_solid",
+      "verification_stage": "APPROVED_FOR_ESTIMATION",
+      "approved_scope": "Paired sample means; no population or predictive interval; see source conditions and limits",
+      "density_kg_l": null,
+      "cn_ratio": null,
+      "ph": null,
+      "preparation": "Specific Greek farm sample, refrigerated at4 C; paired TS/VS/BMP, subtype/bedding unspecified",
+      "matching_states": [
+        "fresh_solid"
+      ],
+      "ts_fraction": {
+        "low": 0.3522,
+        "high": 0.3522,
+        "locator": "Table1 p5",
+        "reported_spread": 0.0144,
+        "spread_type": "unspecified reported +/-; not interval"
+      },
+      "vs_fraction_wet": {
+        "low": 0.2363,
+        "high": 0.2363,
+        "locator": "Table1 p5",
+        "reported_spread": 0.0089,
+        "spread_type": "unspecified reported +/-; not interval"
+      },
+      "bmp_ml_g_vs": {
+        "low": 252,
+        "high": 252,
+        "locator": "Table1 p5",
+        "reported_spread": 6,
+        "spread_type": "unspecified reported +/-; not interval"
+      },
+      "source_stp_claimed": true
+    },
+    {
+      "id": "eftaxias2024-goat",
+      "material": "sheep_goat_manure",
+      "animals": [
+        "goat"
+      ],
+      "source_id": "eftaxias2024",
+      "material_state": "fresh_solid",
+      "verification_stage": "APPROVED_FOR_ESTIMATION",
+      "approved_scope": "Paired sample means; no population or predictive interval; see source conditions and limits",
+      "density_kg_l": null,
+      "cn_ratio": null,
+      "ph": null,
+      "preparation": "Specific Greek farm sample, refrigerated at4 C; paired TS/VS/BMP, subtype/bedding unspecified",
+      "matching_states": [
+        "fresh_solid",
+        "dry"
+      ],
+      "ts_fraction": {
+        "low": 0.717,
+        "high": 0.717,
+        "locator": "Table1 p5",
+        "reported_spread": 0.0034,
+        "spread_type": "unspecified reported +/-; not interval"
+      },
+      "vs_fraction_wet": {
+        "low": 0.606,
+        "high": 0.606,
+        "locator": "Table1 p5",
+        "reported_spread": 0.0224,
+        "spread_type": "unspecified reported +/-; not interval"
+      },
+      "bmp_ml_g_vs": {
+        "low": 227,
+        "high": 227,
+        "locator": "Table1 p5",
+        "reported_spread": 9,
+        "spread_type": "unspecified reported +/-; not interval"
+      },
+      "conditional_states": [
+        "dry"
+      ],
+      "state_transfer_note": "TS71.7% в конкретном твёрдом козьем образце; перенос на сухой материал условный.",
+      "source_stp_claimed": true
+    },
+    {
+      "id": "ramos2019-layers-HD-sample1",
+      "material": "poultry_manure",
+      "animals": [
+        "poultry"
+      ],
+      "source_id": "ramos2019",
+      "material_state": "fresh_solid",
+      "verification_stage": "APPROVED_FOR_ESTIMATION",
+      "approved_scope": "Paired sample means; no population or predictive interval; see source conditions and limits",
+      "density_kg_l": null,
+      "cn_ratio": 7.18,
+      "ph": 7.19,
+      "preparation": "Crushed, wet diluted assay on fresh conveyor-belt laying-hen Sample1; frozen after characterization",
+      "matching_states": [
+        "fresh_solid"
+      ],
+      "ts_fraction": {
+        "low": 0.386,
+        "high": 0.386,
+        "locator": "SupplementTableS1 HD Sample1",
+        "reported_spread": 0.021,
+        "spread_type": "unspecified reported +/-; not interval"
+      },
+      "bmp_ml_g_vs": {
+        "low": 282.1,
+        "high": 282.1,
+        "locator": "BMP results p6",
+        "reported_spread": 3.98,
+        "spread_type": "standard error"
+      },
+      "vs_fraction_wet": {
+        "low": 0.286798,
+        "high": 0.286798,
+        "locator": "Derived from paired SupplementTableS1 TS*VS/TS Sample1"
+      },
+      "poultry_types": [
+        "layer"
+      ],
+      "beddings": [
+        "unknown",
+        "none"
+      ],
+      "source_stp_claimed": false
+    }
+  ],
+  "partial_characterizations": [
+    {
+      "material": "poultry_manure",
+      "status": "PARTIAL_SCOPE_REQUIRES_MEASUREMENTS",
+      "reason": "Broiler/turkey/bedded/moist slurry are not interchangeable with the two paired samples; specific conditions required."
+    },
+    {
+      "material": "swine_manure",
+      "status": "PARTIAL_SCOPE_REQUIRES_MEASUREMENTS",
+      "reason": "Liquid pig profiles available; solid/bedded/dry pig BMP not transferred from cattle."
+    },
+    {
+      "material": "vegetable_waste",
+      "status": "PARTIAL_SCOPE_REQUIRES_MEASUREMENTS",
+      "reason": "No approved paired profile for arbitrary vegetable mixture; measured TS/VS/BMP can be entered."
+    },
+    {
+      "material": "fruit_waste",
+      "status": "PARTIAL_SCOPE_REQUIRES_MEASUREMENTS",
+      "reason": "Fruit identity, preparation and inhibitors vary; no universal BMP assigned."
+    },
+    {
+      "material": "grass",
+      "status": "PARTIAL_SCOPE_REQUIRES_MEASUREMENTS",
+      "reason": "Existing mixed grass/cattle experiment not treated as mono grass BMP."
+    },
+    {
+      "material": "plant_residue",
+      "status": "PARTIAL_SCOPE_REQUIRES_MEASUREMENTS",
+      "reason": "Specific plant material and preparation required before transferring BMP."
+    },
+    {
+      "material": "silage",
+      "status": "PARTIAL_SCOPE_REQUIRES_MEASUREMENTS",
+      "reason": "Crop and ensiling conditions required; no general energy-crop BMP assigned."
+    }
+  ],
+  "process_references": [
+    {
+      "id": "wedwitschka2020-dry-control",
+      "source_id": "wedwitschka2020",
+      "kind": "OBSERVED_PROCESS_REFERENCE_NOT_BMP",
+      "material": "poultry_manure",
+      "physical_state": "dry",
+      "poultry_type": "mixed_or_unspecified_trial",
+      "specific_methane_ml_g_vs": {
+        "mean": 127,
+        "reported_sd": 12,
+        "individual_trials": [
+          136,
+          119
+        ]
+      },
+      "specific_methane_ml_g_fresh_mass": {
+        "mean": 70,
+        "reported_sd": 6
+      },
+      "locator": "Table4 control; Results3.3.2",
+      "can_scale_fresh_mass_conditionally": true,
+      "can_assign_as_bmp": false,
+      "can_pair_with_pooled_table2_solids": false,
+      "limitation": "Observed35d dry percolation control, not ultimate potential or target plant guarantee; keep separate from additive BMP mixture sum"
+    }
+  ],
+  "approval": "Parent reviewed primary table images and paired-sample limitations; dry observed yield is NOT BMP"
+}

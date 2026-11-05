@@ -1,0 +1,43 @@
+[
+  {
+    "args": [
+      "market",
+      "status"
+    ],
+    "returncode": 0
+  },
+  {
+    "args": [
+      "predict",
+      "--model",
+      "stage1",
+      "--input",
+      "examples/stage1_5_measured.json"
+    ],
+    "returncode": 0
+  },
+  {
+    "args": [
+      "predict",
+      "--model",
+      "stage1_5",
+      "--input",
+      "examples/stage1_5_measured.json"
+    ],
+    "returncode": 0
+  },
+  {
+    "args": [
+      "chat",
+      "--no-llm",
+      "--message",
+      "У меня 800 литров коровьего навоза и реактор 90 литров. Как лучше его переработать?",
+      "--json"
+    ],
+    "returncode": 0
+  },
+  {
+    "resume": true,
+    "returncode": 0
+  }
+]

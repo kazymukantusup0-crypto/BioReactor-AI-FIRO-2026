@@ -1,0 +1,23 @@
+{
+  "source": "https://github.com/AU-BCE-EE/Hafner-2026-IL-BMP",
+  "paper": "https://doi.org/10.1016/j.biortech.2026.134136",
+  "local_manifest_claimed_commit": "a4e3dc1a6fdadc3339dc3b49271d7790e5c51c93",
+  "commit_verification": "Inherited local snapshot; not independently compared with remote in this run.",
+  "license": "CC BY 4.0; see preserved LICENSE",
+  "sha256": {
+    "README.md": "f1dea25e78284e318b5fad96a32a3e10b50323a6c09d7c53ce618da7a13f7d20",
+    "LICENSE": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411",
+    "data/BMP_calc.csv": "9e01de85a12783264d60c621aebc74b6036317fd5f4af13ed7588a0aece2ad2b",
+    "data/setup.csv": "3f7010b02ec4192d0e378a6cff7ba5959eb9d80b37b928c0a75b1524257d5b30"
+  },
+  "data_kind": "Experimental bottle BMP calculated by source authors from submitted measurements; not theoretical BMP.",
+  "scope": "One interlaboratory study. Laboratory holdout is NOT independent-study validation.",
+  "mendeley": {
+    "url": "https://data.mendeley.com/datasets/g6z68g9ytb/1",
+    "status": "2026-10-28 public-api request returned HTTP 403; CSV not available locally; no rows fabricated"
+  },
+  "other_sources": {
+    "BMP-data": "Not merged: no verified license in local manifest",
+    "Zenodo 21079219": "Embargoed until 2026-12-26; not downloaded or merged"
+  }
+}

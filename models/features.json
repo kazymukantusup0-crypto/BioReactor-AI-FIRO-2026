@@ -1,0 +1,42 @@
+{
+  "features": [
+    "substrate",
+    "c_vs_sub_m",
+    "c_vs_sub_f",
+    "c_vs_inoc",
+    "ISR"
+  ],
+  "numeric": [
+    "c_vs_sub_m",
+    "c_vs_sub_f",
+    "c_vs_inoc",
+    "ISR"
+  ],
+  "categories": [
+    "Bird feed",
+    "Cellulose",
+    "Rabbit feed",
+    "Sunflower seeds",
+    "Wheat straw",
+    "Whey"
+  ],
+  "bounds": {
+    "c_vs_sub_m": [
+      0.7276,
+      1.0
+    ],
+    "c_vs_sub_f": [
+      0.803,
+      0.991
+    ],
+    "c_vs_inoc": [
+      0.0003372,
+      0.05875
+    ],
+    "ISR": [
+      0.04366,
+      4.169
+    ]
+  },
+  "unit": "mL CH4/g substrate VS"
+}

@@ -1,0 +1,265 @@
+{
+  "version": "7.6",
+  "sources": [
+    {
+      "id": "baek2020",
+      "doi": "10.3390/ijerph17134737",
+      "title": "Treatment of Cattle Manure by Anaerobic Co-Digestion with Food Waste and Pig Manure: Methane Yield and Synergistic Effect",
+      "authors": [
+        "Gahyun Baek",
+        "Danbee Kim",
+        "Jinsu Kim",
+        "Hanwoong Kim",
+        "Changsoo Lee"
+      ],
+      "year": 2020,
+      "published_at": "2020-07-01",
+      "url": "https://www.mdpi.com/1660-4601/17/13/4737",
+      "review_url": "https://pdfs.semanticscholar.org/8c32/8da3dc70a2964a51e0cfd2807c009edd691c.pdf",
+      "reviewed_sections": [
+        "Tables 1-2, Methods 2.1-2.3, Results 3.2, Equations 1-2"
+      ],
+      "verification_stage": "NUMERIC_DATA_VERIFIED",
+      "review_method": "Primary article PDF read through browser document extraction. Programmatic mirror download redirected across origins and was not followed. Publisher 429 and PMC CAPTCHA were not bypassed.",
+      "conditions": {
+        "temperature_c": 35,
+        "duration_days": 30,
+        "duration_kind": "BMP_INCUBATION",
+        "reactor_type": "250 mL bottles, 200 mL working volume; triplicate and blank corrected",
+        "inoculum": "Digestate from mesophilic food/pig-manure plant; 100 mL inoculum plus 100 mL substrate diluted to 10 g VS/L",
+        "mixing": "daily manual shaking",
+        "gas_basis": {
+          "temperature_k": 273.15,
+          "pressure_pa": 101325,
+          "moisture": "unknown"
+        },
+        "mixing_ratio_basis": "total solids, not wet mass"
+      }
+    },
+    {
+      "id": "moset2015",
+      "doi": "10.1111/1751-7915.12271",
+      "title": "Mesophilic versus thermophilic anaerobic digestion of cattle manure: methane productivity and microbial ecology",
+      "authors": [
+        "Veronica Moset",
+        "Morten Poulsen",
+        "Radziah Wahid",
+        "Ole Højberg",
+        "Henrik Bjarne Møller"
+      ],
+      "year": 2015,
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4554467/",
+      "verification_stage": "NUMERIC_DATA_VERIFIED",
+      "reviewed_sections": [
+        "Abstract, Methods, Tables 1-2, Conclusions"
+      ],
+      "conditions": {
+        "materials": [
+          "cattle_manure"
+        ],
+        "material_states": [
+          "slurry"
+        ],
+        "temperatures_c": [
+          35,
+          50
+        ],
+        "hrt_days": [
+          16,
+          20
+        ],
+        "reactor_type": "continuous stirred reactors",
+        "reactor_scales": [
+          "10 m3",
+          "16 L"
+        ]
+      },
+      "limitation": "Higher thermophilic conversion in these experiments does not establish a universal optimum; process robustness and heat demand differ.",
+      "published_at": "2015-03-04",
+      "issue_date": "2015-09",
+      "metadata_url": "https://pubmed.ncbi.nlm.nih.gov/25737010/"
+    },
+    {
+      "id": "ulukardesler2023",
+      "doi": "10.1038/s41598-023-33169-0",
+      "title": "Anaerobic co-digestion of grass and cow manure: kinetic and GHG calculations",
+      "authors": [
+        "Ayse Hilal Ulukardesler"
+      ],
+      "year": 2023,
+      "url": "https://www.nature.com/articles/s41598-023-33169-0",
+      "verification_stage": "FULL_TEXT_REVIEWED",
+      "reviewed_sections": [
+        "Methods, Tables 1-2"
+      ],
+      "conditions": {
+        "materials": [
+          "cattle_manure",
+          "grass"
+        ],
+        "temperature_c": 35,
+        "temperature_tolerance_c": 1,
+        "duration_days": 65,
+        "duration_kind": "BATCH_EXPERIMENT",
+        "reactor_type": "10 L laboratory batch, 7 L working",
+        "preparation": "Festuca arundinacea garden grass, shredded 0.5-2 mm; cow manure and yeast-factory anaerobic sludge",
+        "grass_manure_ratios_percent": [
+          5,
+          10,
+          15,
+          20,
+          25
+        ]
+      },
+      "limitation": "No verified mono-digestion BMP for arbitrary grass. TS/VS table basis requires further checking; mixture yield is not a grass property.",
+      "published_at": "2023-04-18",
+      "metadata_url": "https://pubmed.ncbi.nlm.nih.gov/37072450/"
+    },
+    {
+      "id": "fao_advisor",
+      "title": "Biogas processes for sustainable development: environmental factors",
+      "authors": [
+        "Uri Marchaim / FAO"
+      ],
+      "year": 1992,
+      "url": "https://www.fao.org/4/t0541e/T0541E06.htm",
+      "verification_stage": "FULL_TEXT_REVIEWED",
+      "reviewed_sections": [
+        "Temperature, pH and process stability"
+      ],
+      "limitation": "General biological guidance, not a reactor-specific optimum."
+    }
+  ],
+  "profiles": [
+    {
+      "id": "baek2020-food-pulp",
+      "material": "food_waste",
+      "material_state": "prepared_pulp",
+      "source_id": "baek2020",
+      "verification_stage": "APPROVED_FOR_ESTIMATION",
+      "approved_scope": "Conditional transfer of one measured prepared cafeteria-food sample; not all food waste",
+      "density_kg_l": null,
+      "ts_fraction": {
+        "low": 0.1264,
+        "high": 0.1264,
+        "original_value": "126.4 (SD 4.5)",
+        "original_unit": "g TS/kg wet",
+        "locator": "Table 1"
+      },
+      "vs_fraction_wet": {
+        "low": 0.1206,
+        "high": 0.1206,
+        "original_value": "120.6 (SD 3.7)",
+        "original_unit": "g VS/kg wet",
+        "locator": "Table 1"
+      },
+      "bmp_ml_g_vs": {
+        "low": 527.5,
+        "high": 527.5,
+        "original_value": "527.5",
+        "original_unit": "L CH4/kg VS",
+        "locator": "Results 3.2, pure FW run 2, PDF page 5",
+        "method": "REPORTED_EXPERIMENTAL_POINT; no invented uncertainty"
+      },
+      "cn_ratio": 17.9,
+      "ph": 4.5,
+      "preparation": "Ground cafeteria food mainly rice, flour products, soup, vegetables and meat; diluted BMP, not an untreated mixed municipal waste",
+      "inhibitors": [
+        "rapid acidification",
+        "lipids and excessive loading"
+      ]
+    },
+    {
+      "id": "baek2020-bedded-cattle",
+      "material": "cattle_manure",
+      "material_state": "bedded",
+      "source_id": "baek2020",
+      "verification_stage": "APPROVED_FOR_ESTIMATION",
+      "approved_scope": "Conditional transfer of aged Korean cattle manure containing sawdust/bedding and possible lime; not raw slurry",
+      "density_kg_l": null,
+      "ts_fraction": {
+        "low": 0.31,
+        "high": 0.31,
+        "original_value": "310.0 (SD 5.3)",
+        "original_unit": "g TS/kg wet",
+        "locator": "Table 1"
+      },
+      "vs_fraction_wet": {
+        "low": 0.2353,
+        "high": 0.2353,
+        "original_value": "235.3 (SD 5.8)",
+        "original_unit": "g VS/kg wet",
+        "locator": "Table 1"
+      },
+      "bmp_ml_g_vs": {
+        "low": 109.2,
+        "high": 109.2,
+        "original_value": "109.2",
+        "original_unit": "L CH4/kg VS",
+        "locator": "Results 3.2, pure CM run 1, PDF page 5",
+        "method": "REPORTED_EXPERIMENTAL_POINT; no invented uncertainty"
+      },
+      "cn_ratio": 24.3,
+      "ph": 8.0,
+      "preparation": "Manure with lignocellulosic bedding from beef/dairy pens; sample collection and pretreatment differ from RM1",
+      "inhibitors": [
+        "slow hydrolysis of bedding",
+        "ammonia"
+      ]
+    }
+  ],
+  "partial_characterizations": [
+    {
+      "material": "swine_manure",
+      "material_state": "slurry",
+      "source_id": "baek2020",
+      "verification_stage": "NUMERIC_DATA_VERIFIED",
+      "ts_fraction": 0.0706,
+      "vs_fraction_wet": 0.0565,
+      "cn_ratio": 22.1,
+      "ph": 7.6,
+      "locator": "Table 1",
+      "bmp_ml_g_vs": null,
+      "note": "Published model vertex 343.8 is a fitted coefficient, not a measured assay result; not substituted for measured BMP."
+    },
+    {
+      "material": "grass",
+      "material_state": "shredded",
+      "source_id": "ulukardesler2023",
+      "verification_stage": "FULL_TEXT_REVIEWED",
+      "reported_ts": "41.73 wt%",
+      "reported_vs": "75.42; basis insufficiently explicit in table",
+      "bmp_ml_g_vs": null,
+      "note": "Mixture output is not assigned as a grass mono-substrate BMP."
+    }
+  ],
+  "interaction_records": [
+    {
+      "source_id": "baek2020",
+      "materials": [
+        "cattle_manure",
+        "food_waste",
+        "swine_manure"
+      ],
+      "states": [
+        "bedded",
+        "prepared_pulp",
+        "slurry"
+      ],
+      "verification_stage": "NUMERIC_DATA_VERIFIED",
+      "locator": "Results 3.2-3.4; study TS-based mixture design",
+      "finding": "Interaction changed with composition and incubation time, with both antagonism and synergy. No coefficient is transferred to another batch.",
+      "transferable_synergy_factor": null
+    },
+    {
+      "source_id": "ulukardesler2023",
+      "materials": [
+        "grass",
+        "cattle_manure"
+      ],
+      "verification_stage": "FULL_TEXT_REVIEWED",
+      "finding": "Studied shredded garden grass, cow manure and specific sludge in 7 L batch, not arbitrary fresh grass plus food waste.",
+      "transferable_synergy_factor": null
+    }
+  ]
+}

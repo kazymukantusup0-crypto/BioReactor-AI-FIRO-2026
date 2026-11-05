@@ -1,0 +1,74 @@
+{
+  "version": "2026-10-28",
+  "sources": {
+    "hafner": {
+      "title": "Hafner et al. — Reliable biochemical methane potential testing (2026), original repository and dictionary",
+      "url": "https://github.com/AU-BCE-EE/Hafner-2026-IL-BMP",
+      "locator": "README: Contents and Column names; local preserved copy in data/raw/hafner_2026_il_bmp",
+      "verified_on": "2026-10-28",
+      "keywords": ["bmp", "vs", "isr", "модел", "солом", "сыворот", "hafner", "метан"],
+      "summary": "Бутылочные BMP общих субстратов от 31 лаборатории. Единица: мл метана на грамм добавленной VS субстрата. Это лабораторный потенциал, не выработка установки."
+    },
+    "fao_environment": {
+      "title": "FAO, Marchaim (1992), Biogas processes for sustainable development — Environmental factors",
+      "url": "https://www.fao.org/4/t0541e/T0541E06.htm",
+      "locator": "pH; Temperature",
+      "verified_on": "2026-10-28",
+      "keywords": ["ph", "температур", "режим", "навоз", "биогаз", "сбраж", "temperature"],
+      "summary": "Общие ориентиры: мезофильный режим около 35 °C, термофильный около 55 °C; метаногены чувствительны к pH и температурным изменениям. Это не настройки конкретного реактора."
+    },
+    "fao_design": {
+      "title": "FAO, Marchaim (1992) — Anaerobic processes, plant design and control",
+      "url": "https://www.fao.org/4/t0541e/T0541E09.htm",
+      "locator": "Digester types: KVIC floating dome, cattle dung example",
+      "verified_on": "2026-10-28",
+      "keywords": ["hrt", "навоз", "врем", "удерж", "сух", "вода", "kvic"],
+      "summary": "Исторический пример KVIC на навозе КРС: HRT 30–40 дней при тёплом климате с окружающей температурой 20–40 °C; подача разбавлена до 10% TS. Не универсальная норма и не режим batch."
+    },
+    "ebmud": {
+      "title": "EBMUD / US EPA (March 2008) — Anaerobic Digestion of Food Waste, final experimental report",
+      "url": "https://www.epa.gov/system/files/documents/2024-08/ebmud-final-report-anaerobic-digestion-of-food-waste-2008-03.pdf",
+      "locator": "Section 3.3 pH; scope: bench-scale processed food-waste pulp",
+      "verified_on": "2026-10-28",
+      "keywords": ["пищ", "food", "ph", "кислот"],
+      "summary": "Отчёт об опытах с подготовленной пульпой пищевых отходов: для метаногенов описан pH 7–7,5. Перенос на другое сырьё и установку требует отдельной проверки."
+    },
+    "fao_soil": {
+      "title": "FAO Global Soil Partnership, Fifth Plenary (June 2017), GSPPA V/2017/3",
+      "url": "https://www.fao.org/fileadmin/user_upload/GSP/Fifth_plenary/en/GSPPA_V_2017_3.pdf",
+      "locator": "Annex I, International Network of Black Soils: Chernozems and soil conservation",
+      "verified_on": "2026-10-28",
+      "keywords": ["черноз", "почв", "soil", "chernozem"],
+      "summary": "Чернозёмы рассматриваются как почвы с органическим веществом, требующие сохранения. Содержание органического вещества почвы не равно измеренной BMP или доступной для сбраживания VS."
+    }
+  },
+  "general": {
+    "temperature_reference_points_c": [35, 55],
+    "temperature_range_c": null,
+    "ph_range": null,
+    "sources": ["fao_environment"],
+    "scope": "Общие справочные режимы для анаэробного сбраживания; не рекомендации загрузки, перехода режима или управления оборудованием."
+  },
+  "materials": {
+    "Wheat straw": {"name_ru": "пшеничная солома", "category": "crop_residue", "dry_matter_fraction": null, "vs_fraction": null, "conditions": null, "sources": ["hafner"], "limitations": "Общий эталонный субстрат Hafner; не все партии соломы эквивалентны."},
+    "Whey": {"name_ru": "молочная сыворотка", "category": "dairy_byproduct", "dry_matter_fraction": null, "vs_fraction": null, "conditions": null, "sources": ["hafner"], "limitations": "Представлена эталонная сыворотка исследования; мало независимых обучающих лабораторий."},
+    "Cellulose": {"name_ru": "целлюлоза", "category": "reference_substrate", "dry_matter_fraction": null, "vs_fraction": null, "conditions": null, "sources": ["hafner"], "limitations": "Лабораторный контроль; не характеристика произвольных целлюлозных отходов."},
+    "Bird feed": {"name_ru": "корм для птиц", "category": "animal_feed", "dry_matter_fraction": null, "vs_fraction": null, "conditions": null, "sources": ["hafner"], "limitations": "Мало лабораторий; произвольный состав корма не подтверждён моделью."},
+    "Rabbit feed": {"name_ru": "корм для кроликов", "category": "animal_feed", "dry_matter_fraction": null, "vs_fraction": null, "conditions": null, "sources": ["hafner"], "limitations": "Только общий субстрат исследования; не любой комбикорм."},
+    "Sunflower seeds": {"name_ru": "семена подсолнечника", "category": "crop_substrate", "dry_matter_fraction": null, "vs_fraction": null, "conditions": null, "sources": ["hafner"], "limitations": "Не переносить на жмых, шелуху или произвольные смеси."},
+    "cattle_manure": {
+      "name_ru": "навоз КРС", "category": "manure", "dry_matter_fraction": null, "vs_fraction": null,
+      "conditions": {"process": "Справочный пример KVIC на навозе КРС в тёплом климате, не batch", "ambient_temperature_range_c": [20, 40], "hrt_days": [30, 40], "example_feed_ts_pct": 10, "ph_range": null, "source_ids": ["fao_design"]},
+      "sources": ["fao_environment", "fao_design"], "limitations": "BMP-модель Hafner не применима к навозу; TS примера нельзя присвоить вашей партии."
+    },
+    "food_waste": {
+      "name_ru": "пищевые отходы", "category": "food_waste", "dry_matter_fraction": null, "vs_fraction": null,
+      "conditions": {"process": "Справочные сведения из bench-scale испытаний подготовленной пищевой пульпы EBMUD", "temperature_range_c": null, "ph_range": [7, 7.5], "hrt_days": null, "source_ids": ["ebmud"]},
+      "sources": ["ebmud"], "limitations": "Состав отходов меняется; BMP-модель Hafner для этой категории не обучена."
+    },
+    "chernozem": {
+      "name_ru": "чернозём", "category": "soil", "dry_matter_fraction": null, "vs_fraction": null, "conditions": null,
+      "sources": ["fao_soil"], "limitations": "Почва не подтверждена как продуктивный субстрат этой системой. Нет BMP-данных или режимов для чернозёма; численный ML-прогноз отклоняется."
+    }
+  }
+}

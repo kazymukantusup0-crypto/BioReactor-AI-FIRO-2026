@@ -1,0 +1,412 @@
+{
+  "version": "8.0",
+  "sources": [
+    {
+      "id": "alberta2005",
+      "title": "Manure Composting Manual",
+      "authors": [
+        "Alberta Agriculture, Food and Rural Development"
+      ],
+      "year": 2005,
+      "url": "https://www1.agric.gov.ab.ca/$department/deptdocs.nsf/all/agdex8875/$file/400_27-1.pdf?OpenElement=",
+      "verification_stage": "NUMERIC_DATA_VERIFIED",
+      "reviewed_sections": [
+        "Table 3, printed page 10"
+      ],
+      "conditions": {
+        "method": "Engineering reference table, not BMP experiment"
+      },
+      "limitations": "Density depends on moisture, bedding and packing; no uncertainty coverage supplied."
+    },
+    {
+      "id": "alberta_nmp",
+      "title": "Nutrient Management Planning Guide, Chapter 6.1",
+      "authors": [
+        "Alberta Agriculture"
+      ],
+      "year": null,
+      "url": "https://www1.agriculture.alberta.ca/$department/deptdocs.nsf/all/epw11920/$FILE/6-1.pdf",
+      "verification_stage": "NUMERIC_DATA_VERIFIED",
+      "reviewed_sections": [
+        "Table 6.1.2, printed page 222"
+      ],
+      "conditions": {
+        "method": "Estimated density of selected solid manure sources"
+      },
+      "limitations": "Class averages, not universal densities or intervals; bedding/moisture unspecified."
+    },
+    {
+      "id": "monch2013",
+      "title": "Investigation of the methane potential of horse manure",
+      "authors": [
+        "Matthias Mönch-Tegeder",
+        "Andreas Lemmer",
+        "Hans Oechsner",
+        "Thomas Jungbluth"
+      ],
+      "year": 2013,
+      "url": "https://cigrjournal.org/index.php/Ejounral/article/view/2445",
+      "review_url": "https://cigrjournal.org/index.php/Ejounral/article/download/2445/1736/8047",
+      "verification_stage": "NUMERIC_DATA_VERIFIED",
+      "reviewed_sections": [
+        "Methods 2.1-2.3; Tables 2, 3, 7, 8"
+      ],
+      "conditions": {
+        "temperature_c": 37,
+        "temperature_tolerance_c": 0.5,
+        "duration_days": 35,
+        "duration_kind": "BMP_INCUBATION",
+        "reactor_type": "HBT 100 mL glass syringes; 30 g inoculum + 600 mg dried milled sample",
+        "gas_basis": {
+          "temperature_k": 273.15,
+          "pressure_pa": 101300,
+          "moisture": "unknown"
+        },
+        "preparation": "Dried at 60 C for 48 h, milled to 1 mm; Stuttgart barns"
+      },
+      "limitations": "Preparation affects hydrolysis; barn A paired measurements only, not universal raw feedstock BMP."
+    },
+    {
+      "id": "pham2013",
+      "doi": "10.5713/ajas.2012.12623",
+      "title": "Validation and Recommendation of Methods to Measure Biogas Production Potential of Animal Manure",
+      "authors": [
+        "C. H. Pham",
+        "J. M. Triolo",
+        "T. T. T. Cu",
+        "L. Pedersen",
+        "S. G. Sommer"
+      ],
+      "year": 2013,
+      "url": "https://doi.org/10.5713/ajas.2012.12623",
+      "review_url": "https://pdfs.semanticscholar.org/11ec/6cf5527fb8cd3d44f99641d82ec645b15b8f.pdf",
+      "verification_stage": "NUMERIC_DATA_VERIFIED",
+      "reviewed_sections": [
+        "Tables 2 and 3, Methods, Equation 1; table screenshots visually checked"
+      ],
+      "conditions": {
+        "temperature_c": 37,
+        "duration_days": null,
+        "endpoint": "Gas production rate below 1% of accumulated gas; no fixed universal number of days",
+        "reactor_type": "VDI 4630: 1 L glass bottles, 620 mL mixture, 150 mL medium; inoculum/substrate 2:1 VS",
+        "gas_basis": {
+          "temperature_k": 273,
+          "pressure_pa": 101300,
+          "moisture": "dry"
+        }
+      },
+      "limitations": "Fangel fattening pig sample, VDI method only; other methods and temperatures not pooled. Density absent."
+    }
+  ],
+  "density_profiles": [
+    {
+      "material": "cattle_manure",
+      "physical_states": [
+        "bedded"
+      ],
+      "value": {
+        "low": 0.71,
+        "high": 0.71
+      },
+      "source_id": "alberta2005",
+      "locator": "Table 3: beef feedlot with bedding, moisture 68%; 710 kg/m3",
+      "beddings": null,
+      "limitations": [
+        "Reference sample; measure local moisture and packing",
+        "Cross-study transfer to a BMP sample is an illustrative scenario, not a coherent measurement"
+      ]
+    },
+    {
+      "material": "cattle_manure",
+      "physical_states": [
+        "solid"
+      ],
+      "value": {
+        "low": 0.71,
+        "high": 0.71
+      },
+      "source_id": "alberta2005",
+      "locator": "Table 3: dairy solid manure handling, moisture 79%; 710 kg/m3",
+      "beddings": [
+        "none",
+        "unknown"
+      ],
+      "limitations": [
+        "Reference sample; measure local moisture and packing",
+        "Cross-study transfer to a BMP sample is an illustrative scenario, not a coherent measurement"
+      ]
+    },
+    {
+      "material": "swine_manure",
+      "physical_states": [
+        "liquid"
+      ],
+      "value": {
+        "low": 1,
+        "high": 1
+      },
+      "source_id": "alberta2005",
+      "locator": "Table 3: pig slurry, moisture 93-99%; 1000 kg/m3",
+      "beddings": null,
+      "limitations": [
+        "Reference sample; measure local moisture and packing",
+        "Cross-study transfer to a BMP sample is an illustrative scenario, not a coherent measurement"
+      ]
+    },
+    {
+      "material": "swine_manure",
+      "physical_states": [
+        "solid"
+      ],
+      "value": {
+        "low": 0.772,
+        "high": 0.796
+      },
+      "source_id": "alberta_nmp",
+      "locator": "Table 6.1.2: solid grow/finish 772, farrow-to-finish 796 kg/m3",
+      "beddings": null,
+      "limitations": [
+        "Reference sample; measure local moisture and packing",
+        "Cross-study transfer to a BMP sample is an illustrative scenario, not a coherent measurement"
+      ]
+    },
+    {
+      "material": "poultry_manure",
+      "physical_states": [
+        "bedded"
+      ],
+      "value": {
+        "low": 0.33,
+        "high": 0.33
+      },
+      "source_id": "alberta2005",
+      "locator": "Table 3: broiler litter, moisture 25%; 330 kg/m3",
+      "beddings": null,
+      "limitations": [
+        "Reference sample; measure local moisture and packing",
+        "Cross-study transfer to a BMP sample is an illustrative scenario, not a coherent measurement"
+      ]
+    },
+    {
+      "material": "poultry_manure",
+      "physical_states": [
+        "solid"
+      ],
+      "value": {
+        "low": 0.47,
+        "high": 0.47
+      },
+      "source_id": "alberta2005",
+      "locator": "Table 3: broiler/breeder/layer, moisture 46%; 470 kg/m3",
+      "beddings": null,
+      "limitations": [
+        "Reference sample; measure local moisture and packing",
+        "Cross-study transfer to a BMP sample is an illustrative scenario, not a coherent measurement"
+      ]
+    },
+    {
+      "material": "horse_manure",
+      "physical_states": [
+        "bedded"
+      ],
+      "value": {
+        "low": 0.725,
+        "high": 0.96
+      },
+      "source_id": "alberta2005",
+      "locator": "Table 3: horse manure with bedding, moisture 59-79%; 725-960 kg/m3",
+      "beddings": null,
+      "limitations": [
+        "Reference sample; measure local moisture and packing",
+        "Cross-study transfer to a BMP sample is an illustrative scenario, not a coherent measurement"
+      ]
+    },
+    {
+      "material": "sheep_goat_manure",
+      "physical_states": [
+        "solid"
+      ],
+      "value": {
+        "low": 0.497,
+        "high": 0.497
+      },
+      "source_id": "alberta_nmp",
+      "locator": "Table 6.1.2: sheep ewes/rams and goats general, 497 kg/m3",
+      "beddings": null,
+      "limitations": [
+        "Reference sample; measure local moisture and packing",
+        "Cross-study transfer to a BMP sample is an illustrative scenario, not a coherent measurement"
+      ]
+    },
+    {
+      "material": "straw",
+      "physical_states": [
+        "dry"
+      ],
+      "value": {
+        "low": 0.058,
+        "high": 0.357
+      },
+      "source_id": "alberta2005",
+      "locator": "Table 3: general straw, moisture 4-27%; 58-357 kg/m3",
+      "beddings": null,
+      "limitations": [
+        "Broad engineering reference across straw materials and packing; not a measured density of this batch"
+      ]
+    }
+  ],
+  "profiles": [
+    {
+      "id": "monch2013-horse-dung-A",
+      "material": "horse_manure",
+      "material_state": "fresh_solid",
+      "source_id": "monch2013",
+      "verification_stage": "APPROVED_FOR_ESTIMATION",
+      "approved_scope": "Tables 3 and 8, barn A: TS 23.19% FM, VS 20.51% FM, observed 0.176 Nm3 CH4/kg VS",
+      "density_kg_l": null,
+      "ts_fraction": {
+        "low": 0.2319,
+        "high": 0.2319,
+        "locator": "Tables 3 and 8, barn A: TS 23.19% FM, VS 20.51% FM, observed 0.176 Nm3 CH4/kg VS"
+      },
+      "vs_fraction_wet": {
+        "low": 0.2051,
+        "high": 0.2051,
+        "locator": "Tables 3 and 8, barn A: TS 23.19% FM, VS 20.51% FM, observed 0.176 Nm3 CH4/kg VS"
+      },
+      "bmp_ml_g_vs": {
+        "low": 176,
+        "high": 176,
+        "locator": "Tables 3 and 8, barn A: TS 23.19% FM, VS 20.51% FM, observed 0.176 Nm3 CH4/kg VS"
+      },
+      "cn_ratio": null,
+      "ph": null,
+      "preparation": "Barn A; dried 60 C, milled 1 mm before HBT. No population interval.",
+      "decay_states": [
+        "unknown",
+        "fresh"
+      ],
+      "beddings": [
+        "none",
+        "unknown"
+      ]
+    },
+    {
+      "id": "monch2013-straw-A",
+      "material": "straw",
+      "material_state": "dry",
+      "source_id": "monch2013",
+      "verification_stage": "APPROVED_FOR_ESTIMATION",
+      "approved_scope": "Tables 2 and 7, barn A: TS 81.77% FM, VS 75.61% FM, observed 0.214 Nm3 CH4/kg VS",
+      "density_kg_l": null,
+      "ts_fraction": {
+        "low": 0.8177,
+        "high": 0.8177,
+        "locator": "Tables 2 and 7, barn A: TS 81.77% FM, VS 75.61% FM, observed 0.214 Nm3 CH4/kg VS"
+      },
+      "vs_fraction_wet": {
+        "low": 0.7561,
+        "high": 0.7561,
+        "locator": "Tables 2 and 7, barn A: TS 81.77% FM, VS 75.61% FM, observed 0.214 Nm3 CH4/kg VS"
+      },
+      "bmp_ml_g_vs": {
+        "low": 214,
+        "high": 214,
+        "locator": "Tables 2 and 7, barn A: TS 81.77% FM, VS 75.61% FM, observed 0.214 Nm3 CH4/kg VS"
+      },
+      "cn_ratio": null,
+      "ph": null,
+      "preparation": "Barn A; dried 60 C, milled 1 mm before HBT. No population interval.",
+      "decay_states": [
+        "unknown",
+        "fresh"
+      ],
+      "beddings": [
+        "unknown",
+        "none"
+      ]
+    },
+    {
+      "id": "pham2013-pig-vdi",
+      "material": "swine_manure",
+      "material_state": "slurry",
+      "source_id": "pham2013",
+      "verification_stage": "APPROVED_FOR_ESTIMATION",
+      "approved_scope": "Table 2 paired with VDI methane row of Table 3, not theoretical BMP",
+      "density_kg_l": null,
+      "ts_fraction": {
+        "low": 0.0318,
+        "high": 0.0318,
+        "locator": "Table 2: 3.18% total mass; SD .2 percentage points"
+      },
+      "vs_fraction_wet": {
+        "low": 0.02275,
+        "high": 0.02275,
+        "locator": "Table 2: 22.75 g/kg fresh mass; SD .6 g/kg"
+      },
+      "bmp_ml_g_vs": {
+        "low": 207.84,
+        "high": 207.84,
+        "locator": "Table 3: VDI CH4 pig, 207.84 NL/kg VS; reported SD 1.97, not a prediction interval"
+      },
+      "cn_ratio": null,
+      "ph": 7.71,
+      "preparation": "Fattening pig manure from Fangel biogas plant; VDI assay at 37 C",
+      "reported_sd_bmp_ml_g_vs": 1.97,
+      "beddings": [
+        "unknown",
+        "none"
+      ]
+    }
+  ],
+  "partial_characterizations": [
+    {
+      "material": "cattle_manure",
+      "status": "PARTIAL_ONLY",
+      "density_profile_available": true,
+      "bmp_available": false,
+      "reason": "No coherent measured dry or straw-bedded cattle BMP/TS/VS/density set; dry and straw scenarios require explicit cross-study assumptions."
+    },
+    {
+      "material": "swine_manure",
+      "status": "PARTIAL_ONLY",
+      "density_profile_available": true,
+      "bmp_available": true,
+      "reason": "Pham VDI profile approved for slurry only; Baek pure-pig RSM vertex remains excluded."
+    },
+    {
+      "material": "poultry_manure",
+      "status": "PARTIAL_ONLY",
+      "density_profile_available": true,
+      "bmp_available": false,
+      "reason": "Reference density only; ammonia-sensitive material, no approved matched BMP set."
+    },
+    {
+      "material": "sheep_goat_manure",
+      "status": "PARTIAL_ONLY",
+      "density_profile_available": true,
+      "bmp_available": false,
+      "reason": "Reference density only; no approved local matched BMP set."
+    },
+    {
+      "material": "plant_residue",
+      "status": "PARTIAL_ONLY",
+      "density_profile_available": false,
+      "bmp_available": false,
+      "reason": "No universal BMP for heterogeneous plant residues."
+    },
+    {
+      "material": "grass",
+      "status": "PARTIAL_ONLY",
+      "density_profile_available": false,
+      "bmp_available": false,
+      "reason": "Existing co-digestion experiment is not mono grass BMP."
+    }
+  ],
+  "source_access": {
+    "mdpi_horse2026": "429; excluded from numerical profiles",
+    "pmc_pham2013": "CAPTCHA, not bypassed; lawful primary PDF mirror 200, downloaded and tables visually reviewed",
+    "alberta": "Official PDF text reviewed",
+    "cigr": "Primary full PDF reviewed"
+  }
+}

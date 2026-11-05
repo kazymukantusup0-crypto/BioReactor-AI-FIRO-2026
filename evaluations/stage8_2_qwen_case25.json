@@ -1,0 +1,129 @@
+{
+  "model": "qwen3:8b",
+  "provider": "Ollama loopback /api/chat",
+  "online_research": false,
+  "criteria": [
+    "real local model calls recorded",
+    "actual tool calls, validation errors and numeric grounding saved",
+    "no synthetic market or sensor data"
+  ],
+  "requested_case_ids": [
+    "25_chat_calculator_agreement"
+  ],
+  "cases": [
+    {
+      "id": "25_chat_calculator_agreement",
+      "turns": [
+        {
+          "prompt": "A lab reports 250 mL CH4/g VS on a 273.2 K, 1.01325 bar gas basis. The sample contains 2 kg measured VS. Calculate its methane reference and show the exact calculation inputs.",
+          "answer": "The methane reference is 0.5 m³ under the given conditions.",
+          "mode": "qwen_autonomous_tools",
+          "analysis_version": "8.2",
+          "provider_calls": 4,
+          "tool_calls": [
+            {
+              "tool": "calculate_methane",
+              "status": "ok",
+              "input_origin": "validated_dialogue_state_and_typed_tool_request",
+              "result": {
+                "status": "ok",
+                "message": "Потенциальный метан: 0.5 м³. Условия объёма: 273.2 K; 1.01325 bar; moisture not specified. Это BMP-потенциал, не фактическая выработка реактора.",
+                "potential_methane_m3": 0.5,
+                "bmp_ml_ch4_g_vs": 250.0,
+                "vs_mass_kg": 2.0,
+                "gas_volume_basis": "273.2 K; 1.01325 bar; moisture not specified",
+                "sources": []
+              }
+            }
+          ],
+          "pending_question": null,
+          "memory_language": "en",
+          "numeric_claims_grounded": true,
+          "numeric_grounding_rejections": [],
+          "autonomous_termination": "provider_action_failed",
+          "validation_errors": [],
+          "generation_metrics": [
+            {
+              "input_characters": 3403,
+              "request_bytes": 4379,
+              "status": "ok",
+              "prompt_tokens": 897,
+              "output_tokens": 127,
+              "done_reason": "stop",
+              "load_seconds": 0.0100525,
+              "generation_seconds": 9.68421,
+              "tokens_per_second": 13.114131147507127,
+              "latency_seconds": 11.240075699985027
+            },
+            {
+              "input_characters": 3551,
+              "request_bytes": 4591,
+              "status": "ok",
+              "prompt_tokens": 981,
+              "output_tokens": 150,
+              "done_reason": "stop",
+              "load_seconds": 0.0089319,
+              "generation_seconds": 11.263045,
+              "tokens_per_second": 13.317890499416455,
+              "latency_seconds": 11.930965700070374
+            },
+            {
+              "input_characters": 3734,
+              "request_bytes": 4740,
+              "status": "ok",
+              "prompt_tokens": 1020,
+              "output_tokens": 165,
+              "done_reason": "stop",
+              "load_seconds": 0.0085598,
+              "generation_seconds": 12.243937,
+              "tokens_per_second": 13.476057578538667,
+              "latency_seconds": 14.6481603999855
+            }
+          ],
+          "missing": [],
+          "latency_seconds": 51.434
+        }
+      ],
+      "latency_seconds": 51.434,
+      "calculator_agreement": {
+        "inputs": {
+          "bmp_ml_ch4_g_vs": 250.0,
+          "vs_mass_kg": 2.0,
+          "bmp_unit": "mL CH4/g VS",
+          "gas_volume_basis": "273.2 K; 1.01325 bar"
+        },
+        "direct_calculator_m3": 0.5,
+        "chat_tool_m3": null,
+        "answer_mentions_value": true,
+        "numeric_claims_grounded": true,
+        "agrees": false
+      }
+    }
+  ],
+  "status": "complete",
+  "summary": {
+    "completed_scenarios": 1,
+    "user_turns": 1,
+    "ollama_generation_calls": 4,
+    "autonomous_tool_turns": 1,
+    "tool_calls": 1,
+    "grounded_final_answers": 1,
+    "chat_calculator_agreement": {
+      "inputs": {
+        "bmp_ml_ch4_g_vs": 250.0,
+        "vs_mass_kg": 2.0,
+        "bmp_unit": "mL CH4/g VS",
+        "gas_volume_basis": "273.2 K; 1.01325 bar"
+      },
+      "direct_calculator_m3": 0.5,
+      "chat_tool_m3": null,
+      "answer_mentions_value": true,
+      "numeric_claims_grounded": true,
+      "agrees": false
+    },
+    "termination_reasons": {
+      "provider_action_failed": 1
+    },
+    "elapsed_seconds": 51.43
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "passed": true,
+  "checks": [
+    "Real catalog rendered with separate supported-profile counts",
+    "Simple mode is default",
+    "Three real UI rows sent with 50/20/10 amounts",
+    "Missing grass prevents false full-mixture yield",
+    "Scientific view reuses identical calculation",
+    "Scientific details expand without re-query",
+    "Real UI comparison has three stock-constrained cases and no optimum",
+    "Desktop no page overflow",
+    "Mobile no page overflow",
+    "Actual persisted mixture conversation is displayed",
+    "Human text hides technical status codes",
+    "Real browser edit retains confirmed cattle quantity",
+    "Preserved route overview",
+    "Preserved route reactor",
+    "Preserved route prediction",
+    "Preserved route market",
+    "Preserved route economics",
+    "Preserved route science",
+    "Preserved route optimizer",
+    "Preserved route experiments",
+    "Preserved route system",
+    "Preserved route demo",
+    "Preserved route advisor",
+    "Existing sections remain reachable through scrolling sidebar",
+    "No browser JavaScript errors"
+  ],
+  "errors": []
+}
