@@ -1,0 +1,93 @@
+{
+  "test": "measured_gas_balance_smoke",
+  "prompt": "??? ??????? ???????? 0.42 ?? ?????? ??????? ? 58% CH? ?? ??? ?? ????? ????. ????????? ?????????? ????? CH?, ?????, ??? ??? ?????? ?????????, ? ?? BMP.",
+  "session_id": "670b7656911444e88a877926dee8399b",
+  "request_id": "03cf20b39185461eb697564c4ca534f5",
+  "job_id": "4771b82b174d45b092f8da125fc042b4",
+  "job_status": "COMPLETED",
+  "actual_qwen_generation": true,
+  "answer": "Для научной оценки не хватает исходных данных:\n\nThe substrate type or mixture is unspecified, so compatible TS, VS and BMP cannot be selected for a numerical scenario.\n\nWhat material are you planning to digest?",
+  "tools": [
+    {
+      "tool": "assess_substrate_potential",
+      "status": "needs_input",
+      "input_origin": "validated_scientific_state",
+      "query": null,
+      "result": {
+        "status": "needs_input",
+        "message": "The local profile index was inspected; specific missing batch inputs are listed.",
+        "missing": [
+          "material_identity_or_component_inventory",
+          "batch_quantity"
+        ],
+        "scenarios": [],
+        "catalog_checked": true,
+        "available_profile_ids": [],
+        "known_quantity": null
+      }
+    }
+  ],
+  "provider_status": [
+    {
+      "provider": "offline",
+      "model": "qwen3:8b",
+      "status": "available",
+      "actual_generation": true,
+      "phase": "structured_nlu",
+      "requests": [
+        {
+          "input_characters": 692,
+          "request_bytes": 2132,
+          "status": "ok",
+          "prompt_tokens": 191,
+          "output_tokens": 119,
+          "done_reason": "stop",
+          "load_seconds": 9.1817002,
+          "generation_seconds": 15.982415,
+          "tokens_per_second": 7.4456832712703305,
+          "latency_seconds": 26.552713699999913
+        }
+      ]
+    },
+    {
+      "provider": "offline",
+      "model": "qwen3:8b",
+      "phase": "v9_tool_selection",
+      "actual_generation": true,
+      "requests": [
+        {
+          "input_characters": 1952,
+          "request_bytes": 2862,
+          "status": "ok",
+          "prompt_tokens": 487,
+          "output_tokens": 45,
+          "done_reason": "stop",
+          "load_seconds": 0.011836,
+          "generation_seconds": 4.975164,
+          "tokens_per_second": 9.044927966193677,
+          "latency_seconds": 8.170295700000679
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "status": "insufficient_evidence",
+    "outcome": "insufficient_evidence",
+    "checks": [],
+    "checked": false,
+    "all_checks_passed": false,
+    "unsupported_tools": [],
+    "missing_verification_evidence": [
+      "assess_substrate_potential.scenarios"
+    ],
+    "scope": "Arithmetic, source identity, material/form, energy allocation and cost completeness; not biological validation, interval coverage or operating safety."
+  },
+  "diagnostics": [],
+  "state_version": 1,
+  "gpu_samples": [
+    "59, 13, 915, P8",
+    "64, 5, 2134, P0",
+    "63, 23, 2139, P5",
+    "69, 5, 2138, P0"
+  ]
+}

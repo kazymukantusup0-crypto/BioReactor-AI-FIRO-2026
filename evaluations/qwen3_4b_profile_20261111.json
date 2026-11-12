@@ -1,0 +1,25 @@
+{
+  "purpose": "isolated experimental profile; not a production configuration",
+  "status": "BLOCKED",
+  "model": "qwen3:4b-q4_K_M",
+  "expected_quantization": "Q4_K_M",
+  "ollama_version_observed": "0.40.16",
+  "request_options": {"num_ctx": 4096, "num_batch": 32, "num_gpu": -1},
+  "keep_alive": 0,
+  "client_max_in_flight": 1,
+  "server_parallelism": "not changed; OLLAMA_NUM_PARALLEL not present in observed server environment; effective behavior not measured",
+  "gpu_placement": "automatic; no guarantee of full GPU placement",
+  "profiling_admission": {
+    "rule": "Three samples plus model-specific bounded load peak, commit peak, OS reserve and measured abort margin. Missing bounds mean BLOCKED.",
+    "model_specific_peak_ram_mib": null,
+    "model_specific_peak_commit_mib": null,
+    "model_specific_peak_vram_mib": null,
+    "model_specific_abort_latency_seconds": null,
+    "os_reserve_and_margin_mib": null,
+    "reason": "No defensible 4B-specific memory peak, reserve or stop-latency bound; disk file size and idle free VRAM do not bound cold-start host RAM."
+  },
+  "telemetry_artifact": "../reports/qwen3_4b_preflight_20261111.json",
+  "production_model": "qwen3:8b",
+  "production_modified": false,
+  "integration": "OLLAMA_MODEL supports selection in a separate process; provider and server do not currently guarantee all experimental settings; no production switch made."
+}

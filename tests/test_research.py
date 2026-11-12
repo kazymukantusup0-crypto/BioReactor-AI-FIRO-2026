@@ -28,6 +28,8 @@ class ResearchTests(unittest.TestCase):
         self.cat=catalog()
         self.env=patch.dict(os.environ,{'BIOREACTOR_RESEARCH_ONLINE':'0'});self.env.start();self.addCleanup(self.env.stop)
     def calc(self,**changes):
+        # TEST input: preserve the published-sample benchmark with explicit density.
+        changes.setdefault('density_kg_l',1.013)
         return estimate(EstimateRequest(volume_l=142,**changes),self.cat['profiles'],self.cat['energy_reference'])
     def fixture(self):
         # Explicit synthetic TEST HTML only for parser contract; never imported into production prices.
@@ -48,7 +50,7 @@ class ResearchTests(unittest.TestCase):
     def test_other_species_not_silently_pooled(self):self.assertIsNone(self.calc(material='swine_manure')['methane_potential_m3'])
     def test_all_measured_inputs_independent_of_profile(self):
         r=self.calc(material='swine_manure',density_kg_l=1,vs_mass_kg=10,bmp_ml_g_vs=250,gas_reference='dry STP')
-        self.assertEqual(r['result_level'],'MEASURED');self.assertEqual(r['methane_potential_l'],{'low':2500,'high':2500})
+        self.assertEqual(r['result_level'],'CALCULATED');self.assertEqual(r['methane_potential_l'],{'low':2500,'high':2500})
     def test_partial_measured_solids_not_overwritten(self):self.assertIsNone(self.calc(ts_fraction=.05)['methane_potential_m3'])
     def test_wet_vs_not_multiplied_by_ts_again(self):
         r=self.calc(density_kg_l=1,ts_fraction=.2,vs_fraction_wet=.1,bmp_ml_g_vs=300,gas_reference='test reference')
@@ -101,18 +103,18 @@ class ResearchTests(unittest.TestCase):
         r=scientific_search(self.evidence,'swine_manure',online=True,fetcher=lambda _:raw)
         self.assertEqual(r['reviewed_profiles'],[]);self.assertIn('NOT_FOR_CALCULATION',r['discovered'][0]['verification_status'])
     def test_no_buyer_bid_no_net_income(self):
-        r=research_and_estimate(self.store,EstimateRequest(volume_l=142,online=True),lambda url: self.fixture() if 'stroitaxi' in url else b'{"message":{"items":[]}}')
+        r=research_and_estimate(self.store,EstimateRequest(volume_l=142,density_kg_l=1.013,online=True),lambda url: self.fixture() if 'stroitaxi' in url else b'{"message":{"items":[]}}')
         self.assertAlmostEqual(r['catalog_reference_value_kzt']['low'],100.6922)
         self.assertIsNone(r['economic_comparison']['ranking']);self.assertIsNone(r['gas_sale_revenue'])
         with self.store.connect() as con:self.assertEqual(con.execute('SELECT count(*) FROM observations').fetchone()[0],0)
     def test_existing_profitability_calculator_used_only_with_explicit_prices(self):
         inputs={'sale_price_per_kg':1,'recovery_fraction':.5,'methane_price_per_m3':100,'preparation_cost':10,'heating_cost':20,'operating_cost':30,'currency':'KZT','price_date':'2026-10-29','price_gas_volume_basis':'273.2 K; 1.01325 bar'}
-        r=research_and_estimate(self.store,EstimateRequest(volume_l=142,economic_inputs=inputs))
+        r=research_and_estimate(self.store,EstimateRequest(volume_l=142,density_kg_l=1.013,economic_inputs=inputs))
         economic=r['user_economic_scenario'];self.assertEqual(economic['status'],'ok')
         self.assertAlmostEqual(economic['endpoints'][0]['processing_net_profit'],2.92295072*.5*100-60)
         self.assertIsNone(economic['final_recommendation']);self.assertIsNone(r['net_profit'])
         inputs['price_gas_volume_basis']='different TEST gas reference'
-        r=research_and_estimate(self.store,EstimateRequest(volume_l=142,economic_inputs=inputs))
+        r=research_and_estimate(self.store,EstimateRequest(volume_l=142,density_kg_l=1.013,economic_inputs=inputs))
         self.assertEqual(r['user_economic_scenario']['status'],'invalid_input')
     def test_user_example_multiturn_does_not_pollute_facts(self):
         agent=ConversationAgent(llm=HybridLLM(providers=[]),registry=ToolRegistry(self.store),research_enabled=True)

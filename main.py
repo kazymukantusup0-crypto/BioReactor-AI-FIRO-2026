@@ -29,6 +29,7 @@ def main():
     dashboard.add_argument('--port',type=int,default=8765)
     dashboard.add_argument('--no-browser',action='store_true')
     dashboard.add_argument('--no-scheduler',action='store_true')
+    dashboard.add_argument('--firo-demo',action='store_true',help='Experimental FIRO MVP with a separate local database')
     knowledge=sub.add_parser('knowledge',help='Validated operator-reviewed scientific source documents')
     knowledge_commands=knowledge.add_subparsers(dest='knowledge_command',required=True)
     knowledge_import=knowledge_commands.add_parser('import')

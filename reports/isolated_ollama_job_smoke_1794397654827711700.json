@@ -1,0 +1,50 @@
+{
+  "start": "2026-11-11T16:47:26.814264+05:00",
+  "port": 11479,
+  "model_inference": "NOT RUN",
+  "status": "PASSED",
+  "steps": {
+    "server_in_job": "PASS",
+    "qa_api": "PASS",
+    "empty_model_store": "PASS",
+    "qa_tree_stopped": "PASS",
+    "qa_port_closed": "PASS",
+    "production_api_survived": "PASS"
+  },
+  "production_before": {
+    "version": {
+      "version": "0.40.16"
+    },
+    "ps": {
+      "models": []
+    }
+  },
+  "server_pid": 33344,
+  "qa_version": {
+    "version": "0.40.16"
+  },
+  "qa_ps": {
+    "models": []
+  },
+  "qa_models": {
+    "models": []
+  },
+  "production_during": {
+    "version": {
+      "version": "0.40.16"
+    },
+    "ps": {
+      "models": []
+    }
+  },
+  "termination_seconds": 0.053,
+  "production_after": {
+    "version": {
+      "version": "0.40.16"
+    },
+    "ps": {
+      "models": []
+    }
+  },
+  "end": "2026-11-11T16:47:34.827449+05:00"
+}

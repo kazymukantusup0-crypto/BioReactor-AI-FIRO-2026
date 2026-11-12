@@ -1,0 +1,12 @@
+{
+  "comparison": "Historical rc3 artifact hashes, not an audit-start git baseline",
+  "all_unchanged": true,
+  "files": {
+    "models\\bmp.joblib": true,
+    "models\\features.json": true,
+    "models\\metadata.json": true,
+    "models\\stage1_5\\bmp.joblib": true,
+    "models\\stage1_5\\features.json": true,
+    "models\\stage1_5\\metadata.json": true
+  }
+}

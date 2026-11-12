@@ -1,0 +1,116 @@
+{
+  "scope": "REAL_BROWSER_CHAT_WITH_EXISTING_GUARDED_QWEN4B_PROVIDER",
+  "trace": "../reports/qwen4b_manual_qa/limited_chat_1794471880875053300.json",
+  "checks": [
+    "Live browser job completed",
+    "Real 4B generation received",
+    "Accepted model explanation, not fallback",
+    "Scientific verifier ran",
+    "Target model unloaded",
+    "Live section delivered: Краткий вывод",
+    "Live section delivered: Объяснение консультанта",
+    "Live section delivered: Оценка метана",
+    "Live section delivered: Температура и энергия",
+    "Live section delivered: Экономическая оценка",
+    "Live section delivered: Практические ограничения",
+    "New live answer survives reload",
+    "No browser JS errors"
+  ],
+  "errors": [],
+  "requests": [
+    {
+      "url": "http://127.0.0.1:8770/api/dashboard/status",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8770/api/dashboard/chat/sessions",
+      "method": "POST"
+    },
+    {
+      "url": "http://127.0.0.1:8770/api/dashboard/chat/sessions/a9ab657d73c04527b1de10382ed43aeb",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8770/api/dashboard/chat/sessions/a9ab657d73c04527b1de10382ed43aeb",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8770/api/dashboard/chat/sessions/a9ab657d73c04527b1de10382ed43aeb/jobs",
+      "method": "POST"
+    },
+    {
+      "url": "http://127.0.0.1:8770/api/dashboard/chat/sessions/a9ab657d73c04527b1de10382ed43aeb",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8770/api/dashboard/chat/sessions/a9ab657d73c04527b1de10382ed43aeb",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8770/api/dashboard/chat/sessions/a9ab657d73c04527b1de10382ed43aeb",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8770/api/dashboard/chat/sessions/a9ab657d73c04527b1de10382ed43aeb",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8770/api/dashboard/chat/sessions/a9ab657d73c04527b1de10382ed43aeb",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8770/api/dashboard/chat/sessions/a9ab657d73c04527b1de10382ed43aeb",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8770/api/dashboard/chat/sessions/a9ab657d73c04527b1de10382ed43aeb",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8770/api/dashboard/chat/sessions/a9ab657d73c04527b1de10382ed43aeb",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8770/api/dashboard/chat/sessions/a9ab657d73c04527b1de10382ed43aeb",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8770/api/dashboard/chat/sessions/a9ab657d73c04527b1de10382ed43aeb",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8770/api/dashboard/chat/sessions/a9ab657d73c04527b1de10382ed43aeb",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8770/api/dashboard/chat/sessions/a9ab657d73c04527b1de10382ed43aeb",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8770/api/dashboard/chat/sessions/a9ab657d73c04527b1de10382ed43aeb",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8770/api/dashboard/chat/sessions/a9ab657d73c04527b1de10382ed43aeb",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8770/api/dashboard/jobs/473c09140dac4588ad96cec34fd7e509/ack",
+      "method": "POST"
+    },
+    {
+      "url": "http://127.0.0.1:8770/api/dashboard/chat/sessions/a9ab657d73c04527b1de10382ed43aeb",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8770/api/dashboard/status",
+      "method": "GET"
+    }
+  ],
+  "live": {
+    "status": "COMPLETED",
+    "job": "473c09140dac4588ad96cec34fd7e509",
+    "artifact": "../reports/farmer_consultant_20261112/browser_live_result.json"
+  },
+  "status": "PASSED"
+}

@@ -70,8 +70,8 @@ def evaluate_economics(store, parameters, methane, energy):
         result['payback'].update(status='CONDITIONAL',annual_incremental_net_cashflow=annual,
             simple_payback_years=extras['capital_cost']/annual if annual>0 else None,
             reason='Annual cycle count is a user scenario, not established reactor capacity.' if annual>0 else 'No positive incremental cash flow; finite payback is not established.')
-    if parameters.assumptions or parameters.bmp_provenance=='scenario_assumption':
+    if parameters.assumptions or parameters.bmp_provenance in {'scenario_assumption','user_reported'}:
         result['final_recommendation']=None
         result['is_final_recommendation']=False
-        result['recommendation_scope']='explicit_hypothetical_process_inputs_only'
+        result['recommendation_scope']='explicit_hypothetical_process_inputs_only' if parameters.assumptions or parameters.bmp_provenance=='scenario_assumption' else 'unverified_user_reported_bmp'
     return result

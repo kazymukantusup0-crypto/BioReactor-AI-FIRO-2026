@@ -1,0 +1,3053 @@
+{
+  "status": "COMPLETED",
+  "samples": [
+    {
+      "index": 1,
+      "timestamp_local": "2026-11-11T17:38:54.544519+05:00",
+      "free_ram_mib": 7164.9,
+      "commit": {
+        "commit_total_mib": 14120.3,
+        "commit_limit_mib": 34864.1,
+        "commit_headroom_mib": 20743.8,
+        "physical_available_mib": 7164.9
+      },
+      "gpu": {
+        "name": "NVIDIA GeForce RTX 3070 Laptop GPU",
+        "temperature_c": 58.0,
+        "utilization_pct": 9.0,
+        "vram_used_mib": 590,
+        "vram_total_mib": 8192,
+        "hw_thermal_slowdown": "Not Active",
+        "sw_thermal_slowdown": "Not Active",
+        "active_throttle_reasons": "0x0000000000000001"
+      },
+      "ollama_processes": [
+        {
+          "pid": 12880,
+          "name": "ollama app.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe"
+          ],
+          "ppid": 12444,
+          "parent_name": "explorer.exe",
+          "parent_exe": "C:\\Windows\\explorer.exe",
+          "created_local": "2026-11-11T11:28:12.035457+05:00",
+          "threads": 16,
+          "handles": 449,
+          "working_set_mib": 47.4,
+          "private_working_set_mib": 6.2,
+          "private_bytes_mib": 53.5,
+          "virtual_bytes_mib": 53.5,
+          "peak_working_set_mib": 79.8,
+          "peak_private_bytes_mib": 53.9
+        },
+        {
+          "pid": 15836,
+          "name": "ollama.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+            "serve"
+          ],
+          "ppid": 12880,
+          "parent_name": "ollama app.exe",
+          "parent_exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe",
+          "created_local": "2026-11-11T11:28:13.213266+05:00",
+          "threads": 36,
+          "handles": 615,
+          "working_set_mib": 44.7,
+          "private_working_set_mib": 8.5,
+          "private_bytes_mib": 101.1,
+          "virtual_bytes_mib": 101.1,
+          "peak_working_set_mib": 53.8,
+          "peak_private_bytes_mib": 107.0
+        }
+      ],
+      "api_version": {
+        "version": "0.40.16"
+      },
+      "running_models": []
+    },
+    {
+      "index": 2,
+      "timestamp_local": "2026-11-11T17:38:54.883159+05:00",
+      "free_ram_mib": 7140.3,
+      "commit": {
+        "commit_total_mib": 14129.0,
+        "commit_limit_mib": 34864.1,
+        "commit_headroom_mib": 20735.1,
+        "physical_available_mib": 7139.5
+      },
+      "gpu": {
+        "name": "NVIDIA GeForce RTX 3070 Laptop GPU",
+        "temperature_c": 58.0,
+        "utilization_pct": 26.0,
+        "vram_used_mib": 590,
+        "vram_total_mib": 8192,
+        "hw_thermal_slowdown": "Not Active",
+        "sw_thermal_slowdown": "Not Active",
+        "active_throttle_reasons": "0x0000000000000001"
+      },
+      "ollama_processes": [
+        {
+          "pid": 12880,
+          "name": "ollama app.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe"
+          ],
+          "ppid": 12444,
+          "parent_name": "explorer.exe",
+          "parent_exe": "C:\\Windows\\explorer.exe",
+          "created_local": "2026-11-11T11:28:12.035457+05:00",
+          "threads": 16,
+          "handles": 449,
+          "working_set_mib": 47.4,
+          "private_working_set_mib": 6.2,
+          "private_bytes_mib": 53.5,
+          "virtual_bytes_mib": 53.5,
+          "peak_working_set_mib": 79.8,
+          "peak_private_bytes_mib": 53.9
+        },
+        {
+          "pid": 15836,
+          "name": "ollama.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+            "serve"
+          ],
+          "ppid": 12880,
+          "parent_name": "ollama app.exe",
+          "parent_exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe",
+          "created_local": "2026-11-11T11:28:13.213266+05:00",
+          "threads": 36,
+          "handles": 610,
+          "working_set_mib": 45.0,
+          "private_working_set_mib": 8.8,
+          "private_bytes_mib": 101.1,
+          "virtual_bytes_mib": 101.1,
+          "peak_working_set_mib": 53.8,
+          "peak_private_bytes_mib": 107.0
+        },
+        {
+          "pid": 29328,
+          "name": "llama-server.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\lib\\ollama\\llama-server.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\lib\\ollama\\llama-server.exe",
+            "--port",
+            "61563",
+            "--host",
+            "127.0.0.1",
+            "--no-webui",
+            "--offline",
+            "--verbose"
+          ],
+          "ppid": 15836,
+          "parent_name": "ollama.exe",
+          "parent_exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+          "created_local": "2026-11-11T17:38:54.642455+05:00",
+          "threads": 4,
+          "handles": 45,
+          "working_set_mib": 3.4,
+          "private_working_set_mib": 0.4,
+          "private_bytes_mib": 0.7,
+          "virtual_bytes_mib": 0.7,
+          "peak_working_set_mib": 3.4,
+          "peak_private_bytes_mib": 0.7
+        }
+      ],
+      "api_version": {
+        "version": "0.40.16"
+      },
+      "running_models": []
+    },
+    {
+      "index": 3,
+      "timestamp_local": "2026-11-11T17:38:55.244325+05:00",
+      "free_ram_mib": 7126.9,
+      "commit": {
+        "commit_total_mib": 14149.0,
+        "commit_limit_mib": 34864.1,
+        "commit_headroom_mib": 20715.1,
+        "physical_available_mib": 7126.9
+      },
+      "gpu": {
+        "name": "NVIDIA GeForce RTX 3070 Laptop GPU",
+        "temperature_c": 58.0,
+        "utilization_pct": 26.0,
+        "vram_used_mib": 590,
+        "vram_total_mib": 8192,
+        "hw_thermal_slowdown": "Not Active",
+        "sw_thermal_slowdown": "Not Active",
+        "active_throttle_reasons": "0x0000000000000001"
+      },
+      "ollama_processes": [
+        {
+          "pid": 12880,
+          "name": "ollama app.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe"
+          ],
+          "ppid": 12444,
+          "parent_name": "explorer.exe",
+          "parent_exe": "C:\\Windows\\explorer.exe",
+          "created_local": "2026-11-11T11:28:12.035457+05:00",
+          "threads": 16,
+          "handles": 449,
+          "working_set_mib": 47.4,
+          "private_working_set_mib": 6.2,
+          "private_bytes_mib": 53.5,
+          "virtual_bytes_mib": 53.5,
+          "peak_working_set_mib": 79.8,
+          "peak_private_bytes_mib": 53.9
+        },
+        {
+          "pid": 15836,
+          "name": "ollama.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+            "serve"
+          ],
+          "ppid": 12880,
+          "parent_name": "ollama app.exe",
+          "parent_exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe",
+          "created_local": "2026-11-11T11:28:13.213266+05:00",
+          "threads": 36,
+          "handles": 610,
+          "working_set_mib": 45.0,
+          "private_working_set_mib": 8.8,
+          "private_bytes_mib": 101.2,
+          "virtual_bytes_mib": 101.2,
+          "peak_working_set_mib": 53.8,
+          "peak_private_bytes_mib": 107.0
+        },
+        {
+          "pid": 29328,
+          "name": "llama-server.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\lib\\ollama\\llama-server.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\lib\\ollama\\llama-server.exe",
+            "--port",
+            "61563",
+            "--host",
+            "127.0.0.1",
+            "--no-webui",
+            "--offline",
+            "--verbose"
+          ],
+          "ppid": 15836,
+          "parent_name": "ollama.exe",
+          "parent_exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+          "created_local": "2026-11-11T17:38:54.642455+05:00",
+          "threads": 6,
+          "handles": 61,
+          "working_set_mib": 8.4,
+          "private_working_set_mib": 2.1,
+          "private_bytes_mib": 2.7,
+          "virtual_bytes_mib": 2.7,
+          "peak_working_set_mib": 8.8,
+          "peak_private_bytes_mib": 3.5
+        }
+      ],
+      "api_version": {
+        "version": "0.40.16"
+      },
+      "running_models": []
+    },
+    {
+      "index": 4,
+      "timestamp_local": "2026-11-11T17:38:55.599617+05:00",
+      "free_ram_mib": 7123.6,
+      "commit": {
+        "commit_total_mib": 14154.0,
+        "commit_limit_mib": 34864.1,
+        "commit_headroom_mib": 20710.1,
+        "physical_available_mib": 7123.0
+      },
+      "gpu": {
+        "name": "NVIDIA GeForce RTX 3070 Laptop GPU",
+        "temperature_c": 58.0,
+        "utilization_pct": 26.0,
+        "vram_used_mib": 590,
+        "vram_total_mib": 8192,
+        "hw_thermal_slowdown": "Not Active",
+        "sw_thermal_slowdown": "Not Active",
+        "active_throttle_reasons": "0x0000000000000001"
+      },
+      "ollama_processes": [
+        {
+          "pid": 12880,
+          "name": "ollama app.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe"
+          ],
+          "ppid": 12444,
+          "parent_name": "explorer.exe",
+          "parent_exe": "C:\\Windows\\explorer.exe",
+          "created_local": "2026-11-11T11:28:12.035457+05:00",
+          "threads": 16,
+          "handles": 449,
+          "working_set_mib": 47.4,
+          "private_working_set_mib": 6.2,
+          "private_bytes_mib": 53.5,
+          "virtual_bytes_mib": 53.5,
+          "peak_working_set_mib": 79.8,
+          "peak_private_bytes_mib": 53.9
+        },
+        {
+          "pid": 15836,
+          "name": "ollama.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+            "serve"
+          ],
+          "ppid": 12880,
+          "parent_name": "ollama app.exe",
+          "parent_exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe",
+          "created_local": "2026-11-11T11:28:13.213266+05:00",
+          "threads": 36,
+          "handles": 610,
+          "working_set_mib": 45.0,
+          "private_working_set_mib": 8.9,
+          "private_bytes_mib": 101.2,
+          "virtual_bytes_mib": 101.2,
+          "peak_working_set_mib": 53.8,
+          "peak_private_bytes_mib": 107.0
+        },
+        {
+          "pid": 29328,
+          "name": "llama-server.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\lib\\ollama\\llama-server.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\lib\\ollama\\llama-server.exe",
+            "--port",
+            "61563",
+            "--host",
+            "127.0.0.1",
+            "--no-webui",
+            "--offline",
+            "--verbose"
+          ],
+          "ppid": 15836,
+          "parent_name": "ollama.exe",
+          "parent_exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+          "created_local": "2026-11-11T17:38:54.642455+05:00",
+          "threads": 6,
+          "handles": 61,
+          "working_set_mib": 8.4,
+          "private_working_set_mib": 2.1,
+          "private_bytes_mib": 2.7,
+          "virtual_bytes_mib": 2.7,
+          "peak_working_set_mib": 8.8,
+          "peak_private_bytes_mib": 3.5
+        }
+      ],
+      "api_version": {
+        "version": "0.40.16"
+      },
+      "running_models": []
+    },
+    {
+      "index": 5,
+      "timestamp_local": "2026-11-11T17:38:55.939738+05:00",
+      "free_ram_mib": 7138.7,
+      "commit": {
+        "commit_total_mib": 14135.3,
+        "commit_limit_mib": 34864.1,
+        "commit_headroom_mib": 20728.8,
+        "physical_available_mib": 7138.6
+      },
+      "gpu": {
+        "name": "NVIDIA GeForce RTX 3070 Laptop GPU",
+        "temperature_c": 58.0,
+        "utilization_pct": 16.0,
+        "vram_used_mib": 591,
+        "vram_total_mib": 8192,
+        "hw_thermal_slowdown": "Not Active",
+        "sw_thermal_slowdown": "Not Active",
+        "active_throttle_reasons": "0x0000000000000001"
+      },
+      "ollama_processes": [
+        {
+          "pid": 12880,
+          "name": "ollama app.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe"
+          ],
+          "ppid": 12444,
+          "parent_name": "explorer.exe",
+          "parent_exe": "C:\\Windows\\explorer.exe",
+          "created_local": "2026-11-11T11:28:12.035457+05:00",
+          "threads": 16,
+          "handles": 449,
+          "working_set_mib": 47.4,
+          "private_working_set_mib": 6.2,
+          "private_bytes_mib": 53.5,
+          "virtual_bytes_mib": 53.5,
+          "peak_working_set_mib": 79.8,
+          "peak_private_bytes_mib": 53.9
+        },
+        {
+          "pid": 15836,
+          "name": "ollama.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+            "serve"
+          ],
+          "ppid": 12880,
+          "parent_name": "ollama app.exe",
+          "parent_exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe",
+          "created_local": "2026-11-11T11:28:13.213266+05:00",
+          "threads": 36,
+          "handles": 610,
+          "working_set_mib": 45.0,
+          "private_working_set_mib": 8.9,
+          "private_bytes_mib": 101.2,
+          "virtual_bytes_mib": 101.2,
+          "peak_working_set_mib": 53.8,
+          "peak_private_bytes_mib": 107.0
+        },
+        {
+          "pid": 29328,
+          "name": "llama-server.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\lib\\ollama\\llama-server.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\lib\\ollama\\llama-server.exe",
+            "--port",
+            "61563",
+            "--host",
+            "127.0.0.1",
+            "--no-webui",
+            "--offline",
+            "--verbose"
+          ],
+          "ppid": 15836,
+          "parent_name": "ollama.exe",
+          "parent_exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+          "created_local": "2026-11-11T17:38:54.642455+05:00",
+          "threads": 6,
+          "handles": 66,
+          "working_set_mib": 9.5,
+          "private_working_set_mib": 2.8,
+          "private_bytes_mib": 4.0,
+          "virtual_bytes_mib": 4.0,
+          "peak_working_set_mib": 9.5,
+          "peak_private_bytes_mib": 4.0
+        }
+      ],
+      "api_version": {
+        "version": "0.40.16"
+      },
+      "running_models": []
+    },
+    {
+      "index": 6,
+      "timestamp_local": "2026-11-11T17:38:56.271818+05:00",
+      "free_ram_mib": 7129.7,
+      "commit": {
+        "commit_total_mib": 14146.9,
+        "commit_limit_mib": 34864.1,
+        "commit_headroom_mib": 20717.2,
+        "physical_available_mib": 7129.7
+      },
+      "gpu": {
+        "name": "NVIDIA GeForce RTX 3070 Laptop GPU",
+        "temperature_c": 58.0,
+        "utilization_pct": 16.0,
+        "vram_used_mib": 591,
+        "vram_total_mib": 8192,
+        "hw_thermal_slowdown": "Not Active",
+        "sw_thermal_slowdown": "Not Active",
+        "active_throttle_reasons": "0x0000000000000001"
+      },
+      "ollama_processes": [
+        {
+          "pid": 12880,
+          "name": "ollama app.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe"
+          ],
+          "ppid": 12444,
+          "parent_name": "explorer.exe",
+          "parent_exe": "C:\\Windows\\explorer.exe",
+          "created_local": "2026-11-11T11:28:12.035457+05:00",
+          "threads": 16,
+          "handles": 449,
+          "working_set_mib": 47.4,
+          "private_working_set_mib": 6.2,
+          "private_bytes_mib": 53.5,
+          "virtual_bytes_mib": 53.5,
+          "peak_working_set_mib": 79.8,
+          "peak_private_bytes_mib": 53.9
+        },
+        {
+          "pid": 15836,
+          "name": "ollama.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+            "serve"
+          ],
+          "ppid": 12880,
+          "parent_name": "ollama app.exe",
+          "parent_exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe",
+          "created_local": "2026-11-11T11:28:13.213266+05:00",
+          "threads": 36,
+          "handles": 610,
+          "working_set_mib": 45.0,
+          "private_working_set_mib": 8.9,
+          "private_bytes_mib": 101.2,
+          "virtual_bytes_mib": 101.2,
+          "peak_working_set_mib": 53.8,
+          "peak_private_bytes_mib": 107.0
+        },
+        {
+          "pid": 29328,
+          "name": "llama-server.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\lib\\ollama\\llama-server.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\lib\\ollama\\llama-server.exe",
+            "--port",
+            "61563",
+            "--host",
+            "127.0.0.1",
+            "--no-webui",
+            "--offline",
+            "--verbose"
+          ],
+          "ppid": 15836,
+          "parent_name": "ollama.exe",
+          "parent_exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+          "created_local": "2026-11-11T17:38:54.642455+05:00",
+          "threads": 6,
+          "handles": 66,
+          "working_set_mib": 9.6,
+          "private_working_set_mib": 2.8,
+          "private_bytes_mib": 4.3,
+          "virtual_bytes_mib": 4.3,
+          "peak_working_set_mib": 9.6,
+          "peak_private_bytes_mib": 4.3
+        }
+      ],
+      "api_version": {
+        "version": "0.40.16"
+      },
+      "running_models": []
+    },
+    {
+      "index": 7,
+      "timestamp_local": "2026-11-11T17:38:56.639600+05:00",
+      "free_ram_mib": 7110.9,
+      "commit": {
+        "commit_total_mib": 14168.9,
+        "commit_limit_mib": 34864.1,
+        "commit_headroom_mib": 20695.2,
+        "physical_available_mib": 7111.0
+      },
+      "gpu": {
+        "name": "NVIDIA GeForce RTX 3070 Laptop GPU",
+        "temperature_c": 58.0,
+        "utilization_pct": 16.0,
+        "vram_used_mib": 591,
+        "vram_total_mib": 8192,
+        "hw_thermal_slowdown": "Not Active",
+        "sw_thermal_slowdown": "Not Active",
+        "active_throttle_reasons": "0x0000000000000001"
+      },
+      "ollama_processes": [
+        {
+          "pid": 12880,
+          "name": "ollama app.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe"
+          ],
+          "ppid": 12444,
+          "parent_name": "explorer.exe",
+          "parent_exe": "C:\\Windows\\explorer.exe",
+          "created_local": "2026-11-11T11:28:12.035457+05:00",
+          "threads": 16,
+          "handles": 449,
+          "working_set_mib": 47.4,
+          "private_working_set_mib": 6.2,
+          "private_bytes_mib": 53.5,
+          "virtual_bytes_mib": 53.5,
+          "peak_working_set_mib": 79.8,
+          "peak_private_bytes_mib": 53.9
+        },
+        {
+          "pid": 15836,
+          "name": "ollama.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+            "serve"
+          ],
+          "ppid": 12880,
+          "parent_name": "ollama app.exe",
+          "parent_exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe",
+          "created_local": "2026-11-11T11:28:13.213266+05:00",
+          "threads": 36,
+          "handles": 610,
+          "working_set_mib": 45.1,
+          "private_working_set_mib": 9.0,
+          "private_bytes_mib": 101.3,
+          "virtual_bytes_mib": 101.3,
+          "peak_working_set_mib": 53.8,
+          "peak_private_bytes_mib": 107.0
+        },
+        {
+          "pid": 29328,
+          "name": "llama-server.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\lib\\ollama\\llama-server.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\lib\\ollama\\llama-server.exe",
+            "--port",
+            "61563",
+            "--host",
+            "127.0.0.1",
+            "--no-webui",
+            "--offline",
+            "--verbose"
+          ],
+          "ppid": 15836,
+          "parent_name": "ollama.exe",
+          "parent_exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+          "created_local": "2026-11-11T17:38:54.642455+05:00",
+          "threads": 6,
+          "handles": 66,
+          "working_set_mib": 9.6,
+          "private_working_set_mib": 2.8,
+          "private_bytes_mib": 4.3,
+          "virtual_bytes_mib": 4.3,
+          "peak_working_set_mib": 9.6,
+          "peak_private_bytes_mib": 4.3
+        }
+      ],
+      "api_version": {
+        "version": "0.40.16"
+      },
+      "running_models": []
+    },
+    {
+      "index": 8,
+      "timestamp_local": "2026-11-11T17:38:57.022009+05:00",
+      "free_ram_mib": 7115.2,
+      "commit": {
+        "commit_total_mib": 14359.4,
+        "commit_limit_mib": 34864.1,
+        "commit_headroom_mib": 20504.7,
+        "physical_available_mib": 7114.9
+      },
+      "gpu": {
+        "name": "NVIDIA GeForce RTX 3070 Laptop GPU",
+        "temperature_c": 58.0,
+        "utilization_pct": 16.0,
+        "vram_used_mib": 591,
+        "vram_total_mib": 8192,
+        "hw_thermal_slowdown": "Not Active",
+        "sw_thermal_slowdown": "Not Active",
+        "active_throttle_reasons": "0x0000000000000001"
+      },
+      "ollama_processes": [
+        {
+          "pid": 12880,
+          "name": "ollama app.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe"
+          ],
+          "ppid": 12444,
+          "parent_name": "explorer.exe",
+          "parent_exe": "C:\\Windows\\explorer.exe",
+          "created_local": "2026-11-11T11:28:12.035457+05:00",
+          "threads": 16,
+          "handles": 449,
+          "working_set_mib": 47.4,
+          "private_working_set_mib": 6.2,
+          "private_bytes_mib": 53.5,
+          "virtual_bytes_mib": 53.5,
+          "peak_working_set_mib": 79.8,
+          "peak_private_bytes_mib": 53.9
+        },
+        {
+          "pid": 15836,
+          "name": "ollama.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+            "serve"
+          ],
+          "ppid": 12880,
+          "parent_name": "ollama app.exe",
+          "parent_exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe",
+          "created_local": "2026-11-11T11:28:13.213266+05:00",
+          "threads": 36,
+          "handles": 609,
+          "working_set_mib": 45.2,
+          "private_working_set_mib": 9.1,
+          "private_bytes_mib": 101.3,
+          "virtual_bytes_mib": 101.3,
+          "peak_working_set_mib": 53.8,
+          "peak_private_bytes_mib": 107.0
+        },
+        {
+          "pid": 32492,
+          "name": "llama-server.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\lib\\ollama\\llama-server.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\lib\\ollama\\llama-server.exe",
+            "--list-devices",
+            "--offline",
+            "--verbose"
+          ],
+          "ppid": 15836,
+          "parent_name": "ollama.exe",
+          "parent_exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+          "created_local": "2026-11-11T17:38:56.985917+05:00",
+          "threads": 8,
+          "handles": 158,
+          "working_set_mib": 211.1,
+          "private_working_set_mib": 139.6,
+          "private_bytes_mib": 298.2,
+          "virtual_bytes_mib": 298.2,
+          "peak_working_set_mib": 211.1,
+          "peak_private_bytes_mib": 298.2
+        }
+      ],
+      "api_version": {
+        "version": "0.40.16"
+      },
+      "running_models": []
+    },
+    {
+      "index": 9,
+      "timestamp_local": "2026-11-11T17:38:57.410027+05:00",
+      "free_ram_mib": 6872.5,
+      "commit": {
+        "commit_total_mib": 14668.4,
+        "commit_limit_mib": 34864.1,
+        "commit_headroom_mib": 20195.7,
+        "physical_available_mib": 6872.5
+      },
+      "gpu": {
+        "name": "NVIDIA GeForce RTX 3070 Laptop GPU",
+        "temperature_c": 58.0,
+        "utilization_pct": 16.0,
+        "vram_used_mib": 586,
+        "vram_total_mib": 8192,
+        "hw_thermal_slowdown": "Not Active",
+        "sw_thermal_slowdown": "Not Active",
+        "active_throttle_reasons": "0x0000000000000001"
+      },
+      "ollama_processes": [
+        {
+          "pid": 12880,
+          "name": "ollama app.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe"
+          ],
+          "ppid": 12444,
+          "parent_name": "explorer.exe",
+          "parent_exe": "C:\\Windows\\explorer.exe",
+          "created_local": "2026-11-11T11:28:12.035457+05:00",
+          "threads": 16,
+          "handles": 449,
+          "working_set_mib": 47.4,
+          "private_working_set_mib": 6.2,
+          "private_bytes_mib": 53.5,
+          "virtual_bytes_mib": 53.5,
+          "peak_working_set_mib": 79.8,
+          "peak_private_bytes_mib": 53.9
+        },
+        {
+          "pid": 15836,
+          "name": "ollama.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+            "serve"
+          ],
+          "ppid": 12880,
+          "parent_name": "ollama app.exe",
+          "parent_exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe",
+          "created_local": "2026-11-11T11:28:13.213266+05:00",
+          "threads": 36,
+          "handles": 607,
+          "working_set_mib": 45.4,
+          "private_working_set_mib": 9.3,
+          "private_bytes_mib": 101.5,
+          "virtual_bytes_mib": 101.5,
+          "peak_working_set_mib": 53.8,
+          "peak_private_bytes_mib": 107.0
+        }
+      ],
+      "api_version": {
+        "version": "0.40.16"
+      },
+      "running_models": []
+    },
+    {
+      "index": 10,
+      "timestamp_local": "2026-11-11T17:38:58.118542+05:00",
+      "free_ram_mib": 6848.5,
+      "commit": {
+        "commit_total_mib": 14650.2,
+        "commit_limit_mib": 34864.1,
+        "commit_headroom_mib": 20213.9,
+        "physical_available_mib": 6847.4
+      },
+      "gpu": {
+        "name": "NVIDIA GeForce RTX 3070 Laptop GPU",
+        "temperature_c": 60.0,
+        "utilization_pct": 2.0,
+        "vram_used_mib": 723,
+        "vram_total_mib": 8192,
+        "hw_thermal_slowdown": "Not Active",
+        "sw_thermal_slowdown": "Not Active",
+        "active_throttle_reasons": "0x0000000000000000"
+      },
+      "ollama_processes": [
+        {
+          "pid": 12880,
+          "name": "ollama app.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe"
+          ],
+          "ppid": 12444,
+          "parent_name": "explorer.exe",
+          "parent_exe": "C:\\Windows\\explorer.exe",
+          "created_local": "2026-11-11T11:28:12.035457+05:00",
+          "threads": 15,
+          "handles": 449,
+          "working_set_mib": 47.4,
+          "private_working_set_mib": 6.2,
+          "private_bytes_mib": 53.5,
+          "virtual_bytes_mib": 53.5,
+          "peak_working_set_mib": 79.8,
+          "peak_private_bytes_mib": 53.9
+        },
+        {
+          "pid": 13948,
+          "name": "llama-server.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\lib\\ollama\\llama-server.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\lib\\ollama\\llama-server.exe",
+            "--model",
+            "C:\\Users\\Kazhu\\.ollama\\models\\blobs\\sha256-163553aea1b1de62de7c5eb2ef5afb756b4b3133308d9ae7e42e951d8d696ef5",
+            "--port",
+            "65109",
+            "--host",
+            "127.0.0.1",
+            "--no-webui",
+            "--offline",
+            "-c",
+            "4096",
+            "-np",
+            "1",
+            "--log-verbosity",
+            "4",
+            "--no-log-prefix",
+            "--no-log-timestamps",
+            "--no-jinja",
+            "--chat-template",
+            "chatml",
+            "--load-mode",
+            "none",
+            "--flash-attn",
+            "auto",
+            "-b",
+            "32",
+            "-ub",
+            "32",
+            "--context-shift",
+            "--keep",
+            "4"
+          ],
+          "ppid": 15836,
+          "parent_name": "ollama.exe",
+          "parent_exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+          "created_local": "2026-11-11T17:38:57.846502+05:00",
+          "threads": 28,
+          "handles": 194,
+          "working_set_mib": 270.8,
+          "private_working_set_mib": 196.6,
+          "private_bytes_mib": 490.3,
+          "virtual_bytes_mib": 490.3,
+          "peak_working_set_mib": 302.4,
+          "peak_private_bytes_mib": 582.9
+        },
+        {
+          "pid": 15836,
+          "name": "ollama.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+            "serve"
+          ],
+          "ppid": 12880,
+          "parent_name": "ollama app.exe",
+          "parent_exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe",
+          "created_local": "2026-11-11T11:28:13.213266+05:00",
+          "threads": 36,
+          "handles": 613,
+          "working_set_mib": 50.0,
+          "private_working_set_mib": 13.9,
+          "private_bytes_mib": 105.3,
+          "virtual_bytes_mib": 105.3,
+          "peak_working_set_mib": 53.8,
+          "peak_private_bytes_mib": 107.0
+        }
+      ],
+      "api_version": {
+        "version": "0.40.16"
+      },
+      "running_models": []
+    },
+    {
+      "index": 11,
+      "timestamp_local": "2026-11-11T17:38:58.473648+05:00",
+      "free_ram_mib": 6534.8,
+      "commit": {
+        "commit_total_mib": 17466.9,
+        "commit_limit_mib": 34864.1,
+        "commit_headroom_mib": 17397.2,
+        "physical_available_mib": 6535.8
+      },
+      "gpu": {
+        "name": "NVIDIA GeForce RTX 3070 Laptop GPU",
+        "temperature_c": 60.0,
+        "utilization_pct": 2.0,
+        "vram_used_mib": 3217,
+        "vram_total_mib": 8192,
+        "hw_thermal_slowdown": "Not Active",
+        "sw_thermal_slowdown": "Not Active",
+        "active_throttle_reasons": "0x0000000000000000"
+      },
+      "ollama_processes": [
+        {
+          "pid": 12880,
+          "name": "ollama app.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe"
+          ],
+          "ppid": 12444,
+          "parent_name": "explorer.exe",
+          "parent_exe": "C:\\Windows\\explorer.exe",
+          "created_local": "2026-11-11T11:28:12.035457+05:00",
+          "threads": 15,
+          "handles": 449,
+          "working_set_mib": 47.4,
+          "private_working_set_mib": 6.2,
+          "private_bytes_mib": 53.5,
+          "virtual_bytes_mib": 53.5,
+          "peak_working_set_mib": 79.8,
+          "peak_private_bytes_mib": 53.9
+        },
+        {
+          "pid": 13948,
+          "name": "llama-server.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\lib\\ollama\\llama-server.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\lib\\ollama\\llama-server.exe",
+            "--model",
+            "C:\\Users\\Kazhu\\.ollama\\models\\blobs\\sha256-163553aea1b1de62de7c5eb2ef5afb756b4b3133308d9ae7e42e951d8d696ef5",
+            "--port",
+            "65109",
+            "--host",
+            "127.0.0.1",
+            "--no-webui",
+            "--offline",
+            "-c",
+            "4096",
+            "-np",
+            "1",
+            "--log-verbosity",
+            "4",
+            "--no-log-prefix",
+            "--no-log-timestamps",
+            "--no-jinja",
+            "--chat-template",
+            "chatml",
+            "--load-mode",
+            "none",
+            "--flash-attn",
+            "auto",
+            "-b",
+            "32",
+            "-ub",
+            "32",
+            "--context-shift",
+            "--keep",
+            "4"
+          ],
+          "ppid": 15836,
+          "parent_name": "ollama.exe",
+          "parent_exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+          "created_local": "2026-11-11T17:38:57.846502+05:00",
+          "threads": 28,
+          "handles": 196,
+          "working_set_mib": 612.6,
+          "private_working_set_mib": 538.2,
+          "private_bytes_mib": 3331.4,
+          "virtual_bytes_mib": 3331.4,
+          "peak_working_set_mib": 612.6,
+          "peak_private_bytes_mib": 3331.4
+        },
+        {
+          "pid": 15836,
+          "name": "ollama.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+            "serve"
+          ],
+          "ppid": 12880,
+          "parent_name": "ollama app.exe",
+          "parent_exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe",
+          "created_local": "2026-11-11T11:28:13.213266+05:00",
+          "threads": 36,
+          "handles": 613,
+          "working_set_mib": 50.0,
+          "private_working_set_mib": 13.9,
+          "private_bytes_mib": 105.3,
+          "virtual_bytes_mib": 105.3,
+          "peak_working_set_mib": 53.8,
+          "peak_private_bytes_mib": 107.0
+        }
+      ],
+      "api_version": {
+        "version": "0.40.16"
+      },
+      "running_models": []
+    },
+    {
+      "index": 12,
+      "timestamp_local": "2026-11-11T17:38:58.847175+05:00",
+      "free_ram_mib": 6443.6,
+      "commit": {
+        "commit_total_mib": 17467.2,
+        "commit_limit_mib": 34864.1,
+        "commit_headroom_mib": 17396.9,
+        "physical_available_mib": 6443.4
+      },
+      "gpu": {
+        "name": "NVIDIA GeForce RTX 3070 Laptop GPU",
+        "temperature_c": 60.0,
+        "utilization_pct": 17.0,
+        "vram_used_mib": 3217,
+        "vram_total_mib": 8192,
+        "hw_thermal_slowdown": "Not Active",
+        "sw_thermal_slowdown": "Not Active",
+        "active_throttle_reasons": "0x0000000000000000"
+      },
+      "ollama_processes": [
+        {
+          "pid": 12880,
+          "name": "ollama app.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe"
+          ],
+          "ppid": 12444,
+          "parent_name": "explorer.exe",
+          "parent_exe": "C:\\Windows\\explorer.exe",
+          "created_local": "2026-11-11T11:28:12.035457+05:00",
+          "threads": 15,
+          "handles": 449,
+          "working_set_mib": 47.4,
+          "private_working_set_mib": 6.2,
+          "private_bytes_mib": 53.5,
+          "virtual_bytes_mib": 53.5,
+          "peak_working_set_mib": 79.8,
+          "peak_private_bytes_mib": 53.9
+        },
+        {
+          "pid": 13948,
+          "name": "llama-server.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\lib\\ollama\\llama-server.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\lib\\ollama\\llama-server.exe",
+            "--model",
+            "C:\\Users\\Kazhu\\.ollama\\models\\blobs\\sha256-163553aea1b1de62de7c5eb2ef5afb756b4b3133308d9ae7e42e951d8d696ef5",
+            "--port",
+            "65109",
+            "--host",
+            "127.0.0.1",
+            "--no-webui",
+            "--offline",
+            "-c",
+            "4096",
+            "-np",
+            "1",
+            "--log-verbosity",
+            "4",
+            "--no-log-prefix",
+            "--no-log-timestamps",
+            "--no-jinja",
+            "--chat-template",
+            "chatml",
+            "--load-mode",
+            "none",
+            "--flash-attn",
+            "auto",
+            "-b",
+            "32",
+            "-ub",
+            "32",
+            "--context-shift",
+            "--keep",
+            "4"
+          ],
+          "ppid": 15836,
+          "parent_name": "ollama.exe",
+          "parent_exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+          "created_local": "2026-11-11T17:38:57.846502+05:00",
+          "threads": 28,
+          "handles": 200,
+          "working_set_mib": 612.6,
+          "private_working_set_mib": 538.2,
+          "private_bytes_mib": 3331.4,
+          "virtual_bytes_mib": 3331.4,
+          "peak_working_set_mib": 612.6,
+          "peak_private_bytes_mib": 3331.4
+        },
+        {
+          "pid": 15836,
+          "name": "ollama.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+            "serve"
+          ],
+          "ppid": 12880,
+          "parent_name": "ollama app.exe",
+          "parent_exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe",
+          "created_local": "2026-11-11T11:28:13.213266+05:00",
+          "threads": 36,
+          "handles": 613,
+          "working_set_mib": 50.0,
+          "private_working_set_mib": 13.9,
+          "private_bytes_mib": 105.3,
+          "virtual_bytes_mib": 105.3,
+          "peak_working_set_mib": 53.8,
+          "peak_private_bytes_mib": 107.0
+        }
+      ],
+      "api_version": {
+        "version": "0.40.16"
+      },
+      "running_models": []
+    },
+    {
+      "index": 13,
+      "timestamp_local": "2026-11-11T17:38:59.208394+05:00",
+      "free_ram_mib": 6377.8,
+      "commit": {
+        "commit_total_mib": 17468.5,
+        "commit_limit_mib": 34864.1,
+        "commit_headroom_mib": 17395.6,
+        "physical_available_mib": 6377.0
+      },
+      "gpu": {
+        "name": "NVIDIA GeForce RTX 3070 Laptop GPU",
+        "temperature_c": 61.0,
+        "utilization_pct": 17.0,
+        "vram_used_mib": 3221,
+        "vram_total_mib": 8192,
+        "hw_thermal_slowdown": "Not Active",
+        "sw_thermal_slowdown": "Not Active",
+        "active_throttle_reasons": "0x0000000000000000"
+      },
+      "ollama_processes": [
+        {
+          "pid": 12880,
+          "name": "ollama app.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe"
+          ],
+          "ppid": 12444,
+          "parent_name": "explorer.exe",
+          "parent_exe": "C:\\Windows\\explorer.exe",
+          "created_local": "2026-11-11T11:28:12.035457+05:00",
+          "threads": 15,
+          "handles": 449,
+          "working_set_mib": 47.4,
+          "private_working_set_mib": 6.2,
+          "private_bytes_mib": 53.5,
+          "virtual_bytes_mib": 53.5,
+          "peak_working_set_mib": 79.8,
+          "peak_private_bytes_mib": 53.9
+        },
+        {
+          "pid": 13948,
+          "name": "llama-server.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\lib\\ollama\\llama-server.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\lib\\ollama\\llama-server.exe",
+            "--model",
+            "C:\\Users\\Kazhu\\.ollama\\models\\blobs\\sha256-163553aea1b1de62de7c5eb2ef5afb756b4b3133308d9ae7e42e951d8d696ef5",
+            "--port",
+            "65109",
+            "--host",
+            "127.0.0.1",
+            "--no-webui",
+            "--offline",
+            "-c",
+            "4096",
+            "-np",
+            "1",
+            "--log-verbosity",
+            "4",
+            "--no-log-prefix",
+            "--no-log-timestamps",
+            "--no-jinja",
+            "--chat-template",
+            "chatml",
+            "--load-mode",
+            "none",
+            "--flash-attn",
+            "auto",
+            "-b",
+            "32",
+            "-ub",
+            "32",
+            "--context-shift",
+            "--keep",
+            "4"
+          ],
+          "ppid": 15836,
+          "parent_name": "ollama.exe",
+          "parent_exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+          "created_local": "2026-11-11T17:38:57.846502+05:00",
+          "threads": 28,
+          "handles": 202,
+          "working_set_mib": 612.6,
+          "private_working_set_mib": 538.2,
+          "private_bytes_mib": 3331.4,
+          "virtual_bytes_mib": 3331.4,
+          "peak_working_set_mib": 612.6,
+          "peak_private_bytes_mib": 3331.4
+        },
+        {
+          "pid": 15836,
+          "name": "ollama.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+            "serve"
+          ],
+          "ppid": 12880,
+          "parent_name": "ollama app.exe",
+          "parent_exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe",
+          "created_local": "2026-11-11T11:28:13.213266+05:00",
+          "threads": 35,
+          "handles": 613,
+          "working_set_mib": 50.0,
+          "private_working_set_mib": 13.9,
+          "private_bytes_mib": 105.3,
+          "virtual_bytes_mib": 105.3,
+          "peak_working_set_mib": 53.8,
+          "peak_private_bytes_mib": 107.0
+        }
+      ],
+      "api_version": {
+        "version": "0.40.16"
+      },
+      "running_models": []
+    },
+    {
+      "index": 14,
+      "timestamp_local": "2026-11-11T17:38:59.558189+05:00",
+      "free_ram_mib": 6338.7,
+      "commit": {
+        "commit_total_mib": 17465.8,
+        "commit_limit_mib": 34864.1,
+        "commit_headroom_mib": 17398.3,
+        "physical_available_mib": 6337.8
+      },
+      "gpu": {
+        "name": "NVIDIA GeForce RTX 3070 Laptop GPU",
+        "temperature_c": 61.0,
+        "utilization_pct": 17.0,
+        "vram_used_mib": 3221,
+        "vram_total_mib": 8192,
+        "hw_thermal_slowdown": "Not Active",
+        "sw_thermal_slowdown": "Not Active",
+        "active_throttle_reasons": "0x0000000000000000"
+      },
+      "ollama_processes": [
+        {
+          "pid": 12880,
+          "name": "ollama app.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe"
+          ],
+          "ppid": 12444,
+          "parent_name": "explorer.exe",
+          "parent_exe": "C:\\Windows\\explorer.exe",
+          "created_local": "2026-11-11T11:28:12.035457+05:00",
+          "threads": 15,
+          "handles": 449,
+          "working_set_mib": 47.4,
+          "private_working_set_mib": 6.2,
+          "private_bytes_mib": 53.5,
+          "virtual_bytes_mib": 53.5,
+          "peak_working_set_mib": 79.8,
+          "peak_private_bytes_mib": 53.9
+        },
+        {
+          "pid": 13948,
+          "name": "llama-server.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\lib\\ollama\\llama-server.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\lib\\ollama\\llama-server.exe",
+            "--model",
+            "C:\\Users\\Kazhu\\.ollama\\models\\blobs\\sha256-163553aea1b1de62de7c5eb2ef5afb756b4b3133308d9ae7e42e951d8d696ef5",
+            "--port",
+            "65109",
+            "--host",
+            "127.0.0.1",
+            "--no-webui",
+            "--offline",
+            "-c",
+            "4096",
+            "-np",
+            "1",
+            "--log-verbosity",
+            "4",
+            "--no-log-prefix",
+            "--no-log-timestamps",
+            "--no-jinja",
+            "--chat-template",
+            "chatml",
+            "--load-mode",
+            "none",
+            "--flash-attn",
+            "auto",
+            "-b",
+            "32",
+            "-ub",
+            "32",
+            "--context-shift",
+            "--keep",
+            "4"
+          ],
+          "ppid": 15836,
+          "parent_name": "ollama.exe",
+          "parent_exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+          "created_local": "2026-11-11T17:38:57.846502+05:00",
+          "threads": 28,
+          "handles": 206,
+          "working_set_mib": 612.6,
+          "private_working_set_mib": 538.3,
+          "private_bytes_mib": 3331.4,
+          "virtual_bytes_mib": 3331.4,
+          "peak_working_set_mib": 612.6,
+          "peak_private_bytes_mib": 3331.4
+        },
+        {
+          "pid": 15836,
+          "name": "ollama.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+            "serve"
+          ],
+          "ppid": 12880,
+          "parent_name": "ollama app.exe",
+          "parent_exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe",
+          "created_local": "2026-11-11T11:28:13.213266+05:00",
+          "threads": 35,
+          "handles": 613,
+          "working_set_mib": 50.0,
+          "private_working_set_mib": 13.9,
+          "private_bytes_mib": 105.3,
+          "virtual_bytes_mib": 105.3,
+          "peak_working_set_mib": 53.8,
+          "peak_private_bytes_mib": 107.0
+        }
+      ],
+      "api_version": {
+        "version": "0.40.16"
+      },
+      "running_models": []
+    },
+    {
+      "index": 15,
+      "timestamp_local": "2026-11-11T17:38:59.909695+05:00",
+      "free_ram_mib": 6348.2,
+      "commit": {
+        "commit_total_mib": 18186.9,
+        "commit_limit_mib": 34864.1,
+        "commit_headroom_mib": 16677.2,
+        "physical_available_mib": 6347.5
+      },
+      "gpu": {
+        "name": "NVIDIA GeForce RTX 3070 Laptop GPU",
+        "temperature_c": 61.0,
+        "utilization_pct": 16.0,
+        "vram_used_mib": 3821,
+        "vram_total_mib": 8192,
+        "hw_thermal_slowdown": "Not Active",
+        "sw_thermal_slowdown": "Not Active",
+        "active_throttle_reasons": "0x0000000000000000"
+      },
+      "ollama_processes": [
+        {
+          "pid": 12880,
+          "name": "ollama app.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe"
+          ],
+          "ppid": 12444,
+          "parent_name": "explorer.exe",
+          "parent_exe": "C:\\Windows\\explorer.exe",
+          "created_local": "2026-11-11T11:28:12.035457+05:00",
+          "threads": 15,
+          "handles": 449,
+          "working_set_mib": 47.4,
+          "private_working_set_mib": 6.2,
+          "private_bytes_mib": 53.5,
+          "virtual_bytes_mib": 53.5,
+          "peak_working_set_mib": 79.8,
+          "peak_private_bytes_mib": 53.9
+        },
+        {
+          "pid": 13948,
+          "name": "llama-server.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\lib\\ollama\\llama-server.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\lib\\ollama\\llama-server.exe",
+            "--model",
+            "C:\\Users\\Kazhu\\.ollama\\models\\blobs\\sha256-163553aea1b1de62de7c5eb2ef5afb756b4b3133308d9ae7e42e951d8d696ef5",
+            "--port",
+            "65109",
+            "--host",
+            "127.0.0.1",
+            "--no-webui",
+            "--offline",
+            "-c",
+            "4096",
+            "-np",
+            "1",
+            "--log-verbosity",
+            "4",
+            "--no-log-prefix",
+            "--no-log-timestamps",
+            "--no-jinja",
+            "--chat-template",
+            "chatml",
+            "--load-mode",
+            "none",
+            "--flash-attn",
+            "auto",
+            "-b",
+            "32",
+            "-ub",
+            "32",
+            "--context-shift",
+            "--keep",
+            "4"
+          ],
+          "ppid": 15836,
+          "parent_name": "ollama.exe",
+          "parent_exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+          "created_local": "2026-11-11T17:38:57.846502+05:00",
+          "threads": 28,
+          "handles": 209,
+          "working_set_mib": 655.6,
+          "private_working_set_mib": 574.9,
+          "private_bytes_mib": 4077.1,
+          "virtual_bytes_mib": 4077.1,
+          "peak_working_set_mib": 657.5,
+          "peak_private_bytes_mib": 4079.0
+        },
+        {
+          "pid": 15836,
+          "name": "ollama.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+            "serve"
+          ],
+          "ppid": 12880,
+          "parent_name": "ollama app.exe",
+          "parent_exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe",
+          "created_local": "2026-11-11T11:28:13.213266+05:00",
+          "threads": 35,
+          "handles": 613,
+          "working_set_mib": 50.1,
+          "private_working_set_mib": 13.9,
+          "private_bytes_mib": 105.3,
+          "virtual_bytes_mib": 105.3,
+          "peak_working_set_mib": 53.8,
+          "peak_private_bytes_mib": 107.0
+        }
+      ],
+      "api_version": {
+        "version": "0.40.16"
+      },
+      "running_models": []
+    },
+    {
+      "index": 16,
+      "timestamp_local": "2026-11-11T17:39:00.269199+05:00",
+      "free_ram_mib": 6183.5,
+      "commit": {
+        "commit_total_mib": 18392.0,
+        "commit_limit_mib": 34864.1,
+        "commit_headroom_mib": 16472.1,
+        "physical_available_mib": 6183.3
+      },
+      "gpu": {
+        "name": "NVIDIA GeForce RTX 3070 Laptop GPU",
+        "temperature_c": 62.0,
+        "utilization_pct": 16.0,
+        "vram_used_mib": 3857,
+        "vram_total_mib": 8192,
+        "hw_thermal_slowdown": "Not Active",
+        "sw_thermal_slowdown": "Not Active",
+        "active_throttle_reasons": "0x0000000000000004"
+      },
+      "ollama_processes": [
+        {
+          "pid": 12880,
+          "name": "ollama app.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe"
+          ],
+          "ppid": 12444,
+          "parent_name": "explorer.exe",
+          "parent_exe": "C:\\Windows\\explorer.exe",
+          "created_local": "2026-11-11T11:28:12.035457+05:00",
+          "threads": 15,
+          "handles": 449,
+          "working_set_mib": 47.4,
+          "private_working_set_mib": 6.2,
+          "private_bytes_mib": 53.5,
+          "virtual_bytes_mib": 53.5,
+          "peak_working_set_mib": 79.8,
+          "peak_private_bytes_mib": 53.9
+        },
+        {
+          "pid": 13948,
+          "name": "llama-server.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\lib\\ollama\\llama-server.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\lib\\ollama\\llama-server.exe",
+            "--model",
+            "C:\\Users\\Kazhu\\.ollama\\models\\blobs\\sha256-163553aea1b1de62de7c5eb2ef5afb756b4b3133308d9ae7e42e951d8d696ef5",
+            "--port",
+            "65109",
+            "--host",
+            "127.0.0.1",
+            "--no-webui",
+            "--offline",
+            "-c",
+            "4096",
+            "-np",
+            "1",
+            "--log-verbosity",
+            "4",
+            "--no-log-prefix",
+            "--no-log-timestamps",
+            "--no-jinja",
+            "--chat-template",
+            "chatml",
+            "--load-mode",
+            "none",
+            "--flash-attn",
+            "auto",
+            "-b",
+            "32",
+            "-ub",
+            "32",
+            "--context-shift",
+            "--keep",
+            "4"
+          ],
+          "ppid": 15836,
+          "parent_name": "ollama.exe",
+          "parent_exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+          "created_local": "2026-11-11T17:38:57.846502+05:00",
+          "threads": 29,
+          "handles": 223,
+          "working_set_mib": 825.2,
+          "private_working_set_mib": 746.4,
+          "private_bytes_mib": 4285.5,
+          "virtual_bytes_mib": 4285.5,
+          "peak_working_set_mib": 825.2,
+          "peak_private_bytes_mib": 4285.5
+        },
+        {
+          "pid": 15836,
+          "name": "ollama.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+            "serve"
+          ],
+          "ppid": 12880,
+          "parent_name": "ollama app.exe",
+          "parent_exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe",
+          "created_local": "2026-11-11T11:28:13.213266+05:00",
+          "threads": 35,
+          "handles": 614,
+          "working_set_mib": 48.3,
+          "private_working_set_mib": 12.2,
+          "private_bytes_mib": 103.5,
+          "virtual_bytes_mib": 103.5,
+          "peak_working_set_mib": 53.8,
+          "peak_private_bytes_mib": 107.0
+        }
+      ],
+      "api_version": {
+        "version": "0.40.16"
+      },
+      "running_models": [
+        {
+          "name": "qwen3:4b-q4_K_M",
+          "model": "qwen3:4b-q4_K_M",
+          "size": 3224109055,
+          "digest": "2bfd38a7daaf4b1037efe517ccb73d1a3bbd4822cf89f1a82be1569050a114e0",
+          "details": {
+            "parent_model": "",
+            "format": "gguf",
+            "family": "qwen3",
+            "families": [
+              "qwen3"
+            ],
+            "parameter_size": "4.0B",
+            "quantization_level": "Q4_K_M"
+          },
+          "expires_at": "2026-11-11T17:39:00.3638436+05:00",
+          "size_vram": 3224109055,
+          "context_length": 4096,
+          "runner": "llamacpp"
+        }
+      ]
+    },
+    {
+      "index": 17,
+      "timestamp_local": "2026-11-11T17:39:00.626047+05:00",
+      "free_ram_mib": 6323.1,
+      "commit": {
+        "commit_total_mib": 18435.8,
+        "commit_limit_mib": 34864.1,
+        "commit_headroom_mib": 16428.3,
+        "physical_available_mib": 6323.3
+      },
+      "gpu": {
+        "name": "NVIDIA GeForce RTX 3070 Laptop GPU",
+        "temperature_c": 65.0,
+        "utilization_pct": 95.0,
+        "vram_used_mib": 3857,
+        "vram_total_mib": 8192,
+        "hw_thermal_slowdown": "Not Active",
+        "sw_thermal_slowdown": "Not Active",
+        "active_throttle_reasons": "0x0000000000000004"
+      },
+      "ollama_processes": [
+        {
+          "pid": 12880,
+          "name": "ollama app.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe"
+          ],
+          "ppid": 12444,
+          "parent_name": "explorer.exe",
+          "parent_exe": "C:\\Windows\\explorer.exe",
+          "created_local": "2026-11-11T11:28:12.035457+05:00",
+          "threads": 15,
+          "handles": 449,
+          "working_set_mib": 47.4,
+          "private_working_set_mib": 6.2,
+          "private_bytes_mib": 53.5,
+          "virtual_bytes_mib": 53.5,
+          "peak_working_set_mib": 79.8,
+          "peak_private_bytes_mib": 53.9
+        },
+        {
+          "pid": 13948,
+          "name": "llama-server.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\lib\\ollama\\llama-server.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\lib\\ollama\\llama-server.exe",
+            "--model",
+            "C:\\Users\\Kazhu\\.ollama\\models\\blobs\\sha256-163553aea1b1de62de7c5eb2ef5afb756b4b3133308d9ae7e42e951d8d696ef5",
+            "--port",
+            "65109",
+            "--host",
+            "127.0.0.1",
+            "--no-webui",
+            "--offline",
+            "-c",
+            "4096",
+            "-np",
+            "1",
+            "--log-verbosity",
+            "4",
+            "--no-log-prefix",
+            "--no-log-timestamps",
+            "--no-jinja",
+            "--chat-template",
+            "chatml",
+            "--load-mode",
+            "none",
+            "--flash-attn",
+            "auto",
+            "-b",
+            "32",
+            "-ub",
+            "32",
+            "--context-shift",
+            "--keep",
+            "4"
+          ],
+          "ppid": 15836,
+          "parent_name": "ollama.exe",
+          "parent_exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+          "created_local": "2026-11-11T17:38:57.846502+05:00",
+          "threads": 29,
+          "handles": 223,
+          "working_set_mib": 828.3,
+          "private_working_set_mib": 745.5,
+          "private_bytes_mib": 4297.3,
+          "virtual_bytes_mib": 4297.3,
+          "peak_working_set_mib": 832.3,
+          "peak_private_bytes_mib": 4297.3
+        },
+        {
+          "pid": 15836,
+          "name": "ollama.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+            "serve"
+          ],
+          "ppid": 12880,
+          "parent_name": "ollama app.exe",
+          "parent_exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe",
+          "created_local": "2026-11-11T11:28:13.213266+05:00",
+          "threads": 35,
+          "handles": 614,
+          "working_set_mib": 48.3,
+          "private_working_set_mib": 12.2,
+          "private_bytes_mib": 103.5,
+          "virtual_bytes_mib": 103.5,
+          "peak_working_set_mib": 53.8,
+          "peak_private_bytes_mib": 107.0
+        }
+      ],
+      "api_version": {
+        "version": "0.40.16"
+      },
+      "running_models": [
+        {
+          "name": "qwen3:4b-q4_K_M",
+          "model": "qwen3:4b-q4_K_M",
+          "size": 3224109055,
+          "digest": "2bfd38a7daaf4b1037efe517ccb73d1a3bbd4822cf89f1a82be1569050a114e0",
+          "details": {
+            "parent_model": "",
+            "format": "gguf",
+            "family": "qwen3",
+            "families": [
+              "qwen3"
+            ],
+            "parameter_size": "4.0B",
+            "quantization_level": "Q4_K_M"
+          },
+          "expires_at": "2026-11-11T17:39:00.7245209+05:00",
+          "size_vram": 3224109055,
+          "context_length": 4096,
+          "runner": "llamacpp"
+        }
+      ]
+    },
+    {
+      "index": 18,
+      "timestamp_local": "2026-11-11T17:39:00.978932+05:00",
+      "free_ram_mib": 6329.2,
+      "commit": {
+        "commit_total_mib": 18432.4,
+        "commit_limit_mib": 34864.1,
+        "commit_headroom_mib": 16431.7,
+        "physical_available_mib": 6329.3
+      },
+      "gpu": {
+        "name": "NVIDIA GeForce RTX 3070 Laptop GPU",
+        "temperature_c": 65.0,
+        "utilization_pct": 95.0,
+        "vram_used_mib": 3856,
+        "vram_total_mib": 8192,
+        "hw_thermal_slowdown": "Not Active",
+        "sw_thermal_slowdown": "Not Active",
+        "active_throttle_reasons": "0x0000000000000004"
+      },
+      "ollama_processes": [
+        {
+          "pid": 12880,
+          "name": "ollama app.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe"
+          ],
+          "ppid": 12444,
+          "parent_name": "explorer.exe",
+          "parent_exe": "C:\\Windows\\explorer.exe",
+          "created_local": "2026-11-11T11:28:12.035457+05:00",
+          "threads": 15,
+          "handles": 449,
+          "working_set_mib": 47.4,
+          "private_working_set_mib": 6.2,
+          "private_bytes_mib": 53.5,
+          "virtual_bytes_mib": 53.5,
+          "peak_working_set_mib": 79.8,
+          "peak_private_bytes_mib": 53.9
+        },
+        {
+          "pid": 13948,
+          "name": "llama-server.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\lib\\ollama\\llama-server.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\lib\\ollama\\llama-server.exe",
+            "--model",
+            "C:\\Users\\Kazhu\\.ollama\\models\\blobs\\sha256-163553aea1b1de62de7c5eb2ef5afb756b4b3133308d9ae7e42e951d8d696ef5",
+            "--port",
+            "65109",
+            "--host",
+            "127.0.0.1",
+            "--no-webui",
+            "--offline",
+            "-c",
+            "4096",
+            "-np",
+            "1",
+            "--log-verbosity",
+            "4",
+            "--no-log-prefix",
+            "--no-log-timestamps",
+            "--no-jinja",
+            "--chat-template",
+            "chatml",
+            "--load-mode",
+            "none",
+            "--flash-attn",
+            "auto",
+            "-b",
+            "32",
+            "-ub",
+            "32",
+            "--context-shift",
+            "--keep",
+            "4"
+          ],
+          "ppid": 15836,
+          "parent_name": "ollama.exe",
+          "parent_exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+          "created_local": "2026-11-11T17:38:57.846502+05:00",
+          "threads": 29,
+          "handles": 223,
+          "working_set_mib": 828.3,
+          "private_working_set_mib": 745.5,
+          "private_bytes_mib": 4297.3,
+          "virtual_bytes_mib": 4297.3,
+          "peak_working_set_mib": 832.3,
+          "peak_private_bytes_mib": 4297.3
+        },
+        {
+          "pid": 15836,
+          "name": "ollama.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+            "serve"
+          ],
+          "ppid": 12880,
+          "parent_name": "ollama app.exe",
+          "parent_exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe",
+          "created_local": "2026-11-11T11:28:13.213266+05:00",
+          "threads": 35,
+          "handles": 614,
+          "working_set_mib": 48.4,
+          "private_working_set_mib": 12.2,
+          "private_bytes_mib": 103.5,
+          "virtual_bytes_mib": 103.5,
+          "peak_working_set_mib": 53.8,
+          "peak_private_bytes_mib": 107.0
+        }
+      ],
+      "api_version": {
+        "version": "0.40.16"
+      },
+      "running_models": [
+        {
+          "name": "qwen3:4b-q4_K_M",
+          "model": "qwen3:4b-q4_K_M",
+          "size": 3224109055,
+          "digest": "2bfd38a7daaf4b1037efe517ccb73d1a3bbd4822cf89f1a82be1569050a114e0",
+          "details": {
+            "parent_model": "",
+            "format": "gguf",
+            "family": "qwen3",
+            "families": [
+              "qwen3"
+            ],
+            "parameter_size": "4.0B",
+            "quantization_level": "Q4_K_M"
+          },
+          "expires_at": "2026-11-11T17:39:01.0929288+05:00",
+          "size_vram": 3224109055,
+          "context_length": 4096,
+          "runner": "llamacpp"
+        }
+      ]
+    },
+    {
+      "index": 19,
+      "timestamp_local": "2026-11-11T17:39:01.346923+05:00",
+      "free_ram_mib": 6355.4,
+      "commit": {
+        "commit_total_mib": 18404.2,
+        "commit_limit_mib": 34864.1,
+        "commit_headroom_mib": 16459.9,
+        "physical_available_mib": 6355.4
+      },
+      "gpu": {
+        "name": "NVIDIA GeForce RTX 3070 Laptop GPU",
+        "temperature_c": 66.0,
+        "utilization_pct": 95.0,
+        "vram_used_mib": 3846,
+        "vram_total_mib": 8192,
+        "hw_thermal_slowdown": "Not Active",
+        "sw_thermal_slowdown": "Not Active",
+        "active_throttle_reasons": "0x0000000000000004"
+      },
+      "ollama_processes": [
+        {
+          "pid": 12880,
+          "name": "ollama app.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe"
+          ],
+          "ppid": 12444,
+          "parent_name": "explorer.exe",
+          "parent_exe": "C:\\Windows\\explorer.exe",
+          "created_local": "2026-11-11T11:28:12.035457+05:00",
+          "threads": 15,
+          "handles": 449,
+          "working_set_mib": 47.4,
+          "private_working_set_mib": 6.2,
+          "private_bytes_mib": 53.5,
+          "virtual_bytes_mib": 53.5,
+          "peak_working_set_mib": 79.8,
+          "peak_private_bytes_mib": 53.9
+        },
+        {
+          "pid": 13948,
+          "name": "llama-server.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\lib\\ollama\\llama-server.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\lib\\ollama\\llama-server.exe",
+            "--model",
+            "C:\\Users\\Kazhu\\.ollama\\models\\blobs\\sha256-163553aea1b1de62de7c5eb2ef5afb756b4b3133308d9ae7e42e951d8d696ef5",
+            "--port",
+            "65109",
+            "--host",
+            "127.0.0.1",
+            "--no-webui",
+            "--offline",
+            "-c",
+            "4096",
+            "-np",
+            "1",
+            "--log-verbosity",
+            "4",
+            "--no-log-prefix",
+            "--no-log-timestamps",
+            "--no-jinja",
+            "--chat-template",
+            "chatml",
+            "--load-mode",
+            "none",
+            "--flash-attn",
+            "auto",
+            "-b",
+            "32",
+            "-ub",
+            "32",
+            "--context-shift",
+            "--keep",
+            "4"
+          ],
+          "ppid": 15836,
+          "parent_name": "ollama.exe",
+          "parent_exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+          "created_local": "2026-11-11T17:38:57.846502+05:00",
+          "threads": 29,
+          "handles": 223,
+          "working_set_mib": 828.4,
+          "private_working_set_mib": 745.6,
+          "private_bytes_mib": 4297.5,
+          "virtual_bytes_mib": 4297.5,
+          "peak_working_set_mib": 832.3,
+          "peak_private_bytes_mib": 4297.5
+        },
+        {
+          "pid": 15836,
+          "name": "ollama.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+            "serve"
+          ],
+          "ppid": 12880,
+          "parent_name": "ollama app.exe",
+          "parent_exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe",
+          "created_local": "2026-11-11T11:28:13.213266+05:00",
+          "threads": 35,
+          "handles": 613,
+          "working_set_mib": 48.4,
+          "private_working_set_mib": 12.3,
+          "private_bytes_mib": 103.5,
+          "virtual_bytes_mib": 103.5,
+          "peak_working_set_mib": 53.8,
+          "peak_private_bytes_mib": 107.0
+        }
+      ],
+      "api_version": {
+        "version": "0.40.16"
+      },
+      "running_models": []
+    }
+  ],
+  "events": [
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:00.309104+00:00",
+      "timestamp_monotonic": 328124.5272974,
+      "sequence": 1,
+      "content_characters": 1,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:00.365656+00:00",
+      "timestamp_monotonic": 328124.5838504,
+      "sequence": 2,
+      "content_characters": 2,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:00.374402+00:00",
+      "timestamp_monotonic": 328124.592617,
+      "sequence": 3,
+      "content_characters": 4,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:00.376054+00:00",
+      "timestamp_monotonic": 328124.5942448,
+      "sequence": 4,
+      "content_characters": 1,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:00.385165+00:00",
+      "timestamp_monotonic": 328124.6033585,
+      "sequence": 5,
+      "content_characters": 4,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:00.394812+00:00",
+      "timestamp_monotonic": 328124.613005,
+      "sequence": 6,
+      "content_characters": 4,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:00.405911+00:00",
+      "timestamp_monotonic": 328124.6241056,
+      "sequence": 7,
+      "content_characters": 3,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:00.416009+00:00",
+      "timestamp_monotonic": 328124.6342028,
+      "sequence": 8,
+      "content_characters": 4,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:00.426181+00:00",
+      "timestamp_monotonic": 328124.644374,
+      "sequence": 9,
+      "content_characters": 7,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:00.437656+00:00",
+      "timestamp_monotonic": 328124.6558491,
+      "sequence": 10,
+      "content_characters": 2,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:00.448169+00:00",
+      "timestamp_monotonic": 328124.6663609,
+      "sequence": 11,
+      "content_characters": 6,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:00.458467+00:00",
+      "timestamp_monotonic": 328124.6766598,
+      "sequence": 12,
+      "content_characters": 3,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:00.469840+00:00",
+      "timestamp_monotonic": 328124.6880342,
+      "sequence": 13,
+      "content_characters": 1,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:00.480284+00:00",
+      "timestamp_monotonic": 328124.698478,
+      "sequence": 14,
+      "content_characters": 2,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:00.491179+00:00",
+      "timestamp_monotonic": 328124.7093733,
+      "sequence": 15,
+      "content_characters": 2,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:00.501602+00:00",
+      "timestamp_monotonic": 328124.719797,
+      "sequence": 16,
+      "content_characters": 3,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:00.513385+00:00",
+      "timestamp_monotonic": 328124.7315802,
+      "sequence": 17,
+      "content_characters": 8,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:00.523589+00:00",
+      "timestamp_monotonic": 328124.7417948,
+      "sequence": 18,
+      "content_characters": 5,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:00.534850+00:00",
+      "timestamp_monotonic": 328124.7530441,
+      "sequence": 19,
+      "content_characters": 3,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:00.544843+00:00",
+      "timestamp_monotonic": 328124.7630371,
+      "sequence": 20,
+      "content_characters": 10,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:00.554828+00:00",
+      "timestamp_monotonic": 328124.77302,
+      "sequence": 21,
+      "content_characters": 3,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:00.565875+00:00",
+      "timestamp_monotonic": 328124.7840692,
+      "sequence": 22,
+      "content_characters": 2,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:00.577458+00:00",
+      "timestamp_monotonic": 328124.7956526,
+      "sequence": 23,
+      "content_characters": 3,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:00.587806+00:00",
+      "timestamp_monotonic": 328124.8059993,
+      "sequence": 24,
+      "content_characters": 1,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:00.598230+00:00",
+      "timestamp_monotonic": 328124.8164231,
+      "sequence": 25,
+      "content_characters": 2,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:00.609350+00:00",
+      "timestamp_monotonic": 328124.8275437,
+      "sequence": 26,
+      "content_characters": 2,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:00.619570+00:00",
+      "timestamp_monotonic": 328124.8377628,
+      "sequence": 27,
+      "content_characters": 1,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:00.629808+00:00",
+      "timestamp_monotonic": 328124.8479998,
+      "sequence": 28,
+      "content_characters": 2,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:00.641480+00:00",
+      "timestamp_monotonic": 328124.8596747,
+      "sequence": 29,
+      "content_characters": 3,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:00.652004+00:00",
+      "timestamp_monotonic": 328124.8701992,
+      "sequence": 30,
+      "content_characters": 3,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:00.662540+00:00",
+      "timestamp_monotonic": 328124.8807355,
+      "sequence": 31,
+      "content_characters": 5,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:00.699087+00:00",
+      "timestamp_monotonic": 328124.9172838,
+      "sequence": 32,
+      "content_characters": 3,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:00.699123+00:00",
+      "timestamp_monotonic": 328124.9173093,
+      "sequence": 33,
+      "content_characters": 4,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:00.708824+00:00",
+      "timestamp_monotonic": 328124.9270164,
+      "sequence": 34,
+      "content_characters": 3,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:00.708854+00:00",
+      "timestamp_monotonic": 328124.92704,
+      "sequence": 35,
+      "content_characters": 2,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:00.715894+00:00",
+      "timestamp_monotonic": 328124.934088,
+      "sequence": 36,
+      "content_characters": 5,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:00.727612+00:00",
+      "timestamp_monotonic": 328124.9458058,
+      "sequence": 37,
+      "content_characters": 3,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:00.738924+00:00",
+      "timestamp_monotonic": 328124.9571188,
+      "sequence": 38,
+      "content_characters": 1,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:00.749035+00:00",
+      "timestamp_monotonic": 328124.9672289,
+      "sequence": 39,
+      "content_characters": 2,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:00.759070+00:00",
+      "timestamp_monotonic": 328124.9772634,
+      "sequence": 40,
+      "content_characters": 3,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:00.770247+00:00",
+      "timestamp_monotonic": 328124.9884412,
+      "sequence": 41,
+      "content_characters": 5,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:00.780534+00:00",
+      "timestamp_monotonic": 328124.9987276,
+      "sequence": 42,
+      "content_characters": 3,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:00.790875+00:00",
+      "timestamp_monotonic": 328125.0090694,
+      "sequence": 43,
+      "content_characters": 1,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:00.802271+00:00",
+      "timestamp_monotonic": 328125.020466,
+      "sequence": 44,
+      "content_characters": 1,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:00.812602+00:00",
+      "timestamp_monotonic": 328125.0307957,
+      "sequence": 45,
+      "content_characters": 1,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:00.833461+00:00",
+      "timestamp_monotonic": 328125.051657,
+      "sequence": 46,
+      "content_characters": 3,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:00.833654+00:00",
+      "timestamp_monotonic": 328125.0518418,
+      "sequence": 47,
+      "content_characters": 1,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:00.844850+00:00",
+      "timestamp_monotonic": 328125.063046,
+      "sequence": 48,
+      "content_characters": 2,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:00.855007+00:00",
+      "timestamp_monotonic": 328125.0732013,
+      "sequence": 49,
+      "content_characters": 2,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:00.866207+00:00",
+      "timestamp_monotonic": 328125.0844011,
+      "sequence": 50,
+      "content_characters": 3,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:00.876547+00:00",
+      "timestamp_monotonic": 328125.0947418,
+      "sequence": 51,
+      "content_characters": 8,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:00.886892+00:00",
+      "timestamp_monotonic": 328125.1050847,
+      "sequence": 52,
+      "content_characters": 5,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:00.897304+00:00",
+      "timestamp_monotonic": 328125.1154977,
+      "sequence": 53,
+      "content_characters": 3,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:00.908250+00:00",
+      "timestamp_monotonic": 328125.1264455,
+      "sequence": 54,
+      "content_characters": 10,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:00.918592+00:00",
+      "timestamp_monotonic": 328125.1367863,
+      "sequence": 55,
+      "content_characters": 3,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:00.928792+00:00",
+      "timestamp_monotonic": 328125.1469852,
+      "sequence": 56,
+      "content_characters": 2,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:00.940512+00:00",
+      "timestamp_monotonic": 328125.1587068,
+      "sequence": 57,
+      "content_characters": 1,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:00.950795+00:00",
+      "timestamp_monotonic": 328125.1689886,
+      "sequence": 58,
+      "content_characters": 3,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:00.969678+00:00",
+      "timestamp_monotonic": 328125.1878729,
+      "sequence": 59,
+      "content_characters": 1,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:00.972755+00:00",
+      "timestamp_monotonic": 328125.1909479,
+      "sequence": 60,
+      "content_characters": 6,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:00.983132+00:00",
+      "timestamp_monotonic": 328125.2013248,
+      "sequence": 61,
+      "content_characters": 4,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:00.993486+00:00",
+      "timestamp_monotonic": 328125.2116814,
+      "sequence": 62,
+      "content_characters": 3,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:01.006064+00:00",
+      "timestamp_monotonic": 328125.2242593,
+      "sequence": 63,
+      "content_characters": 4,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:01.018510+00:00",
+      "timestamp_monotonic": 328125.2367043,
+      "sequence": 64,
+      "content_characters": 2,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:01.026960+00:00",
+      "timestamp_monotonic": 328125.2451541,
+      "sequence": 65,
+      "content_characters": 4,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:01.058375+00:00",
+      "timestamp_monotonic": 328125.276573,
+      "sequence": 66,
+      "content_characters": 3,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:01.072655+00:00",
+      "timestamp_monotonic": 328125.2908485,
+      "sequence": 67,
+      "content_characters": 2,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:01.072687+00:00",
+      "timestamp_monotonic": 328125.2908729,
+      "sequence": 68,
+      "content_characters": 2,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:01.072722+00:00",
+      "timestamp_monotonic": 328125.2909083,
+      "sequence": 69,
+      "content_characters": 2,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:01.081011+00:00",
+      "timestamp_monotonic": 328125.2992043,
+      "sequence": 70,
+      "content_characters": 7,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:01.091464+00:00",
+      "timestamp_monotonic": 328125.309659,
+      "sequence": 71,
+      "content_characters": 2,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:01.103712+00:00",
+      "timestamp_monotonic": 328125.3219056,
+      "sequence": 72,
+      "content_characters": 10,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:01.113409+00:00",
+      "timestamp_monotonic": 328125.3316022,
+      "sequence": 73,
+      "content_characters": 3,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:01.123756+00:00",
+      "timestamp_monotonic": 328125.3419472,
+      "sequence": 74,
+      "content_characters": 6,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:01.136208+00:00",
+      "timestamp_monotonic": 328125.3544014,
+      "sequence": 75,
+      "content_characters": 4,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:01.147705+00:00",
+      "timestamp_monotonic": 328125.3659008,
+      "sequence": 76,
+      "content_characters": 3,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:01.160163+00:00",
+      "timestamp_monotonic": 328125.3783556,
+      "sequence": 77,
+      "content_characters": 1,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:01.173957+00:00",
+      "timestamp_monotonic": 328125.3921542,
+      "sequence": 78,
+      "content_characters": 8,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:01.186252+00:00",
+      "timestamp_monotonic": 328125.4044435,
+      "sequence": 79,
+      "content_characters": 6,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:01.198865+00:00",
+      "timestamp_monotonic": 328125.417059,
+      "sequence": 80,
+      "content_characters": 5,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:01.210094+00:00",
+      "timestamp_monotonic": 328125.4282868,
+      "sequence": 81,
+      "content_characters": 3,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:01.221040+00:00",
+      "timestamp_monotonic": 328125.4392316,
+      "sequence": 82,
+      "content_characters": 5,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:01.233930+00:00",
+      "timestamp_monotonic": 328125.4521223,
+      "sequence": 83,
+      "content_characters": 2,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:01.245994+00:00",
+      "timestamp_monotonic": 328125.4641896,
+      "sequence": 84,
+      "content_characters": 3,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:01.257408+00:00",
+      "timestamp_monotonic": 328125.4756028,
+      "sequence": 85,
+      "content_characters": 4,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:01.269903+00:00",
+      "timestamp_monotonic": 328125.4880966,
+      "sequence": 86,
+      "content_characters": 3,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:01.281066+00:00",
+      "timestamp_monotonic": 328125.4992613,
+      "sequence": 87,
+      "content_characters": 1,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:01.291945+00:00",
+      "timestamp_monotonic": 328125.5101378,
+      "sequence": 88,
+      "content_characters": 2,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:01.304261+00:00",
+      "timestamp_monotonic": 328125.5224557,
+      "sequence": 89,
+      "content_characters": 1,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:01.314786+00:00",
+      "timestamp_monotonic": 328125.5329797,
+      "sequence": 90,
+      "content_characters": 3,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:01.325425+00:00",
+      "timestamp_monotonic": 328125.543619,
+      "sequence": 91,
+      "content_characters": 7,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:01.336993+00:00",
+      "timestamp_monotonic": 328125.5551865,
+      "sequence": 92,
+      "content_characters": 3,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:01.347455+00:00",
+      "timestamp_monotonic": 328125.5656461,
+      "sequence": 93,
+      "content_characters": 2,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:01.357738+00:00",
+      "timestamp_monotonic": 328125.5759332,
+      "sequence": 94,
+      "content_characters": 8,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:01.369677+00:00",
+      "timestamp_monotonic": 328125.5879063,
+      "sequence": 95,
+      "content_characters": 1,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:01.379906+00:00",
+      "timestamp_monotonic": 328125.5980982,
+      "sequence": 96,
+      "content_characters": 2,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:01.413290+00:00",
+      "timestamp_monotonic": 328125.6314857,
+      "sequence": 97,
+      "content_characters": 3,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:01.413327+00:00",
+      "timestamp_monotonic": 328125.6315146,
+      "sequence": 98,
+      "content_characters": 1,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:01.427549+00:00",
+      "timestamp_monotonic": 328125.6457422,
+      "sequence": 99,
+      "content_characters": 2,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T12:39:01.427580+00:00",
+      "timestamp_monotonic": 328125.6457657,
+      "sequence": 100,
+      "content_characters": 2,
+      "done": false
+    },
+    {
+      "type": "stream_done",
+      "timestamp_utc": "2026-11-11T12:39:01.427599+00:00",
+      "timestamp_monotonic": 328125.6457852,
+      "sequence": 101,
+      "done": true
+    },
+    {
+      "type": "request_closed",
+      "timestamp_utc": "2026-11-11T12:39:01.427696+00:00",
+      "timestamp_monotonic": 328125.6458834,
+      "reason": "completed"
+    }
+  ],
+  "started": "2026-11-11T17:38:54.422076+05:00",
+  "one_request_only": true,
+  "other_clients_concurrency": "not globally controlled",
+  "limits": {
+    "ram_floor_mib": 4096,
+    "admission_ram_mib": 6656,
+    "commit_floor_mib": 4096,
+    "vram_floor_mib": 512,
+    "admission_vram_mib": 4096,
+    "timeout_s": 60,
+    "local_gpu_stop_c": 82.0
+  },
+  "initial": {
+    "index": 0,
+    "timestamp_local": "2026-11-11T17:38:54.422181+05:00",
+    "free_ram_mib": 7171.4,
+    "commit": {
+      "commit_total_mib": 14116.4,
+      "commit_limit_mib": 34864.1,
+      "commit_headroom_mib": 20747.7,
+      "physical_available_mib": 7171.3
+    },
+    "gpu": {
+      "name": "NVIDIA GeForce RTX 3070 Laptop GPU",
+      "temperature_c": 58.0,
+      "utilization_pct": 9.0,
+      "vram_used_mib": 590,
+      "vram_total_mib": 8192,
+      "hw_thermal_slowdown": "Not Active",
+      "sw_thermal_slowdown": "Not Active",
+      "active_throttle_reasons": "0x0000000000000001"
+    },
+    "ollama_processes": [
+      {
+        "pid": 12880,
+        "name": "ollama app.exe",
+        "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe",
+        "cmdline": [
+          "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe"
+        ],
+        "ppid": 12444,
+        "parent_name": "explorer.exe",
+        "parent_exe": "C:\\Windows\\explorer.exe",
+        "created_local": "2026-11-11T11:28:12.035457+05:00",
+        "threads": 16,
+        "handles": 449,
+        "working_set_mib": 47.4,
+        "private_working_set_mib": 6.2,
+        "private_bytes_mib": 53.5,
+        "virtual_bytes_mib": 53.5,
+        "peak_working_set_mib": 79.8,
+        "peak_private_bytes_mib": 53.9
+      },
+      {
+        "pid": 15836,
+        "name": "ollama.exe",
+        "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+        "cmdline": [
+          "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+          "serve"
+        ],
+        "ppid": 12880,
+        "parent_name": "ollama app.exe",
+        "parent_exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe",
+        "created_local": "2026-11-11T11:28:13.213266+05:00",
+        "threads": 36,
+        "handles": 606,
+        "working_set_mib": 44.2,
+        "private_working_set_mib": 8.1,
+        "private_bytes_mib": 101.0,
+        "virtual_bytes_mib": 101.0,
+        "peak_working_set_mib": 53.8,
+        "peak_private_bytes_mib": 107.0
+      }
+    ],
+    "api_version": {
+      "version": "0.40.16"
+    },
+    "running_models": []
+  },
+  "connections_before": [],
+  "request": {
+    "model": "qwen3:4b-q4_K_M",
+    "stream": true,
+    "think": false,
+    "keep_alive": 0,
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are the BioReactor AI assistant for anaerobic digestion and biogas. In this domain an unqualified BMP means biochemical methane potential; respect an explicit question about the bitmap image format."
+      },
+      {
+        "role": "user",
+        "content": "Объясни различие BMP и фактической выработки метана в реакторе."
+      }
+    ],
+    "options": {
+      "num_ctx": 4096,
+      "num_batch": 32,
+      "num_gpu": -1,
+      "num_predict": 100
+    }
+  },
+  "response": {
+    "model": "qwen3:4b-q4_K_M",
+    "created_at": "2026-11-11T12:39:01.4221886Z",
+    "done": true,
+    "done_reason": "length",
+    "total_duration": 6876953300,
+    "load_duration": 5578068100,
+    "prompt_eval_count": 84,
+    "prompt_eval_cached_count": 0,
+    "prompt_eval_duration": 179095000,
+    "eval_count": 100,
+    "eval_duration": 1113571000,
+    "message": {
+      "role": "assistant",
+      "content": "Конечно! Вот объяснение различий между **BMP (Biochemical Methane Potential)** и **фактической выработкой метана в реакторе**:\n\n---\n\n### 1. **BMP (Biochemical Methane Potential)**\n\n- **Определение**: BMP — это **теоретический** максимальный объем метана, который может быть выработан из органического материала (например, сельхозот"
+    }
+  },
+  "worker_stopped": true,
+  "response_elapsed_seconds": 6.953,
+  "models_after": [],
+  "unload_seconds": 0.017,
+  "final": {
+    "index": 999,
+    "timestamp_local": "2026-11-11T17:39:01.514572+05:00",
+    "free_ram_mib": 7182.6,
+    "commit": {
+      "commit_total_mib": 14091.3,
+      "commit_limit_mib": 34864.1,
+      "commit_headroom_mib": 20772.8,
+      "physical_available_mib": 7182.6
+    },
+    "gpu": {
+      "name": "NVIDIA GeForce RTX 3070 Laptop GPU",
+      "temperature_c": 66.0,
+      "utilization_pct": 95.0,
+      "vram_used_mib": 579,
+      "vram_total_mib": 8192,
+      "hw_thermal_slowdown": "Not Active",
+      "sw_thermal_slowdown": "Not Active",
+      "active_throttle_reasons": "0x0000000000000004"
+    },
+    "ollama_processes": [
+      {
+        "pid": 12880,
+        "name": "ollama app.exe",
+        "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe",
+        "cmdline": [
+          "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe"
+        ],
+        "ppid": 12444,
+        "parent_name": "explorer.exe",
+        "parent_exe": "C:\\Windows\\explorer.exe",
+        "created_local": "2026-11-11T11:28:12.035457+05:00",
+        "threads": 15,
+        "handles": 449,
+        "working_set_mib": 47.4,
+        "private_working_set_mib": 6.2,
+        "private_bytes_mib": 53.5,
+        "virtual_bytes_mib": 53.5,
+        "peak_working_set_mib": 79.8,
+        "peak_private_bytes_mib": 53.9
+      },
+      {
+        "pid": 15836,
+        "name": "ollama.exe",
+        "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+        "cmdline": [
+          "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+          "serve"
+        ],
+        "ppid": 12880,
+        "parent_name": "ollama app.exe",
+        "parent_exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe",
+        "created_local": "2026-11-11T11:28:13.213266+05:00",
+        "threads": 35,
+        "handles": 610,
+        "working_set_mib": 48.4,
+        "private_working_set_mib": 12.3,
+        "private_bytes_mib": 103.5,
+        "virtual_bytes_mib": 103.5,
+        "peak_working_set_mib": 53.8,
+        "peak_private_bytes_mib": 107.0
+      }
+    ],
+    "api_version": {
+      "version": "0.40.16"
+    },
+    "running_models": []
+  },
+  "finished": "2026-11-11T17:39:01.587135+05:00"
+}

@@ -11,22 +11,102 @@ from src.economics import complete_analysis,gas_composition
 from src.economics.decision_schemas import DecisionInputs
 from src.advisor.advanced_science import summary,proxy
 
-TOOLS=['assess_substrate_potential','evaluate_partial_economics','assess_process_evidence']
+TOOLS=['assess_substrate_potential','estimate_methane_yield','evaluate_partial_economics','assess_process_evidence']
 
 def context(state):
     facts={k:v.value for k,v in {**state.derived,**state.facts}.items()}
+    input_provenance={k:{'provenance':v.provenance,'unit':v.unit,'evidence':v.evidence}
+        for layer in (state.facts,state.assumptions,state.derived) for k,v in layer.items()}
+    # Explicit scenario assumptions are available to scenario tools, while
+    # their origin remains separate from confirmed measurements.
+    for key,value in state.assumptions.items():facts[key]=value.value
     process_assumptions={k:v.value for k,v in state.assumptions.items() if k in {'dilution_water_l','temperature_c','reactor_total_volume_l','reactor_working_volume_l'}}
     facts.update(process_assumptions)
     import copy
     decision=copy.deepcopy(state.decision_settings)
     reactor=decision.setdefault('reactor',{})
+    if facts.get('intended_use') in {'heat','electricity','chp','sell_gas'}:decision['gas_use']=facts['intended_use']
     if process_assumptions:reactor['provenance']='HYPOTHETICAL_SCENARIO'
     for key in ['dilution_water_l','temperature_c','reactor_working_volume_l','inoculum_volume_l','headspace_l','operating_mode']:
         if facts.get(key) is not None:reactor[key]=facts[key]
-    return {'facts':facts,'components':state.mixture_scenario_components or state.mixture_components,
+    return {'facts':facts,'input_provenance':input_provenance,'components':state.mixture_scenario_components or state.mixture_components,
+            'temperature_comparison_c':state.advanced.get('temperature_comparison_c',[]),
             'decision':decision,'mode':state.analytical_mode,
             'language':state.language,'scenario_process_inputs':process_assumptions,
             'advisor_settings':dict(state.advanced.get('request_overrides') or {}) | dict(state.advisor_settings or {})}
+
+
+def explicit_calculations(state):
+    """Calculate only dimensionally complete formulae from explicit dialogue inputs."""
+    def read(name):
+        for layer in (state.assumptions,state.facts,state.derived):
+            item=layer.get(name)
+            if item is not None:return {'value':item.value,'unit':item.unit,'provenance':item.provenance,'evidence':item.evidence}
+        return None
+    def numeric(name):
+        item=read(name)
+        return item if item and item.get('provenance')!='UNKNOWN' and isinstance(item['value'],(int,float)) and not isinstance(item['value'],bool) else None
+    def result(kind,label,value,unit,formula,inputs,description):
+        assumed=any(item.get('provenance')=='ASSUMED_FOR_SCENARIO' for item in inputs.values())
+        from src.provenance import calculated
+        return {'id':'explicit.'+kind,'kind':kind,'label':label,'value':float(value),'unit':unit,
+            'formula':formula,'inputs':inputs,
+            'result_provenance':calculated(inputs,unit,assumptions=['User-supplied scenario assumptions.'] if assumed else [],limitations=['Calculated value; not an independent measurement.']),
+            'provenance':'ASSUMED_FOR_SCENARIO' if assumed else 'CALCULATED_FROM_CONFIRMED',
+            'level':'SCENARIO_ASSUMPTION' if assumed else 'CALCULATED_FROM_CONFIRMED',
+            'description':description}
+    calculations=[]
+
+    amount=numeric('sale_offer_amount');scope=read('sale_offer_scope');currency=read('sale_offer_currency')
+    quantity=numeric('quantity');quantity_unit=read('unit')
+    mass=numeric('mass_kg')
+    sale_kind='sale_gross_value_kzt' if currency and currency['value']=='KZT' else 'sale_gross_value'
+    if amount and scope and currency and scope['value']=='batch':
+        calculations.append(result(sale_kind,'Валовая цена предложения за всю партию',amount['value'],currency['value'],
+            'quoted amount for the whole batch',{'sale_offer_amount':amount,'sale_offer_scope':scope,'sale_offer_currency':currency},
+            'Валовая цена до расходов; это не прибыль.'))
+    elif amount and scope and currency and quantity and quantity_unit:
+        units={'kg':1.0,'g':.001,'t':1000.0}
+        base_mass=mass['value'] if mass else (quantity['value']*units[quantity_unit['value']] if quantity_unit['value'] in units else None)
+        if scope['value']=='kg' and base_mass is not None:
+            calculations.append(result(sale_kind,'Валовая цена предложения до расходов',base_mass*amount['value'],currency['value'],
+                'batch mass in kg × quoted currency per kg',{'mass_kg':mass or {'value':base_mass,'unit':'kg','provenance':quantity['provenance'],'evidence':quantity['evidence']},
+                    'sale_offer_amount':amount,'sale_offer_scope':scope,'sale_offer_currency':currency},
+                'Валовая цена до расходов, не прибыль и не оценка стоимости переработки.'))
+        elif scope['value']=='t' and base_mass is not None:
+            calculations.append(result(sale_kind,'Валовая цена предложения до расходов',base_mass/1000*amount['value'],currency['value'],
+                'batch mass in tonnes × quoted currency per tonne',{'mass_kg':mass or {'value':base_mass,'unit':'kg','provenance':quantity['provenance'],'evidence':quantity['evidence']},
+                    'sale_offer_amount':amount,'sale_offer_scope':scope,'sale_offer_currency':currency},
+                'Валовая цена до расходов, не прибыль и не оценка стоимости переработки.'))
+        elif scope['value']=='L' and quantity_unit['value'] in {'L','m3'}:
+            volume_l=quantity['value']*(1000 if quantity_unit['value']=='m3' else 1)
+            calculations.append(result(sale_kind,'Валовая цена предложения до расходов',volume_l*amount['value'],currency['value'],
+                'batch liquid volume in L × quoted currency per L',{'quantity':quantity,'unit':quantity_unit,
+                    'sale_offer_amount':amount,'sale_offer_scope':scope,'sale_offer_currency':currency},
+                'Валовая цена до расходов, не прибыль и не оценка стоимости переработки.'))
+
+    vs=numeric('vs_mass_kg');bmp=numeric('bmp_ml_ch4_g_vs')
+    if vs and bmp:
+        calculations.append(result('methane_potential_m3','Арифметический потенциал метана по заданным VS и BMP',
+            vs['value']*bmp['value']*.001,'м³ CH₄','kg VS × 1000 g/kg × mL CH₄/g VS ÷ 1,000,000 mL/m³',
+            {'vs_mass_kg':vs,'bmp_ml_ch4_g_vs':bmp},
+            'Расчётный BMP-потенциал; не является измеренной выработкой установки.'))
+
+    biogas=numeric('reported_biogas_volume_m3');fraction=numeric('methane_fraction')
+    if biogas and fraction and 0<=fraction['value']<=1:
+        calculations.append(result('measured_methane_balance_m3','Расчёт по сообщённому объёму биогаза и доле метана',
+            biogas['value']*fraction['value'],'м³ CH₄','reported dry biogas volume × reported methane fraction',
+            {'reported_biogas_volume_m3':biogas,'methane_fraction':fraction},
+            'Арифметический баланс сообщённых измерений на указанной газовой базе; не BMP.'))
+
+    methane=numeric('reported_methane_volume_m3');lhv=numeric('heating_value_kwh_m3');eff=numeric('electricity_efficiency')
+    if methane and lhv and eff and 0<=eff['value']<=1:
+        calculations.append(result('electricity_kwh','Теоретическая электрическая энергия',
+            methane['value']*lhv['value']*eff['value'],'кВт·ч','m³ CH₄ × kWh/m³ × electrical efficiency',
+            {'reported_methane_volume_m3':methane,'heating_value_kwh_m3':lhv,'electricity_efficiency':eff},
+            'Условный инженерный расчёт по заданным входам; не измеренная выработка генератора.'))
+    return {'status':'ok' if calculations else 'not_applicable','calculations':calculations}
+
 
 def components(data):
     if data.get('components'):return [Component.model_validate(c) for c in data['components']]
@@ -34,18 +114,42 @@ def components(data):
     if q is None:q=f.get('mass_kg');unit='kg'
     if q is None:q=f.get('material_volume_l');unit='L'
     if not material or material=='mixture' or q is None:return []
-    props={}
+    props={};provenance=data.get('input_provenance',{})
+    def property_value(key,value,factor=1):
+        source=provenance.get(key,{})
+        mode='HYPOTHETICAL_SCENARIO' if source.get('provenance')=='ASSUMED_FOR_SCENARIO' else 'USER_REPORTED'
+        return {'low':value*factor,'high':value*factor,'provenance':mode,
+                'evidence':str(source.get('evidence') or 'Explicitly parsed dialogue input')[:1000]}
     for k,target,factor in [('ts_percent','ts_fraction',.01),('bmp_ml_ch4_g_vs','bmp_ml_g_vs',1),('density_kg_l','density_kg_l',1)]:
-        if f.get(k) is not None:props[target]=f[k]*factor
+        if f.get(k) is not None:props[target]=property_value(k,f[k],factor)
     if f.get('vs_percent') is not None and f.get('vs_basis') in {'TS','fresh_mass'}:
-        props['vs_fraction_of_ts' if f['vs_basis']=='TS' else 'vs_fraction_wet']=f['vs_percent']/100
+        key='vs_fraction_of_ts' if f['vs_basis']=='TS' else 'vs_fraction_wet'
+        props[key]=property_value('vs_percent',f['vs_percent'],.01)
     if f.get('vs_mass_kg') is not None and f.get('mass_kg'):
-        props['vs_fraction_wet']=f['vs_mass_kg']/f['mass_kg']
+        source=provenance.get('vs_mass_kg',{})
+        mode='HYPOTHETICAL_SCENARIO' if source.get('provenance')=='ASSUMED_FOR_SCENARIO' else 'USER_REPORTED'
+        props['vs_fraction_wet']={'low':f['vs_mass_kg']/f['mass_kg'],'high':f['vs_mass_kg']/f['mass_kg'],
+            'provenance':mode,'evidence':str(source.get('evidence') or 'Derived from explicit VS and wet masses')[:1000]}
+    scenario=any(item.get('provenance')=='ASSUMED_FOR_SCENARIO' for item in provenance.values())
+    primary=provenance.get('quantity') or provenance.get('mass_kg') or provenance.get('material_volume_l') or {}
     return [Component(id='c1',material=material,quantity=q,unit=unit or 'kg',
         material_state=f.get('material_state') or 'unknown',physical_state=f.get('physical_state') or 'unknown',
-        decay_state=f.get('decay_state') or 'unknown',properties=props)]
+        decay_state=f.get('decay_state') or 'unknown',properties=props,
+        data_mode='ILLUSTRATIVE_ASSUMPTION' if scenario else 'LITERATURE_ESTIMATE',
+        provenance='ASSUMED_FOR_SCENARIO' if primary.get('provenance')=='ASSUMED_FOR_SCENARIO' else 'USER_CONFIRMED',
+        evidence=str(primary.get('evidence') or 'Adapted from explicitly parsed dialogue facts')[:1500])]
 
 from src.advisor.evidence_engine import variants, scientific_request
+
+def market_region(data,settings=None):
+    """A scenario/default region is usable, but never user-confirmed by presence."""
+    settings=settings or data.get('advisor_settings') or {}
+    region=data['facts'].get('market_region') or settings.get('region','KZ-Karaganda')
+    origin=data.get('input_provenance',{}).get('market_region')
+    confirmed=(origin.get('provenance')=='USER_CONFIRMED' if origin is not None
+               else bool(data['facts'].get('market_region')) or bool(settings.get('region_confirmed',False)))
+    return region,confirmed
+
 
 def scientific(data,store=None):
     cs=components(data)
@@ -58,13 +162,14 @@ def scientific(data,store=None):
                 'missing':missing,'scenarios':[],'catalog_checked':True,'available_profile_ids':available,
                 'known_quantity':facts.get('quantity',facts.get('mass_kg',facts.get('material_volume_l')))}
     settings=dict(data.get('advisor_settings') or {})
+    region,region_confirmed=market_region(data,settings)
     settings.update(components=cs,decision=data['decision'],
         reactor_total_volume_l=data['facts'].get('reactor_total_volume_l',settings.get('reactor_total_volume_l')),
-        region=data['facts'].get('market_region') or settings.get('region','KZ-Karaganda'),
-        region_confirmed=bool(data['facts'].get('market_region')) or settings.get('region_confirmed',False))
+        region=region,region_confirmed=region_confirmed)
     settings.setdefault('allow_conditional_profiles',True)
     settings.setdefault('assume_common_dry_gas_basis',any(c.data_mode!='MEASURED' for c in cs))
     result=scientific_request(AdvisorRequest.model_validate(settings),data['mode'],store=store)
+    result['scenario_process_inputs']=dict(data.get('scenario_process_inputs',{}))
     for s in result.get('scenarios',[]):
         for key,value in data.get('scenario_process_inputs',{}).items():
             s['assumptions'].append(f'User hypothetical process input {key}={value}; not a measured process change.')
@@ -85,13 +190,15 @@ def economics(data,results,store):
         for s in science['scenarios']:
             if s['methane_m3'] and all(o['methane_m3'] and s['methane_m3']['low']>o['methane_m3']['high'] for o in science['scenarios'] if o['label']!=s['label']):
                 leaders.append(s['label'])
-    return {'status':'ok','message':'Available energy and price evidence valued; unknown costs are not zero.',
+    sources={s['url']:s for row in rows for s in row['analysis'].get('references',[]) if isinstance(s,dict) and s.get('url')}
+    region,region_confirmed=market_region(data)
+    return {'status':'ok','message':'Available energy and price evidence valued; unknown costs are not zero.','sources':list(sources.values()),
         'potential_dominates_other_material_scenarios':list(dict.fromkeys(leaders)),
         'scenarios':rows,'missing':['complete_operating_costs','capital_and_service_life_for_payback'],
         'profit_established':any(a.get('net_result_kzt') is not None and a.get('evidence_confirmed') for r in rows for a in r['analysis']['scenarios']),
-        'region':data['facts'].get('market_region') or 'KZ-Karaganda','region_confirmed':bool(data['facts'].get('market_region'))}
+        'region':region,'region_confirmed':region_confirmed}
 
-def process(data):
+def process(data,results=None):
     f=data['facts'];sources=[]
     from src.research.dossiers import search
     cs=components(data)
@@ -111,7 +218,9 @@ def process(data):
                             'evidence_level':'PUBLISHED_EXPERIMENT_NOT_AN_OPERATING_SETPOINT'})
     heating_missing=[key for key in ['heated_mass_kg','initial_temperature_c','heat_capacity_kj_kg_k','heating_efficiency','heat_losses']
                      if f.get(key) is None and data.get('decision',{}).get('reactor',{}).get(key) is None]
-    return {'status':'ok','message':'Process effects separated from unmeasured yield changes.',
+    from src.agent.farmer_consultation import temperature_options
+    consultation=temperature_options(data,studies)
+    return {'status':'ok','message':'Process effects separated from unmeasured yield changes.','temperature_consultation':consultation,
         'temperature_c':f.get('temperature_c'),'dilution_water_l':f.get('dilution_water_l'),
         'added_water_vs_kg':0 if f.get('dilution_water_l') is not None else None,
         'added_water_methane_potential_m3':0 if f.get('dilution_water_l') is not None else None,
@@ -127,9 +236,24 @@ def process(data):
 
 def execute(name,context,results,store):
     data=context['analytical_context']
+    if name=='estimate_methane_yield':
+        data=dict(data);settings=dict(data.get('advisor_settings') or {})
+        settings.update(estimation_mode='LITERATURE_ESTIMATE',allow_literature_density=True,allow_conditional_profiles=True,use_literature_volume_concentrations=True)
+        from src.agent.quantities9 import user_time_horizons
+        horizons=user_time_horizons(data.get('query',''))
+        settings.setdefault('target_days',horizons[-1]['value'] if horizons else data['facts'].get('duration_days'))
+        settings.setdefault('process_temperature_c',data['facts'].get('temperature_c'))
+        if data.get('temperature_comparison_c'):settings['process_temperature_c']=None
+        data['advisor_settings']=settings
+        result=scientific(data,store=store)
+        if data.get('temperature_comparison_c'):
+            from src.economics.energy_conversion import conditional_reference_energy
+            for scenario in result.get('scenarios',[]):
+                if scenario.get('methane_m3'):scenario['conditional_reference_energy']=conditional_reference_energy(scenario['methane_m3'])
+        return result
     if name=='assess_substrate_potential':return scientific(data,store=store)
     if name=='evaluate_partial_economics':return economics(data,results,store)
-    if name=='assess_process_evidence':return process(data)
+    if name=='assess_process_evidence':return process(data,results)
     raise ValueError('Unknown analytical tool')
 
 def span(value):
@@ -138,10 +262,10 @@ def span(value):
 
 def observation(name,result):
     """Keep complete calculation values in a compact, bounded LLM observation."""
-    if name=='assess_substrate_potential':
-        return {k:v for k,v in result.items() if k not in {'scenarios','sources','local_experiments'}} | {'scenarios':[
+    if name in {'assess_substrate_potential','estimate_methane_yield'}:
+        return {k:v for k,v in result.items() if k not in {'scenarios','sources','local_experiments','answer'}} | {'scenarios':[
             {k:s.get(k) for k in ['id','label','methane_m3','known_component_subtotal_m3','wet_mass_kg','ts_mass_kg','vs_mass_kg',
-                'gas_basis','result_level','profile_ids','missing']} | {'assumptions':s.get('assumptions',[])[:3],
+                'gas_basis','result_level','profile_ids','missing','estimation_mode','time_yield','potential_methane_l']} | {'assumptions':s.get('assumptions',[])[:3],
                 'engineering':{k:s.get('engineering',{}).get(k) for k in ['status','violations','known_charge_volume_l','missing','necessary_mean_feed_density_kg_l']}}
                 for s in result.get('scenarios',[])[:8]]}
     if name=='evaluate_partial_economics':
@@ -155,6 +279,8 @@ def observation(name,result):
 
 def render(results,state):
     """Generic result projection, never a response matched to a test prompt."""
+    if results.get('assess_substrate_potential',{}).get('estimation_mode'):
+        return results['assess_substrate_potential']['answer']
     if state.language!='ru':return render_international(results,state.language)
     parts=[];science=results.get('assess_substrate_potential',{});econ=results.get('evaluate_partial_economics',{})
     if science.get('comparison_mode')=='alternatives':parts.append('Сравниваю отдельные партии, без сложения их масс и доходов.')
@@ -300,7 +426,7 @@ def user_facing(results,state):
                 gas.append(f"{s.get('label','Сценарий')}: {span(s['known_component_subtotal_m3'])} м³ CH₄ ({t['partial']})")
             else:gas.append(t['gas_unknown'])
             if s.get('result_level')=='HYPOTHETICAL_SCENARIO':modes.append('HYPOTHETICAL_SCENARIO')
-            elif s.get('result_level')=='MEASURED':modes.append('MEASURED')
+            elif s.get('result_level') in {'MEASURED','CALCULATED'}:modes.append('CALCULATED')
             else:modes.append('LITERATURE_ESTIMATE')
             for component in s.get('components',[]):
                 source=component.get('source')
@@ -410,7 +536,12 @@ def render_international(results,language):
 
 def obligations(state,text):
     intents=set(state.intents);f=context(state)['facts'];has_batch=bool(state.mixture_components or state.mixture_scenario_components or f.get('quantity') or f.get('mass_kg'))
+    if 'digestate_management' in intents and not f.get('material') and f.get('market_commodity')=='digestate':
+        # A digestate product valuation is not a feedstock BMP calculation.
+        return []
     wanted=[]
+    if ('profile_lookup' in intents or re.search(r'каталог|профил\w*|научн\w*\s+дан|литератур\w*\s+дан|аналог\w*|покрыти\w*|catalog(?:ue)?|profile|literature',text,re.I)):
+        wanted.append('search_substrate_profiles')
     if has_batch and re.search(r'гарантир|без\s+допущен|guarantee|without\s+assumption',text,re.I):
         # An explicit demand for certainty does not authorize silently adopting
         # a literature sample. Inspect evidence and explain its actual scope.
@@ -432,5 +563,8 @@ def obligations(state,text):
         if 'assess_substrate_potential' not in wanted:wanted.insert(0,'assess_substrate_potential')
         if 'evaluate_partial_economics' not in wanted:wanted.append('evaluate_partial_economics')
     concentration_only=bool(re.search(r'concentration|концентраци',text,re.I)) and not re.search(r'methane|метан|биогаз|biogas',text,re.I)
-    if (f.get('dilution_water_l') is not None and not concentration_only) or 'temperature_recommendation' in intents:wanted.append('assess_process_evidence')
+    complete_concentration=(concentration_only and all(f.get(name) is not None for name in ('vs_mass_kg','mass_kg','dilution_water_l')))
+    if ((f.get('dilution_water_l') is not None and not concentration_only)
+            or 'temperature_recommendation' in intents and not complete_concentration):
+        wanted.append('assess_process_evidence')
     return wanted

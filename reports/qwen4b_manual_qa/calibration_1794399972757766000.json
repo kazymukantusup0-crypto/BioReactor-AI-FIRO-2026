@@ -1,0 +1,89 @@
+{
+  "status": "BLOCKED",
+  "samples": [],
+  "events": [],
+  "started": "2026-11-11T17:26:12.757776+05:00",
+  "one_request_only": true,
+  "other_clients_concurrency": "not globally controlled",
+  "limits": {
+    "ram_floor_mib": 4096,
+    "admission_ram_mib": 6656,
+    "commit_floor_mib": 4096,
+    "vram_floor_mib": 512,
+    "admission_vram_mib": 4096,
+    "timeout_s": 60,
+    "local_gpu_stop_c": 82.0
+  },
+  "initial": {
+    "index": 0,
+    "timestamp_local": "2026-11-11T17:26:12.757881+05:00",
+    "free_ram_mib": 5355.3,
+    "commit": {
+      "commit_total_mib": 16312.4,
+      "commit_limit_mib": 34864.1,
+      "commit_headroom_mib": 18551.7,
+      "physical_available_mib": 5355.3
+    },
+    "gpu": {
+      "name": "NVIDIA GeForce RTX 3070 Laptop GPU",
+      "temperature_c": 60.0,
+      "utilization_pct": 2.0,
+      "vram_used_mib": 733,
+      "vram_total_mib": 8192,
+      "hw_thermal_slowdown": "Not Active",
+      "sw_thermal_slowdown": "Not Active",
+      "active_throttle_reasons": "0x0000000000000001"
+    },
+    "ollama_processes": [
+      {
+        "pid": 12880,
+        "name": "ollama app.exe",
+        "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe",
+        "cmdline": [
+          "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe"
+        ],
+        "ppid": 12444,
+        "parent_name": "explorer.exe",
+        "parent_exe": "C:\\Windows\\explorer.exe",
+        "created_local": "2026-11-11T11:28:12.035457+05:00",
+        "threads": 15,
+        "handles": 360,
+        "working_set_mib": 46.7,
+        "private_working_set_mib": 5.4,
+        "private_bytes_mib": 53.3,
+        "virtual_bytes_mib": 53.3,
+        "peak_working_set_mib": 79.8,
+        "peak_private_bytes_mib": 53.9
+      },
+      {
+        "pid": 15836,
+        "name": "ollama.exe",
+        "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+        "cmdline": [
+          "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+          "serve"
+        ],
+        "ppid": 12880,
+        "parent_name": "ollama app.exe",
+        "parent_exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe",
+        "created_local": "2026-11-11T11:28:13.213266+05:00",
+        "threads": 36,
+        "handles": 606,
+        "working_set_mib": 46.2,
+        "private_working_set_mib": 10.0,
+        "private_bytes_mib": 101.0,
+        "virtual_bytes_mib": 101.0,
+        "peak_working_set_mib": 53.8,
+        "peak_private_bytes_mib": 107.0
+      }
+    ],
+    "api_version": {
+      "version": "0.40.16"
+    },
+    "running_models": []
+  },
+  "connections_before": [],
+  "reasons": [
+    "ram_limit"
+  ]
+}

@@ -16,14 +16,17 @@ def run(args):
     except OSError:raise ValueError(f'Port {args.port} is already in use. Open the existing dashboard or use --port with another port.') from None
     import uvicorn
     from src.market.api import create_app
-    app=create_app(scheduler_enabled=False if args.no_scheduler else None)
+    experimental=getattr(args,'firo_demo',False)
+    from src.market.store import Store
+    app=create_app(store=Store(ROOT/'data/runtime/firo_demo.sqlite3') if experimental else None,
+                   scheduler_enabled=False if experimental or args.no_scheduler else None,firo_demo=experimental)
     address=f'http://127.0.0.1:{args.port}'
     if not args.no_browser:
         def open_when_ready():
             for _ in range(60):
                 try:
                     with urllib.request.urlopen(address+'/health',timeout=1) as response:
-                        if response.status==200:webbrowser.open(address+'/dashboard/');return
+                        if response.status==200:webbrowser.open(address+'/dashboard/#/chat');return
                 except OSError:pass
                 time.sleep(.25)
         threading.Thread(target=open_when_ready,daemon=True).start()

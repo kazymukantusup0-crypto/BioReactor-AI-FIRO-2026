@@ -1,0 +1,1177 @@
+{
+  "model": "qwen3:4b-q4_K_M",
+  "status": "COMPLETED",
+  "samples": [
+    {
+      "index": 1,
+      "timestamp_local": "2026-11-11T16:32:13.925090+05:00",
+      "free_ram_mib": 7132.8,
+      "commit": {
+        "commit_total_mib": 13901.1,
+        "commit_limit_mib": 34864.1,
+        "commit_headroom_mib": 20963.0,
+        "physical_available_mib": 7132.5
+      },
+      "gpu": {
+        "name": "NVIDIA GeForce RTX 3070 Laptop GPU",
+        "temperature_c": 57.0,
+        "utilization_pct": 30.0,
+        "vram_used_mib": 543,
+        "vram_total_mib": 8192,
+        "hw_thermal_slowdown": "Not Active",
+        "sw_thermal_slowdown": "Not Active",
+        "active_throttle_reasons": "0x0000000000000001"
+      },
+      "ollama_processes": [
+        {
+          "pid": 12880,
+          "name": "ollama app.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe"
+          ],
+          "ppid": 12444,
+          "parent_name": "explorer.exe",
+          "parent_exe": "C:\\Windows\\explorer.exe",
+          "created_local": "2026-11-11T11:28:12.035457+05:00",
+          "threads": 15,
+          "handles": 449,
+          "working_set_mib": 47.7,
+          "private_working_set_mib": 6.4,
+          "private_bytes_mib": 53.8,
+          "virtual_bytes_mib": 53.8,
+          "peak_working_set_mib": 79.8,
+          "peak_private_bytes_mib": 53.9
+        },
+        {
+          "pid": 15836,
+          "name": "ollama.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+            "serve"
+          ],
+          "ppid": 12880,
+          "parent_name": "ollama app.exe",
+          "parent_exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe",
+          "created_local": "2026-11-11T11:28:13.213266+05:00",
+          "threads": 36,
+          "handles": 699,
+          "working_set_mib": 46.7,
+          "private_working_set_mib": 10.6,
+          "private_bytes_mib": 101.0,
+          "virtual_bytes_mib": 101.0,
+          "peak_working_set_mib": 53.8,
+          "peak_private_bytes_mib": 107.0
+        },
+        {
+          "pid": 32264,
+          "name": "llama-server.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\lib\\ollama\\llama-server.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\lib\\ollama\\llama-server.exe",
+            "--port",
+            "51367",
+            "--host",
+            "127.0.0.1",
+            "--no-webui",
+            "--offline",
+            "--verbose"
+          ],
+          "ppid": 15836,
+          "parent_name": "ollama.exe",
+          "parent_exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+          "created_local": "2026-11-11T16:32:13.942239+05:00",
+          "threads": 6,
+          "handles": 67,
+          "working_set_mib": 9.6,
+          "private_working_set_mib": 2.8,
+          "private_bytes_mib": 4.2,
+          "virtual_bytes_mib": 4.2,
+          "peak_working_set_mib": 9.6,
+          "peak_private_bytes_mib": 4.2
+        }
+      ],
+      "api_version": {
+        "version": "0.40.16"
+      },
+      "running_models": []
+    },
+    {
+      "index": 2,
+      "timestamp_local": "2026-11-11T16:32:15.061469+05:00",
+      "free_ram_mib": 6833.3,
+      "commit": {
+        "commit_total_mib": 14434.2,
+        "commit_limit_mib": 34864.1,
+        "commit_headroom_mib": 20429.9,
+        "physical_available_mib": 6833.2
+      },
+      "gpu": {
+        "name": "NVIDIA GeForce RTX 3070 Laptop GPU",
+        "temperature_c": 58.0,
+        "utilization_pct": 6.0,
+        "vram_used_mib": 2280,
+        "vram_total_mib": 8192,
+        "hw_thermal_slowdown": "Not Active",
+        "sw_thermal_slowdown": "Not Active",
+        "active_throttle_reasons": "0x0000000000000000"
+      },
+      "ollama_processes": [
+        {
+          "pid": 12880,
+          "name": "ollama app.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe"
+          ],
+          "ppid": 12444,
+          "parent_name": "explorer.exe",
+          "parent_exe": "C:\\Windows\\explorer.exe",
+          "created_local": "2026-11-11T11:28:12.035457+05:00",
+          "threads": 15,
+          "handles": 449,
+          "working_set_mib": 47.7,
+          "private_working_set_mib": 6.4,
+          "private_bytes_mib": 53.8,
+          "virtual_bytes_mib": 53.8,
+          "peak_working_set_mib": 79.8,
+          "peak_private_bytes_mib": 53.9
+        },
+        {
+          "pid": 15836,
+          "name": "ollama.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+            "serve"
+          ],
+          "ppid": 12880,
+          "parent_name": "ollama app.exe",
+          "parent_exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe",
+          "created_local": "2026-11-11T11:28:13.213266+05:00",
+          "threads": 36,
+          "handles": 700,
+          "working_set_mib": 49.6,
+          "private_working_set_mib": 13.4,
+          "private_bytes_mib": 103.7,
+          "virtual_bytes_mib": 103.7,
+          "peak_working_set_mib": 53.8,
+          "peak_private_bytes_mib": 107.0
+        },
+        {
+          "pid": 32680,
+          "name": "llama-server.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\lib\\ollama\\llama-server.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\lib\\ollama\\llama-server.exe",
+            "--model",
+            "C:\\Users\\Kazhu\\.ollama\\models\\blobs\\sha256-163553aea1b1de62de7c5eb2ef5afb756b4b3133308d9ae7e42e951d8d696ef5",
+            "--port",
+            "59419",
+            "--host",
+            "127.0.0.1",
+            "--no-webui",
+            "--offline",
+            "-c",
+            "4096",
+            "-np",
+            "1",
+            "--log-verbosity",
+            "4",
+            "--no-log-prefix",
+            "--no-log-timestamps",
+            "--no-jinja",
+            "--chat-template",
+            "chatml",
+            "--load-mode",
+            "none",
+            "--flash-attn",
+            "auto",
+            "-b",
+            "32",
+            "-ub",
+            "32",
+            "--context-shift",
+            "--keep",
+            "4"
+          ],
+          "ppid": 15836,
+          "parent_name": "ollama.exe",
+          "parent_exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+          "created_local": "2026-11-11T16:32:14.606333+05:00",
+          "threads": 28,
+          "handles": 196,
+          "working_set_mib": 612.6,
+          "private_working_set_mib": 538.3,
+          "private_bytes_mib": 3330.4,
+          "virtual_bytes_mib": 3330.4,
+          "peak_working_set_mib": 612.6,
+          "peak_private_bytes_mib": 3330.4
+        }
+      ],
+      "api_version": {
+        "version": "0.40.16"
+      },
+      "running_models": []
+    },
+    {
+      "index": 3,
+      "timestamp_local": "2026-11-11T16:32:16.200359+05:00",
+      "free_ram_mib": 6321.7,
+      "commit": {
+        "commit_total_mib": 18136.2,
+        "commit_limit_mib": 34864.1,
+        "commit_headroom_mib": 16727.9,
+        "physical_available_mib": 6321.4
+      },
+      "gpu": {
+        "name": "NVIDIA GeForce RTX 3070 Laptop GPU",
+        "temperature_c": 59.0,
+        "utilization_pct": 38.0,
+        "vram_used_mib": 3795,
+        "vram_total_mib": 8192,
+        "hw_thermal_slowdown": "Not Active",
+        "sw_thermal_slowdown": "Not Active",
+        "active_throttle_reasons": "0x0000000000000000"
+      },
+      "ollama_processes": [
+        {
+          "pid": 12880,
+          "name": "ollama app.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe"
+          ],
+          "ppid": 12444,
+          "parent_name": "explorer.exe",
+          "parent_exe": "C:\\Windows\\explorer.exe",
+          "created_local": "2026-11-11T11:28:12.035457+05:00",
+          "threads": 15,
+          "handles": 449,
+          "working_set_mib": 47.7,
+          "private_working_set_mib": 6.4,
+          "private_bytes_mib": 53.8,
+          "virtual_bytes_mib": 53.8,
+          "peak_working_set_mib": 79.8,
+          "peak_private_bytes_mib": 53.9
+        },
+        {
+          "pid": 15836,
+          "name": "ollama.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+            "serve"
+          ],
+          "ppid": 12880,
+          "parent_name": "ollama app.exe",
+          "parent_exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe",
+          "created_local": "2026-11-11T11:28:13.213266+05:00",
+          "threads": 36,
+          "handles": 701,
+          "working_set_mib": 49.6,
+          "private_working_set_mib": 13.5,
+          "private_bytes_mib": 103.7,
+          "virtual_bytes_mib": 103.7,
+          "peak_working_set_mib": 53.8,
+          "peak_private_bytes_mib": 107.0
+        },
+        {
+          "pid": 32680,
+          "name": "llama-server.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\lib\\ollama\\llama-server.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\lib\\ollama\\llama-server.exe",
+            "--model",
+            "C:\\Users\\Kazhu\\.ollama\\models\\blobs\\sha256-163553aea1b1de62de7c5eb2ef5afb756b4b3133308d9ae7e42e951d8d696ef5",
+            "--port",
+            "59419",
+            "--host",
+            "127.0.0.1",
+            "--no-webui",
+            "--offline",
+            "-c",
+            "4096",
+            "-np",
+            "1",
+            "--log-verbosity",
+            "4",
+            "--no-log-prefix",
+            "--no-log-timestamps",
+            "--no-jinja",
+            "--chat-template",
+            "chatml",
+            "--load-mode",
+            "none",
+            "--flash-attn",
+            "auto",
+            "-b",
+            "32",
+            "-ub",
+            "32",
+            "--context-shift",
+            "--keep",
+            "4"
+          ],
+          "ppid": 15836,
+          "parent_name": "ollama.exe",
+          "parent_exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+          "created_local": "2026-11-11T16:32:14.606333+05:00",
+          "threads": 29,
+          "handles": 219,
+          "working_set_mib": 802.0,
+          "private_working_set_mib": 733.7,
+          "private_bytes_mib": 4274.3,
+          "virtual_bytes_mib": 4274.3,
+          "peak_working_set_mib": 811.6,
+          "peak_private_bytes_mib": 4282.1
+        }
+      ],
+      "api_version": {
+        "version": "0.40.16"
+      },
+      "running_models": [
+        {
+          "name": "qwen3:4b-q4_K_M",
+          "model": "qwen3:4b-q4_K_M",
+          "size": 3224109055,
+          "digest": "2bfd38a7daaf4b1037efe517ccb73d1a3bbd4822cf89f1a82be1569050a114e0",
+          "details": {
+            "parent_model": "",
+            "format": "gguf",
+            "family": "qwen3",
+            "families": [
+              "qwen3"
+            ],
+            "parameter_size": "4.0B",
+            "quantization_level": "Q4_K_M"
+          },
+          "expires_at": "2026-11-11T16:32:16.2984359+05:00",
+          "size_vram": 3224109055,
+          "context_length": 4096,
+          "runner": "llamacpp"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:16.273224+00:00",
+      "timestamp_monotonic": 324120.4914177,
+      "sequence": 1,
+      "content_characters": 1,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:16.302755+00:00",
+      "timestamp_monotonic": 324120.5209488,
+      "sequence": 2,
+      "content_characters": 2,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:16.314881+00:00",
+      "timestamp_monotonic": 324120.5330751,
+      "sequence": 3,
+      "content_characters": 2,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:16.324217+00:00",
+      "timestamp_monotonic": 324120.542413,
+      "sequence": 4,
+      "content_characters": 4,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:16.333707+00:00",
+      "timestamp_monotonic": 324120.5518978,
+      "sequence": 5,
+      "content_characters": 3,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:16.343384+00:00",
+      "timestamp_monotonic": 324120.5615783,
+      "sequence": 6,
+      "content_characters": 6,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:16.354490+00:00",
+      "timestamp_monotonic": 324120.5726823,
+      "sequence": 7,
+      "content_characters": 6,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:16.365142+00:00",
+      "timestamp_monotonic": 324120.5833319,
+      "sequence": 8,
+      "content_characters": 5,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:16.375149+00:00",
+      "timestamp_monotonic": 324120.5933395,
+      "sequence": 9,
+      "content_characters": 3,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:16.386389+00:00",
+      "timestamp_monotonic": 324120.6045792,
+      "sequence": 10,
+      "content_characters": 3,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:16.396537+00:00",
+      "timestamp_monotonic": 324120.6147274,
+      "sequence": 11,
+      "content_characters": 5,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:16.406636+00:00",
+      "timestamp_monotonic": 324120.6248261,
+      "sequence": 12,
+      "content_characters": 5,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:16.418806+00:00",
+      "timestamp_monotonic": 324120.6369972,
+      "sequence": 13,
+      "content_characters": 3,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:16.428924+00:00",
+      "timestamp_monotonic": 324120.6471144,
+      "sequence": 14,
+      "content_characters": 5,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:16.439107+00:00",
+      "timestamp_monotonic": 324120.6572976,
+      "sequence": 15,
+      "content_characters": 4,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:16.450480+00:00",
+      "timestamp_monotonic": 324120.6686708,
+      "sequence": 16,
+      "content_characters": 2,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:16.461577+00:00",
+      "timestamp_monotonic": 324120.6797672,
+      "sequence": 17,
+      "content_characters": 5,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:16.471655+00:00",
+      "timestamp_monotonic": 324120.6898442,
+      "sequence": 18,
+      "content_characters": 2,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:16.483185+00:00",
+      "timestamp_monotonic": 324120.7013798,
+      "sequence": 19,
+      "content_characters": 1,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:16.494605+00:00",
+      "timestamp_monotonic": 324120.7127992,
+      "sequence": 20,
+      "content_characters": 2,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:16.504534+00:00",
+      "timestamp_monotonic": 324120.7227243,
+      "sequence": 21,
+      "content_characters": 2,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:16.516685+00:00",
+      "timestamp_monotonic": 324120.7348757,
+      "sequence": 22,
+      "content_characters": 1,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:16.526836+00:00",
+      "timestamp_monotonic": 324120.7450266,
+      "sequence": 23,
+      "content_characters": 2,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:16.536848+00:00",
+      "timestamp_monotonic": 324120.7550383,
+      "sequence": 24,
+      "content_characters": 1,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:16.546993+00:00",
+      "timestamp_monotonic": 324120.765183,
+      "sequence": 25,
+      "content_characters": 3,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:16.559448+00:00",
+      "timestamp_monotonic": 324120.7776397,
+      "sequence": 26,
+      "content_characters": 13,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:16.569601+00:00",
+      "timestamp_monotonic": 324120.7877913,
+      "sequence": 27,
+      "content_characters": 4,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:16.583657+00:00",
+      "timestamp_monotonic": 324120.8018494,
+      "sequence": 28,
+      "content_characters": 2,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:16.591363+00:00",
+      "timestamp_monotonic": 324120.8095549,
+      "sequence": 29,
+      "content_characters": 3,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:16.602093+00:00",
+      "timestamp_monotonic": 324120.8202835,
+      "sequence": 30,
+      "content_characters": 4,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:16.614354+00:00",
+      "timestamp_monotonic": 324120.8325455,
+      "sequence": 31,
+      "content_characters": 2,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:16.624668+00:00",
+      "timestamp_monotonic": 324120.8428575,
+      "sequence": 32,
+      "content_characters": 3,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:16.634842+00:00",
+      "timestamp_monotonic": 324120.8530316,
+      "sequence": 33,
+      "content_characters": 3,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:16.645270+00:00",
+      "timestamp_monotonic": 324120.8634603,
+      "sequence": 34,
+      "content_characters": 2,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:16.656599+00:00",
+      "timestamp_monotonic": 324120.8747902,
+      "sequence": 35,
+      "content_characters": 3,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:16.667865+00:00",
+      "timestamp_monotonic": 324120.8860589,
+      "sequence": 36,
+      "content_characters": 5,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:16.678146+00:00",
+      "timestamp_monotonic": 324120.8963386,
+      "sequence": 37,
+      "content_characters": 4,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:16.689481+00:00",
+      "timestamp_monotonic": 324120.9076716,
+      "sequence": 38,
+      "content_characters": 1,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:16.699683+00:00",
+      "timestamp_monotonic": 324120.9178742,
+      "sequence": 39,
+      "content_characters": 4,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:16.711168+00:00",
+      "timestamp_monotonic": 324120.9293585,
+      "sequence": 40,
+      "content_characters": 7,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:16.722640+00:00",
+      "timestamp_monotonic": 324120.9408321,
+      "sequence": 41,
+      "content_characters": 2,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:16.732430+00:00",
+      "timestamp_monotonic": 324120.9506202,
+      "sequence": 42,
+      "content_characters": 2,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:16.742523+00:00",
+      "timestamp_monotonic": 324120.9607127,
+      "sequence": 43,
+      "content_characters": 1,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:16.755084+00:00",
+      "timestamp_monotonic": 324120.9732749,
+      "sequence": 44,
+      "content_characters": 3,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:16.770043+00:00",
+      "timestamp_monotonic": 324120.988233,
+      "sequence": 45,
+      "content_characters": 3,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:16.775643+00:00",
+      "timestamp_monotonic": 324120.9938328,
+      "sequence": 46,
+      "content_characters": 5,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:16.786759+00:00",
+      "timestamp_monotonic": 324121.0049518,
+      "sequence": 47,
+      "content_characters": 4,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:16.796956+00:00",
+      "timestamp_monotonic": 324121.0151457,
+      "sequence": 48,
+      "content_characters": 6,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:16.808297+00:00",
+      "timestamp_monotonic": 324121.0264884,
+      "sequence": 49,
+      "content_characters": 5,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:16.819777+00:00",
+      "timestamp_monotonic": 324121.0379679,
+      "sequence": 50,
+      "content_characters": 4,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:16.829826+00:00",
+      "timestamp_monotonic": 324121.0480154,
+      "sequence": 51,
+      "content_characters": 8,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:16.841374+00:00",
+      "timestamp_monotonic": 324121.0595631,
+      "sequence": 52,
+      "content_characters": 5,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:16.851137+00:00",
+      "timestamp_monotonic": 324121.0693268,
+      "sequence": 53,
+      "content_characters": 1,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:16.862489+00:00",
+      "timestamp_monotonic": 324121.0806803,
+      "sequence": 54,
+      "content_characters": 2,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:16.872428+00:00",
+      "timestamp_monotonic": 324121.0906176,
+      "sequence": 55,
+      "content_characters": 3,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:16.883785+00:00",
+      "timestamp_monotonic": 324121.1019754,
+      "sequence": 56,
+      "content_characters": 2,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:16.894046+00:00",
+      "timestamp_monotonic": 324121.1122361,
+      "sequence": 57,
+      "content_characters": 4,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:16.904340+00:00",
+      "timestamp_monotonic": 324121.1225298,
+      "sequence": 58,
+      "content_characters": 7,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:16.916791+00:00",
+      "timestamp_monotonic": 324121.1349846,
+      "sequence": 59,
+      "content_characters": 8,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:16.927267+00:00",
+      "timestamp_monotonic": 324121.1454601,
+      "sequence": 60,
+      "content_characters": 4,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:16.937137+00:00",
+      "timestamp_monotonic": 324121.1553282,
+      "sequence": 61,
+      "content_characters": 2,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:16.948354+00:00",
+      "timestamp_monotonic": 324121.1665444,
+      "sequence": 62,
+      "content_characters": 9,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:16.958762+00:00",
+      "timestamp_monotonic": 324121.1769556,
+      "sequence": 63,
+      "content_characters": 4,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:16.969787+00:00",
+      "timestamp_monotonic": 324121.1879842,
+      "sequence": 64,
+      "content_characters": 4,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:16.984628+00:00",
+      "timestamp_monotonic": 324121.2028216,
+      "sequence": 65,
+      "content_characters": 2,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:16.991108+00:00",
+      "timestamp_monotonic": 324121.209301,
+      "sequence": 66,
+      "content_characters": 7,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:17.001149+00:00",
+      "timestamp_monotonic": 324121.219341,
+      "sequence": 67,
+      "content_characters": 1,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:17.012248+00:00",
+      "timestamp_monotonic": 324121.230439,
+      "sequence": 68,
+      "content_characters": 1,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:17.024217+00:00",
+      "timestamp_monotonic": 324121.2424091,
+      "sequence": 69,
+      "content_characters": 9,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:17.035475+00:00",
+      "timestamp_monotonic": 324121.2536662,
+      "sequence": 70,
+      "content_characters": 2,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:17.045709+00:00",
+      "timestamp_monotonic": 324121.2638999,
+      "sequence": 71,
+      "content_characters": 8,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:17.057756+00:00",
+      "timestamp_monotonic": 324121.2759475,
+      "sequence": 72,
+      "content_characters": 3,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:17.067811+00:00",
+      "timestamp_monotonic": 324121.2860014,
+      "sequence": 73,
+      "content_characters": 2,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:17.077881+00:00",
+      "timestamp_monotonic": 324121.2960707,
+      "sequence": 74,
+      "content_characters": 5,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:17.089004+00:00",
+      "timestamp_monotonic": 324121.3071941,
+      "sequence": 75,
+      "content_characters": 3,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:17.099304+00:00",
+      "timestamp_monotonic": 324121.3174945,
+      "sequence": 76,
+      "content_characters": 5,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:17.110549+00:00",
+      "timestamp_monotonic": 324121.3287406,
+      "sequence": 77,
+      "content_characters": 2,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:17.121747+00:00",
+      "timestamp_monotonic": 324121.3399366,
+      "sequence": 78,
+      "content_characters": 5,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:17.133162+00:00",
+      "timestamp_monotonic": 324121.3513537,
+      "sequence": 79,
+      "content_characters": 4,
+      "done": false
+    },
+    {
+      "type": "stream_content",
+      "timestamp_utc": "2026-11-11T11:32:17.143758+00:00",
+      "timestamp_monotonic": 324121.3619472,
+      "sequence": 80,
+      "content_characters": 1,
+      "done": false
+    },
+    {
+      "type": "stream_done",
+      "timestamp_utc": "2026-11-11T11:32:17.143947+00:00",
+      "timestamp_monotonic": 324121.3621364,
+      "sequence": 81,
+      "done": true
+    },
+    {
+      "type": "request_closed",
+      "timestamp_utc": "2026-11-11T11:32:17.144040+00:00",
+      "timestamp_monotonic": 324121.3622275,
+      "reason": "completed"
+    }
+  ],
+  "runtime_floor_mib": 6246.4,
+  "gpu_stop_c": 82.0,
+  "timeout_seconds": 120,
+  "runtime": "shared Ollama API; one probe request from this script",
+  "other_clients_concurrency": "not controlled",
+  "initial": {
+    "index": 0,
+    "timestamp_local": "2026-11-11T16:32:13.782963+05:00",
+    "free_ram_mib": 7137.4,
+    "commit": {
+      "commit_total_mib": 13900.1,
+      "commit_limit_mib": 34864.1,
+      "commit_headroom_mib": 20964.0,
+      "physical_available_mib": 7137.4
+    },
+    "gpu": {
+      "name": "NVIDIA GeForce RTX 3070 Laptop GPU",
+      "temperature_c": 57.0,
+      "utilization_pct": 30.0,
+      "vram_used_mib": 543,
+      "vram_total_mib": 8192,
+      "hw_thermal_slowdown": "Not Active",
+      "sw_thermal_slowdown": "Not Active",
+      "active_throttle_reasons": "0x0000000000000001"
+    },
+    "ollama_processes": [
+      {
+        "pid": 12880,
+        "name": "ollama app.exe",
+        "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe",
+        "cmdline": [
+          "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe"
+        ],
+        "ppid": 12444,
+        "parent_name": "explorer.exe",
+        "parent_exe": "C:\\Windows\\explorer.exe",
+        "created_local": "2026-11-11T11:28:12.035457+05:00",
+        "threads": 15,
+        "handles": 449,
+        "working_set_mib": 47.7,
+        "private_working_set_mib": 6.4,
+        "private_bytes_mib": 53.8,
+        "virtual_bytes_mib": 53.8,
+        "peak_working_set_mib": 79.8,
+        "peak_private_bytes_mib": 53.9
+      },
+      {
+        "pid": 15836,
+        "name": "ollama.exe",
+        "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+        "cmdline": [
+          "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+          "serve"
+        ],
+        "ppid": 12880,
+        "parent_name": "ollama app.exe",
+        "parent_exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe",
+        "created_local": "2026-11-11T11:28:13.213266+05:00",
+        "threads": 36,
+        "handles": 695,
+        "working_set_mib": 46.6,
+        "private_working_set_mib": 10.4,
+        "private_bytes_mib": 100.9,
+        "virtual_bytes_mib": 100.9,
+        "peak_working_set_mib": 53.8,
+        "peak_private_bytes_mib": 107.0
+      }
+    ],
+    "api_version": {
+      "version": "0.40.16"
+    },
+    "running_models": []
+  },
+  "response": {
+    "model": "qwen3:4b-q4_K_M",
+    "created_at": "2026-11-11T11:32:17.1438003Z",
+    "done": true,
+    "done_reason": "length",
+    "total_duration": 3218459000,
+    "load_duration": 2200843500,
+    "prompt_eval_count": 27,
+    "prompt_eval_cached_count": 0,
+    "prompt_eval_duration": 126324000,
+    "eval_count": 80,
+    "eval_duration": 880238000,
+    "message": {
+      "role": "assistant",
+      "content": "BMP — это **Bitmap Image File**, то есть файл изображения в формате битмап. Он используется для хранения растровых изображений, где каждый пиксель изображения имеет свой собственный цвет. Формат BMP широко применяется в программировании и графике, особенно в Windows.\n\n**Основные особенности BMP:"
+    }
+  },
+  "worker_stopped": true,
+  "elapsed_seconds": 3.36,
+  "final": {
+    "index": 999,
+    "timestamp_local": "2026-11-11T16:32:17.144210+05:00",
+    "free_ram_mib": 6319.1,
+    "commit": {
+      "commit_total_mib": 18205.6,
+      "commit_limit_mib": 34864.1,
+      "commit_headroom_mib": 16658.5,
+      "physical_available_mib": 6320.7
+    },
+    "gpu": {
+      "name": "NVIDIA GeForce RTX 3070 Laptop GPU",
+      "temperature_c": 63.0,
+      "utilization_pct": 94.0,
+      "vram_used_mib": 537,
+      "vram_total_mib": 8192,
+      "hw_thermal_slowdown": "Not Active",
+      "sw_thermal_slowdown": "Not Active",
+      "active_throttle_reasons": "0x0000000000000004"
+    },
+    "ollama_processes": [
+      {
+        "pid": 12880,
+        "name": "ollama app.exe",
+        "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe",
+        "cmdline": [
+          "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe"
+        ],
+        "ppid": 12444,
+        "parent_name": "explorer.exe",
+        "parent_exe": "C:\\Windows\\explorer.exe",
+        "created_local": "2026-11-11T11:28:12.035457+05:00",
+        "threads": 15,
+        "handles": 449,
+        "working_set_mib": 47.7,
+        "private_working_set_mib": 6.4,
+        "private_bytes_mib": 53.8,
+        "virtual_bytes_mib": 53.8,
+        "peak_working_set_mib": 79.8,
+        "peak_private_bytes_mib": 53.9
+      },
+      {
+        "pid": 15836,
+        "name": "ollama.exe",
+        "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+        "cmdline": [
+          "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+          "serve"
+        ],
+        "ppid": 12880,
+        "parent_name": "ollama app.exe",
+        "parent_exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe",
+        "created_local": "2026-11-11T11:28:13.213266+05:00",
+        "threads": 36,
+        "handles": 698,
+        "working_set_mib": 49.6,
+        "private_working_set_mib": 13.5,
+        "private_bytes_mib": 103.7,
+        "virtual_bytes_mib": 103.7,
+        "peak_working_set_mib": 53.8,
+        "peak_private_bytes_mib": 107.0
+      },
+      {
+        "pid": 32680,
+        "error": "NoSuchProcess"
+      }
+    ],
+    "api_version": {
+      "version": "0.40.16"
+    },
+    "running_models": []
+  }
+}

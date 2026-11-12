@@ -1,0 +1,28 @@
+{
+  "status": "PREPARED_NOT_ADMITTED",
+  "purpose": "isolated QA only; production selection remains unchanged",
+  "model": "qwen3:4b-q4_K_M",
+  "model_digest_observed": "2bfd38a7daaf4b1037efe517ccb73d1a3bbd4822cf89f1a82be1569050a114e0",
+  "options": {"num_ctx": 2048, "num_batch": 16, "num_gpu": -1, "temperature": 0, "num_predict": 128},
+  "keep_alive": 0,
+  "max_client_requests": 1,
+  "qa_server_environment": {"OLLAMA_HOST": "127.0.0.1:11479", "OLLAMA_NUM_PARALLEL": "1"},
+  "server_isolation": "QA-owned server and process tree; never terminate the shared production server",
+  "admission": {
+    "required_consecutive_samples": 3,
+    "interval_seconds": 10,
+    "max_gpu_temperature_c_project_stop": 82,
+    "require_telemetry_and_no_thermal_slowdown": true,
+    "require_no_competing_inference": true,
+    "model_peak_commit_bound_mib": null,
+    "model_peak_uncapped_ram_bound_mib": null,
+    "driver_vram_reserve_bound_mib": null,
+    "os_reserve_mib": null,
+    "abort_latency_bound_seconds": null,
+    "runner_job_containment_verified": false,
+    "decision": "BLOCKED while any required bound or containment proof is absent"
+  },
+  "monitor": {"ram": true, "commit": true, "gpu_temperature": true, "gpu_utilization": true, "vram": true, "thermal_slowdown": true, "runner_job_membership": true, "ollama_ps": true},
+  "production_selection_snapshot": {"model": "qwen3:8b", "num_ctx": 2048, "fallback_model": "qwen2.5:1.5b"},
+  "limitations": ["VRAM and RAM peaks, model quality, cancellation latency and real runner containment are unmeasured.", "num_gpu=-1 requests automatic placement, not guaranteed full offload.", "Client concurrency one cannot prevent another client from using a shared server.", "No input truncation or reduction of scientific checks is authorized."]
+}

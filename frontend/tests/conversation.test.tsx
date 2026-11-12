@@ -5,6 +5,7 @@ import ConversationReply from '../src/ConversationReply'
 import ConversationFacts from '../src/ConversationFacts'
 import type { AgentReply, ConversationMemory, DialogueFact } from '../src/types'
 import { api } from '../src/api'
+import { DisplayModeProvider } from '../src/DisplayMode'
 
 const fact = (value: string | number, unit: string | null = null, provenance: DialogueFact['provenance'] = 'USER_CONFIRMED'): DialogueFact => ({ value, unit, provenance, evidence: 'FICTITIOUS TEST user statement', recorded_at: '2020-01-01T00:00:00Z', dependencies: [] })
 const memory: ConversationMemory = { version: '5.6', conversation_id: 'TEST', language: 'ru', facts: { material: fact('cattle_manure'), quantity: fact(800, 'L'), unit: fact('L') }, assumptions: { density_kg_l: fact(1, 'kg/L', 'ASSUMED_FOR_SCENARIO') }, derived: {}, estimates: {}, source_verified: {}, intents: [], pending_question: null, invalidated: [] }
@@ -39,6 +40,16 @@ describe('Conversational presentation', () => {
     expect(container.querySelector('.assumed-facts')).toHaveTextContent('Плотность')
     expect(container.querySelector('.assumed-facts')).toHaveTextContent('Допущение, не измерение')
     expect(container.querySelector('dl:not(.assumed-facts)')).not.toHaveTextContent('Плотность')
+  })
+  it('renders the farm consultation sections and typed duration and use', () => {
+    render(<DisplayModeProvider><ConversationReply reply={{...reply,user_facing_answer:{...reply.user_facing_answer!,modes:['farmer_consultation'],sections:[{title:'Оценка метана',body:'TEST calculated potential; no guaranteed day yield.'}]}}}/></DisplayModeProvider>)
+    expect(screen.getByText('Консультация для хозяйства')).toBeVisible()
+    expect(screen.getByText('TEST calculated potential; no guaranteed day yield.')).toBeVisible()
+    render(<ConversationFacts memory={{...memory,facts:{duration_days:fact(30,'day'),intended_use:fact('heat'),physical_state:fact('liquid'),material_state:fact('slurry')}}} onCorrection={vi.fn()} disabled={false}/>)
+    expect(screen.getByText('30 дней')).toBeVisible()
+    expect(screen.getByText('Обогрев')).toBeVisible()
+    expect(screen.getByText('Жидкое')).toBeVisible()
+    expect(screen.getByText('Навозная жижа')).toBeVisible()
   })
   it('offers an explicit material and quantity correction in the same dialogue', () => {
     const correction = vi.fn(); render(<ConversationFacts memory={memory} onCorrection={correction} disabled={false} />)

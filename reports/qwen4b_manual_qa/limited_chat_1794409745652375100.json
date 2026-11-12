@@ -1,0 +1,91 @@
+{
+  "status": "BLOCKED",
+  "started": "2026-11-11T20:09:05.652383+05:00",
+  "samples": [],
+  "provider_calls": [],
+  "request": "Чем экспериментальный BMP отличается от теоретического выхода метана? Почему фактический выход за 30 дней может быть ниже BMP?",
+  "limits": {
+    "admission_ram_mib": 6656,
+    "runtime_ram_mib": 4096,
+    "commit_mib": 4096,
+    "admission_vram_mib": 4096,
+    "runtime_vram_mib": 512,
+    "gpu_stop_c": 82.0,
+    "timeout_seconds": 120,
+    "max_model_calls": 2,
+    "max_requested_output_tokens": 668,
+    "keep_alive": "5m"
+  },
+  "policy_scope": "single experimental job; not production/full Chat approval",
+  "before": {
+    "index": 0,
+    "timestamp_local": "2026-11-11T20:09:05.652486+05:00",
+    "free_ram_mib": 5669.5,
+    "commit": {
+      "commit_total_mib": 15854.8,
+      "commit_limit_mib": 34864.1,
+      "commit_headroom_mib": 19009.3,
+      "physical_available_mib": 5669.5
+    },
+    "gpu": {
+      "name": "NVIDIA GeForce RTX 3070 Laptop GPU",
+      "temperature_c": 54.0,
+      "utilization_pct": 26.0,
+      "vram_used_mib": 763,
+      "vram_total_mib": 8192,
+      "hw_thermal_slowdown": "Not Active",
+      "sw_thermal_slowdown": "Not Active",
+      "active_throttle_reasons": "0x0000000000000001"
+    },
+    "ollama_processes": [
+      {
+        "pid": 12880,
+        "name": "ollama app.exe",
+        "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe",
+        "cmdline": [
+          "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe"
+        ],
+        "ppid": 12444,
+        "parent_name": "explorer.exe",
+        "parent_exe": "C:\\Windows\\explorer.exe",
+        "created_local": "2026-11-11T11:28:12.035457+05:00",
+        "threads": 15,
+        "handles": 362,
+        "working_set_mib": 46.9,
+        "private_working_set_mib": 5.6,
+        "private_bytes_mib": 53.2,
+        "virtual_bytes_mib": 53.2,
+        "peak_working_set_mib": 79.8,
+        "peak_private_bytes_mib": 53.9
+      },
+      {
+        "pid": 15836,
+        "name": "ollama.exe",
+        "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+        "cmdline": [
+          "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+          "serve"
+        ],
+        "ppid": 12880,
+        "parent_name": "ollama app.exe",
+        "parent_exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe",
+        "created_local": "2026-11-11T11:28:13.213266+05:00",
+        "threads": 36,
+        "handles": 614,
+        "working_set_mib": 46.8,
+        "private_working_set_mib": 10.6,
+        "private_bytes_mib": 101.3,
+        "virtual_bytes_mib": 101.3,
+        "peak_working_set_mib": 53.8,
+        "peak_private_bytes_mib": 107.0
+      }
+    ],
+    "api_version": {
+      "version": "0.40.16"
+    },
+    "running_models": []
+  },
+  "reasons": [
+    "ram_limit"
+  ]
+}

@@ -1,4 +1,5 @@
 """Read-only research tools using the same typed calculations as the dashboard."""
+import math
 from src.research import dossiers
 
 DESCRIPTIONS = {
@@ -23,6 +24,13 @@ def _materials(data):
 
 
 def verify(results):
+    try:return _verify(results)
+    except (AttributeError,KeyError,TypeError,ValueError,OverflowError) as exc:
+        return {'status':'error','outcome':'failed','checked':False,'all_checks_passed':False,
+                'checks':[],'error_code':'INVALID_VERIFICATION_INPUT_'+type(exc).__name__}
+
+
+def _verify(results):
     checks = []
     for s in results.get('assess_substrate_potential', {}).get('scenarios', []):
         for c in s.get('components', []):
@@ -31,10 +39,14 @@ def verify(results):
             if vs and bmp and methane:
                 # Check at source basis; a later mixture normalization is separate.
                 expected = {'low': vs['low']*bmp['low']*.001, 'high': vs['high']*bmp['high']*.001}
-                ok = all(abs(expected[k]-methane[k]) <= max(1e-8, abs(expected[k])*1e-6) for k in expected)
+                valid=all(isinstance(bounds[k],(int,float)) and not isinstance(bounds[k],bool) and math.isfinite(bounds[k])
+                          for bounds in (vs,bmp,methane) for k in ('low','high'))
+                valid=valid and all(0<=bounds['low']<=bounds['high'] for bounds in (vs,bmp,methane))
+                ok = valid and all(abs(expected[k]-methane[k]) <= max(1e-8, abs(expected[k])*1e-6) for k in expected)
                 checks.append({'scenario': s['id'], 'component': c['id'], 'check': 'VS_kg_times_BMP_ml_per_g_times_0.001',
                                'expected_m3': expected, 'observed_m3': methane, 'passed': ok})
-    return {'status': 'ok' if all(c['passed'] for c in checks) else 'error',
+    outcome='insufficient_evidence' if not checks else 'passed' if all(c['passed'] for c in checks) else 'failed'
+    return {'status': {'passed':'ok','failed':'error'}.get(outcome,outcome), 'outcome':outcome,
             'message': 'Independent source-basis arithmetic check; mixture gas-basis assumptions remain explicit.',
             'checks': checks, 'verification_scope': 'Component methane arithmetic only; no certification of biological recovery or safe operation.',
             'checked': bool(checks), 'all_checks_passed': bool(checks) and all(c['passed'] for c in checks)}

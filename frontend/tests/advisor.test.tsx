@@ -76,7 +76,7 @@ describe('Advisor scientific boundaries in the UI',()=>{
  it('hides status codes in the ordinary answer while retaining structured diagnostics',()=>{
   const reply:AgentReply={mode:'deterministic_tools_no_llm',answer:'TEST answer',tools:[],missing:[],provider_status:[],technical_metadata:{TEST:'HYPOTHETICAL_SCENARIO'},user_facing_answer:{paragraphs:['TEST answer'],sections:[{title:'Краткий ответ',body:'TEST answer'}],sources:[],modes:['HYPOTHETICAL_SCENARIO'],assumptions:[],question:null}}
   localStorage.clear();const {container}=render(<DisplayModeProvider><ConversationReply reply={reply}/></DisplayModeProvider>)
-  expect(screen.getByText('Условный пример')).toBeVisible();expect(container.querySelector('.conversation-prose')).not.toHaveTextContent('HYPOTHETICAL_SCENARIO');expect(container.querySelector('.conversation-technical')).not.toHaveAttribute('open')
+  expect(screen.getByText('Условный сценарий')).toBeVisible();expect(container.querySelector('.conversation-prose')).not.toHaveTextContent('HYPOTHETICAL_SCENARIO');expect(container.querySelector('.conversation-technical')).not.toHaveAttribute('open')
  })
  it('does not collapse a density interval when switching between mass and volume',async()=>{
   const convert=vi.spyOn(advisorApi,'convert').mockResolvedValue({conversions:[{id:'c1',status:'ok',value:{low:12.5,high:13},message:'TEST density range',target_unit:'L'}]})

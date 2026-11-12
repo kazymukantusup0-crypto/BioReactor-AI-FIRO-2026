@@ -1,0 +1,60 @@
+{
+  "mode": "recorded_response_revalidation_no_inference",
+  "source": "limited_chat_1794404943720876600.json",
+  "issues": [],
+  "quantity_audit": [
+    {
+      "value": 30.0,
+      "unit": "day",
+      "origin": "USER_INPUT",
+      "input_origin": "USER_INPUT",
+      "role": "question_time_horizon",
+      "reference": "30 дней",
+      "conversion_factor": 1,
+      "accepted": true
+    },
+    {
+      "value": 30.0,
+      "unit": "day",
+      "origin": "USER_INPUT",
+      "input_origin": "USER_INPUT",
+      "role": "question_time_horizon",
+      "reference": "30 дней",
+      "conversion_factor": 1,
+      "accepted": true
+    }
+  ],
+  "scientific_verification": {
+    "status": "passed",
+    "checked": true,
+    "all_checks_passed": true,
+    "checks": [
+      {
+        "check": "retrieved_claim_source_identity",
+        "passed": true
+      },
+      {
+        "check": "no_known_scientific_contradiction",
+        "passed": true
+      },
+      {
+        "check": "bmp_experimental_basis_explained",
+        "passed": true
+      },
+      {
+        "check": "theoretical_composition_basis_explained",
+        "passed": true
+      },
+      {
+        "check": "time_dependent_kinetics_explained",
+        "passed": true
+      },
+      {
+        "check": "no_guaranteed_time_yield",
+        "passed": true
+      }
+    ],
+    "contradictions": [],
+    "scope": "Reviewed-source identity and limited lexical scientific consistency/coverage; not exhaustive factual verification or biological validation."
+  }
+}

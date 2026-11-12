@@ -2,8 +2,10 @@
 from src.agent.scientific_tools import DESCRIPTIONS
 
 CAPABILITIES={
+ 'search_scientific_sources':'source_bound_scientific_explanation',
  'search_substrate_profiles':'scientific_profiles','analyze_substrate':'substrate_classification',
  'assess_substrate_potential':'ts_vs_bmp_methane_mixture_geometry',
+ 'estimate_methane_yield':'source_paired_conditional_methane_estimate_with_separate_time_evidence',
  'assess_process_evidence':'temperature_process','estimate_process_energy':'heat_balance',
  'evaluate_partial_economics':'energy_economic_alternatives','analyze_economic_sensitivity':'sensitivity',
  'get_market_prices':'current_market','get_price_history':'historical_market',

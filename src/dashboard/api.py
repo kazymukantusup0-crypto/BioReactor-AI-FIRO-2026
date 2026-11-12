@@ -12,7 +12,7 @@ from src.dashboard import service
 from src.dashboard.schemas import SessionInput,ChatInput,PredictionInput,MeasurementContract
 
 
-def create_router(store):
+def create_router(store,*,experimental_qwen4b=False):
     service.initialize(store)
     from src.dashboard import scientific_state
     scientific_state.initialize(store)
@@ -27,7 +27,7 @@ def create_router(store):
     def overview():return service.overview(store)
 
     @router.get('/status')
-    def status():return service.system_status(store)
+    def status():return {**service.system_status(store),'experimental_chat':{'enabled':experimental_qwen4b,'model':'qwen3:4b-q4_K_M' if experimental_qwen4b else None}}
 
     @router.get('/models/{model}/schema')
     def schema(model:str):
@@ -76,13 +76,17 @@ def create_router(store):
 
     @router.get('/chat/sessions/{identifier}')
     def get_session(identifier:str):
+        from src.dashboard.jobs import decode_job
+        from src.dashboard.job_api import public
         with store.connect() as con:
             con.execute('BEGIN')
             row=con.execute('SELECT * FROM dashboard_sessions WHERE id=?',(identifier,)).fetchone()
             if row is None:raise HTTPException(404,'Chat session not found')
             turns=con.execute('SELECT * FROM dashboard_turns WHERE session_id=? ORDER BY id DESC LIMIT 50',(identifier,)).fetchall()
+            jobs=con.execute('SELECT * FROM agent_jobs WHERE conversation_id=? ORDER BY created_at',(identifier,)).fetchall()
         return {'id':identifier,'mode':row['mode'],'context':json.loads(row['context_json']),
             'conversation_version':row['conversation_version'],'state_version':row['state_version'],'memory':json.loads(row['conversation_state_json']) if row['conversation_state_json'] else None,
+            'jobs':[public(decode_job(job)) for job in jobs],
             'turns':[{**dict(t),'reply':json.loads(t['reply_json']) if t['reply_json'] else None} for t in reversed(turns)]}
 
     @router.post('/chat/sessions/{identifier}/upgrade')
@@ -127,8 +131,13 @@ def create_router(store):
         session(identifier)
         lease='dashboard-chat:'+identifier;owner=store.acquire(lease,ttl=45 if control else 300)
         if owner is None:raise HTTPException(409,'В этой сессии уже выполняется запрос. Дождитесь ответа.')
+        from contextlib import ExitStack
+        model_scope=ExitStack();experiment=None
         try:
             row=session(identifier)
+            if experimental_qwen4b and row['mode']!='no_llm':
+                if not control:raise HTTPException(409,'Экспериментальная Qwen доступна через асинхронные Chat jobs с отменой.')
+                if row['mode']!='offline':raise HTTPException(409,'Экспериментальный профиль поддерживает локальную Qwen или расчёт без модели.')
             if control:
                 control.leases.append((lease,owner));control.check()
             with store.connect() as con:
@@ -140,7 +149,13 @@ def create_router(store):
                 else:con.execute('INSERT INTO dashboard_turns(session_id,request_id,created_at,question,status) VALUES(?,?,?,?,?)',
                                  (identifier,body.request_id,utcnow().isoformat(),body.message,'running'))
             if expected_version is not None and row['state_version']!=expected_version:raise HTTPException(409,'Scientific state version conflict')
-            llm=HybridLLM(row['mode'],strict_model=row['conversation_version']=='7') if row['mode'] in {'offline','online','auto'} else HybridLLM(providers=[])
+            if experimental_qwen4b and row['mode']!='no_llm':
+                from src.dashboard.firo_demo import guarded_chat
+                llm,experiment=model_scope.enter_context(guarded_chat(control.cancellation))
+            else:
+                llm=HybridLLM(row['mode'],strict_model=row['conversation_version']=='7') if row['mode'] in {'offline','online','auto'} else HybridLLM(providers=[])
+            if control:
+                control.check();llm.bind_cancellation(control.cancellation)
             if row['conversation_version'] in {'5.6','7'}:
                 from src.agent.conversation import ConversationAgent
                 agent=ConversationAgent(context=json.loads(row['context_json']),llm=llm,registry=ToolRegistry(store,observer=control.progress if control else None),
@@ -148,13 +163,30 @@ def create_router(store):
             else:agent=Agent(context=json.loads(row['context_json']),llm=llm,registry=ToolRegistry(store))
             agent.history=json.loads(row['history_json']);agent.last_pending=json.loads(row['pending_json'])
             agent.progress=control.progress if control else None
+            agent.cancellation_signal=control.cancellation if control else None
             agent.runtime_version='9' if control else 'legacy'
-            try:reply=agent.ask(body.message)
+            agent.deterministic_research_fallback=experimental_qwen4b
+            try:
+                if control:control.check()
+                reply=agent.ask(body.message)
             except Exception as exc:
                 from src.dashboard.jobs import ExecutionStopped
                 if isinstance(exc,ExecutionStopped):raise
                 reply={'mode':'error','answer':'Запрос не завершён: '+type(exc).__name__+'. Проверьте диагностику системы.',
                     'tools':[],'missing':[],'provider_status':[],'actuator_access':False}
+            finally:model_scope.close()
+            if experiment is not None:
+                reply.setdefault('technical_metadata',{})['experimental_qwen4b']=experiment
+                if experiment['status']=='blocked':
+                    notice='Qwen3 4B сейчас недоступна: проверка ресурсов не пройдена. Ниже результаты Python и научной базы без языковой модели.'
+                    if 'ram_limit' in experiment.get('admission_issues',[]) and experiment.get('before'):
+                        notice+=f" Свободная RAM {experiment['before']['free_ram_mib']:.1f} MiB, требуется {experiment['limits']['admission_ram_mib']} MiB."
+                    reply['answer']=notice+'\n\n'+reply['answer']
+                    facing=reply.get('user_facing_answer')
+                    if facing:
+                        facing['paragraphs'].insert(0,notice)
+                        if facing.get('sections'):facing['sections'].insert(0,{'title':'Локальная модель','body':notice})
+                    reply.setdefault('provider_status',[]).append({'provider':'experimental_qwen4b','model':experiment['model'],'status':'blocked','actual_generation':False,'reason':', '.join(experiment.get('admission_issues',[]))})
             reply.setdefault('technical_metadata',{}).setdefault('diagnostic_events',[]).insert(0,
                 {'type':'HttpRequestAccepted','phase':'dashboard_api','session_id':identifier,
                  'request_id':body.request_id,'conversation_version':row['conversation_version']})
@@ -166,6 +198,8 @@ def create_router(store):
                     execution=con.execute('SELECT status,cancel_requested,owner FROM agent_jobs WHERE id=?',(control.job['id'],)).fetchone()
                     from src.dashboard.jobs import TERMINAL,ExecutionStopped
                     if execution['status'] in TERMINAL or execution['cancel_requested'] or execution['owner']!=control.owner:raise ExecutionStopped('cancelled_or_ownership_lost_before_commit')
+                    if control.deadline_expired():raise ExecutionStopped('execution_deadline')
+                    if control.runtime.stopping.is_set():raise ExecutionStopped('execution_interrupted')
                 updated=con.execute('UPDATE dashboard_sessions SET state_version=state_version+1 WHERE id=? AND state_version=?',(identifier,row['state_version']))
                 if updated.rowcount!=1:raise HTTPException(409,'Scientific state changed during execution')
                 con.execute('UPDATE dashboard_turns SET status=?,reply_json=? WHERE session_id=? AND request_id=?',
@@ -191,7 +225,13 @@ def create_router(store):
             with store.connect() as con:
                 con.execute("UPDATE dashboard_turns SET status='error',reply_json=? WHERE session_id=? AND request_id=? AND reply_json IS NULL",(json.dumps(reply,ensure_ascii=False),identifier,body.request_id))
             return reply
-        finally:store.release(lease,owner)
+        finally:
+            model_scope.close()
+            if control and experiment and experiment.get('stop_reason'):
+                with store.connect() as con:
+                    con.execute('INSERT INTO agent_job_events(job_id,created_at,status,details_json) VALUES(?,?,?,?)',
+                        (control.job['id'],utcnow().isoformat(),'RESOURCE_STOP',json.dumps({'reasons':experiment['stop_reason'],'audit_path':experiment.get('audit_path')},ensure_ascii=False)))
+            store.release(lease,owner)
 
     @router.post('/chat/sessions/{identifier}/messages')
     def message(identifier:str,body:ChatInput):

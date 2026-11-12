@@ -1,0 +1,233 @@
+{
+  "checks": [
+    {
+      "name": "Outbox retains accepted request before POST reply",
+      "passed": true
+    },
+    {
+      "name": "Saved result 3cae5945-2d58-4a4b-89a4-158873d1b016",
+      "passed": true
+    },
+    {
+      "name": "Reload retains one turn",
+      "passed": true
+    },
+    {
+      "name": "Reload does not execute twice",
+      "passed": true
+    },
+    {
+      "name": "Actual tools receive batch A",
+      "passed": true
+    },
+    {
+      "name": "Saved result 78851a14-19ef-4289-89da-ab34ea0a1874",
+      "passed": true
+    },
+    {
+      "name": "Batch B replaces A without false conflict",
+      "passed": true
+    },
+    {
+      "name": "Batch A archived",
+      "passed": true
+    },
+    {
+      "name": "Ack failure leaves answer visible",
+      "passed": true
+    },
+    {
+      "name": "Saved result 24a8cb2e-50a2-411f-a7de-54188d0c1869",
+      "passed": true
+    },
+    {
+      "name": "Grass is a new batch C",
+      "passed": true
+    },
+    {
+      "name": "Batch B archived",
+      "passed": true
+    },
+    {
+      "name": "Saved result b0e3b1f6-fd8a-4ffb-b0e8-55adef7c7ccb",
+      "passed": true
+    },
+    {
+      "name": "Correction keeps task identity",
+      "passed": true
+    },
+    {
+      "name": "Correction changes both bound parameters",
+      "passed": true
+    },
+    {
+      "name": "Saved result a6bdbb87-8a72-45af-9de2-66125cd98609",
+      "passed": true
+    },
+    {
+      "name": "Hypothetical reactor does not replace measurement",
+      "passed": true
+    },
+    {
+      "name": "Saved result 6e5e6ac8-8ae1-4803-849b-afad0609a835",
+      "passed": true
+    },
+    {
+      "name": "True conflict remains explicit",
+      "passed": true
+    },
+    {
+      "name": "Corrupt outbox leaves history visible",
+      "passed": false
+    }
+  ],
+  "errors": [],
+  "session": "30c9631952794a2385aac86012715150",
+  "jobs": [
+    {
+      "id": "490c6bf2121a4feeb4a4bbbe88b1d835",
+      "request_id": "3cae5945-2d58-4a4b-89a4-158873d1b016",
+      "conversation_id": "30c9631952794a2385aac86012715150",
+      "task_id": "0b2def1986ed4d0ba3783c0d9acaa119",
+      "message": "Привет, у меня есть 478 литров жидкого коровьего навоза и реактор вместимостью 700 литров. Мне лучше продать навоз или переработать и какую температуру ставить?",
+      "created_at": "2026-11-06T09:28:58.938229+00:00",
+      "updated_at": "2026-11-06T09:28:58.938229+00:00",
+      "status": "QUEUED",
+      "current_stage": "queued",
+      "attempt_count": 0,
+      "error_code": null,
+      "result_reference": "/api/dashboard/jobs/490c6bf2121a4feeb4a4bbbe88b1d835/result",
+      "reply_json": null,
+      "preview_json": null,
+      "heartbeat_at": null,
+      "cancel_requested": 0,
+      "acknowledged_at": null,
+      "expected_state_version": 0,
+      "preview": null,
+      "terminal": false,
+      "partial_count": 0,
+      "result_available": false
+    },
+    {
+      "id": "3eecb0855e584b1cb0fb8884bd9d3a9c",
+      "request_id": "78851a14-19ef-4289-89da-ab34ea0a1874",
+      "conversation_id": "30c9631952794a2385aac86012715150",
+      "task_id": "df03442fd2ac412ab4173cab39ffd1a4",
+      "message": "Привет, у меня есть 47 литров жидкого коровьего навоза и реактор вместимостью 114 литров. Мне лучше продать навоз или переработать и какую температуру ставить?",
+      "created_at": "2026-11-06T09:29:00.642681+00:00",
+      "updated_at": "2026-11-06T09:29:00.642681+00:00",
+      "status": "QUEUED",
+      "current_stage": "queued",
+      "attempt_count": 0,
+      "error_code": null,
+      "result_reference": "/api/dashboard/jobs/3eecb0855e584b1cb0fb8884bd9d3a9c/result",
+      "reply_json": null,
+      "preview_json": null,
+      "heartbeat_at": null,
+      "cancel_requested": 0,
+      "acknowledged_at": null,
+      "expected_state_version": 1,
+      "preview": null,
+      "terminal": false,
+      "partial_count": 0,
+      "result_available": false
+    },
+    {
+      "id": "8b59841b52fd48a8b11e65ad092cc36c",
+      "request_id": "24a8cb2e-50a2-411f-a7de-54188d0c1869",
+      "conversation_id": "30c9631952794a2385aac86012715150",
+      "task_id": "1ad55330af8f4ab1bb45c3b626a0e7e2",
+      "message": "У меня 470 л свежей травы и реактор 840 л. Стоит ли производить биогаз?",
+      "created_at": "2026-11-06T09:29:02.221112+00:00",
+      "updated_at": "2026-11-06T09:29:02.221112+00:00",
+      "status": "QUEUED",
+      "current_stage": "queued",
+      "attempt_count": 0,
+      "error_code": null,
+      "result_reference": "/api/dashboard/jobs/8b59841b52fd48a8b11e65ad092cc36c/result",
+      "reply_json": null,
+      "preview_json": null,
+      "heartbeat_at": null,
+      "cancel_requested": 0,
+      "acknowledged_at": null,
+      "expected_state_version": 2,
+      "preview": null,
+      "terminal": false,
+      "partial_count": 0,
+      "result_available": false
+    },
+    {
+      "id": "ea47c210719f409683c9ccf9a97a56c8",
+      "request_id": "b0e3b1f6-fd8a-4ffb-b0e8-55adef7c7ccb",
+      "conversation_id": "30c9631952794a2385aac86012715150",
+      "task_id": "2fced09e96214f908dc991d809cf15a6",
+      "message": "исправь: 450 литров и 800 литров",
+      "created_at": "2026-11-06T09:29:03.844549+00:00",
+      "updated_at": "2026-11-06T09:29:03.844549+00:00",
+      "status": "QUEUED",
+      "current_stage": "queued",
+      "attempt_count": 0,
+      "error_code": null,
+      "result_reference": "/api/dashboard/jobs/ea47c210719f409683c9ccf9a97a56c8/result",
+      "reply_json": null,
+      "preview_json": null,
+      "heartbeat_at": null,
+      "cancel_requested": 0,
+      "acknowledged_at": null,
+      "expected_state_version": 3,
+      "preview": null,
+      "terminal": false,
+      "partial_count": 0,
+      "result_available": false
+    },
+    {
+      "id": "5fd10da56afc4925b44f2074210163d1",
+      "request_id": "a6bdbb87-8a72-45af-9de2-66125cd98609",
+      "conversation_id": "30c9631952794a2385aac86012715150",
+      "task_id": "fc0b704baadb4e0a93cb294944a2322e",
+      "message": "а если реактор 900 литров?",
+      "created_at": "2026-11-06T09:29:05.660288+00:00",
+      "updated_at": "2026-11-06T09:29:05.660288+00:00",
+      "status": "QUEUED",
+      "current_stage": "queued",
+      "attempt_count": 0,
+      "error_code": null,
+      "result_reference": "/api/dashboard/jobs/5fd10da56afc4925b44f2074210163d1/result",
+      "reply_json": null,
+      "preview_json": null,
+      "heartbeat_at": null,
+      "cancel_requested": 0,
+      "acknowledged_at": null,
+      "expected_state_version": 4,
+      "preview": null,
+      "terminal": false,
+      "partial_count": 0,
+      "result_available": false
+    },
+    {
+      "id": "4e6cd9715eab43868e5278d9ca8af491",
+      "request_id": "6e5e6ac8-8ae1-4803-849b-afad0609a835",
+      "conversation_id": "30c9631952794a2385aac86012715150",
+      "task_id": "88b7745e6fcd4a208820369f06533b2d",
+      "message": "У меня одновременно 47 и 478 литров одной и той же партии",
+      "created_at": "2026-11-06T09:29:07.230090+00:00",
+      "updated_at": "2026-11-06T09:29:07.230090+00:00",
+      "status": "QUEUED",
+      "current_stage": "queued",
+      "attempt_count": 0,
+      "error_code": null,
+      "result_reference": "/api/dashboard/jobs/4e6cd9715eab43868e5278d9ca8af491/result",
+      "reply_json": null,
+      "preview_json": null,
+      "heartbeat_at": null,
+      "cancel_requested": 0,
+      "acknowledged_at": null,
+      "expected_state_version": 5,
+      "preview": null,
+      "terminal": false,
+      "partial_count": 0,
+      "result_available": false
+    }
+  ],
+  "error": "AssertionError [ERR_ASSERTION]: Corrupt outbox leaves history visible"
+}

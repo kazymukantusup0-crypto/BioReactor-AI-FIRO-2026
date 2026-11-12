@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { ArrowUp, Bot, Check, LoaderCircle, MessageSquarePlus, ShieldCheck, Sparkles, User } from 'lucide-react'
-import { CHAT_ADVISOR_KEY } from '../api'
+import { api, CHAT_ADVISOR_KEY } from '../api'
 import { conversationQuestion } from '../decisionDisplay'
 import { JsonDetails, LoadState, Notice, PageTitle, Reply, timestamp } from '../ui'
 import ConversationReply from '../ConversationReply'
@@ -34,10 +34,14 @@ export default function Chat() {
   const {session,turns,active,busy,loading,error}=chat
   const [text,setText]=useState(() => sessionStorage.getItem('bioreactor_demo_question') ?? '')
   const [mode,setMode]=useState('offline')
+  const [profile,setProfile]=useState({experimental:false,label:'Локальный профиль'})
   const end=useRef<HTMLDivElement>(null)
   const memory=active ? active.preview ?? undefined : session?.memory ?? undefined
   const transferable=Boolean(memory && (memory.mixture_components?.length || memory.facts.material && (memory.facts.quantity || memory.facts.mass_kg)))
   useEffect(() => { sessionStorage.removeItem('bioreactor_demo_question') },[])
+  useEffect(() => { const controller=new AbortController();void api.status(controller.signal).then(status=>{
+    if(!controller.signal.aborted)setProfile({experimental:Boolean(status.experimental_chat?.enabled),label:status.experimental_chat?.enabled ? status.experimental_chat.model??'Qwen3 4B' : status.ollama?.model??'Локальный профиль'})
+  }).catch(()=>{});return ()=>controller.abort() },[])
   useEffect(() => { if(chat.rejectedMessage)setText(chat.rejectedMessage) },[chat.rejectedMessage])
   useEffect(() => { if(session) setMode(session.mode) },[session?.id,session?.mode])
   useEffect(() => { end.current?.scrollIntoView({behavior:'smooth',block:'nearest'}) },[turns.length,busy])
@@ -50,8 +54,9 @@ export default function Chat() {
   return <>
     <PageTitle eyebrow="AI RESEARCH ASSISTANT" title="Диалог с системой" description="Вопросы на русском языке. Расчёты выполняет Python; LLM выбирает инструменты."
       action={<button className="btn btn-secondary" disabled={busy || loading} onClick={() => chat.newSession(mode)}><MessageSquarePlus size={16}/>Новый диалог</button>}/>
+    {profile.experimental&&<Notice tone="muted">Экспериментальная Qwen3 4B: перед ответом проверяются ресурсы, после ответа модель выгружается. Если она недоступна, расчётные инструменты продолжают работать.</Notice>}
     <div className="conversation-workspace"><div className="chat-layout">
-      <div className="chat-header"><div><span className="status-dot"/><strong>Локальный научный агент</strong><span className="muted">qwen3:8b</span></div>
+      <div className="chat-header"><div><span className="status-dot"/><strong>Локальный научный агент</strong><span className="muted">{mode==='no_llm'?'Python · без LLM':profile.label}</span></div>
         <label>Режим<select aria-label="Режим агента" value={mode} disabled={busy || loading} onChange={e => chat.newSession(e.target.value)}>
           <option value="offline">Локальная модель</option><option value="no_llm">Расчёт без языковой модели</option>
         </select></label></div>

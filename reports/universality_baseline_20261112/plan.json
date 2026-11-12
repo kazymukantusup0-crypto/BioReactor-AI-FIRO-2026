@@ -1,0 +1,32 @@
+{
+  "purpose": "Initial validation only. Freeze agent code; do not repair answers during the suite.",
+  "origin": "Evaluator-authored questions from user requirements, not real farmer traffic or untouched blind holdout",
+  "cases": [
+    {
+      "id": "food",
+      "questions": ["У меня 120 литров пищевых отходов из столовой, реактор номинально 250 литров. Хочу понять возможный выход метана, подходящий температурный режим и риск закисления. Что можно оценить сейчас и как действовать, если состав отходов я ещё не измерял?"],
+      "criteria": "Keep 120 L feed and 250 L nominal separate; no invented density, mass, solids, kinetics or safe working volume. Retrieve applicable food-waste evidence, give scoped estimates only when justified. Explain rapid acid production/load/buffering and needed monitoring without guaranteed pH or optimum. Unknown numerical yield is acceptable with useful specific explanation."
+    },
+    {
+      "id": "mixture",
+      "questions": ["Хочу совместно сбраживать коровий навоз и пищевые остатки столовой. Количества пока не выбрал. Какие плюсы и риски у такой смеси, можно ли заранее оценить метан и с каких данных начать? Не назначай универсальную долю смешивания без обоснования."],
+      "criteria": "Recognize both materials and co-digestion. Explain possible buffering/nutrient balance versus acidification/inhibition; no guaranteed synergy or universal ratio. Identify amounts, physical form, solids basis, inoculum/loading and applicable BMP/kinetics as needed, without invented outputs. Readable guidance, not source catalog alone."
+    },
+    {
+      "id": "economics",
+      "questions": ["Для условного сценария есть 62 литра жидкого коровьего навоза и реактор 180 литров. Сосед предлагает 900 тенге за всю партию. Альтернатива — биогаз для отопления вместо электронагрева по 24 тенге за кВт·ч. Это мои сценарные входные данные, не проверенные рыночные цены. Как сравнить варианты и найти максимальные общие расходы переработки для безубыточности относительно продажи? Теплопотери и фактический расход на подогрев ещё неизвестны."],
+      "criteria": "Treat 900 KZT/batch and 24 KZT/kWh as hypothetical user inputs, not verified market quotes. Separate gas gross energy/useful consumed heat, internal heat/auxiliary costs, sale opportunity cost. Give valid scoped partial arithmetic or Cprocessing < useful heat*24 - sale net comparator, avoiding double counting/zero unknown costs. No unsupported profit or conversion L to kg."
+    },
+    {
+      "id": "diagnosis",
+      "questions": ["Температура работающего биореактора упала с 35 °C до 25 °C, и газа стало меньше. Других замеров пока нет. Какие причины возможны и в каком безопасном порядке проверить установку? Не меняй настройки оборудования автоматически."],
+      "criteria": "Current 25 C and previous 35 C, not two competing measurements. Diagnose multiple possibilities rather than prove temperature causality. Check readings/heating/insulation/feed/process indicators and gas measurement path safely; no unverified pH, recovery percentage, sudden heating commands, guaranteed optimum or unsafe gas handling."
+    },
+    {
+      "id": "memory",
+      "continue_case": "food",
+      "questions": ["Исправление по той же партии: пищевых отходов теперь 85 литров вместо 120. Для сравнения считай температуру 28 °C как условный сценарий; реактор остаётся 250 литров. Обнови оценку и поясни, что изменилось, а что всё ещё неизвестно."],
+      "criteria": "Resume food session, no clone/new batch. Latest volume 85 L, reactor 250 L, material unchanged, 28 C hypothetical rather than measured/validated optimum; invalidate stale 120 L-dependent results and distinguish study temperatures from 28 C. Recompute tools or explicitly reuse valid unchanged evidence; no fixed-time forecast without kinetics."
+    }
+  ]
+}

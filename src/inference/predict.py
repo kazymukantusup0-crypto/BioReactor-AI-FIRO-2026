@@ -10,11 +10,11 @@ def positive(value, name, zero=False):
     return float(value)
 
 
-def predict_bmp(payload, model_path=None):
+def predict_bmp(payload, model_path=None, *, _loaded_bundle=None):
     if not isinstance(payload, dict):
         raise ValueError('Input must be a JSON object')
     # Load only the trusted artifact created locally by train; joblib is executable.
-    bundle = joblib.load(model_path or ROOT / 'models/bmp.joblib')
+    bundle = _loaded_bundle if _loaded_bundle is not None else joblib.load(model_path or ROOT / 'models/bmp.joblib')
     meta = bundle['metadata']
     schema = meta['schema']
     missing = [f for f in FEATURES if f not in payload or payload[f] is None]
@@ -48,6 +48,8 @@ def predict_bmp(payload, model_path=None):
     out = {'bmp': result, 'unit': schema['unit'], 'model_version': meta['model_version'], 'model': meta['selected_model'],
         'used_features': {c: values[c] for c in schema.get('prediction_features', FEATURES)}, 'uncertainty': {'interval_90': [max(0, result-radius), result+radius] if radius is not None else None, 'explanation': meta['interval']['limitation']},
         'warnings': warnings, 'ignored_context_fields': sorted(set(payload) - set(FEATURES) - {'vs_mass_kg'})}
+    from src.provenance import predicted,calculated
+    out['result_provenance']=predicted({'features':out['used_features']},schema['unit'],sources=[{'model':meta['selected_model'],'version':meta['model_version']}],limitations=warnings)
     detector = bundle.get('domain_detector')
     if detector is not None:
         out['domain_assessed_features'] = values
@@ -63,5 +65,6 @@ def predict_bmp(payload, model_path=None):
         out['experimental_uncertainty'] = meta['experimental_uncertainty']
     if 'vs_mass_kg' in payload:
         out['potential_methane_m3'] = result * payload['vs_mass_kg'] / 1000
+        out['potential_methane_provenance']=calculated({'bmp':out['result_provenance'],'vs_mass_kg':{'value':payload['vs_mass_kg'],'origin':'USER_REPORTED'}},'m³ CH4',limitations=['Calculated potential from predicted BMP, not measured production.'])
         warnings.append('Potential BMP-based volume only, at source gas reference conditions; not actual reactor production.')
     return out

@@ -21,14 +21,14 @@ def test_pending_species_resumes_every_original_goal_after_sqlite_serialization(
     restored=ConversationAgent(state=json.loads(agent.state.model_dump_json()),registry=agent.registry,llm=HybridLLM(providers=[]))
     r=restored.ask('Коровий');assert r['pending_question'] is None;assert set(r['memory']['advanced']['task']['goals'])=={'gas','heat','electricity','economics'}
     assert {t['tool'] for t in r['tools']}=={'estimate_advanced_gas','estimate_advanced_energy','evaluate_advanced_economics'}
-    assert 'Что рассчитать' not in r['answer'];assert 'кВт·ч' in r['answer'];assert 'Чистая выгода' in r['answer']
+    assert 'Что рассчитать' not in r['answer'];assert 'плотност' in r['answer'].lower();assert 'выгода' in r['answer'].lower()
 
 def test_main_chain_arithmetic_and_no_slurry_substitution(agent):
     r=agent.ask(MAIN.replace('навоза','коровьего навоза'));gas=r['technical_metadata']['results']['gas'];m=gas['mixture'];row=m['components'][0]
     assert row['material_state']=='bedded';assert 'oliveira' not in (row['profile_id'] or '')
-    assert m['total_wet_mass_kg']['low']==pytest.approx(110.76)
-    assert m['additive_methane_reference_m3']['low']==pytest.approx(110.76*.2353*.1092*273.2/273.15)
-    assert gas['scenario_assumptions'];assert m['result_level']=='HYPOTHETICAL_SCENARIO'
+    assert m['total_wet_mass_kg'] is None
+    assert m['additive_methane_reference_m3'] is None
+    assert 'density_kg_l' in row['missing']
     assert 'опилочной' in r['answer'];assert 'MAE' not in r['answer'];assert not r['actuator_access']
 
 def test_dry_and_fresh_are_independent_and_dry_density_is_unknown(agent):
@@ -51,8 +51,7 @@ def test_mixed_followup_conversion_does_not_lose_pending_calculations(agent):
 
 def test_format_is_short_and_does_not_recompute(agent):
     agent.ask(MAIN.replace('навоза','коровьего навоза'));r=agent.ask('Объясни простыми словами');assert not r['tools'];assert len(r['answer'])<800
-    r=agent.ask('Ответь одним предложением');assert not r['tools'];assert len(r['answer'])<400
-    r=agent.ask('Почему ты использовал такую плотность?');assert '0.710' in r['answer'];assert 'измерение вашей партии' in r['answer'];assert not r['tools']
+    r=agent.ask('Ответь одним предложением');assert not r['tools'];assert len(r['answer'])<400;assert 'рабочий объём не указан' in r['answer'];assert '2.85' not in r['answer']
 
 def test_condition_cache_and_tool_selection(agent):
     agent.ask(MAIN);agent.ask('Коровий');a=agent.ask('Какая температура лучше?');b=agent.ask('Какая температура лучше?')
@@ -85,7 +84,7 @@ def test_density_illustration_is_not_recorded_as_measured(agent):
 
 def test_energy_parameter_change_uses_cached_methane(agent):
     agent.ask(MAIN);agent.ask('Коровий');r=agent.ask('Электрический КПД 30%')
-    assert next(t for t in r['tools'] if t['tool']=='estimate_advanced_gas')['cache_hit'];assert not next(t for t in r['tools'] if t['tool']=='estimate_advanced_energy')['cache_hit'];assert '30%' in r['answer']
+    assert next(t for t in r['tools'] if t['tool']=='estimate_advanced_gas')['cache_hit'];assert not next(t for t in r['tools'] if t['tool']=='estimate_advanced_energy')['cache_hit'];assert '2.85' not in r['answer']
 
 def test_millilitre_target_and_inventory_removal(agent):
     agent.ask('У меня 2 литра коровьего навоза с подстилкой');r=agent.ask('Переведи в миллилитры');assert r['technical_metadata']['results']['conversion']['conversions'][0]['value']['low']==2000
@@ -101,8 +100,8 @@ def test_density_modes_and_inverse_bounds():
     assert convert(measured,'kg')['value']=={'low':93.6,'high':124.80000000000001};assert convert(measured,'kg')['density']['mode']=='MEASURED'
     measured.quantity=120;measured.unit='kg';assert convert(measured,'L')['value']=={'low':150,'high':200}
     illustrative=c(properties={'density_kg_l':{'low':.5,'high':.5,'provenance':'HYPOTHETICAL_SCENARIO','evidence':'TEST ONLY explicit density'}})
-    assert convert(illustrative,'kg')['density']['mode']=='ILLUSTRATIVE_ASSUMPTION'
-    assert convert(c(material_state='bedded'),'kg')['density']['mode']=='LITERATURE_ESTIMATE'
+    assert convert(illustrative,'kg')['status']=='needs_input'
+    assert convert(c(material_state='bedded'),'kg')['status']=='needs_input'
 
 @pytest.mark.parametrize('decay',['stored','rotted','composted'])
 def test_storage_decay_never_borrows_fresh_bmp(decay):

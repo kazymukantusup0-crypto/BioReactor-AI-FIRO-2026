@@ -1,0 +1,9 @@
+{
+  "status": "PASSED",
+  "id": "6c038e2aae9840c48aa77c02cbce3ea5",
+  "record_created_at": "2026-11-12T06:37:26.006634+00:00",
+  "backend_started_at": "2026-11-12T06:53:14.428306+00:00",
+  "endpoint": "http://127.0.0.1:8770/api/dashboard/firo-demo/runs/6c038e2aae9840c48aa77c02cbce3ea5",
+  "mode": "LITERATURE_ESTIMATE",
+  "answer_and_sources_unchanged": true
+}

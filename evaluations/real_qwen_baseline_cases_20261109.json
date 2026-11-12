@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "unicode_probe": {
+    "ru": "Чем BMP отличается от фактического выхода метана?",
+    "kk": "әғқңөұүһі",
+    "en": "Explain BMP versus actual reactor yield.",
+    "symbols_units": "0,6 kg VS × 250 мл CH₄/г VS = 0,15 м³ (m³); 35 °C; 90 L; ± ≤ ≥ →"
+  },
+  "scenarios": [
+    {
+      "id": "bmp_vs_actual_yield",
+      "language": "ru",
+      "conversation": "bmp_concept",
+      "message": "Чем лабораторный BMP отличается от фактического выхода метана в реакторе? Объясни, почему результат BMP нельзя напрямую считать измеренным выходом конкретной установки."
+    },
+    {
+      "id": "mixed_science_calculation",
+      "language": "ru",
+      "conversation": "mixed_calculation",
+      "message": "Объясни, чем лабораторный BMP отличается от фактического выхода конкретного реактора, и рассчитай 0,6 кг VS × 250 мл CH₄/г VS."
+    },
+    {
+      "id": "batch_5kg",
+      "language": "ru",
+      "conversation": "corrected_batch",
+      "message": "У меня 5 кг пищевых отходов. Сколько метана можно ожидать?"
+    },
+    {
+      "id": "correct_batch_to_6kg",
+      "language": "ru",
+      "conversation": "corrected_batch",
+      "message": "Исправление: не 5 кг, а 6 кг тех же пищевых отходов. Реактор номинальной вместимостью 90 л. Пересчитай и учти его вместимость."
+    }
+  ]
+}

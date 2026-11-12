@@ -1,0 +1,1796 @@
+{
+  "model": "qwen3:8b",
+  "provider": "offline (loopback Ollama)",
+  "cases": [
+    {
+      "case": "digestate_value",
+      "route": "legacy",
+      "session": "66672feae4a3464eaeb2eeed8c772cee",
+      "turns": [
+        {
+          "prompt": "После переработки останется 80 л дигестата. Можно ли считать его удобрением и приписать ему цену минерального NPK без анализа состава и разрешений?",
+          "request_id": "8303f12ed25444edb9c2169da184adff",
+          "job": {
+            "status": "SYNC_RESPONSE",
+            "terminal": true,
+            "id": null,
+            "request_id": "8303f12ed25444edb9c2169da184adff"
+          },
+          "result": {
+            "reply": {
+              "conversation_version": "7",
+              "analysis_version": "8.5",
+              "mode": "qwen_autonomous_tools",
+              "answer": "Нет, дигестат не может быть приписан цене минерального NPK без анализа состава и разрешений. Для использования дигестата как удобрения необходимо провести анализ состава и получить соответствующие разрешения.\n\nУказано 80 л дигестата. Это объём; он сам по себе не определяет массу и количество питательных элементов. Приписать ему цену минерального NPK нельзя: для сопоставимой стоимости нужны состав и доступность питательных веществ, а также подтверждённая пригодность и спрос именно на этот продукт. Проверка сохранённых рыночных данных не вернула подходящей цены на дигестат для региона KZ-Karaganda, выбранного системой по умолчанию и не подтверждённого пользователем; цена и доход от продажи не установлены. Для оценки пригодности нужен лабораторный анализ сухого вещества и N/P/K; для денежной оценки — подтверждённый региональный прайс на дигестат и масса партии.\n\nКакие значения сухого вещества и N/P/K показал анализ, если он проводился?",
+              "user_facing_answer": {
+                "paragraphs": [
+                  "Нет, дигестат не может быть приписан цене минерального NPK без анализа состава и разрешений. Для использования дигестата как удобрения необходимо провести анализ состава и получить соответствующие разрешения.\n\nУказано 80 л дигестата. Это объём; он сам по себе не определяет массу и количество питательных элементов. Приписать ему цену минерального NPK нельзя: для сопоставимой стоимости нужны состав и доступность питательных веществ, а также подтверждённая пригодность и спрос именно на этот продукт. Проверка сохранённых рыночных данных не вернула подходящей цены на дигестат для региона KZ-Karaganda, выбранного системой по умолчанию и не подтверждённого пользователем; цена и доход от продажи не установлены. Для оценки пригодности нужен лабораторный анализ сухого вещества и N/P/K; для денежной оценки — подтверждённый региональный прайс на дигестат и масса партии.",
+                  "Нет, дигестат не может быть приписан цене минерального NPK без анализа состава и разрешений. Для использования дигестата как удобрения необходимо провести анализ состава и получить соответствующие разрешения.\n\nУказано 80 л дигестата. Это объём; он сам по себе не определяет массу и количество питательных элементов. Приписать ему цену минерального NPK нельзя: для сопоставимой стоимости нужны состав и доступность питательных веществ, а также подтверждённая пригодность и спрос именно на этот продукт. Проверка сохранённых рыночных данных не вернула подходящей цены на дигестат для региона KZ-Karaganda, выбранного системой по умолчанию и не подтверждённого пользователем; цена и доход от продажи не установлены. Для оценки пригодности нужен лабораторный анализ сухого вещества и N/P/K; для денежной оценки — подтверждённый региональный прайс на дигестат и масса партии."
+                ],
+                "sections": [],
+                "question": {
+                  "id": "model-question-a298d727fd16",
+                  "text": "Какие значения сухого вещества и N/P/K показал анализ, если он проводился?",
+                  "fields": [],
+                  "options": [],
+                  "reason": "Model-selected clarification retained after available analysis."
+                },
+                "sources": [
+                  {
+                    "title": "FAO / Marchaim — Anaerobic processes, plant design and control",
+                    "url": "https://www.fao.org/4/t0541e/T0541E09.htm"
+                  }
+                ],
+                "modes": [
+                  "autonomous_scientific_tools"
+                ],
+                "assumptions": [
+                  "market_region"
+                ]
+              },
+              "technical_metadata": {
+                "agent_version": "8.5",
+                "tool_calls": [
+                  {
+                    "tool": "get_market_prices",
+                    "status": "needs_input",
+                    "input_origin": "validated_dialogue_state_and_typed_tool_request",
+                    "result": {
+                      "status": "needs_input",
+                      "missing": [
+                        "verified_market_observations"
+                      ],
+                      "region": "KZ-Karaganda",
+                      "prices": [],
+                      "geographic_scope_warning": null,
+                      "sources": [],
+                      "message": "В регионе нет подходящих сохранённых цен; нужен проверенный импорт или успешное обновление источника."
+                    }
+                  },
+                  {
+                    "tool": "search_scientific_sources",
+                    "status": "ok",
+                    "input_origin": "validated_dialogue_state_and_typed_tool_request",
+                    "result": {
+                      "status": "ok",
+                      "search_mode": "curated_local_catalogue_with_structured_claims",
+                      "query": "digestate as fertilizer, NPK content, market pricing, KZ-Karaganda",
+                      "sources": [
+                        {
+                          "id": "fao_design",
+                          "title": "FAO / Marchaim — Anaerobic processes, plant design and control",
+                          "url": "https://www.fao.org/4/t0541e/T0541E09.htm",
+                          "year": 1992,
+                          "doi": null,
+                          "locator": "Digester types; KVIC; process control",
+                          "reviewed_by": "Codex primary-source inspection, 2026-10-28",
+                          "verified_on": "2026-10-28",
+                          "provenance": "SOURCE_VERIFIED"
+                        }
+                      ],
+                      "claims": [
+                        {
+                          "id": "loading_retention",
+                          "source_id": "fao_design",
+                          "topics": [
+                            "loading",
+                            "retention",
+                            "process",
+                            "low_gas"
+                          ],
+                          "materials": [
+                            "manure",
+                            "cattle_manure",
+                            "swine_manure",
+                            "poultry_manure",
+                            "food_waste"
+                          ],
+                          "category": "anaerobic_digestion",
+                          "process_type": "batch or continuous; must be distinguished",
+                          "values": [],
+                          "unit": null,
+                          "scope": "Reactor design and operating mode are required; no universal loading or batch count",
+                          "text": {
+                            "ru": "Загрузка и время удерживания зависят от конструкции и режима подачи; периодическую и непрерывную работу нельзя смешивать.",
+                            "en": "Loading and retention depend on design and feeding mode; batch and continuous operation differ.",
+                            "kk": "Жүктеме мен ұстау уақыты құрылымға және беру режиміне тәуелді; мерзімді және үздіксіз жұмыс бөлек қарастырылады."
+                          }
+                        }
+                      ],
+                      "filters": {
+                        "material": null,
+                        "topics": [
+                          "process"
+                        ],
+                        "category": null,
+                        "process_type": null
+                      },
+                      "live_web_search": false,
+                      "message": "Поиск по локально проверенному каталогу; свежий поиск публикаций в интернете не выполнялся."
+                    }
+                  },
+                  {
+                    "tool": "assess_scientific_risks",
+                    "status": "ok",
+                    "input_origin": "validated_dialogue_state_and_typed_tool_request",
+                    "result": {
+                      "status": "ok",
+                      "message": "Qualitative risk screen; inhibition cannot be quantified without measurements.",
+                      "materials": [],
+                      "engineering": [],
+                      "sources": [],
+                      "actuator_access": false
+                    }
+                  }
+                ],
+                "autonomous_action_steps": 3,
+                "research_actions": [
+                  {
+                    "step": 0,
+                    "action": "call_tool",
+                    "tool": "get_market_prices",
+                    "plan": [
+                      "Проверить рыночные цены на дигестат",
+                      "Оценить научные источники"
+                    ],
+                    "purpose": "Определить возможность использования дигестата как удобрения и его цену",
+                    "protocol_normalization": null,
+                    "elapsed_seconds": 18.833
+                  },
+                  {
+                    "step": 1,
+                    "action": "call_tool",
+                    "tool": "search_scientific_sources",
+                    "plan": [
+                      "search_scientific_sources",
+                      "assess_scientific_risks"
+                    ],
+                    "purpose": "Check if digestate can be classified as fertilizer and determine pricing feasibility",
+                    "protocol_normalization": null,
+                    "elapsed_seconds": 28.99
+                  },
+                  {
+                    "step": 2,
+                    "action": "call_tool",
+                    "tool": "assess_scientific_risks",
+                    "plan": [
+                      "Оценить научные риски",
+                      "Определить возможность использования дигестата как удобрения"
+                    ],
+                    "purpose": "Оценка научных рисков и допустимости использования дигестата как удобрения",
+                    "protocol_normalization": null,
+                    "elapsed_seconds": 41.128
+                  }
+                ],
+                "verification": {
+                  "status": "insufficient_evidence",
+                  "outcome": "insufficient_evidence",
+                  "message": "Independent source-basis arithmetic check; mixture gas-basis assumptions remain explicit.",
+                  "checks": [],
+                  "verification_scope": "Component methane arithmetic only; no certification of biological recovery or safe operation.",
+                  "checked": false,
+                  "all_checks_passed": false
+                },
+                "resource_termination": "synthesis_reserved",
+                "resource_budget": {
+                  "max_tools": 4,
+                  "action_budget": 3,
+                  "timeout_seconds": 150.0,
+                  "synthesis_reserve_seconds": 52.5
+                },
+                "analytical_required_tools": [
+                  "get_market_prices",
+                  "search_scientific_sources",
+                  "assess_scientific_risks"
+                ],
+                "analytical_unchecked_tools": [],
+                "diagnostics": [
+                  {
+                    "stage": "budget",
+                    "reason": "optional_actions_stopped_for_synthesis",
+                    "max_tool_calls": 4
+                  }
+                ],
+                "llm_draft": "Нет, дигестат не может быть приписан цене минерального NPK без анализа состава и разрешений. Для использования дигестата как удобрения необходимо провести анализ состава и получить соответствующие разрешения.",
+                "original_model_synthesis": "Нет, дигестат не может быть приписан цене минерального NPK без анализа состава и разрешений. Для использования дигестата как удобрения необходимо провести анализ состава и получить соответствующие разрешения.",
+                "answer_projection": false,
+                "autonomous_termination": "evidence_projection",
+                "provider_generation_metrics": [
+                  {
+                    "input_characters": 689,
+                    "request_bytes": 2273,
+                    "status": "ok",
+                    "prompt_tokens": 192,
+                    "output_tokens": 86,
+                    "done_reason": "stop",
+                    "load_seconds": 0.0063304,
+                    "generation_seconds": 6.584333,
+                    "tokens_per_second": 13.061307804450353,
+                    "latency_seconds": 7.223591200001465
+                  },
+                  {
+                    "input_characters": 5680,
+                    "request_bytes": 7160,
+                    "status": "ok",
+                    "prompt_tokens": 1320,
+                    "output_tokens": 108,
+                    "done_reason": "stop",
+                    "load_seconds": 0.0058735,
+                    "generation_seconds": 10.091805,
+                    "tokens_per_second": 10.701752560617253,
+                    "latency_seconds": 11.589717799999562
+                  },
+                  {
+                    "input_characters": 5812,
+                    "request_bytes": 7370,
+                    "status": "ok",
+                    "prompt_tokens": 1359,
+                    "output_tokens": 98,
+                    "done_reason": "stop",
+                    "load_seconds": 0.0072068,
+                    "generation_seconds": 8.936076,
+                    "tokens_per_second": 10.966782287885644,
+                    "latency_seconds": 10.145303999999669
+                  },
+                  {
+                    "input_characters": 6183,
+                    "request_bytes": 7824,
+                    "status": "ok",
+                    "prompt_tokens": 1489,
+                    "output_tokens": 109,
+                    "done_reason": "stop",
+                    "load_seconds": 0.0068176,
+                    "generation_seconds": 10.404993,
+                    "tokens_per_second": 10.475739868349743,
+                    "latency_seconds": 12.134268599998904
+                  },
+                  {
+                    "input_characters": 9075,
+                    "request_bytes": 10834,
+                    "status": "ok",
+                    "prompt_tokens": 2050,
+                    "output_tokens": 165,
+                    "done_reason": "stop",
+                    "load_seconds": 0.0104591,
+                    "generation_seconds": 17.607056,
+                    "tokens_per_second": 9.371242983494799,
+                    "latency_seconds": 21.750802299999123
+                  }
+                ],
+                "confirmed_parameters": {
+                  "market_commodity": {
+                    "value": "digestate",
+                    "unit": null,
+                    "provenance": "USER_CONFIRMED",
+                    "evidence": "После переработки останется 80 л дигестата. Можно ли считать его удобрением и приписать ему цену минерального NPK без анализа состава и разрешений?",
+                    "recorded_at": "2026-11-07T20:15:16.482516+00:00",
+                    "dependencies": []
+                  },
+                  "quantity": {
+                    "value": 80.0,
+                    "unit": "L",
+                    "provenance": "USER_CONFIRMED",
+                    "evidence": "80 л",
+                    "recorded_at": "2026-11-07T20:15:16.482541+00:00",
+                    "dependencies": []
+                  },
+                  "unit": {
+                    "value": "L",
+                    "unit": null,
+                    "provenance": "USER_CONFIRMED",
+                    "evidence": "80 л",
+                    "recorded_at": "2026-11-07T20:15:16.482547+00:00",
+                    "dependencies": []
+                  }
+                },
+                "assumptions": {
+                  "market_region": {
+                    "value": "KZ-Karaganda",
+                    "unit": null,
+                    "provenance": "ASSUMED_FOR_SCENARIO",
+                    "evidence": "Default dashboard region; not user-confirmed",
+                    "recorded_at": "2026-11-07T20:15:09.225622+00:00",
+                    "dependencies": []
+                  }
+                },
+                "derived_parameters": {
+                  "material_volume_l": {
+                    "value": 80.0,
+                    "unit": "L",
+                    "provenance": "CALCULATED_FROM_CONFIRMED",
+                    "evidence": "Unit arithmetic from explicit confirmed inputs",
+                    "recorded_at": "2026-11-07T20:15:16.482561+00:00",
+                    "dependencies": [
+                      "quantity",
+                      "unit"
+                    ]
+                  }
+                },
+                "model_estimates": {},
+                "missing_parameters": [
+                  "verified_market_observations"
+                ],
+                "numeric_claims_grounded": true,
+                "numeric_grounding_rejections": [],
+                "uncertainty_status": "No calibrated prediction interval established.",
+                "extracted_entities": {
+                  "language": "ru",
+                  "intents": [
+                    "digestate_management",
+                    "process_guidance",
+                    "market_prices"
+                  ],
+                  "entities": [
+                    {
+                      "name": "market_commodity",
+                      "value": "digestate",
+                      "unit": null,
+                      "evidence": "После переработки останется 80 л дигестата. Можно ли считать его удобрением и приписать ему цену минерального NPK без анализа состава и разрешений?",
+                      "provenance": "USER_CONFIRMED"
+                    },
+                    {
+                      "name": "quantity",
+                      "value": 80.0,
+                      "unit": "L",
+                      "evidence": "80 л",
+                      "provenance": "USER_CONFIRMED"
+                    },
+                    {
+                      "name": "unit",
+                      "value": "L",
+                      "unit": null,
+                      "evidence": "80 л",
+                      "provenance": "USER_CONFIRMED"
+                    }
+                  ],
+                  "correction": true,
+                  "new_batch": false,
+                  "validation_errors": []
+                },
+                "llm_proposal": {
+                  "language": "ru",
+                  "intents": [
+                    "digestate_management"
+                  ],
+                  "material": "digestate",
+                  "material_evidence": "После переработки останется 80 л дигестата.",
+                  "entities": [
+                    {
+                      "name": "volume",
+                      "text": "80 л"
+                    }
+                  ]
+                },
+                "latency_seconds": 62.88616870000078,
+                "actuator_access": false,
+                "diagnostic_events": [
+                  {
+                    "type": "HttpRequestAccepted",
+                    "phase": "dashboard_api",
+                    "session_id": "66672feae4a3464eaeb2eeed8c772cee",
+                    "request_id": "8303f12ed25444edb9c2169da184adff",
+                    "conversation_version": "7"
+                  },
+                  {
+                    "type": "RequestReceived",
+                    "phase": "conversation_api",
+                    "characters": 147
+                  },
+                  {
+                    "type": "ParametersExtracted",
+                    "phase": "parameter_extraction",
+                    "entities": [
+                      {
+                        "name": "market_commodity",
+                        "value": "digestate",
+                        "unit": null,
+                        "evidence": "После переработки останется 80 л дигестата. Можно ли считать его удобрением и приписать ему цену минерального NPK без анализа состава и разрешений?",
+                        "provenance": "USER_CONFIRMED"
+                      },
+                      {
+                        "name": "quantity",
+                        "value": 80.0,
+                        "unit": "L",
+                        "evidence": "80 л",
+                        "provenance": "USER_CONFIRMED"
+                      },
+                      {
+                        "name": "unit",
+                        "value": "L",
+                        "unit": null,
+                        "evidence": "80 л",
+                        "provenance": "USER_CONFIRMED"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "Clarification",
+                    "phase": "task_transition",
+                    "task_id": "6720f18cdef944b6a50a949cdff7c648"
+                  },
+                  {
+                    "type": "ModelUnderstandingStarted",
+                    "phase": "model_understanding",
+                    "configured": true
+                  },
+                  {
+                    "type": "ModelUnderstandingFinished",
+                    "phase": "model_understanding",
+                    "proposal_received": true,
+                    "providers": [
+                      {
+                        "provider": "offline",
+                        "model": "qwen3:8b",
+                        "status": "available",
+                        "actual_generation": true,
+                        "phase": "structured_nlu",
+                        "requests": [
+                          {
+                            "input_characters": 689,
+                            "request_bytes": 2273,
+                            "status": "ok",
+                            "prompt_tokens": 192,
+                            "output_tokens": 86,
+                            "done_reason": "stop",
+                            "load_seconds": 0.0063304,
+                            "generation_seconds": 6.584333,
+                            "tokens_per_second": 13.061307804450353,
+                            "latency_seconds": 7.223591200001465
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "PlanningStarted",
+                    "phase": "agent_planning",
+                    "task_id": "6720f18cdef944b6a50a949cdff7c648"
+                  },
+                  {
+                    "type": "ToolExecuted",
+                    "phase": "tool_execution",
+                    "tool": "get_market_prices",
+                    "status": "needs_input"
+                  },
+                  {
+                    "type": "MissingScientificParameters",
+                    "phase": "tool_execution",
+                    "tool": "get_market_prices",
+                    "fields": [
+                      "verified_market_observations"
+                    ]
+                  },
+                  {
+                    "type": "ToolExecuted",
+                    "phase": "tool_execution",
+                    "tool": "search_scientific_sources",
+                    "status": "ok"
+                  },
+                  {
+                    "type": "ToolExecuted",
+                    "phase": "tool_execution",
+                    "tool": "assess_scientific_risks",
+                    "status": "ok"
+                  },
+                  {
+                    "type": "ResponseCreated",
+                    "phase": "response",
+                    "mode": "qwen_autonomous_tools",
+                    "tool_count": 3
+                  }
+                ]
+              },
+              "tools": [
+                {
+                  "tool": "get_market_prices",
+                  "status": "needs_input",
+                  "input_origin": "validated_dialogue_state_and_typed_tool_request",
+                  "result": {
+                    "status": "needs_input",
+                    "missing": [
+                      "verified_market_observations"
+                    ],
+                    "region": "KZ-Karaganda",
+                    "prices": [],
+                    "geographic_scope_warning": null,
+                    "sources": [],
+                    "message": "В регионе нет подходящих сохранённых цен; нужен проверенный импорт или успешное обновление источника."
+                  }
+                },
+                {
+                  "tool": "search_scientific_sources",
+                  "status": "ok",
+                  "input_origin": "validated_dialogue_state_and_typed_tool_request",
+                  "result": {
+                    "status": "ok",
+                    "search_mode": "curated_local_catalogue_with_structured_claims",
+                    "query": "digestate as fertilizer, NPK content, market pricing, KZ-Karaganda",
+                    "sources": [
+                      {
+                        "id": "fao_design",
+                        "title": "FAO / Marchaim — Anaerobic processes, plant design and control",
+                        "url": "https://www.fao.org/4/t0541e/T0541E09.htm",
+                        "year": 1992,
+                        "doi": null,
+                        "locator": "Digester types; KVIC; process control",
+                        "reviewed_by": "Codex primary-source inspection, 2026-10-28",
+                        "verified_on": "2026-10-28",
+                        "provenance": "SOURCE_VERIFIED"
+                      }
+                    ],
+                    "claims": [
+                      {
+                        "id": "loading_retention",
+                        "source_id": "fao_design",
+                        "topics": [
+                          "loading",
+                          "retention",
+                          "process",
+                          "low_gas"
+                        ],
+                        "materials": [
+                          "manure",
+                          "cattle_manure",
+                          "swine_manure",
+                          "poultry_manure",
+                          "food_waste"
+                        ],
+                        "category": "anaerobic_digestion",
+                        "process_type": "batch or continuous; must be distinguished",
+                        "values": [],
+                        "unit": null,
+                        "scope": "Reactor design and operating mode are required; no universal loading or batch count",
+                        "text": {
+                          "ru": "Загрузка и время удерживания зависят от конструкции и режима подачи; периодическую и непрерывную работу нельзя смешивать.",
+                          "en": "Loading and retention depend on design and feeding mode; batch and continuous operation differ.",
+                          "kk": "Жүктеме мен ұстау уақыты құрылымға және беру режиміне тәуелді; мерзімді және үздіксіз жұмыс бөлек қарастырылады."
+                        }
+                      }
+                    ],
+                    "filters": {
+                      "material": null,
+                      "topics": [
+                        "process"
+                      ],
+                      "category": null,
+                      "process_type": null
+                    },
+                    "live_web_search": false,
+                    "message": "Поиск по локально проверенному каталогу; свежий поиск публикаций в интернете не выполнялся."
+                  }
+                },
+                {
+                  "tool": "assess_scientific_risks",
+                  "status": "ok",
+                  "input_origin": "validated_dialogue_state_and_typed_tool_request",
+                  "result": {
+                    "status": "ok",
+                    "message": "Qualitative risk screen; inhibition cannot be quantified without measurements.",
+                    "materials": [],
+                    "engineering": [],
+                    "sources": [],
+                    "actuator_access": false
+                  }
+                }
+              ],
+              "provider_status": [
+                {
+                  "provider": "offline",
+                  "model": "qwen3:8b",
+                  "status": "available",
+                  "actual_generation": true,
+                  "phase": "structured_nlu",
+                  "requests": [
+                    {
+                      "input_characters": 689,
+                      "request_bytes": 2273,
+                      "status": "ok",
+                      "prompt_tokens": 192,
+                      "output_tokens": 86,
+                      "done_reason": "stop",
+                      "load_seconds": 0.0063304,
+                      "generation_seconds": 6.584333,
+                      "tokens_per_second": 13.061307804450353,
+                      "latency_seconds": 7.223591200001465
+                    }
+                  ]
+                }
+              ],
+              "missing": [
+                "verified_market_observations"
+              ],
+              "context": {
+                "material_volume_l": 80.0,
+                "market_commodity": "digestate",
+                "market_region": "KZ-Karaganda"
+              },
+              "memory": {
+                "version": "7",
+                "task_id": "6720f18cdef944b6a50a949cdff7c648",
+                "task_history": [],
+                "conversation_id": "66672feae4a3464eaeb2eeed8c772cee",
+                "language": "ru",
+                "facts": {
+                  "market_commodity": {
+                    "value": "digestate",
+                    "unit": null,
+                    "provenance": "USER_CONFIRMED",
+                    "evidence": "После переработки останется 80 л дигестата. Можно ли считать его удобрением и приписать ему цену минерального NPK без анализа состава и разрешений?",
+                    "recorded_at": "2026-11-07T20:15:16.482516+00:00",
+                    "dependencies": []
+                  },
+                  "quantity": {
+                    "value": 80.0,
+                    "unit": "L",
+                    "provenance": "USER_CONFIRMED",
+                    "evidence": "80 л",
+                    "recorded_at": "2026-11-07T20:15:16.482541+00:00",
+                    "dependencies": []
+                  },
+                  "unit": {
+                    "value": "L",
+                    "unit": null,
+                    "provenance": "USER_CONFIRMED",
+                    "evidence": "80 л",
+                    "recorded_at": "2026-11-07T20:15:16.482547+00:00",
+                    "dependencies": []
+                  }
+                },
+                "assumptions": {
+                  "market_region": {
+                    "value": "KZ-Karaganda",
+                    "unit": null,
+                    "provenance": "ASSUMED_FOR_SCENARIO",
+                    "evidence": "Default dashboard region; not user-confirmed",
+                    "recorded_at": "2026-11-07T20:15:09.225622+00:00",
+                    "dependencies": []
+                  }
+                },
+                "derived": {
+                  "material_volume_l": {
+                    "value": 80.0,
+                    "unit": "L",
+                    "provenance": "CALCULATED_FROM_CONFIRMED",
+                    "evidence": "Unit arithmetic from explicit confirmed inputs",
+                    "recorded_at": "2026-11-07T20:15:16.482561+00:00",
+                    "dependencies": [
+                      "quantity",
+                      "unit"
+                    ]
+                  }
+                },
+                "estimates": {},
+                "source_verified": {},
+                "intents": [
+                  "digestate_management",
+                  "process_guidance",
+                  "market_prices"
+                ],
+                "pending_question": {
+                  "id": "model-question-a298d727fd16",
+                  "text": "Какие значения сухого вещества и N/P/K показал анализ, если он проводился?",
+                  "options": [],
+                  "fields": [],
+                  "reason": "Model-selected clarification retained after available analysis."
+                },
+                "invalidated": [],
+                "decision_settings": {
+                  "gas_use": "unknown",
+                  "assume_reference_compatibility": false,
+                  "use_reference_scenarios": true,
+                  "heating_value_type": "LHV",
+                  "reactor": {
+                    "engineering_review_confirmed": false,
+                    "safety_review_required": false,
+                    "loads": [],
+                    "loads_complete": false,
+                    "provenance": "USER_REPORTED"
+                  },
+                  "quotes": {},
+                  "price_ids": {},
+                  "max_price_age_days": 30,
+                  "costs": {},
+                  "all_operating_costs_included": false,
+                  "include_capital": false,
+                  "assume_full_self_consumption": false,
+                  "replacement_heat_source": "unknown",
+                  "gas_sale_technical_confirmed": false,
+                  "gas_sale_legal_confirmed": false,
+                  "gas_quality_confirmed": false,
+                  "gas_storage_transport_confirmed": false,
+                  "digestate_quality_confirmed": false,
+                  "digestate_market_allowed": false
+                },
+                "decision_unavailable": [],
+                "last_research_summary": {},
+                "mixture_components": [],
+                "mixture_scenario_components": [],
+                "mixture_revision": 0,
+                "mixture_history": [],
+                "advisor_inventory_mode": "none",
+                "advisor_pending_component": null,
+                "advisor_settings": {},
+                "smart_goals": [],
+                "smart_cache": {},
+                "active_mixture_scenario": false,
+                "advanced": {
+                  "research_dialogue": {
+                    "asked": [
+                      "model-question-a298d727fd16"
+                    ],
+                    "last_turn_type": "correction",
+                    "known_cost_categories": [],
+                    "unpriced_categories": [],
+                    "last_question_id": "model-question-a298d727fd16"
+                  }
+                },
+                "analytical_mode": "mixture"
+              },
+              "pending_question": null,
+              "context_updated": true,
+              "actuator_access": false,
+              "policy_tool_plan": [
+                "get_market_prices",
+                "search_scientific_sources",
+                "assess_scientific_risks"
+              ],
+              "state_version": 1
+            },
+            "status": "SYNC_RESPONSE"
+          },
+          "elapsed_seconds": 62.99,
+          "gpu_temperature_before_c": 59.0,
+          "gpu_temperature_target_c": 87,
+          "gpu_power_state_before": "P8",
+          "gpu_hardware_thermal_slowdown_before": false,
+          "gpu_utilization_before_pct": 9.0,
+          "gpu_temperature_after_c": 73.0,
+          "gpu_temperature_target_after_c": 87,
+          "gpu_power_state_after": "P3",
+          "gpu_hardware_thermal_slowdown_after": false,
+          "gpu_utilization_after_pct": 28.0,
+          "actual_qwen_generation": true,
+          "actual_qwen_final_generation": true,
+          "final_answer_from_qwen": false,
+          "snapshot": {
+            "id": "66672feae4a3464eaeb2eeed8c772cee",
+            "mode": "offline",
+            "context": {
+              "material_volume_l": 80.0,
+              "market_commodity": "digestate",
+              "market_region": "KZ-Karaganda"
+            },
+            "conversation_version": "7",
+            "state_version": 1,
+            "memory": {
+              "version": "7",
+              "task_id": "6720f18cdef944b6a50a949cdff7c648",
+              "task_history": [],
+              "conversation_id": "66672feae4a3464eaeb2eeed8c772cee",
+              "language": "ru",
+              "facts": {
+                "market_commodity": {
+                  "value": "digestate",
+                  "unit": null,
+                  "provenance": "USER_CONFIRMED",
+                  "evidence": "После переработки останется 80 л дигестата. Можно ли считать его удобрением и приписать ему цену минерального NPK без анализа состава и разрешений?",
+                  "recorded_at": "2026-11-07T20:15:16.482516+00:00",
+                  "dependencies": []
+                },
+                "quantity": {
+                  "value": 80.0,
+                  "unit": "L",
+                  "provenance": "USER_CONFIRMED",
+                  "evidence": "80 л",
+                  "recorded_at": "2026-11-07T20:15:16.482541+00:00",
+                  "dependencies": []
+                },
+                "unit": {
+                  "value": "L",
+                  "unit": null,
+                  "provenance": "USER_CONFIRMED",
+                  "evidence": "80 л",
+                  "recorded_at": "2026-11-07T20:15:16.482547+00:00",
+                  "dependencies": []
+                }
+              },
+              "assumptions": {
+                "market_region": {
+                  "value": "KZ-Karaganda",
+                  "unit": null,
+                  "provenance": "ASSUMED_FOR_SCENARIO",
+                  "evidence": "Default dashboard region; not user-confirmed",
+                  "recorded_at": "2026-11-07T20:15:09.225622+00:00",
+                  "dependencies": []
+                }
+              },
+              "derived": {
+                "material_volume_l": {
+                  "value": 80.0,
+                  "unit": "L",
+                  "provenance": "CALCULATED_FROM_CONFIRMED",
+                  "evidence": "Unit arithmetic from explicit confirmed inputs",
+                  "recorded_at": "2026-11-07T20:15:16.482561+00:00",
+                  "dependencies": [
+                    "quantity",
+                    "unit"
+                  ]
+                }
+              },
+              "estimates": {},
+              "source_verified": {},
+              "intents": [
+                "digestate_management",
+                "process_guidance",
+                "market_prices"
+              ],
+              "pending_question": {
+                "id": "model-question-a298d727fd16",
+                "text": "Какие значения сухого вещества и N/P/K показал анализ, если он проводился?",
+                "options": [],
+                "fields": [],
+                "reason": "Model-selected clarification retained after available analysis."
+              },
+              "invalidated": [],
+              "decision_settings": {
+                "gas_use": "unknown",
+                "assume_reference_compatibility": false,
+                "use_reference_scenarios": true,
+                "heating_value_type": "LHV",
+                "reactor": {
+                  "engineering_review_confirmed": false,
+                  "safety_review_required": false,
+                  "loads": [],
+                  "loads_complete": false,
+                  "provenance": "USER_REPORTED"
+                },
+                "quotes": {},
+                "price_ids": {},
+                "max_price_age_days": 30,
+                "costs": {},
+                "all_operating_costs_included": false,
+                "include_capital": false,
+                "assume_full_self_consumption": false,
+                "replacement_heat_source": "unknown",
+                "gas_sale_technical_confirmed": false,
+                "gas_sale_legal_confirmed": false,
+                "gas_quality_confirmed": false,
+                "gas_storage_transport_confirmed": false,
+                "digestate_quality_confirmed": false,
+                "digestate_market_allowed": false
+              },
+              "decision_unavailable": [],
+              "last_research_summary": {},
+              "mixture_components": [],
+              "mixture_scenario_components": [],
+              "mixture_revision": 0,
+              "mixture_history": [],
+              "advisor_inventory_mode": "none",
+              "advisor_pending_component": null,
+              "advisor_settings": {},
+              "smart_goals": [],
+              "smart_cache": {},
+              "active_mixture_scenario": false,
+              "advanced": {
+                "research_dialogue": {
+                  "asked": [
+                    "model-question-a298d727fd16"
+                  ],
+                  "last_turn_type": "correction",
+                  "known_cost_categories": [],
+                  "unpriced_categories": [],
+                  "last_question_id": "model-question-a298d727fd16"
+                }
+              },
+              "analytical_mode": "mixture"
+            },
+            "jobs": [],
+            "turns": [
+              {
+                "id": 60,
+                "session_id": "66672feae4a3464eaeb2eeed8c772cee",
+                "request_id": "8303f12ed25444edb9c2169da184adff",
+                "created_at": "2026-11-07T20:15:09.209111+00:00",
+                "question": "После переработки останется 80 л дигестата. Можно ли считать его удобрением и приписать ему цену минерального NPK без анализа состава и разрешений?",
+                "status": "complete",
+                "reply_json": "{\"conversation_version\": \"7\", \"analysis_version\": \"8.5\", \"mode\": \"qwen_autonomous_tools\", \"answer\": \"Нет, дигестат не может быть приписан цене минерального NPK без анализа состава и разрешений. Для использования дигестата как удобрения необходимо провести анализ состава и получить соответствующие разрешения.\\n\\nУказано 80 л дигестата. Это объём; он сам по себе не определяет массу и количество питательных элементов. Приписать ему цену минерального NPK нельзя: для сопоставимой стоимости нужны состав и доступность питательных веществ, а также подтверждённая пригодность и спрос именно на этот продукт. Проверка сохранённых рыночных данных не вернула подходящей цены на дигестат для региона KZ-Karaganda, выбранного системой по умолчанию и не подтверждённого пользователем; цена и доход от продажи не установлены. Для оценки пригодности нужен лабораторный анализ сухого вещества и N/P/K; для денежной оценки — подтверждённый региональный прайс на дигестат и масса партии.\\n\\nКакие значения сухого вещества и N/P/K показал анализ, если он проводился?\", \"user_facing_answer\": {\"paragraphs\": [\"Нет, дигестат не может быть приписан цене минерального NPK без анализа состава и разрешений. Для использования дигестата как удобрения необходимо провести анализ состава и получить соответствующие разрешения.\\n\\nУказано 80 л дигестата. Это объём; он сам по себе не определяет массу и количество питательных элементов. Приписать ему цену минерального NPK нельзя: для сопоставимой стоимости нужны состав и доступность питательных веществ, а также подтверждённая пригодность и спрос именно на этот продукт. Проверка сохранённых рыночных данных не вернула подходящей цены на дигестат для региона KZ-Karaganda, выбранного системой по умолчанию и не подтверждённого пользователем; цена и доход от продажи не установлены. Для оценки пригодности нужен лабораторный анализ сухого вещества и N/P/K; для денежной оценки — подтверждённый региональный прайс на дигестат и масса партии.\", \"Нет, дигестат не может быть приписан цене минерального NPK без анализа состава и разрешений. Для использования дигестата как удобрения необходимо провести анализ состава и получить соответствующие разрешения.\\n\\nУказано 80 л дигестата. Это объём; он сам по себе не определяет массу и количество питательных элементов. Приписать ему цену минерального NPK нельзя: для сопоставимой стоимости нужны состав и доступность питательных веществ, а также подтверждённая пригодность и спрос именно на этот продукт. Проверка сохранённых рыночных данных не вернула подходящей цены на дигестат для региона KZ-Karaganda, выбранного системой по умолчанию и не подтверждённого пользователем; цена и доход от продажи не установлены. Для оценки пригодности нужен лабораторный анализ сухого вещества и N/P/K; для денежной оценки — подтверждённый региональный прайс на дигестат и масса партии.\"], \"sections\": [], \"question\": {\"id\": \"model-question-a298d727fd16\", \"text\": \"Какие значения сухого вещества и N/P/K показал анализ, если он проводился?\", \"fields\": [], \"options\": [], \"reason\": \"Model-selected clarification retained after available analysis.\"}, \"sources\": [{\"title\": \"FAO / Marchaim — Anaerobic processes, plant design and control\", \"url\": \"https://www.fao.org/4/t0541e/T0541E09.htm\"}], \"modes\": [\"autonomous_scientific_tools\"], \"assumptions\": [\"market_region\"]}, \"technical_metadata\": {\"agent_version\": \"8.5\", \"tool_calls\": [{\"tool\": \"get_market_prices\", \"status\": \"needs_input\", \"input_origin\": \"validated_dialogue_state_and_typed_tool_request\", \"result\": {\"status\": \"needs_input\", \"missing\": [\"verified_market_observations\"], \"region\": \"KZ-Karaganda\", \"prices\": [], \"geographic_scope_warning\": null, \"sources\": [], \"message\": \"В регионе нет подходящих сохранённых цен; нужен проверенный импорт или успешное обновление источника.\"}}, {\"tool\": \"search_scientific_sources\", \"status\": \"ok\", \"input_origin\": \"validated_dialogue_state_and_typed_tool_request\", \"result\": {\"status\": \"ok\", \"search_mode\": \"curated_local_catalogue_with_structured_claims\", \"query\": \"digestate as fertilizer, NPK content, market pricing, KZ-Karaganda\", \"sources\": [{\"id\": \"fao_design\", \"title\": \"FAO / Marchaim — Anaerobic processes, plant design and control\", \"url\": \"https://www.fao.org/4/t0541e/T0541E09.htm\", \"year\": 1992, \"doi\": null, \"locator\": \"Digester types; KVIC; process control\", \"reviewed_by\": \"Codex primary-source inspection, 2026-10-28\", \"verified_on\": \"2026-10-28\", \"provenance\": \"SOURCE_VERIFIED\"}], \"claims\": [{\"id\": \"loading_retention\", \"source_id\": \"fao_design\", \"topics\": [\"loading\", \"retention\", \"process\", \"low_gas\"], \"materials\": [\"manure\", \"cattle_manure\", \"swine_manure\", \"poultry_manure\", \"food_waste\"], \"category\": \"anaerobic_digestion\", \"process_type\": \"batch or continuous; must be distinguished\", \"values\": [], \"unit\": null, \"scope\": \"Reactor design and operating mode are required; no universal loading or batch count\", \"text\": {\"ru\": \"Загрузка и время удерживания зависят от конструкции и режима подачи; периодическую и непрерывную работу нельзя смешивать.\", \"en\": \"Loading and retention depend on design and feeding mode; batch and continuous operation differ.\", \"kk\": \"Жүктеме мен ұстау уақыты құрылымға және беру режиміне тәуелді; мерзімді және үздіксіз жұмыс бөлек қарастырылады.\"}}], \"filters\": {\"material\": null, \"topics\": [\"process\"], \"category\": null, \"process_type\": null}, \"live_web_search\": false, \"message\": \"Поиск по локально проверенному каталогу; свежий поиск публикаций в интернете не выполнялся.\"}}, {\"tool\": \"assess_scientific_risks\", \"status\": \"ok\", \"input_origin\": \"validated_dialogue_state_and_typed_tool_request\", \"result\": {\"status\": \"ok\", \"message\": \"Qualitative risk screen; inhibition cannot be quantified without measurements.\", \"materials\": [], \"engineering\": [], \"sources\": [], \"actuator_access\": false}}], \"autonomous_action_steps\": 3, \"research_actions\": [{\"step\": 0, \"action\": \"call_tool\", \"tool\": \"get_market_prices\", \"plan\": [\"Проверить рыночные цены на дигестат\", \"Оценить научные источники\"], \"purpose\": \"Определить возможность использования дигестата как удобрения и его цену\", \"protocol_normalization\": null, \"elapsed_seconds\": 18.833}, {\"step\": 1, \"action\": \"call_tool\", \"tool\": \"search_scientific_sources\", \"plan\": [\"search_scientific_sources\", \"assess_scientific_risks\"], \"purpose\": \"Check if digestate can be classified as fertilizer and determine pricing feasibility\", \"protocol_normalization\": null, \"elapsed_seconds\": 28.99}, {\"step\": 2, \"action\": \"call_tool\", \"tool\": \"assess_scientific_risks\", \"plan\": [\"Оценить научные риски\", \"Определить возможность использования дигестата как удобрения\"], \"purpose\": \"Оценка научных рисков и допустимости использования дигестата как удобрения\", \"protocol_normalization\": null, \"elapsed_seconds\": 41.128}], \"verification\": {\"status\": \"insufficient_evidence\", \"outcome\": \"insufficient_evidence\", \"message\": \"Independent source-basis arithmetic check; mixture gas-basis assumptions remain explicit.\", \"checks\": [], \"verification_scope\": \"Component methane arithmetic only; no certification of biological recovery or safe operation.\", \"checked\": false, \"all_checks_passed\": false}, \"resource_termination\": \"synthesis_reserved\", \"resource_budget\": {\"max_tools\": 4, \"action_budget\": 3, \"timeout_seconds\": 150.0, \"synthesis_reserve_seconds\": 52.5}, \"analytical_required_tools\": [\"get_market_prices\", \"search_scientific_sources\", \"assess_scientific_risks\"], \"analytical_unchecked_tools\": [], \"diagnostics\": [{\"stage\": \"budget\", \"reason\": \"optional_actions_stopped_for_synthesis\", \"max_tool_calls\": 4}], \"llm_draft\": \"Нет, дигестат не может быть приписан цене минерального NPK без анализа состава и разрешений. Для использования дигестата как удобрения необходимо провести анализ состава и получить соответствующие разрешения.\", \"original_model_synthesis\": \"Нет, дигестат не может быть приписан цене минерального NPK без анализа состава и разрешений. Для использования дигестата как удобрения необходимо провести анализ состава и получить соответствующие разрешения.\", \"answer_projection\": false, \"autonomous_termination\": \"evidence_projection\", \"provider_generation_metrics\": [{\"input_characters\": 689, \"request_bytes\": 2273, \"status\": \"ok\", \"prompt_tokens\": 192, \"output_tokens\": 86, \"done_reason\": \"stop\", \"load_seconds\": 0.0063304, \"generation_seconds\": 6.584333, \"tokens_per_second\": 13.061307804450353, \"latency_seconds\": 7.223591200001465}, {\"input_characters\": 5680, \"request_bytes\": 7160, \"status\": \"ok\", \"prompt_tokens\": 1320, \"output_tokens\": 108, \"done_reason\": \"stop\", \"load_seconds\": 0.0058735, \"generation_seconds\": 10.091805, \"tokens_per_second\": 10.701752560617253, \"latency_seconds\": 11.589717799999562}, {\"input_characters\": 5812, \"request_bytes\": 7370, \"status\": \"ok\", \"prompt_tokens\": 1359, \"output_tokens\": 98, \"done_reason\": \"stop\", \"load_seconds\": 0.0072068, \"generation_seconds\": 8.936076, \"tokens_per_second\": 10.966782287885644, \"latency_seconds\": 10.145303999999669}, {\"input_characters\": 6183, \"request_bytes\": 7824, \"status\": \"ok\", \"prompt_tokens\": 1489, \"output_tokens\": 109, \"done_reason\": \"stop\", \"load_seconds\": 0.0068176, \"generation_seconds\": 10.404993, \"tokens_per_second\": 10.475739868349743, \"latency_seconds\": 12.134268599998904}, {\"input_characters\": 9075, \"request_bytes\": 10834, \"status\": \"ok\", \"prompt_tokens\": 2050, \"output_tokens\": 165, \"done_reason\": \"stop\", \"load_seconds\": 0.0104591, \"generation_seconds\": 17.607056, \"tokens_per_second\": 9.371242983494799, \"latency_seconds\": 21.750802299999123}], \"confirmed_parameters\": {\"market_commodity\": {\"value\": \"digestate\", \"unit\": null, \"provenance\": \"USER_CONFIRMED\", \"evidence\": \"После переработки останется 80 л дигестата. Можно ли считать его удобрением и приписать ему цену минерального NPK без анализа состава и разрешений?\", \"recorded_at\": \"2026-11-07T20:15:16.482516+00:00\", \"dependencies\": []}, \"quantity\": {\"value\": 80.0, \"unit\": \"L\", \"provenance\": \"USER_CONFIRMED\", \"evidence\": \"80 л\", \"recorded_at\": \"2026-11-07T20:15:16.482541+00:00\", \"dependencies\": []}, \"unit\": {\"value\": \"L\", \"unit\": null, \"provenance\": \"USER_CONFIRMED\", \"evidence\": \"80 л\", \"recorded_at\": \"2026-11-07T20:15:16.482547+00:00\", \"dependencies\": []}}, \"assumptions\": {\"market_region\": {\"value\": \"KZ-Karaganda\", \"unit\": null, \"provenance\": \"ASSUMED_FOR_SCENARIO\", \"evidence\": \"Default dashboard region; not user-confirmed\", \"recorded_at\": \"2026-11-07T20:15:09.225622+00:00\", \"dependencies\": []}}, \"derived_parameters\": {\"material_volume_l\": {\"value\": 80.0, \"unit\": \"L\", \"provenance\": \"CALCULATED_FROM_CONFIRMED\", \"evidence\": \"Unit arithmetic from explicit confirmed inputs\", \"recorded_at\": \"2026-11-07T20:15:16.482561+00:00\", \"dependencies\": [\"quantity\", \"unit\"]}}, \"model_estimates\": {}, \"missing_parameters\": [\"verified_market_observations\"], \"numeric_claims_grounded\": true, \"numeric_grounding_rejections\": [], \"uncertainty_status\": \"No calibrated prediction interval established.\", \"extracted_entities\": {\"language\": \"ru\", \"intents\": [\"digestate_management\", \"process_guidance\", \"market_prices\"], \"entities\": [{\"name\": \"market_commodity\", \"value\": \"digestate\", \"unit\": null, \"evidence\": \"После переработки останется 80 л дигестата. Можно ли считать его удобрением и приписать ему цену минерального NPK без анализа состава и разрешений?\", \"provenance\": \"USER_CONFIRMED\"}, {\"name\": \"quantity\", \"value\": 80.0, \"unit\": \"L\", \"evidence\": \"80 л\", \"provenance\": \"USER_CONFIRMED\"}, {\"name\": \"unit\", \"value\": \"L\", \"unit\": null, \"evidence\": \"80 л\", \"provenance\": \"USER_CONFIRMED\"}], \"correction\": true, \"new_batch\": false, \"validation_errors\": []}, \"llm_proposal\": {\"language\": \"ru\", \"intents\": [\"digestate_management\"], \"material\": \"digestate\", \"material_evidence\": \"После переработки останется 80 л дигестата.\", \"entities\": [{\"name\": \"volume\", \"text\": \"80 л\"}]}, \"latency_seconds\": 62.88616870000078, \"actuator_access\": false, \"diagnostic_events\": [{\"type\": \"HttpRequestAccepted\", \"phase\": \"dashboard_api\", \"session_id\": \"66672feae4a3464eaeb2eeed8c772cee\", \"request_id\": \"8303f12ed25444edb9c2169da184adff\", \"conversation_version\": \"7\"}, {\"type\": \"RequestReceived\", \"phase\": \"conversation_api\", \"characters\": 147}, {\"type\": \"ParametersExtracted\", \"phase\": \"parameter_extraction\", \"entities\": [{\"name\": \"market_commodity\", \"value\": \"digestate\", \"unit\": null, \"evidence\": \"После переработки останется 80 л дигестата. Можно ли считать его удобрением и приписать ему цену минерального NPK без анализа состава и разрешений?\", \"provenance\": \"USER_CONFIRMED\"}, {\"name\": \"quantity\", \"value\": 80.0, \"unit\": \"L\", \"evidence\": \"80 л\", \"provenance\": \"USER_CONFIRMED\"}, {\"name\": \"unit\", \"value\": \"L\", \"unit\": null, \"evidence\": \"80 л\", \"provenance\": \"USER_CONFIRMED\"}]}, {\"type\": \"Clarification\", \"phase\": \"task_transition\", \"task_id\": \"6720f18cdef944b6a50a949cdff7c648\"}, {\"type\": \"ModelUnderstandingStarted\", \"phase\": \"model_understanding\", \"configured\": true}, {\"type\": \"ModelUnderstandingFinished\", \"phase\": \"model_understanding\", \"proposal_received\": true, \"providers\": [{\"provider\": \"offline\", \"model\": \"qwen3:8b\", \"status\": \"available\", \"actual_generation\": true, \"phase\": \"structured_nlu\", \"requests\": [{\"input_characters\": 689, \"request_bytes\": 2273, \"status\": \"ok\", \"prompt_tokens\": 192, \"output_tokens\": 86, \"done_reason\": \"stop\", \"load_seconds\": 0.0063304, \"generation_seconds\": 6.584333, \"tokens_per_second\": 13.061307804450353, \"latency_seconds\": 7.223591200001465}]}]}, {\"type\": \"PlanningStarted\", \"phase\": \"agent_planning\", \"task_id\": \"6720f18cdef944b6a50a949cdff7c648\"}, {\"type\": \"ToolExecuted\", \"phase\": \"tool_execution\", \"tool\": \"get_market_prices\", \"status\": \"needs_input\"}, {\"type\": \"MissingScientificParameters\", \"phase\": \"tool_execution\", \"tool\": \"get_market_prices\", \"fields\": [\"verified_market_observations\"]}, {\"type\": \"ToolExecuted\", \"phase\": \"tool_execution\", \"tool\": \"search_scientific_sources\", \"status\": \"ok\"}, {\"type\": \"ToolExecuted\", \"phase\": \"tool_execution\", \"tool\": \"assess_scientific_risks\", \"status\": \"ok\"}, {\"type\": \"ResponseCreated\", \"phase\": \"response\", \"mode\": \"qwen_autonomous_tools\", \"tool_count\": 3}]}, \"tools\": [{\"tool\": \"get_market_prices\", \"status\": \"needs_input\", \"input_origin\": \"validated_dialogue_state_and_typed_tool_request\", \"result\": {\"status\": \"needs_input\", \"missing\": [\"verified_market_observations\"], \"region\": \"KZ-Karaganda\", \"prices\": [], \"geographic_scope_warning\": null, \"sources\": [], \"message\": \"В регионе нет подходящих сохранённых цен; нужен проверенный импорт или успешное обновление источника.\"}}, {\"tool\": \"search_scientific_sources\", \"status\": \"ok\", \"input_origin\": \"validated_dialogue_state_and_typed_tool_request\", \"result\": {\"status\": \"ok\", \"search_mode\": \"curated_local_catalogue_with_structured_claims\", \"query\": \"digestate as fertilizer, NPK content, market pricing, KZ-Karaganda\", \"sources\": [{\"id\": \"fao_design\", \"title\": \"FAO / Marchaim — Anaerobic processes, plant design and control\", \"url\": \"https://www.fao.org/4/t0541e/T0541E09.htm\", \"year\": 1992, \"doi\": null, \"locator\": \"Digester types; KVIC; process control\", \"reviewed_by\": \"Codex primary-source inspection, 2026-10-28\", \"verified_on\": \"2026-10-28\", \"provenance\": \"SOURCE_VERIFIED\"}], \"claims\": [{\"id\": \"loading_retention\", \"source_id\": \"fao_design\", \"topics\": [\"loading\", \"retention\", \"process\", \"low_gas\"], \"materials\": [\"manure\", \"cattle_manure\", \"swine_manure\", \"poultry_manure\", \"food_waste\"], \"category\": \"anaerobic_digestion\", \"process_type\": \"batch or continuous; must be distinguished\", \"values\": [], \"unit\": null, \"scope\": \"Reactor design and operating mode are required; no universal loading or batch count\", \"text\": {\"ru\": \"Загрузка и время удерживания зависят от конструкции и режима подачи; периодическую и непрерывную работу нельзя смешивать.\", \"en\": \"Loading and retention depend on design and feeding mode; batch and continuous operation differ.\", \"kk\": \"Жүктеме мен ұстау уақыты құрылымға және беру режиміне тәуелді; мерзімді және үздіксіз жұмыс бөлек қарастырылады.\"}}], \"filters\": {\"material\": null, \"topics\": [\"process\"], \"category\": null, \"process_type\": null}, \"live_web_search\": false, \"message\": \"Поиск по локально проверенному каталогу; свежий поиск публикаций в интернете не выполнялся.\"}}, {\"tool\": \"assess_scientific_risks\", \"status\": \"ok\", \"input_origin\": \"validated_dialogue_state_and_typed_tool_request\", \"result\": {\"status\": \"ok\", \"message\": \"Qualitative risk screen; inhibition cannot be quantified without measurements.\", \"materials\": [], \"engineering\": [], \"sources\": [], \"actuator_access\": false}}], \"provider_status\": [{\"provider\": \"offline\", \"model\": \"qwen3:8b\", \"status\": \"available\", \"actual_generation\": true, \"phase\": \"structured_nlu\", \"requests\": [{\"input_characters\": 689, \"request_bytes\": 2273, \"status\": \"ok\", \"prompt_tokens\": 192, \"output_tokens\": 86, \"done_reason\": \"stop\", \"load_seconds\": 0.0063304, \"generation_seconds\": 6.584333, \"tokens_per_second\": 13.061307804450353, \"latency_seconds\": 7.223591200001465}]}], \"missing\": [\"verified_market_observations\"], \"context\": {\"material_volume_l\": 80.0, \"market_commodity\": \"digestate\", \"market_region\": \"KZ-Karaganda\"}, \"memory\": {\"version\": \"7\", \"task_id\": \"6720f18cdef944b6a50a949cdff7c648\", \"task_history\": [], \"conversation_id\": \"66672feae4a3464eaeb2eeed8c772cee\", \"language\": \"ru\", \"facts\": {\"market_commodity\": {\"value\": \"digestate\", \"unit\": null, \"provenance\": \"USER_CONFIRMED\", \"evidence\": \"После переработки останется 80 л дигестата. Можно ли считать его удобрением и приписать ему цену минерального NPK без анализа состава и разрешений?\", \"recorded_at\": \"2026-11-07T20:15:16.482516+00:00\", \"dependencies\": []}, \"quantity\": {\"value\": 80.0, \"unit\": \"L\", \"provenance\": \"USER_CONFIRMED\", \"evidence\": \"80 л\", \"recorded_at\": \"2026-11-07T20:15:16.482541+00:00\", \"dependencies\": []}, \"unit\": {\"value\": \"L\", \"unit\": null, \"provenance\": \"USER_CONFIRMED\", \"evidence\": \"80 л\", \"recorded_at\": \"2026-11-07T20:15:16.482547+00:00\", \"dependencies\": []}}, \"assumptions\": {\"market_region\": {\"value\": \"KZ-Karaganda\", \"unit\": null, \"provenance\": \"ASSUMED_FOR_SCENARIO\", \"evidence\": \"Default dashboard region; not user-confirmed\", \"recorded_at\": \"2026-11-07T20:15:09.225622+00:00\", \"dependencies\": []}}, \"derived\": {\"material_volume_l\": {\"value\": 80.0, \"unit\": \"L\", \"provenance\": \"CALCULATED_FROM_CONFIRMED\", \"evidence\": \"Unit arithmetic from explicit confirmed inputs\", \"recorded_at\": \"2026-11-07T20:15:16.482561+00:00\", \"dependencies\": [\"quantity\", \"unit\"]}}, \"estimates\": {}, \"source_verified\": {}, \"intents\": [\"digestate_management\", \"process_guidance\", \"market_prices\"], \"pending_question\": {\"id\": \"model-question-a298d727fd16\", \"text\": \"Какие значения сухого вещества и N/P/K показал анализ, если он проводился?\", \"options\": [], \"fields\": [], \"reason\": \"Model-selected clarification retained after available analysis.\"}, \"invalidated\": [], \"decision_settings\": {\"gas_use\": \"unknown\", \"assume_reference_compatibility\": false, \"use_reference_scenarios\": true, \"heating_value_type\": \"LHV\", \"reactor\": {\"engineering_review_confirmed\": false, \"safety_review_required\": false, \"loads\": [], \"loads_complete\": false, \"provenance\": \"USER_REPORTED\"}, \"quotes\": {}, \"price_ids\": {}, \"max_price_age_days\": 30, \"costs\": {}, \"all_operating_costs_included\": false, \"include_capital\": false, \"assume_full_self_consumption\": false, \"replacement_heat_source\": \"unknown\", \"gas_sale_technical_confirmed\": false, \"gas_sale_legal_confirmed\": false, \"gas_quality_confirmed\": false, \"gas_storage_transport_confirmed\": false, \"digestate_quality_confirmed\": false, \"digestate_market_allowed\": false}, \"decision_unavailable\": [], \"last_research_summary\": {}, \"mixture_components\": [], \"mixture_scenario_components\": [], \"mixture_revision\": 0, \"mixture_history\": [], \"advisor_inventory_mode\": \"none\", \"advisor_pending_component\": null, \"advisor_settings\": {}, \"smart_goals\": [], \"smart_cache\": {}, \"active_mixture_scenario\": false, \"advanced\": {\"research_dialogue\": {\"asked\": [\"model-question-a298d727fd16\"], \"last_turn_type\": \"correction\", \"known_cost_categories\": [], \"unpriced_categories\": [], \"last_question_id\": \"model-question-a298d727fd16\"}}, \"analytical_mode\": \"mixture\"}, \"pending_question\": null, \"context_updated\": true, \"actuator_access\": false, \"policy_tool_plan\": [\"get_market_prices\", \"search_scientific_sources\", \"assess_scientific_risks\"], \"state_version\": 1}",
+                "extracted_entities_json": "{\"language\": \"ru\", \"intents\": [\"digestate_management\", \"process_guidance\", \"market_prices\"], \"entities\": [{\"name\": \"market_commodity\", \"value\": \"digestate\", \"unit\": null, \"evidence\": \"После переработки останется 80 л дигестата. Можно ли считать его удобрением и приписать ему цену минерального NPK без анализа состава и разрешений?\", \"provenance\": \"USER_CONFIRMED\"}, {\"name\": \"quantity\", \"value\": 80.0, \"unit\": \"L\", \"evidence\": \"80 л\", \"provenance\": \"USER_CONFIRMED\"}, {\"name\": \"unit\", \"value\": \"L\", \"unit\": null, \"evidence\": \"80 л\", \"provenance\": \"USER_CONFIRMED\"}], \"correction\": true, \"new_batch\": false, \"validation_errors\": []}",
+                "confirmed_parameters_json": "{\"market_commodity\": {\"value\": \"digestate\", \"unit\": null, \"provenance\": \"USER_CONFIRMED\", \"evidence\": \"После переработки останется 80 л дигестата. Можно ли считать его удобрением и приписать ему цену минерального NPK без анализа состава и разрешений?\", \"recorded_at\": \"2026-11-07T20:15:16.482516+00:00\", \"dependencies\": []}, \"quantity\": {\"value\": 80.0, \"unit\": \"L\", \"provenance\": \"USER_CONFIRMED\", \"evidence\": \"80 л\", \"recorded_at\": \"2026-11-07T20:15:16.482541+00:00\", \"dependencies\": []}, \"unit\": {\"value\": \"L\", \"unit\": null, \"provenance\": \"USER_CONFIRMED\", \"evidence\": \"80 л\", \"recorded_at\": \"2026-11-07T20:15:16.482547+00:00\", \"dependencies\": []}}",
+                "pending_question_json": "null",
+                "tool_results_json": "[{\"tool\": \"get_market_prices\", \"status\": \"needs_input\", \"input_origin\": \"validated_dialogue_state_and_typed_tool_request\", \"result\": {\"status\": \"needs_input\", \"missing\": [\"verified_market_observations\"], \"region\": \"KZ-Karaganda\", \"prices\": [], \"geographic_scope_warning\": null, \"sources\": [], \"message\": \"В регионе нет подходящих сохранённых цен; нужен проверенный импорт или успешное обновление источника.\"}}, {\"tool\": \"search_scientific_sources\", \"status\": \"ok\", \"input_origin\": \"validated_dialogue_state_and_typed_tool_request\", \"result\": {\"status\": \"ok\", \"search_mode\": \"curated_local_catalogue_with_structured_claims\", \"query\": \"digestate as fertilizer, NPK content, market pricing, KZ-Karaganda\", \"sources\": [{\"id\": \"fao_design\", \"title\": \"FAO / Marchaim — Anaerobic processes, plant design and control\", \"url\": \"https://www.fao.org/4/t0541e/T0541E09.htm\", \"year\": 1992, \"doi\": null, \"locator\": \"Digester types; KVIC; process control\", \"reviewed_by\": \"Codex primary-source inspection, 2026-10-28\", \"verified_on\": \"2026-10-28\", \"provenance\": \"SOURCE_VERIFIED\"}], \"claims\": [{\"id\": \"loading_retention\", \"source_id\": \"fao_design\", \"topics\": [\"loading\", \"retention\", \"process\", \"low_gas\"], \"materials\": [\"manure\", \"cattle_manure\", \"swine_manure\", \"poultry_manure\", \"food_waste\"], \"category\": \"anaerobic_digestion\", \"process_type\": \"batch or continuous; must be distinguished\", \"values\": [], \"unit\": null, \"scope\": \"Reactor design and operating mode are required; no universal loading or batch count\", \"text\": {\"ru\": \"Загрузка и время удерживания зависят от конструкции и режима подачи; периодическую и непрерывную работу нельзя смешивать.\", \"en\": \"Loading and retention depend on design and feeding mode; batch and continuous operation differ.\", \"kk\": \"Жүктеме мен ұстау уақыты құрылымға және беру режиміне тәуелді; мерзімді және үздіксіз жұмыс бөлек қарастырылады.\"}}], \"filters\": {\"material\": null, \"topics\": [\"process\"], \"category\": null, \"process_type\": null}, \"live_web_search\": false, \"message\": \"Поиск по локально проверенному каталогу; свежий поиск публикаций в интернете не выполнялся.\"}}, {\"tool\": \"assess_scientific_risks\", \"status\": \"ok\", \"input_origin\": \"validated_dialogue_state_and_typed_tool_request\", \"result\": {\"status\": \"ok\", \"message\": \"Qualitative risk screen; inhibition cannot be quantified without measurements.\", \"materials\": [], \"engineering\": [], \"sources\": [], \"actuator_access\": false}}]",
+                "reply": {
+                  "conversation_version": "7",
+                  "analysis_version": "8.5",
+                  "mode": "qwen_autonomous_tools",
+                  "answer": "Нет, дигестат не может быть приписан цене минерального NPK без анализа состава и разрешений. Для использования дигестата как удобрения необходимо провести анализ состава и получить соответствующие разрешения.\n\nУказано 80 л дигестата. Это объём; он сам по себе не определяет массу и количество питательных элементов. Приписать ему цену минерального NPK нельзя: для сопоставимой стоимости нужны состав и доступность питательных веществ, а также подтверждённая пригодность и спрос именно на этот продукт. Проверка сохранённых рыночных данных не вернула подходящей цены на дигестат для региона KZ-Karaganda, выбранного системой по умолчанию и не подтверждённого пользователем; цена и доход от продажи не установлены. Для оценки пригодности нужен лабораторный анализ сухого вещества и N/P/K; для денежной оценки — подтверждённый региональный прайс на дигестат и масса партии.\n\nКакие значения сухого вещества и N/P/K показал анализ, если он проводился?",
+                  "user_facing_answer": {
+                    "paragraphs": [
+                      "Нет, дигестат не может быть приписан цене минерального NPK без анализа состава и разрешений. Для использования дигестата как удобрения необходимо провести анализ состава и получить соответствующие разрешения.\n\nУказано 80 л дигестата. Это объём; он сам по себе не определяет массу и количество питательных элементов. Приписать ему цену минерального NPK нельзя: для сопоставимой стоимости нужны состав и доступность питательных веществ, а также подтверждённая пригодность и спрос именно на этот продукт. Проверка сохранённых рыночных данных не вернула подходящей цены на дигестат для региона KZ-Karaganda, выбранного системой по умолчанию и не подтверждённого пользователем; цена и доход от продажи не установлены. Для оценки пригодности нужен лабораторный анализ сухого вещества и N/P/K; для денежной оценки — подтверждённый региональный прайс на дигестат и масса партии.",
+                      "Нет, дигестат не может быть приписан цене минерального NPK без анализа состава и разрешений. Для использования дигестата как удобрения необходимо провести анализ состава и получить соответствующие разрешения.\n\nУказано 80 л дигестата. Это объём; он сам по себе не определяет массу и количество питательных элементов. Приписать ему цену минерального NPK нельзя: для сопоставимой стоимости нужны состав и доступность питательных веществ, а также подтверждённая пригодность и спрос именно на этот продукт. Проверка сохранённых рыночных данных не вернула подходящей цены на дигестат для региона KZ-Karaganda, выбранного системой по умолчанию и не подтверждённого пользователем; цена и доход от продажи не установлены. Для оценки пригодности нужен лабораторный анализ сухого вещества и N/P/K; для денежной оценки — подтверждённый региональный прайс на дигестат и масса партии."
+                    ],
+                    "sections": [],
+                    "question": {
+                      "id": "model-question-a298d727fd16",
+                      "text": "Какие значения сухого вещества и N/P/K показал анализ, если он проводился?",
+                      "fields": [],
+                      "options": [],
+                      "reason": "Model-selected clarification retained after available analysis."
+                    },
+                    "sources": [
+                      {
+                        "title": "FAO / Marchaim — Anaerobic processes, plant design and control",
+                        "url": "https://www.fao.org/4/t0541e/T0541E09.htm"
+                      }
+                    ],
+                    "modes": [
+                      "autonomous_scientific_tools"
+                    ],
+                    "assumptions": [
+                      "market_region"
+                    ]
+                  },
+                  "technical_metadata": {
+                    "agent_version": "8.5",
+                    "tool_calls": [
+                      {
+                        "tool": "get_market_prices",
+                        "status": "needs_input",
+                        "input_origin": "validated_dialogue_state_and_typed_tool_request",
+                        "result": {
+                          "status": "needs_input",
+                          "missing": [
+                            "verified_market_observations"
+                          ],
+                          "region": "KZ-Karaganda",
+                          "prices": [],
+                          "geographic_scope_warning": null,
+                          "sources": [],
+                          "message": "В регионе нет подходящих сохранённых цен; нужен проверенный импорт или успешное обновление источника."
+                        }
+                      },
+                      {
+                        "tool": "search_scientific_sources",
+                        "status": "ok",
+                        "input_origin": "validated_dialogue_state_and_typed_tool_request",
+                        "result": {
+                          "status": "ok",
+                          "search_mode": "curated_local_catalogue_with_structured_claims",
+                          "query": "digestate as fertilizer, NPK content, market pricing, KZ-Karaganda",
+                          "sources": [
+                            {
+                              "id": "fao_design",
+                              "title": "FAO / Marchaim — Anaerobic processes, plant design and control",
+                              "url": "https://www.fao.org/4/t0541e/T0541E09.htm",
+                              "year": 1992,
+                              "doi": null,
+                              "locator": "Digester types; KVIC; process control",
+                              "reviewed_by": "Codex primary-source inspection, 2026-10-28",
+                              "verified_on": "2026-10-28",
+                              "provenance": "SOURCE_VERIFIED"
+                            }
+                          ],
+                          "claims": [
+                            {
+                              "id": "loading_retention",
+                              "source_id": "fao_design",
+                              "topics": [
+                                "loading",
+                                "retention",
+                                "process",
+                                "low_gas"
+                              ],
+                              "materials": [
+                                "manure",
+                                "cattle_manure",
+                                "swine_manure",
+                                "poultry_manure",
+                                "food_waste"
+                              ],
+                              "category": "anaerobic_digestion",
+                              "process_type": "batch or continuous; must be distinguished",
+                              "values": [],
+                              "unit": null,
+                              "scope": "Reactor design and operating mode are required; no universal loading or batch count",
+                              "text": {
+                                "ru": "Загрузка и время удерживания зависят от конструкции и режима подачи; периодическую и непрерывную работу нельзя смешивать.",
+                                "en": "Loading and retention depend on design and feeding mode; batch and continuous operation differ.",
+                                "kk": "Жүктеме мен ұстау уақыты құрылымға және беру режиміне тәуелді; мерзімді және үздіксіз жұмыс бөлек қарастырылады."
+                              }
+                            }
+                          ],
+                          "filters": {
+                            "material": null,
+                            "topics": [
+                              "process"
+                            ],
+                            "category": null,
+                            "process_type": null
+                          },
+                          "live_web_search": false,
+                          "message": "Поиск по локально проверенному каталогу; свежий поиск публикаций в интернете не выполнялся."
+                        }
+                      },
+                      {
+                        "tool": "assess_scientific_risks",
+                        "status": "ok",
+                        "input_origin": "validated_dialogue_state_and_typed_tool_request",
+                        "result": {
+                          "status": "ok",
+                          "message": "Qualitative risk screen; inhibition cannot be quantified without measurements.",
+                          "materials": [],
+                          "engineering": [],
+                          "sources": [],
+                          "actuator_access": false
+                        }
+                      }
+                    ],
+                    "autonomous_action_steps": 3,
+                    "research_actions": [
+                      {
+                        "step": 0,
+                        "action": "call_tool",
+                        "tool": "get_market_prices",
+                        "plan": [
+                          "Проверить рыночные цены на дигестат",
+                          "Оценить научные источники"
+                        ],
+                        "purpose": "Определить возможность использования дигестата как удобрения и его цену",
+                        "protocol_normalization": null,
+                        "elapsed_seconds": 18.833
+                      },
+                      {
+                        "step": 1,
+                        "action": "call_tool",
+                        "tool": "search_scientific_sources",
+                        "plan": [
+                          "search_scientific_sources",
+                          "assess_scientific_risks"
+                        ],
+                        "purpose": "Check if digestate can be classified as fertilizer and determine pricing feasibility",
+                        "protocol_normalization": null,
+                        "elapsed_seconds": 28.99
+                      },
+                      {
+                        "step": 2,
+                        "action": "call_tool",
+                        "tool": "assess_scientific_risks",
+                        "plan": [
+                          "Оценить научные риски",
+                          "Определить возможность использования дигестата как удобрения"
+                        ],
+                        "purpose": "Оценка научных рисков и допустимости использования дигестата как удобрения",
+                        "protocol_normalization": null,
+                        "elapsed_seconds": 41.128
+                      }
+                    ],
+                    "verification": {
+                      "status": "insufficient_evidence",
+                      "outcome": "insufficient_evidence",
+                      "message": "Independent source-basis arithmetic check; mixture gas-basis assumptions remain explicit.",
+                      "checks": [],
+                      "verification_scope": "Component methane arithmetic only; no certification of biological recovery or safe operation.",
+                      "checked": false,
+                      "all_checks_passed": false
+                    },
+                    "resource_termination": "synthesis_reserved",
+                    "resource_budget": {
+                      "max_tools": 4,
+                      "action_budget": 3,
+                      "timeout_seconds": 150.0,
+                      "synthesis_reserve_seconds": 52.5
+                    },
+                    "analytical_required_tools": [
+                      "get_market_prices",
+                      "search_scientific_sources",
+                      "assess_scientific_risks"
+                    ],
+                    "analytical_unchecked_tools": [],
+                    "diagnostics": [
+                      {
+                        "stage": "budget",
+                        "reason": "optional_actions_stopped_for_synthesis",
+                        "max_tool_calls": 4
+                      }
+                    ],
+                    "llm_draft": "Нет, дигестат не может быть приписан цене минерального NPK без анализа состава и разрешений. Для использования дигестата как удобрения необходимо провести анализ состава и получить соответствующие разрешения.",
+                    "original_model_synthesis": "Нет, дигестат не может быть приписан цене минерального NPK без анализа состава и разрешений. Для использования дигестата как удобрения необходимо провести анализ состава и получить соответствующие разрешения.",
+                    "answer_projection": false,
+                    "autonomous_termination": "evidence_projection",
+                    "provider_generation_metrics": [
+                      {
+                        "input_characters": 689,
+                        "request_bytes": 2273,
+                        "status": "ok",
+                        "prompt_tokens": 192,
+                        "output_tokens": 86,
+                        "done_reason": "stop",
+                        "load_seconds": 0.0063304,
+                        "generation_seconds": 6.584333,
+                        "tokens_per_second": 13.061307804450353,
+                        "latency_seconds": 7.223591200001465
+                      },
+                      {
+                        "input_characters": 5680,
+                        "request_bytes": 7160,
+                        "status": "ok",
+                        "prompt_tokens": 1320,
+                        "output_tokens": 108,
+                        "done_reason": "stop",
+                        "load_seconds": 0.0058735,
+                        "generation_seconds": 10.091805,
+                        "tokens_per_second": 10.701752560617253,
+                        "latency_seconds": 11.589717799999562
+                      },
+                      {
+                        "input_characters": 5812,
+                        "request_bytes": 7370,
+                        "status": "ok",
+                        "prompt_tokens": 1359,
+                        "output_tokens": 98,
+                        "done_reason": "stop",
+                        "load_seconds": 0.0072068,
+                        "generation_seconds": 8.936076,
+                        "tokens_per_second": 10.966782287885644,
+                        "latency_seconds": 10.145303999999669
+                      },
+                      {
+                        "input_characters": 6183,
+                        "request_bytes": 7824,
+                        "status": "ok",
+                        "prompt_tokens": 1489,
+                        "output_tokens": 109,
+                        "done_reason": "stop",
+                        "load_seconds": 0.0068176,
+                        "generation_seconds": 10.404993,
+                        "tokens_per_second": 10.475739868349743,
+                        "latency_seconds": 12.134268599998904
+                      },
+                      {
+                        "input_characters": 9075,
+                        "request_bytes": 10834,
+                        "status": "ok",
+                        "prompt_tokens": 2050,
+                        "output_tokens": 165,
+                        "done_reason": "stop",
+                        "load_seconds": 0.0104591,
+                        "generation_seconds": 17.607056,
+                        "tokens_per_second": 9.371242983494799,
+                        "latency_seconds": 21.750802299999123
+                      }
+                    ],
+                    "confirmed_parameters": {
+                      "market_commodity": {
+                        "value": "digestate",
+                        "unit": null,
+                        "provenance": "USER_CONFIRMED",
+                        "evidence": "После переработки останется 80 л дигестата. Можно ли считать его удобрением и приписать ему цену минерального NPK без анализа состава и разрешений?",
+                        "recorded_at": "2026-11-07T20:15:16.482516+00:00",
+                        "dependencies": []
+                      },
+                      "quantity": {
+                        "value": 80.0,
+                        "unit": "L",
+                        "provenance": "USER_CONFIRMED",
+                        "evidence": "80 л",
+                        "recorded_at": "2026-11-07T20:15:16.482541+00:00",
+                        "dependencies": []
+                      },
+                      "unit": {
+                        "value": "L",
+                        "unit": null,
+                        "provenance": "USER_CONFIRMED",
+                        "evidence": "80 л",
+                        "recorded_at": "2026-11-07T20:15:16.482547+00:00",
+                        "dependencies": []
+                      }
+                    },
+                    "assumptions": {
+                      "market_region": {
+                        "value": "KZ-Karaganda",
+                        "unit": null,
+                        "provenance": "ASSUMED_FOR_SCENARIO",
+                        "evidence": "Default dashboard region; not user-confirmed",
+                        "recorded_at": "2026-11-07T20:15:09.225622+00:00",
+                        "dependencies": []
+                      }
+                    },
+                    "derived_parameters": {
+                      "material_volume_l": {
+                        "value": 80.0,
+                        "unit": "L",
+                        "provenance": "CALCULATED_FROM_CONFIRMED",
+                        "evidence": "Unit arithmetic from explicit confirmed inputs",
+                        "recorded_at": "2026-11-07T20:15:16.482561+00:00",
+                        "dependencies": [
+                          "quantity",
+                          "unit"
+                        ]
+                      }
+                    },
+                    "model_estimates": {},
+                    "missing_parameters": [
+                      "verified_market_observations"
+                    ],
+                    "numeric_claims_grounded": true,
+                    "numeric_grounding_rejections": [],
+                    "uncertainty_status": "No calibrated prediction interval established.",
+                    "extracted_entities": {
+                      "language": "ru",
+                      "intents": [
+                        "digestate_management",
+                        "process_guidance",
+                        "market_prices"
+                      ],
+                      "entities": [
+                        {
+                          "name": "market_commodity",
+                          "value": "digestate",
+                          "unit": null,
+                          "evidence": "После переработки останется 80 л дигестата. Можно ли считать его удобрением и приписать ему цену минерального NPK без анализа состава и разрешений?",
+                          "provenance": "USER_CONFIRMED"
+                        },
+                        {
+                          "name": "quantity",
+                          "value": 80.0,
+                          "unit": "L",
+                          "evidence": "80 л",
+                          "provenance": "USER_CONFIRMED"
+                        },
+                        {
+                          "name": "unit",
+                          "value": "L",
+                          "unit": null,
+                          "evidence": "80 л",
+                          "provenance": "USER_CONFIRMED"
+                        }
+                      ],
+                      "correction": true,
+                      "new_batch": false,
+                      "validation_errors": []
+                    },
+                    "llm_proposal": {
+                      "language": "ru",
+                      "intents": [
+                        "digestate_management"
+                      ],
+                      "material": "digestate",
+                      "material_evidence": "После переработки останется 80 л дигестата.",
+                      "entities": [
+                        {
+                          "name": "volume",
+                          "text": "80 л"
+                        }
+                      ]
+                    },
+                    "latency_seconds": 62.88616870000078,
+                    "actuator_access": false,
+                    "diagnostic_events": [
+                      {
+                        "type": "HttpRequestAccepted",
+                        "phase": "dashboard_api",
+                        "session_id": "66672feae4a3464eaeb2eeed8c772cee",
+                        "request_id": "8303f12ed25444edb9c2169da184adff",
+                        "conversation_version": "7"
+                      },
+                      {
+                        "type": "RequestReceived",
+                        "phase": "conversation_api",
+                        "characters": 147
+                      },
+                      {
+                        "type": "ParametersExtracted",
+                        "phase": "parameter_extraction",
+                        "entities": [
+                          {
+                            "name": "market_commodity",
+                            "value": "digestate",
+                            "unit": null,
+                            "evidence": "После переработки останется 80 л дигестата. Можно ли считать его удобрением и приписать ему цену минерального NPK без анализа состава и разрешений?",
+                            "provenance": "USER_CONFIRMED"
+                          },
+                          {
+                            "name": "quantity",
+                            "value": 80.0,
+                            "unit": "L",
+                            "evidence": "80 л",
+                            "provenance": "USER_CONFIRMED"
+                          },
+                          {
+                            "name": "unit",
+                            "value": "L",
+                            "unit": null,
+                            "evidence": "80 л",
+                            "provenance": "USER_CONFIRMED"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "Clarification",
+                        "phase": "task_transition",
+                        "task_id": "6720f18cdef944b6a50a949cdff7c648"
+                      },
+                      {
+                        "type": "ModelUnderstandingStarted",
+                        "phase": "model_understanding",
+                        "configured": true
+                      },
+                      {
+                        "type": "ModelUnderstandingFinished",
+                        "phase": "model_understanding",
+                        "proposal_received": true,
+                        "providers": [
+                          {
+                            "provider": "offline",
+                            "model": "qwen3:8b",
+                            "status": "available",
+                            "actual_generation": true,
+                            "phase": "structured_nlu",
+                            "requests": [
+                              {
+                                "input_characters": 689,
+                                "request_bytes": 2273,
+                                "status": "ok",
+                                "prompt_tokens": 192,
+                                "output_tokens": 86,
+                                "done_reason": "stop",
+                                "load_seconds": 0.0063304,
+                                "generation_seconds": 6.584333,
+                                "tokens_per_second": 13.061307804450353,
+                                "latency_seconds": 7.223591200001465
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "PlanningStarted",
+                        "phase": "agent_planning",
+                        "task_id": "6720f18cdef944b6a50a949cdff7c648"
+                      },
+                      {
+                        "type": "ToolExecuted",
+                        "phase": "tool_execution",
+                        "tool": "get_market_prices",
+                        "status": "needs_input"
+                      },
+                      {
+                        "type": "MissingScientificParameters",
+                        "phase": "tool_execution",
+                        "tool": "get_market_prices",
+                        "fields": [
+                          "verified_market_observations"
+                        ]
+                      },
+                      {
+                        "type": "ToolExecuted",
+                        "phase": "tool_execution",
+                        "tool": "search_scientific_sources",
+                        "status": "ok"
+                      },
+                      {
+                        "type": "ToolExecuted",
+                        "phase": "tool_execution",
+                        "tool": "assess_scientific_risks",
+                        "status": "ok"
+                      },
+                      {
+                        "type": "ResponseCreated",
+                        "phase": "response",
+                        "mode": "qwen_autonomous_tools",
+                        "tool_count": 3
+                      }
+                    ]
+                  },
+                  "tools": [
+                    {
+                      "tool": "get_market_prices",
+                      "status": "needs_input",
+                      "input_origin": "validated_dialogue_state_and_typed_tool_request",
+                      "result": {
+                        "status": "needs_input",
+                        "missing": [
+                          "verified_market_observations"
+                        ],
+                        "region": "KZ-Karaganda",
+                        "prices": [],
+                        "geographic_scope_warning": null,
+                        "sources": [],
+                        "message": "В регионе нет подходящих сохранённых цен; нужен проверенный импорт или успешное обновление источника."
+                      }
+                    },
+                    {
+                      "tool": "search_scientific_sources",
+                      "status": "ok",
+                      "input_origin": "validated_dialogue_state_and_typed_tool_request",
+                      "result": {
+                        "status": "ok",
+                        "search_mode": "curated_local_catalogue_with_structured_claims",
+                        "query": "digestate as fertilizer, NPK content, market pricing, KZ-Karaganda",
+                        "sources": [
+                          {
+                            "id": "fao_design",
+                            "title": "FAO / Marchaim — Anaerobic processes, plant design and control",
+                            "url": "https://www.fao.org/4/t0541e/T0541E09.htm",
+                            "year": 1992,
+                            "doi": null,
+                            "locator": "Digester types; KVIC; process control",
+                            "reviewed_by": "Codex primary-source inspection, 2026-10-28",
+                            "verified_on": "2026-10-28",
+                            "provenance": "SOURCE_VERIFIED"
+                          }
+                        ],
+                        "claims": [
+                          {
+                            "id": "loading_retention",
+                            "source_id": "fao_design",
+                            "topics": [
+                              "loading",
+                              "retention",
+                              "process",
+                              "low_gas"
+                            ],
+                            "materials": [
+                              "manure",
+                              "cattle_manure",
+                              "swine_manure",
+                              "poultry_manure",
+                              "food_waste"
+                            ],
+                            "category": "anaerobic_digestion",
+                            "process_type": "batch or continuous; must be distinguished",
+                            "values": [],
+                            "unit": null,
+                            "scope": "Reactor design and operating mode are required; no universal loading or batch count",
+                            "text": {
+                              "ru": "Загрузка и время удерживания зависят от конструкции и режима подачи; периодическую и непрерывную работу нельзя смешивать.",
+                              "en": "Loading and retention depend on design and feeding mode; batch and continuous operation differ.",
+                              "kk": "Жүктеме мен ұстау уақыты құрылымға және беру режиміне тәуелді; мерзімді және үздіксіз жұмыс бөлек қарастырылады."
+                            }
+                          }
+                        ],
+                        "filters": {
+                          "material": null,
+                          "topics": [
+                            "process"
+                          ],
+                          "category": null,
+                          "process_type": null
+                        },
+                        "live_web_search": false,
+                        "message": "Поиск по локально проверенному каталогу; свежий поиск публикаций в интернете не выполнялся."
+                      }
+                    },
+                    {
+                      "tool": "assess_scientific_risks",
+                      "status": "ok",
+                      "input_origin": "validated_dialogue_state_and_typed_tool_request",
+                      "result": {
+                        "status": "ok",
+                        "message": "Qualitative risk screen; inhibition cannot be quantified without measurements.",
+                        "materials": [],
+                        "engineering": [],
+                        "sources": [],
+                        "actuator_access": false
+                      }
+                    }
+                  ],
+                  "provider_status": [
+                    {
+                      "provider": "offline",
+                      "model": "qwen3:8b",
+                      "status": "available",
+                      "actual_generation": true,
+                      "phase": "structured_nlu",
+                      "requests": [
+                        {
+                          "input_characters": 689,
+                          "request_bytes": 2273,
+                          "status": "ok",
+                          "prompt_tokens": 192,
+                          "output_tokens": 86,
+                          "done_reason": "stop",
+                          "load_seconds": 0.0063304,
+                          "generation_seconds": 6.584333,
+                          "tokens_per_second": 13.061307804450353,
+                          "latency_seconds": 7.223591200001465
+                        }
+                      ]
+                    }
+                  ],
+                  "missing": [
+                    "verified_market_observations"
+                  ],
+                  "context": {
+                    "material_volume_l": 80.0,
+                    "market_commodity": "digestate",
+                    "market_region": "KZ-Karaganda"
+                  },
+                  "memory": {
+                    "version": "7",
+                    "task_id": "6720f18cdef944b6a50a949cdff7c648",
+                    "task_history": [],
+                    "conversation_id": "66672feae4a3464eaeb2eeed8c772cee",
+                    "language": "ru",
+                    "facts": {
+                      "market_commodity": {
+                        "value": "digestate",
+                        "unit": null,
+                        "provenance": "USER_CONFIRMED",
+                        "evidence": "После переработки останется 80 л дигестата. Можно ли считать его удобрением и приписать ему цену минерального NPK без анализа состава и разрешений?",
+                        "recorded_at": "2026-11-07T20:15:16.482516+00:00",
+                        "dependencies": []
+                      },
+                      "quantity": {
+                        "value": 80.0,
+                        "unit": "L",
+                        "provenance": "USER_CONFIRMED",
+                        "evidence": "80 л",
+                        "recorded_at": "2026-11-07T20:15:16.482541+00:00",
+                        "dependencies": []
+                      },
+                      "unit": {
+                        "value": "L",
+                        "unit": null,
+                        "provenance": "USER_CONFIRMED",
+                        "evidence": "80 л",
+                        "recorded_at": "2026-11-07T20:15:16.482547+00:00",
+                        "dependencies": []
+                      }
+                    },
+                    "assumptions": {
+                      "market_region": {
+                        "value": "KZ-Karaganda",
+                        "unit": null,
+                        "provenance": "ASSUMED_FOR_SCENARIO",
+                        "evidence": "Default dashboard region; not user-confirmed",
+                        "recorded_at": "2026-11-07T20:15:09.225622+00:00",
+                        "dependencies": []
+                      }
+                    },
+                    "derived": {
+                      "material_volume_l": {
+                        "value": 80.0,
+                        "unit": "L",
+                        "provenance": "CALCULATED_FROM_CONFIRMED",
+                        "evidence": "Unit arithmetic from explicit confirmed inputs",
+                        "recorded_at": "2026-11-07T20:15:16.482561+00:00",
+                        "dependencies": [
+                          "quantity",
+                          "unit"
+                        ]
+                      }
+                    },
+                    "estimates": {},
+                    "source_verified": {},
+                    "intents": [
+                      "digestate_management",
+                      "process_guidance",
+                      "market_prices"
+                    ],
+                    "pending_question": {
+                      "id": "model-question-a298d727fd16",
+                      "text": "Какие значения сухого вещества и N/P/K показал анализ, если он проводился?",
+                      "options": [],
+                      "fields": [],
+                      "reason": "Model-selected clarification retained after available analysis."
+                    },
+                    "invalidated": [],
+                    "decision_settings": {
+                      "gas_use": "unknown",
+                      "assume_reference_compatibility": false,
+                      "use_reference_scenarios": true,
+                      "heating_value_type": "LHV",
+                      "reactor": {
+                        "engineering_review_confirmed": false,
+                        "safety_review_required": false,
+                        "loads": [],
+                        "loads_complete": false,
+                        "provenance": "USER_REPORTED"
+                      },
+                      "quotes": {},
+                      "price_ids": {},
+                      "max_price_age_days": 30,
+                      "costs": {},
+                      "all_operating_costs_included": false,
+                      "include_capital": false,
+                      "assume_full_self_consumption": false,
+                      "replacement_heat_source": "unknown",
+                      "gas_sale_technical_confirmed": false,
+                      "gas_sale_legal_confirmed": false,
+                      "gas_quality_confirmed": false,
+                      "gas_storage_transport_confirmed": false,
+                      "digestate_quality_confirmed": false,
+                      "digestate_market_allowed": false
+                    },
+                    "decision_unavailable": [],
+                    "last_research_summary": {},
+                    "mixture_components": [],
+                    "mixture_scenario_components": [],
+                    "mixture_revision": 0,
+                    "mixture_history": [],
+                    "advisor_inventory_mode": "none",
+                    "advisor_pending_component": null,
+                    "advisor_settings": {},
+                    "smart_goals": [],
+                    "smart_cache": {},
+                    "active_mixture_scenario": false,
+                    "advanced": {
+                      "research_dialogue": {
+                        "asked": [
+                          "model-question-a298d727fd16"
+                        ],
+                        "last_turn_type": "correction",
+                        "known_cost_categories": [],
+                        "unpriced_categories": [],
+                        "last_question_id": "model-question-a298d727fd16"
+                      }
+                    },
+                    "analytical_mode": "mixture"
+                  },
+                  "pending_question": null,
+                  "context_updated": true,
+                  "actuator_access": false,
+                  "policy_tool_plan": [
+                    "get_market_prices",
+                    "search_scientific_sources",
+                    "assess_scientific_risks"
+                  ],
+                  "state_version": 1
+                }
+              }
+            ]
+          },
+          "scientific_state": {
+            "conversation_id": "66672feae4a3464eaeb2eeed8c772cee",
+            "state_version": 1,
+            "active_task_id": "6720f18cdef944b6a50a949cdff7c648",
+            "confirmed_measurements": {
+              "market_commodity": {
+                "value": "digestate",
+                "unit": null,
+                "provenance": "USER_CONFIRMED",
+                "evidence": "После переработки останется 80 л дигестата. Можно ли считать его удобрением и приписать ему цену минерального NPK без анализа состава и разрешений?",
+                "recorded_at": "2026-11-07T20:15:16.482516+00:00",
+                "dependencies": []
+              },
+              "quantity": {
+                "value": 80.0,
+                "unit": "L",
+                "provenance": "USER_CONFIRMED",
+                "evidence": "80 л",
+                "recorded_at": "2026-11-07T20:15:16.482541+00:00",
+                "dependencies": []
+              },
+              "unit": {
+                "value": "L",
+                "unit": null,
+                "provenance": "USER_CONFIRMED",
+                "evidence": "80 л",
+                "recorded_at": "2026-11-07T20:15:16.482547+00:00",
+                "dependencies": []
+              }
+            },
+            "literature": {},
+            "assumptions": {
+              "market_region": {
+                "value": "KZ-Karaganda",
+                "unit": null,
+                "provenance": "ASSUMED_FOR_SCENARIO",
+                "evidence": "Default dashboard region; not user-confirmed",
+                "recorded_at": "2026-11-07T20:15:09.225622+00:00",
+                "dependencies": []
+              }
+            },
+            "derived": {
+              "material_volume_l": {
+                "value": 80.0,
+                "unit": "L",
+                "provenance": "CALCULATED_FROM_CONFIRMED",
+                "evidence": "Unit arithmetic from explicit confirmed inputs",
+                "recorded_at": "2026-11-07T20:15:16.482561+00:00",
+                "dependencies": [
+                  "quantity",
+                  "unit"
+                ]
+              }
+            },
+            "predictions": {},
+            "components": [],
+            "scenario_components": [],
+            "scoped_result_fields": [
+              {
+                "layer": "assumptions",
+                "field": "market_region",
+                "provenance": "ASSUMED_FOR_SCENARIO",
+                "updated_at": "2026-11-07T20:15:09.225622+00:00",
+                "value": "KZ-Karaganda",
+                "source": {
+                  "evidence": "Default dashboard region; not user-confirmed",
+                  "dependencies": []
+                }
+              },
+              {
+                "layer": "confirmed",
+                "field": "market_commodity",
+                "provenance": "USER_CONFIRMED",
+                "updated_at": "2026-11-07T20:15:16.482516+00:00",
+                "value": "digestate",
+                "source": {
+                  "evidence": "После переработки останется 80 л дигестата. Можно ли считать его удобрением и приписать ему цену минерального NPK без анализа состава и разрешений?",
+                  "dependencies": []
+                }
+              },
+              {
+                "layer": "confirmed",
+                "field": "quantity",
+                "provenance": "USER_CONFIRMED",
+                "updated_at": "2026-11-07T20:15:16.482541+00:00",
+                "value": 80.0,
+                "source": {
+                  "evidence": "80 л",
+                  "dependencies": []
+                }
+              },
+              {
+                "layer": "confirmed",
+                "field": "unit",
+                "provenance": "USER_CONFIRMED",
+                "updated_at": "2026-11-07T20:15:16.482547+00:00",
+                "value": "L",
+                "source": {
+                  "evidence": "80 л",
+                  "dependencies": []
+                }
+              },
+              {
+                "layer": "derived",
+                "field": "material_volume_l",
+                "provenance": "CALCULATED_FROM_CONFIRMED",
+                "updated_at": "2026-11-07T20:15:16.482561+00:00",
+                "value": 80.0,
+                "source": {
+                  "evidence": "Unit arithmetic from explicit confirmed inputs",
+                  "dependencies": [
+                    "quantity",
+                    "unit"
+                  ]
+                }
+              }
+            ],
+            "archived_tasks": [
+              {
+                "id": "6720f18cdef944b6a50a949cdff7c648",
+                "revision": 1,
+                "created_at": "2026-11-07T20:16:12.137374+00:00",
+                "updated_at": "2026-11-07T20:16:12.137374+00:00"
+              }
+            ],
+            "dashboard_draft": null
+          }
+        }
+      ],
+      "complete": true
+    }
+  ],
+  "scope": "New user scenarios for acceptance only; not held-out model accuracy."
+}

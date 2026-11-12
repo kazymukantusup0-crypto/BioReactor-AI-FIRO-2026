@@ -8,6 +8,7 @@ export interface Price {
 export interface SourceState { source_id: string; last_success_at: string | null; last_attempt_at: string | null; last_status: string; last_error: string | null; next_attempt_at: string | null }
 export interface Reactor { status: string; connected: boolean; mode: string; readings: null | Record<string, number>; measured_at: string | null; actuator_access: boolean; message: string }
 export interface SystemStatus {
+  experimental_chat?: { enabled: boolean; model: string | null };
   checked_at: string; fastapi: { status: string }; sqlite: { status: string; observations: number; test_observations: number };
   ollama: { model: string; available: boolean; service_available: boolean; generation_checked: boolean; status: string };
   models: { id: string; available: boolean; status: string; version?: string }[]; sensors: Reactor;
@@ -22,7 +23,7 @@ export interface AgentReply { mode: string; answer: string; tools: ToolCall[]; m
 export interface AgentJob { id: string; request_id: string; conversation_id: string; task_id: string; status: string; current_stage: string; terminal: boolean; attempt_count: number; error_code: string | null; result_reference: string; result_available: boolean; partial_count: number; preview: ConversationMemory | null; heartbeat_at: string | null; updated_at: string; acknowledged_at: string | null; cancel_requested: number }
 export interface JobResult { id: string; status: string; terminal: boolean; reply: AgentReply | null; error_code: string | null; partial_results: unknown[] }
 export interface Turn { id: number; question: string; created_at: string; status: string; request_id: string; reply: AgentReply | null; job?: AgentJob; execution_result?: JobResult }
-export interface Session { id: string; mode: string; context: Record<string, unknown>; turns: Turn[]; state_version?: number; conversation_version?: string; memory?: ConversationMemory | null }
+export interface Session { id: string; mode: string; context: Record<string, unknown>; turns: Turn[]; jobs?: AgentJob[]; state_version?: number; conversation_version?: string; memory?: ConversationMemory | null }
 export interface ModelField { name: string; label: string; unit: string; type: 'number' | 'category'; required: boolean; bounds: [number, number] | null; categories: string[] | null; role: string }
 export interface ModelSchema { model: string; version: string; algorithm: string; unit: string; fields: ModelField[]; limitations: string[]; context_fields: { name: string; label: string; unit: string }[]; context_notice: string }
 export interface Prediction extends ToolResult { prediction_id: number; bmp?: number; model?: string; model_version?: string; unit?: string; potential_methane_m3?: number; uncertainty?: { interval_90: number[] | null; explanation: string }; domain?: { out_of_distribution?: boolean; limited_support?: boolean }; used_features?: Record<string, string | number>; context_notice: string }

@@ -6,7 +6,12 @@ import AdvancedInventoryFacts from './AdvancedInventoryFacts'
 
 const labels: Record<string, string> = { material: 'Сырьё', quantity: 'Количество', unit: 'Единица', material_state: 'Форма сырья', physical_state: 'Физическое состояние', decay_state: 'Состояние разложения', temperature_c: 'Температура', reactor_total_volume_l: 'Полный объём реактора', reactor_working_volume_l: 'Рабочий объём', operating_mode: 'Режим подачи', density_kg_l: 'Плотность', ts_percent: 'TS', vs_percent: 'VS', vs_basis: 'Основание VS', mass_kg: 'Влажная масса', material_volume_l: 'Объём сырья', vs_mass_kg: 'Масса органической VS', sale_offer_amount: 'Предложение продажи', sale_offer_currency: 'Валюта предложения', sale_offer_scope: 'Цена относится к', market_region: 'Регион', bmp_ml_ch4_g_vs: 'BMP' }
 const materials: Record<string, string> = { manure: 'Навоз · вид уточняется', cattle_manure: 'Коровий навоз', swine_manure: 'Свиной навоз', poultry_manure: 'Птичий помёт', food_waste: 'Пищевые отходы', chernozem: 'Чернозём', 'Wheat straw': 'Пшеничная солома', Whey: 'Сыворотка', Cellulose: 'Целлюлоза' }
+Object.assign(labels,{duration_days:'Срок оценки',intended_use:'Использование газа'})
 function display(key: string, fact: DialogueFact) {
+  if(key==='physical_state')return ({liquid:'Жидкое',solid:'Твёрдое',semi_solid:'Полужидкое',unknown:'Не уточнено'}[String(fact.value)]??String(fact.value))
+  if(key==='material_state')return ({slurry:'Навозная жижа',fresh:'Свежее',solid:'Твёрдое',dry:'Сухое',diluted:'Разбавленное',unknown:'Не уточнено'}[String(fact.value)]??String(fact.value))
+  if(key==='intended_use')return ({heat:'Обогрев',electricity:'Электроэнергия',chp:'Тепло и электричество',sell_gas:'Продажа газа'}[String(fact.value)]??String(fact.value))
+  if(key==='duration_days')return (typeof fact.value==='number' ? number(fact.value,6)+' дней' : 'Неизвестно')
   if (key === 'material') return materials[String(fact.value)] ?? String(fact.value)
   if (key === 'sale_offer_scope') return ({ batch: 'Вся партия', kg: 'За килограмм', L: 'За литр', t: 'За тонну' }[String(fact.value)] ?? String(fact.value))
   if (key === 'market_region') return regionName(String(fact.value))

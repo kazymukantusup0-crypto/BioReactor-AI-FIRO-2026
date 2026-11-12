@@ -1,0 +1,288 @@
+{
+  "started_local": "2026-11-10T12:59:20.754404+05:00",
+  "samples": [
+    {
+      "sample": 1,
+      "timestamp_local": "2026-11-10T12:59:20.754438+05:00",
+      "available_physical_ram_mib_psutil": 8119.2,
+      "memory_percent": 49.8,
+      "commit": {
+        "commit_total_mib": 11092.3,
+        "commit_limit_mib": 34864.1,
+        "commit_headroom_mib": 23771.8,
+        "physical_available_mib": 8119.0
+      },
+      "processes": [
+        {
+          "pid": 15256,
+          "name": "ollama.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+            "serve"
+          ],
+          "ppid": 24264,
+          "parent_name": "powershell.exe",
+          "parent_exe": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+          "created_local": "2026-11-10T12:58:58.802111+05:00",
+          "threads": 20,
+          "handles": 403,
+          "working_set_mib": 44.7,
+          "private_working_set_mib": 14.3,
+          "private_bytes_mib": 95.4,
+          "virtual_bytes_mib": 95.4,
+          "peak_working_set_mib": 44.7,
+          "peak_private_bytes_mib": 95.4
+        }
+      ],
+      "ollama_version_api": {
+        "http_status": 200,
+        "body": {
+          "version": "0.40.15"
+        }
+      },
+      "ollama_running_models": {
+        "http_status": 200,
+        "body": {
+          "models": []
+        }
+      }
+    },
+    {
+      "sample": 2,
+      "timestamp_local": "2026-11-10T12:59:30.822695+05:00",
+      "available_physical_ram_mib_psutil": 8126.8,
+      "memory_percent": 49.8,
+      "commit": {
+        "commit_total_mib": 11039.8,
+        "commit_limit_mib": 34864.1,
+        "commit_headroom_mib": 23824.3,
+        "physical_available_mib": 8126.8
+      },
+      "processes": [
+        {
+          "pid": 15256,
+          "name": "ollama.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+            "serve"
+          ],
+          "ppid": 24264,
+          "parent_name": "powershell.exe",
+          "parent_exe": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+          "created_local": "2026-11-10T12:58:58.802111+05:00",
+          "threads": 21,
+          "handles": 403,
+          "working_set_mib": 45.1,
+          "private_working_set_mib": 14.3,
+          "private_bytes_mib": 95.4,
+          "virtual_bytes_mib": 95.4,
+          "peak_working_set_mib": 45.1,
+          "peak_private_bytes_mib": 95.4
+        }
+      ],
+      "ollama_version_api": {
+        "http_status": 200,
+        "body": {
+          "version": "0.40.15"
+        }
+      },
+      "ollama_running_models": {
+        "http_status": 200,
+        "body": {
+          "models": []
+        }
+      }
+    },
+    {
+      "sample": 3,
+      "timestamp_local": "2026-11-10T12:59:40.855743+05:00",
+      "available_physical_ram_mib_psutil": 8096.6,
+      "memory_percent": 49.9,
+      "commit": {
+        "commit_total_mib": 11047.1,
+        "commit_limit_mib": 34864.1,
+        "commit_headroom_mib": 23817.0,
+        "physical_available_mib": 8096.6
+      },
+      "processes": [
+        {
+          "pid": 15256,
+          "name": "ollama.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+            "serve"
+          ],
+          "ppid": 24264,
+          "parent_name": "powershell.exe",
+          "parent_exe": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+          "created_local": "2026-11-10T12:58:58.802111+05:00",
+          "threads": 20,
+          "handles": 401,
+          "working_set_mib": 45.1,
+          "private_working_set_mib": 14.3,
+          "private_bytes_mib": 95.3,
+          "virtual_bytes_mib": 95.3,
+          "peak_working_set_mib": 45.1,
+          "peak_private_bytes_mib": 95.4
+        }
+      ],
+      "ollama_version_api": {
+        "http_status": 200,
+        "body": {
+          "version": "0.40.15"
+        }
+      },
+      "ollama_running_models": {
+        "http_status": 200,
+        "body": {
+          "models": []
+        }
+      }
+    },
+    {
+      "sample": 4,
+      "timestamp_local": "2026-11-10T12:59:50.868742+05:00",
+      "available_physical_ram_mib_psutil": 8101.0,
+      "memory_percent": 49.9,
+      "commit": {
+        "commit_total_mib": 11052.8,
+        "commit_limit_mib": 34864.1,
+        "commit_headroom_mib": 23811.3,
+        "physical_available_mib": 8101.0
+      },
+      "processes": [
+        {
+          "pid": 15256,
+          "name": "ollama.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+            "serve"
+          ],
+          "ppid": 24264,
+          "parent_name": "powershell.exe",
+          "parent_exe": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+          "created_local": "2026-11-10T12:58:58.802111+05:00",
+          "threads": 20,
+          "handles": 401,
+          "working_set_mib": 45.1,
+          "private_working_set_mib": 14.3,
+          "private_bytes_mib": 95.3,
+          "virtual_bytes_mib": 95.3,
+          "peak_working_set_mib": 45.1,
+          "peak_private_bytes_mib": 95.4
+        }
+      ],
+      "ollama_version_api": {
+        "http_status": 200,
+        "body": {
+          "version": "0.40.15"
+        }
+      },
+      "ollama_running_models": {
+        "http_status": 200,
+        "body": {
+          "models": []
+        }
+      }
+    },
+    {
+      "sample": 5,
+      "timestamp_local": "2026-11-10T13:00:00.893809+05:00",
+      "available_physical_ram_mib_psutil": 8099.7,
+      "memory_percent": 49.9,
+      "commit": {
+        "commit_total_mib": 11047.2,
+        "commit_limit_mib": 34864.1,
+        "commit_headroom_mib": 23816.9,
+        "physical_available_mib": 8099.7
+      },
+      "processes": [
+        {
+          "pid": 15256,
+          "name": "ollama.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+            "serve"
+          ],
+          "ppid": 24264,
+          "parent_name": "powershell.exe",
+          "parent_exe": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+          "created_local": "2026-11-10T12:58:58.802111+05:00",
+          "threads": 17,
+          "handles": 402,
+          "working_set_mib": 45.0,
+          "private_working_set_mib": 14.3,
+          "private_bytes_mib": 95.3,
+          "virtual_bytes_mib": 95.3,
+          "peak_working_set_mib": 45.1,
+          "peak_private_bytes_mib": 95.4
+        }
+      ],
+      "ollama_version_api": {
+        "http_status": 200,
+        "body": {
+          "version": "0.40.15"
+        }
+      },
+      "ollama_running_models": {
+        "http_status": 200,
+        "body": {
+          "models": []
+        }
+      }
+    },
+    {
+      "sample": 6,
+      "timestamp_local": "2026-11-10T13:00:10.914695+05:00",
+      "available_physical_ram_mib_psutil": 8094.7,
+      "memory_percent": 50.0,
+      "commit": {
+        "commit_total_mib": 11061.4,
+        "commit_limit_mib": 34864.1,
+        "commit_headroom_mib": 23802.7,
+        "physical_available_mib": 8094.7
+      },
+      "processes": [
+        {
+          "pid": 15256,
+          "name": "ollama.exe",
+          "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+          "cmdline": [
+            "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+            "serve"
+          ],
+          "ppid": 24264,
+          "parent_name": "powershell.exe",
+          "parent_exe": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+          "created_local": "2026-11-10T12:58:58.802111+05:00",
+          "threads": 17,
+          "handles": 402,
+          "working_set_mib": 45.0,
+          "private_working_set_mib": 14.3,
+          "private_bytes_mib": 95.3,
+          "virtual_bytes_mib": 95.3,
+          "peak_working_set_mib": 45.1,
+          "peak_private_bytes_mib": 95.4
+        }
+      ],
+      "ollama_version_api": {
+        "http_status": 200,
+        "body": {
+          "version": "0.40.15"
+        }
+      },
+      "ollama_running_models": {
+        "http_status": 200,
+        "body": {
+          "models": []
+        }
+      }
+    }
+  ],
+  "finished_local": "2026-11-10T13:00:10.928155+05:00"
+}

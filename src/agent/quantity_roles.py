@@ -10,8 +10,9 @@ def reactor_field(text, start, end):
     if re.match(r'\s*(?:of\s+)?(?:навоз|сырь|отход|manure|food|көң)', after, re.I) or any(
             hit['start'] <= 2 for hit in matches(after[:80])):
         return None
-    suffix = re.match(r'\s*[-–]?\s*(?:реактор|reactor|digester)', after, re.I)
-    prefix = re.search(r'(?:реактор\w*|reactor|digester|рабоч\w*\s+объ[её]м|working\s+volume|жұмыс\w*\s+көлем)[^\d]{0,70}$', before, re.I)
+    vessel = r'(?:реактор\w*|reactor|digester|сосуд\w*|ёмкост\w*|емкост\w*|бак\w*|vessel|tank|container)'
+    suffix = re.match(r'\s*[-–]?\s*'+vessel, after, re.I)
+    prefix = re.search(vessel+r'[^\d]{0,70}$|(?:рабоч\w*\s+объ[её]м|working\s+volume|жұмыс\w*\s+көлем)[^\d]{0,70}$', before, re.I)
     if not (prefix or suffix):
         return None
     return 'reactor_working_volume_l' if re.search(r'рабоч|working|жұмыс', prefix.group() if prefix else suffix.group(), re.I) else 'reactor_total_volume_l'

@@ -3,12 +3,13 @@ import { ArrowRight, BookOpen, FlaskConical, MessageSquare, Play, Presentation, 
 import { api } from '../api'
 import { useQuery } from '../hooks'
 import { Badge, LoadState, Notice, PageTitle, Panel, Reply } from '../ui'
+import FiroDemoMvp from './FiroDemoMvp'
 
 export default function Demo({ navigate }: { navigate: (page: string) => void }) {
   const demo = useQuery('firo-demo', api.demo); const [recorded, setRecorded] = useState(false)
   const laboratory = () => { if (demo.data) { sessionStorage.setItem('bioreactor_laboratory_example', JSON.stringify({ input: demo.data.laboratory_example, notice: demo.data.example_notice })); navigate('prediction') } }
   const chat = () => { if (demo.data) { sessionStorage.setItem('bioreactor_demo_question', demo.data.question); navigate('chat') } }
-  return <><PageTitle eyebrow="FIBONACCI INTERNATIONAL ROBOTICS OLYMPIAD 2026" title="От идеи к проверяемому решению»" description="Маршрут живой демонстрации: модель, инструменты, реальные источники и научные границы." action={<Badge tone="green">FIRO 2026</Badge>} /><div className="demo-intro panel"><div className="demo-logo"><Presentation size={30} /></div><div><span className="eyebrow">BIOREACTOR AI / LIVE DEMONSTRATION</span><h2>Каждый результат можно проверить.</h2><p>Этот режим направляет по реальным страницам системы. Записанный диалог открывается отдельно и всегда помечен.</p></div></div><LoadState loading={demo.loading} error={demo.error} retry={demo.refresh} />{demo.data && <><div className="demo-steps">{[
+  return <><PageTitle eyebrow="FIBONACCI INTERNATIONAL ROBOTICS OLYMPIAD 2026" title="От идеи к проверяемому решению" description="Маршрут живой демонстрации: модель, инструменты, реальные источники и научные границы." action={<Badge tone="green">FIRO 2026</Badge>} /><FiroDemoMvp/><div className="demo-intro panel"><div className="demo-logo"><Presentation size={30} /></div><div><span className="eyebrow">BIOREACTOR AI / LIVE DEMONSTRATION</span><h2>Каждый результат можно проверить.</h2><p>Этот режим направляет по реальным страницам системы. Записанный диалог открывается отдельно и всегда помечен.</p></div></div><LoadState loading={demo.loading} error={demo.error} retry={demo.refresh} />{demo.data && <><div className="demo-steps">{[
     { icon: <FlaskConical />, title: 'Обученная BMP-модель', detail: 'Загрузить прежний лабораторный пример. Новый прогноз выполнит сохранённая модель; это не ваша партия.', action: laboratory, button: 'Открыть прогноз' },
     { icon: <MessageSquare />, title: 'Вопрос локальному агенту', detail: '5 кг пищевых отходов и реактор 90 л. Проверим, как система обрабатывает недостающие измерения.', action: chat, button: 'Подготовить вопрос' },
     { icon: <Store />, title: 'Реальные рыночные источники', detail: 'БНС, энергопоставщики, регион, дата и статус каждой цены. Без подмены статистики торговым предложением.', action: () => navigate('market'), button: 'Открыть рынок' },

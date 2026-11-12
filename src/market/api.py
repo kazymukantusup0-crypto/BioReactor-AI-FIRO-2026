@@ -25,7 +25,7 @@ def manual_observation(price):
     return price.model_copy(update=updates)
 
 
-def create_app(store=None,scheduler_enabled=None,interval=None):
+def create_app(store=None,scheduler_enabled=None,interval=None,*,firo_demo=False):
     db=store or Store();bootstrap(db)
     interval=float(interval if interval is not None else os.getenv('BIOREACTOR_MARKET_INTERVAL_SECONDS','86400'))
     enabled=scheduler_enabled if scheduler_enabled is not None else os.getenv('BIOREACTOR_MARKET_SCHEDULER','1')=='1'
@@ -128,9 +128,11 @@ def create_app(store=None,scheduler_enabled=None,interval=None):
     from src.dashboard.api import create_router
     from src.data.prepare import ROOT
     from fastapi.staticfiles import StaticFiles
-    dashboard_router=create_router(db)
+    dashboard_router=create_router(db,experimental_qwen4b=firo_demo)
     app.state.agent_runtime=dashboard_router.agent_runtime
     app.include_router(dashboard_router)
+    from src.dashboard.firo_demo import create_router as demo_router
+    app.include_router(demo_router(db,enabled=firo_demo))
     from src.optimizer.api import create_router as process_router
     app.include_router(process_router(db))
     from src.research.api import create_router as research_router

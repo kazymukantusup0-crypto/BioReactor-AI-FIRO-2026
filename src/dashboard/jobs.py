@@ -6,27 +6,41 @@ import time
 import uuid
 from datetime import timedelta
 from fastapi import HTTPException
+from src.agent.cancellation import CancellationSignal,ExecutionStopped
 from src.market.domain import utcnow
 
 TERMINAL={'COMPLETED','FAILED','CANCELLED','TIMED_OUT'}
 ACTIVE={'RUNNING','TOOL_EXECUTION','FINALIZING'}
 
 
-class ExecutionStopped(Exception):pass
+def decode_job(row):
+    """Decode a row without opening another connection (also used by snapshots)."""
+    result=dict(row)
+    result['reply']=json.loads(result.pop('reply_json')) if result.get('reply_json') else None
+    result['partial_results']=json.loads(result.pop('partial_json'))
+    result['preview']=json.loads(result.pop('preview_json')) if result.get('preview_json') else None
+    result['terminal']=result['status'] in TERMINAL
+    return result
 
 
 class Control:
     def __init__(self,runtime,job,owner):
         self.runtime=runtime;self.job=job;self.owner=owner;self.partial=json.loads(job.get('partial_json') or '[]');self.leases=[]
         self.started=time.monotonic();self.timeout=float(os.getenv('BIOREACTOR_JOB_TIMEOUT','180'))
+        self.cancellation=CancellationSignal()
         self.stop_heartbeat=threading.Event();self.thread=threading.Thread(target=self.heartbeat,daemon=True)
+
+    def deadline_expired(self):return time.monotonic()-self.started>self.timeout
 
     def check(self):
         row=self.runtime.get(self.job['id'])
         if row['current_stage']=='persisted':return
-        if row['owner']!=self.owner:raise ExecutionStopped('execution_ownership_lost')
-        if row['status'] in TERMINAL or row['cancel_requested'] or self.runtime.stopping.is_set():raise ExecutionStopped('execution_interrupted')
-        if time.monotonic()-self.started>self.timeout:
+        if row['owner']!=self.owner:
+            self.cancellation.cancel();raise ExecutionStopped('execution_ownership_lost')
+        if row['status'] in TERMINAL or row['cancel_requested'] or self.runtime.stopping.is_set():
+            self.cancellation.cancel();raise ExecutionStopped('execution_interrupted')
+        if self.deadline_expired():
+            self.cancellation.cancel()
             self.runtime.finish(self.job['id'],'TIMED_OUT',error='EXECUTION_DEADLINE',partial=self.partial,owner=self.owner)
             raise ExecutionStopped('execution_deadline')
 
@@ -51,9 +65,10 @@ class Control:
         status='TOOL_EXECUTION' if stage in {'tool_start','tool_result'} else 'FINALIZING' if stage in {'verifying','responding'} else 'RUNNING'
         now=utcnow().isoformat()
         with self.runtime.store.connect() as con:
-            con.execute('UPDATE agent_jobs SET status=?,current_stage=?,updated_at=?,partial_json=?,preview_json=COALESCE(?,preview_json) WHERE id=? AND owner=? AND status NOT IN (?,?,?,?)',
+            changed=con.execute('UPDATE agent_jobs SET status=?,current_stage=?,updated_at=?,partial_json=?,preview_json=COALESCE(?,preview_json) WHERE id=? AND owner=? AND status NOT IN (?,?,?,?)',
                         (status,stage,now,json.dumps(self.partial,ensure_ascii=False),json.dumps(details['preview'],ensure_ascii=False) if 'preview' in details else None,
                          self.job['id'],self.owner,*TERMINAL))
+            if changed.rowcount!=1:raise ExecutionStopped('execution_ownership_lost')
             con.execute('INSERT INTO agent_job_events(job_id,created_at,status,details_json) VALUES(?,?,?,?)',
                         (self.job['id'],now,status,json.dumps({'stage':stage,'tool':details.get('tool')})))
 
@@ -61,6 +76,8 @@ class Control:
 class JobRuntime:
     def __init__(self,store,execute):
         self.store=store;self.execute=execute;self.stopping=threading.Event();self.wake=threading.Event();self.thread=None
+        self._controls={};self._controls_lock=threading.Lock()
+        self.stream_observer_factory=None
         self.last_error=None
         with store.connect() as con:
             con.executescript('''
@@ -76,12 +93,18 @@ class JobRuntime:
     def get(self,identifier):
         with self.store.connect() as con:row=con.execute('SELECT * FROM agent_jobs WHERE id=?',(identifier,)).fetchone()
         if row is None:raise HTTPException(404,'Execution not found')
-        result=dict(row)
-        result['reply']=json.loads(result.pop('reply_json')) if result.get('reply_json') else None
-        result['partial_results']=json.loads(result.pop('partial_json'))
-        result['preview']=json.loads(result.pop('preview_json')) if result.get('preview_json') else None
-        result['terminal']=result['status'] in TERMINAL
-        return result
+        return decode_job(row)
+
+    def register_control(self,control):
+        with self._controls_lock:self._controls[control.job['id']]=control
+
+    def unregister_control(self,control):
+        with self._controls_lock:
+            if self._controls.get(control.job['id']) is control:self._controls.pop(control.job['id'],None)
+
+    def signal_cancel(self,identifier):
+        with self._controls_lock:control=self._controls.get(identifier)
+        if control:control.cancellation.cancel()
 
     def submit(self,conversation,body):
         now=utcnow().isoformat();identifier=uuid.uuid4().hex
@@ -123,6 +146,7 @@ class JobRuntime:
     def recover(self):
         cutoff=(utcnow()-timedelta(seconds=45)).isoformat();now=utcnow().isoformat()
         with self.store.connect() as con:
+            con.execute('BEGIN IMMEDIATE')
             legacy_cutoff=(utcnow()-timedelta(seconds=300)).isoformat()
             orphans=con.execute("SELECT t.* FROM dashboard_turns t WHERE t.reply_json IS NULL AND t.status IN ('running','queued') AND t.created_at<? AND NOT EXISTS(SELECT 1 FROM agent_jobs j WHERE j.conversation_id=t.session_id AND j.request_id=t.request_id)",(legacy_cutoff,)).fetchall()
             for row in orphans:
@@ -134,6 +158,18 @@ class JobRuntime:
                     con.execute('INSERT INTO agent_job_events(job_id,created_at,status,details_json) VALUES(?,?,?,?)',(identifier,now,'FAILED','{"reason":"legacy_request_without_recoverable_execution_state"}'))
             stale=con.execute("SELECT * FROM agent_jobs WHERE status IN ('RUNNING','TOOL_EXECUTION','FINALIZING') AND COALESCE(heartbeat_at,updated_at)<?",(cutoff,)).fetchall()
             for row in stale:
+                # The scientific transaction may have committed just before the
+                # process died. Never replay or time out that durable answer.
+                saved=con.execute('SELECT reply_json FROM dashboard_turns WHERE session_id=? AND request_id=?',
+                                  (row['conversation_id'],row['request_id'])).fetchone()
+                if saved and saved['reply_json']:
+                    failed=json.loads(saved['reply_json']).get('mode')=='error'
+                    status='FAILED' if failed else 'COMPLETED'
+                    con.execute('UPDATE agent_jobs SET status=?,current_stage=?,owner=NULL,error_code=?,updated_at=?,reply_json=? WHERE id=?',
+                                (status,status.lower(),'AGENT_FAILED' if failed else None,now,saved['reply_json'],row['id']))
+                    con.execute('INSERT INTO agent_job_events(job_id,created_at,status,details_json) VALUES(?,?,?,?)',
+                                (row['id'],now,status,'{"reason":"recovered_persisted_result"}'))
+                    continue
                 status='QUEUED' if row['attempt_count']<2 and not row['cancel_requested'] else 'CANCELLED' if row['cancel_requested'] else 'TIMED_OUT'
                 changed=con.execute('UPDATE agent_jobs SET status=?,current_stage=?,owner=NULL,error_code=?,updated_at=? WHERE id=? AND owner IS ?',
                             (status,'recovering' if status=='QUEUED' else status.lower(),'BACKEND_INTERRUPTED',now,row['id'],row['owner']))
@@ -176,19 +212,31 @@ class JobRuntime:
                 if self.stopping.wait(.5):break
 
     def run(self,job,owner):
-        control=Control(self,job,owner);control.thread.start()
+        control=Control(self,job,owner);self.register_control(control);control.thread.start()
         try:
+            observer_factory=self.stream_observer_factory
+            if observer_factory is not None:
+                observer=observer_factory(job,control.cancellation)
+                if observer is not None:control.cancellation.set_stream_observer(observer)
+            control.check()
             reply=self.execute(job['conversation_id'],job['message'],job['request_id'],control,job['expected_state_version'])
             control.check()
             error='AGENT_FAILED' if reply.get('mode')=='error' else None
             self.finish(job['id'],'FAILED' if error else 'COMPLETED',reply=reply,error=error,partial=control.partial,owner=owner)
-        except ExecutionStopped:
+        except ExecutionStopped as exc:
             current=self.get(job['id'])
             if current['owner']!=owner:return
             if current['status'] not in TERMINAL:
-                if self.stopping.is_set():
-                    with self.store.connect() as con:con.execute("UPDATE agent_jobs SET status='QUEUED',current_stage='recovering',owner=NULL WHERE id=?",(job['id'],))
-                else:self.finish(job['id'],'CANCELLED',error='USER_CANCELLED',partial=control.partial,owner=owner)
+                if str(exc)=='execution_deadline':
+                    self.finish(job['id'],'TIMED_OUT',error='EXECUTION_DEADLINE',partial=control.partial,owner=owner)
+                elif self.stopping.is_set():
+                    with self.store.connect() as con:con.execute("UPDATE agent_jobs SET status='QUEUED',current_stage='recovering',owner=NULL WHERE id=? AND owner=? AND status NOT IN (?,?,?,?)",(job['id'],owner,*TERMINAL))
+                else:
+                    with self.store.connect() as con:
+                        resource_stop=con.execute("SELECT 1 FROM agent_job_events WHERE job_id=? AND status='RESOURCE_STOP' LIMIT 1",(job['id'],)).fetchone()
+                    error='RESOURCE_GUARD_STOP' if resource_stop else 'USER_CANCELLED' if current['cancel_requested'] else 'EXECUTION_INTERRUPTED'
+                    self.finish(job['id'],'CANCELLED',error=error,partial=control.partial,owner=owner)
         except Exception as exc:
             self.finish(job['id'],'FAILED',error=type(exc).__name__,partial=control.partial,owner=owner)
-        finally:control.stop_heartbeat.set();control.thread.join(timeout=1)
+        finally:
+            control.stop_heartbeat.set();control.thread.join(timeout=1);self.unregister_control(control)

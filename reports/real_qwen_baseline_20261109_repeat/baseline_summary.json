@@ -1,0 +1,19 @@
+{
+  "status": "PARTIAL_STOPPED_RESOURCE_GATE",
+  "preflight": "PASS: 3 samples 10 seconds apart",
+  "live_scenarios": {
+    "completed": 2,
+    "failed_quality": 1,
+    "passed_quality": 1,
+    "blocked_incomplete": 1,
+    "remaining_turns_not_run": 1
+  },
+  "application_code_changed": false,
+  "model_retrained": false,
+  "browser_e2e_run": false,
+  "full_acceptance_run": false,
+  "scenario_01": "FAIL 1/3 after manual review",
+  "scenario_02": "PASS 3/3",
+  "scenario_03": "BLOCKED after first turn cancellation due RAM; correction turn not run",
+  "readiness": "NOT READY"
+}

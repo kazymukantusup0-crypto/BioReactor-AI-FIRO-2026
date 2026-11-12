@@ -1,0 +1,26 @@
+{
+  "started_at": "2026-11-11T15:17:31.126856+05:00",
+  "memory_limit_mib": 128,
+  "type": "synthetic Python children, no Ollama",
+  "steps": {
+    "limits_set": "PASS",
+    "parent_assigned": "PASS",
+    "over_limit_commit_rejected": "PASS",
+    "descendant_in_job": "PASS",
+    "hang_detected": "PASS",
+    "terminate_tree": "PASS",
+    "recovery_sample": "PASS"
+  },
+  "status": "PASSED",
+  "allocation": {
+    "event": "allocation_rejected",
+    "exception": "MemoryError"
+  },
+  "peak_job_commit_mib": 8.78,
+  "termination_elapsed_seconds": 0.001,
+  "parent_pid": 12872,
+  "descendant_pid": 27308,
+  "ram_available_before_mib": 4417.2,
+  "ram_available_after_mib": 4417.6,
+  "ended_at": "2026-11-11T15:17:31.200971+05:00"
+}

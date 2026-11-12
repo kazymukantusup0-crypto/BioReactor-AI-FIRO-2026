@@ -9,7 +9,7 @@ def document():return read_profile(ROOT/'data/research/advanced_profiles.json')
 def density_for(c,allow=True):
     if c.properties.density_kg_l:
         p=c.properties.density_kg_l
-        mode='ILLUSTRATIVE_ASSUMPTION' if p.provenance=='HYPOTHETICAL_SCENARIO' else 'MEASURED' if p.provenance in {'MEASURED','USER_REPORTED'} else 'LITERATURE_ESTIMATE'
+        mode='ILLUSTRATIVE_ASSUMPTION' if p.provenance=='HYPOTHETICAL_SCENARIO' else 'MEASURED' if p.provenance=='MEASURED' else 'USER_REPORTED' if p.provenance=='USER_REPORTED' else 'LITERATURE_ESTIMATE'
         return {'low':p.low,'high':p.high,'mode':mode,'evidence':p.evidence,'source':None,'limitations':['User-reported density; accuracy not independently verified']}
     if not allow or c.data_mode=='MEASURED':return None
     for p in document()['density_profiles']:
@@ -31,6 +31,8 @@ def convert(c,target_unit,allow=True):
     if target_unit not in FACTORS:raise ValueError('Unknown target unit')
     family,factor=FACTORS[c.unit];target,divisor=FACTORS[target_unit];value=pair(c.quantity*factor);density=None
     if family!=target:
+        if family=='volume' and (c.properties.density_kg_l is None or c.properties.density_kg_l.provenance not in {'MEASURED','USER_REPORTED'}):
+            return {'status':'needs_input','value':None,'target_unit':target_unit,'density':None,'missing':['batch_density_kg_l'],'message':'A measured or user-reported batch density is required to convert volume to mass.'}
         density=density_for(c,allow)
         if density is None:
             # Existing coherent study density is also allowed, with state matching.
@@ -39,4 +41,7 @@ def convert(c,target_unit,allow=True):
             if p and p.get('density_kg_l') and c.data_mode!='MEASURED':density={**p['density_kg_l'],'mode':'LITERATURE_ESTIMATE','source':p['source'],'evidence':p['density_kg_l'].get('locator'),'limitations':['Specific study sample; packing and moisture may differ']}
         if density is None:return {'status':'needs_input','value':None,'target_unit':target_unit,'density':None,'missing':['measured_density_or_explicit_illustrative_density'],'message':'Density for this material and state is unknown; no slurry substitution.'}
         value=multiply(value,density) if family=='volume' else ratio(value,density)
-    return {'status':'ok','value':scale(value,1/divisor),'target_unit':target_unit,'density':density,'formula':'mass = volume × density; volume = mass / density','message':'Same-family SI conversion or explicitly scoped density conversion'}
+    from src.provenance import calculated
+    return {'status':'ok','value':scale(value,1/divisor),'target_unit':target_unit,'density':density,'formula':'mass = volume × density; volume = mass / density',
+            'result_provenance':calculated({'quantity':{'value':c.quantity,'unit':c.unit,'origin':c.provenance},'density':density},target_unit,limitations=['Converted value, not an independent mass or volume measurement.']),
+            'message':'Same-family SI conversion or explicitly scoped density conversion'}

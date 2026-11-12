@@ -1,0 +1,139 @@
+{
+  "samples": [
+    {
+      "sample": 1,
+      "timestamp_local": "2026-11-10T13:01:13.959437+05:00",
+      "free_ram_mib": 8081.8,
+      "commit": {
+        "commit_total_mib": 11052.2,
+        "commit_limit_mib": 34864.1,
+        "commit_headroom_mib": 23811.9,
+        "physical_available_mib": 8081.7
+      },
+      "ollama_version": "0.40.15",
+      "api_status": 200,
+      "loaded_models": [],
+      "server_process": {
+        "pid": 15256,
+        "name": "ollama.exe",
+        "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+        "cmdline": [
+          "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+          "serve"
+        ],
+        "ppid": 24264,
+        "parent_name": "powershell.exe",
+        "parent_exe": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "created_local": "2026-11-10T12:58:58.802111+05:00",
+        "threads": 15,
+        "handles": 398,
+        "working_set_mib": 45.1,
+        "private_working_set_mib": 14.3,
+        "private_bytes_mib": 95.2,
+        "virtual_bytes_mib": 95.2,
+        "peak_working_set_mib": 45.1,
+        "peak_private_bytes_mib": 95.4
+      },
+      "gpu": {
+        "name": "NVIDIA GeForce RTX 3070 Laptop GPU",
+        "temperature_c": "49",
+        "utilization_pct": "15",
+        "vram_used_mib": "511",
+        "vram_total_mib": "8192",
+        "hw_thermal_slowdown": "Not Active",
+        "sw_thermal_slowdown": "Not Active",
+        "active_throttle_reasons": "0x0000000000000001"
+      }
+    },
+    {
+      "sample": 2,
+      "timestamp_local": "2026-11-10T13:01:24.068471+05:00",
+      "free_ram_mib": 8098.4,
+      "commit": {
+        "commit_total_mib": 11033.7,
+        "commit_limit_mib": 34864.1,
+        "commit_headroom_mib": 23830.4,
+        "physical_available_mib": 8098.4
+      },
+      "ollama_version": "0.40.15",
+      "api_status": 200,
+      "loaded_models": [],
+      "server_process": {
+        "pid": 15256,
+        "name": "ollama.exe",
+        "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+        "cmdline": [
+          "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+          "serve"
+        ],
+        "ppid": 24264,
+        "parent_name": "powershell.exe",
+        "parent_exe": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "created_local": "2026-11-10T12:58:58.802111+05:00",
+        "threads": 16,
+        "handles": 398,
+        "working_set_mib": 44.4,
+        "private_working_set_mib": 13.6,
+        "private_bytes_mib": 94.3,
+        "virtual_bytes_mib": 94.3,
+        "peak_working_set_mib": 45.1,
+        "peak_private_bytes_mib": 95.4
+      },
+      "gpu": {
+        "name": "NVIDIA GeForce RTX 3070 Laptop GPU",
+        "temperature_c": "49",
+        "utilization_pct": "9",
+        "vram_used_mib": "513",
+        "vram_total_mib": "8192",
+        "hw_thermal_slowdown": "Not Active",
+        "sw_thermal_slowdown": "Not Active",
+        "active_throttle_reasons": "0x0000000000000001"
+      }
+    },
+    {
+      "sample": 3,
+      "timestamp_local": "2026-11-10T13:01:34.149461+05:00",
+      "free_ram_mib": 8097.4,
+      "commit": {
+        "commit_total_mib": 11031.8,
+        "commit_limit_mib": 34864.1,
+        "commit_headroom_mib": 23832.3,
+        "physical_available_mib": 8097.4
+      },
+      "ollama_version": "0.40.15",
+      "api_status": 200,
+      "loaded_models": [],
+      "server_process": {
+        "pid": 15256,
+        "name": "ollama.exe",
+        "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+        "cmdline": [
+          "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+          "serve"
+        ],
+        "ppid": 24264,
+        "parent_name": "powershell.exe",
+        "parent_exe": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "created_local": "2026-11-10T12:58:58.802111+05:00",
+        "threads": 16,
+        "handles": 398,
+        "working_set_mib": 44.4,
+        "private_working_set_mib": 13.6,
+        "private_bytes_mib": 94.4,
+        "virtual_bytes_mib": 94.4,
+        "peak_working_set_mib": 45.1,
+        "peak_private_bytes_mib": 95.4
+      },
+      "gpu": {
+        "name": "NVIDIA GeForce RTX 3070 Laptop GPU",
+        "temperature_c": "49",
+        "utilization_pct": "7",
+        "vram_used_mib": "513",
+        "vram_total_mib": "8192",
+        "hw_thermal_slowdown": "Not Active",
+        "sw_thermal_slowdown": "Not Active",
+        "active_throttle_reasons": "0x0000000000000001"
+      }
+    }
+  ]
+}

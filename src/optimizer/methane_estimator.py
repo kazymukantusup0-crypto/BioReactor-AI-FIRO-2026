@@ -53,7 +53,9 @@ def estimate_methane(parameters):
     recoverable = potential * p['recovery_fraction'] if potential is not None and p.get('recovery_fraction') is not None else None
     biogas = recoverable / p['methane_fraction'] if recoverable is not None and p.get('methane_fraction') is not None else None
     info = get_model_info(p['model']) if model and model.get('status') == 'ok' else None
+    from src.provenance import calculated as result_origin
     return {'status': calculated['status'], 'potential_methane_m3': potential,
+            'result_provenance':result_origin({'vs_mass_kg':vs,'bmp':{'value':bmp,'origin':source}},'m³ CH4',limitations=['Calculated potential, not a measured reactor yield.']) if potential is not None else None,
             'recoverable_methane_scenario_m3': recoverable, 'raw_biogas_scenario_m3': biogas,
             'bmp_ml_ch4_g_vs': bmp, 'bmp_unit': p.get('bmp_unit'), 'bmp_provenance': source,
             'bmp_evidence': p.get('bmp_evidence'), 'vs_mass_kg': vs,

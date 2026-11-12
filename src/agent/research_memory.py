@@ -33,7 +33,7 @@ def finish_turn(state, text, extraction, facing, body, results):
         q={'id':'batch-quantity','text':'Какова масса партии в килограммах?','fields':['quantity','unit'],'options':[],
            'reason':'Quantity is the missing input needed to scale the available scientific evidence.'}
     if not q:
-        candidates=[s.strip() for s in re.findall(r'[^.!?\n]+\?',body) if re.search(r'како|сколько|где|уточн|what|which|how|where|қандай|қай',s,re.I) and len(s)<400]
+        candidates=[s.strip() for s in re.findall(r'[^.!?\n]+\?',body) if re.search(r'как(?:о|и)|сколько|где|уточн|what|which|how|where|қандай|қай',s,re.I) and len(s)<400]
         if candidates:
             text_question=candidates[-1]
             has_batch=bool(state.mixture_components or state.mixture_scenario_components or state.value('quantity') or state.value('mass_kg'))

@@ -1,0 +1,136 @@
+{
+  "version": "scientific-concepts-2026-11-09",
+  "sources": [
+    {
+      "id": "bmp_limits_2020",
+      "title": "Koch et al. — Power and Limitations of Biochemical Methane Potential (BMP) Tests",
+      "url": "https://www.frontiersin.org/journals/energy-research/articles/10.3389/fenrg.2020.00063/full",
+      "year": 2020,
+      "doi": "10.3389/fenrg.2020.00063",
+      "locator": "Sections on inappropriate applications and conclusions; batch BMP limits for actual yield, process stability, OLR and HRT",
+      "reviewed_by": "Primary-source review, 2026-11-09",
+      "verified_on": "2026-11-09",
+      "provenance": "SOURCE_VERIFIED"
+    },
+    {
+      "id": "epa_agstar_operator_2020",
+      "title": "US EPA AgSTAR — Anaerobic Digester/Biogas System Operator Guidebook",
+      "url": "https://www.epa.gov/sites/default/files/2020-11/documents/agstar-operator-guidebook.pdf",
+      "year": 2020,
+      "doi": null,
+      "locator": "Sections 3.1–3.4 (retention, loading, temperature and VS); 5.0 (TS/VS); 7.1 (headspace)",
+      "reviewed_by": "Primary-source review, 2026-11-09",
+      "verified_on": "2026-11-09",
+      "provenance": "SOURCE_VERIFIED"
+    },
+    {
+      "id": "epa_biogas_plan_checklist_2020",
+      "title": "US EPA — Risk Analysis and Technical Review Checklist for Preparing Biogas Project Plans",
+      "url": "https://nepis.epa.gov/Exe/ZyPURL.cgi?Dockey=P10105XN.TXT",
+      "year": 2020,
+      "doi": null,
+      "locator": "Sections 6–8: operating volume/daily influent HRT, dilution volume, TS and VS loading calculations",
+      "reviewed_by": "Primary-source review, 2026-11-09",
+      "verified_on": "2026-11-09",
+      "provenance": "SOURCE_VERIFIED"
+    }
+  ],
+  "claims": [
+    {
+      "id": "bmp_is_batch_potential",
+      "source_id": "bmp_limits_2020",
+      "topics": ["bmp"],
+      "materials": ["manure", "cattle_manure", "swine_manure", "poultry_manure", "food_waste", "Wheat straw", "Whey", "Cellulose"],
+      "category": "anaerobic_digestion",
+      "process_type": "laboratory batch assay",
+      "values": [],
+      "unit": null,
+      "scope": "Laboratory batch measurement of substrate methane potential under assay conditions; not a plant measurement",
+      "text": {
+        "ru": "BMP — лабораторно измеренный биохимический потенциал образования метана в batch-тесте при заданных условиях опыта. Это потенциальная характеристика испытанного образца, а не измеренная выработка конкретного реактора.",
+        "en": "BMP is a laboratory measurement of a substrate's biochemical methane potential in a batch test under stated assay conditions. It describes the tested sample's potential, not methane measured from a particular reactor.",
+        "kk": "BMP — көрсетілген зертханалық жағдайларда batch-тестте өлшенетін субстраттың метан түзу биохимиялық әлеуеті. Бұл сыналған үлгінің әлеуеті, нақты реакторда өлшенген өнім емес."
+      }
+    },
+    {
+      "id": "bmp_does_not_predict_continuous_stability",
+      "source_id": "bmp_limits_2020",
+      "topics": ["bmp", "retention", "loading"],
+      "materials": ["manure", "cattle_manure", "swine_manure", "poultry_manure", "food_waste", "Wheat straw", "Whey", "Cellulose"],
+      "category": "anaerobic_digestion",
+      "process_type": "batch BMP versus continuous digestion",
+      "values": [],
+      "unit": null,
+      "scope": "A batch BMP does not establish continuous-system actual yield, process stability, OLR or HRT",
+      "text": {
+        "ru": "Однократная batch-подача в BMP не показывает устойчивость длительной непрерывной работы, допустимую органическую нагрузку или HRT. Эти характеристики зависят от конструкции и режима реактора и требуют данных непрерывного процесса либо сопоставимой установки.",
+        "en": "A single batch feed in a BMP test does not establish long-term continuous stability, achievable organic loading, or HRT. These depend on reactor design and operation and require continuous-process data or a comparable installation.",
+        "kk": "BMP-тесттегі бір реттік batch беру ұзақ мерзімді үздіксіз жұмыстың тұрақтылығын, органикалық жүктемені немесе HRT-ті анықтамайды. Бұлар реактордың құрылымы мен режиміне тәуелді және үздіксіз процесс деректерін не ұқсас қондырғыны қажет етеді."
+      }
+    },
+    {
+      "id": "ts_vs_operational_meaning",
+      "source_id": "epa_agstar_operator_2020",
+      "topics": ["solids"],
+      "materials": ["manure", "cattle_manure", "swine_manure", "poultry_manure", "food_waste", "Wheat straw", "Whey", "Cellulose"],
+      "category": "anaerobic_digestion",
+      "process_type": "feed characterization and process monitoring",
+      "values": [],
+      "unit": null,
+      "scope": "TS describes sample solids content; VS is the combustible fraction of TS and an estimate of organic matter, not a BMP result",
+      "text": {
+        "ru": "TS характеризует содержание твёрдых веществ в пробе. VS — сгорающая доля TS, используемая как оценка содержания органического вещества; сама по себе VS не является BMP и не задаёт скорость разложения.",
+        "en": "TS describes the solids content of a sample. VS is the combustible fraction of TS and is used to estimate organic matter; VS alone is neither BMP nor a measure of degradation rate.",
+        "kk": "TS үлгідегі қатты заттардың мөлшерін сипаттайды. VS — TS құрамындағы жанатын бөлік, органикалық зат мөлшерін бағалау үшін қолданылады; VS өздігінен BMP де, ыдырау жылдамдығының өлшемі де емес."
+      }
+    },
+    {
+      "id": "temperature_changes_rates_and_microbes",
+      "source_id": "epa_agstar_operator_2020",
+      "topics": ["temperature"],
+      "materials": ["manure", "cattle_manure", "swine_manure", "poultry_manure", "food_waste", "Wheat straw", "Whey", "Cellulose"],
+      "category": "anaerobic_digestion",
+      "process_type": "temperature-dependent biological digestion",
+      "values": [],
+      "unit": null,
+      "scope": "General temperature effect; no installation-specific optimum or control setpoint",
+      "text": {
+        "ru": "Температура влияет на скорость разложения и на то, какие группы метаногенов преобладают. Реактор проектируют под определённый режим; само по себе повышение температуры не обосновывает новый setpoint и не гарантирует лучшую работу.",
+        "en": "Temperature affects decomposition rate and which methanogen populations predominate. Digesters are designed for a particular regime, so raising temperature alone does not justify a new setpoint or guarantee better operation.",
+        "kk": "Температура ыдырау жылдамдығына және метаногендердің қай топтары басым болатынына әсер етеді. Реактор белгілі бір режимге жобаланады; температураны жай ғана көтеру жаңа мақсатты мәнді негіздемейді және жұмыстың жақсаруына кепіл болмайды."
+      }
+    },
+    {
+      "id": "hrt_not_batch_incubation_duration",
+      "source_id": "epa_biogas_plan_checklist_2020",
+      "topics": ["retention"],
+      "materials": ["manure", "cattle_manure", "swine_manure", "poultry_manure", "food_waste", "Wheat straw", "Whey", "Cellulose"],
+      "category": "anaerobic_digestion",
+      "process_type": "continuous-flow digester design",
+      "values": [],
+      "unit": null,
+      "scope": "HRT is based on operating volume and daily influent in a digester; a BMP batch assay has a separate incubation duration",
+      "text": {
+        "ru": "Для непрерывного реактора HRT связывает рабочий объём с суточным объёмом подачи. Это не длительность лабораторного batch-испытания BMP: в нём одну пробу инкубируют до завершения теста, без непрерывного потока сырья.",
+        "en": "For a continuous digester, HRT relates operating volume to daily influent volume. It is not the incubation duration of a laboratory BMP batch test, where a sample is incubated without continuous feed.",
+        "kk": "Үздіксіз реакторда HRT жұмыс көлемін тәуліктік берілетін көлеммен байланыстырады. Бұл зертханалық BMP batch-тестінің инкубация уақыты емес: онда үлгі үздіксіз берусіз инкубацияланады."
+      }
+    },
+    {
+      "id": "reactor_volume_not_charge_volume",
+      "source_id": "epa_biogas_plan_checklist_2020",
+      "topics": ["capacity", "loading"],
+      "materials": ["manure", "cattle_manure", "swine_manure", "poultry_manure", "food_waste", "Wheat straw", "Whey", "Cellulose"],
+      "category": "anaerobic_digestion",
+      "process_type": "engineered digester loading and volume",
+      "values": [],
+      "unit": null,
+      "scope": "Nominal vessel volume alone does not establish allowable feed charge; working/operating volume and complete influent matter",
+      "text": {
+        "ru": "Номинальная вместимость корпуса не равна допустимому объёму загрузки. В расчётах используют рабочий объём; учитывают сырьё и добавляемые воду и инокулят, а также предусмотренное конструкцией газовое пространство. Допуск загрузки задают проект и инструкция реактора, поэтому нельзя заполнять его до краёв.",
+        "en": "Nominal vessel capacity is not the same as allowable charge volume. Design calculations use working volume; feed, added water and inoculum, and the vessel's gas space matter. The design and reactor instructions set loading limits, so the vessel should not be filled to the brim.",
+        "kk": "Корпустың номинал сыйымдылығы рұқсат етілген жүктеу көлеміне тең емес. Есепте жұмыс көлемі алынады; шикізат, қосылатын су мен инокулят және конструкциядағы газ кеңістігі ескеріледі. Жүктеу шегін жоба мен реактор нұсқаулығы анықтайды, сондықтан оны ернеуіне дейін толтыруға болмайды."
+      }
+    }
+  ]
+}

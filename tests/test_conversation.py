@@ -151,7 +151,7 @@ class ConversationTests(unittest.TestCase):
         reply=self.agent.ask('За всю партию');self.assertIn('15 000 KZT выручки',reply['answer'])
         self.assertNotIn('calculate_profitability',[t['tool'] for t in reply['tools']])
         reply=self.agent.ask('А если реактор всего 90 литров?')
-        self.assertEqual(reply['pending_question']['id'],'working_volume');self.assertIn('загрузить всё одновременно нельзя',reply['answer'])
+        self.assertEqual(reply['pending_question']['id'],'working_volume');self.assertIn('800 литров сырья невозможно одновременно загрузить',reply['answer'])
         self.assertNotIn('9 партий',reply['answer'])
 
     def test_material_change_invalidates_offer_density_composition_and_estimates(self):

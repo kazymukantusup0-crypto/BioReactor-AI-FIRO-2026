@@ -8,6 +8,8 @@ class Properties(Strict):
     ts_fraction:Range|None=None
     vs_fraction_wet:Range|None=None
     vs_fraction_of_ts:Range|None=None
+    ts_kg_l:Range|None=None
+    vs_kg_l:Range|None=None
     bmp_ml_g_vs:Range|None=None
     carbon_fraction_wet:Range|None=None
     nitrogen_fraction_wet:Range|None=None
@@ -56,10 +58,29 @@ class Component(Strict):
         if self.reference_profile_id:choose(self,True)
         return self
 
+class KineticEvidence(Strict):
+    """An explicitly supplied, applicable fit, never a default literature constant."""
+    rate_per_day:Range
+    lag_days:Range
+    reference:str=Field(min_length=10,max_length=1500)
+    temperature_c:float
+    applicable_to_batch:Literal[True]
+    model:Literal['first_order']='first_order'
+    @model_validator(mode='after')
+    def valid(self):
+        if self.rate_per_day.low<=0 or self.lag_days.low<0:raise ValueError('Positive rate and nonnegative lag required')
+        return self
+
 class AdvisorRequest(Strict):
     components:list[Component]=Field(min_length=1,max_length=20)
     allow_literature_transfer:bool=True
     allow_conditional_profiles:bool=False
+    estimation_mode:Literal['MEASURED','LITERATURE_ESTIMATE','INSUFFICIENT_EVIDENCE']|None=None
+    allow_literature_density:bool=False
+    use_literature_volume_concentrations:bool=False
+    target_days:float|None=Field(default=None,gt=0,le=36500)
+    process_temperature_c:float|None=Field(default=None,gt=-273.15,le=100)
+    kinetic_evidence:KineticEvidence|None=None
     target_ts_fraction:float|None=Field(default=None,gt=0,le=1)
     assume_common_dry_gas_basis:bool=False
     assume_unreported_gas_basis:bool=False

@@ -1,10 +1,11 @@
 """Current-turn goals take precedence over inherited dialogue intents."""
 import re
+from src.agent.nlu import RU_PRICE_WORD, intent_requested
 PATTERNS={
  'gas':r'газ|метан|\bbmp\b|\bgas\b|biogas|methane',
  'temperature':r'температур|градус|temperature|degrees',
  'duration':r'сколько\s+дн|суток|сколько.*врем|продолжитель|срок|how long|duration|\bhrt\b|\bsrt\b|қанша.*(?:күн|уақыт)',
- 'economics':r'выгод|прибыл|стоим|стоит|цен[ауы]|продать|продаж|отоплен|электрич|profit|sell|cost|heat\b|electricity|тиімді|пайда',
+ 'economics':r'выгод|прибыл|стоим|стоит|'+RU_PRICE_WORD+r'|продать|продаж|отоплен|электрич|profit|sell|cost|heat\b|electricity|тиімді|пайда',
  'compare':r'сравни.*(?:смес|состав|материал)|какая\s+смесь|какой\s+состав|compare.*(?:mixture|material)|which mixture',
  'reactor':r'состояни.*реактор|статус.*реактор|датчик|reactor status|sensor|датчик.*күй',
  'loading':r'загруз.*сразу|всё\s+сразу|все\s+сразу|can.*load|all.*once',
@@ -17,6 +18,8 @@ def identify(text,state):
     one=bool(re.search(r'одним\s+предлож|одно\s+предлож|one\s+sentence|бір\s+сөйлем',text,re.I))
     edit=bool(re.search(r'добав|убери|удали|замени|вдвое|\badd\b|remove|replace|double|қос|алып\s+таста',text,re.I))
     goals=[k for k,p in PATTERNS.items() if re.search(p,text,re.I)]
+    if 'economics' in goals and not intent_requested(text,'economic_comparison',PATTERNS['economics']):
+        goals.remove('economics')
     # Mentioning an ingredient during an edit is not a request for every output.
     if edit and not re.search(r'сколько|какая|какой|выгод|сравни|how|what.*(?:yield|temperature)|қанша|қандай',text,re.I):goals=[]
     if re.search(r'точност|модел.*огранич|model.*limit|accuracy|mae|rmse|истори.*цен|price history',text,re.I):return {'goals':[],'delegate_legacy':True,'detail':detail,'one_sentence':one,'edit':edit,'explicit':False}

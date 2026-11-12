@@ -4,7 +4,8 @@ import math
 from pydantic import BaseModel,ConfigDict,Field,model_validator
 
 Provenance=Literal['USER_CONFIRMED','SOURCE_VERIFIED','MODEL_ESTIMATED','ASSUMED_FOR_SCENARIO','UNKNOWN','CALCULATED_FROM_CONFIRMED']
-Intent=Literal['economic_comparison','temperature_recommendation','methane_yield','process_guidance','model_info','market_prices','price_history','reactor_status','sources','general','greeting']
+Intent=Literal['economic_comparison','temperature_recommendation','methane_yield','process_guidance','digestate_management','model_info','market_prices','price_history','reactor_status','sources','profile_lookup','scientific_explanation','uncertainty_question','general','greeting']
+RequestKind=Literal['scientific_explanation','explicit_calculation','substrate_assessment','reactor_management','economic_comparison','parameter_followup','parameter_correction','uncertainty_question']
 Language=Literal['ru','kk','en']
 
 
@@ -21,9 +22,11 @@ class Entity(Strict):
 
     @model_validator(mode='after')
     def measured_ranges(self):
-        choices={'unit':{'L','m3','kg','t','g'},'vs_basis':{'TS','fresh_mass'},'sale_offer_scope':{'batch','kg','L','t'},'operating_mode':{'batch','continuous'}}
+        choices={'unit':{'L','m3','kg','t','g'},'vs_basis':{'TS','fresh_mass'},'sale_offer_scope':{'batch','kg','L','t'},
+                 'sale_offer_currency':{'KZT','USD','RUB'},'operating_mode':{'batch','continuous'}}
         if self.name in choices and self.value not in choices[self.name]:raise ValueError(f'Invalid {self.name}')
-        positive={'quantity','mass_kg','material_volume_l','density_kg_l','vs_mass_kg','reactor_total_volume_l','reactor_working_volume_l','reactor_volume_l','ISR'}
+        positive={'duration_days','quantity','mass_kg','material_volume_l','density_kg_l','vs_mass_kg','reactor_total_volume_l','reactor_working_volume_l','reactor_volume_l','ISR',
+                  'reported_biogas_volume_m3','reported_methane_volume_m3','heating_value_kwh_m3','bmp_ml_ch4_g_vs'}
         nonnegative={'dilution_water_l','auxiliary_energy_kwh'}
         fractions={'recovery_fraction','methane_fraction','electricity_efficiency','c_vs_sub_m','c_vs_sub_f','c_vs_inoc'}
         if self.name in positive|fractions|nonnegative|{'temperature_c','ts_percent','vs_percent','sale_offer_amount'}:
@@ -40,6 +43,7 @@ class Entity(Strict):
 class Extraction(Strict):
     language:Language='ru'
     intents:list[Intent]=Field(default_factory=list)
+    request_kinds:list[RequestKind]=Field(default_factory=list)
     entities:list[Entity]=Field(default_factory=list)
     correction:bool=False
     new_batch:bool=False

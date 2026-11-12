@@ -1,0 +1,63 @@
+{
+  "mode": "recorded_public_answer_no_inference",
+  "source": "limited_chat_1794407172434436200.json",
+  "scientific_verification": {
+    "status": "failed",
+    "checked": true,
+    "all_checks_passed": false,
+    "checks": [
+      {
+        "check": "retrieved_claim_source_identity",
+        "passed": true
+      },
+      {
+        "check": "no_known_scientific_contradiction",
+        "passed": false
+      },
+      {
+        "check": "bmp_experimental_basis_explained",
+        "passed": true
+      },
+      {
+        "check": "theoretical_composition_basis_explained",
+        "passed": true
+      },
+      {
+        "check": "time_dependent_kinetics_explained",
+        "passed": true
+      },
+      {
+        "check": "no_guaranteed_time_yield",
+        "passed": true
+      }
+    ],
+    "contradictions": [
+      "batch_kinetics_or_conditions_denied",
+      "bmp_measurement_scope_ambiguous"
+    ],
+    "assertions": [
+      {
+        "rule": "bmp_experimental_basis_explained",
+        "statement": "Экспериментальный BMP — это максимальный потенциал метана в batch-тесте, а теоретический выход рассчитывается по составу или ХПК.",
+        "subject": "BMP",
+        "scope": "laboratory assay",
+        "passed": true
+      },
+      {
+        "rule": "batch_kinetics_or_conditions_denied",
+        "statement": "Фактический выход за 30 дней может быть ниже BMP из-за кинетики, доступности субстрата и условий реактора, которые не отражены в batch-тесте.",
+        "subject": "kinetics / assay conditions",
+        "scope": "batch assay observation and rate",
+        "passed": false
+      },
+      {
+        "rule": "bmp_measurement_scope_ambiguous",
+        "statement": "BMP — лабораторный потенциал, а не измеренная выработка.",
+        "subject": "BMP",
+        "scope": "unscoped denial of measured output",
+        "passed": false
+      }
+    ],
+    "scope": "Reviewed-source identity and limited RU/KK/EN proposition, negation and target-scope rules; not exhaustive factual verification or biological validation."
+  }
+}

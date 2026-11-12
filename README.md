@@ -549,3 +549,10 @@ Ollama должна быть запущена с установленной мо
 Полный набор тестов: `python -m pytest tests -q`.
 
 [Архитектура, реальные испытания и ограничения v8.5](reports/stage8_5_autonomous_scientific_agent.md).
+## Экспериментальный FIRO Demo MVP
+
+```powershell
+python -X utf8 main.py dashboard --firo-demo --port 8770
+```
+
+Три запускаемых сценария работают без модели; Qwen3 4B может отдельно объяснить проверенные результаты после ресурсного допуска. Инструкция и границы: [docs/firo_demo_mvp.md](docs/firo_demo_mvp.md). Фактические браузерные проверки: [reports/firo_demo_mvp_20261112.md](reports/firo_demo_mvp_20261112.md).

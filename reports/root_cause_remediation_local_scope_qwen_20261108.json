@@ -1,0 +1,2608 @@
+{
+  "model": "qwen3:8b",
+  "provider": "offline (loopback Ollama)",
+  "cases": [
+    {
+      "case": "beet_vs_straw",
+      "route": "job",
+      "session": "cd9f83beb4604ddea198c539c255a64c",
+      "turns": [
+        {
+          "prompt": "Сравни только литературный потенциал метана для 3 кг свекловичного жома и 3 кг пшеничной соломы. Не делай вывод о прибыли без цен и затрат.",
+          "request_id": "d7a272804d124bb3bc9b08ef8fa59992",
+          "job": {
+            "id": "99b7718853784ab086ee6a688431a43a",
+            "request_id": "d7a272804d124bb3bc9b08ef8fa59992",
+            "conversation_id": "cd9f83beb4604ddea198c539c255a64c",
+            "task_id": "3d62f210a74b469496b74b30e8c3f8e8",
+            "message": "Сравни только литературный потенциал метана для 3 кг свекловичного жома и 3 кг пшеничной соломы. Не делай вывод о прибыли без цен и затрат.",
+            "created_at": "2026-11-08T08:58:28.694817+00:00",
+            "updated_at": "2026-11-08T09:00:14.645240+00:00",
+            "status": "COMPLETED",
+            "current_stage": "completed",
+            "attempt_count": 1,
+            "error_code": null,
+            "result_reference": "/api/dashboard/jobs/99b7718853784ab086ee6a688431a43a/result",
+            "heartbeat_at": "2026-11-08T09:00:12.975756+00:00",
+            "cancel_requested": 0,
+            "acknowledged_at": null,
+            "expected_state_version": 0,
+            "preview": {
+              "version": "7",
+              "task_id": "329e5c6bc6614039b518db5931d559b9",
+              "task_history": [],
+              "conversation_id": "cd9f83beb4604ddea198c539c255a64c",
+              "language": "ru",
+              "facts": {
+                "material": {
+                  "value": "mixture",
+                  "unit": null,
+                  "provenance": "USER_CONFIRMED",
+                  "evidence": "Сравни только литературный потенциал метана для 3 кг свекловичного жома и 3 кг пшеничной соломы. Не делай вывод о прибыли без цен и затрат.",
+                  "recorded_at": "2026-11-08T08:58:52.300002+00:00",
+                  "dependencies": []
+                }
+              },
+              "assumptions": {
+                "market_region": {
+                  "value": "KZ-Karaganda",
+                  "unit": null,
+                  "provenance": "ASSUMED_FOR_SCENARIO",
+                  "evidence": "Default dashboard region; not user-confirmed",
+                  "recorded_at": "2026-11-08T08:58:28.798800+00:00",
+                  "dependencies": []
+                }
+              },
+              "derived": {},
+              "estimates": {},
+              "source_verified": {},
+              "intents": [
+                "profile_lookup"
+              ],
+              "pending_question": null,
+              "invalidated": [],
+              "decision_settings": {
+                "gas_use": "unknown",
+                "assume_reference_compatibility": false,
+                "use_reference_scenarios": true,
+                "heating_value_type": "LHV",
+                "reactor": {
+                  "engineering_review_confirmed": false,
+                  "safety_review_required": false,
+                  "loads": [],
+                  "loads_complete": false,
+                  "provenance": "USER_REPORTED"
+                },
+                "quotes": {},
+                "price_ids": {},
+                "max_price_age_days": 30,
+                "costs": {},
+                "all_operating_costs_included": false,
+                "include_capital": false,
+                "assume_full_self_consumption": false,
+                "replacement_heat_source": "unknown",
+                "gas_sale_technical_confirmed": false,
+                "gas_sale_legal_confirmed": false,
+                "gas_quality_confirmed": false,
+                "gas_storage_transport_confirmed": false,
+                "digestate_quality_confirmed": false,
+                "digestate_market_allowed": false
+              },
+              "decision_unavailable": [],
+              "last_research_summary": {},
+              "mixture_components": [
+                {
+                  "id": "c1",
+                  "material": "beet_pulp",
+                  "material_state": "unknown",
+                  "quantity": 3.0,
+                  "unit": "kg",
+                  "animal": "unknown",
+                  "poultry_type": "unknown",
+                  "reference_profile_id": null,
+                  "physical_state": "unknown",
+                  "decay_state": "unknown",
+                  "bedding": "unknown",
+                  "data_mode": "LITERATURE_ESTIMATE",
+                  "properties": {
+                    "density_kg_l": null,
+                    "ts_fraction": null,
+                    "vs_fraction_wet": null,
+                    "vs_fraction_of_ts": null,
+                    "bmp_ml_g_vs": null,
+                    "carbon_fraction_wet": null,
+                    "nitrogen_fraction_wet": null,
+                    "gas_basis": null
+                  },
+                  "provenance": "USER_CONFIRMED",
+                  "evidence": "ратурный потенциал метана для 3 кг свекловичного жома и 3 кг пшеничной соломы. Не делай вывод о прибыли без цен и затрат."
+                },
+                {
+                  "id": "c2",
+                  "material": "straw",
+                  "material_state": "unknown",
+                  "quantity": 3.0,
+                  "unit": "kg",
+                  "animal": "unknown",
+                  "poultry_type": "unknown",
+                  "reference_profile_id": null,
+                  "physical_state": "unknown",
+                  "decay_state": "unknown",
+                  "bedding": "unknown",
+                  "data_mode": "LITERATURE_ESTIMATE",
+                  "properties": {
+                    "density_kg_l": null,
+                    "ts_fraction": null,
+                    "vs_fraction_wet": null,
+                    "vs_fraction_of_ts": null,
+                    "bmp_ml_g_vs": null,
+                    "carbon_fraction_wet": null,
+                    "nitrogen_fraction_wet": null,
+                    "gas_basis": null
+                  },
+                  "provenance": "USER_CONFIRMED",
+                  "evidence": "для 3 кг свекловичного жома и 3 кг пшеничной соломы. Не делай вывод о прибыли без цен и затрат."
+                }
+              ],
+              "mixture_scenario_components": [],
+              "mixture_revision": 1,
+              "mixture_history": [
+                {
+                  "at": "2026-11-08T08:58:52.308414+00:00",
+                  "action": "set",
+                  "is_hypothetical": false,
+                  "components": [
+                    {
+                      "id": "c1",
+                      "material": "beet_pulp",
+                      "material_state": "unknown",
+                      "quantity": 3.0,
+                      "unit": "kg",
+                      "animal": "unknown",
+                      "poultry_type": "unknown",
+                      "reference_profile_id": null,
+                      "physical_state": "unknown",
+                      "decay_state": "unknown",
+                      "bedding": "unknown",
+                      "data_mode": "LITERATURE_ESTIMATE",
+                      "properties": {
+                        "density_kg_l": null,
+                        "ts_fraction": null,
+                        "vs_fraction_wet": null,
+                        "vs_fraction_of_ts": null,
+                        "bmp_ml_g_vs": null,
+                        "carbon_fraction_wet": null,
+                        "nitrogen_fraction_wet": null,
+                        "gas_basis": null
+                      },
+                      "provenance": "USER_CONFIRMED",
+                      "evidence": "ратурный потенциал метана для 3 кг свекловичного жома и 3 кг пшеничной соломы. Не делай вывод о прибыли без цен и затрат."
+                    },
+                    {
+                      "id": "c2",
+                      "material": "straw",
+                      "material_state": "unknown",
+                      "quantity": 3.0,
+                      "unit": "kg",
+                      "animal": "unknown",
+                      "poultry_type": "unknown",
+                      "reference_profile_id": null,
+                      "physical_state": "unknown",
+                      "decay_state": "unknown",
+                      "bedding": "unknown",
+                      "data_mode": "LITERATURE_ESTIMATE",
+                      "properties": {
+                        "density_kg_l": null,
+                        "ts_fraction": null,
+                        "vs_fraction_wet": null,
+                        "vs_fraction_of_ts": null,
+                        "bmp_ml_g_vs": null,
+                        "carbon_fraction_wet": null,
+                        "nitrogen_fraction_wet": null,
+                        "gas_basis": null
+                      },
+                      "provenance": "USER_CONFIRMED",
+                      "evidence": "для 3 кг свекловичного жома и 3 кг пшеничной соломы. Не делай вывод о прибыли без цен и затрат."
+                    }
+                  ]
+                }
+              ],
+              "advisor_inventory_mode": "mixture",
+              "advisor_pending_component": null,
+              "advisor_settings": {},
+              "smart_goals": [],
+              "smart_cache": {},
+              "active_mixture_scenario": false,
+              "advanced": {},
+              "analytical_mode": "mixture"
+            },
+            "terminal": true,
+            "partial_count": 1,
+            "result_available": true
+          },
+          "result": {
+            "id": "99b7718853784ab086ee6a688431a43a",
+            "status": "COMPLETED",
+            "terminal": true,
+            "reply": {
+              "conversation_version": "7",
+              "analysis_version": "9.0",
+              "mode": "verified_partial",
+              "answer": "Предварительная оценка по доступным и проверенным данным:\n\nСолома (dry): опубликованный BMP образца monch2013-straw-A: 214 mL CH4/g VS (литературные данные). Preparation: Barn A; dried 60 C, milled 1 mm before HBT. No population interval. Evidence review: Reviewed local extraction of published experiment; not independent replication Preparation affects hydrolysis; barn A paired measurements only, not universal raw feedstock BMP. Source ID: monch2013\n\nВ проверенном локальном корпусе для Свекловичный жом количественные профили не найдены; это не доказывает отсутствие научных публикаций.",
+              "user_facing_answer": {
+                "paragraphs": [
+                  "Предварительная оценка по доступным и проверенным данным:",
+                  "Солома (dry): опубликованный BMP образца monch2013-straw-A: 214 mL CH4/g VS (литературные данные). Preparation: Barn A; dried 60 C, milled 1 mm before HBT. No population interval. Evidence review: Reviewed local extraction of published experiment; not independent replication Preparation affects hydrolysis; barn A paired measurements only, not universal raw feedstock BMP. Source ID: monch2013",
+                  "В проверенном локальном корпусе для Свекловичный жом количественные профили не найдены; это не доказывает отсутствие научных публикаций."
+                ],
+                "sections": [],
+                "question": null,
+                "sources": [
+                  {
+                    "title": "Investigation of the methane potential of horse manure",
+                    "url": "https://cigrjournal.org/index.php/Ejounral/article/view/2445"
+                  }
+                ],
+                "modes": [
+                  "explicit_engine_partial"
+                ],
+                "assumptions": [
+                  "market_region"
+                ]
+              },
+              "tools": [
+                {
+                  "tool": "search_substrate_profiles",
+                  "status": "ok",
+                  "input_origin": "validated_scientific_state",
+                  "query": "beet_pulp, straw",
+                  "result": {
+                    "status": "ok",
+                    "message": "Study-specific local evidence; no live internet search performed.",
+                    "dossiers": [
+                      {
+                        "material": "beet_pulp",
+                        "name": "Свекловичный жом",
+                        "scope_status": "EXPERIMENTAL_RETAINED",
+                        "selection_rationale": "Historical category retained; evidence is not a core dossier.",
+                        "physical_states": [
+                          "fresh_solid",
+                          "slurry",
+                          "dry"
+                        ],
+                        "studies": [],
+                        "partial_characterizations": [],
+                        "sources": [],
+                        "inhibition_risks": [
+                          "pressing, drying and moisture basis require confirmation"
+                        ],
+                        "organic_loading_limit": null,
+                        "loading_limit_note": "No universal safe OLR established. Study-specific loading, ISR and duration belong to their original reactor and feeding regime.",
+                        "co_digestion": "No universal synergy or compatible mixing ratio inferred; compare specific mixed-substrate studies before transfer.",
+                        "unknowns": [
+                          "batch composition",
+                          "inoculum activity",
+                          "plant recovery",
+                          "safe loading limit"
+                        ],
+                        "search_scope": "LOCAL_REVIEWED_CORPUS",
+                        "live_search_performed": false
+                      },
+                      {
+                        "material": "straw",
+                        "name": "Солома",
+                        "scope_status": "CORE",
+                        "selection_rationale": "Cereal residues; wheat straw preparation and slow hydrolysis are central constraints.",
+                        "physical_states": [
+                          "dry",
+                          "shredded"
+                        ],
+                        "studies": [
+                          {
+                            "profile_id": "monch2013-straw-A",
+                            "source_id": "monch2013",
+                            "physical_state": "dry",
+                            "animal_scope": null,
+                            "preparation": "Barn A; dried 60 C, milled 1 mm before HBT. No population interval.",
+                            "ts_fraction": {
+                              "low": 0.8177,
+                              "high": 0.8177,
+                              "locator": "Tables 2 and 7, barn A: TS 81.77% FM, VS 75.61% FM, observed 0.214 Nm3 CH4/kg VS"
+                            },
+                            "vs_fraction_wet": {
+                              "low": 0.7561,
+                              "high": 0.7561,
+                              "locator": "Tables 2 and 7, barn A: TS 81.77% FM, VS 75.61% FM, observed 0.214 Nm3 CH4/kg VS"
+                            },
+                            "vs_fraction_of_ts": null,
+                            "bmp_ml_ch4_g_vs": {
+                              "low": 214,
+                              "high": 214,
+                              "locator": "Tables 2 and 7, barn A: TS 81.77% FM, VS 75.61% FM, observed 0.214 Nm3 CH4/kg VS"
+                            },
+                            "density_kg_l": null,
+                            "conditions": {
+                              "temperature_c": 37,
+                              "temperature_tolerance_c": 0.5,
+                              "duration_days": 35,
+                              "duration_kind": "BMP_INCUBATION",
+                              "reactor_type": "HBT 100 mL glass syringes; 30 g inoculum + 600 mg dried milled sample",
+                              "gas_basis": {
+                                "temperature_k": 273.15,
+                                "pressure_pa": 101300,
+                                "moisture": "unknown"
+                              },
+                              "preparation": "Dried at 60 C for 48 h, milled to 1 mm; Stuttgart barns"
+                            },
+                            "quality": "Reviewed local extraction of published experiment; not independent replication",
+                            "gas_basis": {
+                              "temperature_k": 273.15,
+                              "pressure_pa": 101300,
+                              "moisture": "unknown"
+                            },
+                            "provenance": "PUBLISHED_EXPERIMENT",
+                            "transfer_limitations": "Preparation affects hydrolysis; barn A paired measurements only, not universal raw feedstock BMP."
+                          }
+                        ],
+                        "partial_characterizations": [],
+                        "sources": [
+                          {
+                            "id": "monch2013",
+                            "title": "Investigation of the methane potential of horse manure",
+                            "authors": [
+                              "Matthias Mönch-Tegeder",
+                              "Andreas Lemmer",
+                              "Hans Oechsner",
+                              "Thomas Jungbluth"
+                            ],
+                            "year": 2013,
+                            "url": "https://cigrjournal.org/index.php/Ejounral/article/view/2445",
+                            "review_url": "https://cigrjournal.org/index.php/Ejounral/article/download/2445/1736/8047",
+                            "verification_stage": "NUMERIC_DATA_VERIFIED",
+                            "reviewed_sections": [
+                              "Methods 2.1-2.3; Tables 2, 3, 7, 8"
+                            ],
+                            "conditions": {
+                              "temperature_c": 37,
+                              "temperature_tolerance_c": 0.5,
+                              "duration_days": 35,
+                              "duration_kind": "BMP_INCUBATION",
+                              "reactor_type": "HBT 100 mL glass syringes; 30 g inoculum + 600 mg dried milled sample",
+                              "gas_basis": {
+                                "temperature_k": 273.15,
+                                "pressure_pa": 101300,
+                                "moisture": "unknown"
+                              },
+                              "preparation": "Dried at 60 C for 48 h, milled to 1 mm; Stuttgart barns"
+                            },
+                            "limitations": "Preparation affects hydrolysis; barn A paired measurements only, not universal raw feedstock BMP."
+                          }
+                        ],
+                        "inhibition_risks": [
+                          "slow hydrolysis",
+                          "preparation energy"
+                        ],
+                        "organic_loading_limit": null,
+                        "loading_limit_note": "No universal safe OLR established. Study-specific loading, ISR and duration belong to their original reactor and feeding regime.",
+                        "co_digestion": "No universal synergy or compatible mixing ratio inferred; compare specific mixed-substrate studies before transfer.",
+                        "unknowns": [
+                          "batch composition",
+                          "inoculum activity",
+                          "plant recovery",
+                          "safe loading limit"
+                        ],
+                        "search_scope": "LOCAL_REVIEWED_CORPUS",
+                        "live_search_performed": false
+                      }
+                    ],
+                    "core_materials": [
+                      "cattle_manure",
+                      "swine_manure",
+                      "poultry_manure",
+                      "sheep_goat_manure",
+                      "horse_manure",
+                      "food_waste",
+                      "straw",
+                      "grass"
+                    ],
+                    "universal_profile_created": false
+                  }
+                }
+              ],
+              "provider_status": [
+                {
+                  "provider": "offline",
+                  "model": "qwen3:8b",
+                  "status": "available",
+                  "actual_generation": true,
+                  "phase": "structured_nlu",
+                  "requests": [
+                    {
+                      "input_characters": 681,
+                      "request_bytes": 2258,
+                      "status": "ok",
+                      "prompt_tokens": 196,
+                      "output_tokens": 195,
+                      "done_reason": "stop",
+                      "load_seconds": 5.7311739,
+                      "generation_seconds": 16.539363,
+                      "tokens_per_second": 11.790055034163045,
+                      "latency_seconds": 23.424964000005275
+                    }
+                  ]
+                },
+                {
+                  "provider": "offline",
+                  "model": "qwen3:8b",
+                  "phase": "v9_tool_selection",
+                  "actual_generation": true,
+                  "requests": [
+                    {
+                      "input_characters": 2712,
+                      "request_bytes": 3961,
+                      "status": "ok",
+                      "prompt_tokens": 754,
+                      "output_tokens": 90,
+                      "done_reason": "stop",
+                      "load_seconds": 0.0097411,
+                      "generation_seconds": 7.795596,
+                      "tokens_per_second": 11.544980011791273,
+                      "latency_seconds": 10.914410899997165
+                    }
+                  ]
+                },
+                {
+                  "provider": "offline",
+                  "model": "qwen3:8b",
+                  "phase": "v9_synthesis",
+                  "actual_generation": true,
+                  "requests": [
+                    {
+                      "input_characters": 8444,
+                      "request_bytes": 10598,
+                      "status": "ok",
+                      "prompt_tokens": 2504,
+                      "output_tokens": 227,
+                      "done_reason": "stop",
+                      "load_seconds": 0.0068718,
+                      "generation_seconds": 28.098424,
+                      "tokens_per_second": 8.078744914661405,
+                      "latency_seconds": 38.70724640000117
+                    }
+                  ]
+                },
+                {
+                  "provider": "offline",
+                  "model": "qwen3:8b",
+                  "phase": "v9_synthesis",
+                  "actual_generation": true,
+                  "requests": [
+                    {
+                      "input_characters": 9744,
+                      "request_bytes": 12744,
+                      "status": "ok",
+                      "prompt_tokens": 2907,
+                      "output_tokens": 234,
+                      "done_reason": "stop",
+                      "load_seconds": 0.0086135,
+                      "generation_seconds": 30.367176,
+                      "tokens_per_second": 7.705688536859667,
+                      "latency_seconds": 32.45633909999742
+                    }
+                  ]
+                }
+              ],
+              "memory": {
+                "version": "7",
+                "task_id": "329e5c6bc6614039b518db5931d559b9",
+                "task_history": [],
+                "conversation_id": "cd9f83beb4604ddea198c539c255a64c",
+                "language": "ru",
+                "facts": {
+                  "material": {
+                    "value": "mixture",
+                    "unit": null,
+                    "provenance": "USER_CONFIRMED",
+                    "evidence": "Сравни только литературный потенциал метана для 3 кг свекловичного жома и 3 кг пшеничной соломы. Не делай вывод о прибыли без цен и затрат.",
+                    "recorded_at": "2026-11-08T08:58:52.300002+00:00",
+                    "dependencies": []
+                  }
+                },
+                "assumptions": {
+                  "market_region": {
+                    "value": "KZ-Karaganda",
+                    "unit": null,
+                    "provenance": "ASSUMED_FOR_SCENARIO",
+                    "evidence": "Default dashboard region; not user-confirmed",
+                    "recorded_at": "2026-11-08T08:58:28.798800+00:00",
+                    "dependencies": []
+                  }
+                },
+                "derived": {},
+                "estimates": {},
+                "source_verified": {},
+                "intents": [
+                  "profile_lookup"
+                ],
+                "pending_question": null,
+                "invalidated": [],
+                "decision_settings": {
+                  "gas_use": "unknown",
+                  "assume_reference_compatibility": false,
+                  "use_reference_scenarios": true,
+                  "heating_value_type": "LHV",
+                  "reactor": {
+                    "engineering_review_confirmed": false,
+                    "safety_review_required": false,
+                    "loads": [],
+                    "loads_complete": false,
+                    "provenance": "USER_REPORTED"
+                  },
+                  "quotes": {},
+                  "price_ids": {},
+                  "max_price_age_days": 30,
+                  "costs": {},
+                  "all_operating_costs_included": false,
+                  "include_capital": false,
+                  "assume_full_self_consumption": false,
+                  "replacement_heat_source": "unknown",
+                  "gas_sale_technical_confirmed": false,
+                  "gas_sale_legal_confirmed": false,
+                  "gas_quality_confirmed": false,
+                  "gas_storage_transport_confirmed": false,
+                  "digestate_quality_confirmed": false,
+                  "digestate_market_allowed": false
+                },
+                "decision_unavailable": [],
+                "last_research_summary": {},
+                "mixture_components": [
+                  {
+                    "id": "c1",
+                    "material": "beet_pulp",
+                    "material_state": "unknown",
+                    "quantity": 3.0,
+                    "unit": "kg",
+                    "animal": "unknown",
+                    "poultry_type": "unknown",
+                    "reference_profile_id": null,
+                    "physical_state": "unknown",
+                    "decay_state": "unknown",
+                    "bedding": "unknown",
+                    "data_mode": "LITERATURE_ESTIMATE",
+                    "properties": {
+                      "density_kg_l": null,
+                      "ts_fraction": null,
+                      "vs_fraction_wet": null,
+                      "vs_fraction_of_ts": null,
+                      "bmp_ml_g_vs": null,
+                      "carbon_fraction_wet": null,
+                      "nitrogen_fraction_wet": null,
+                      "gas_basis": null
+                    },
+                    "provenance": "USER_CONFIRMED",
+                    "evidence": "ратурный потенциал метана для 3 кг свекловичного жома и 3 кг пшеничной соломы. Не делай вывод о прибыли без цен и затрат."
+                  },
+                  {
+                    "id": "c2",
+                    "material": "straw",
+                    "material_state": "unknown",
+                    "quantity": 3.0,
+                    "unit": "kg",
+                    "animal": "unknown",
+                    "poultry_type": "unknown",
+                    "reference_profile_id": null,
+                    "physical_state": "unknown",
+                    "decay_state": "unknown",
+                    "bedding": "unknown",
+                    "data_mode": "LITERATURE_ESTIMATE",
+                    "properties": {
+                      "density_kg_l": null,
+                      "ts_fraction": null,
+                      "vs_fraction_wet": null,
+                      "vs_fraction_of_ts": null,
+                      "bmp_ml_g_vs": null,
+                      "carbon_fraction_wet": null,
+                      "nitrogen_fraction_wet": null,
+                      "gas_basis": null
+                    },
+                    "provenance": "USER_CONFIRMED",
+                    "evidence": "для 3 кг свекловичного жома и 3 кг пшеничной соломы. Не делай вывод о прибыли без цен и затрат."
+                  }
+                ],
+                "mixture_scenario_components": [],
+                "mixture_revision": 1,
+                "mixture_history": [
+                  {
+                    "at": "2026-11-08T08:58:52.308414+00:00",
+                    "action": "set",
+                    "is_hypothetical": false,
+                    "components": [
+                      {
+                        "id": "c1",
+                        "material": "beet_pulp",
+                        "material_state": "unknown",
+                        "quantity": 3.0,
+                        "unit": "kg",
+                        "animal": "unknown",
+                        "poultry_type": "unknown",
+                        "reference_profile_id": null,
+                        "physical_state": "unknown",
+                        "decay_state": "unknown",
+                        "bedding": "unknown",
+                        "data_mode": "LITERATURE_ESTIMATE",
+                        "properties": {
+                          "density_kg_l": null,
+                          "ts_fraction": null,
+                          "vs_fraction_wet": null,
+                          "vs_fraction_of_ts": null,
+                          "bmp_ml_g_vs": null,
+                          "carbon_fraction_wet": null,
+                          "nitrogen_fraction_wet": null,
+                          "gas_basis": null
+                        },
+                        "provenance": "USER_CONFIRMED",
+                        "evidence": "ратурный потенциал метана для 3 кг свекловичного жома и 3 кг пшеничной соломы. Не делай вывод о прибыли без цен и затрат."
+                      },
+                      {
+                        "id": "c2",
+                        "material": "straw",
+                        "material_state": "unknown",
+                        "quantity": 3.0,
+                        "unit": "kg",
+                        "animal": "unknown",
+                        "poultry_type": "unknown",
+                        "reference_profile_id": null,
+                        "physical_state": "unknown",
+                        "decay_state": "unknown",
+                        "bedding": "unknown",
+                        "data_mode": "LITERATURE_ESTIMATE",
+                        "properties": {
+                          "density_kg_l": null,
+                          "ts_fraction": null,
+                          "vs_fraction_wet": null,
+                          "vs_fraction_of_ts": null,
+                          "bmp_ml_g_vs": null,
+                          "carbon_fraction_wet": null,
+                          "nitrogen_fraction_wet": null,
+                          "gas_basis": null
+                        },
+                        "provenance": "USER_CONFIRMED",
+                        "evidence": "для 3 кг свекловичного жома и 3 кг пшеничной соломы. Не делай вывод о прибыли без цен и затрат."
+                      }
+                    ]
+                  }
+                ],
+                "advisor_inventory_mode": "mixture",
+                "advisor_pending_component": null,
+                "advisor_settings": {},
+                "smart_goals": [],
+                "smart_cache": {},
+                "active_mixture_scenario": false,
+                "advanced": {
+                  "research_dialogue": {
+                    "asked": [],
+                    "last_turn_type": "new_question",
+                    "known_cost_categories": [],
+                    "unpriced_categories": [],
+                    "last_question_id": null
+                  }
+                },
+                "analytical_mode": "mixture"
+              },
+              "context": {
+                "material": "mixture",
+                "market_region": "KZ-Karaganda"
+              },
+              "context_updated": true,
+              "pending_question": null,
+              "missing": [],
+              "actuator_access": false,
+              "technical_metadata": {
+                "agent_version": "9.0",
+                "smart_version": "9.0",
+                "final_author": "verified_engine_partial",
+                "research_actions": [
+                  {
+                    "tool": "search_substrate_profiles",
+                    "purpose": "Исследовать литературный потенциал метана для свекловичного жома и пшеничной соломы",
+                    "ready_after_tool": true,
+                    "elapsed_seconds": 34.43520150000404
+                  }
+                ],
+                "verification": {
+                  "status": "not_applicable",
+                  "outcome": "not_applicable",
+                  "checks": [],
+                  "checked": false,
+                  "all_checks_passed": false,
+                  "unsupported_tools": [],
+                  "missing_verification_evidence": [],
+                  "scope": "Arithmetic, source identity, material/form, energy allocation and cost completeness; not biological validation, interval coverage or operating safety."
+                },
+                "diagnostics": [
+                  {
+                    "stage": "synthesis_validation",
+                    "issues": [
+                      "local_search_scope_overstated"
+                    ],
+                    "rejected_public_draft": {
+                      "conclusion": "Литературный потенциал метана для 3 кг свекловичного жома и 3 кг пшеничной соломы не может быть сравнен без дополнительных данных.",
+                      "explanation": "Для свекловичного жома отсутствуют данные о литературном потенциале метана. Для пшеничной соломы значение BMP составляет 214 mL CH4/g VS.",
+                      "limitations": [
+                        "Данные для свекловичного жома отсутствуют; значение BMP для соломы относится к конкретному образцу и не подтверждено для"
+                      ],
+                      "next_question": "Можно ли получить данные о литературном потенциале метана для свекловичного жома из других источника",
+                      "evidence_ids": [
+                        "profile.monch2013-straw-A.bmp"
+                      ],
+                      "decision": "not_established"
+                    },
+                    "quantity_differences": []
+                  },
+                  {
+                    "stage": "synthesis_validation",
+                    "issues": [
+                      "local_search_scope_overstated"
+                    ],
+                    "rejected_public_draft": {
+                      "conclusion": "Литературный потенциал метана для 3 кг пшеничной соломы составляет 214 mL CH4/g VS. Для свекловичного жома данных о литературном потенциале метана нет.",
+                      "explanation": "Значение BMP для соломы взято из исследования monch2013-straw-A. Для свекловичного жома отсутствуют соответствующие данные в проверенном локальном корпусе.",
+                      "limitations": [
+                        "Данные для свекловичного жома отсутствуют; значение BMP для соломы относится к конкретному образцу и не подтверждено для"
+                      ],
+                      "next_question": "Можно ли получить данные о литературном потенциале метана для свекловичного жома из других источника",
+                      "evidence_ids": [
+                        "profile.monch2013-straw-A.bmp"
+                      ],
+                      "decision": "not_established"
+                    },
+                    "quantity_differences": []
+                  }
+                ],
+                "synthesis_rejections": [
+                  "local_search_scope_overstated"
+                ],
+                "resource_termination": "investigation_complete",
+                "primary_evidence_unchecked": [],
+                "verified_display_references": [
+                  {
+                    "id": "profile.monch2013-straw-A.bmp",
+                    "label": "Солома (dry): опубликованный BMP образца monch2013-straw-A",
+                    "value": {
+                      "low": 214,
+                      "high": 214
+                    },
+                    "unit": "mL CH4/g VS",
+                    "level": "LITERATURE",
+                    "scenario": "monch2013-straw-A",
+                    "description": "Preparation: Barn A; dried 60 C, milled 1 mm before HBT. No population interval. Evidence review: Reviewed local extraction of published experiment; not independent replication Preparation affects hydrolysis; barn A paired measurements only, not universal raw feedstock BMP. Source ID: monch2013",
+                    "source_locator": "Tables 2 and 7, barn A: TS 81.77% FM, VS 75.61% FM, observed 0.214 Nm3 CH4/kg VS"
+                  }
+                ],
+                "scientific_details": {
+                  "search_substrate_profiles": {
+                    "status": "ok",
+                    "message": "Study-specific local evidence; no live internet search performed.",
+                    "dossiers": [
+                      {
+                        "material": "beet_pulp",
+                        "name": "Свекловичный жом",
+                        "scope_status": "EXPERIMENTAL_RETAINED",
+                        "selection_rationale": "Historical category retained; evidence is not a core dossier.",
+                        "physical_states": [
+                          "fresh_solid",
+                          "slurry",
+                          "dry"
+                        ],
+                        "studies": [],
+                        "partial_characterizations": [],
+                        "sources": [],
+                        "inhibition_risks": [
+                          "pressing, drying and moisture basis require confirmation"
+                        ],
+                        "organic_loading_limit": null,
+                        "loading_limit_note": "No universal safe OLR established. Study-specific loading, ISR and duration belong to their original reactor and feeding regime.",
+                        "co_digestion": "No universal synergy or compatible mixing ratio inferred; compare specific mixed-substrate studies before transfer.",
+                        "unknowns": [
+                          "batch composition",
+                          "inoculum activity",
+                          "plant recovery",
+                          "safe loading limit"
+                        ],
+                        "search_scope": "LOCAL_REVIEWED_CORPUS",
+                        "live_search_performed": false
+                      },
+                      {
+                        "material": "straw",
+                        "name": "Солома",
+                        "scope_status": "CORE",
+                        "selection_rationale": "Cereal residues; wheat straw preparation and slow hydrolysis are central constraints.",
+                        "physical_states": [
+                          "dry",
+                          "shredded"
+                        ],
+                        "studies": [
+                          {
+                            "profile_id": "monch2013-straw-A",
+                            "source_id": "monch2013",
+                            "physical_state": "dry",
+                            "animal_scope": null,
+                            "preparation": "Barn A; dried 60 C, milled 1 mm before HBT. No population interval.",
+                            "ts_fraction": {
+                              "low": 0.8177,
+                              "high": 0.8177,
+                              "locator": "Tables 2 and 7, barn A: TS 81.77% FM, VS 75.61% FM, observed 0.214 Nm3 CH4/kg VS"
+                            },
+                            "vs_fraction_wet": {
+                              "low": 0.7561,
+                              "high": 0.7561,
+                              "locator": "Tables 2 and 7, barn A: TS 81.77% FM, VS 75.61% FM, observed 0.214 Nm3 CH4/kg VS"
+                            },
+                            "vs_fraction_of_ts": null,
+                            "bmp_ml_ch4_g_vs": {
+                              "low": 214,
+                              "high": 214,
+                              "locator": "Tables 2 and 7, barn A: TS 81.77% FM, VS 75.61% FM, observed 0.214 Nm3 CH4/kg VS"
+                            },
+                            "density_kg_l": null,
+                            "conditions": {
+                              "temperature_c": 37,
+                              "temperature_tolerance_c": 0.5,
+                              "duration_days": 35,
+                              "duration_kind": "BMP_INCUBATION",
+                              "reactor_type": "HBT 100 mL glass syringes; 30 g inoculum + 600 mg dried milled sample",
+                              "gas_basis": {
+                                "temperature_k": 273.15,
+                                "pressure_pa": 101300,
+                                "moisture": "unknown"
+                              },
+                              "preparation": "Dried at 60 C for 48 h, milled to 1 mm; Stuttgart barns"
+                            },
+                            "quality": "Reviewed local extraction of published experiment; not independent replication",
+                            "gas_basis": {
+                              "temperature_k": 273.15,
+                              "pressure_pa": 101300,
+                              "moisture": "unknown"
+                            },
+                            "provenance": "PUBLISHED_EXPERIMENT",
+                            "transfer_limitations": "Preparation affects hydrolysis; barn A paired measurements only, not universal raw feedstock BMP."
+                          }
+                        ],
+                        "partial_characterizations": [],
+                        "sources": [
+                          {
+                            "id": "monch2013",
+                            "title": "Investigation of the methane potential of horse manure",
+                            "authors": [
+                              "Matthias Mönch-Tegeder",
+                              "Andreas Lemmer",
+                              "Hans Oechsner",
+                              "Thomas Jungbluth"
+                            ],
+                            "year": 2013,
+                            "url": "https://cigrjournal.org/index.php/Ejounral/article/view/2445",
+                            "review_url": "https://cigrjournal.org/index.php/Ejounral/article/download/2445/1736/8047",
+                            "verification_stage": "NUMERIC_DATA_VERIFIED",
+                            "reviewed_sections": [
+                              "Methods 2.1-2.3; Tables 2, 3, 7, 8"
+                            ],
+                            "conditions": {
+                              "temperature_c": 37,
+                              "temperature_tolerance_c": 0.5,
+                              "duration_days": 35,
+                              "duration_kind": "BMP_INCUBATION",
+                              "reactor_type": "HBT 100 mL glass syringes; 30 g inoculum + 600 mg dried milled sample",
+                              "gas_basis": {
+                                "temperature_k": 273.15,
+                                "pressure_pa": 101300,
+                                "moisture": "unknown"
+                              },
+                              "preparation": "Dried at 60 C for 48 h, milled to 1 mm; Stuttgart barns"
+                            },
+                            "limitations": "Preparation affects hydrolysis; barn A paired measurements only, not universal raw feedstock BMP."
+                          }
+                        ],
+                        "inhibition_risks": [
+                          "slow hydrolysis",
+                          "preparation energy"
+                        ],
+                        "organic_loading_limit": null,
+                        "loading_limit_note": "No universal safe OLR established. Study-specific loading, ISR and duration belong to their original reactor and feeding regime.",
+                        "co_digestion": "No universal synergy or compatible mixing ratio inferred; compare specific mixed-substrate studies before transfer.",
+                        "unknowns": [
+                          "batch composition",
+                          "inoculum activity",
+                          "plant recovery",
+                          "safe loading limit"
+                        ],
+                        "search_scope": "LOCAL_REVIEWED_CORPUS",
+                        "live_search_performed": false
+                      }
+                    ],
+                    "core_materials": [
+                      "cattle_manure",
+                      "swine_manure",
+                      "poultry_manure",
+                      "sheep_goat_manure",
+                      "horse_manure",
+                      "food_waste",
+                      "straw",
+                      "grass"
+                    ],
+                    "universal_profile_created": false,
+                    "search_queries": [
+                      "beet_pulp, straw"
+                    ]
+                  }
+                },
+                "latency_seconds": 105.71386260000145,
+                "uncertainty_status": "No calibrated interval coverage; literature transfer and scenario bounds remain conditional.",
+                "diagnostic_events": [
+                  {
+                    "type": "HttpRequestAccepted",
+                    "phase": "dashboard_api",
+                    "session_id": "cd9f83beb4604ddea198c539c255a64c",
+                    "request_id": "d7a272804d124bb3bc9b08ef8fa59992",
+                    "conversation_version": "7"
+                  },
+                  {
+                    "type": "RequestReceived",
+                    "phase": "conversation_api",
+                    "characters": 139
+                  },
+                  {
+                    "type": "ParametersExtracted",
+                    "phase": "parameter_extraction",
+                    "entities": [
+                      {
+                        "name": "material",
+                        "value": "mixture",
+                        "unit": null,
+                        "evidence": "Сравни только литературный потенциал метана для 3 кг свекловичного жома и 3 кг пшеничной соломы. Не делай вывод о прибыли без цен и затрат.",
+                        "provenance": "USER_CONFIRMED"
+                      },
+                      {
+                        "name": "quantity",
+                        "value": 3.0,
+                        "unit": "kg",
+                        "evidence": "3 кг",
+                        "provenance": "USER_CONFIRMED"
+                      },
+                      {
+                        "name": "unit",
+                        "value": "kg",
+                        "unit": null,
+                        "evidence": "3 кг",
+                        "provenance": "USER_CONFIRMED"
+                      },
+                      {
+                        "name": "quantity",
+                        "value": 3.0,
+                        "unit": "kg",
+                        "evidence": "3 кг",
+                        "provenance": "USER_CONFIRMED"
+                      },
+                      {
+                        "name": "unit",
+                        "value": "kg",
+                        "unit": null,
+                        "evidence": "3 кг",
+                        "provenance": "USER_CONFIRMED"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "Clarification",
+                    "phase": "task_transition",
+                    "task_id": "329e5c6bc6614039b518db5931d559b9"
+                  },
+                  {
+                    "type": "ModelUnderstandingStarted",
+                    "phase": "model_understanding",
+                    "configured": true
+                  },
+                  {
+                    "type": "ModelUnderstandingFinished",
+                    "phase": "model_understanding",
+                    "proposal_received": true,
+                    "providers": [
+                      {
+                        "provider": "offline",
+                        "model": "qwen3:8b",
+                        "status": "available",
+                        "actual_generation": true,
+                        "phase": "structured_nlu",
+                        "requests": [
+                          {
+                            "input_characters": 681,
+                            "request_bytes": 2258,
+                            "status": "ok",
+                            "prompt_tokens": 196,
+                            "output_tokens": 195,
+                            "done_reason": "stop",
+                            "load_seconds": 5.7311739,
+                            "generation_seconds": 16.539363,
+                            "tokens_per_second": 11.790055034163045,
+                            "latency_seconds": 23.424964000005275
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "PlanningStarted",
+                    "phase": "agent_planning",
+                    "task_id": "329e5c6bc6614039b518db5931d559b9"
+                  },
+                  {
+                    "type": "ToolExecuted",
+                    "phase": "tool_execution",
+                    "tool": "search_substrate_profiles",
+                    "status": "ok"
+                  },
+                  {
+                    "type": "ResponseCreated",
+                    "phase": "response",
+                    "mode": "verified_partial",
+                    "tool_count": 1
+                  }
+                ]
+              },
+              "state_version": 1
+            },
+            "error_code": null,
+            "partial_results": [
+              {
+                "tool": "search_substrate_profiles",
+                "status": "ok",
+                "result": {
+                  "status": "ok",
+                  "message": "Study-specific local evidence; no live internet search performed.",
+                  "dossiers": [
+                    {
+                      "material": "beet_pulp",
+                      "name": "Свекловичный жом",
+                      "scope_status": "EXPERIMENTAL_RETAINED",
+                      "selection_rationale": "Historical category retained; evidence is not a core dossier.",
+                      "physical_states": [
+                        "fresh_solid",
+                        "slurry",
+                        "dry"
+                      ],
+                      "studies": [],
+                      "partial_characterizations": [],
+                      "sources": [],
+                      "inhibition_risks": [
+                        "pressing, drying and moisture basis require confirmation"
+                      ],
+                      "organic_loading_limit": null,
+                      "loading_limit_note": "No universal safe OLR established. Study-specific loading, ISR and duration belong to their original reactor and feeding regime.",
+                      "co_digestion": "No universal synergy or compatible mixing ratio inferred; compare specific mixed-substrate studies before transfer.",
+                      "unknowns": [
+                        "batch composition",
+                        "inoculum activity",
+                        "plant recovery",
+                        "safe loading limit"
+                      ],
+                      "search_scope": "LOCAL_REVIEWED_CORPUS",
+                      "live_search_performed": false
+                    },
+                    {
+                      "material": "straw",
+                      "name": "Солома",
+                      "scope_status": "CORE",
+                      "selection_rationale": "Cereal residues; wheat straw preparation and slow hydrolysis are central constraints.",
+                      "physical_states": [
+                        "dry",
+                        "shredded"
+                      ],
+                      "studies": [
+                        {
+                          "profile_id": "monch2013-straw-A",
+                          "source_id": "monch2013",
+                          "physical_state": "dry",
+                          "animal_scope": null,
+                          "preparation": "Barn A; dried 60 C, milled 1 mm before HBT. No population interval.",
+                          "ts_fraction": {
+                            "low": 0.8177,
+                            "high": 0.8177,
+                            "locator": "Tables 2 and 7, barn A: TS 81.77% FM, VS 75.61% FM, observed 0.214 Nm3 CH4/kg VS"
+                          },
+                          "vs_fraction_wet": {
+                            "low": 0.7561,
+                            "high": 0.7561,
+                            "locator": "Tables 2 and 7, barn A: TS 81.77% FM, VS 75.61% FM, observed 0.214 Nm3 CH4/kg VS"
+                          },
+                          "vs_fraction_of_ts": null,
+                          "bmp_ml_ch4_g_vs": {
+                            "low": 214,
+                            "high": 214,
+                            "locator": "Tables 2 and 7, barn A: TS 81.77% FM, VS 75.61% FM, observed 0.214 Nm3 CH4/kg VS"
+                          },
+                          "density_kg_l": null,
+                          "conditions": {
+                            "temperature_c": 37,
+                            "temperature_tolerance_c": 0.5,
+                            "duration_days": 35,
+                            "duration_kind": "BMP_INCUBATION",
+                            "reactor_type": "HBT 100 mL glass syringes; 30 g inoculum + 600 mg dried milled sample",
+                            "gas_basis": {
+                              "temperature_k": 273.15,
+                              "pressure_pa": 101300,
+                              "moisture": "unknown"
+                            },
+                            "preparation": "Dried at 60 C for 48 h, milled to 1 mm; Stuttgart barns"
+                          },
+                          "quality": "Reviewed local extraction of published experiment; not independent replication",
+                          "gas_basis": {
+                            "temperature_k": 273.15,
+                            "pressure_pa": 101300,
+                            "moisture": "unknown"
+                          },
+                          "provenance": "PUBLISHED_EXPERIMENT",
+                          "transfer_limitations": "Preparation affects hydrolysis; barn A paired measurements only, not universal raw feedstock BMP."
+                        }
+                      ],
+                      "partial_characterizations": [],
+                      "sources": [
+                        {
+                          "id": "monch2013",
+                          "title": "Investigation of the methane potential of horse manure",
+                          "authors": [
+                            "Matthias Mönch-Tegeder",
+                            "Andreas Lemmer",
+                            "Hans Oechsner",
+                            "Thomas Jungbluth"
+                          ],
+                          "year": 2013,
+                          "url": "https://cigrjournal.org/index.php/Ejounral/article/view/2445",
+                          "review_url": "https://cigrjournal.org/index.php/Ejounral/article/download/2445/1736/8047",
+                          "verification_stage": "NUMERIC_DATA_VERIFIED",
+                          "reviewed_sections": [
+                            "Methods 2.1-2.3; Tables 2, 3, 7, 8"
+                          ],
+                          "conditions": {
+                            "temperature_c": 37,
+                            "temperature_tolerance_c": 0.5,
+                            "duration_days": 35,
+                            "duration_kind": "BMP_INCUBATION",
+                            "reactor_type": "HBT 100 mL glass syringes; 30 g inoculum + 600 mg dried milled sample",
+                            "gas_basis": {
+                              "temperature_k": 273.15,
+                              "pressure_pa": 101300,
+                              "moisture": "unknown"
+                            },
+                            "preparation": "Dried at 60 C for 48 h, milled to 1 mm; Stuttgart barns"
+                          },
+                          "limitations": "Preparation affects hydrolysis; barn A paired measurements only, not universal raw feedstock BMP."
+                        }
+                      ],
+                      "inhibition_risks": [
+                        "slow hydrolysis",
+                        "preparation energy"
+                      ],
+                      "organic_loading_limit": null,
+                      "loading_limit_note": "No universal safe OLR established. Study-specific loading, ISR and duration belong to their original reactor and feeding regime.",
+                      "co_digestion": "No universal synergy or compatible mixing ratio inferred; compare specific mixed-substrate studies before transfer.",
+                      "unknowns": [
+                        "batch composition",
+                        "inoculum activity",
+                        "plant recovery",
+                        "safe loading limit"
+                      ],
+                      "search_scope": "LOCAL_REVIEWED_CORPUS",
+                      "live_search_performed": false
+                    }
+                  ],
+                  "core_materials": [
+                    "cattle_manure",
+                    "swine_manure",
+                    "poultry_manure",
+                    "sheep_goat_manure",
+                    "horse_manure",
+                    "food_waste",
+                    "straw",
+                    "grass"
+                  ],
+                  "universal_profile_created": false
+                }
+              }
+            ]
+          },
+          "elapsed_seconds": 106.68,
+          "gpu_temperature_before_c": 64.0,
+          "gpu_temperature_target_c": 87,
+          "gpu_power_state_before": "P8",
+          "gpu_hardware_thermal_slowdown_before": false,
+          "gpu_utilization_before_pct": 16.0,
+          "gpu_temperature_after_c": 80.0,
+          "gpu_temperature_target_after_c": 87,
+          "gpu_power_state_after": "P3",
+          "gpu_hardware_thermal_slowdown_after": false,
+          "gpu_utilization_after_pct": 14.0,
+          "actual_qwen_generation": true,
+          "actual_qwen_final_generation": true,
+          "final_answer_from_qwen": false,
+          "snapshot": {
+            "id": "cd9f83beb4604ddea198c539c255a64c",
+            "mode": "offline",
+            "context": {
+              "material": "mixture",
+              "market_region": "KZ-Karaganda"
+            },
+            "conversation_version": "7",
+            "state_version": 1,
+            "memory": {
+              "version": "7",
+              "task_id": "329e5c6bc6614039b518db5931d559b9",
+              "task_history": [],
+              "conversation_id": "cd9f83beb4604ddea198c539c255a64c",
+              "language": "ru",
+              "facts": {
+                "material": {
+                  "value": "mixture",
+                  "unit": null,
+                  "provenance": "USER_CONFIRMED",
+                  "evidence": "Сравни только литературный потенциал метана для 3 кг свекловичного жома и 3 кг пшеничной соломы. Не делай вывод о прибыли без цен и затрат.",
+                  "recorded_at": "2026-11-08T08:58:52.300002+00:00",
+                  "dependencies": []
+                }
+              },
+              "assumptions": {
+                "market_region": {
+                  "value": "KZ-Karaganda",
+                  "unit": null,
+                  "provenance": "ASSUMED_FOR_SCENARIO",
+                  "evidence": "Default dashboard region; not user-confirmed",
+                  "recorded_at": "2026-11-08T08:58:28.798800+00:00",
+                  "dependencies": []
+                }
+              },
+              "derived": {},
+              "estimates": {},
+              "source_verified": {},
+              "intents": [
+                "profile_lookup"
+              ],
+              "pending_question": null,
+              "invalidated": [],
+              "decision_settings": {
+                "gas_use": "unknown",
+                "assume_reference_compatibility": false,
+                "use_reference_scenarios": true,
+                "heating_value_type": "LHV",
+                "reactor": {
+                  "engineering_review_confirmed": false,
+                  "safety_review_required": false,
+                  "loads": [],
+                  "loads_complete": false,
+                  "provenance": "USER_REPORTED"
+                },
+                "quotes": {},
+                "price_ids": {},
+                "max_price_age_days": 30,
+                "costs": {},
+                "all_operating_costs_included": false,
+                "include_capital": false,
+                "assume_full_self_consumption": false,
+                "replacement_heat_source": "unknown",
+                "gas_sale_technical_confirmed": false,
+                "gas_sale_legal_confirmed": false,
+                "gas_quality_confirmed": false,
+                "gas_storage_transport_confirmed": false,
+                "digestate_quality_confirmed": false,
+                "digestate_market_allowed": false
+              },
+              "decision_unavailable": [],
+              "last_research_summary": {},
+              "mixture_components": [
+                {
+                  "id": "c1",
+                  "material": "beet_pulp",
+                  "material_state": "unknown",
+                  "quantity": 3.0,
+                  "unit": "kg",
+                  "animal": "unknown",
+                  "poultry_type": "unknown",
+                  "reference_profile_id": null,
+                  "physical_state": "unknown",
+                  "decay_state": "unknown",
+                  "bedding": "unknown",
+                  "data_mode": "LITERATURE_ESTIMATE",
+                  "properties": {
+                    "density_kg_l": null,
+                    "ts_fraction": null,
+                    "vs_fraction_wet": null,
+                    "vs_fraction_of_ts": null,
+                    "bmp_ml_g_vs": null,
+                    "carbon_fraction_wet": null,
+                    "nitrogen_fraction_wet": null,
+                    "gas_basis": null
+                  },
+                  "provenance": "USER_CONFIRMED",
+                  "evidence": "ратурный потенциал метана для 3 кг свекловичного жома и 3 кг пшеничной соломы. Не делай вывод о прибыли без цен и затрат."
+                },
+                {
+                  "id": "c2",
+                  "material": "straw",
+                  "material_state": "unknown",
+                  "quantity": 3.0,
+                  "unit": "kg",
+                  "animal": "unknown",
+                  "poultry_type": "unknown",
+                  "reference_profile_id": null,
+                  "physical_state": "unknown",
+                  "decay_state": "unknown",
+                  "bedding": "unknown",
+                  "data_mode": "LITERATURE_ESTIMATE",
+                  "properties": {
+                    "density_kg_l": null,
+                    "ts_fraction": null,
+                    "vs_fraction_wet": null,
+                    "vs_fraction_of_ts": null,
+                    "bmp_ml_g_vs": null,
+                    "carbon_fraction_wet": null,
+                    "nitrogen_fraction_wet": null,
+                    "gas_basis": null
+                  },
+                  "provenance": "USER_CONFIRMED",
+                  "evidence": "для 3 кг свекловичного жома и 3 кг пшеничной соломы. Не делай вывод о прибыли без цен и затрат."
+                }
+              ],
+              "mixture_scenario_components": [],
+              "mixture_revision": 1,
+              "mixture_history": [
+                {
+                  "at": "2026-11-08T08:58:52.308414+00:00",
+                  "action": "set",
+                  "is_hypothetical": false,
+                  "components": [
+                    {
+                      "id": "c1",
+                      "material": "beet_pulp",
+                      "material_state": "unknown",
+                      "quantity": 3.0,
+                      "unit": "kg",
+                      "animal": "unknown",
+                      "poultry_type": "unknown",
+                      "reference_profile_id": null,
+                      "physical_state": "unknown",
+                      "decay_state": "unknown",
+                      "bedding": "unknown",
+                      "data_mode": "LITERATURE_ESTIMATE",
+                      "properties": {
+                        "density_kg_l": null,
+                        "ts_fraction": null,
+                        "vs_fraction_wet": null,
+                        "vs_fraction_of_ts": null,
+                        "bmp_ml_g_vs": null,
+                        "carbon_fraction_wet": null,
+                        "nitrogen_fraction_wet": null,
+                        "gas_basis": null
+                      },
+                      "provenance": "USER_CONFIRMED",
+                      "evidence": "ратурный потенциал метана для 3 кг свекловичного жома и 3 кг пшеничной соломы. Не делай вывод о прибыли без цен и затрат."
+                    },
+                    {
+                      "id": "c2",
+                      "material": "straw",
+                      "material_state": "unknown",
+                      "quantity": 3.0,
+                      "unit": "kg",
+                      "animal": "unknown",
+                      "poultry_type": "unknown",
+                      "reference_profile_id": null,
+                      "physical_state": "unknown",
+                      "decay_state": "unknown",
+                      "bedding": "unknown",
+                      "data_mode": "LITERATURE_ESTIMATE",
+                      "properties": {
+                        "density_kg_l": null,
+                        "ts_fraction": null,
+                        "vs_fraction_wet": null,
+                        "vs_fraction_of_ts": null,
+                        "bmp_ml_g_vs": null,
+                        "carbon_fraction_wet": null,
+                        "nitrogen_fraction_wet": null,
+                        "gas_basis": null
+                      },
+                      "provenance": "USER_CONFIRMED",
+                      "evidence": "для 3 кг свекловичного жома и 3 кг пшеничной соломы. Не делай вывод о прибыли без цен и затрат."
+                    }
+                  ]
+                }
+              ],
+              "advisor_inventory_mode": "mixture",
+              "advisor_pending_component": null,
+              "advisor_settings": {},
+              "smart_goals": [],
+              "smart_cache": {},
+              "active_mixture_scenario": false,
+              "advanced": {
+                "research_dialogue": {
+                  "asked": [],
+                  "last_turn_type": "new_question",
+                  "known_cost_categories": [],
+                  "unpriced_categories": [],
+                  "last_question_id": null
+                }
+              },
+              "analytical_mode": "mixture"
+            },
+            "jobs": [
+              {
+                "id": "99b7718853784ab086ee6a688431a43a",
+                "request_id": "d7a272804d124bb3bc9b08ef8fa59992",
+                "conversation_id": "cd9f83beb4604ddea198c539c255a64c",
+                "task_id": "3d62f210a74b469496b74b30e8c3f8e8",
+                "message": "Сравни только литературный потенциал метана для 3 кг свекловичного жома и 3 кг пшеничной соломы. Не делай вывод о прибыли без цен и затрат.",
+                "created_at": "2026-11-08T08:58:28.694817+00:00",
+                "updated_at": "2026-11-08T09:00:14.645240+00:00",
+                "status": "COMPLETED",
+                "current_stage": "completed",
+                "attempt_count": 1,
+                "error_code": null,
+                "result_reference": "/api/dashboard/jobs/99b7718853784ab086ee6a688431a43a/result",
+                "heartbeat_at": "2026-11-08T09:00:12.975756+00:00",
+                "cancel_requested": 0,
+                "acknowledged_at": null,
+                "expected_state_version": 0,
+                "preview": {
+                  "version": "7",
+                  "task_id": "329e5c6bc6614039b518db5931d559b9",
+                  "task_history": [],
+                  "conversation_id": "cd9f83beb4604ddea198c539c255a64c",
+                  "language": "ru",
+                  "facts": {
+                    "material": {
+                      "value": "mixture",
+                      "unit": null,
+                      "provenance": "USER_CONFIRMED",
+                      "evidence": "Сравни только литературный потенциал метана для 3 кг свекловичного жома и 3 кг пшеничной соломы. Не делай вывод о прибыли без цен и затрат.",
+                      "recorded_at": "2026-11-08T08:58:52.300002+00:00",
+                      "dependencies": []
+                    }
+                  },
+                  "assumptions": {
+                    "market_region": {
+                      "value": "KZ-Karaganda",
+                      "unit": null,
+                      "provenance": "ASSUMED_FOR_SCENARIO",
+                      "evidence": "Default dashboard region; not user-confirmed",
+                      "recorded_at": "2026-11-08T08:58:28.798800+00:00",
+                      "dependencies": []
+                    }
+                  },
+                  "derived": {},
+                  "estimates": {},
+                  "source_verified": {},
+                  "intents": [
+                    "profile_lookup"
+                  ],
+                  "pending_question": null,
+                  "invalidated": [],
+                  "decision_settings": {
+                    "gas_use": "unknown",
+                    "assume_reference_compatibility": false,
+                    "use_reference_scenarios": true,
+                    "heating_value_type": "LHV",
+                    "reactor": {
+                      "engineering_review_confirmed": false,
+                      "safety_review_required": false,
+                      "loads": [],
+                      "loads_complete": false,
+                      "provenance": "USER_REPORTED"
+                    },
+                    "quotes": {},
+                    "price_ids": {},
+                    "max_price_age_days": 30,
+                    "costs": {},
+                    "all_operating_costs_included": false,
+                    "include_capital": false,
+                    "assume_full_self_consumption": false,
+                    "replacement_heat_source": "unknown",
+                    "gas_sale_technical_confirmed": false,
+                    "gas_sale_legal_confirmed": false,
+                    "gas_quality_confirmed": false,
+                    "gas_storage_transport_confirmed": false,
+                    "digestate_quality_confirmed": false,
+                    "digestate_market_allowed": false
+                  },
+                  "decision_unavailable": [],
+                  "last_research_summary": {},
+                  "mixture_components": [
+                    {
+                      "id": "c1",
+                      "material": "beet_pulp",
+                      "material_state": "unknown",
+                      "quantity": 3.0,
+                      "unit": "kg",
+                      "animal": "unknown",
+                      "poultry_type": "unknown",
+                      "reference_profile_id": null,
+                      "physical_state": "unknown",
+                      "decay_state": "unknown",
+                      "bedding": "unknown",
+                      "data_mode": "LITERATURE_ESTIMATE",
+                      "properties": {
+                        "density_kg_l": null,
+                        "ts_fraction": null,
+                        "vs_fraction_wet": null,
+                        "vs_fraction_of_ts": null,
+                        "bmp_ml_g_vs": null,
+                        "carbon_fraction_wet": null,
+                        "nitrogen_fraction_wet": null,
+                        "gas_basis": null
+                      },
+                      "provenance": "USER_CONFIRMED",
+                      "evidence": "ратурный потенциал метана для 3 кг свекловичного жома и 3 кг пшеничной соломы. Не делай вывод о прибыли без цен и затрат."
+                    },
+                    {
+                      "id": "c2",
+                      "material": "straw",
+                      "material_state": "unknown",
+                      "quantity": 3.0,
+                      "unit": "kg",
+                      "animal": "unknown",
+                      "poultry_type": "unknown",
+                      "reference_profile_id": null,
+                      "physical_state": "unknown",
+                      "decay_state": "unknown",
+                      "bedding": "unknown",
+                      "data_mode": "LITERATURE_ESTIMATE",
+                      "properties": {
+                        "density_kg_l": null,
+                        "ts_fraction": null,
+                        "vs_fraction_wet": null,
+                        "vs_fraction_of_ts": null,
+                        "bmp_ml_g_vs": null,
+                        "carbon_fraction_wet": null,
+                        "nitrogen_fraction_wet": null,
+                        "gas_basis": null
+                      },
+                      "provenance": "USER_CONFIRMED",
+                      "evidence": "для 3 кг свекловичного жома и 3 кг пшеничной соломы. Не делай вывод о прибыли без цен и затрат."
+                    }
+                  ],
+                  "mixture_scenario_components": [],
+                  "mixture_revision": 1,
+                  "mixture_history": [
+                    {
+                      "at": "2026-11-08T08:58:52.308414+00:00",
+                      "action": "set",
+                      "is_hypothetical": false,
+                      "components": [
+                        {
+                          "id": "c1",
+                          "material": "beet_pulp",
+                          "material_state": "unknown",
+                          "quantity": 3.0,
+                          "unit": "kg",
+                          "animal": "unknown",
+                          "poultry_type": "unknown",
+                          "reference_profile_id": null,
+                          "physical_state": "unknown",
+                          "decay_state": "unknown",
+                          "bedding": "unknown",
+                          "data_mode": "LITERATURE_ESTIMATE",
+                          "properties": {
+                            "density_kg_l": null,
+                            "ts_fraction": null,
+                            "vs_fraction_wet": null,
+                            "vs_fraction_of_ts": null,
+                            "bmp_ml_g_vs": null,
+                            "carbon_fraction_wet": null,
+                            "nitrogen_fraction_wet": null,
+                            "gas_basis": null
+                          },
+                          "provenance": "USER_CONFIRMED",
+                          "evidence": "ратурный потенциал метана для 3 кг свекловичного жома и 3 кг пшеничной соломы. Не делай вывод о прибыли без цен и затрат."
+                        },
+                        {
+                          "id": "c2",
+                          "material": "straw",
+                          "material_state": "unknown",
+                          "quantity": 3.0,
+                          "unit": "kg",
+                          "animal": "unknown",
+                          "poultry_type": "unknown",
+                          "reference_profile_id": null,
+                          "physical_state": "unknown",
+                          "decay_state": "unknown",
+                          "bedding": "unknown",
+                          "data_mode": "LITERATURE_ESTIMATE",
+                          "properties": {
+                            "density_kg_l": null,
+                            "ts_fraction": null,
+                            "vs_fraction_wet": null,
+                            "vs_fraction_of_ts": null,
+                            "bmp_ml_g_vs": null,
+                            "carbon_fraction_wet": null,
+                            "nitrogen_fraction_wet": null,
+                            "gas_basis": null
+                          },
+                          "provenance": "USER_CONFIRMED",
+                          "evidence": "для 3 кг свекловичного жома и 3 кг пшеничной соломы. Не делай вывод о прибыли без цен и затрат."
+                        }
+                      ]
+                    }
+                  ],
+                  "advisor_inventory_mode": "mixture",
+                  "advisor_pending_component": null,
+                  "advisor_settings": {},
+                  "smart_goals": [],
+                  "smart_cache": {},
+                  "active_mixture_scenario": false,
+                  "advanced": {},
+                  "analytical_mode": "mixture"
+                },
+                "terminal": true,
+                "partial_count": 1,
+                "result_available": true
+              }
+            ],
+            "turns": [
+              {
+                "id": 38,
+                "session_id": "cd9f83beb4604ddea198c539c255a64c",
+                "request_id": "d7a272804d124bb3bc9b08ef8fa59992",
+                "created_at": "2026-11-08T08:58:28.694817+00:00",
+                "question": "Сравни только литературный потенциал метана для 3 кг свекловичного жома и 3 кг пшеничной соломы. Не делай вывод о прибыли без цен и затрат.",
+                "status": "complete",
+                "reply_json": "{\"conversation_version\": \"7\", \"analysis_version\": \"9.0\", \"mode\": \"verified_partial\", \"answer\": \"Предварительная оценка по доступным и проверенным данным:\\n\\nСолома (dry): опубликованный BMP образца monch2013-straw-A: 214 mL CH4/g VS (литературные данные). Preparation: Barn A; dried 60 C, milled 1 mm before HBT. No population interval. Evidence review: Reviewed local extraction of published experiment; not independent replication Preparation affects hydrolysis; barn A paired measurements only, not universal raw feedstock BMP. Source ID: monch2013\\n\\nВ проверенном локальном корпусе для Свекловичный жом количественные профили не найдены; это не доказывает отсутствие научных публикаций.\", \"user_facing_answer\": {\"paragraphs\": [\"Предварительная оценка по доступным и проверенным данным:\", \"Солома (dry): опубликованный BMP образца monch2013-straw-A: 214 mL CH4/g VS (литературные данные). Preparation: Barn A; dried 60 C, milled 1 mm before HBT. No population interval. Evidence review: Reviewed local extraction of published experiment; not independent replication Preparation affects hydrolysis; barn A paired measurements only, not universal raw feedstock BMP. Source ID: monch2013\", \"В проверенном локальном корпусе для Свекловичный жом количественные профили не найдены; это не доказывает отсутствие научных публикаций.\"], \"sections\": [], \"question\": null, \"sources\": [{\"title\": \"Investigation of the methane potential of horse manure\", \"url\": \"https://cigrjournal.org/index.php/Ejounral/article/view/2445\"}], \"modes\": [\"explicit_engine_partial\"], \"assumptions\": [\"market_region\"]}, \"tools\": [{\"tool\": \"search_substrate_profiles\", \"status\": \"ok\", \"input_origin\": \"validated_scientific_state\", \"query\": \"beet_pulp, straw\", \"result\": {\"status\": \"ok\", \"message\": \"Study-specific local evidence; no live internet search performed.\", \"dossiers\": [{\"material\": \"beet_pulp\", \"name\": \"Свекловичный жом\", \"scope_status\": \"EXPERIMENTAL_RETAINED\", \"selection_rationale\": \"Historical category retained; evidence is not a core dossier.\", \"physical_states\": [\"fresh_solid\", \"slurry\", \"dry\"], \"studies\": [], \"partial_characterizations\": [], \"sources\": [], \"inhibition_risks\": [\"pressing, drying and moisture basis require confirmation\"], \"organic_loading_limit\": null, \"loading_limit_note\": \"No universal safe OLR established. Study-specific loading, ISR and duration belong to their original reactor and feeding regime.\", \"co_digestion\": \"No universal synergy or compatible mixing ratio inferred; compare specific mixed-substrate studies before transfer.\", \"unknowns\": [\"batch composition\", \"inoculum activity\", \"plant recovery\", \"safe loading limit\"], \"search_scope\": \"LOCAL_REVIEWED_CORPUS\", \"live_search_performed\": false}, {\"material\": \"straw\", \"name\": \"Солома\", \"scope_status\": \"CORE\", \"selection_rationale\": \"Cereal residues; wheat straw preparation and slow hydrolysis are central constraints.\", \"physical_states\": [\"dry\", \"shredded\"], \"studies\": [{\"profile_id\": \"monch2013-straw-A\", \"source_id\": \"monch2013\", \"physical_state\": \"dry\", \"animal_scope\": null, \"preparation\": \"Barn A; dried 60 C, milled 1 mm before HBT. No population interval.\", \"ts_fraction\": {\"low\": 0.8177, \"high\": 0.8177, \"locator\": \"Tables 2 and 7, barn A: TS 81.77% FM, VS 75.61% FM, observed 0.214 Nm3 CH4/kg VS\"}, \"vs_fraction_wet\": {\"low\": 0.7561, \"high\": 0.7561, \"locator\": \"Tables 2 and 7, barn A: TS 81.77% FM, VS 75.61% FM, observed 0.214 Nm3 CH4/kg VS\"}, \"vs_fraction_of_ts\": null, \"bmp_ml_ch4_g_vs\": {\"low\": 214, \"high\": 214, \"locator\": \"Tables 2 and 7, barn A: TS 81.77% FM, VS 75.61% FM, observed 0.214 Nm3 CH4/kg VS\"}, \"density_kg_l\": null, \"conditions\": {\"temperature_c\": 37, \"temperature_tolerance_c\": 0.5, \"duration_days\": 35, \"duration_kind\": \"BMP_INCUBATION\", \"reactor_type\": \"HBT 100 mL glass syringes; 30 g inoculum + 600 mg dried milled sample\", \"gas_basis\": {\"temperature_k\": 273.15, \"pressure_pa\": 101300, \"moisture\": \"unknown\"}, \"preparation\": \"Dried at 60 C for 48 h, milled to 1 mm; Stuttgart barns\"}, \"quality\": \"Reviewed local extraction of published experiment; not independent replication\", \"gas_basis\": {\"temperature_k\": 273.15, \"pressure_pa\": 101300, \"moisture\": \"unknown\"}, \"provenance\": \"PUBLISHED_EXPERIMENT\", \"transfer_limitations\": \"Preparation affects hydrolysis; barn A paired measurements only, not universal raw feedstock BMP.\"}], \"partial_characterizations\": [], \"sources\": [{\"id\": \"monch2013\", \"title\": \"Investigation of the methane potential of horse manure\", \"authors\": [\"Matthias Mönch-Tegeder\", \"Andreas Lemmer\", \"Hans Oechsner\", \"Thomas Jungbluth\"], \"year\": 2013, \"url\": \"https://cigrjournal.org/index.php/Ejounral/article/view/2445\", \"review_url\": \"https://cigrjournal.org/index.php/Ejounral/article/download/2445/1736/8047\", \"verification_stage\": \"NUMERIC_DATA_VERIFIED\", \"reviewed_sections\": [\"Methods 2.1-2.3; Tables 2, 3, 7, 8\"], \"conditions\": {\"temperature_c\": 37, \"temperature_tolerance_c\": 0.5, \"duration_days\": 35, \"duration_kind\": \"BMP_INCUBATION\", \"reactor_type\": \"HBT 100 mL glass syringes; 30 g inoculum + 600 mg dried milled sample\", \"gas_basis\": {\"temperature_k\": 273.15, \"pressure_pa\": 101300, \"moisture\": \"unknown\"}, \"preparation\": \"Dried at 60 C for 48 h, milled to 1 mm; Stuttgart barns\"}, \"limitations\": \"Preparation affects hydrolysis; barn A paired measurements only, not universal raw feedstock BMP.\"}], \"inhibition_risks\": [\"slow hydrolysis\", \"preparation energy\"], \"organic_loading_limit\": null, \"loading_limit_note\": \"No universal safe OLR established. Study-specific loading, ISR and duration belong to their original reactor and feeding regime.\", \"co_digestion\": \"No universal synergy or compatible mixing ratio inferred; compare specific mixed-substrate studies before transfer.\", \"unknowns\": [\"batch composition\", \"inoculum activity\", \"plant recovery\", \"safe loading limit\"], \"search_scope\": \"LOCAL_REVIEWED_CORPUS\", \"live_search_performed\": false}], \"core_materials\": [\"cattle_manure\", \"swine_manure\", \"poultry_manure\", \"sheep_goat_manure\", \"horse_manure\", \"food_waste\", \"straw\", \"grass\"], \"universal_profile_created\": false}}], \"provider_status\": [{\"provider\": \"offline\", \"model\": \"qwen3:8b\", \"status\": \"available\", \"actual_generation\": true, \"phase\": \"structured_nlu\", \"requests\": [{\"input_characters\": 681, \"request_bytes\": 2258, \"status\": \"ok\", \"prompt_tokens\": 196, \"output_tokens\": 195, \"done_reason\": \"stop\", \"load_seconds\": 5.7311739, \"generation_seconds\": 16.539363, \"tokens_per_second\": 11.790055034163045, \"latency_seconds\": 23.424964000005275}]}, {\"provider\": \"offline\", \"model\": \"qwen3:8b\", \"phase\": \"v9_tool_selection\", \"actual_generation\": true, \"requests\": [{\"input_characters\": 2712, \"request_bytes\": 3961, \"status\": \"ok\", \"prompt_tokens\": 754, \"output_tokens\": 90, \"done_reason\": \"stop\", \"load_seconds\": 0.0097411, \"generation_seconds\": 7.795596, \"tokens_per_second\": 11.544980011791273, \"latency_seconds\": 10.914410899997165}]}, {\"provider\": \"offline\", \"model\": \"qwen3:8b\", \"phase\": \"v9_synthesis\", \"actual_generation\": true, \"requests\": [{\"input_characters\": 8444, \"request_bytes\": 10598, \"status\": \"ok\", \"prompt_tokens\": 2504, \"output_tokens\": 227, \"done_reason\": \"stop\", \"load_seconds\": 0.0068718, \"generation_seconds\": 28.098424, \"tokens_per_second\": 8.078744914661405, \"latency_seconds\": 38.70724640000117}]}, {\"provider\": \"offline\", \"model\": \"qwen3:8b\", \"phase\": \"v9_synthesis\", \"actual_generation\": true, \"requests\": [{\"input_characters\": 9744, \"request_bytes\": 12744, \"status\": \"ok\", \"prompt_tokens\": 2907, \"output_tokens\": 234, \"done_reason\": \"stop\", \"load_seconds\": 0.0086135, \"generation_seconds\": 30.367176, \"tokens_per_second\": 7.705688536859667, \"latency_seconds\": 32.45633909999742}]}], \"memory\": {\"version\": \"7\", \"task_id\": \"329e5c6bc6614039b518db5931d559b9\", \"task_history\": [], \"conversation_id\": \"cd9f83beb4604ddea198c539c255a64c\", \"language\": \"ru\", \"facts\": {\"material\": {\"value\": \"mixture\", \"unit\": null, \"provenance\": \"USER_CONFIRMED\", \"evidence\": \"Сравни только литературный потенциал метана для 3 кг свекловичного жома и 3 кг пшеничной соломы. Не делай вывод о прибыли без цен и затрат.\", \"recorded_at\": \"2026-11-08T08:58:52.300002+00:00\", \"dependencies\": []}}, \"assumptions\": {\"market_region\": {\"value\": \"KZ-Karaganda\", \"unit\": null, \"provenance\": \"ASSUMED_FOR_SCENARIO\", \"evidence\": \"Default dashboard region; not user-confirmed\", \"recorded_at\": \"2026-11-08T08:58:28.798800+00:00\", \"dependencies\": []}}, \"derived\": {}, \"estimates\": {}, \"source_verified\": {}, \"intents\": [\"profile_lookup\"], \"pending_question\": null, \"invalidated\": [], \"decision_settings\": {\"gas_use\": \"unknown\", \"assume_reference_compatibility\": false, \"use_reference_scenarios\": true, \"heating_value_type\": \"LHV\", \"reactor\": {\"engineering_review_confirmed\": false, \"safety_review_required\": false, \"loads\": [], \"loads_complete\": false, \"provenance\": \"USER_REPORTED\"}, \"quotes\": {}, \"price_ids\": {}, \"max_price_age_days\": 30, \"costs\": {}, \"all_operating_costs_included\": false, \"include_capital\": false, \"assume_full_self_consumption\": false, \"replacement_heat_source\": \"unknown\", \"gas_sale_technical_confirmed\": false, \"gas_sale_legal_confirmed\": false, \"gas_quality_confirmed\": false, \"gas_storage_transport_confirmed\": false, \"digestate_quality_confirmed\": false, \"digestate_market_allowed\": false}, \"decision_unavailable\": [], \"last_research_summary\": {}, \"mixture_components\": [{\"id\": \"c1\", \"material\": \"beet_pulp\", \"material_state\": \"unknown\", \"quantity\": 3.0, \"unit\": \"kg\", \"animal\": \"unknown\", \"poultry_type\": \"unknown\", \"reference_profile_id\": null, \"physical_state\": \"unknown\", \"decay_state\": \"unknown\", \"bedding\": \"unknown\", \"data_mode\": \"LITERATURE_ESTIMATE\", \"properties\": {\"density_kg_l\": null, \"ts_fraction\": null, \"vs_fraction_wet\": null, \"vs_fraction_of_ts\": null, \"bmp_ml_g_vs\": null, \"carbon_fraction_wet\": null, \"nitrogen_fraction_wet\": null, \"gas_basis\": null}, \"provenance\": \"USER_CONFIRMED\", \"evidence\": \"ратурный потенциал метана для 3 кг свекловичного жома и 3 кг пшеничной соломы. Не делай вывод о прибыли без цен и затрат.\"}, {\"id\": \"c2\", \"material\": \"straw\", \"material_state\": \"unknown\", \"quantity\": 3.0, \"unit\": \"kg\", \"animal\": \"unknown\", \"poultry_type\": \"unknown\", \"reference_profile_id\": null, \"physical_state\": \"unknown\", \"decay_state\": \"unknown\", \"bedding\": \"unknown\", \"data_mode\": \"LITERATURE_ESTIMATE\", \"properties\": {\"density_kg_l\": null, \"ts_fraction\": null, \"vs_fraction_wet\": null, \"vs_fraction_of_ts\": null, \"bmp_ml_g_vs\": null, \"carbon_fraction_wet\": null, \"nitrogen_fraction_wet\": null, \"gas_basis\": null}, \"provenance\": \"USER_CONFIRMED\", \"evidence\": \"для 3 кг свекловичного жома и 3 кг пшеничной соломы. Не делай вывод о прибыли без цен и затрат.\"}], \"mixture_scenario_components\": [], \"mixture_revision\": 1, \"mixture_history\": [{\"at\": \"2026-11-08T08:58:52.308414+00:00\", \"action\": \"set\", \"is_hypothetical\": false, \"components\": [{\"id\": \"c1\", \"material\": \"beet_pulp\", \"material_state\": \"unknown\", \"quantity\": 3.0, \"unit\": \"kg\", \"animal\": \"unknown\", \"poultry_type\": \"unknown\", \"reference_profile_id\": null, \"physical_state\": \"unknown\", \"decay_state\": \"unknown\", \"bedding\": \"unknown\", \"data_mode\": \"LITERATURE_ESTIMATE\", \"properties\": {\"density_kg_l\": null, \"ts_fraction\": null, \"vs_fraction_wet\": null, \"vs_fraction_of_ts\": null, \"bmp_ml_g_vs\": null, \"carbon_fraction_wet\": null, \"nitrogen_fraction_wet\": null, \"gas_basis\": null}, \"provenance\": \"USER_CONFIRMED\", \"evidence\": \"ратурный потенциал метана для 3 кг свекловичного жома и 3 кг пшеничной соломы. Не делай вывод о прибыли без цен и затрат.\"}, {\"id\": \"c2\", \"material\": \"straw\", \"material_state\": \"unknown\", \"quantity\": 3.0, \"unit\": \"kg\", \"animal\": \"unknown\", \"poultry_type\": \"unknown\", \"reference_profile_id\": null, \"physical_state\": \"unknown\", \"decay_state\": \"unknown\", \"bedding\": \"unknown\", \"data_mode\": \"LITERATURE_ESTIMATE\", \"properties\": {\"density_kg_l\": null, \"ts_fraction\": null, \"vs_fraction_wet\": null, \"vs_fraction_of_ts\": null, \"bmp_ml_g_vs\": null, \"carbon_fraction_wet\": null, \"nitrogen_fraction_wet\": null, \"gas_basis\": null}, \"provenance\": \"USER_CONFIRMED\", \"evidence\": \"для 3 кг свекловичного жома и 3 кг пшеничной соломы. Не делай вывод о прибыли без цен и затрат.\"}]}], \"advisor_inventory_mode\": \"mixture\", \"advisor_pending_component\": null, \"advisor_settings\": {}, \"smart_goals\": [], \"smart_cache\": {}, \"active_mixture_scenario\": false, \"advanced\": {\"research_dialogue\": {\"asked\": [], \"last_turn_type\": \"new_question\", \"known_cost_categories\": [], \"unpriced_categories\": [], \"last_question_id\": null}}, \"analytical_mode\": \"mixture\"}, \"context\": {\"material\": \"mixture\", \"market_region\": \"KZ-Karaganda\"}, \"context_updated\": true, \"pending_question\": null, \"missing\": [], \"actuator_access\": false, \"technical_metadata\": {\"agent_version\": \"9.0\", \"smart_version\": \"9.0\", \"final_author\": \"verified_engine_partial\", \"research_actions\": [{\"tool\": \"search_substrate_profiles\", \"purpose\": \"Исследовать литературный потенциал метана для свекловичного жома и пшеничной соломы\", \"ready_after_tool\": true, \"elapsed_seconds\": 34.43520150000404}], \"verification\": {\"status\": \"not_applicable\", \"outcome\": \"not_applicable\", \"checks\": [], \"checked\": false, \"all_checks_passed\": false, \"unsupported_tools\": [], \"missing_verification_evidence\": [], \"scope\": \"Arithmetic, source identity, material/form, energy allocation and cost completeness; not biological validation, interval coverage or operating safety.\"}, \"diagnostics\": [{\"stage\": \"synthesis_validation\", \"issues\": [\"local_search_scope_overstated\"], \"rejected_public_draft\": {\"conclusion\": \"Литературный потенциал метана для 3 кг свекловичного жома и 3 кг пшеничной соломы не может быть сравнен без дополнительных данных.\", \"explanation\": \"Для свекловичного жома отсутствуют данные о литературном потенциале метана. Для пшеничной соломы значение BMP составляет 214 mL CH4/g VS.\", \"limitations\": [\"Данные для свекловичного жома отсутствуют; значение BMP для соломы относится к конкретному образцу и не подтверждено для\"], \"next_question\": \"Можно ли получить данные о литературном потенциале метана для свекловичного жома из других источника\", \"evidence_ids\": [\"profile.monch2013-straw-A.bmp\"], \"decision\": \"not_established\"}, \"quantity_differences\": []}, {\"stage\": \"synthesis_validation\", \"issues\": [\"local_search_scope_overstated\"], \"rejected_public_draft\": {\"conclusion\": \"Литературный потенциал метана для 3 кг пшеничной соломы составляет 214 mL CH4/g VS. Для свекловичного жома данных о литературном потенциале метана нет.\", \"explanation\": \"Значение BMP для соломы взято из исследования monch2013-straw-A. Для свекловичного жома отсутствуют соответствующие данные в проверенном локальном корпусе.\", \"limitations\": [\"Данные для свекловичного жома отсутствуют; значение BMP для соломы относится к конкретному образцу и не подтверждено для\"], \"next_question\": \"Можно ли получить данные о литературном потенциале метана для свекловичного жома из других источника\", \"evidence_ids\": [\"profile.monch2013-straw-A.bmp\"], \"decision\": \"not_established\"}, \"quantity_differences\": []}], \"synthesis_rejections\": [\"local_search_scope_overstated\"], \"resource_termination\": \"investigation_complete\", \"primary_evidence_unchecked\": [], \"verified_display_references\": [{\"id\": \"profile.monch2013-straw-A.bmp\", \"label\": \"Солома (dry): опубликованный BMP образца monch2013-straw-A\", \"value\": {\"low\": 214, \"high\": 214}, \"unit\": \"mL CH4/g VS\", \"level\": \"LITERATURE\", \"scenario\": \"monch2013-straw-A\", \"description\": \"Preparation: Barn A; dried 60 C, milled 1 mm before HBT. No population interval. Evidence review: Reviewed local extraction of published experiment; not independent replication Preparation affects hydrolysis; barn A paired measurements only, not universal raw feedstock BMP. Source ID: monch2013\", \"source_locator\": \"Tables 2 and 7, barn A: TS 81.77% FM, VS 75.61% FM, observed 0.214 Nm3 CH4/kg VS\"}], \"scientific_details\": {\"search_substrate_profiles\": {\"status\": \"ok\", \"message\": \"Study-specific local evidence; no live internet search performed.\", \"dossiers\": [{\"material\": \"beet_pulp\", \"name\": \"Свекловичный жом\", \"scope_status\": \"EXPERIMENTAL_RETAINED\", \"selection_rationale\": \"Historical category retained; evidence is not a core dossier.\", \"physical_states\": [\"fresh_solid\", \"slurry\", \"dry\"], \"studies\": [], \"partial_characterizations\": [], \"sources\": [], \"inhibition_risks\": [\"pressing, drying and moisture basis require confirmation\"], \"organic_loading_limit\": null, \"loading_limit_note\": \"No universal safe OLR established. Study-specific loading, ISR and duration belong to their original reactor and feeding regime.\", \"co_digestion\": \"No universal synergy or compatible mixing ratio inferred; compare specific mixed-substrate studies before transfer.\", \"unknowns\": [\"batch composition\", \"inoculum activity\", \"plant recovery\", \"safe loading limit\"], \"search_scope\": \"LOCAL_REVIEWED_CORPUS\", \"live_search_performed\": false}, {\"material\": \"straw\", \"name\": \"Солома\", \"scope_status\": \"CORE\", \"selection_rationale\": \"Cereal residues; wheat straw preparation and slow hydrolysis are central constraints.\", \"physical_states\": [\"dry\", \"shredded\"], \"studies\": [{\"profile_id\": \"monch2013-straw-A\", \"source_id\": \"monch2013\", \"physical_state\": \"dry\", \"animal_scope\": null, \"preparation\": \"Barn A; dried 60 C, milled 1 mm before HBT. No population interval.\", \"ts_fraction\": {\"low\": 0.8177, \"high\": 0.8177, \"locator\": \"Tables 2 and 7, barn A: TS 81.77% FM, VS 75.61% FM, observed 0.214 Nm3 CH4/kg VS\"}, \"vs_fraction_wet\": {\"low\": 0.7561, \"high\": 0.7561, \"locator\": \"Tables 2 and 7, barn A: TS 81.77% FM, VS 75.61% FM, observed 0.214 Nm3 CH4/kg VS\"}, \"vs_fraction_of_ts\": null, \"bmp_ml_ch4_g_vs\": {\"low\": 214, \"high\": 214, \"locator\": \"Tables 2 and 7, barn A: TS 81.77% FM, VS 75.61% FM, observed 0.214 Nm3 CH4/kg VS\"}, \"density_kg_l\": null, \"conditions\": {\"temperature_c\": 37, \"temperature_tolerance_c\": 0.5, \"duration_days\": 35, \"duration_kind\": \"BMP_INCUBATION\", \"reactor_type\": \"HBT 100 mL glass syringes; 30 g inoculum + 600 mg dried milled sample\", \"gas_basis\": {\"temperature_k\": 273.15, \"pressure_pa\": 101300, \"moisture\": \"unknown\"}, \"preparation\": \"Dried at 60 C for 48 h, milled to 1 mm; Stuttgart barns\"}, \"quality\": \"Reviewed local extraction of published experiment; not independent replication\", \"gas_basis\": {\"temperature_k\": 273.15, \"pressure_pa\": 101300, \"moisture\": \"unknown\"}, \"provenance\": \"PUBLISHED_EXPERIMENT\", \"transfer_limitations\": \"Preparation affects hydrolysis; barn A paired measurements only, not universal raw feedstock BMP.\"}], \"partial_characterizations\": [], \"sources\": [{\"id\": \"monch2013\", \"title\": \"Investigation of the methane potential of horse manure\", \"authors\": [\"Matthias Mönch-Tegeder\", \"Andreas Lemmer\", \"Hans Oechsner\", \"Thomas Jungbluth\"], \"year\": 2013, \"url\": \"https://cigrjournal.org/index.php/Ejounral/article/view/2445\", \"review_url\": \"https://cigrjournal.org/index.php/Ejounral/article/download/2445/1736/8047\", \"verification_stage\": \"NUMERIC_DATA_VERIFIED\", \"reviewed_sections\": [\"Methods 2.1-2.3; Tables 2, 3, 7, 8\"], \"conditions\": {\"temperature_c\": 37, \"temperature_tolerance_c\": 0.5, \"duration_days\": 35, \"duration_kind\": \"BMP_INCUBATION\", \"reactor_type\": \"HBT 100 mL glass syringes; 30 g inoculum + 600 mg dried milled sample\", \"gas_basis\": {\"temperature_k\": 273.15, \"pressure_pa\": 101300, \"moisture\": \"unknown\"}, \"preparation\": \"Dried at 60 C for 48 h, milled to 1 mm; Stuttgart barns\"}, \"limitations\": \"Preparation affects hydrolysis; barn A paired measurements only, not universal raw feedstock BMP.\"}], \"inhibition_risks\": [\"slow hydrolysis\", \"preparation energy\"], \"organic_loading_limit\": null, \"loading_limit_note\": \"No universal safe OLR established. Study-specific loading, ISR and duration belong to their original reactor and feeding regime.\", \"co_digestion\": \"No universal synergy or compatible mixing ratio inferred; compare specific mixed-substrate studies before transfer.\", \"unknowns\": [\"batch composition\", \"inoculum activity\", \"plant recovery\", \"safe loading limit\"], \"search_scope\": \"LOCAL_REVIEWED_CORPUS\", \"live_search_performed\": false}], \"core_materials\": [\"cattle_manure\", \"swine_manure\", \"poultry_manure\", \"sheep_goat_manure\", \"horse_manure\", \"food_waste\", \"straw\", \"grass\"], \"universal_profile_created\": false, \"search_queries\": [\"beet_pulp, straw\"]}}, \"latency_seconds\": 105.71386260000145, \"uncertainty_status\": \"No calibrated interval coverage; literature transfer and scenario bounds remain conditional.\", \"diagnostic_events\": [{\"type\": \"HttpRequestAccepted\", \"phase\": \"dashboard_api\", \"session_id\": \"cd9f83beb4604ddea198c539c255a64c\", \"request_id\": \"d7a272804d124bb3bc9b08ef8fa59992\", \"conversation_version\": \"7\"}, {\"type\": \"RequestReceived\", \"phase\": \"conversation_api\", \"characters\": 139}, {\"type\": \"ParametersExtracted\", \"phase\": \"parameter_extraction\", \"entities\": [{\"name\": \"material\", \"value\": \"mixture\", \"unit\": null, \"evidence\": \"Сравни только литературный потенциал метана для 3 кг свекловичного жома и 3 кг пшеничной соломы. Не делай вывод о прибыли без цен и затрат.\", \"provenance\": \"USER_CONFIRMED\"}, {\"name\": \"quantity\", \"value\": 3.0, \"unit\": \"kg\", \"evidence\": \"3 кг\", \"provenance\": \"USER_CONFIRMED\"}, {\"name\": \"unit\", \"value\": \"kg\", \"unit\": null, \"evidence\": \"3 кг\", \"provenance\": \"USER_CONFIRMED\"}, {\"name\": \"quantity\", \"value\": 3.0, \"unit\": \"kg\", \"evidence\": \"3 кг\", \"provenance\": \"USER_CONFIRMED\"}, {\"name\": \"unit\", \"value\": \"kg\", \"unit\": null, \"evidence\": \"3 кг\", \"provenance\": \"USER_CONFIRMED\"}]}, {\"type\": \"Clarification\", \"phase\": \"task_transition\", \"task_id\": \"329e5c6bc6614039b518db5931d559b9\"}, {\"type\": \"ModelUnderstandingStarted\", \"phase\": \"model_understanding\", \"configured\": true}, {\"type\": \"ModelUnderstandingFinished\", \"phase\": \"model_understanding\", \"proposal_received\": true, \"providers\": [{\"provider\": \"offline\", \"model\": \"qwen3:8b\", \"status\": \"available\", \"actual_generation\": true, \"phase\": \"structured_nlu\", \"requests\": [{\"input_characters\": 681, \"request_bytes\": 2258, \"status\": \"ok\", \"prompt_tokens\": 196, \"output_tokens\": 195, \"done_reason\": \"stop\", \"load_seconds\": 5.7311739, \"generation_seconds\": 16.539363, \"tokens_per_second\": 11.790055034163045, \"latency_seconds\": 23.424964000005275}]}]}, {\"type\": \"PlanningStarted\", \"phase\": \"agent_planning\", \"task_id\": \"329e5c6bc6614039b518db5931d559b9\"}, {\"type\": \"ToolExecuted\", \"phase\": \"tool_execution\", \"tool\": \"search_substrate_profiles\", \"status\": \"ok\"}, {\"type\": \"ResponseCreated\", \"phase\": \"response\", \"mode\": \"verified_partial\", \"tool_count\": 1}]}, \"state_version\": 1}",
+                "extracted_entities_json": "null",
+                "confirmed_parameters_json": "null",
+                "pending_question_json": "null",
+                "tool_results_json": "[{\"tool\": \"search_substrate_profiles\", \"status\": \"ok\", \"input_origin\": \"validated_scientific_state\", \"query\": \"beet_pulp, straw\", \"result\": {\"status\": \"ok\", \"message\": \"Study-specific local evidence; no live internet search performed.\", \"dossiers\": [{\"material\": \"beet_pulp\", \"name\": \"Свекловичный жом\", \"scope_status\": \"EXPERIMENTAL_RETAINED\", \"selection_rationale\": \"Historical category retained; evidence is not a core dossier.\", \"physical_states\": [\"fresh_solid\", \"slurry\", \"dry\"], \"studies\": [], \"partial_characterizations\": [], \"sources\": [], \"inhibition_risks\": [\"pressing, drying and moisture basis require confirmation\"], \"organic_loading_limit\": null, \"loading_limit_note\": \"No universal safe OLR established. Study-specific loading, ISR and duration belong to their original reactor and feeding regime.\", \"co_digestion\": \"No universal synergy or compatible mixing ratio inferred; compare specific mixed-substrate studies before transfer.\", \"unknowns\": [\"batch composition\", \"inoculum activity\", \"plant recovery\", \"safe loading limit\"], \"search_scope\": \"LOCAL_REVIEWED_CORPUS\", \"live_search_performed\": false}, {\"material\": \"straw\", \"name\": \"Солома\", \"scope_status\": \"CORE\", \"selection_rationale\": \"Cereal residues; wheat straw preparation and slow hydrolysis are central constraints.\", \"physical_states\": [\"dry\", \"shredded\"], \"studies\": [{\"profile_id\": \"monch2013-straw-A\", \"source_id\": \"monch2013\", \"physical_state\": \"dry\", \"animal_scope\": null, \"preparation\": \"Barn A; dried 60 C, milled 1 mm before HBT. No population interval.\", \"ts_fraction\": {\"low\": 0.8177, \"high\": 0.8177, \"locator\": \"Tables 2 and 7, barn A: TS 81.77% FM, VS 75.61% FM, observed 0.214 Nm3 CH4/kg VS\"}, \"vs_fraction_wet\": {\"low\": 0.7561, \"high\": 0.7561, \"locator\": \"Tables 2 and 7, barn A: TS 81.77% FM, VS 75.61% FM, observed 0.214 Nm3 CH4/kg VS\"}, \"vs_fraction_of_ts\": null, \"bmp_ml_ch4_g_vs\": {\"low\": 214, \"high\": 214, \"locator\": \"Tables 2 and 7, barn A: TS 81.77% FM, VS 75.61% FM, observed 0.214 Nm3 CH4/kg VS\"}, \"density_kg_l\": null, \"conditions\": {\"temperature_c\": 37, \"temperature_tolerance_c\": 0.5, \"duration_days\": 35, \"duration_kind\": \"BMP_INCUBATION\", \"reactor_type\": \"HBT 100 mL glass syringes; 30 g inoculum + 600 mg dried milled sample\", \"gas_basis\": {\"temperature_k\": 273.15, \"pressure_pa\": 101300, \"moisture\": \"unknown\"}, \"preparation\": \"Dried at 60 C for 48 h, milled to 1 mm; Stuttgart barns\"}, \"quality\": \"Reviewed local extraction of published experiment; not independent replication\", \"gas_basis\": {\"temperature_k\": 273.15, \"pressure_pa\": 101300, \"moisture\": \"unknown\"}, \"provenance\": \"PUBLISHED_EXPERIMENT\", \"transfer_limitations\": \"Preparation affects hydrolysis; barn A paired measurements only, not universal raw feedstock BMP.\"}], \"partial_characterizations\": [], \"sources\": [{\"id\": \"monch2013\", \"title\": \"Investigation of the methane potential of horse manure\", \"authors\": [\"Matthias Mönch-Tegeder\", \"Andreas Lemmer\", \"Hans Oechsner\", \"Thomas Jungbluth\"], \"year\": 2013, \"url\": \"https://cigrjournal.org/index.php/Ejounral/article/view/2445\", \"review_url\": \"https://cigrjournal.org/index.php/Ejounral/article/download/2445/1736/8047\", \"verification_stage\": \"NUMERIC_DATA_VERIFIED\", \"reviewed_sections\": [\"Methods 2.1-2.3; Tables 2, 3, 7, 8\"], \"conditions\": {\"temperature_c\": 37, \"temperature_tolerance_c\": 0.5, \"duration_days\": 35, \"duration_kind\": \"BMP_INCUBATION\", \"reactor_type\": \"HBT 100 mL glass syringes; 30 g inoculum + 600 mg dried milled sample\", \"gas_basis\": {\"temperature_k\": 273.15, \"pressure_pa\": 101300, \"moisture\": \"unknown\"}, \"preparation\": \"Dried at 60 C for 48 h, milled to 1 mm; Stuttgart barns\"}, \"limitations\": \"Preparation affects hydrolysis; barn A paired measurements only, not universal raw feedstock BMP.\"}], \"inhibition_risks\": [\"slow hydrolysis\", \"preparation energy\"], \"organic_loading_limit\": null, \"loading_limit_note\": \"No universal safe OLR established. Study-specific loading, ISR and duration belong to their original reactor and feeding regime.\", \"co_digestion\": \"No universal synergy or compatible mixing ratio inferred; compare specific mixed-substrate studies before transfer.\", \"unknowns\": [\"batch composition\", \"inoculum activity\", \"plant recovery\", \"safe loading limit\"], \"search_scope\": \"LOCAL_REVIEWED_CORPUS\", \"live_search_performed\": false}], \"core_materials\": [\"cattle_manure\", \"swine_manure\", \"poultry_manure\", \"sheep_goat_manure\", \"horse_manure\", \"food_waste\", \"straw\", \"grass\"], \"universal_profile_created\": false}}]",
+                "reply": {
+                  "conversation_version": "7",
+                  "analysis_version": "9.0",
+                  "mode": "verified_partial",
+                  "answer": "Предварительная оценка по доступным и проверенным данным:\n\nСолома (dry): опубликованный BMP образца monch2013-straw-A: 214 mL CH4/g VS (литературные данные). Preparation: Barn A; dried 60 C, milled 1 mm before HBT. No population interval. Evidence review: Reviewed local extraction of published experiment; not independent replication Preparation affects hydrolysis; barn A paired measurements only, not universal raw feedstock BMP. Source ID: monch2013\n\nВ проверенном локальном корпусе для Свекловичный жом количественные профили не найдены; это не доказывает отсутствие научных публикаций.",
+                  "user_facing_answer": {
+                    "paragraphs": [
+                      "Предварительная оценка по доступным и проверенным данным:",
+                      "Солома (dry): опубликованный BMP образца monch2013-straw-A: 214 mL CH4/g VS (литературные данные). Preparation: Barn A; dried 60 C, milled 1 mm before HBT. No population interval. Evidence review: Reviewed local extraction of published experiment; not independent replication Preparation affects hydrolysis; barn A paired measurements only, not universal raw feedstock BMP. Source ID: monch2013",
+                      "В проверенном локальном корпусе для Свекловичный жом количественные профили не найдены; это не доказывает отсутствие научных публикаций."
+                    ],
+                    "sections": [],
+                    "question": null,
+                    "sources": [
+                      {
+                        "title": "Investigation of the methane potential of horse manure",
+                        "url": "https://cigrjournal.org/index.php/Ejounral/article/view/2445"
+                      }
+                    ],
+                    "modes": [
+                      "explicit_engine_partial"
+                    ],
+                    "assumptions": [
+                      "market_region"
+                    ]
+                  },
+                  "tools": [
+                    {
+                      "tool": "search_substrate_profiles",
+                      "status": "ok",
+                      "input_origin": "validated_scientific_state",
+                      "query": "beet_pulp, straw",
+                      "result": {
+                        "status": "ok",
+                        "message": "Study-specific local evidence; no live internet search performed.",
+                        "dossiers": [
+                          {
+                            "material": "beet_pulp",
+                            "name": "Свекловичный жом",
+                            "scope_status": "EXPERIMENTAL_RETAINED",
+                            "selection_rationale": "Historical category retained; evidence is not a core dossier.",
+                            "physical_states": [
+                              "fresh_solid",
+                              "slurry",
+                              "dry"
+                            ],
+                            "studies": [],
+                            "partial_characterizations": [],
+                            "sources": [],
+                            "inhibition_risks": [
+                              "pressing, drying and moisture basis require confirmation"
+                            ],
+                            "organic_loading_limit": null,
+                            "loading_limit_note": "No universal safe OLR established. Study-specific loading, ISR and duration belong to their original reactor and feeding regime.",
+                            "co_digestion": "No universal synergy or compatible mixing ratio inferred; compare specific mixed-substrate studies before transfer.",
+                            "unknowns": [
+                              "batch composition",
+                              "inoculum activity",
+                              "plant recovery",
+                              "safe loading limit"
+                            ],
+                            "search_scope": "LOCAL_REVIEWED_CORPUS",
+                            "live_search_performed": false
+                          },
+                          {
+                            "material": "straw",
+                            "name": "Солома",
+                            "scope_status": "CORE",
+                            "selection_rationale": "Cereal residues; wheat straw preparation and slow hydrolysis are central constraints.",
+                            "physical_states": [
+                              "dry",
+                              "shredded"
+                            ],
+                            "studies": [
+                              {
+                                "profile_id": "monch2013-straw-A",
+                                "source_id": "monch2013",
+                                "physical_state": "dry",
+                                "animal_scope": null,
+                                "preparation": "Barn A; dried 60 C, milled 1 mm before HBT. No population interval.",
+                                "ts_fraction": {
+                                  "low": 0.8177,
+                                  "high": 0.8177,
+                                  "locator": "Tables 2 and 7, barn A: TS 81.77% FM, VS 75.61% FM, observed 0.214 Nm3 CH4/kg VS"
+                                },
+                                "vs_fraction_wet": {
+                                  "low": 0.7561,
+                                  "high": 0.7561,
+                                  "locator": "Tables 2 and 7, barn A: TS 81.77% FM, VS 75.61% FM, observed 0.214 Nm3 CH4/kg VS"
+                                },
+                                "vs_fraction_of_ts": null,
+                                "bmp_ml_ch4_g_vs": {
+                                  "low": 214,
+                                  "high": 214,
+                                  "locator": "Tables 2 and 7, barn A: TS 81.77% FM, VS 75.61% FM, observed 0.214 Nm3 CH4/kg VS"
+                                },
+                                "density_kg_l": null,
+                                "conditions": {
+                                  "temperature_c": 37,
+                                  "temperature_tolerance_c": 0.5,
+                                  "duration_days": 35,
+                                  "duration_kind": "BMP_INCUBATION",
+                                  "reactor_type": "HBT 100 mL glass syringes; 30 g inoculum + 600 mg dried milled sample",
+                                  "gas_basis": {
+                                    "temperature_k": 273.15,
+                                    "pressure_pa": 101300,
+                                    "moisture": "unknown"
+                                  },
+                                  "preparation": "Dried at 60 C for 48 h, milled to 1 mm; Stuttgart barns"
+                                },
+                                "quality": "Reviewed local extraction of published experiment; not independent replication",
+                                "gas_basis": {
+                                  "temperature_k": 273.15,
+                                  "pressure_pa": 101300,
+                                  "moisture": "unknown"
+                                },
+                                "provenance": "PUBLISHED_EXPERIMENT",
+                                "transfer_limitations": "Preparation affects hydrolysis; barn A paired measurements only, not universal raw feedstock BMP."
+                              }
+                            ],
+                            "partial_characterizations": [],
+                            "sources": [
+                              {
+                                "id": "monch2013",
+                                "title": "Investigation of the methane potential of horse manure",
+                                "authors": [
+                                  "Matthias Mönch-Tegeder",
+                                  "Andreas Lemmer",
+                                  "Hans Oechsner",
+                                  "Thomas Jungbluth"
+                                ],
+                                "year": 2013,
+                                "url": "https://cigrjournal.org/index.php/Ejounral/article/view/2445",
+                                "review_url": "https://cigrjournal.org/index.php/Ejounral/article/download/2445/1736/8047",
+                                "verification_stage": "NUMERIC_DATA_VERIFIED",
+                                "reviewed_sections": [
+                                  "Methods 2.1-2.3; Tables 2, 3, 7, 8"
+                                ],
+                                "conditions": {
+                                  "temperature_c": 37,
+                                  "temperature_tolerance_c": 0.5,
+                                  "duration_days": 35,
+                                  "duration_kind": "BMP_INCUBATION",
+                                  "reactor_type": "HBT 100 mL glass syringes; 30 g inoculum + 600 mg dried milled sample",
+                                  "gas_basis": {
+                                    "temperature_k": 273.15,
+                                    "pressure_pa": 101300,
+                                    "moisture": "unknown"
+                                  },
+                                  "preparation": "Dried at 60 C for 48 h, milled to 1 mm; Stuttgart barns"
+                                },
+                                "limitations": "Preparation affects hydrolysis; barn A paired measurements only, not universal raw feedstock BMP."
+                              }
+                            ],
+                            "inhibition_risks": [
+                              "slow hydrolysis",
+                              "preparation energy"
+                            ],
+                            "organic_loading_limit": null,
+                            "loading_limit_note": "No universal safe OLR established. Study-specific loading, ISR and duration belong to their original reactor and feeding regime.",
+                            "co_digestion": "No universal synergy or compatible mixing ratio inferred; compare specific mixed-substrate studies before transfer.",
+                            "unknowns": [
+                              "batch composition",
+                              "inoculum activity",
+                              "plant recovery",
+                              "safe loading limit"
+                            ],
+                            "search_scope": "LOCAL_REVIEWED_CORPUS",
+                            "live_search_performed": false
+                          }
+                        ],
+                        "core_materials": [
+                          "cattle_manure",
+                          "swine_manure",
+                          "poultry_manure",
+                          "sheep_goat_manure",
+                          "horse_manure",
+                          "food_waste",
+                          "straw",
+                          "grass"
+                        ],
+                        "universal_profile_created": false
+                      }
+                    }
+                  ],
+                  "provider_status": [
+                    {
+                      "provider": "offline",
+                      "model": "qwen3:8b",
+                      "status": "available",
+                      "actual_generation": true,
+                      "phase": "structured_nlu",
+                      "requests": [
+                        {
+                          "input_characters": 681,
+                          "request_bytes": 2258,
+                          "status": "ok",
+                          "prompt_tokens": 196,
+                          "output_tokens": 195,
+                          "done_reason": "stop",
+                          "load_seconds": 5.7311739,
+                          "generation_seconds": 16.539363,
+                          "tokens_per_second": 11.790055034163045,
+                          "latency_seconds": 23.424964000005275
+                        }
+                      ]
+                    },
+                    {
+                      "provider": "offline",
+                      "model": "qwen3:8b",
+                      "phase": "v9_tool_selection",
+                      "actual_generation": true,
+                      "requests": [
+                        {
+                          "input_characters": 2712,
+                          "request_bytes": 3961,
+                          "status": "ok",
+                          "prompt_tokens": 754,
+                          "output_tokens": 90,
+                          "done_reason": "stop",
+                          "load_seconds": 0.0097411,
+                          "generation_seconds": 7.795596,
+                          "tokens_per_second": 11.544980011791273,
+                          "latency_seconds": 10.914410899997165
+                        }
+                      ]
+                    },
+                    {
+                      "provider": "offline",
+                      "model": "qwen3:8b",
+                      "phase": "v9_synthesis",
+                      "actual_generation": true,
+                      "requests": [
+                        {
+                          "input_characters": 8444,
+                          "request_bytes": 10598,
+                          "status": "ok",
+                          "prompt_tokens": 2504,
+                          "output_tokens": 227,
+                          "done_reason": "stop",
+                          "load_seconds": 0.0068718,
+                          "generation_seconds": 28.098424,
+                          "tokens_per_second": 8.078744914661405,
+                          "latency_seconds": 38.70724640000117
+                        }
+                      ]
+                    },
+                    {
+                      "provider": "offline",
+                      "model": "qwen3:8b",
+                      "phase": "v9_synthesis",
+                      "actual_generation": true,
+                      "requests": [
+                        {
+                          "input_characters": 9744,
+                          "request_bytes": 12744,
+                          "status": "ok",
+                          "prompt_tokens": 2907,
+                          "output_tokens": 234,
+                          "done_reason": "stop",
+                          "load_seconds": 0.0086135,
+                          "generation_seconds": 30.367176,
+                          "tokens_per_second": 7.705688536859667,
+                          "latency_seconds": 32.45633909999742
+                        }
+                      ]
+                    }
+                  ],
+                  "memory": {
+                    "version": "7",
+                    "task_id": "329e5c6bc6614039b518db5931d559b9",
+                    "task_history": [],
+                    "conversation_id": "cd9f83beb4604ddea198c539c255a64c",
+                    "language": "ru",
+                    "facts": {
+                      "material": {
+                        "value": "mixture",
+                        "unit": null,
+                        "provenance": "USER_CONFIRMED",
+                        "evidence": "Сравни только литературный потенциал метана для 3 кг свекловичного жома и 3 кг пшеничной соломы. Не делай вывод о прибыли без цен и затрат.",
+                        "recorded_at": "2026-11-08T08:58:52.300002+00:00",
+                        "dependencies": []
+                      }
+                    },
+                    "assumptions": {
+                      "market_region": {
+                        "value": "KZ-Karaganda",
+                        "unit": null,
+                        "provenance": "ASSUMED_FOR_SCENARIO",
+                        "evidence": "Default dashboard region; not user-confirmed",
+                        "recorded_at": "2026-11-08T08:58:28.798800+00:00",
+                        "dependencies": []
+                      }
+                    },
+                    "derived": {},
+                    "estimates": {},
+                    "source_verified": {},
+                    "intents": [
+                      "profile_lookup"
+                    ],
+                    "pending_question": null,
+                    "invalidated": [],
+                    "decision_settings": {
+                      "gas_use": "unknown",
+                      "assume_reference_compatibility": false,
+                      "use_reference_scenarios": true,
+                      "heating_value_type": "LHV",
+                      "reactor": {
+                        "engineering_review_confirmed": false,
+                        "safety_review_required": false,
+                        "loads": [],
+                        "loads_complete": false,
+                        "provenance": "USER_REPORTED"
+                      },
+                      "quotes": {},
+                      "price_ids": {},
+                      "max_price_age_days": 30,
+                      "costs": {},
+                      "all_operating_costs_included": false,
+                      "include_capital": false,
+                      "assume_full_self_consumption": false,
+                      "replacement_heat_source": "unknown",
+                      "gas_sale_technical_confirmed": false,
+                      "gas_sale_legal_confirmed": false,
+                      "gas_quality_confirmed": false,
+                      "gas_storage_transport_confirmed": false,
+                      "digestate_quality_confirmed": false,
+                      "digestate_market_allowed": false
+                    },
+                    "decision_unavailable": [],
+                    "last_research_summary": {},
+                    "mixture_components": [
+                      {
+                        "id": "c1",
+                        "material": "beet_pulp",
+                        "material_state": "unknown",
+                        "quantity": 3.0,
+                        "unit": "kg",
+                        "animal": "unknown",
+                        "poultry_type": "unknown",
+                        "reference_profile_id": null,
+                        "physical_state": "unknown",
+                        "decay_state": "unknown",
+                        "bedding": "unknown",
+                        "data_mode": "LITERATURE_ESTIMATE",
+                        "properties": {
+                          "density_kg_l": null,
+                          "ts_fraction": null,
+                          "vs_fraction_wet": null,
+                          "vs_fraction_of_ts": null,
+                          "bmp_ml_g_vs": null,
+                          "carbon_fraction_wet": null,
+                          "nitrogen_fraction_wet": null,
+                          "gas_basis": null
+                        },
+                        "provenance": "USER_CONFIRMED",
+                        "evidence": "ратурный потенциал метана для 3 кг свекловичного жома и 3 кг пшеничной соломы. Не делай вывод о прибыли без цен и затрат."
+                      },
+                      {
+                        "id": "c2",
+                        "material": "straw",
+                        "material_state": "unknown",
+                        "quantity": 3.0,
+                        "unit": "kg",
+                        "animal": "unknown",
+                        "poultry_type": "unknown",
+                        "reference_profile_id": null,
+                        "physical_state": "unknown",
+                        "decay_state": "unknown",
+                        "bedding": "unknown",
+                        "data_mode": "LITERATURE_ESTIMATE",
+                        "properties": {
+                          "density_kg_l": null,
+                          "ts_fraction": null,
+                          "vs_fraction_wet": null,
+                          "vs_fraction_of_ts": null,
+                          "bmp_ml_g_vs": null,
+                          "carbon_fraction_wet": null,
+                          "nitrogen_fraction_wet": null,
+                          "gas_basis": null
+                        },
+                        "provenance": "USER_CONFIRMED",
+                        "evidence": "для 3 кг свекловичного жома и 3 кг пшеничной соломы. Не делай вывод о прибыли без цен и затрат."
+                      }
+                    ],
+                    "mixture_scenario_components": [],
+                    "mixture_revision": 1,
+                    "mixture_history": [
+                      {
+                        "at": "2026-11-08T08:58:52.308414+00:00",
+                        "action": "set",
+                        "is_hypothetical": false,
+                        "components": [
+                          {
+                            "id": "c1",
+                            "material": "beet_pulp",
+                            "material_state": "unknown",
+                            "quantity": 3.0,
+                            "unit": "kg",
+                            "animal": "unknown",
+                            "poultry_type": "unknown",
+                            "reference_profile_id": null,
+                            "physical_state": "unknown",
+                            "decay_state": "unknown",
+                            "bedding": "unknown",
+                            "data_mode": "LITERATURE_ESTIMATE",
+                            "properties": {
+                              "density_kg_l": null,
+                              "ts_fraction": null,
+                              "vs_fraction_wet": null,
+                              "vs_fraction_of_ts": null,
+                              "bmp_ml_g_vs": null,
+                              "carbon_fraction_wet": null,
+                              "nitrogen_fraction_wet": null,
+                              "gas_basis": null
+                            },
+                            "provenance": "USER_CONFIRMED",
+                            "evidence": "ратурный потенциал метана для 3 кг свекловичного жома и 3 кг пшеничной соломы. Не делай вывод о прибыли без цен и затрат."
+                          },
+                          {
+                            "id": "c2",
+                            "material": "straw",
+                            "material_state": "unknown",
+                            "quantity": 3.0,
+                            "unit": "kg",
+                            "animal": "unknown",
+                            "poultry_type": "unknown",
+                            "reference_profile_id": null,
+                            "physical_state": "unknown",
+                            "decay_state": "unknown",
+                            "bedding": "unknown",
+                            "data_mode": "LITERATURE_ESTIMATE",
+                            "properties": {
+                              "density_kg_l": null,
+                              "ts_fraction": null,
+                              "vs_fraction_wet": null,
+                              "vs_fraction_of_ts": null,
+                              "bmp_ml_g_vs": null,
+                              "carbon_fraction_wet": null,
+                              "nitrogen_fraction_wet": null,
+                              "gas_basis": null
+                            },
+                            "provenance": "USER_CONFIRMED",
+                            "evidence": "для 3 кг свекловичного жома и 3 кг пшеничной соломы. Не делай вывод о прибыли без цен и затрат."
+                          }
+                        ]
+                      }
+                    ],
+                    "advisor_inventory_mode": "mixture",
+                    "advisor_pending_component": null,
+                    "advisor_settings": {},
+                    "smart_goals": [],
+                    "smart_cache": {},
+                    "active_mixture_scenario": false,
+                    "advanced": {
+                      "research_dialogue": {
+                        "asked": [],
+                        "last_turn_type": "new_question",
+                        "known_cost_categories": [],
+                        "unpriced_categories": [],
+                        "last_question_id": null
+                      }
+                    },
+                    "analytical_mode": "mixture"
+                  },
+                  "context": {
+                    "material": "mixture",
+                    "market_region": "KZ-Karaganda"
+                  },
+                  "context_updated": true,
+                  "pending_question": null,
+                  "missing": [],
+                  "actuator_access": false,
+                  "technical_metadata": {
+                    "agent_version": "9.0",
+                    "smart_version": "9.0",
+                    "final_author": "verified_engine_partial",
+                    "research_actions": [
+                      {
+                        "tool": "search_substrate_profiles",
+                        "purpose": "Исследовать литературный потенциал метана для свекловичного жома и пшеничной соломы",
+                        "ready_after_tool": true,
+                        "elapsed_seconds": 34.43520150000404
+                      }
+                    ],
+                    "verification": {
+                      "status": "not_applicable",
+                      "outcome": "not_applicable",
+                      "checks": [],
+                      "checked": false,
+                      "all_checks_passed": false,
+                      "unsupported_tools": [],
+                      "missing_verification_evidence": [],
+                      "scope": "Arithmetic, source identity, material/form, energy allocation and cost completeness; not biological validation, interval coverage or operating safety."
+                    },
+                    "diagnostics": [
+                      {
+                        "stage": "synthesis_validation",
+                        "issues": [
+                          "local_search_scope_overstated"
+                        ],
+                        "rejected_public_draft": {
+                          "conclusion": "Литературный потенциал метана для 3 кг свекловичного жома и 3 кг пшеничной соломы не может быть сравнен без дополнительных данных.",
+                          "explanation": "Для свекловичного жома отсутствуют данные о литературном потенциале метана. Для пшеничной соломы значение BMP составляет 214 mL CH4/g VS.",
+                          "limitations": [
+                            "Данные для свекловичного жома отсутствуют; значение BMP для соломы относится к конкретному образцу и не подтверждено для"
+                          ],
+                          "next_question": "Можно ли получить данные о литературном потенциале метана для свекловичного жома из других источника",
+                          "evidence_ids": [
+                            "profile.monch2013-straw-A.bmp"
+                          ],
+                          "decision": "not_established"
+                        },
+                        "quantity_differences": []
+                      },
+                      {
+                        "stage": "synthesis_validation",
+                        "issues": [
+                          "local_search_scope_overstated"
+                        ],
+                        "rejected_public_draft": {
+                          "conclusion": "Литературный потенциал метана для 3 кг пшеничной соломы составляет 214 mL CH4/g VS. Для свекловичного жома данных о литературном потенциале метана нет.",
+                          "explanation": "Значение BMP для соломы взято из исследования monch2013-straw-A. Для свекловичного жома отсутствуют соответствующие данные в проверенном локальном корпусе.",
+                          "limitations": [
+                            "Данные для свекловичного жома отсутствуют; значение BMP для соломы относится к конкретному образцу и не подтверждено для"
+                          ],
+                          "next_question": "Можно ли получить данные о литературном потенциале метана для свекловичного жома из других источника",
+                          "evidence_ids": [
+                            "profile.monch2013-straw-A.bmp"
+                          ],
+                          "decision": "not_established"
+                        },
+                        "quantity_differences": []
+                      }
+                    ],
+                    "synthesis_rejections": [
+                      "local_search_scope_overstated"
+                    ],
+                    "resource_termination": "investigation_complete",
+                    "primary_evidence_unchecked": [],
+                    "verified_display_references": [
+                      {
+                        "id": "profile.monch2013-straw-A.bmp",
+                        "label": "Солома (dry): опубликованный BMP образца monch2013-straw-A",
+                        "value": {
+                          "low": 214,
+                          "high": 214
+                        },
+                        "unit": "mL CH4/g VS",
+                        "level": "LITERATURE",
+                        "scenario": "monch2013-straw-A",
+                        "description": "Preparation: Barn A; dried 60 C, milled 1 mm before HBT. No population interval. Evidence review: Reviewed local extraction of published experiment; not independent replication Preparation affects hydrolysis; barn A paired measurements only, not universal raw feedstock BMP. Source ID: monch2013",
+                        "source_locator": "Tables 2 and 7, barn A: TS 81.77% FM, VS 75.61% FM, observed 0.214 Nm3 CH4/kg VS"
+                      }
+                    ],
+                    "scientific_details": {
+                      "search_substrate_profiles": {
+                        "status": "ok",
+                        "message": "Study-specific local evidence; no live internet search performed.",
+                        "dossiers": [
+                          {
+                            "material": "beet_pulp",
+                            "name": "Свекловичный жом",
+                            "scope_status": "EXPERIMENTAL_RETAINED",
+                            "selection_rationale": "Historical category retained; evidence is not a core dossier.",
+                            "physical_states": [
+                              "fresh_solid",
+                              "slurry",
+                              "dry"
+                            ],
+                            "studies": [],
+                            "partial_characterizations": [],
+                            "sources": [],
+                            "inhibition_risks": [
+                              "pressing, drying and moisture basis require confirmation"
+                            ],
+                            "organic_loading_limit": null,
+                            "loading_limit_note": "No universal safe OLR established. Study-specific loading, ISR and duration belong to their original reactor and feeding regime.",
+                            "co_digestion": "No universal synergy or compatible mixing ratio inferred; compare specific mixed-substrate studies before transfer.",
+                            "unknowns": [
+                              "batch composition",
+                              "inoculum activity",
+                              "plant recovery",
+                              "safe loading limit"
+                            ],
+                            "search_scope": "LOCAL_REVIEWED_CORPUS",
+                            "live_search_performed": false
+                          },
+                          {
+                            "material": "straw",
+                            "name": "Солома",
+                            "scope_status": "CORE",
+                            "selection_rationale": "Cereal residues; wheat straw preparation and slow hydrolysis are central constraints.",
+                            "physical_states": [
+                              "dry",
+                              "shredded"
+                            ],
+                            "studies": [
+                              {
+                                "profile_id": "monch2013-straw-A",
+                                "source_id": "monch2013",
+                                "physical_state": "dry",
+                                "animal_scope": null,
+                                "preparation": "Barn A; dried 60 C, milled 1 mm before HBT. No population interval.",
+                                "ts_fraction": {
+                                  "low": 0.8177,
+                                  "high": 0.8177,
+                                  "locator": "Tables 2 and 7, barn A: TS 81.77% FM, VS 75.61% FM, observed 0.214 Nm3 CH4/kg VS"
+                                },
+                                "vs_fraction_wet": {
+                                  "low": 0.7561,
+                                  "high": 0.7561,
+                                  "locator": "Tables 2 and 7, barn A: TS 81.77% FM, VS 75.61% FM, observed 0.214 Nm3 CH4/kg VS"
+                                },
+                                "vs_fraction_of_ts": null,
+                                "bmp_ml_ch4_g_vs": {
+                                  "low": 214,
+                                  "high": 214,
+                                  "locator": "Tables 2 and 7, barn A: TS 81.77% FM, VS 75.61% FM, observed 0.214 Nm3 CH4/kg VS"
+                                },
+                                "density_kg_l": null,
+                                "conditions": {
+                                  "temperature_c": 37,
+                                  "temperature_tolerance_c": 0.5,
+                                  "duration_days": 35,
+                                  "duration_kind": "BMP_INCUBATION",
+                                  "reactor_type": "HBT 100 mL glass syringes; 30 g inoculum + 600 mg dried milled sample",
+                                  "gas_basis": {
+                                    "temperature_k": 273.15,
+                                    "pressure_pa": 101300,
+                                    "moisture": "unknown"
+                                  },
+                                  "preparation": "Dried at 60 C for 48 h, milled to 1 mm; Stuttgart barns"
+                                },
+                                "quality": "Reviewed local extraction of published experiment; not independent replication",
+                                "gas_basis": {
+                                  "temperature_k": 273.15,
+                                  "pressure_pa": 101300,
+                                  "moisture": "unknown"
+                                },
+                                "provenance": "PUBLISHED_EXPERIMENT",
+                                "transfer_limitations": "Preparation affects hydrolysis; barn A paired measurements only, not universal raw feedstock BMP."
+                              }
+                            ],
+                            "partial_characterizations": [],
+                            "sources": [
+                              {
+                                "id": "monch2013",
+                                "title": "Investigation of the methane potential of horse manure",
+                                "authors": [
+                                  "Matthias Mönch-Tegeder",
+                                  "Andreas Lemmer",
+                                  "Hans Oechsner",
+                                  "Thomas Jungbluth"
+                                ],
+                                "year": 2013,
+                                "url": "https://cigrjournal.org/index.php/Ejounral/article/view/2445",
+                                "review_url": "https://cigrjournal.org/index.php/Ejounral/article/download/2445/1736/8047",
+                                "verification_stage": "NUMERIC_DATA_VERIFIED",
+                                "reviewed_sections": [
+                                  "Methods 2.1-2.3; Tables 2, 3, 7, 8"
+                                ],
+                                "conditions": {
+                                  "temperature_c": 37,
+                                  "temperature_tolerance_c": 0.5,
+                                  "duration_days": 35,
+                                  "duration_kind": "BMP_INCUBATION",
+                                  "reactor_type": "HBT 100 mL glass syringes; 30 g inoculum + 600 mg dried milled sample",
+                                  "gas_basis": {
+                                    "temperature_k": 273.15,
+                                    "pressure_pa": 101300,
+                                    "moisture": "unknown"
+                                  },
+                                  "preparation": "Dried at 60 C for 48 h, milled to 1 mm; Stuttgart barns"
+                                },
+                                "limitations": "Preparation affects hydrolysis; barn A paired measurements only, not universal raw feedstock BMP."
+                              }
+                            ],
+                            "inhibition_risks": [
+                              "slow hydrolysis",
+                              "preparation energy"
+                            ],
+                            "organic_loading_limit": null,
+                            "loading_limit_note": "No universal safe OLR established. Study-specific loading, ISR and duration belong to their original reactor and feeding regime.",
+                            "co_digestion": "No universal synergy or compatible mixing ratio inferred; compare specific mixed-substrate studies before transfer.",
+                            "unknowns": [
+                              "batch composition",
+                              "inoculum activity",
+                              "plant recovery",
+                              "safe loading limit"
+                            ],
+                            "search_scope": "LOCAL_REVIEWED_CORPUS",
+                            "live_search_performed": false
+                          }
+                        ],
+                        "core_materials": [
+                          "cattle_manure",
+                          "swine_manure",
+                          "poultry_manure",
+                          "sheep_goat_manure",
+                          "horse_manure",
+                          "food_waste",
+                          "straw",
+                          "grass"
+                        ],
+                        "universal_profile_created": false,
+                        "search_queries": [
+                          "beet_pulp, straw"
+                        ]
+                      }
+                    },
+                    "latency_seconds": 105.71386260000145,
+                    "uncertainty_status": "No calibrated interval coverage; literature transfer and scenario bounds remain conditional.",
+                    "diagnostic_events": [
+                      {
+                        "type": "HttpRequestAccepted",
+                        "phase": "dashboard_api",
+                        "session_id": "cd9f83beb4604ddea198c539c255a64c",
+                        "request_id": "d7a272804d124bb3bc9b08ef8fa59992",
+                        "conversation_version": "7"
+                      },
+                      {
+                        "type": "RequestReceived",
+                        "phase": "conversation_api",
+                        "characters": 139
+                      },
+                      {
+                        "type": "ParametersExtracted",
+                        "phase": "parameter_extraction",
+                        "entities": [
+                          {
+                            "name": "material",
+                            "value": "mixture",
+                            "unit": null,
+                            "evidence": "Сравни только литературный потенциал метана для 3 кг свекловичного жома и 3 кг пшеничной соломы. Не делай вывод о прибыли без цен и затрат.",
+                            "provenance": "USER_CONFIRMED"
+                          },
+                          {
+                            "name": "quantity",
+                            "value": 3.0,
+                            "unit": "kg",
+                            "evidence": "3 кг",
+                            "provenance": "USER_CONFIRMED"
+                          },
+                          {
+                            "name": "unit",
+                            "value": "kg",
+                            "unit": null,
+                            "evidence": "3 кг",
+                            "provenance": "USER_CONFIRMED"
+                          },
+                          {
+                            "name": "quantity",
+                            "value": 3.0,
+                            "unit": "kg",
+                            "evidence": "3 кг",
+                            "provenance": "USER_CONFIRMED"
+                          },
+                          {
+                            "name": "unit",
+                            "value": "kg",
+                            "unit": null,
+                            "evidence": "3 кг",
+                            "provenance": "USER_CONFIRMED"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "Clarification",
+                        "phase": "task_transition",
+                        "task_id": "329e5c6bc6614039b518db5931d559b9"
+                      },
+                      {
+                        "type": "ModelUnderstandingStarted",
+                        "phase": "model_understanding",
+                        "configured": true
+                      },
+                      {
+                        "type": "ModelUnderstandingFinished",
+                        "phase": "model_understanding",
+                        "proposal_received": true,
+                        "providers": [
+                          {
+                            "provider": "offline",
+                            "model": "qwen3:8b",
+                            "status": "available",
+                            "actual_generation": true,
+                            "phase": "structured_nlu",
+                            "requests": [
+                              {
+                                "input_characters": 681,
+                                "request_bytes": 2258,
+                                "status": "ok",
+                                "prompt_tokens": 196,
+                                "output_tokens": 195,
+                                "done_reason": "stop",
+                                "load_seconds": 5.7311739,
+                                "generation_seconds": 16.539363,
+                                "tokens_per_second": 11.790055034163045,
+                                "latency_seconds": 23.424964000005275
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "PlanningStarted",
+                        "phase": "agent_planning",
+                        "task_id": "329e5c6bc6614039b518db5931d559b9"
+                      },
+                      {
+                        "type": "ToolExecuted",
+                        "phase": "tool_execution",
+                        "tool": "search_substrate_profiles",
+                        "status": "ok"
+                      },
+                      {
+                        "type": "ResponseCreated",
+                        "phase": "response",
+                        "mode": "verified_partial",
+                        "tool_count": 1
+                      }
+                    ]
+                  },
+                  "state_version": 1
+                }
+              }
+            ]
+          },
+          "scientific_state": {
+            "conversation_id": "cd9f83beb4604ddea198c539c255a64c",
+            "state_version": 1,
+            "active_task_id": "329e5c6bc6614039b518db5931d559b9",
+            "confirmed_measurements": {
+              "material": {
+                "value": "mixture",
+                "unit": null,
+                "provenance": "USER_CONFIRMED",
+                "evidence": "Сравни только литературный потенциал метана для 3 кг свекловичного жома и 3 кг пшеничной соломы. Не делай вывод о прибыли без цен и затрат.",
+                "recorded_at": "2026-11-08T08:58:52.300002+00:00",
+                "dependencies": []
+              }
+            },
+            "literature": {},
+            "assumptions": {
+              "market_region": {
+                "value": "KZ-Karaganda",
+                "unit": null,
+                "provenance": "ASSUMED_FOR_SCENARIO",
+                "evidence": "Default dashboard region; not user-confirmed",
+                "recorded_at": "2026-11-08T08:58:28.798800+00:00",
+                "dependencies": []
+              }
+            },
+            "derived": {},
+            "predictions": {},
+            "components": [
+              {
+                "id": "c1",
+                "material": "beet_pulp",
+                "material_state": "unknown",
+                "quantity": 3.0,
+                "unit": "kg",
+                "animal": "unknown",
+                "poultry_type": "unknown",
+                "reference_profile_id": null,
+                "physical_state": "unknown",
+                "decay_state": "unknown",
+                "bedding": "unknown",
+                "data_mode": "LITERATURE_ESTIMATE",
+                "properties": {
+                  "density_kg_l": null,
+                  "ts_fraction": null,
+                  "vs_fraction_wet": null,
+                  "vs_fraction_of_ts": null,
+                  "bmp_ml_g_vs": null,
+                  "carbon_fraction_wet": null,
+                  "nitrogen_fraction_wet": null,
+                  "gas_basis": null
+                },
+                "provenance": "USER_CONFIRMED",
+                "evidence": "ратурный потенциал метана для 3 кг свекловичного жома и 3 кг пшеничной соломы. Не делай вывод о прибыли без цен и затрат."
+              },
+              {
+                "id": "c2",
+                "material": "straw",
+                "material_state": "unknown",
+                "quantity": 3.0,
+                "unit": "kg",
+                "animal": "unknown",
+                "poultry_type": "unknown",
+                "reference_profile_id": null,
+                "physical_state": "unknown",
+                "decay_state": "unknown",
+                "bedding": "unknown",
+                "data_mode": "LITERATURE_ESTIMATE",
+                "properties": {
+                  "density_kg_l": null,
+                  "ts_fraction": null,
+                  "vs_fraction_wet": null,
+                  "vs_fraction_of_ts": null,
+                  "bmp_ml_g_vs": null,
+                  "carbon_fraction_wet": null,
+                  "nitrogen_fraction_wet": null,
+                  "gas_basis": null
+                },
+                "provenance": "USER_CONFIRMED",
+                "evidence": "для 3 кг свекловичного жома и 3 кг пшеничной соломы. Не делай вывод о прибыли без цен и затрат."
+              }
+            ],
+            "scenario_components": [],
+            "scoped_result_fields": [
+              {
+                "layer": "assumptions",
+                "field": "market_region",
+                "provenance": "ASSUMED_FOR_SCENARIO",
+                "updated_at": "2026-11-08T08:58:28.798800+00:00",
+                "value": "KZ-Karaganda",
+                "source": {
+                  "evidence": "Default dashboard region; not user-confirmed",
+                  "dependencies": []
+                }
+              },
+              {
+                "layer": "confirmed",
+                "field": "material",
+                "provenance": "USER_CONFIRMED",
+                "updated_at": "2026-11-08T08:58:52.300002+00:00",
+                "value": "mixture",
+                "source": {
+                  "evidence": "Сравни только литературный потенциал метана для 3 кг свекловичного жома и 3 кг пшеничной соломы. Не делай вывод о прибыли без цен и затрат.",
+                  "dependencies": []
+                }
+              }
+            ],
+            "archived_tasks": [
+              {
+                "id": "329e5c6bc6614039b518db5931d559b9",
+                "revision": 1,
+                "created_at": "2026-11-08T09:00:14.609728+00:00",
+                "updated_at": "2026-11-08T09:00:14.609728+00:00"
+              }
+            ],
+            "dashboard_draft": null
+          }
+        }
+      ],
+      "complete": true
+    }
+  ],
+  "scope": "New user scenarios for acceptance only; not held-out model accuracy."
+}

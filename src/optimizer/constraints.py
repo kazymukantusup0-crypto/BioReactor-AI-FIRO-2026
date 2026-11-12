@@ -1,5 +1,6 @@
 """Physical consistency, explicit user limits and missing engineering information."""
 import math
+from src.optimizer.capacity import assess_reactor_capacity
 
 
 def analyze_constraints(p, scientific=None, energy=None):
@@ -20,9 +21,26 @@ def analyze_constraints(p, scientific=None, energy=None):
     if working is not None and p.liquid_charge_volume_l is not None:
         add('HARD_CONSTRAINT', 'liquid_charge_volume_l', 'VIOLATED' if p.liquid_charge_volume_l > working else 'SATISFIED',
             'Explicit simultaneous liquid charge cannot exceed working volume.')
-    if p.feedstock_volume_l is not None and total is not None and p.feedstock_volume_l > total:
-        add('HARD_CONSTRAINT', 'feedstock_volume_l', 'PLANNING_REQUIRED',
-            'The feedstock lot cannot be charged simultaneously into this vessel. This alone does not make staged processing infeasible.')
+    capacity = assess_reactor_capacity(
+        feedstock_volume_l=p.feedstock_volume_l,
+        reactor_total_volume_l=total,
+        reactor_working_volume_l=working,
+        inoculum_volume_l=p.inoculum_volume_l,
+        dilution_water_l=p.dilution_water_l,
+        resident_liquid_volume_l=p.resident_liquid_volume_l,
+    )
+    if capacity['status'] != 'NOT_ASSESSED':
+        status = {
+            'EXCEEDS_NOMINAL': 'PLANNING_REQUIRED',
+            'EXCEEDS_WORKING_VOLUME': 'VIOLATED',
+            'INVALID_VESSEL_GEOMETRY': 'VIOLATED',
+            'WORKING_VOLUME_UNKNOWN': 'UNKNOWN',
+            'OCCUPANCY_INCOMPLETE': 'UNKNOWN',
+            'WITHIN_DECLARED_WORKING_VOLUME': 'SATISFIED',
+            'INVALID_INPUT': 'UNKNOWN',
+        }.get(capacity['status'], 'UNKNOWN')
+        add('HARD_CONSTRAINT', 'simultaneous_liquid_charge', status,
+            'Volume-only charge check; this is not process safety approval.', assessment=capacity)
     if working is not None and all(v is not None for v in [p.inoculum_volume_l, p.dilution_water_l, p.resident_liquid_volume_l]):
         available = working-p.inoculum_volume_l-p.dilution_water_l-p.resident_liquid_volume_l
         add('HARD_CONSTRAINT', 'charge_occupancy', 'VIOLATED' if available <= 0 else 'SATISFIED',
@@ -72,6 +90,7 @@ def analyze_constraints(p, scientific=None, energy=None):
     critical += [r['parameter'] for r in rows if r['kind']=='USER_DEFINED_LIMIT' and r['status']=='UNKNOWN']
     violated = any(r['status'] == 'VIOLATED' for r in rows)
     return {'constraints': rows, 'critical_missing': critical, 'derived': derived,
+            'capacity_assessment': capacity,
             'feasibility_status': 'INFEASIBLE' if violated else 'INSUFFICIENT_DATA' if critical else 'CONDITIONAL',
             'status_scope': 'Consistency and information availability only; not engineering safety certification.'}
 

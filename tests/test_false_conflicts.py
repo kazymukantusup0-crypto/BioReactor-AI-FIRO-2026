@@ -34,7 +34,8 @@ def test_reactor_quantity_is_not_absorbed_by_later_sale_material(text,quantity,c
     assert bot.state.value('unit')=='L'
     assert reply['mode']=='qwen_autonomous_tools'
     assert {t['tool'] for t in reply['tools']} >= {'assess_substrate_potential','evaluate_partial_economics','assess_process_evidence'}
-    assert science(reply)['scenarios'][0]['methane_m3']['low']>0
+    assert science(reply)['scenarios'][0]['methane_m3'] is None
+    assert 'density_kg_l' in science(reply)['scenarios'][0]['missing']
     assert all(s['engineering']['operation_authorized'] is False for s in science(reply)['scenarios'])
     assert any(e['type']=='NewBatch' for e in reply['technical_metadata']['diagnostic_events'])
 
@@ -45,7 +46,9 @@ def test_two_complete_requests_get_distinct_task_states_not_conflicts():
     assert bot.state.value('quantity')==47 and bot.state.value('reactor_total_volume_l')==114
     assert len(bot.state.mixture_components)==1 and bot.state.mixture_components[0]['quantity']==47
     assert bot.state.task_history[-1]['facts']['quantity']['value']==478
-    assert science(second)['scenarios'][0]['methane_m3']['low']==pytest.approx(science(first)['scenarios'][0]['methane_m3']['low']*47/478)
+    assert science(first)['scenarios'][0]['methane_m3'] is None
+    assert science(second)['scenarios'][0]['methane_m3'] is None
+    assert science(second)['scenarios'][0]['request']['components'][0]['quantity']==47
 
 
 def test_two_unlabelled_corrections_bind_previous_roles_and_update_inventory():

@@ -23,7 +23,7 @@ def source_basis(result,settings):
             ok,reason=compatible(original,settings.gas_basis,settings.assume_reference_compatibility)
             if not ok:return None,reason
         return original,'RM1 gas moisture unspecified'
-    if result.get('gas_reference') and settings.gas_basis:return settings.gas_basis,'User-declared measured BMP gas basis'
+    if result.get('gas_reference') and settings.gas_basis:return settings.gas_basis,'User-declared BMP gas basis; independent measurement not established'
     return None,'missing_documented_BMP_gas_basis'
 
 def biogas_volume(methane,fraction):
@@ -43,8 +43,10 @@ def resolve(result,request,settings):
     ok,why=compatible(basis,cb,assume)
     volume=biogas_volume(result['methane_potential_m3'],fraction) if result.get('methane_potential_m3') and fraction and ok else None
     levels={result.get('result_level'),fraction.get('provenance') if fraction else None}
-    level='HYPOTHETICAL_SCENARIO' if preset or 'assumed' in why or 'HYPOTHETICAL_SCENARIO' in levels or 'USER_REPORTED' in levels else 'LITERATURE_ESTIMATE' if 'LITERATURE_ESTIMATE' in levels else 'MEASURED'
+    level='HYPOTHETICAL_SCENARIO' if preset or 'assumed' in why or 'HYPOTHETICAL_SCENARIO' in levels or 'USER_REPORTED' in levels else 'LITERATURE_ESTIMATE' if 'LITERATURE_ESTIMATE' in levels else 'CALCULATED'
+    from src.provenance import calculated
     return {'potential_biogas_m3':volume,'methane_fraction':fraction,'gas_basis':basis.model_dump() if basis else None,
+            'result_provenance':calculated({'methane':result.get('result_provenance') or {'origin':'UNKNOWN'},'methane_fraction':fraction},'m³ biogas',limitations=['Calculated potential, not measured biogas production.']) if volume else None,
             'status':'conditional' if volume and (preset or 'assumed' in why) else 'ok' if volume else 'needs_input',
             'result_level':level if volume else None,
             'compatibility':why if basis else reason,'assumptions':['CH4 and total biogas at identical temperature, pressure and moisture basis assumed'] if volume and (preset or 'assumed' in why) else [],

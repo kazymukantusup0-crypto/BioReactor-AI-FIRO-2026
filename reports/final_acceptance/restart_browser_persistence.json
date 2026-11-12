@@ -1,0 +1,63 @@
+{
+  "checks": [
+    {
+      "name": "Selected saved session",
+      "passed": true,
+      "detail": "06a063ca91b34f4cb152b04fccb22451"
+    },
+    {
+      "name": "API returns every prior answer",
+      "passed": true,
+      "detail": 1
+    },
+    {
+      "name": "Browser renders persisted turn count",
+      "passed": true,
+      "detail": 1
+    },
+    {
+      "name": "Browser renders saved final answer",
+      "passed": true,
+      "detail": "Численные результаты не прошли проверку; подробности доступны в диагностике.\n\nЧисленная уверенность не оценена. Факты и предположения разделены.\nНаучные подробности\n0 tools"
+    },
+    {
+      "name": "Refresh keeps same rendered turns",
+      "passed": true,
+      "detail": 1
+    },
+    {
+      "name": "Refresh keeps exact final answer",
+      "passed": true,
+      "detail": "Численные результаты не прошли проверку; подробности доступны в диагностике.\n\nЧисленная уверенность не оценена. Факты и предположения разделены.\nНаучные подробности\n0 tools"
+    },
+    {
+      "name": "Refresh creates no duplicate turn",
+      "passed": true,
+      "detail": 1
+    },
+    {
+      "name": "State version survives backend restart and refresh",
+      "passed": true,
+      "detail": {
+        "before": 1,
+        "after": 1
+      }
+    },
+    {
+      "name": "No browser exceptions",
+      "passed": true,
+      "detail": []
+    }
+  ],
+  "errors": [],
+  "session": "06a063ca91b34f4cb152b04fccb22451",
+  "state_version": 1,
+  "turns": [
+    {
+      "request_id": "d246c974692e4817b04e6b8602119a4d",
+      "status": "complete",
+      "answer": "Численные результаты не прошли проверку; подробности доступны в диагностике."
+    }
+  ],
+  "browser": "156.0.8078.80"
+}

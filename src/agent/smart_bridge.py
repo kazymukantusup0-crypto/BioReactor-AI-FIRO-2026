@@ -108,6 +108,8 @@ def respond(agent,text,extraction,proposal,started,plan,edit_plan):
     else:
         if edit_plan:
             sentences.append(t('Условная смесь обновлена; подтверждённое наличие сохранено.' if state.active_mixture_scenario else 'Состав обновлён.', 'What-if blend updated; confirmed inventory is unchanged.' if state.active_mixture_scenario else 'Composition updated.', 'Шартты қоспа жаңартылды; расталған қор сақталды.' if state.active_mixture_scenario else 'Құрам жаңартылды.'))
+        if set(goals)&{'gas','economics','compare'} and any(row.get('unit') in {'L','mL','m3'} and row.get('wet_mass_kg') is None and 'density_kg_l' in row.get('missing',[]) for row in (mix or {}).get('components',[])):
+            sentences.append(t('Для пересчёта объёма в массу укажите плотность этой партии или взвесьте её.','To convert the volume to mass, provide this batch’s density or weigh it.','Көлемнен массаны есептеу үшін осы партияның тығыздығын көрсетіңіз немесе оны өлшеңіз.'))
         if 'gas' in goals:
             if not has_amount:sentences.append(t('Укажите количество сырья в килограммах или литрах, чтобы оценить газ.','Please provide kilograms or litres of feedstock to estimate gas.','Газды бағалау үшін шикізат мөлшерін килограмм не литрмен көрсетіңіз.'))
             elif methane:
@@ -170,7 +172,7 @@ def respond(agent,text,extraction,proposal,started,plan,edit_plan):
     if plan.get('source_only'):
         pending=None;sentences=[t('Ссылки на первичные источники этого результата приведены ниже; их параметры относятся к исследованным образцам, а не измерениям вашей партии.','Primary sources for this result are linked below; their properties describe studied samples, not measurements of your batch.','Осы нәтиженің бастапқы дереккөздеріне сілтемелер төменде; мәндер сіздің партияға емес, зерттелген үлгілерге жатады.')] if sources else [t('Подходящего проверенного источника для этого сырья пока нет; нужны идентификация материала и проверка первичной статьи.','No suitable verified source is available for this material; identify it and review a primary study first.','Бұл шикізат үшін сәйкес тексерілген дереккөз жоқ; материалды анықтап, бастапқы мақаланы тексеру қажет.')]
     if plan['one_sentence']:sentences=[re.sub(r'[.!?]\s+','; ','; '.join(x.rstrip('.!?') for x in sentences[:2])).rstrip('.!?')+'.'] if sentences else []
-    elif not plan['detail']:sentences=sentences[:5]
+    elif not plan['detail']:sentences=sentences[:6]
     body=' '.join(sentences)
     state.pending_question=pending
     if goals:state.smart_goals=list(goals)

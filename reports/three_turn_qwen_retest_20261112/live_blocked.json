@@ -1,0 +1,82 @@
+{
+  "turns": [],
+  "errors": [],
+  "preflight": [
+    {
+      "measurement": {
+        "index": 0,
+        "timestamp_local": "2026-11-12T21:56:52.876356+05:00",
+        "free_ram_mib": 5548.5,
+        "commit": {
+          "commit_total_mib": 15806.6,
+          "commit_limit_mib": 35632.5,
+          "commit_headroom_mib": 19825.9,
+          "physical_available_mib": 5548.5
+        },
+        "gpu": {
+          "name": "NVIDIA GeForce RTX 3070 Laptop GPU",
+          "temperature_c": 60,
+          "utilization_pct": 1,
+          "vram_used_mib": 969,
+          "vram_total_mib": 8192,
+          "hw_thermal_slowdown": "Not Active",
+          "sw_thermal_slowdown": "Not Active",
+          "active_throttle_reasons": "0x0000000000000001"
+        },
+        "ollama_processes": [
+          {
+            "pid": 7208,
+            "name": "ollama.exe",
+            "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+            "cmdline": [
+              "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+              "serve"
+            ],
+            "ppid": 8712,
+            "parent_name": "ollama app.exe",
+            "parent_exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe",
+            "created_local": "2026-11-12T17:11:22.287710+05:00",
+            "threads": 17,
+            "handles": 443,
+            "working_set_mib": 45.4,
+            "private_working_set_mib": 9.9,
+            "private_bytes_mib": 96.9,
+            "virtual_bytes_mib": 96.9,
+            "peak_working_set_mib": 51.4,
+            "peak_private_bytes_mib": 101.5
+          },
+          {
+            "pid": 8712,
+            "name": "ollama app.exe",
+            "exe": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe",
+            "cmdline": [
+              "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Ollama\\ollama app.exe"
+            ],
+            "ppid": 17652,
+            "parent_name": "explorer.exe",
+            "parent_exe": "C:\\Windows\\explorer.exe",
+            "created_local": "2026-11-12T17:11:21.131550+05:00",
+            "threads": 14,
+            "handles": 338,
+            "working_set_mib": 47.2,
+            "private_working_set_mib": 6,
+            "private_bytes_mib": 52.5,
+            "virtual_bytes_mib": 52.5,
+            "peak_working_set_mib": 79.9,
+            "peak_private_bytes_mib": 53
+          }
+        ],
+        "api_version": {
+          "version": "0.40.16"
+        },
+        "running_models": []
+      },
+      "issues": [
+        "ram_limit"
+      ]
+    }
+  ],
+  "scope": "Actual browser, actual backend; model status recorded separately",
+  "blocked_before_turn": 1,
+  "interface_status": "BLOCKED"
+}

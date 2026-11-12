@@ -58,7 +58,7 @@ def explicit_components(text):
         if re.search(r'(?:реактор|reactor|digester|жұмыс.*көлем).{0,35}$',before,re.I) and not future:continue
         preceding=past[-1] if past and re.fullmatch(r'\s*[:=]?\s*',before[past[-1]['end']:]) else None
         # A nearby but unrelated material must not absorb an unknown component.
-        future=[hit for hit in future if re.fullmatch(r'\s*(?:(?:of|wet|dry|fresh|liquid|slurry|bedded|влажн\w*|жидк\w*|полужидк\w*|свеж\w*|сух\w*|тв[её]рд\w*|подстил\w*|измельч[её]н\w*)\s+)*',after[:hit['start']],re.I)]
+        future=[hit for hit in future if re.fullmatch(r'\s*(?:(?:of|wet|dry|fresh|liquid|slurry|bedded|влажн\w*|жидк\w*|полужидк\w*|свеж\w*|сух\w*|тв[её]рд\w*|подстил\w*|измельч[её]н\w*|молочн\w*)\s+)*',after[:hit['start']],re.I)]
         past_valid=past[-1] if past and re.fullmatch(r'\s*(?:(?:есть|имеется|массой|весом|weighs|is|бар)\s*)?[:=]?\s*',before[past[-1]['end']:],re.I) else None
         hit=preceding or (future[0] if future else past_valid)
         if hit:
@@ -89,13 +89,17 @@ def parse_turn(text,state):
     change_edit=r'\bchange\s+(?:(?:the|my|this|that)\s+)?(?:quantity|amount|mass|volume|dose|feed|substrate|material|manure|food\s+waste|\d+(?:[.,]\d+)?)\b.{0,70}\b(?:to|by|into)\b'
     replace=bool(re.search(r'замени|заменить|\breplace\b|'+change_edit+r'|ауыстыр',text,re.I))
     double=bool(re.search(r'вдвое|в\s+два\s+раза|double|екі\s+есе',text,re.I))
-    hypothesis=bool(re.search(r'что\s+измен|если|допустим|предполож|what\s+if|\bassume|егер|болжам',text,re.I))
+    hypothesis=bool(re.search(r'что\s+измен|если|допустим|предполож|гипотетич\w*|what\s+if|\bassume|егер|болжам|\bscenario\b',text,re.I))
     if not current and (add or remove or replace or double) and state.value('material') and state.value('quantity') is not None and state.value('unit'):
         try:current=[Component(id='c1',material=normalized(state.value('material')),material_state=state.value('material_state','unknown'),quantity=state.value('quantity'),unit=state.value('unit'),evidence='Prior confirmed single-substrate inventory')]
         except ValueError:pass
     candidates=[] if replace or remove or double else explicit_components(text)
     if current and (add or remove or replace or double):
         hits=matches(text);targets={x['material'] for x in hits}
+        if replace and not targets and len(current)==1:
+            # A correction may omit the material name when exactly one
+            # confirmed component is active in this batch.
+            targets={current[0].material}
         if not targets:raise ValueError('Specify the material to edit')
         if 'manure' in targets:
             species={c.material for c in current if c.material.endswith('_manure')}

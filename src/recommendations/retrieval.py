@@ -85,9 +85,11 @@ def import_document(path):
 
 
 def topics_for(text):
-    patterns={'temperature':r'температур|temperature|градус|degree','ph':r'\bph\b|кислот|қышқыл',
+    patterns={'oxygen':r'кислород|oxygen|оттегі','temperature':r'температур|temperature|градус|degree','ph':r'\bph\b|кислот|қышқыл',
         'retention':r'удерж|hrt|retention|ұстау','loading':r'нагруз|загруз|loading|жүктеме','bmp':r'\bbmp\b|бмп|метан|methane',
-        'low_gas':r'сниз|мало\s+газ|low\s+gas|decreas|газ.*аз','process':r'процесс|режим|process|digest|сбраж|ашыту'}
+        'solids':r'\bts\b|\bvs\b|total\s+solids|volatile\s+solids|сух\w*\s+(?:веществ\w*|остат\w*)|летуч\w*\s+(?:веществ\w*|тверд\w*)',
+        'capacity':r'working\s+volume|nominal\s+(?:vessel|reactor)\s+volume|(?:reactor|vessel)\s+volume|headspace|freeboard|reactor\s+capacity|рабоч\w*\s+объ[её]м|номинальн\w*\s+объ[её]м|вместимост\w*\s+реактор|объ[её]м\w*.{0,30}реактор|реактор\w*.{0,30}объ[её]м',
+        'low_gas':r'сниз|мало\s+газ|low\s+gas|decreas|газ.*аз','process':r'процесс|режим|process|сбраж|ашыту'}
     return [topic for topic,pattern in patterns.items() if re.search(pattern,text,re.I)]
 
 
@@ -100,7 +102,7 @@ def retrieve(query,material=None,topics=None,category=None,process_type=None):
     claims=[]
     for doc in documents():
         for claim in doc.claims:
-            if material and material not in claim.materials:continue
+            if material and material not in claim.materials and 'general' not in claim.materials:continue
             if not material and not topics:continue
             if topics and not set(topics)&set(claim.topics):continue
             if category and claim.category!=category:continue

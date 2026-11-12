@@ -15,6 +15,62 @@ from src.economics.calculator import ECONOMIC_FIELDS
 from src.agent import process_bridge
 
 
+def _correct_volume_mass_label(text, state):
+    if not isinstance(text,str) or state.value('unit') not in {'L','m3'} or state.value('mass_kg') is not None:
+        return text
+    quantity=state.value('quantity')
+    if quantity is None:return text
+    amount=format(float(quantity),'.12g')
+    amount_pattern=re.escape(amount)
+    if '.' in amount:amount_pattern+='|'+re.escape(amount.replace('.',','))
+    unit_pattern=r'(?:\u043b(?:\u0438\u0442\u0440\w*)?|l(?:iters?|itres?)?)'
+    labels=(r'(?:wet\s+)?mass(?:\s+of)?',
+            r'(?:(?:\u0432\u043b\u0430\u0436\u043d\w*|\u043e\u0446\u0435\u043d\u043e\u0447\u043d\w*)\s+)?'
+            r'(?:\u043c\u0430\u0441\u0441\u0430|\u043c\u0430\u0441\u0441\u0443|\u043c\u0430\u0441\u0441\u044b)'
+            r'(?:\s+(?:\u0441\u044b\u0440\u044c\u044f|\u043f\u0430\u0440\u0442\u0438\u0438|\u043d\u0430\u0432\u043e\u0437\u0430))?')
+    pattern=re.compile(rf'(?P<label>{labels[0]}|{labels[1]})\s*(?:(?:is|=|:|'
+                        r'\u0441\u043e\u0441\u0442\u0430\u0432\u043b\u044f\u0435\u0442|'
+                        r'\u0440\u0430\u0432\u043d\u0430)\s*)?'
+                        rf'(?P<value>{amount_pattern})\s*(?P<unit>{unit_pattern})',re.I)
+    label='feedstock volume' if state.language=='en' else 'шикізат көлемі' if state.language=='kk' else 'объём сырья'
+    return pattern.sub(lambda m:f"{label} {m.group('value')} {m.group('unit')}",text)
+
+
+def _attach_capacity_notice(reply, assessment, language, state):
+    from src.optimizer.capacity import render_capacity_notice
+    notice = render_capacity_notice(assessment or {}, language)
+    facing = reply.get('user_facing_answer')
+    if not isinstance(facing, dict):
+        facing = {}
+        reply['user_facing_answer'] = facing
+    paragraphs = facing.get('paragraphs')
+    if not isinstance(paragraphs, list):
+        paragraphs = []
+        facing['paragraphs'] = paragraphs
+    paragraphs[:]=[_correct_volume_mass_label(paragraph,state) for paragraph in paragraphs]
+    sections=facing.get('sections')
+    if isinstance(sections,list):
+        for section in sections:
+            if isinstance(section,dict) and isinstance(section.get('body'),str):
+                section['body']=_correct_volume_mass_label(section['body'],state)
+    if isinstance(reply.get('answer'),str):
+        reply['answer']=_correct_volume_mass_label(reply['answer'],state)
+    if not notice:
+        return
+    paragraphs[:] = [paragraph for paragraph in paragraphs if paragraph != notice]
+    paragraphs.insert(0, notice)
+    current = reply.get('answer', '')
+    if not current.startswith(notice):
+        current=current.replace(notice,'',1).strip()
+        reply['answer'] = notice + ('\n\n' + current if current else '')
+    if isinstance(sections,list) and sections:
+        first=sections[0]
+        if isinstance(first,dict) and isinstance(first.get('body'),str) and not first['body'].startswith(notice):
+            body=first['body'].replace(notice,'',1).strip()
+            first['body']=notice+('\n\n'+body if body else '')
+    reply.setdefault('technical_metadata', {})['reactor_capacity_assessment'] = assessment
+
+
 class ConversationAgent:
     def __init__(self,mode='auto',context=None,llm=None,registry=None,state=None,conversation_id=None,research_enabled=False):
         self.state=DialogueState.model_validate(state) if state else from_context(context,conversation_id)
@@ -37,7 +93,7 @@ class ConversationAgent:
         from src.agent import task_state
         prior=self.state.model_copy(deep=True);history=list(self.history)
         self._request_events=[task_state.event('RequestReceived','conversation_api',characters=len(text) if isinstance(text,str) else None)]
-        self._prepared_extraction=None;self._input_issues=[]
+        self._prepared_extraction=None;self._input_issues=[];self._capacity_assessment=None
         try:
             extraction=nlu.extract(text,self.state)
             self._request_events.append(task_state.event('ParametersExtracted','parameter_extraction',entities=[e.model_dump(mode='json') for e in extraction.entities]))
@@ -45,6 +101,14 @@ class ConversationAgent:
             self._request_events.extend(events+self._input_issues)
             self._prepared_extraction=extraction
             self.state=prepared
+            if not self._input_issues:
+                from src.optimizer.capacity import assess_dialogue_state
+                capacity_state=apply(prepared,extraction,tolerate_engineering_conflicts=self.research_enabled)
+                self._capacity_assessment=assess_dialogue_state(capacity_state)
+                if self._capacity_assessment.get('status') not in {'NOT_ASSESSED','INVALID_INPUT'}:
+                    self._request_events.append(task_state.event(
+                        'ReactorCapacityChecked','physical_constraint_preflight',
+                        assessment=self._capacity_assessment.copy()))
             if any(e['type']=='NewBatch' for e in events):self.history=[]
             self.context=tool_context(self.state)
             preview=self.state.model_dump(mode='json')
@@ -59,6 +123,8 @@ class ConversationAgent:
             reply=self._ask(text)
         if reply.get('context_updated') is False:
             self.state=prior;self.context=tool_context(prior);self.history=history
+        if self._capacity_assessment:
+            _attach_capacity_notice(reply,self._capacity_assessment,self.state.language,self.state)
         metadata=reply.setdefault('technical_metadata',{})
         for trace in reply.get('tools',[]):
             self._request_events.append(task_state.event('ToolExecuted','tool_execution',tool=trace['tool'],status=trace['status']))
@@ -74,7 +140,7 @@ class ConversationAgent:
             from src.agent import advanced_conversation
             advanced_match=advanced_conversation.applicable(text,self.state)
             configured=any(getattr(provider,'configured',False) for provider in getattr(self.llm,'providers',[]))
-            if advanced_match and not configured and not self._input_issues:
+            if advanced_match and not configured and not self._input_issues and not getattr(self,'deterministic_research_fallback',False):
                 try:return advanced_conversation.respond(self,text)
                 except (ValueError,TypeError,OSError):
                     return advanced_conversation.reply(self,self.state,text,['Не удалось проверить расчёт по этим данным; предыдущая партия сохранена. Уточните единицы и свойства сырья.'],[],time.perf_counter(),updated=False)
@@ -90,6 +156,17 @@ class ConversationAgent:
         smart_plan=identify(text,self.state) if self.research_enabled else None
         fast=bool(smart_plan and fast_followup(text,self.state,smart_plan))
         if fast and any(getattr(provider,'configured',False) for provider in getattr(self.llm,'providers',[])):fast=False
+        entity_names={entity.name for entity in extraction.entities}
+        simple_quantity_correction=(self.research_enabled and getattr(self,'runtime_version',None)=='9'
+            and extraction.correction and not extraction.new_batch and self.state.value('quantity') is not None
+            and 'quantity' in entity_names and entity_names <= {'quantity','unit'}
+            and bool(re.search(r'исправлени|поправ|вместо|correction|instead|түзету',text,re.I))
+            and not re.search(r'рассчита|пересчита|выход|метан|биогаз|выгод|температур|calculate|recalculat|yield|methane|biogas',text,re.I))
+        simple_batch_capture=(self.research_enabled and getattr(self,'runtime_version',None)=='9' and extraction.new_batch
+            and {'quantity','material'} <= entity_names
+            and entity_names <= {'quantity','unit','material','physical_state','material_state'}
+            and bool(re.search(r'запомни|сохрани|зафиксируй|remember|record|сақта',text,re.I))
+            and not re.search(r'рассчита|пересчита|выход|метан|биогаз|выгод|температур|calculate|recalculat|yield|methane|biogas',text,re.I))
         if fast:self.llm.status=[]
         timeouts=[]
         if self.research_enabled:
@@ -100,7 +177,14 @@ class ConversationAgent:
         from src.agent.task_state import event
         self._request_events.append(event('ModelUnderstandingStarted','model_understanding',configured=any(getattr(p,'configured',False) for p in getattr(self.llm,'providers',[]))))
         self.emit_progress('understanding')
-        try:proposal=self.llm.interpret(text,self.state.brief()) if hasattr(self.llm,'interpret') and not fast else None
+        understanding=self.state.brief()
+        if self._capacity_assessment and self._capacity_assessment.get('status') not in {'NOT_ASSESSED','INVALID_INPUT'}:
+            if isinstance(understanding,dict):
+                understanding=dict(understanding)
+                understanding['reactor_capacity_preflight']=self._capacity_assessment
+            else:
+                understanding+='\nDeterministic reactor capacity preflight (binding; never infer working volume from nominal): '+json.dumps(self._capacity_assessment,ensure_ascii=False)
+        try:proposal=self.llm.interpret(text,understanding) if hasattr(self.llm,'interpret') and not fast and not simple_quantity_correction else None
         finally:
             for provider,previous in timeouts:provider.timeout=previous
         self._request_events.append(event('ModelUnderstandingFinished','model_understanding',proposal_received=proposal is not None,providers=list(self.llm.status)))
@@ -108,6 +192,7 @@ class ConversationAgent:
             from src.agent.task_state import rejected
             return rejected(self,self._input_issues,extraction)
         if proposal:
+            extraction=nlu.augment_requested_tasks(extraction,proposal,text)
             if smart_plan is not None and not smart_plan['goals'] and not smart_plan.get('definition') and not smart_plan['edit'] and re.search(r'\?|как|подскажи|посовет|how|what|қалай|қандай',text,re.I):
                 mapping={'methane_yield':['gas'],'temperature_recommendation':['temperature'],'economic_comparison':['economics'],'reactor_status':['reactor'],'process_guidance':['temperature','duration']}
                 smart_plan['goals']=list(dict.fromkeys(goal for intent in proposal.intents for goal in mapping.get(intent,[])))
@@ -170,6 +255,43 @@ class ConversationAgent:
         self.state=next_state;self.context=context
         self.emit_progress('planning',{'preview':self.state.model_dump(mode='json')})
         if self.research_enabled:
+            if simple_batch_capture:
+                from src.agent.batch_intent import confirmation
+                message=confirmation(self.state)
+                if message:
+                    self.history=(self.history+[text])[-8:]
+                    return {'conversation_version':'7','analysis_version':'9.0','mode':'deterministic_batch_confirmation',
+                        'answer':message,'user_facing_answer':{'paragraphs':[message],'sections':[],'question':None,'sources':[],
+                        'modes':['deterministic_batch_confirmation'],'assumptions':[]},'tools':[],'provider_status':list(self.llm.status),
+                        'memory':self.state.model_dump(mode='json'),'context':dict(self.context),'context_updated':True,
+                        'pending_question':None,'missing':[],'actuator_access':False,
+                        'technical_metadata':{'final_author':'confirmed_state','verification':{'status':'not_applicable','checked':False},
+                        'scientific_answer_verification':{'status':'not_applicable','checked':False},
+                        'quantity_verification':{'status':'passed','checked':True,'scope':'Direct display of confirmed batch state.'},
+                        'diagnostics':[{'stage':'deterministic_batch_confirmation','reason':'explicit_state_capture'}]}}
+            if simple_quantity_correction:
+                quantity=self.state.value('quantity');unit=self.state.value('unit')
+                unit_label={'L':'л','m3':'м³','kg':'кг','g':'г','t':'т'}.get(unit,unit or '')
+                amount=format(float(quantity),'.12g').replace('.',',')
+                label='текущий объём сырья' if unit in {'L','m3'} else 'текущая масса сырья'
+                message=choose(self.state.language,f'Исправление сохранено: {label} — {amount} {unit_label}.',
+                    f'Correction saved: the current feedstock quantity is {amount} {unit or ""}.',
+                    f'Түзету сақталды: ағымдағы шикізат мөлшері — {amount} {unit_label}.')
+                self.history=(self.history+[text])[-8:]
+                return {'conversation_version':'7','analysis_version':'9.0','mode':'deterministic_parameter_correction',
+                    'answer':message,'user_facing_answer':{'paragraphs':[message],'sections':[],'question':None,'sources':[],
+                    'modes':['deterministic_parameter_correction'],'assumptions':[]},'tools':[],'provider_status':[],
+                    'memory':self.state.model_dump(mode='json'),'context':dict(self.context),'context_updated':True,
+                    'pending_question':None,'missing':[],'actuator_access':False,
+                    'technical_metadata':{'final_author':'confirmed_state','verification':{'status':'not_applicable','checked':False},
+                    'scientific_answer_verification':{'status':'not_applicable','checked':False},
+                    'quantity_verification':{'status':'passed','checked':True,'scope':'Direct display of the confirmed quantity; no calculation.'},
+                    'diagnostics':[{'stage':'deterministic_correction','reason':'unambiguous_confirmed_quantity'}]}}
+            if proposal is None and getattr(self,'deterministic_research_fallback',False) and getattr(self,'runtime_version',None)=='9':
+                # The experimental UI must retain the same checked Python
+                # evidence path when its resource gate withholds the model.
+                from src.agent import runtime9
+                return runtime9.run(self,text,extraction,proposal,started)
             if proposal is None and any(getattr(p,'configured',False) for p in getattr(self.llm,'providers',[])):
                 from src.agent.autonomous import provider_failure
                 return provider_failure(self,text,extraction,started)

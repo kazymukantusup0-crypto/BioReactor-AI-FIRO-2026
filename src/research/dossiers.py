@@ -36,6 +36,7 @@ def dossier(material):
             'ts_fraction': p.get('ts_fraction'), 'vs_fraction_wet': p.get('vs_fraction_wet'),
             'vs_fraction_of_ts': p.get('vs_fraction_of_ts'), 'bmp_ml_ch4_g_vs': p.get('bmp_ml_g_vs'),
             'density_kg_l': p.get('density_kg_l'), 'conditions': p.get('conditions'),
+            'ts_kg_l':p.get('ts_kg_l'),'vs_kg_l':p.get('vs_kg_l'),
             'quality': 'Reviewed local extraction of published experiment; not independent replication',
             'gas_basis': (p.get('conditions') or {}).get('gas_basis'),
             'provenance': 'PUBLISHED_EXPERIMENT', 'transfer_limitations': p['source'].get('limitations', []),
@@ -51,7 +52,13 @@ def dossier(material):
 
 
 def search(materials=None, query=''):
-    selected = materials or [m['material'] for m in catalog.matches(query)] or list(CORE_MATERIALS)
+    matched=[m['material'] for m in catalog.matches(query)]
+    if not materials and query and not matched:
+        return {'status':'needs_input','message':'No recognized local dossier matches the requested material; no unrelated profiles were substituted.',
+                'missing':['recognized_material_or_explicit_analogue_request'],'query':query[:400],
+                'dossiers':[],'core_materials':list(CORE_MATERIALS),'universal_profile_created':False,
+                'search_scope':'LOCAL_REVIEWED_CORPUS','live_search_performed':False}
+    selected = materials or matched or list(CORE_MATERIALS)
     return {'status': 'ok', 'message': 'Study-specific local evidence; no live internet search performed.',
             'dossiers': [dossier(m) for m in dict.fromkeys(selected)],
             'core_materials': list(CORE_MATERIALS), 'universal_profile_created': False}

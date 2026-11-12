@@ -43,7 +43,16 @@ def component_result(c,request):
                 assumptions.extend(d['limitations']);return bounds(d)
         missing.append(key);return None
     family,q=normalized_quantity(c);mass=pair(q) if family=='mass' else None;volume=pair(q) if family=='volume' else None
-    density=resolve('density_kg_l')
+    # A published density describes the studied sample, not this user's batch.
+    # Keep volume as volume until a density for this batch is supplied.
+    literary_density=(request.allow_literature_density and request.estimation_mode=='LITERATURE_ESTIMATE'
+                      and profile is not None and profile.get('density_kg_l') is not None
+                      and props.density_kg_l is None)
+    if family=='volume' and not literary_density and (props.density_kg_l is None or props.density_kg_l.provenance not in {'MEASURED','USER_REPORTED'}):
+        density=None
+        missing.append('density_kg_l')
+    else:
+        density=resolve('density_kg_l')
     if family=='volume' and density:mass=multiply(volume,density)
     if family=='mass' and density:volume=ratio(mass,density)
     ts=resolve('ts_fraction')
@@ -55,6 +64,16 @@ def component_result(c,request):
     else:vsf=resolve('vs_fraction_wet')
     bmp=resolve('bmp_ml_g_vs');ts_mass=multiply(mass,ts) if mass and ts else None;vs_mass=multiply(mass,vsf) if mass and vsf else None
     methane=scale(multiply(vs_mass,bmp),.001) if vs_mass and bmp else None
+    # A measured source concentration per litre is a valid independent SI path.
+    # It does not imply 1 L = 1 kg and never invents wet mass or a density.
+    if volume and request.use_literature_volume_concentrations and request.estimation_mode=='LITERATURE_ESTIMATE':
+        if ts_mass is None and not props.ts_fraction and profile and profile.get('ts_kg_l'):
+            ts_mass=multiply(volume,resolve('ts_kg_l'))
+            missing=[k for k in missing if k!='ts_fraction']
+        if vs_mass is None and not any((props.vs_fraction_wet,props.vs_fraction_of_ts,props.ts_fraction)) and profile and profile.get('vs_kg_l'):
+            vs_mass=multiply(volume,resolve('vs_kg_l'))
+            missing=[k for k in missing if k!='vs_fraction_wet']
+        methane=scale(multiply(vs_mass,bmp),.001) if vs_mass and bmp else None
     basis=props.gas_basis.model_dump() if props.gas_basis else (profile['conditions'].get('gas_basis') if profile else None)
     if profile and profile['id']=='oliveira-rm1-2025-v1' and props.bmp_ml_g_vs is None:basis={'temperature_k':273.2,'pressure_pa':101325,'moisture':'unknown','description':profile['conditions']['gas_reference']}
     if props.bmp_ml_g_vs is not None and props.gas_basis is None:basis=None
@@ -63,11 +82,15 @@ def component_result(c,request):
     if c.provenance=='ASSUMED_FOR_SCENARIO':assumptions.append('Quantity is hypothetical, not confirmed inventory')
     for key,v in used.items():
         if v['provenance']=='HYPOTHETICAL_SCENARIO':assumptions.append('Explicit scenario property: '+key)
-    level='HYPOTHETICAL_SCENARIO' if state_assumed or c.provenance=='ASSUMED_FOR_SCENARIO' or any(x.get('provenance')=='HYPOTHETICAL_SCENARIO' for x in used.values()) else 'LITERATURE_ESTIMATE' if any(x.get('provenance')=='LITERATURE_ESTIMATE' for x in used.values()) else 'MEASURED'
+    level='HYPOTHETICAL_SCENARIO' if state_assumed or c.provenance=='ASSUMED_FOR_SCENARIO' or any(x.get('provenance')=='HYPOTHETICAL_SCENARIO' for x in used.values()) else 'LITERATURE_ESTIMATE' if any(x.get('provenance')=='LITERATURE_ESTIMATE' for x in used.values()) else 'CALCULATED' if methane is not None else 'UNAVAILABLE'
+    from src.provenance import calculated
+    result_provenance=calculated({'quantity':{'value':c.quantity,'unit':c.unit,'origin':c.provenance},'properties':used},
+        'm³ CH4',sources=[profile['source']] if profile else [],assumptions=assumptions,
+        limitations=['Potential calculated from inputs, not measured reactor production.']) if methane is not None else None
     carbon=multiply(mass,bounds(props.carbon_fraction_wet)) if mass and props.carbon_fraction_wet else None
     nitrogen=multiply(mass,bounds(props.nitrogen_fraction_wet)) if mass and props.nitrogen_fraction_wet else None
     return {'id':c.id,'material':c.material,'display_name':catalog.name(c.material),'material_state':c.material_state,'animal':c.animal,'physical_state':c.physical_state,'decay_state':c.decay_state,'bedding':c.bedding,'quantity':c.quantity,'unit':c.unit,'wet_mass_kg':mass,'volume_l':volume,'ts_mass_kg':ts_mass,'vs_mass_kg':vs_mass,'methane_reference_m3':methane,
-            'carbon_mass_kg':carbon,'nitrogen_mass_kg':nitrogen,'gas_basis':basis,'result_level':level,'profile_id':profile['id'] if profile else None,'properties_used':used,'assumptions':assumptions,'missing':list(dict.fromkeys(missing)),
+            'carbon_mass_kg':carbon,'nitrogen_mass_kg':nitrogen,'gas_basis':basis,'result_level':level,'result_provenance':result_provenance,'profile_id':profile['id'] if profile else None,'properties_used':used,'assumptions':assumptions,'missing':list(dict.fromkeys(missing)),
             'source':profile['source'] if profile else None,'source_stp_claimed':bool(profile and profile.get('source_stp_claimed')),'source_basis_missing':bool(profile and basis is None),'cn_ratio_reference':profile.get('cn_ratio') if profile else None,'ph_reference':profile.get('ph') if profile else None,
             'notice':'Single-component literature/measurement reference. A published sample point is not a universal population mean; no unreported SD is invented.'}
 
@@ -101,7 +124,9 @@ def evaluate(request):
     olr=None
     if request.decision.reactor.operating_mode=='continuous' and request.decision.reactor.reactor_working_volume_l and request.feeding_period_days and vs:
         olr=scale(vs,1/request.feeding_period_days/(request.decision.reactor.reactor_working_volume_l/1000))
+    from src.provenance import calculated
     return {'components':rows,'total_wet_mass_kg':mass,'sum_separate_volumes_l':volume,'total_ts_kg':ts,'total_vs_kg':vs,'cn_mass_ratio':cn,'mixture_ph':None,
+            'result_provenance':calculated({'components':[r.get('result_provenance') for r in rows]},'mixed; see individual fields',assumptions=normalization,limitations=['Derived totals, not independent measurements.']),
             'additive_methane_reference_m3':methane,'known_component_additive_subtotal_m3':subtotal if known else None,'complete_methane_reference':methane is not None,
             'gas_basis':TARGET if request.assume_common_dry_gas_basis and all(r['gas_basis'] or request.assume_unreported_gas_basis or r.get('source_stp_claimed') for r in rows) or request.assume_unreported_gas_basis else common,'normalization':normalization,'olr_kg_vs_m3_day':olr,
             'synergy_factor':None,'measured_mixture_bmp':None,'result_level':'HYPOTHETICAL_SCENARIO' if len(rows)>1 or normalization or any(r['result_level']=='HYPOTHETICAL_SCENARIO' for r in rows) else rows[0]['result_level'],

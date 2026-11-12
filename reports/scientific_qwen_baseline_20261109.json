@@ -1,0 +1,350 @@
+{
+  "started_at": "2026-11-09T23:08:05.299334+05:00",
+  "status": "BLOCKED_NOT_A_REAL_QWEN_QUALITY_RESULT",
+  "backend": {
+    "url": "http://127.0.0.1:8775",
+    "health": {
+      "status": "ok",
+      "database": "C:\\Users\\Kazhu\\Downloads\\face_dataset_you_noname\\face_dataset_project\\BioReactor_AI\\evaluations\\scientific_route_live_20261109.sqlite3",
+      "scheduler_enabled": false,
+      "interval_seconds": 86400.0,
+      "market": "KZ",
+      "price_forecasting": false
+    },
+    "qa_pid": 11548,
+    "isolated_database": "C:\\Users\\Kazhu\\Downloads\\face_dataset_you_noname\\face_dataset_project\\BioReactor_AI\\evaluations\\scientific_route_live_20261109.sqlite3",
+    "scheduler_enabled": false
+  },
+  "runtime": {
+    "ollama_version": "ollama version is 0.40.15",
+    "model_tag": "qwen3:8b",
+    "model_tags": [
+      "qwen3:8b",
+      "qwen2.5:1.5b"
+    ],
+    "context": 8192,
+    "gpu_layers": 16,
+    "research_online": false
+  },
+  "gate": {
+    "three_point_preflight": "PASS",
+    "ram_gate_mib": 6246.4,
+    "target_temperature_c": 87,
+    "live_stop_temperature_c": 82,
+    "stop_rule": "cancel current job and stop further scenarios if GPU reaches 82 C (5 C below prior device target), thermal slowdown/telemetry failure occurs, or available RAM falls below the locally documented 6246.4 MiB gate"
+  },
+  "scenarios": [
+    {
+      "name": "bmp_vs_yield",
+      "prompt": "??? ???????????? BMP ?????????? ?? ???????????? ?????? ?????? ? ????????? ???????, ?????? ????????? BMP ?????? ???????? ??????? ?????????? ??????? ?????????? ?????????.",
+      "session_id": "759c73abd9e64a7895db4913d01a2a5b",
+      "job_id": "cbf3a556ee96411c8594cc595ca2b5ca",
+      "started_at": "2026-11-09T23:08:05.650418+05:00",
+      "status": "RUNNING",
+      "cancel_request": {
+        "id": "cbf3a556ee96411c8594cc595ca2b5ca",
+        "request_id": "LIVE_QWEN_20261109_BMP_VS_YIELD",
+        "conversation_id": "759c73abd9e64a7895db4913d01a2a5b",
+        "task_id": "d1c06b63be44484db90e4ac3126abe26",
+        "message": "??? ???????????? BMP ?????????? ?? ???????????? ?????? ?????? ? ????????? ???????, ?????? ????????? BMP ?????? ???????? ??????? ?????????? ??????? ?????????? ?????????.",
+        "created_at": "2026-11-09T18:08:05.661876+00:00",
+        "updated_at": "2026-11-09T18:08:10.420773+00:00",
+        "status": "RUNNING",
+        "current_stage": "cancelling",
+        "attempt_count": 1,
+        "error_code": null,
+        "result_reference": "/api/dashboard/jobs/cbf3a556ee96411c8594cc595ca2b5ca/result",
+        "reply_json": null,
+        "heartbeat_at": "2026-11-09T18:08:08.744820+00:00",
+        "cancel_requested": 1,
+        "acknowledged_at": null,
+        "expected_state_version": 0,
+        "preview": {
+          "version": "7",
+          "task_id": "3398748ac1c04c38890451b760896e4f",
+          "task_history": [],
+          "conversation_id": "759c73abd9e64a7895db4913d01a2a5b",
+          "language": "ru",
+          "facts": {},
+          "assumptions": {
+            "market_region": {
+              "value": "KZ-Karaganda",
+              "unit": null,
+              "provenance": "ASSUMED_FOR_SCENARIO",
+              "evidence": "Default dashboard region; not user-confirmed",
+              "recorded_at": "2026-11-09T18:08:05.749582+00:00",
+              "dependencies": []
+            }
+          },
+          "derived": {},
+          "estimates": {},
+          "source_verified": {},
+          "intents": [],
+          "pending_question": null,
+          "invalidated": [],
+          "decision_settings": {},
+          "decision_unavailable": [],
+          "last_research_summary": {},
+          "mixture_components": [],
+          "mixture_scenario_components": [],
+          "mixture_revision": 0,
+          "mixture_history": [],
+          "advisor_inventory_mode": "none",
+          "advisor_pending_component": null,
+          "advisor_settings": {},
+          "smart_goals": [],
+          "smart_cache": {},
+          "active_mixture_scenario": false,
+          "advanced": {},
+          "analytical_mode": "mixture"
+        },
+        "terminal": false,
+        "partial_count": 0,
+        "result_available": false
+      },
+      "monitor_samples": [
+        {
+          "timestamp": "2026-11-09T23:08:05.836563+05:00",
+          "ram": {
+            "available_ram_mib": 7897.9,
+            "commit_headroom_mib": 20820.2,
+            "commit_total_mib": 14043.9,
+            "commit_limit_mib": 34864.1
+          },
+          "gpu": {
+            "name": "NVIDIA GeForce RTX 3070 Laptop GPU",
+            "temperature_c": 56,
+            "utilization_pct": 9,
+            "vram_used_mib": 713,
+            "vram_total_mib": 8192,
+            "power_w": 17.78,
+            "pstate": "P8",
+            "hw_thermal_slowdown": "Not Active",
+            "sw_thermal_slowdown": "Not Active"
+          },
+          "ollama_api_ps": {
+            "models": []
+          }
+        },
+        {
+          "timestamp": "2026-11-09T23:08:08.149343+05:00",
+          "ram": {
+            "available_ram_mib": 7859.7,
+            "commit_headroom_mib": 20776.7,
+            "commit_total_mib": 14087.4,
+            "commit_limit_mib": 34864.1
+          },
+          "gpu": {
+            "name": "NVIDIA GeForce RTX 3070 Laptop GPU",
+            "temperature_c": 56,
+            "utilization_pct": 10,
+            "vram_used_mib": 717,
+            "vram_total_mib": 8192,
+            "power_w": 17.85,
+            "pstate": "P8",
+            "hw_thermal_slowdown": "Not Active",
+            "sw_thermal_slowdown": "Not Active"
+          },
+          "ollama_api_ps": {
+            "models": []
+          }
+        },
+        {
+          "timestamp": "2026-11-09T23:08:10.415645+05:00",
+          "ram": {
+            "available_ram_mib": 4773.0,
+            "commit_headroom_mib": 15258.2,
+            "commit_total_mib": 19605.8,
+            "commit_limit_mib": 34864.1
+          },
+          "gpu": {
+            "name": "NVIDIA GeForce RTX 3070 Laptop GPU",
+            "temperature_c": 58,
+            "utilization_pct": 1,
+            "vram_used_mib": 3088,
+            "vram_total_mib": 8192,
+            "power_w": 36.06,
+            "pstate": "P0",
+            "hw_thermal_slowdown": "Not Active",
+            "sw_thermal_slowdown": "Not Active"
+          },
+          "ollama_api_ps": {
+            "models": []
+          }
+        }
+      ],
+      "pre_sample": {
+        "timestamp": "2026-11-09T23:08:05.613944+05:00",
+        "ram": {
+          "available_ram_mib": 7900.2,
+          "commit_headroom_mib": 20822.2,
+          "commit_total_mib": 14041.9,
+          "commit_limit_mib": 34864.1
+        },
+        "gpu": {
+          "name": "NVIDIA GeForce RTX 3070 Laptop GPU",
+          "temperature_c": 56,
+          "utilization_pct": 9,
+          "vram_used_mib": 711,
+          "vram_total_mib": 8192,
+          "power_w": 17.34,
+          "pstate": "P8",
+          "hw_thermal_slowdown": "Not Active",
+          "sw_thermal_slowdown": "Not Active"
+        },
+        "ollama_api_ps": {
+          "models": []
+        }
+      },
+      "terminal_job": {
+        "id": "cbf3a556ee96411c8594cc595ca2b5ca",
+        "request_id": "LIVE_QWEN_20261109_BMP_VS_YIELD",
+        "conversation_id": "759c73abd9e64a7895db4913d01a2a5b",
+        "task_id": "d1c06b63be44484db90e4ac3126abe26",
+        "message": "??? ???????????? BMP ?????????? ?? ???????????? ?????? ?????? ? ????????? ???????, ?????? ????????? BMP ?????? ???????? ??????? ?????????? ??????? ?????????? ?????????.",
+        "created_at": "2026-11-09T18:08:05.661876+00:00",
+        "updated_at": "2026-11-09T18:08:10.898362+00:00",
+        "status": "CANCELLED",
+        "current_stage": "cancelled",
+        "attempt_count": 1,
+        "error_code": "USER_CANCELLED",
+        "result_reference": "/api/dashboard/jobs/cbf3a556ee96411c8594cc595ca2b5ca/result",
+        "cancel_requested": 1,
+        "acknowledged_at": null,
+        "expected_state_version": 0,
+        "owner": "53049dcc9ed64fb28237f1416500fb54",
+        "reply_saved": false
+      },
+      "events": [
+        {
+          "created_at": "2026-11-09T18:08:05.661876+00:00",
+          "status": "SUBMITTED",
+          "details": {}
+        },
+        {
+          "created_at": "2026-11-09T18:08:05.661876+00:00",
+          "status": "QUEUED",
+          "details": {}
+        },
+        {
+          "created_at": "2026-11-09T18:08:05.777455+00:00",
+          "status": "RUNNING",
+          "details": {
+            "stage": "parameters",
+            "tool": null
+          }
+        },
+        {
+          "created_at": "2026-11-09T18:08:05.798326+00:00",
+          "status": "RUNNING",
+          "details": {
+            "stage": "understanding",
+            "tool": null
+          }
+        },
+        {
+          "created_at": "2026-11-09T18:08:10.898362+00:00",
+          "status": "CANCELLED",
+          "details": {
+            "error_code": "USER_CANCELLED"
+          }
+        }
+      ],
+      "turn_after_cancel": {
+        "status": "cancelled",
+        "reply_saved": false
+      },
+      "intended_prompt": "The intended UTF-8 prompt is reproduced in reports/ai_agent_final_readiness.md and reports/qwen_real_quality_error_analysis.md; the live-runner source did not preserve a usable UTF-8 copy.",
+      "input_integrity": {
+        "status": "INVALID_FOR_SCIENTIFIC_SCORING",
+        "observed_message": "??? ???????????? BMP ?????????? ?? ???????????? ?????? ?????? ? ????????? ???????, ?????? ????????? BMP ?????? ???????? ??????? ?????????? ??????? ?????????? ?????????.",
+        "reason": "The PowerShell here-string pipe converted Cyrillic characters to question marks before the HTTP request. This is a test-harness encoding failure; the intended Russian prompt was not delivered.",
+        "intended_prompt_reference": "See the user request and the two updated reports; do not treat the actual question-mark text as the intended scientific prompt."
+      },
+      "generation_result": {
+        "actual_qwen_generation_confirmed": false,
+        "provider_status_saved": false,
+        "model_loaded": false,
+        "answer_saved": false,
+        "reason": "Job was cancelled during llama-server model loading after available RAM fell below the documented gate; no final chat response/tool trace exists."
+      }
+    }
+  ],
+  "immediate_pre_request_sample": {
+    "timestamp": "2026-11-09T23:08:05.482891+05:00",
+    "ram": {
+      "available_ram_mib": 7891.2,
+      "commit_headroom_mib": 20812.1,
+      "commit_total_mib": 14052.0,
+      "commit_limit_mib": 34864.1
+    },
+    "gpu": {
+      "name": "NVIDIA GeForce RTX 3070 Laptop GPU",
+      "temperature_c": 56,
+      "utilization_pct": 9,
+      "vram_used_mib": 711,
+      "vram_total_mib": 8192,
+      "power_w": 17.34,
+      "pstate": "P8",
+      "hw_thermal_slowdown": "Not Active",
+      "sw_thermal_slowdown": "Not Active"
+    },
+    "ollama_api_ps": {
+      "models": []
+    }
+  },
+  "blocked_reason": "Observed available RAM dropped from 7900.2 MiB immediately before generation to 4773 MiB during llama-server loading, below the 6246.4 MiB gate. The job was cancelled and the model load aborted. Independently, the recorded message shows Cyrillic-to-question-mark corruption, so it cannot score the requested BMP question.",
+  "blocked_sample": {
+    "timestamp": "2026-11-09T23:08:10.415645+05:00",
+    "ram": {
+      "available_ram_mib": 4773.0,
+      "commit_headroom_mib": 15258.2,
+      "commit_total_mib": 19605.8,
+      "commit_limit_mib": 34864.1
+    },
+    "gpu": {
+      "name": "NVIDIA GeForce RTX 3070 Laptop GPU",
+      "temperature_c": 58,
+      "utilization_pct": 1,
+      "vram_used_mib": 3088,
+      "vram_total_mib": 8192,
+      "power_w": 36.06,
+      "pstate": "P0",
+      "hw_thermal_slowdown": "Not Active",
+      "sw_thermal_slowdown": "Not Active"
+    },
+    "ollama_api_ps": {
+      "models": []
+    }
+  },
+  "finished_at": "2026-11-09T23:08:10.435887+05:00",
+  "ollama_log_excerpt": [
+    "time=2026-11-09T23:08:08.862+05:00 level=INFO source=sched.go:1176 msg=\"disabling mmap for llama-server load by default\" model=C:\\Users\\Kazhu\\.ollama\\models\\blobs\\sha256-a3de86cd1c132c822487ededd47a324c50491393e6565cd14bafa40d0b8e686f reason=windows_cuda",
+    "time=2026-11-09T23:08:08.862+05:00 level=INFO source=server.go:107 msg=\"using llama-server for model\" model=C:\\Users\\Kazhu\\.ollama\\models\\blobs\\sha256-a3de86cd1c132c822487ededd47a324c50491393e6565cd14bafa40d0b8e686f",
+    "time=2026-11-09T23:08:08.870+05:00 level=INFO source=llama_server.go:467 msg=\"starting llama-server\" cmd=\"C:\\\\Users\\\\Kazhu\\\\AppData\\\\Local\\\\Programs\\\\Ollama\\\\lib\\\\ollama\\\\llama-server.exe --model C:\\\\Users\\\\Kazhu\\\\.ollama\\\\models\\\\blobs\\\\sha256-a3de86cd1c132c822487ededd47a324c50491393e6565cd14bafa40d0b8e686f --port 64297 --host 127.0.0.1 --no-webui --offline -c 8192 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --no-jinja --chat-template chatml --load-mode none --flash-attn auto -b 64 -ub 64 -ngl 16 -t 6 --context-shift --keep 4\"",
+    "time=2026-11-09T23:08:08.881+05:00 level=INFO source=sched.go:651 msg=\"system memory\" total=\"15.8 GiB\" free=\"7.7 GiB\" free_swap=\"20.3 GiB\"",
+    "time=2026-11-09T23:08:08.881+05:00 level=INFO source=sched.go:658 msg=\"gpu memory\" id=0 library=CUDA available=\"6.5 GiB\" free=\"6.9 GiB\" minimum=\"457.0 MiB\" overhead=\"0 B\"",
+    "time=2026-11-09T23:08:08.881+05:00 level=INFO source=llama_server.go:1098 msg=\"loading model via llama-server\" model=C:\\Users\\Kazhu\\.ollama\\models\\blobs\\sha256-a3de86cd1c132c822487ededd47a324c50491393e6565cd14bafa40d0b8e686f",
+    "time=2026-11-09T23:08:08.881+05:00 level=INFO source=llama_server.go:1351 msg=\"waiting for llama-server to start responding\"",
+    "time=2026-11-09T23:08:08.882+05:00 level=INFO source=llama_server.go:1406 msg=\"waiting for llama-server to become available\" status=\"llm server error\"",
+    "time=2026-11-09T23:08:09.133+05:00 level=INFO source=llama_server.go:1406 msg=\"waiting for llama-server to become available\" status=\"llm server loading model\"",
+    "time=2026-11-09T23:08:10.642+05:00 level=WARN source=llama_server.go:1357 msg=\"client connection closed before llama-server finished loading, aborting load\"",
+    "time=2026-11-09T23:08:10.642+05:00 level=INFO source=sched.go:679 msg=\"Load failed\" model=C:\\Users\\Kazhu\\.ollama\\models\\blobs\\sha256-a3de86cd1c132c822487ededd47a324c50491393e6565cd14bafa40d0b8e686f error=\"timed out waiting for llama-server to start: context canceled\""
+  ],
+  "final_after_cancel_measurement": {
+    "timestamp_local": "2026-11-09T23:15:53.3333707+05:00",
+    "available_ram_mib": 7936,
+    "commit_headroom_mib": 21486.1,
+    "gpu": "NVIDIA GeForce RTX 3070 Laptop GPU",
+    "temperature_c": 57,
+    "utilization_pct": 30,
+    "vram_used_mib": 715,
+    "vram_total_mib": 8192,
+    "thermal_slowdown": "Not Active",
+    "ollama_active_models": [],
+    "qa_backend_pid": 11548,
+    "qa_backend_stopped": true
+  },
+  "remaining_scenarios": "NOT RUN: mixed science/calculation and both multi-turn turns were stopped after the first resource-gate event, per the stop-on-resource-error rule.",
+  "browser_e2e": "NOT RUN"
+}

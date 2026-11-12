@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "created_local": "2026-11-10",
+  "status": "PREPARED_BLOCKED_BY_COLD_START_RAM_GATE",
+  "ollama_version": "0.40.15",
+  "model": "qwen3:8b",
+  "quantization": "Q4_K_M",
+  "same_question": "Что означает BMP и почему лабораторный BMP не равен фактическому выходу метана в реакторе?",
+  "profiles": {
+    "A": {
+      "num_ctx": 4096,
+      "num_batch": 32,
+      "num_gpu": 16,
+      "num_thread": 6,
+      "interpretation": "Explicit partial GPU layer offload request; not a byte fraction."
+    },
+    "B": {
+      "num_ctx": 4096,
+      "num_batch": 32,
+      "num_gpu": -1,
+      "num_thread": 6,
+      "interpretation": "v0.40.15 omits a fixed -ngl flag and lets llama-server auto-detect placement; full offload is not guaranteed."
+    }
+  },
+  "controls": {
+    "parallel_profiles": false,
+    "same_prompt": true,
+    "temperature": 0,
+    "num_predict": 300,
+    "server_parallel_default": 1,
+    "cold_start_gate_mib": 9373.6,
+    "runtime_floor_mib": 6246.4,
+    "gpu_stop_c": 82,
+    "post_profile_unload": true,
+    "production_provider_modified": false,
+    "dashboard_modified": false
+  },
+  "latest_preflight": {
+    "artifact": "../reports/qwen_offload_preflight_20261110_controlled_ab_final.json",
+    "started_local": "2026-11-10T15:31:56.194362+05:00",
+    "finished_local": "2026-11-10T15:32:16.479849+05:00",
+    "status": "BLOCKED",
+    "samples": 3,
+    "free_ram_mib": [
+      7489.2,
+      7555.4,
+      7543.0
+    ],
+    "commit_headroom_mib": [
+      22975.5,
+      23039.9,
+      23045.3
+    ],
+    "gpu_temperature_c": [
+      60.0,
+      60.0,
+      60.0
+    ],
+    "vram_used_mib": [
+      230,
+      230,
+      224
+    ],
+    "gpu_utilization_pct": [
+      11.0,
+      10.0,
+      10.0
+    ],
+    "thermal_slowdown": false,
+    "ollama_api": "0.40.15 HTTP 200",
+    "loaded_models": [],
+    "blocking_reasons": [
+      "sample 1: free RAM 7489.2 MiB below cold-start gate 9373.6 MiB",
+      "sample 2: free RAM 7555.4 MiB below cold-start gate 9373.6 MiB",
+      "sample 3: free RAM 7543.0 MiB below cold-start gate 9373.6 MiB"
+    ]
+  },
+  "actual_profile_runs": [],
+  "quality_review": "NOT RUN; cold-start RAM admission gate blocked both profiles before any model load.",
+  "harness_checks": {
+    "python_compile": "PASS",
+    "unicode_http_json_roundtrip": "PASS",
+    "same_prompt_matches_manifest": true,
+    "profile_options_match_manifest": true,
+    "cli_help": "PASS",
+    "load_unload_api": "/api/generate with empty prompt (version-matched v0.40.15 route semantics)",
+    "manual_cancel": "Ctrl+C closes the active request socket, records timestamps, and never forcibly terminates the worker thread.",
+    "production_provider_or_dashboard_changed": false,
+    "fake_transport_cancel": "PASS; offline stub blocked a stream read, socket close released worker, timestamps recorded; no Ollama request."
+  },
+  "current_passive_snapshot": {
+    "timestamp_local": "2026-11-10T15:41:52.203885+05:00",
+    "free_ram_mib": 6374.5,
+    "runtime_floor_mib": 6246.4,
+    "cold_start_gate_mib": 9373.6,
+    "commit_headroom_mib": 21681.2,
+    "gpu": {
+      "name": "NVIDIA GeForce RTX 3070 Laptop GPU",
+      "temperature_c": 61,
+      "utilization_pct": 10,
+      "vram_used_mib": 332,
+      "vram_total_mib": 8192,
+      "thermal_slowdown": false
+    },
+    "ollama_version": "0.40.15",
+    "loaded_models": [],
+    "note": "Single passive snapshot; not a three-point admission check."
+  },
+  "current_decision": {
+    "status": "INSUFFICIENT_EVIDENCE",
+    "profiling_gate_open": false,
+    "profile_B_peak_ram_upper_bound_mib": null,
+    "profile_B_peak_commit_upper_bound_mib": null,
+    "Ollama_load_cancel_latency_verified": false,
+    "reason": "Current RAM is only 128.1 MiB above the runtime floor and 2999.1 MiB below the cold-start gate; profile-specific peak and cancellation bounds are unknown."
+  }
+}

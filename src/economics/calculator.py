@@ -27,7 +27,9 @@ def calculate_methane(data):
     potential=bmp*vs/1000
     if not math.isfinite(potential):
         raise ValueError('Переполнение расчёта метана; проверьте масштаб входов')
+    from src.provenance import calculated
     return {'status':'ok','potential_methane_m3':potential,'gas_volume_basis':data['gas_volume_basis'],
+        'result_provenance':calculated({'bmp':{'value':bmp,'origin':data.get('bmp_provenance','UNKNOWN')},'vs_mass_kg':{'value':vs,'origin':data.get('vs_mass_provenance','UNKNOWN')}},'m³ CH4',limitations=['Calculated potential, not measured production.']),
         'bmp_ml_ch4_g_vs':bmp,'vs_mass_kg':vs,'formula':'BMP [mL/g VS] * VS [kg] / 1000',
         'message':f"Потенциальный метан: {potential:.6g} м³. Условия объёма: {data['gas_volume_basis']}. Это BMP-потенциал, не фактическая выработка реактора."}
 
@@ -60,7 +62,9 @@ def calculate_profitability(data):
     if not all(math.isfinite(v) for v in [sale,recovered,revenue,costs,net,delta]):
         raise ValueError('Переполнение расчёта; проверьте единицы и масштаб входов')
     currency=data['currency']
+    from src.provenance import calculated
     return {'status':'ok','sale_revenue':sale,'recoverable_methane_m3':recovered,'methane_revenue':revenue,
+        'result_provenance':calculated({'inputs':data},currency,assumptions=['Scenario uses user-provided prices and costs.'],limitations=['This is not measured income or a market forecast.']),
         'preparation_cost':vals['preparation_cost'],'heating_cost':vals['heating_cost'],'operating_cost':vals['operating_cost'],
         'total_processing_cost':costs,'processing_net_profit':net,'difference_processing_minus_sale':delta,
         'currency':currency,'price_date':data['price_date'],'price_source':'explicit_user_inputs',

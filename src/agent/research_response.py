@@ -4,7 +4,7 @@ def span(item,digits=2):
     return f"{item['low']:.{digits}f}" if abs(item['high']-item['low'])<1e-9 else f"{item['low']:.{digits}f}–{item['high']:.{digits}f}"
 def render(state,data,r):
     p=[];level=r.get('result_level')
-    labels={'MEASURED':'Расчёт по измеренным характеристикам партии','LITERATURE_ESTIMATE':'Литературная оценка для сопоставимой навозной жижи','HYPOTHETICAL_SCENARIO':'Условный сценарий: если ваш навоз сопоставим с исследованной навозной жижей'}
+    labels={'MEASURED':'Расчёт по введённым характеристикам партии (историческая запись)','CALCULATED':'Расчёт по введённым характеристикам партии','LITERATURE_ESTIMATE':'Литературная оценка для сопоставимой навозной жижи','HYPOTHETICAL_SCENARIO':'Условный сценарий: если ваш навоз сопоставим с исследованной навозной жижей'}
     if r.get('methane_potential_m3'):
         p.append(labels.get(level,'Оценка')+'. Это потенциал CH₄, а не подтверждённый выход вашей установки.')
         p.append(f"Оценочная влажная масса: {span(r.get('wet_mass_kg'))} кг; масса VS: {span(r.get('vs_mass_kg'))} кг. Потенциальный метан: {span(r['methane_potential_m3'])} м³ CH₄ ({span(r['methane_potential_l'],0)} л), при {r.get('gas_reference')}. Влажностный базис газа требует проверки.")

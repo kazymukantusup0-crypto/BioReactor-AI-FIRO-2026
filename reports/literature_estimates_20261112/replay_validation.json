@@ -1,0 +1,307 @@
+{
+  "kind": "Replay of stored real draft after additional independent source/basis guards; not a new live generation",
+  "arithmetic": {
+    "status": "ok",
+    "outcome": "passed",
+    "checks": [
+      {
+        "scenario": "s1",
+        "component": "c1",
+        "check": "VS_kg_times_BMP_ml_per_g_times_0.001",
+        "expected_m3": {
+          "low": 2.9229507199999993,
+          "high": 4.113995599999999
+        },
+        "observed_m3": {
+          "low": 2.9229507199999993,
+          "high": 4.113995599999999
+        },
+        "passed": true
+      },
+      {
+        "check": "calculated_methane_not_claimed_as_measured",
+        "passed": true,
+        "scenario": "s1"
+      },
+      {
+        "check": "no_unperformed_scientific_certification",
+        "passed": true,
+        "scenario": "s1"
+      },
+      {
+        "check": "calculated_biogas_not_claimed_as_measured",
+        "passed": true,
+        "scenario": "s1"
+      },
+      {
+        "check": "no_actuation_authorized",
+        "passed": true,
+        "scenario": "s1"
+      },
+      {
+        "check": "finite_nonnegative_ordered_wet_mass_kg",
+        "passed": true,
+        "scenario": "s1"
+      },
+      {
+        "check": "finite_nonnegative_ordered_vs_mass_kg",
+        "passed": true,
+        "scenario": "s1"
+      },
+      {
+        "check": "finite_nonnegative_ordered_methane_m3",
+        "passed": true,
+        "scenario": "s1"
+      },
+      {
+        "check": "independent_additive_total",
+        "passed": true,
+        "scenario": "s1"
+      },
+      {
+        "check": "independent_quantity_density_mass_basis",
+        "passed": true,
+        "scenario": "s1",
+        "component": "c1"
+      },
+      {
+        "check": "independent_ts_mass_kg_on_wet_mass_basis",
+        "passed": true,
+        "scenario": "s1",
+        "component": "c1"
+      },
+      {
+        "check": "independent_vs_mass_kg_on_wet_mass_basis",
+        "passed": true,
+        "scenario": "s1",
+        "component": "c1"
+      },
+      {
+        "check": "calculated_component_not_claimed_as_measured",
+        "passed": true,
+        "scenario": "s1",
+        "component": "c1"
+      },
+      {
+        "check": "literature_value_matches_reviewed_source_density_kg_l",
+        "passed": true,
+        "scenario": "s1",
+        "component": "c1"
+      },
+      {
+        "check": "literature_value_matches_reviewed_source_ts_fraction",
+        "passed": true,
+        "scenario": "s1",
+        "component": "c1"
+      },
+      {
+        "check": "literature_value_matches_reviewed_source_vs_fraction_wet",
+        "passed": true,
+        "scenario": "s1",
+        "component": "c1"
+      },
+      {
+        "check": "literature_value_matches_reviewed_source_bmp_ml_g_vs",
+        "passed": true,
+        "scenario": "s1",
+        "component": "c1"
+      },
+      {
+        "check": "profile_identity_and_form",
+        "passed": true,
+        "scenario": "s1",
+        "component": "c1"
+      },
+      {
+        "check": "source_belongs_to_profile",
+        "passed": true,
+        "scenario": "s1",
+        "component": "c1"
+      },
+      {
+        "check": "literature_density_same_profile_and_explicit_mode",
+        "passed": true,
+        "scenario": "s1"
+      },
+      {
+        "check": "vs_not_larger_than_wet_mass",
+        "passed": true,
+        "scenario": "s1"
+      },
+      {
+        "check": "no_actuation_authorized",
+        "passed": true,
+        "scenario": "s2"
+      },
+      {
+        "check": "literature_value_matches_reviewed_source_ts_fraction",
+        "passed": true,
+        "scenario": "s2",
+        "component": "c1"
+      },
+      {
+        "check": "literature_value_matches_reviewed_source_vs_fraction_wet",
+        "passed": true,
+        "scenario": "s2",
+        "component": "c1"
+      },
+      {
+        "check": "literature_value_matches_reviewed_source_bmp_ml_g_vs",
+        "passed": true,
+        "scenario": "s2",
+        "component": "c1"
+      },
+      {
+        "check": "profile_identity_and_form",
+        "passed": true,
+        "scenario": "s2",
+        "component": "c1"
+      },
+      {
+        "check": "source_belongs_to_profile",
+        "passed": true,
+        "scenario": "s2",
+        "component": "c1"
+      },
+      {
+        "check": "no_actuation_authorized",
+        "passed": true,
+        "scenario": "s3"
+      },
+      {
+        "check": "literature_value_matches_reviewed_source_ts_fraction",
+        "passed": true,
+        "scenario": "s3",
+        "component": "c1"
+      },
+      {
+        "check": "literature_value_matches_reviewed_source_vs_fraction_wet",
+        "passed": true,
+        "scenario": "s3",
+        "component": "c1"
+      },
+      {
+        "check": "literature_value_matches_reviewed_source_bmp_ml_g_vs",
+        "passed": true,
+        "scenario": "s3",
+        "component": "c1"
+      },
+      {
+        "check": "profile_identity_and_form",
+        "passed": true,
+        "scenario": "s3",
+        "component": "c1"
+      },
+      {
+        "check": "source_belongs_to_profile",
+        "passed": true,
+        "scenario": "s3",
+        "component": "c1"
+      }
+    ],
+    "checked": true,
+    "all_checks_passed": true,
+    "unsupported_tools": [],
+    "missing_verification_evidence": [],
+    "scope": "Arithmetic, source identity, material/form, energy allocation and cost completeness; not biological validation, interval coverage or operating safety."
+  },
+  "scientific": {
+    "status": "passed",
+    "checked": true,
+    "all_checks_passed": true,
+    "checks": [
+      {
+        "check": "no_unverified_timed_methane_amount",
+        "passed": true
+      },
+      {
+        "check": "estimate_arithmetic_and_source_scope_checked",
+        "passed": true
+      },
+      {
+        "check": "literature_estimate_not_measured_output",
+        "passed": true
+      },
+      {
+        "check": "estimate_not_claimed_as_measured_production",
+        "passed": true
+      },
+      {
+        "check": "no_known_scientific_contradiction",
+        "passed": true
+      },
+      {
+        "check": "time_dependent_kinetics_explained",
+        "passed": true
+      },
+      {
+        "check": "no_guaranteed_time_yield",
+        "passed": true
+      }
+    ],
+    "components": {
+      "arithmetic": {
+        "status": "passed",
+        "failed_checks": []
+      },
+      "provenance": {
+        "status": "passed",
+        "failed_checks": []
+      },
+      "scientific_interpretation": {
+        "status": "passed",
+        "failed_checks": []
+      },
+      "completeness": {
+        "status": "passed",
+        "failed_checks": []
+      }
+    },
+    "contradictions": [],
+    "assertions": [],
+    "scope": "Reviewed-source identity and limited RU/KK/EN proposition, negation and target-scope rules; not exhaustive factual verification or biological validation."
+  },
+  "synthesis_issues": [],
+  "numeric_audit": [
+    {
+      "value": 2.92,
+      "unit": "methane_m3",
+      "origin": "DERIVED",
+      "input_origin": "DERIVED",
+      "role": "quantity",
+      "reference": "s1.methane",
+      "conversion_factor": 1,
+      "accepted": true
+    },
+    {
+      "value": 4.11,
+      "unit": "methane_m3",
+      "origin": "DERIVED",
+      "input_origin": "DERIVED",
+      "role": "quantity",
+      "reference": "s1.methane",
+      "conversion_factor": 1,
+      "accepted": true
+    },
+    {
+      "value": 142.0,
+      "unit": "L",
+      "origin": "DERIVED",
+      "input_origin": "DERIVED",
+      "role": "feedstock_volume",
+      "reference": "material_volume_l",
+      "conversion_factor": 1,
+      "accepted": true
+    },
+    {
+      "value": 30.0,
+      "unit": "day",
+      "origin": "USER_INPUT",
+      "input_origin": "USER_INPUT",
+      "role": "question_time_horizon",
+      "reference": "30 дней",
+      "conversion_factor": 1,
+      "accepted": true
+    }
+  ]
+}

@@ -3,10 +3,11 @@ from src.agent.dialogue_types import DialogueState,Entity,Extraction,Fact
 from src.agent.context import validate_context,NUMBERS,TEXT
 from src.market.domain import utcnow
 
-MATERIAL_DEPENDENT={'mass_kg','material_volume_l','density_kg_l','ts_percent','vs_percent','vs_basis','vs_mass_kg','bmp_ml_ch4_g_vs','bmp_unit','gas_volume_basis','potential_methane_m3',
+MATERIAL_DEPENDENT={'duration_days','mass_kg','material_volume_l','density_kg_l','ts_percent','vs_percent','vs_basis','vs_mass_kg','bmp_ml_ch4_g_vs','bmp_unit','gas_volume_basis','potential_methane_m3',
     'c_vs_sub_m','c_vs_sub_f','c_vs_inoc','ISR','sale_offer_amount','sale_offer_scope','sale_offer_currency','market_scenario',
     'heated_mass_kg','heat_capacity_kj_kg_k','dilution_water_l','bmp_evidence','bmp_provenance','liquid_charge_volume_l','inoculum_description',
-    'pretreatment','mixture_components','market','inoculum_volume_l','dilution_water_l','resident_liquid_volume_l','material_state','physical_state','decay_state'}
+    'pretreatment','mixture_components','market','inoculum_volume_l','dilution_water_l','resident_liquid_volume_l','material_state','physical_state','decay_state',
+    'reported_biogas_volume_m3','reported_methane_volume_m3','methane_fraction','heating_value_kwh_m3','electricity_efficiency'}
 
 
 def fact(value,unit=None,provenance='USER_CONFIRMED',evidence='',dependencies=None):
@@ -97,7 +98,7 @@ def apply(state,extraction,tolerate_engineering_conflicts=False):
 
 def tool_context(state):
     allowed=NUMBERS|TEXT|{'market_scenario'}
-    output={key:entry.value for key,entry in {**state.derived,**state.facts}.items() if key in allowed}
+    output={key:entry.value for key,entry in {**state.derived,**state.facts}.items() if key in allowed and entry.value is not None}
     if state.value('material')=='manure':output['material']='manure_unspecified'
     if state.value('reactor_total_volume_l') is not None:output['reactor_volume_l']=state.value('reactor_total_volume_l')
     if state.value('market_region') is None:

@@ -48,7 +48,8 @@ def parse(text,state,d):
         d.setdefault('history',[]).append({'at':utcnow().isoformat(),'message':'Explicit structured inventory update','components':copy.deepcopy(d['inventory']),'scenario':False})
         return True,False
     current=[Component.model_validate(c) for c in d.get('scenario',d.get('inventory',seed(state)))];axes=extract(text)
-    new_batch=bool(re.search(r'новая партия|новая задача|другая партия|new batch|start over',text,re.I))
+    from src.agent.batch_intent import starts_new_batch
+    new_batch=starts_new_batch(text) or bool(re.search(r'новая задача',text,re.I))
     if new_batch:
         current=[];d['inventory']=[];d.pop('scenario',None);d['active_scenario']=False
     candidates=mixture_parser.explicit_components(text)
@@ -64,7 +65,7 @@ def parse(text,state,d):
         local=extract(segment)
         for k,v in local.items():setattr(c,k,v)
         normalize(c)
-    addition=bool(re.search(r'добав|\badd\b',text,re.I));hypothesis=bool(re.search(r'\bесли\b|what if|допустим',text,re.I))
+    addition=bool(re.search(r'добав|\badd\b',text,re.I));hypothesis=bool(re.search(r'\bесли\b|гипотетич\w*|what if|допустим|предполож|\bscenario\b',text,re.I))
     changed=False
     inventory_edit=bool(re.search(r'убери|убрать|удали|исключи|замени|вдвое|remove|replace|double',text,re.I))
     if inventory_edit and current:
@@ -117,7 +118,7 @@ def parse(text,state,d):
     if new_batch:
         d.pop('task',None);d.pop('last_goals',None);d.pop('last_calculation_goals',None);d['reactor']={};d.pop('last_results',None);d.pop('cache',None);d.pop('request_overrides',None)
     # Vessel amounts never become substrate amounts.
-    reactor_pattern=r'(?:реактор\w*|reactor\w*|digester\w*)\s*(?:(?:на|объ[её]м\w*|вместимост\w*|capacity(?:\s+of)?|[:=])\s*)?('+mixture_parser.NUMBER+r')\s*('+mixture_parser.UNIT+r')'
+    reactor_pattern=r'(?:реактор\w*|reactor\w*|digester\w*|сосуд\w*|ёмкост\w*|емкост\w*|бак\w*|vessel\w*|tank\w*|container\w*)\s*(?:(?:на|объ[её]м\w*|вместимост\w*|capacity(?:\s+of)?|[:=])\s*)?('+mixture_parser.NUMBER+r')\s*('+mixture_parser.UNIT+r')'
     match=re.search(reactor_pattern,text,re.I)
     if not match:match=re.search(r'('+mixture_parser.NUMBER+r')\s*('+mixture_parser.UNIT+r')\s*(?:реактор\w*|reactor\w*|digester\w*)\b',text,re.I)
     if match:
@@ -293,7 +294,7 @@ def synthesize(out,r,goals,density_why=False,detail=False):
         return ['Для этой партии плотность не известна, поэтому объём не был выдуман.','Взвесьте известный объём без тары либо задайте явно условную плотность.']
     if 'conversion' in out:
         for c in out['conversion']['conversions']:
-            density=c.get('density');description=f" при плотности {span(density,'кг/л',3)} ({'по вашим данным' if density['mode']=='MEASURED' else 'условный пример' if density['mode']=='ILLUSTRATIVE_ASSUMPTION' else 'литературный ориентир'})" if density else ''
+            density=c.get('density');description=f" при плотности {span(density,'кг/л',3)} ({'по вашим данным' if density['mode'] in {'MEASURED','USER_REPORTED'} else 'условный пример' if density['mode']=='ILLUSTRATIVE_ASSUMPTION' else 'литературный ориентир'})" if density else ''
             sentences.append(f"{catalog.name(c['material'])}: {span(c['value'],c['target_unit'])}{description}." if c.get('value') else f"{catalog.name(c['material'])}: объём неизвестен — нужна плотность именно этого состояния сырья.")
     if mix:
         mass=mix.get('total_wet_mass_kg');methane=mix.get('additive_methane_reference_m3');biogas=energy.get('biogas',gas.get('biogas',{}));bio=biogas.get('potential_biogas_m3')
@@ -333,10 +334,8 @@ def synthesize(out,r,goals,density_why=False,detail=False):
     if 'duration' in goals:
         days=sorted({s['duration_days'] for s in studies if s.get('duration_days')})
         sentences.append(f"Лабораторные испытания длились {' / '.join(str(t) for t in days)} дней; срок вашей партии зависит от загрузки и инокулюма и пока не рассчитан." if days else 'Срок партии пока неизвестен: нет подходящих данных о скорости разложения и инокулюме.')
-    if r.reactor_total_volume_l and (mix or studies):
-        volume=mix.get('sum_separate_volumes_l')
-        if volume and volume['low']>=r.reactor_total_volume_l:sentences.append(f"Объём сырья уже не меньше полного объёма реактора {r.reactor_total_volume_l:g} л: для инокулюма и газового пространства места нет; такую разовую загрузку не предлагаю.")
-        else:sentences.append(f"Реактор {r.reactor_total_volume_l:g} л: рабочий объём, инокулюм и свободное пространство нужно проверить отдельно; полное заполнение не разрешено.")
+    # Reactor loading is reported once by ConversationAgent's deterministic
+    # capacity preflight, which distinguishes nominal and working volume.
     if detail and mix:
         sentences.append('Расчёт: масса = объём × плотность; VS = масса × доля VS; метан, м³ = VS, кг × BMP, мл/г ÷ 1000; диапазоны сценария не имеют проверенного вероятностного покрытия.')
     return sentences or ['Состав сохранён; могу оценить газ, условия процесса или экономику.']

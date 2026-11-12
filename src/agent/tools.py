@@ -70,17 +70,21 @@ def predict_tool(data):
         from src.inference.predict import predict_bmp
         import joblib
         # Same preserved detector guards both stages, including legacy stage1.
-        domain=joblib.load(MODEL_PATHS['stage1_5'])['domain_detector'].assess(payload)
+        detector_bundle=joblib.load(MODEL_PATHS['stage1_5'])
+        domain=detector_bundle['domain_detector'].assess(payload)
         if domain['out_of_distribution']:
             return {'status':'out_of_distribution','domain':domain,'model_called':False,
                 'message':'Комбинация характеристик вне подтверждённой области того же субстрата. Агент отказывается от численного BMP; проверьте эталонную VS и лабораторную сопоставимость.'}
-        result=predict_bmp(payload,MODEL_PATHS[data.get('model','stage1_5')])
+        selected=data.get('model','stage1_5')
+        result=predict_bmp(payload,MODEL_PATHS[selected],_loaded_bundle=detector_bundle if selected=='stage1_5' else None)
     except Exception as exc:
         # Persisted estimator libraries expose version-specific exceptions; this
         # boundary must return an explicit failure rather than an invented BMP.
         return {'status':'error','code':'model_unavailable_or_invalid_input','model_called':False,
             'error_type':type(exc).__name__,'message':'Не удалось безопасно загрузить модель или проверить входы. Численный прогноз не выдан; проверьте артефакт, зависимости и диапазоны.'}
+    from src.provenance import predicted
     return {'status':'ok',**result,'domain':domain,'model_called':True,
+        'result_provenance':predicted({'features':payload},'mL CH4/g VS',sources=[{'model':result['model']}],limitations=['Model prediction, not a measured batch BMP or reactor output.']),
         'message':f"Лабораторный BMP: {result['bmp']:.6g} мл CH₄/г VS ({result['model']}). Это потенциал, не фактический выход газа. 90% интервал не установлен; перенос на вашу установку не подтверждён."}
 
 
@@ -186,7 +190,7 @@ class ToolRegistry:
                 prediction=results.get('predict_bmp',{})
                 if prediction.get('status')=='ok' and 'bmp_ml_ch4_g_vs' not in data:
                     data.update(bmp_ml_ch4_g_vs=prediction['bmp'],bmp_unit='mL CH4/g VS',
-                        gas_volume_basis='source BMP reference conditions; normalization not independently verified')
+                        bmp_provenance='MODEL_ESTIMATED',gas_volume_basis='source BMP reference conditions; normalization not independently verified')
                 if name=='calculate_methane': result=calculate_methane(data)
                 else:
                     methane=results.get('calculate_methane',{})

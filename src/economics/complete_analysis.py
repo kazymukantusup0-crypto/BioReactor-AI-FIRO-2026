@@ -122,7 +122,7 @@ def analyze(store,request,result):
             'gross_heat_kwh':h,'gross_electricity_kwh':e,'useful_heat_after_internal_use_kwh':useful_heat if balanced else None,'useful_electricity_after_internal_use_kwh':useful_electricity if balanced else None,
             'net_heat_balance_kwh':net_h if balanced and outputs else None,'net_electricity_balance_kwh':net_e if balanced and outputs else None,
             'gross_benefit_reference_kzt':benefit,'reactor_energy_cost_kzt':energy_cost,'total_cost_kzt':total_cost,'net_result_kzt':net,
-            'break_even':threshold,'comparison_basis':comparator_basis,'evidence_confirmed':bool(net is not None and sale_net is not None and energy['result_level']=='MEASURED' and s.reactor.provenance=='MEASURED' and all(prices[k]['status']=='confirmed' for k in ['electricity']+(['heat'] if h else [])) and not conditional),
+            'break_even':threshold,'comparison_basis':comparator_basis,'evidence_confirmed':bool(net is not None and sale_net is not None and energy['result_level']=='CALCULATED' and s.reactor.provenance=='MEASURED' and all(prices[k]['status']=='confirmed' for k in ['electricity']+(['heat'] if h else [])) and not conditional),
             'assumptions':conditional,'missing':base_cost['missing']+([] if balanced else ['complete_entire_batch_reactor_energy_balance'])+([] if s.all_operating_costs_included else ['confirm_all_operating_costs_included']),
             'price_sensitivity':{'minus_20_percent_gross_kzt':scale(benefit,.8),'plus_20_percent_gross_kzt':scale(benefit,1.2)} if benefit is not None else None})
     gas_eligible=all([s.gas_sale_technical_confirmed,s.gas_sale_legal_confirmed,s.gas_quality_confirmed,s.gas_storage_transport_confirmed]) and prices['gas_sale']['status']=='confirmed'

@@ -48,6 +48,8 @@ class PipelineTests(unittest.TestCase):
     def test_volume_units(self):
         a = predict_bmp({**self.payload, 'vs_mass_kg': 2})
         self.assertAlmostEqual(a['potential_methane_m3'], a['bmp'] * .002)
+        self.assertEqual(a['result_provenance']['method'], 'PREDICTED')
+        self.assertEqual(a['potential_methane_provenance']['method'], 'CALCULATED')
         self.assertNotIn('potential_methane_m3', predict_bmp(self.payload))
 
     def test_impossible_mass(self):

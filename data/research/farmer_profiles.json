@@ -1,0 +1,211 @@
+{
+  "sources": [
+    {
+      "id": "chae2008",
+      "doi": "10.1016/j.biortech.2006.11.063",
+      "title": "The effects of digestion temperature and temperature shock on the biogas yields from the mesophilic anaerobic digestion of swine manure",
+      "authors": [
+        "K.J. Chae",
+        "Am Jang",
+        "S.K. Yim",
+        "In S. Kim"
+      ],
+      "year": 2008,
+      "url": "https://doi.org/10.1016/j.biortech.2006.11.063",
+      "verification_stage": "NUMERIC_DATA_VERIFIED",
+      "review_method": "Primary publisher indexed abstract and Feed characteristics section; full page returned HTTP403, no access bypass",
+      "reviewed_sections": [
+        "Abstract: observed ultimate CH4 yields at25/30/35C",
+        "Feed characteristics: TS23885 and VS16310 mg/L"
+      ],
+      "limitations": [
+        "Diluted swine slurry from South Korea; wash-water dilution and refrigerated storage. Not solid manure or a universal slurry composition.",
+        "Reported batch endpoint methane yield, not theoretical maximum or prediction by a fixed day.",
+        "Yield figures refer to moderate feed loads5-20 percent v/v, not proof that the entire available lot fits one safe reactor charge.",
+        "Numerical STP T/P and gas moisture not verified from accessible sections; energy use requires an explicit gas-reference assumption.",
+        "Temperature variants are distinct source observations, not a probability interval."
+      ]
+    },
+    {
+      "id": "lin2016temperature",
+      "doi": "10.1186/s12934-016-0491-x",
+      "title": "Microorganism-regulated mechanisms of temperature effects on the performance of anaerobic digestion",
+      "authors": [
+        "Qiang Lin",
+        "Guihua He",
+        "Junpeng Rui",
+        "Xiaoyu Fang",
+        "Yong Tao",
+        "Jiabao Li",
+        "Xiangzhen Li"
+      ],
+      "year": 2016,
+      "url": "https://link.springer.com/article/10.1186/s12934-016-0491-x",
+      "verification_stage": "NUMERIC_DATA_VERIFIED",
+      "reviewed_sections": [
+        "Methods: seeded swine slurry, TS8percent, semi-continuous HRT30d",
+        "Results: temperature gradient25,35,45,50,55C"
+      ],
+      "limitations": [
+        "Distinct seeded semi-continuous experiment; not a calibration of the user reactor or the Chae batch sample.",
+        "Qualitative process tradeoffs only; do not multiply a batch BMP by daily methane production or use total biogas as methane."
+      ]
+    }
+  ],
+  "profiles": [
+    {
+      "id": "chae2008-swine-25",
+      "material": "swine_manure",
+      "material_state": "slurry",
+      "animals": [
+        "pig"
+      ],
+      "source_id": "chae2008",
+      "verification_stage": "APPROVED_FOR_ESTIMATION",
+      "approved_scope": "Same-sample volumetric solids and observed batch endpoint methane yield; conditional diluted-slurry reference",
+      "temperature_indexed": true,
+      "preparation": "Raw swine slurry diluted by washing water, stored4C; National Institute of Livestock Research, South Korea",
+      "density_kg_l": null,
+      "ts_fraction": null,
+      "vs_fraction_wet": null,
+      "ts_kg_l": {
+        "low": 0.023885,
+        "high": 0.023885,
+        "locator": "Feed characteristics: TS23885 mg/L; /1e6 to kg/L"
+      },
+      "vs_kg_l": {
+        "low": 0.01631,
+        "high": 0.01631,
+        "locator": "Feed characteristics: VS16310 mg/L; /1e6 to kg/L"
+      },
+      "bmp_ml_g_vs": {
+        "low": 327,
+        "high": 327,
+        "locator": "Abstract: observed ultimate methane yield at25C, 327 mL CH4/g VS added; no spread supplied"
+      },
+      "conditions": {
+        "temperature_c": 25,
+        "duration_days": null,
+        "duration_kind": "BATCH_ENDPOINT_NOT_FIXED_TIME",
+        "gas_basis": null,
+        "gas_reference_text": "Reported standard temperature and pressure; numerical T/P and moisture not verified",
+        "gas_basis_missing": [
+          "Numerical STP T/P",
+          "Gas moisture correction"
+        ],
+        "feed_volume_fraction_low": 0.05,
+        "feed_volume_fraction_high": 0.2
+      }
+    },
+    {
+      "id": "chae2008-swine-30",
+      "material": "swine_manure",
+      "material_state": "slurry",
+      "animals": [
+        "pig"
+      ],
+      "source_id": "chae2008",
+      "verification_stage": "APPROVED_FOR_ESTIMATION",
+      "approved_scope": "Same-sample volumetric solids and observed batch endpoint methane yield; conditional diluted-slurry reference",
+      "temperature_indexed": true,
+      "preparation": "Raw swine slurry diluted by washing water, stored4C; National Institute of Livestock Research, South Korea",
+      "density_kg_l": null,
+      "ts_fraction": null,
+      "vs_fraction_wet": null,
+      "ts_kg_l": {
+        "low": 0.023885,
+        "high": 0.023885,
+        "locator": "Feed characteristics: TS23885 mg/L; /1e6 to kg/L"
+      },
+      "vs_kg_l": {
+        "low": 0.01631,
+        "high": 0.01631,
+        "locator": "Feed characteristics: VS16310 mg/L; /1e6 to kg/L"
+      },
+      "bmp_ml_g_vs": {
+        "low": 389,
+        "high": 389,
+        "locator": "Abstract: observed ultimate methane yield at30C, 389 mL CH4/g VS added; no spread supplied"
+      },
+      "conditions": {
+        "temperature_c": 30,
+        "duration_days": null,
+        "duration_kind": "BATCH_ENDPOINT_NOT_FIXED_TIME",
+        "gas_basis": null,
+        "gas_reference_text": "Reported standard temperature and pressure; numerical T/P and moisture not verified",
+        "gas_basis_missing": [
+          "Numerical STP T/P",
+          "Gas moisture correction"
+        ],
+        "feed_volume_fraction_low": 0.05,
+        "feed_volume_fraction_high": 0.2
+      }
+    },
+    {
+      "id": "chae2008-swine-35",
+      "material": "swine_manure",
+      "material_state": "slurry",
+      "animals": [
+        "pig"
+      ],
+      "source_id": "chae2008",
+      "verification_stage": "APPROVED_FOR_ESTIMATION",
+      "approved_scope": "Same-sample volumetric solids and observed batch endpoint methane yield; conditional diluted-slurry reference",
+      "temperature_indexed": true,
+      "preparation": "Raw swine slurry diluted by washing water, stored4C; National Institute of Livestock Research, South Korea",
+      "density_kg_l": null,
+      "ts_fraction": null,
+      "vs_fraction_wet": null,
+      "ts_kg_l": {
+        "low": 0.023885,
+        "high": 0.023885,
+        "locator": "Feed characteristics: TS23885 mg/L; /1e6 to kg/L"
+      },
+      "vs_kg_l": {
+        "low": 0.01631,
+        "high": 0.01631,
+        "locator": "Feed characteristics: VS16310 mg/L; /1e6 to kg/L"
+      },
+      "bmp_ml_g_vs": {
+        "low": 403,
+        "high": 403,
+        "locator": "Abstract: observed ultimate methane yield at35C, 403 mL CH4/g VS added; no spread supplied"
+      },
+      "conditions": {
+        "temperature_c": 35,
+        "duration_days": null,
+        "duration_kind": "BATCH_ENDPOINT_NOT_FIXED_TIME",
+        "gas_basis": null,
+        "gas_reference_text": "Reported standard temperature and pressure; numerical T/P and moisture not verified",
+        "gas_basis_missing": [
+          "Numerical STP T/P",
+          "Gas moisture correction"
+        ],
+        "feed_volume_fraction_low": 0.05,
+        "feed_volume_fraction_high": 0.2
+      }
+    }
+  ],
+  "partial_characterizations": [],
+  "process_studies": [
+    {
+      "material": "swine_manure",
+      "material_states": [
+        "slurry"
+      ],
+      "source_id": "lin2016temperature",
+      "temperatures_c": [
+        25,
+        35,
+        45,
+        50,
+        55
+      ],
+      "reactor_type": "Seeded semi-continuous2L flasks,1.5L charge, TS8percent, HRT30d",
+      "advisory_regime": "MESOPHILIC_DISCUSSION",
+      "discussion_temperature_c": 35,
+      "claim": "In this experiment daily methane production increased up to50C and declined at55C. Higher temperature is not universally better; acclimation, stability and heating cost must be evaluated.",
+      "not_a_setpoint": true
+    }
+  ]
+}

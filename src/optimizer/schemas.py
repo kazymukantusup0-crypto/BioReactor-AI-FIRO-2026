@@ -65,7 +65,7 @@ class ProcessParameters(Strict):
     energy_scope: str | None = Field(default=None, max_length=500)
     bmp_ml_ch4_g_vs: float | None = Field(default=None, ge=0)
     bmp_unit: Literal['mL CH4/g VS'] | None = None
-    bmp_provenance: Literal['measured', 'scenario_assumption'] | None = None
+    bmp_provenance: Literal['measured', 'user_reported', 'scenario_assumption'] | None = None
     bmp_evidence: str | None = Field(default=None, max_length=1000)
     gas_volume_basis: str | None = Field(default=None, max_length=1000)
     recovery_fraction: float | None = Field(default=None, ge=0, le=1)

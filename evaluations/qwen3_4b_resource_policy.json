@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "model": "qwen3:4b-q4_K_M",
+  "status": "BLOCKED_INSUFFICIENT_EVIDENCE",
+  "scope": "experimental QA only; production settings unchanged",
+  "request": {"num_ctx": 4096, "num_batch": 32, "num_gpu": -1, "parallel": 1, "keep_alive": 0},
+  "admission_free_ram_mib": null,
+  "runtime_free_ram_floor_mib": null,
+  "minimum_commit_headroom_mib": null,
+  "minimum_free_vram_mib": null,
+  "measured_peak_ram_increase_mib": 987.9,
+  "measured_peak_commit_increase_mib": 4319.4,
+  "measured_peak_vram_increase_mib": 3267,
+  "measured_abort_latency_seconds": null,
+  "justification": null,
+  "local_gpu_stop_c": 82,
+  "notes": "Increases are one-run system-wide sampled differences, not established upper bounds; calibration used keep_alive=0 and 100 output tokens, not preloaded Chat with keep_alive=5m. No thresholds are inferred from 8B or one 4B run. Missing bounds and cancellation latency fail closed. GPU stop is local QA policy, not a universal hardware limit.",
+  "measurement_artifact": "reports/qwen4b_manual_qa/calibration_1794400734422067200.json"
+}

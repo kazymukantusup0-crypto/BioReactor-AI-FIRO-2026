@@ -23,7 +23,7 @@ class SmartAgentTests(unittest.TestCase):
   self.assertIn('35',r['answer']);self.assertNotIn('м³',r['answer']);self.assertEqual([x['tool'] for x in r['tools']],['advise_substrate_conditions'])
  def test_gas_does_not_run_full_economics(self):
   with patch('src.advisor.service.analyze',side_effect=AssertionError('Unneeded economics')),patch('src.economics.complete_analysis.analyze',side_effect=AssertionError('Unneeded economics')):r=self.ask('У меня 142 литра коровьей навозной жижи. Сколько газа?')
-  self.assertIn('2.92',r['answer']);self.assertEqual([x['tool'] for x in r['tools']],['estimate_substrate_gas'])
+  self.assertIn('не рассчитан',r['answer']);self.assertNotIn('2.92',r['answer']);self.assertEqual([x['tool'] for x in r['tools']],['estimate_substrate_gas'])
  def test_gas_without_amount_never_invents_one_kg(self):
   r=self.ask('У меня коровий навоз. Сколько газа?');self.assertNotIn('м³',r['answer']);self.assertEqual(r['tools'],[]);self.assertIn('количество',r['answer'])
  def test_duration_has_only_relevant_studies_and_no_batch_prediction(self):
@@ -38,7 +38,7 @@ class SmartAgentTests(unittest.TestCase):
   r=self.ask('Ответь одним предложением');self.assertEqual(r['tools'],[]);self.assertEqual(r['answer'].count('. '),0);self.assertNotIn('Формула',r['answer'])
  def test_followups_keep_real_mixture_and_only_requested_goal(self):
   self.ask('У меня 142 литра коровьей навозной жижи. Сколько газа?');self.ask('Какая температура лучше?');self.ask('Добавь 20 кг пищевых отходов');r=self.ask('А теперь сколько газа?')
-  self.assertEqual([(x['quantity'],x['unit']) for x in self.agent.state.mixture_components],[(142,'L'),(20,'kg')]);self.assertIn('2.92',r['answer']);self.assertIn('Полный выход пока не рассчитан',r['answer']);self.assertNotIn('35',r['answer']);self.assertEqual(len(r['tools']),1)
+  self.assertEqual([(x['quantity'],x['unit']) for x in self.agent.state.mixture_components],[(142,'L'),(20,'kg')]);self.assertNotIn('2.92',r['answer']);self.assertIn('Полный выход пока не рассчитан',r['answer']);self.assertNotIn('35',r['answer']);self.assertEqual(len(r['tools']),1)
  def test_what_if_addition_remains_active_without_changing_confirmed_stock(self):
   self.ask('У меня 100 кг коровьей навозной жижи');self.ask('Температуру');self.ask('А если добавить 20 кг пищевых отходов?');r=self.ask('А сколько получится газа?')
   self.assertEqual(len(self.agent.state.mixture_components),1);self.assertEqual(len(self.agent.state.mixture_scenario_components),2);self.assertTrue(self.agent.state.active_mixture_scenario);self.assertIn('2.03',r['answer']);self.assertIn('Полный выход пока не рассчитан',r['answer'])

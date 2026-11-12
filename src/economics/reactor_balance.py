@@ -14,7 +14,8 @@ def calculate(inputs):
     result=estimate_energy(p)
     heating=(result['initial_heating_kwh']+result['maintenance_heating_kwh']) if result['initial_heating_kwh'] is not None and result['maintenance_heating_kwh'] is not None else None
     electricity=heating+result['auxiliary_kwh'] if inputs.heating_carrier=='electricity' and heating is not None and result['auxiliary_kwh'] is not None else result['auxiliary_kwh'] if inputs.heating_carrier in {'process_heat','external_heat'} else None
-    return {**result,'heating_input_kwh':heating,'electricity_input_kwh':electricity,'heating_carrier':inputs.heating_carrier,
+    from src.provenance import calculated
+    return {**result,'result_provenance':calculated({'reactor_inputs':inputs.model_dump()},'kWh',limitations=['Calculated thermal balance, not measured reactor energy.']) if heating is not None else None,'heating_input_kwh':heating,'electricity_input_kwh':electricity,'heating_carrier':inputs.heating_carrier,
             'process_heat_draw_kwh':heating if inputs.heating_carrier=='process_heat' else 0 if inputs.heating_carrier in {'electricity','external_heat'} else None,
             'loads':loads,'known_load_subtotal_kwh':subtotal if loads else None,'input_provenance':inputs.provenance,
             'scope_valid_for_batch':inputs.energy_scope=='entire_batch',

@@ -21,7 +21,7 @@ from src.research.evidence_store import EvidenceStore
 
 def component(material='cattle_manure',quantity=50,unit='kg',state='slurry',identifier='c1',properties=None):
     return {'id':identifier,'material':material,'quantity':quantity,'unit':unit,'material_state':state,'properties':properties or {}}
-def test_properties(bmp=300,vs=.1,ts=.2):
+def make_test_properties(bmp=300,vs=.1,ts=.2):
     return {'ts_fraction':ts,'vs_fraction_wet':vs,'bmp_ml_g_vs':bmp,'gas_basis':{'temperature_k':273.2,'pressure_pa':101325,'moisture':'dry','description':'TEST ONLY reference'}}
 
 class SubstrateAdvisorTests(unittest.TestCase):
@@ -31,14 +31,16 @@ class SubstrateAdvisorTests(unittest.TestCase):
     def agent(self,state=None):return ConversationAgent(llm=HybridLLM(providers=[]),registry=ToolRegistry(self.store),research_enabled=True,state=state)
     def run_analysis(self,components=None,**kwargs):return analyze(self.store,{'components':components or [component()],**kwargs})
     def test_catalog_counts_names_separately_from_approved_profiles(self):
-        c=get_catalog();self.assertEqual(c['recognized_categories'],15);self.assertEqual(c['materials_with_approved_profiles'],['cattle_manure','food_waste','grass','horse_manure','poultry_manure','sheep_goat_manure','straw','swine_manure']);self.assertEqual(c['approved_profile_count'],18);self.assertEqual(c['complete_density_solids_bmp_profile_count'],1)
+        c=get_catalog();ids={m['id'] for m in c['materials']};self.assertEqual(c['recognized_categories'],len(ids));self.assertEqual(c['recognized_categories'],20)
+        self.assertTrue({'apple_pomace','brewers_spent_grain','beet_pulp','wastewater_sludge','sunflower_husk'} <= ids)
+        self.assertEqual(c['materials_with_approved_profiles'],['cattle_manure','food_waste','grass','horse_manure','poultry_manure','sheep_goat_manure','straw','swine_manure']);self.assertEqual(c['approved_profile_count'],21);self.assertEqual(c['complete_density_solids_bmp_profile_count'],1)
         self.assertEqual(next(m for m in c['materials'] if m['id']=='vegetable_waste')['support_level'],'PARTIAL')
     def test_actual_rm1_142_l_reference_and_no_operating_default(self):
-        r=self.run_analysis([component(quantity=142,unit='L')],reactor_total_volume_l=200);m=r['mixture']
+        r=self.run_analysis([component(quantity=142,unit='L',properties={'density_kg_l':1.013})],reactor_total_volume_l=200);m=r['mixture']
         self.assertAlmostEqual(m['total_wet_mass_kg']['low'],143.846);self.assertAlmostEqual(m['additive_methane_reference_m3']['low'],2.92295072);self.assertAlmostEqual(m['additive_methane_reference_m3']['high'],4.1139956)
         self.assertIsNone(r['temperature']['candidate']);self.assertIsNone(r['duration']['recommended_batch_duration_days']);self.assertIsNone(r['decision_analysis']['feasibility']['working_volume_l'])
     def test_bedded_manure_does_not_borrow_slurry_density(self):
-        r=self.run_analysis([component(state='bedded',quantity=100,unit='L')]);m=r['mixture'];self.assertEqual(m['total_wet_mass_kg']['low'],71);self.assertAlmostEqual(m['additive_methane_reference_m3']['low'],71*.2353*.1092);self.assertEqual(m['result_level'],'HYPOTHETICAL_SCENARIO');self.assertEqual(m['components'][0]['properties_used']['density_kg_l']['source_id'],'alberta2005')
+        r=self.run_analysis([component(state='bedded',quantity=100,unit='L')]);m=r['mixture'];self.assertIsNone(m['total_wet_mass_kg']);self.assertIsNone(m['additive_methane_reference_m3']);self.assertIn('density_kg_l',m['components'][0]['missing'])
     def test_composted_manure_has_no_transferred_bmp(self):
         self.assertIsNone(self.run_analysis([component(state='compost')])['mixture']['additive_methane_reference_m3'])
     def test_food_profile_is_measured_point_not_regression_vertex(self):
@@ -49,10 +51,9 @@ class SubstrateAdvisorTests(unittest.TestCase):
     def test_100_litres_liquid_pig_manure_uses_pig_profile_and_scoped_density(self):
         result=self.run_analysis([component('swine_manure',100,'L','slurry')]);row=result['mixture']['components'][0]
         self.assertEqual(row['profile_id'],'pham2013-pig-vdi')
-        self.assertEqual(row['wet_mass_kg'],{'low':100,'high':100})
-        self.assertAlmostEqual(row['methane_reference_m3']['low'],.472836)
-        self.assertEqual(row['properties_used']['density_kg_l']['source_id'],'alberta2005')
-        self.assertTrue(any('Cross-study transfer' in value for value in row['assumptions']))
+        self.assertIsNone(row['wet_mass_kg'])
+        self.assertIsNone(row['methane_reference_m3'])
+        self.assertIn('density_kg_l',row['missing'])
         self.assertEqual(result['temperature']['studies'][0]['temperatures_c'],[37])
     def test_dry_chicken_uses_high_solids_chicken_reference_not_layer_or_wet_profile(self):
         result=self.run_analysis([component('poultry_manure',50,'kg','dry')]);row=result['mixture']['components'][0]
@@ -82,15 +83,15 @@ class SubstrateAdvisorTests(unittest.TestCase):
     def test_unknown_portion_is_not_zero_or_lower_bound(self):
         r=self.run_analysis([component(),component('grass',10,identifier='c2')],assume_common_dry_gas_basis=True)['mixture'];self.assertIsNone(r['additive_methane_reference_m3']);self.assertIsNotNone(r['known_component_additive_subtotal_m3']);self.assertIsNone(r['total_vs_kg'])
     def test_additive_mass_balance_without_synergy(self):
-        rows=[component(properties=test_properties(),quantity=10),component('food_waste',20,identifier='c2',properties=test_properties(200,.2,.3))]
+        rows=[component(properties=make_test_properties(),quantity=10),component('food_waste',20,identifier='c2',properties=make_test_properties(200,.2,.3))]
         m=self.run_analysis(rows,allow_literature_transfer=False)['mixture'];self.assertAlmostEqual(m['additive_methane_reference_m3']['low'],1.1);self.assertEqual(m['total_wet_mass_kg']['low'],30);self.assertIsNone(m['synergy_factor']);self.assertIsNone(m['measured_mixture_bmp']);self.assertEqual(m['result_level'],'HYPOTHETICAL_SCENARIO')
     def test_missing_bmp_reference_does_not_pool_methane(self):
-        p=test_properties();p.pop('gas_basis');r=self.run_analysis([component(properties=p)],allow_literature_transfer=False);self.assertIsNone(r['mixture']['additive_methane_reference_m3'])
+        p=make_test_properties();p.pop('gas_basis');r=self.run_analysis([component(properties=p)],allow_literature_transfer=False);self.assertIsNone(r['mixture']['additive_methane_reference_m3'])
     def test_incompatible_source_bases_require_explicit_scenario(self):
         rows=[component(),component('food_waste',20,state='prepared_pulp',identifier='c2')]
         self.assertIsNone(self.run_analysis(rows)['mixture']['additive_methane_reference_m3']);m=self.run_analysis(rows,assume_common_dry_gas_basis=True)['mixture'];self.assertIsNotNone(m['additive_methane_reference_m3']);self.assertTrue(m['normalization'])
     def test_known_wet_gas_is_not_silently_dried(self):
-        p=test_properties();p['gas_basis']['moisture']='wet';r=self.run_analysis([component(properties=p)],allow_literature_transfer=False,assume_common_dry_gas_basis=True);self.assertIsNone(r['mixture']['additive_methane_reference_m3'])
+        p=make_test_properties();p['gas_basis']['moisture']='wet';r=self.run_analysis([component(properties=p)],allow_literature_transfer=False,assume_common_dry_gas_basis=True);self.assertIsNone(r['mixture']['additive_methane_reference_m3'])
     def test_measured_ts_blocks_borrowed_literature_vs(self):
         r=self.run_analysis([component(properties={'ts_fraction':.1})]);self.assertIsNone(r['mixture']['total_vs_kg']);self.assertIsNone(r['mixture']['additive_methane_reference_m3'])
     def test_cn_uses_carbon_nitrogen_masses_not_mean_of_ratios(self):
@@ -99,7 +100,7 @@ class SubstrateAdvisorTests(unittest.TestCase):
     def test_cn_without_elemental_measurements_is_unknown(self):
         self.assertIsNone(self.run_analysis([component(state='bedded'),component('food_waste',20,state='prepared_pulp',identifier='c2')])['mixture']['cn_mass_ratio'])
     def test_olr_continuous_requires_feed_period_and_working_volume(self):
-        r=self.run_analysis([component(quantity=10,properties=test_properties())],allow_literature_transfer=False,feeding_period_days=2,decision={'reactor':{'reactor_working_volume_l':100,'operating_mode':'continuous'}});self.assertAlmostEqual(r['mixture']['olr_kg_vs_m3_day']['low'],5)
+        r=self.run_analysis([component(quantity=10,properties=make_test_properties())],allow_literature_transfer=False,feeding_period_days=2,decision={'reactor':{'reactor_working_volume_l':100,'operating_mode':'continuous'}});self.assertAlmostEqual(r['mixture']['olr_kg_vs_m3_day']['low'],5)
         r=self.run_analysis(feeding_period_days=2,decision={'reactor':{'reactor_working_volume_l':100,'operating_mode':'batch'}});self.assertIsNone(r['mixture']['olr_kg_vs_m3_day'])
     def test_hrt_requires_full_hydraulic_feed_declaration(self):
         args={'total_daily_liquid_feed_l':10,'decision':{'reactor':{'reactor_working_volume_l':100,'operating_mode':'continuous'}}}
@@ -137,10 +138,10 @@ class SubstrateAdvisorTests(unittest.TestCase):
     def test_no_density_guess_for_volume_of_food(self):
         self.assertIsNone(self.run_analysis([component('food_waste',10,'L','prepared_pulp')])['mixture']['total_wet_mass_kg'])
     def test_generic_manure_has_separate_conditional_species_example(self):
-        r=self.run_analysis([component('manure',142,'L')]);self.assertIsNone(r['mixture']['additive_methane_reference_m3']);self.assertAlmostEqual(r['conditional_reference_case']['mixture']['additive_methane_reference_m3']['low'],2.92295072)
+        r=self.run_analysis([component('manure',142,'L')]);self.assertIsNone(r['mixture']['additive_methane_reference_m3']);self.assertIsNone(r['conditional_reference_case']['mixture']['additive_methane_reference_m3'])
     def test_total_biogas_is_conditional_and_methane_not_added_twice(self):
         r=self.agent().ask('У меня 142 литра навозной жижи и реактор на 200 литров. Сколько газа, какая температура и срок?')
-        self.assertIn('4.87–7.48',r['answer']);self.assertIn('55–60 %',r['answer']);self.assertIn('Метан уже входит',r['answer'])
+        self.assertNotIn('4.87–7.48',r['answer']);self.assertIn('плотност',r['answer'].lower());self.assertIn('не рассчитан',r['answer'])
     def test_comparison_respects_availability_across_unit_conversions(self):
         base=AdvisorRequest(components=[component(quantity=1)])
         ok=ComparisonRequest(base=base,candidates=[{'label':'TEST','components':[component(quantity=1000,unit='g')]}]);self.assertIsNone(compare(self.store,ok)['preferred_mixture'])
@@ -148,8 +149,8 @@ class SubstrateAdvisorTests(unittest.TestCase):
     def test_no_optimum_when_kinetics_stability_or_prices_missing(self):
         base=AdvisorRequest(components=[component(),component('food_waste',20,identifier='c2')]);r=compare(self.store,ComparisonRequest(base=base,candidates=suggestions(base)));self.assertIsNone(r['preferred_mixture']);self.assertTrue(all(c['objectives']['stability'] is None and c['objectives']['duration'] is None for c in r['candidates']))
     def test_comparison_cannot_change_component_property_evidence(self):
-        base=AdvisorRequest(components=[component(properties=test_properties())])
-        with self.assertRaises(ValueError):ComparisonRequest(base=base,candidates=[{'label':'TEST fabricated yield change','components':[component(properties=test_properties(900))]}])
+        base=AdvisorRequest(components=[component(properties=make_test_properties())])
+        with self.assertRaises(ValueError):ComparisonRequest(base=base,candidates=[{'label':'TEST fabricated yield change','components':[component(properties=make_test_properties(900))]}])
     def test_material_names_can_precede_quantities(self):
         c=explicit_components('Коровий навоз: 50 кг, пищевые отходы: 20 кг, трава: 10 кг')
         self.assertEqual([(x.material,x.quantity) for x in c],[('cattle_manure',50),('food_waste',20),('grass',10)])
@@ -182,7 +183,7 @@ class SubstrateAdvisorTests(unittest.TestCase):
         request={'components':components,'assume_common_dry_gas_basis':True}
         with TestClient(create_app(self.store,scheduler_enabled=False)) as client:
             converted=client.post('/api/advisor/convert',json={'request':{'components':[components[0]]},'target_unit':'kg'}).json()['conversions'][0]
-            self.assertEqual(converted['status'],'ok');self.assertEqual(converted['value'],{'low':100,'high':100})
+            self.assertEqual(converted['status'],'needs_input');self.assertIsNone(converted['value'])
             saved=client.post('/api/advisor/mixtures',json={'name':'Pig and dry poultry','request':request,'display_units':{'c1':'L','c2':'kg'}})
             self.assertEqual(saved.status_code,201);data=saved.json()
             listed=client.get('/api/advisor/mixtures').json()['mixtures'][0]['request']

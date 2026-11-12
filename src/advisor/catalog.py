@@ -17,6 +17,11 @@ DEFINITIONS=[
  ('straw','Солома','Straw','Сабан',[r'(?:пшенич\w*\s+)?солом\w*',r'(?:wheat\s+)?straw',r'(?:бидай\s+)?сабан\w*'],['dry','shredded'],['slow hydrolysis','preparation energy']),
  ('silage','Силос','Silage','Сүрлем',[r'силос\w*',r'\bsilage\b',r'сүрлем\w*'],['silage'],['ensiling history and acids need verification']),
  ('dairy_waste','Отходы молочной промышленности','Dairy waste','Сүт өндірісінің қалдықтары',[r'отход\w*\s+молочн\w*',r'молочн\w*\s+отход\w*',r'сыворот\w*',r'\bwhey\b',r'dairy\s+waste',r'сарысу'],['slurry'],['rapid acidification','variable fats and cleaning chemicals']),
+ ('apple_pomace','Яблочный жмых','Apple pomace','Алма сығындысы',[r'яблоч\w*\s+жмых\w*',r'яблочн\w*\s+выжимк\w*',r'apple\s+(?:pomace|press\s+cake)'],['fresh_solid','prepared_pulp','dry'],['moisture, pectin and drying basis require confirmation']),
+ ('brewers_spent_grain','Пивная дробина','Brewers spent grain','Сыра қалдығы',[r'пивн\w*\s+дробин\w*',r'пивн\w*\s+затор\w*',r'brewers?\s+spent\s+grain',r'brewers?\s+grain',r'\bspent\s+grain\b'],['fresh_solid','slurry','dry'],['wet/dry form and storage history materially affect transfer']),
+ ('beet_pulp','Свекловичный жом','Sugar beet pulp','Қызылша жомы',[r'свеклович\w*\s+жом\w*',r'свекольн\w*\s+жом\w*',r'sugar\s+beet\s+pulp',r'\bbeet\s+pulp\b'],['fresh_solid','slurry','dry'],['pressing, drying and moisture basis require confirmation']),
+ ('wastewater_sludge','Осадок сточных вод','Wastewater sludge','Ағынды су тұнбасы',[r'осад\w*\s+(?:городск\w*\s+)?(?:сточн\w*\s+вод\w*|очистн\w*\s+сооружен\w*)',r'(?:sewage|wastewater|activated)\s+sludge'],['slurry','fresh_solid','dry'],['origin, treatment and hazardous contaminants require material-specific review']),
+ ('sunflower_husk','Лузга подсолнечника','Sunflower husk','Күнбағыс қауызы',[r'(?:лузг\w*|шелух\w*)\s+подсолнечник\w*',r'подсолнечн\w*\s+(?:лузг\w*|шелух\w*)',r'sunflower\s+(?:seed\s+)?(?:husk|hulls)'],['dry','shredded'],['lignocellulose, oil residue and pretreatment require confirmation']),
  ('other_organic','Другое органическое сырьё','Other organic material','Басқа органикалық шикізат',[r'друг\w*\s+органическ\w*',r'other\s+organic'],['unknown'],['identify material before quantitative advice']),
  ('manure','Навоз: вид не уточнён','Manure: species unknown','Көң: түрі белгісіз',[r'навозн\w*\s+жиж\w*',r'\bmanure\b',r'навоз\w*',r'сұйық\s+көң'],['slurry','fresh_solid','bedded'],['species and physical state unknown'])]
 
@@ -30,6 +35,10 @@ def document():
         extra=read_profile(path)
         for key in ['sources','profiles','partial_characterizations']:d[key]+=extra.get(key,[])
     path=ROOT/'data/research/stage83_profiles.json'
+    if path.exists():
+        extra=read_profile(path)
+        for key in ['sources','profiles','partial_characterizations']:d[key]+=extra.get(key,[])
+    path=ROOT/'data/research/farmer_profiles.json'
     if path.exists():
         extra=read_profile(path)
         for key in ['sources','profiles','partial_characterizations']:d[key]+=extra.get(key,[])
@@ -63,7 +72,7 @@ def profiles():
             'density_kg_l':p['values']['density_kg_l'],'ts_fraction':p['values']['ts_fraction'],'vs_fraction_wet':p['values']['vs_fraction_wet'],
             'bmp_ml_g_vs':p['values']['bmp_ml_g_vs'],'conditions':p['conditions'],'cn_ratio':None,'ph':None,'preparation':'Untreated refrigerated cattle slurry; other forms excluded'})
     for p in d['profiles']:
-        source=next(s for s in d['sources'] if s['id']==p['source_id']);rows.append({**p,'source':source,'conditions':source['conditions']})
+        source=next(s for s in d['sources'] if s['id']==p['source_id']);rows.append({**p,'source':source,'conditions':p.get('conditions',source.get('conditions',{}))})
     return rows
 
 def get_catalog():

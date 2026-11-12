@@ -56,7 +56,9 @@ def register(router,runtime,store):
         if row['terminal'] or row['current_stage']=='persisted':return public(row)
         if row['status']=='QUEUED':runtime.finish(identifier,'CANCELLED',error='USER_CANCELLED')
         else:
-            with store.connect() as con:con.execute("UPDATE agent_jobs SET cancel_requested=1,current_stage='cancelling',updated_at=? WHERE id=? AND status NOT IN (?,?,?,?)",(utcnow().isoformat(),identifier,*TERMINAL))
+            with store.connect() as con:
+                changed=con.execute("UPDATE agent_jobs SET cancel_requested=1,current_stage='cancelling',updated_at=? WHERE id=? AND status NOT IN (?,?,?,?)",(utcnow().isoformat(),identifier,*TERMINAL))
+            if changed.rowcount:runtime.signal_cancel(identifier)
         return public(runtime.get(identifier))
 
     @router.get('/chat/sessions/{identifier}/jobs')

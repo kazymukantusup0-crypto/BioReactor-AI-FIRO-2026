@@ -65,7 +65,9 @@ def estimate_energy(data):
             raise ValueError('Energy calculation overflow; check SI inputs')
     if p.get('heating_available') is False and any(v is not None and v > 0 for v in [initial_energy, holding]):
         warnings.append('Calculated heating demand cannot be met by the declared unavailable heater.')
+    from src.provenance import calculated
     return {'status': 'ok' if total is not None else 'needs_input',
+            'result_provenance':calculated({'inputs':p},'kWh',sources=SOURCES,limitations=['Calculated energy balance, not measured energy consumption.']) if known else None,
             'initial_thermal_kwh': sensible, 'initial_heating_kwh': initial_energy,
             'maintenance_heating_kwh': holding, 'auxiliary_kwh': auxiliary,
             'total_energy_kwh': total, 'known_subtotal_kwh': sum(known) if known else None,

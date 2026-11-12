@@ -1,0 +1,41 @@
+﻿import {pathToFileURL,fileURLToPath} from 'node:url';
+import fs from 'node:fs/promises';
+import path from 'node:path';
+const harnessDir=path.dirname(fileURLToPath(import.meta.url));
+const project=path.resolve(harnessDir,'../..');
+const {chromium}=await import(pathToFileURL(path.join(project,'frontend/node_modules/playwright-core/index.mjs')).href);
+const base=process.env.BIOREACTOR_QA_URL||'http://127.0.0.1:8781';
+const sid=process.env.BIOREACTOR_QA_SESSION;
+if(!sid) throw new Error('BIOREACTOR_QA_SESSION is required');
+const browser=await chromium.launch({executablePath:'C:/Program Files/Google/Chrome/Application/chrome.exe',headless:true,args:['--disable-gpu']});
+const context=await browser.newContext({viewport:{width:1440,height:1000}});
+const page=await context.newPage();const errors=[];page.on('pageerror',e=>errors.push(String(e)));
+const check=(name,passed,detail)=>({name,passed:Boolean(passed),detail});
+let checks=[];
+try{
+ const api=await(await context.request.get(`${base}/api/dashboard/chat/sessions/${sid}`)).json();
+ const expected=api.turns.map(t=>({request_id:t.request_id,answer:t.reply?.answer,state_version:t.reply?.state_version}));
+ if(!expected.length||expected.some(t=>!t.answer))throw new Error('No complete persisted turns to verify');
+ await context.addInitScript(id=>localStorage.setItem('bioreactor_chat_session_v4',id),sid);
+ await page.goto(`${base}/dashboard/#/chat`);await page.getByTestId('chat-result').last().waitFor({timeout:60000});
+ const before=await page.getByTestId('chat-result').last().innerText();
+ checks.push(check('Selected saved session',api.id===sid,api.id));
+ checks.push(check('API returns every prior answer',expected.length===api.turns.length&&expected.every((t,i)=>t.answer===api.turns[i].reply.answer),expected.length));
+ checks.push(check('Browser renders persisted turn count',await page.getByTestId('chat-turn').count()===expected.length,await page.getByTestId('chat-turn').count()));
+ checks.push(check('Browser renders saved final answer',before.includes((expected.at(-1).answer||'').slice(0,50)),before.slice(0,180)));
+ await page.reload();await page.getByTestId('chat-result').last().waitFor({timeout:60000});
+ const after=await page.getByTestId('chat-result').last().innerText();
+ const reloaded=await(await context.request.get(`${base}/api/dashboard/chat/sessions/${sid}`)).json();
+ checks.push(check('Refresh keeps same rendered turns',await page.getByTestId('chat-turn').count()===expected.length,await page.getByTestId('chat-turn').count()));
+ checks.push(check('Refresh keeps exact final answer',after.includes((expected.at(-1).answer||'').slice(0,50)),after.slice(0,180)));
+ checks.push(check('Refresh creates no duplicate turn',reloaded.turns.length===expected.length,reloaded.turns.length));
+ checks.push(check('State version survives backend restart and refresh',reloaded.state_version===api.state_version,{before:api.state_version,after:reloaded.state_version}));
+ checks.push(check('No browser exceptions',errors.length===0,errors));
+ const out=path.resolve(harnessDir,'restart_browser_persistence.json');
+ const png=path.resolve(harnessDir,'restart_browser_persistence.png');
+ await page.screenshot({path:png,fullPage:true});
+ await fs.writeFile(out,JSON.stringify({checks,errors,session:sid,state_version:reloaded.state_version,turns:reloaded.turns.map(t=>({request_id:t.request_id,status:t.status,answer:t.reply?.answer})),browser:browser.version()},null,2),'utf8');
+ console.log(JSON.stringify({artifact:out,screenshot:png,browser:browser.version(),checks,errors}));
+ if(checks.some(c=>!c.passed))process.exitCode=1;
+}catch(e){console.error('PERSISTENCE_E2E_FAILED',String(e));process.exitCode=1}
+finally{await browser.close()}

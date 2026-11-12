@@ -39,7 +39,7 @@ def _state_payload(state):
     }
 
 
-def _tool_context(agent,name,query,arguments):
+def _tool_context(agent,name,query,arguments,*,original_question=None):
     from src.agent.dialogue_memory import tool_context
     from src.agent import advisor_bridge,process_bridge,research_bridge
     context=tool_context(agent.state)
@@ -49,6 +49,7 @@ def _tool_context(agent,name,query,arguments):
     from src.agent.scientific_tools import TOOLS as SCIENTIFIC_TOOLS
     if name in analytical.TOOLS or name in SCIENTIFIC_TOOLS:
         context['analytical_context']=analytical.context(agent.state)
+        context['analytical_context']['query']=original_question if original_question is not None else query
     if name=='advise_substrate_conditions' and arguments.get('topics'):
         context['topics']=arguments['topics']
     advisor_tools={'get_substrate_catalog','analyze_substrate_mixture','compare_substrate_mixtures',
@@ -178,6 +179,16 @@ def _mentions_calculated_quantity(answer,bounds,unit_pattern):
     return False
 
 
+def unconfirmed_profitability_claim(answer):
+    """Unknown costs establish neither a positive nor a negative verdict."""
+    for sentence in re.split(r'[.!?;]|\b(?:но|однако|but|however)\b|,(?=\s*(?:прибыл|эконом|profit|cost))',answer,flags=re.I):
+        judgment=re.search(r'\b(?:не\s*)?выгод(?:но|на|ны|ен|нее)\b|\bубыточ\w*|\bприбыл(?:ен|ьн)\w*|\bокуп(?:ится|ается|ятся)\b|\b(?:unprofitable|profitable|uneconomical|cost.effective)\b',sentence,re.I)
+        if not judgment:continue
+        qualified=re.search(r'нельзя\s+(?:назвать|утвержд|сказать|определ|считать)|невозможно\s+(?:определ|утвержд)|не\s+(?:могу|можем)\s+(?:назвать|утвержд|сказать|определ)|(?:неизвестно|неясно).{0,40}(?:выгод|убыточ|прибыл)|(?:выгод|убыточ|прибыл|окуп)\w*.{0,40}не\s+(?:установ|определ|подтвержд)|не\s+(?:позволя\w*|дает\s+возможност\w*)\s+(?:точно\s+)?(?:определ\w*|оцен\w*|установ\w*).{0,30}(?:выгод|убыточ|прибыл|окуп)|(?:для\s+)?(?:оцен|определ|рассчит)\w*.{0,60}(?:выгод|убыточ|прибыл|окуп)\w*.{0,60}(?:нужн|необходим|треб|не\s+хватает|отсутств)\w*|\b(?:cannot|can.not|unable.to)\s+(?:determine|conclude|establish|say)|\b(?:profitability|profitable).{0,30}(?:unknown|not.established)|\bunknown.{0,30}profitable',sentence,re.I)
+        if not qualified:return True
+    return False
+
+
 def _unsupported_conclusions(answer,results):
     issues=[]
     econ=results.get('evaluate_partial_economics',{})
@@ -190,8 +201,7 @@ def _unsupported_conclusions(answer,results):
         issues.append('absolute_methane_without_applicable_batch_evidence')
     if econ and not econ.get('profit_established') and re.search(r'(?:заработаете|чистая прибыль составит|гарантированная прибыль|you will earn)\s*[:=]?\s*\d',answer,re.I):
         issues.append('profit_without_complete_confirmed_economics')
-    net_known=any(r.get('net_result_kzt') is not None for s in econ.get('scenarios',[]) for r in s.get('analysis',{}).get('scenarios',[]))
-    if econ and not net_known and re.search(r'\b(?:вероятно выгодно|переработка выгодна|производство выгодно|выгодно производить)\b',answer,re.I):
+    if econ and not econ.get('profit_established') and unconfirmed_profitability_claim(answer):
         issues.append('profitability_conclusion_without_net_cost_basis')
     if science.get('scenarios') and any(s['engineering']['status']!='GEOMETRY_ONLY_CONSISTENT' for s in science['scenarios']):
         if re.search(r'можно безопасно загрузить|загрузка безопасна|safe to load',answer,re.I):issues.append('safety_without_validated_loading')
@@ -199,6 +209,14 @@ def _unsupported_conclusions(answer,results):
         issues.append('loading_conclusion_contradicts_calculated_capacity')
     if re.search(r'(?:гарантированно получите|точно получите|guaranteed yield)\s*[:=]?\s*\d',answer,re.I):
         issues.append('guaranteed_future_yield_not_established')
+    regulatory_claim=bool(re.search(r'разреш\w*|стандарт\w*|закон\w*|правов\w*|permit\w*|regulat\w*|legal status|compliance',answer,re.I))
+    regulatory_caveat=bool(re.search(r'не\s+(?:подтвержд|установ|определ)|не\s+могу\s+подтверд|not\s+(?:confirmed|established|verified)|cannot\s+confirm',answer,re.I))
+    regulatory_sources=[source for source in _sources(results)
+        if re.search(r'regul|law|legislat|standard|permit|fertili[sz]|digestate',source['title']+' '+source['url'],re.I)
+        and re.search(r'regul|law|legislat|standard|permit',source['title']+' '+source['url'],re.I)
+        and re.search(r'digestate|fertili[sz]',source['title']+' '+source['url'],re.I)]
+    if regulatory_claim and not regulatory_caveat and not regulatory_sources:
+        issues.append('unverified_regulatory_claim_without_source')
     return issues
 
 
@@ -249,6 +267,9 @@ def _sources(results):
 
 
 def _fallback_answer(results,state):
+    from src.agent.market_response import digestate_valuation_explanation
+    digestate_explanation=digestate_valuation_explanation(results,state)
+    if digestate_explanation:return digestate_explanation
     if any(name in results for name in analytical.TOOLS):
         rendered=analytical.render(results,state)
         if rendered:return rendered
@@ -370,13 +391,14 @@ def _available_tools(state):
         if intents & {'temperature_recommendation','process_guidance'}:
             names+=['recommend_conditions','search_scientific_sources']
             if material and has_batch and not single_manure_form_missing:names+=['advise_substrate_conditions','get_matched_substrate_conditions']
-        if intents & {'economic_comparison','market_prices'}:names+=['get_market_prices','compare_market_scenarios','explain_market_recommendation','calculate_profitability','evaluate_advanced_economics']
+        if intents & {'economic_comparison','market_prices','digestate_management'}:names+=['get_market_prices','compare_market_scenarios','explain_market_recommendation','calculate_profitability','evaluate_advanced_economics']
         if 'price_history' in intents:names+=['get_price_history']
         if 'reactor_status' in intents:names+=['get_reactor_status']
         if 'model_info' in intents:names+=['get_model_info']
         if 'sources' in intents:
             names+=['search_scientific_sources']
             if material:names+=['research_scientific_evidence']
+        if 'digestate_management' in intents:names+=['search_scientific_sources']
         if not intents or intents=={'general'}:names+=['search_scientific_sources','get_model_info','get_substrate_catalog']
         if material:names+=['research_scientific_evidence','research_market_offers','research_and_estimate']
     if not names:names=['search_scientific_sources','get_model_info','get_substrate_catalog','get_reactor_status']
@@ -386,6 +408,16 @@ def _available_tools(state):
         names=[n for n in names if n!='search_public_scientific_metadata']
     if has_batch:names+=['assess_substrate_potential']
     return list(dict.fromkeys(name for name in names if name in AUTONOMOUS_TOOLS))
+
+
+def _required_tool_choices(unmet,remaining_tools,results):
+    """Return only pending mandatory tools, respecting economics dependencies."""
+    if not unmet:return list(remaining_tools)
+    eligible=[name for name in unmet
+        if name!='evaluate_partial_economics'
+        or 'assess_substrate_potential' in results
+        and results['assess_substrate_potential'].get('status')!='error']
+    return list(dict.fromkeys(name for name in eligible if name in remaining_tools))
 
 
 def _observations_for_model(observations):
@@ -466,13 +498,23 @@ def run(agent,text,extraction,proposal,started):
     state=agent.state;state.version='7';results={};trace=[];observations=[];called=set()
     max_calls=max(1,min(12,int(os.getenv('BIOREACTOR_AGENT_MAX_TOOLS','4'))))
     deadline=started+max(1,min(600,float(os.getenv('BIOREACTOR_AGENT_TIMEOUT','120'))))
-    required=analytical.obligations(state,text)
+    duration=deadline-started
+    synthesis_reserve=min(max(8.0,duration*.35),duration*.5)
+    action_deadline=deadline-synthesis_reserve
+    from src.agent.runtime9 import requirements as shared_requirements
+    required=list(dict.fromkeys(analytical.obligations(state,text)+shared_requirements(state,text)))
+    action_budget=max_calls if len(required)>=max_calls else max(len(required),max_calls-1)
     final='';action_count=0;termination='model_final';allowed_tools=list(dict.fromkeys(required+_available_tools(state)))
     diagnostics=[];actions=[];enforce=False
     for step in range(max_calls+3):
-        if action_count>=max_calls:
-            termination='tool_call_limit';diagnostics.append({'stage':'budget','reason':'tool_call_limit'});break
-        if time.perf_counter()>=deadline:
+        if action_count>=action_budget:
+            if all(name in called for name in required):
+                termination='synthesis_reserved'
+                diagnostics.append({'stage':'budget','reason':'optional_actions_stopped_for_synthesis','max_tool_calls':max_calls})
+            else:
+                termination='tool_call_limit';diagnostics.append({'stage':'budget','reason':'tool_call_limit','missing_tools':[name for name in required if name not in called]})
+            break
+        if time.perf_counter()>=action_deadline:
             termination='time_limit';diagnostics.append({'stage':'budget','reason':'time_limit'});break
         remaining_tools=[name for name in allowed_tools if name not in called]
         if results.get('assess_substrate_potential',{}).get('status')!='error':
@@ -512,18 +554,18 @@ def run(agent,text,extraction,proposal,started):
             unmet.insert(0,'recover_local_scientific_analysis')
         if results.get('evaluate_partial_economics',{}).get('status')=='error' and 'recover_partial_economics' not in called:
             unmet.append('recover_partial_economics')
-        if unmet and enforce:
-            eligible=[name for name in unmet if name!='evaluate_partial_economics' or 'assess_substrate_potential' in results and results['assess_substrate_potential'].get('status')!='error']
-            # The model can inspect categories, sources and prices first. Reserve
-            # enough calls to satisfy the calculation contract before answering.
-            if max_calls-action_count>len(unmet):
-                eligible += [n for n in remaining_tools if n in {'analyze_substrate','search_scientific_sources','get_market_prices'}]
-            remaining_tools=list(dict.fromkeys(eligible))
+        if unmet:
+            # Required evidence gates are enforced from the first choice. This
+            # keeps optional retrieval from consuming the legacy tool budget.
+            remaining_tools=_required_tool_choices(unmet,remaining_tools,results)
+            if not remaining_tools:
+                diagnostics.append({'stage':'required_tools','reason':'required_tool_unavailable','missing_tools':unmet})
+                termination='required_tool_unavailable';break
         try:
-            action=_bounded_action(agent,deadline,text,_state_payload(state),
+            action=_bounded_action(agent,action_deadline,text,_state_payload(state),
                 {'conversation_id':state.conversation_id,'active_intents':state.intents,
                  'mixture_revision':state.mixture_revision,'required_tool_checks':unmet,
-                 'enforce_evidence_check':enforce,'remaining_tool_budget':max_calls-action_count,
+                 'enforce_evidence_check':bool(unmet),'remaining_tool_budget':max_calls-action_count,
                  'previous_questions':state.advanced.get('research_dialogue',{}).get('asked',[])},agent.history,_observations_for_model(observations),remaining_tools,
                 final_only=not remaining_tools)
         except ProviderError as exc:
@@ -579,7 +621,7 @@ def run(agent,text,extraction,proposal,started):
         if name=='assess_substrate_potential':
             from src.agent.scientific_tools import verify
             observations.append({'independent_calculation_check':verify(results)})
-        if time.perf_counter()>=deadline:
+        if time.perf_counter()>=action_deadline:
             termination='time_limit';break
     stop_reason=termination
     if not final and time.perf_counter()<deadline:
@@ -617,6 +659,11 @@ def run(agent,text,extraction,proposal,started):
         termination='grounded_fallback_unavailable'
         unsupported=_unsupported_numbers(final,state,results)+_unsupported_units(final,results)
     llm_draft=final
+    from src.agent.market_response import digestate_answer_covers,digestate_valuation_explanation
+    digestate_explanation=digestate_valuation_explanation(results,state,include_question='?' not in final)
+    if digestate_explanation and not digestate_answer_covers(final,results,state):
+        final=(final.rstrip()+'\n\n'+digestate_explanation).strip() if final else digestate_explanation
+        termination='evidence_projection'
     if required and any(name in results for name in analytical.TOOLS):
         # Result projection supplies the complete analytical contract, including
         # assumptions and unavailable quantities, even when the LLM omits them.
@@ -661,7 +708,7 @@ def run(agent,text,extraction,proposal,started):
         final=final.rstrip()+'\n\n'+notices[state.language]
     sources=_sources(results)
     agent.history=(agent.history+[text])[-8:];agent.last_pending=[name for name,r in results.items() if r.get('status')=='needs_input']
-    pending=None
+    pending=state.pending_question.model_dump(mode='json') if state.pending_question else None
     missing=list(dict.fromkeys(k for r in results.values() for k in r.get('missing',[]) if isinstance(k,str)))
     from src.agent.research_memory import finish_turn
     body=final
@@ -683,6 +730,7 @@ def run(agent,text,extraction,proposal,started):
     active=getattr(agent.llm,'active',None)
     if active is not None:metrics=list(active.metrics[-(action_count+2):])
     facing,body,dialogue_diagnostics=finish_turn(state,text,extraction,facing,body,results)
+    pending=state.pending_question.model_dump(mode='json') if state.pending_question else None
     diagnostics.extend(dialogue_diagnostics)
     if stop_reason in {'time_limit','tool_call_limit','provider_action_failed'}:
         limit_note=('Анализ остановлен по лимиту времени или вызовов; приведены доступные частичные результаты.'
@@ -698,7 +746,7 @@ def run(agent,text,extraction,proposal,started):
     metadata={'agent_version':'8.5','tool_calls':trace,'autonomous_action_steps':action_count,
         'research_actions':actions,'verification':verification,
         'resource_termination':stop_reason,
-        'resource_budget':{'max_tools':max_calls,'timeout_seconds':deadline-started},
+        'resource_budget':{'max_tools':max_calls,'action_budget':action_budget,'timeout_seconds':deadline-started,'synthesis_reserve_seconds':synthesis_reserve},
         'analytical_required_tools':required,'analytical_unchecked_tools':[n for n in required if n not in called],
         'diagnostics':diagnostics,
         'llm_draft':llm_draft,'original_model_synthesis':original_model_synthesis,
@@ -716,5 +764,5 @@ def run(agent,text,extraction,proposal,started):
     return {'conversation_version':'7','analysis_version':'8.5','mode':'qwen_autonomous_tools',
         'answer':body,'user_facing_answer':facing,'technical_metadata':metadata,'tools':trace,
         'provider_status':list(agent.llm.status),'missing':missing,'context':dict(agent.context),
-        'memory':state.model_dump(mode='json'),'pending_question':None,'context_updated':True,
+        'memory':state.model_dump(mode='json'),'pending_question':pending,'context_updated':True,
         'actuator_access':False,'policy_tool_plan':[r['tool'] for r in trace]}

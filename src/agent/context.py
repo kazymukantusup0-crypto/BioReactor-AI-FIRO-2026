@@ -6,12 +6,19 @@ from src.data.prepare import NUMERIC
 from src.recommendations.knowledge import detect_material, normalize_material
 
 NUMBERS=set(ECONOMIC_FIELDS)-{'currency','price_date','gas_volume_basis','price_gas_volume_basis'} | set(NUMERIC) | {
-    'bmp_ml_ch4_g_vs','vs_mass_kg','material_volume_l','dilution_water_l','reactor_volume_l','density_kg_l','temperature_c'}
-TEXT={'material','substrate','currency','price_date','gas_volume_basis','price_gas_volume_basis','bmp_unit','model'}
+    'bmp_ml_ch4_g_vs','vs_mass_kg','material_volume_l','dilution_water_l','reactor_volume_l','density_kg_l','temperature_c',
+    'ts_percent','vs_percent','sale_offer_amount','methane_fraction','electricity_efficiency','reactor_working_volume_l',
+    'reported_biogas_volume_m3','reported_methane_volume_m3','heating_value_kwh_m3','duration_days'}
+TEXT={'material','substrate','currency','price_date','gas_volume_basis','price_gas_volume_basis','bmp_unit','model',
+    'vs_basis','sale_offer_scope','sale_offer_currency','material_state','physical_state','decay_state'}
 TEXT.update({'market_region','market_commodity','market_start','market_end'})
+TEXT.update({'operating_mode','intended_use'})
 EXPECTED_UNITS={'mass_kg':'kg','vs_mass_kg':'kg VS','material_volume_l':'L','reactor_volume_l':'L',
     'density_kg_l':'kg/L','bmp_ml_ch4_g_vs':'mL CH4/g VS','c_vs_sub_m':'g/g','c_vs_sub_f':'g/g',
-    'c_vs_inoc':'g/g','ISR':'g VS/g VS','potential_methane_m3':'m3 CH4','temperature_c':'degC'}
+    'c_vs_inoc':'g/g','ISR':'g VS/g VS','potential_methane_m3':'m3 CH4','temperature_c':'degC',
+    'ts_percent':'%','vs_percent':'%','methane_fraction':'fraction','electricity_efficiency':'fraction','reactor_working_volume_l':'L',
+    'reported_biogas_volume_m3':'m3 biogas','reported_methane_volume_m3':'m3 CH4',
+    'heating_value_kwh_m3':'kWh/m3','duration_days':'day'}
 
 
 def validate_context(data):
@@ -32,12 +39,23 @@ def validate_context(data):
         if key=='temperature_c':
             number(out[key],key,minimum=-273.15,strict=True)
         else:
-            number(out[key],key,strict=key in {'mass_kg','vs_mass_kg','material_volume_l','reactor_volume_l','density_kg_l','ISR'})
-        if key in {'c_vs_sub_m','c_vs_sub_f','c_vs_inoc','recovery_fraction'} and out[key]>1:
+            number(out[key],key,strict=key in {'mass_kg','vs_mass_kg','material_volume_l','reactor_volume_l','density_kg_l','ISR',
+                'reported_biogas_volume_m3','reported_methane_volume_m3','heating_value_kwh_m3'})
+        if key in {'c_vs_sub_m','c_vs_sub_f','c_vs_inoc','recovery_fraction','methane_fraction','electricity_efficiency'} and out[key]>1:
             raise ValueError(f'{key}: требуется доля в [0,1], не проценты')
+        if key in {'ts_percent','vs_percent'} and not 0<=out[key]<=100:
+            raise ValueError(f'{key}: процент должен быть в диапазоне [0,100]')
+        if key=='sale_offer_amount' and out[key]<0:
+            raise ValueError('sale_offer_amount: отрицательное предложение недопустимо')
     for key in set(out)&TEXT:
         if not isinstance(out[key],str) or not out[key].strip():
             raise ValueError(f'{key}: требуется непустая строка')
+    if 'vs_basis' in out and out['vs_basis'] not in {'TS','fresh_mass'}:
+        raise ValueError('vs_basis must be TS or fresh_mass')
+    if 'sale_offer_scope' in out and out['sale_offer_scope'] not in {'batch','kg','L','t'}:
+        raise ValueError('Invalid sale_offer_scope')
+    if 'sale_offer_currency' in out and out['sale_offer_currency'] not in {'KZT','USD','RUB'}:
+        raise ValueError('Unsupported sale_offer_currency')
     for key in ['material','substrate']:
         if key in out:
             out[key]=normalize_material(out[key])
@@ -91,7 +109,7 @@ def extract_explicit(text):
     for match in re.finditer(r'(?<![\w.])(-?\d+(?:[.,]\d+)?)\s*(?:литр\w*|л\b|[lL]\b)',text,re.I):
         before=text[max(0,match.start()-35):match.start()].casefold()
         after=text[match.end():match.end()+25].casefold()
-        key='reactor_volume_l' if re.search(r'реактор|reactor',before) or re.search(r'^\s*(?:реактор|reactor)',after) else 'material_volume_l'
+        key='reactor_volume_l' if re.search(r'реактор|reactor|сосуд|ёмкост|емкост|бак|vessel|tank|container',before,re.I) or re.search(r'^\s*(?:реактор|reactor|сосуд|ёмкост|емкост|бак|vessel|tank|container)',after,re.I) else 'material_volume_l'
         val=float(match.group(1).replace(',','.'))
         if key in values and values[key]!=val:
             raise ValueError(f'Неоднозначный объём {key}: задайте поле явно')

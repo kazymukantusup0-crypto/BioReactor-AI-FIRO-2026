@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "created_local": "2026-11-10",
+  "model": {
+    "tag": "qwen3:8b",
+    "digest_prefix": "500a1f067a9f",
+    "architecture": "qwen3",
+    "parameters": "8.2B",
+    "quantization": "Q4_K_M",
+    "disk_size_reported_by_ollama": "5.2 GB"
+  },
+  "shared_controls": {
+    "ollama_version": "0.40.15",
+    "ollama_num_parallel": 1,
+    "num_thread_default": "auto/unset unless profile explicitly states otherwise",
+    "global_keep_alive": "5m; not changed",
+    "post_test_unload": "per-request keep_alive=0 only after owned QA requests",
+    "runtime_free_ram_gate_mib": 6246.4,
+    "local_gpu_stop_c": 82,
+    "stop_conditions": ["thermal slowdown", "missing required telemetry", "CUDA/runner failure", "external Ollama request"]
+  },
+  "current_snapshot": {
+    "preflight_artifact": "reports/qwen_resource_preflight_20261110_repeat.json",
+    "status": "BLOCKED",
+    "free_ram_mib_range": [4625.1, 4646.7],
+    "commit_headroom_mib_range": [19571.0, 19581.6],
+    "ollama_server_working_set_mib_range": [42.0, 42.6],
+    "ollama_app_working_set_mib_range": [3600.2, 3600.3],
+    "loaded_models": [],
+    "llama_server_processes": 0,
+    "gpu": {
+      "name": "NVIDIA GeForce RTX 3070 Laptop GPU",
+      "vram_total_mib": 8192,
+      "vram_used_mib_range": [477, 477],
+      "temperature_c_range": [59, 59],
+      "max_utilization_pct": 21,
+      "thermal_slowdown": false
+    },
+    "dashboard_port_8766_listening": false,
+    "admission": "BLOCKED; no model load or inference attempted"
+  },
+  "profiles": [
+    {
+      "id": "A_current_qa_baseline",
+      "status": "FAILED_LOAD_BEFORE_MODEL_READY",
+      "ollama_options": {"num_ctx": 8192, "num_batch": 64, "num_gpu": 16, "num_thread": 6},
+      "server_parallel": 1,
+      "keep_alive": "5m default",
+      "admission_ram_mib": 9373.6,
+      "admission_basis": "6,246.4 MiB runtime reserve plus the single observed 3,127.2 MiB available-RAM fall during this exact failed load profile",
+      "observed": {
+        "free_ram_before_mib": 7900.2,
+        "minimum_free_ram_mib": 4773.0,
+        "gpu_temperature_c": 58,
+        "vram_peak_mib": 3088,
+        "model_ready": false,
+        "generation": false,
+        "time_to_model_ready_seconds": null,
+        "response_time_seconds": null,
+        "note": "Request was cancelled by the runtime RAM gate while llama-server was loading; 3,127.2 MiB is not a completed-model RAM requirement."
+      },
+      "limits": "One aborted load only; admission threshold is provisional and is not a universal requirement."
+    },
+    {
+      "id": "B_memory_efficient_candidate",
+      "status": "NOT_TESTED",
+      "ollama_options": {"num_ctx": 4096, "num_batch": 32, "num_gpu": 16, "num_thread": 6},
+      "server_parallel": 1,
+      "keep_alive": "5m during run; request keep_alive=0 after completed QA case",
+      "admission_ram_mib": null,
+      "admission_basis": "Not established. Do not lower the existing profile gate without a successful staged load and runtime telemetry.",
+      "expected_tradeoffs": [
+        "Smaller context should reduce context/KV allocation relative to 8192; exact MiB reduction not measured.",
+        "Smaller batch should reduce prompt-evaluation workspace but can reduce prompt throughput; exact effect not measured.",
+        "16 fixed GPU layers leave remaining model layers on host memory; this may increase RAM use compared with full GPU offload."
+      ],
+      "limits": "No RAM, VRAM, time, or answer-quality results exist for this profile."
+    },
+    {
+      "id": "C_gpu_oriented_historical_reference",
+      "status": "PARTIALLY_OBSERVED_REAL_GENERATION",
+      "ollama_options": {"num_ctx": 8192, "num_batch": 512, "num_gpu": -1, "num_thread": 0},
+      "server_parallel": 1,
+      "keep_alive": "5m default",
+      "observed_admission_free_ram_mib": 8166.8,
+      "observed": {
+        "case_1": {"status": "COMPLETED_QUALITY_FAIL", "elapsed_seconds": 12.175, "minimum_free_ram_mib": 7134.0, "maximum_vram_mib": 6718, "maximum_temperature_c": 72, "reported_generation_tokens_per_second": 49.13},
+        "case_2": {"status": "COMPLETED_QUALITY_PASS", "elapsed_seconds": 16.182, "minimum_free_ram_mib": 6761.4, "maximum_vram_mib": 6730, "maximum_temperature_c": 81, "reported_generation_tokens_per_second": 49.49},
+        "case_3": {"status": "CANCELLED_INCOMPLETE", "minimum_free_ram_mib": 6102.4, "maximum_temperature_c": 86, "reason": "crossed prior runtime RAM gate; temperature exceeded the current 82 C stop policy"},
+        "full_model_vram_reported_bytes": 6194766806
+      },
+      "limits": "Historical one-session evidence only. It does not establish a stable three-case run, quality acceptance, or safety under the current gate. The 8,166.8 MiB starting point is observed, not a certified minimum."
+    },
+    {
+      "id": "D_balanced_candidate",
+      "status": "NOT_TESTED",
+      "ollama_options": {"num_ctx": 4096, "num_batch": 128, "num_gpu": -1, "num_thread": 0},
+      "server_parallel": 1,
+      "keep_alive": "5m during run; request keep_alive=0 after completed QA case",
+      "admission_ram_mib": null,
+      "admission_basis": "Not established. For an initial experiment keep the current conservative 9,373.6 MiB admission threshold until a successful profile-specific load demonstrates a lower bound; runtime floor remains 6,246.4 MiB.",
+      "expected_tradeoffs": [
+        "4096 context matches the local Ollama startup log's VRAM-based default for this 8 GiB GPU; multi-turn prompt fit and answer quality still need testing.",
+        "Batch 128 is between the failed QA value 64 and API default 512; no performance or memory claim is made.",
+        "num_gpu=-1 leaves placement to Ollama/llama-server auto-detection; it is not a promise that every layer fits in VRAM."
+      ],
+      "limits": "No measured profile result."
+    }
+  ],
+  "recommendation": {
+    "production_profile": null,
+    "next_resource_candidate": "C_gpu_oriented_historical_reference",
+    "reason": "It is the only profile with observed real generations and full-model VRAM placement, but it did not complete all cases and one scientific case failed its rubric. Do not adopt it as production default.",
+    "current_run_status": "BLOCKED by current free RAM below runtime gate; no inference launched"
+  }
+}

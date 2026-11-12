@@ -28,6 +28,15 @@ def create_router(store):
         return compare([material])
     @router.post('/analyze')
     def run(body:AdvisorRequest):return analyze(store,body)
+    @router.post('/estimate')
+    def estimate(body:AdvisorRequest):
+        from src.advisor.evidence_engine import scientific_request
+        from src.agent.verification9 import verify_results
+        if body.estimation_mode is None:
+            body=body.model_copy(update={'estimation_mode':'LITERATURE_ESTIMATE','allow_conditional_profiles':True,'allow_literature_density':True,'use_literature_volume_concentrations':True})
+        result=scientific_request(body,store=store)
+        result['verification']=verify_results({'assess_substrate_potential':result})
+        return result
     @router.post('/compare')
     def comparison(body:ComparisonRequest):return compare(store,body)
     @router.post('/convert')

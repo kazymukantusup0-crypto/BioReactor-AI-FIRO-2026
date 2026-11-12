@@ -1,0 +1,377 @@
+{
+  "captured_local": "2026-11-09T21:17:25.310964+05:00",
+  "captured_utc": "2026-11-09T16:17:25.310995+00:00",
+  "gate_reference": "reports/limited_qwen_cancellation_live_test.md: exact-config prior successful observation at least 6.1 GiB available physical RAM; 3 samples 10 s apart; GPU must be below device-reported target, HW thermal slowdown inactive; P-state diagnostic only.",
+  "samples": [
+    {
+      "n": 1,
+      "time_local": "2026-11-09T21:17:25.556572+05:00",
+      "memory": {
+        "ram_total_mib": 16176.5,
+        "ram_free_mib": 8204.0,
+        "commit_limit_mib": 34864.1,
+        "commit_headroom_mib": 21957.1,
+        "commit_used_mib": 12907.0,
+        "memory_load_pct": 49
+      },
+      "gpu": {
+        "name": "NVIDIA GeForce RTX 3070 Laptop GPU",
+        "driver": "581.80",
+        "temp_c": 63.0,
+        "util_pct": 19.0,
+        "vram_used_mib": 629.0,
+        "vram_total_mib": 8192.0,
+        "power_w": 18.48,
+        "pstate_diagnostic": "P8",
+        "device_target_c": 87,
+        "hw_slowdown": "Not Active",
+        "sw_slowdown": "Not Active",
+        "telemetry_error": ""
+      },
+      "ollama_ps": {
+        "rc": 0,
+        "out": "NAME    ID    SIZE    PROCESSOR    CONTEXT    RUNNER    UNTIL",
+        "err": ""
+      },
+      "api_ps": {
+        "status": 200,
+        "json": {
+          "models": []
+        }
+      },
+      "ollama_tcp": {
+        "ollama_lines": [
+          "TCP    127.0.0.1:11434        0.0.0.0:0              LISTENING       18880",
+          "TCP    127.0.0.1:11434        127.0.0.1:60732        TIME_WAIT       0",
+          "TCP    127.0.0.1:11434        127.0.0.1:60737        TIME_WAIT       0",
+          "TCP    127.0.0.1:60733        127.0.0.1:11434        TIME_WAIT       0"
+        ],
+        "established_count": 0
+      }
+    },
+    {
+      "n": 2,
+      "time_local": "2026-11-09T21:17:35.744967+05:00",
+      "memory": {
+        "ram_total_mib": 16176.5,
+        "ram_free_mib": 8247.8,
+        "commit_limit_mib": 34864.1,
+        "commit_headroom_mib": 22011.5,
+        "commit_used_mib": 12852.6,
+        "memory_load_pct": 49
+      },
+      "gpu": {
+        "name": "NVIDIA GeForce RTX 3070 Laptop GPU",
+        "driver": "581.80",
+        "temp_c": 63.0,
+        "util_pct": 9.0,
+        "vram_used_mib": 631.0,
+        "vram_total_mib": 8192.0,
+        "power_w": 18.32,
+        "pstate_diagnostic": "P8",
+        "device_target_c": 87,
+        "hw_slowdown": "Not Active",
+        "sw_slowdown": "Not Active",
+        "telemetry_error": ""
+      },
+      "ollama_ps": {
+        "rc": 0,
+        "out": "NAME    ID    SIZE    PROCESSOR    CONTEXT    RUNNER    UNTIL",
+        "err": ""
+      },
+      "api_ps": {
+        "status": 200,
+        "json": {
+          "models": []
+        }
+      },
+      "ollama_tcp": {
+        "ollama_lines": [
+          "TCP    127.0.0.1:11434        0.0.0.0:0              LISTENING       18880",
+          "TCP    127.0.0.1:11434        127.0.0.1:60732        TIME_WAIT       0",
+          "TCP    127.0.0.1:11434        127.0.0.1:60737        TIME_WAIT       0",
+          "TCP    127.0.0.1:11434        127.0.0.1:60740        TIME_WAIT       0",
+          "TCP    127.0.0.1:60733        127.0.0.1:11434        TIME_WAIT       0"
+        ],
+        "established_count": 0
+      }
+    },
+    {
+      "n": 3,
+      "time_local": "2026-11-09T21:17:45.921185+05:00",
+      "memory": {
+        "ram_total_mib": 16176.5,
+        "ram_free_mib": 8242.1,
+        "commit_limit_mib": 34864.1,
+        "commit_headroom_mib": 22010.5,
+        "commit_used_mib": 12853.6,
+        "memory_load_pct": 49
+      },
+      "gpu": {
+        "name": "NVIDIA GeForce RTX 3070 Laptop GPU",
+        "driver": "581.80",
+        "temp_c": 62.0,
+        "util_pct": 7.0,
+        "vram_used_mib": 631.0,
+        "vram_total_mib": 8192.0,
+        "power_w": 18.31,
+        "pstate_diagnostic": "P8",
+        "device_target_c": 87,
+        "hw_slowdown": "Not Active",
+        "sw_slowdown": "Not Active",
+        "telemetry_error": ""
+      },
+      "ollama_ps": {
+        "rc": 0,
+        "out": "NAME    ID    SIZE    PROCESSOR    CONTEXT    RUNNER    UNTIL",
+        "err": ""
+      },
+      "api_ps": {
+        "status": 200,
+        "json": {
+          "models": []
+        }
+      },
+      "ollama_tcp": {
+        "ollama_lines": [
+          "TCP    127.0.0.1:11434        0.0.0.0:0              LISTENING       18880",
+          "TCP    127.0.0.1:11434        127.0.0.1:60732        TIME_WAIT       0",
+          "TCP    127.0.0.1:11434        127.0.0.1:60737        TIME_WAIT       0",
+          "TCP    127.0.0.1:11434        127.0.0.1:60740        TIME_WAIT       0",
+          "TCP    127.0.0.1:11434        127.0.0.1:62678        TIME_WAIT       0",
+          "TCP    127.0.0.1:60733        127.0.0.1:11434        TIME_WAIT       0"
+        ],
+        "established_count": 0
+      }
+    }
+  ],
+  "ollama": {
+    "version": {
+      "rc": 0,
+      "out": "ollama version is 0.40.15",
+      "err": ""
+    },
+    "ps": {
+      "rc": 0,
+      "out": "NAME    ID    SIZE    PROCESSOR    CONTEXT    RUNNER    UNTIL",
+      "err": ""
+    },
+    "api_ps": {
+      "status": 200,
+      "json": {
+        "models": []
+      }
+    },
+    "tags": {
+      "status": 200,
+      "json": {
+        "models": [
+          {
+            "name": "qwen3:8b",
+            "model": "qwen3:8b",
+            "modified_at": "2026-10-28T22:06:28.6723114+05:00",
+            "size": 5225388164,
+            "digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+            "details": {
+              "parent_model": "",
+              "format": "gguf",
+              "family": "qwen3",
+              "families": [
+                "qwen3"
+              ],
+              "parameter_size": "8.2B",
+              "quantization_level": "Q4_K_M",
+              "context_length": 40960,
+              "embedding_length": 4096,
+              "runner": "ggml"
+            },
+            "capabilities": [
+              "completion",
+              "tools",
+              "thinking"
+            ]
+          },
+          {
+            "name": "qwen2.5:1.5b",
+            "model": "qwen2.5:1.5b",
+            "modified_at": "2026-10-27T17:14:08.5328857+05:00",
+            "size": 1117320886,
+            "digest": "399ba1a4d9c79182a95fad0ae51748eed23024efecdfff622cf7ae481a0c4a37",
+            "details": {
+              "parent_model": "qwen2.5-1.5b-instruct-q4_k_m.gguf",
+              "format": "gguf",
+              "family": "qwen2",
+              "families": [
+                "qwen2"
+              ],
+              "parameter_size": "1.8B",
+              "quantization_level": "Q4_K_M",
+              "context_length": 32768,
+              "embedding_length": 1536,
+              "runner": "llamacpp"
+            },
+            "capabilities": [
+              "tools",
+              "completion"
+            ]
+          }
+        ]
+      }
+    },
+    "list": {
+      "rc": 0,
+      "out": "NAME            ID              SIZE      MODIFIED    \nqwen3:8b        500a1f067a9f    5.2 GB    11 days ago    \nqwen2.5:1.5b    399ba1a4d9c7    1.1 GB    13 days ago",
+      "err": ""
+    }
+  },
+  "dashboard": {
+    "health": {
+      "status": 200,
+      "body": "{\"status\":\"ok\",\"database\":\"C:\\\\Users\\\\Kazhu\\\\Downloads\\\\face_dataset_you_noname\\\\face_dataset_project\\\\BioReactor_AI\\\\data\\\\market\\\\market.sqlite3\",\"scheduler_enabled\":false,\"interval_seconds\":86400.0,\"market\":\"KZ\",\"price_forecasting\":false}"
+    },
+    "listener_check": {
+      "rc": 0,
+      "out": "Active Connections\n\n  Proto  Local Address          Foreign Address        State           PID\n  TCP    0.0.0.0:135            0.0.0.0:0              LISTENING       1204\n  TCP    0.0.0.0:445            0.0.0.0:0              LISTENING       4\n  TCP    0.0.0.0:5040           0.0.0.0:0              LISTENING       12236\n  TCP    0.0.0.0:7680           0.0.0.0:0              LISTENING       4192\n  TCP    0.0.0.0:49664          0.0.0.0:0              LISTENING       1748\n  TCP    0.0.0.0:49665          0.0.0.0:0              LISTENING       1560\n  TCP    0.0.0.0:49668          0.0.0.0:0              LISTENING       2528\n  TCP    0.0.0.0:49669          0.0.0.0:0              LISTENING       3580\n  TCP    0.0.0.0:49670          0.0.0.0:0              LISTENING       5024\n  TCP    0.0.0.0:49694          0.0.0.0:0              LISTENING       1676\n  TCP    127.0.0.1:8766         0.0.0.0:0              LISTENING       3412\n  TCP    127.0.0.1:11434        0.0.0.0:0              LISTENING       18880\n  TCP    127.0.0.1:11434        127.0.0.1:60732        TIME_WAIT       0\n  TCP    127.0.0.1:49252        0.0.0.0:0              LISTENING       14416\n  TCP    127.0.0.1:49724        127.0.0.1:49725        ESTABLISHED     1996\n  TCP    127.0.0.1:49725        127.0.0.1:49724        ESTABLISHED     1996\n  TCP    127.0.0.1:49726        127.0.0.1:49727        ESTABLISHED     1812\n  TCP    127.0.0.1:49727        127.0.0.1:49726        ESTABLISHED     1812\n  TCP    127.0.0.1:49728        127.0.0.1:49729        ESTABLISHED     3548\n  TCP    127.0.0.1:49729        127.0.0.1:49728        ESTABLISHED     3548\n  TCP    127.0.0.1:49730        127.0.0.1:49731        ESTABLISHED     5804\n  TCP    127.0.0.1:49731        127.0.0.1:49730        ESTABLISHED     5804\n  TCP    127.0.0.1:51031        0.0.0.0:0              LISTENING       13100\n  TCP    127.0.0.1:55479        127.0.0.1:55480        ESTABLISHED     3412\n  TCP    127.0.0.1:55480        127.0.0.1:55479        ESTABLISHED     3412\n  TCP    127.0.0.1:59283        0.0.0.0:0              LISTENING       11820\n  TCP    127.0.0.1:60733        127.0.0.1:11434        TIME_WAIT       0\n  TCP    127.0.0.1:63528        0.0.0.0:0              LISTENING       4804\n  TCP    192.168.1.204:139      0.0.0.0:0              LISTENING       4\n  TCP    192.168.1.204:49196    8.6.112.0:443          TIME_WAIT       0\n  TCP    192.168.1.204:52924    8.6.112.0:443          TIME_WAIT       0\n  TCP    192.168.1.204:53616    98.66.133.184:443      ESTABLISHED     6288\n  TCP    192.168.1.204:53809    8.47.69.0:443          TIME_WAIT       0\n  TCP    192.168.1.204:54072    104.18.26.48:443       TIME_WAIT       0\n  TCP    192.168.1.204:55782    8.6.112.0:443          TIME_WAIT       0\n  TCP    192.168.1.204:56298    98.66.133.184:443      ESTABLISHED     5684\n  TCP    192.168.1.204:57888    8.6.112.0:443          TIME_WAIT       0\n  TCP    192.168.1.204:59720    104.18.32.47:443       TIME_WAIT       0\n  TCP    192.168.1.204:59721    104.18.32.47:443       TIME_WAIT       0\n  TCP    192.168.1.204:59928    8.6.112.0:443          TIME_WAIT       0\n  TCP    192.168.1.204:60589    172.64.155.209:443     TIME_WAIT       0\n  TCP    192.168.1.204:60728    150.171.109.163:443    ESTABLISHED     29308\n  TCP    192.168.1.204:61105    8.47.69.0:443          CLOSE_WAIT      26968\n  TCP    192.168.1.204:61107    8.47.69.0:443          CLOSE_WAIT      26968\n  TCP    192.168.1.204:61805    104.18.32.47:443       TIME_WAIT       0\n  TCP    192.168.1.204:61936    72.154.7.96:443        TIME_WAIT       0\n  TCP    192.168.1.204:62262    8.6.112.0:443          ESTABLISHED     26968\n  TCP    192.168.1.204:62509    8.6.112.0:443          ESTABLISHED     26968\n  TCP    192.168.1.204:64045    192.168.1.1:53         TIME_WAIT       0\n  TCP    192.168.1.204:64046    104.18.32.47:443       TIME_WAIT       0\n  TCP    192.168.1.204:64047    96.16.53.159:80        TIME_WAIT       0\n  TCP    192.168.1.204:64049    104.18.32.47:443       TIME_WAIT       0\n  TCP    192.168.1.204:64050    104.18.32.47:443       TIME_WAIT       0\n  TCP    192.168.1.204:64052    104.18.32.47:443       TIME_WAIT       0\n  TCP    192.168.1.204:64053    172.64.155.209:443     TIME_WAIT       0",
+      "err": ""
+    }
+  },
+  "pagefile_counter": {
+    "rc": 0,
+    "out": "1.03847658050425",
+    "err": ""
+  },
+  "top_processes_after_gate": [
+    {
+      "ProcessName": "Memory Compression",
+      "Id": 3744,
+      "WorkingSetMiB": 914.4,
+      "PrivateMiB": 3.1,
+      "Path": null
+    },
+    {
+      "ProcessName": "Code",
+      "Id": 22340,
+      "WorkingSetMiB": 505.8,
+      "PrivateMiB": 627.4,
+      "Path": null
+    },
+    {
+      "ProcessName": "Code",
+      "Id": 14416,
+      "WorkingSetMiB": 369.8,
+      "PrivateMiB": 480.1,
+      "Path": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
+    },
+    {
+      "ProcessName": "MsMpEng",
+      "Id": 5796,
+      "WorkingSetMiB": 357.6,
+      "PrivateMiB": 557.7,
+      "Path": null
+    },
+    {
+      "ProcessName": "explorer",
+      "Id": 5856,
+      "WorkingSetMiB": 276.8,
+      "PrivateMiB": 302.3,
+      "Path": "C:\\WINDOWS\\Explorer.EXE"
+    },
+    {
+      "ProcessName": "Code",
+      "Id": 11820,
+      "WorkingSetMiB": 267.5,
+      "PrivateMiB": 365.4,
+      "Path": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
+    },
+    {
+      "ProcessName": "Code",
+      "Id": 22052,
+      "WorkingSetMiB": 205.8,
+      "PrivateMiB": 204,
+      "Path": null
+    },
+    {
+      "ProcessName": "WhatsApp.Root",
+      "Id": 30500,
+      "WorkingSetMiB": 161.2,
+      "PrivateMiB": 84.1,
+      "Path": "C:\\Program Files\\WindowsApps\\5319275A.WhatsAppDesktop_2.2642.101.0_x64__cv1g1gvanyjgm\\WhatsApp.Root.exe"
+    },
+    {
+      "ProcessName": "codex",
+      "Id": 26968,
+      "WorkingSetMiB": 146.4,
+      "PrivateMiB": 110,
+      "Path": "c:\\Users\\Kazhu\\.vscode\\extensions\\openai.chatgpt-26.1021.22027-win32-x64\\bin\\windows-x86_64\\codex.exe"
+    },
+    {
+      "ProcessName": "PhoneExperienceHost",
+      "Id": 2832,
+      "WorkingSetMiB": 145,
+      "PrivateMiB": 95.8,
+      "Path": "C:\\Program Files\\WindowsApps\\Microsoft.YourPhone_1.26092.119.0_x64__8wekyb3d8bbwe\\PhoneExperienceHost.exe"
+    },
+    {
+      "ProcessName": "Code",
+      "Id": 6820,
+      "WorkingSetMiB": 142.6,
+      "PrivateMiB": 164.6,
+      "Path": "C:\\Users\\Kazhu\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
+    },
+    {
+      "ProcessName": "StartMenuExperienceHost",
+      "Id": 10684,
+      "WorkingSetMiB": 137.3,
+      "PrivateMiB": 126.4,
+      "Path": "C:\\Windows\\SystemApps\\Microsoft.Windows.StartMenuExperienceHost_cw5n1h2txyewy\\StartMenuExperienceHost.exe"
+    }
+  ],
+  "gpu_process_list": {
+    "rc": 0,
+    "out": "Mon Nov  9 21:17:47 2026       \n+-----------------------------------------------------------------------------------------+\n| NVIDIA-SMI 581.80                 Driver Version: 581.80         CUDA Version: 13.0     |\n+-----------------------------------------+------------------------+----------------------+\n| GPU  Name                  Driver-Model | Bus-Id          Disp.A | Volatile Uncorr. ECC |\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\n|                                         |                        |               MIG M. |\n|=========================================+========================+======================|\n|   0  NVIDIA GeForce RTX 3070 ...  WDDM  |   00000000:01:00.0  On |                  N/A |\n| N/A   62C    P8             18W /  118W |     639MiB /   8192MiB |     12%      Default |\n|                                         |                        |                  N/A |\n+-----------------------------------------+------------------------+----------------------+\n\n+-----------------------------------------------------------------------------------------+\n| Processes:                                                                              |\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\n|        ID   ID                                                               Usage      |\n|=========================================================================================|\n|    0   N/A  N/A            2832    C+G   ...8bbwe\\PhoneExperienceHost.exe      N/A      |\n|    0   N/A  N/A            5856    C+G   C:\\Windows\\explorer.exe               N/A      |\n|    0   N/A  N/A            6080    C+G   ...IA App\\CEF\\NVIDIA Overlay.exe      N/A      |\n|    0   N/A  N/A           10556    C+G   ...xyewy\\ShellExperienceHost.exe      N/A      |\n|    0   N/A  N/A           10684    C+G   ...y\\StartMenuExperienceHost.exe      N/A      |\n|    0   N/A  N/A           11188    C+G   ...indows\\System32\\ShellHost.exe      N/A      |\n|    0   N/A  N/A           12896    C+G   ..._cw5n1h2txyewy\\SearchHost.exe      N/A      |\n|    0   N/A  N/A           19596    C+G   ...ntrolPanel\\SystemSettings.exe      N/A      |\n|    0   N/A  N/A           20500    C+G   ...2txyewy\\CrossDeviceResume.exe      N/A      |\n|    0   N/A  N/A           26644    C+G   ...5n1h2txyewy\\TextInputHost.exe      N/A      |\n|    0   N/A  N/A           30076    C+G   ...IA App\\CEF\\NVIDIA Overlay.exe      N/A      |\n|    0   N/A  N/A           30500    C+G   ...1g1gvanyjgm\\WhatsApp.Root.exe      N/A      |\n+-----------------------------------------------------------------------------------------+",
+    "err": ""
+  },
+  "qwen_model": {
+    "name": "qwen3:8b",
+    "model": "qwen3:8b",
+    "modified_at": "2026-10-28T22:06:28.6723114+05:00",
+    "size": 5225388164,
+    "digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+    "details": {
+      "parent_model": "",
+      "format": "gguf",
+      "family": "qwen3",
+      "families": [
+        "qwen3"
+      ],
+      "parameter_size": "8.2B",
+      "quantization_level": "Q4_K_M",
+      "context_length": 40960,
+      "embedding_length": 4096,
+      "runner": "ggml"
+    },
+    "capabilities": [
+      "completion",
+      "tools",
+      "thinking"
+    ]
+  },
+  "admission": {
+    "ram_threshold_mib": 6246.4,
+    "ram_ok_all_three": true,
+    "commit_headroom_mib": [
+      21957.1,
+      22011.5,
+      22010.5
+    ],
+    "commit_headroom_stable_within_1gib": true,
+    "gpu_thermal_gate_passed": true,
+    "gpu_telemetry_complete": true,
+    "ollama_api_available_and_idle": true,
+    "no_established_ollama_tcp_clients": true,
+    "qwen3_8b_q4_k_m_present": true,
+    "dashboard_health_200": true,
+    "status": "PASS",
+    "reasons": []
+  }
+}

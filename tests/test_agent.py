@@ -87,8 +87,22 @@ class AgentToolTests(unittest.TestCase):
             r=results(reply)
             expected=predict_bmp(measured(),path)['bmp']
             self.assertTrue(r['predict_bmp']['model_called'])
+            self.assertEqual(r['predict_bmp']['result_provenance']['method'],'PREDICTED')
+            self.assertEqual(r['calculate_methane']['result_provenance']['method'],'CALCULATED')
+            self.assertEqual(r['calculate_methane']['result_provenance']['inputs']['bmp']['origin'],'MODEL_ESTIMATED')
             self.assertAlmostEqual(r['predict_bmp']['bmp'],expected)
             self.assertAlmostEqual(r['calculate_methane']['potential_methane_m3'],expected*.002)
+
+    def test_stage1_5_reuses_the_detector_bundle_for_prediction(self):
+        import joblib
+        from src.agent.tools import predict_tool
+        source={**measured(),'material':'Wheat straw'}
+        with patch('joblib.load',wraps=joblib.load) as load:
+            result=predict_tool(source)
+        self.assertEqual(result['status'],'ok',result)
+        self.assertTrue(result['model_called'])
+        self.assertEqual(load.call_count,1)
+        self.assertEqual(result['result_provenance']['method'],'PREDICTED')
 
     def test_out_of_distribution_refuses_number_for_both_artifacts(self):
         for model in ['stage1','stage1_5']:
@@ -178,6 +192,13 @@ class AgentToolTests(unittest.TestCase):
 
 
 class ProviderTests(unittest.TestCase):
+    def test_llm_request_timeout_can_be_configured_with_a_safe_bound(self):
+        with patch.dict('os.environ',{'BIOREACTOR_LLM_REQUEST_TIMEOUT':'150'}):
+            self.assertEqual(JSONProvider('offline').timeout,150)
+        with patch.dict('os.environ',{'BIOREACTOR_LLM_REQUEST_TIMEOUT':'601'}):
+            with self.assertRaisesRegex(ValueError,'1..600 seconds'):
+                JSONProvider('offline')
+
     def test_structured_followup_does_not_start_unrelated_llm_tools(self):
         provider=JSONProvider('offline')
         responses=[{'message':{'content':'{"tools":["predict_bmp"]}'}},

@@ -6,7 +6,8 @@ NAMES={
  'manure':('навоз','manure','көң'),'cattle_manure':('коровий навоз','cattle manure','сиыр көңі'),
  'swine_manure':('свиной навоз','pig manure','шошқа көңі'),'poultry_manure':('птичий помёт','poultry manure','құс көңі'),
  'food_waste':('пищевые отходы','food waste','тағам қалдықтары'),'chernozem':('чернозём','chernozem','қара топырақ'),
- 'Wheat straw':('пшеничная солома','wheat straw','бидай сабаны'),'Whey':('молочная сыворотка','whey','сарысу')}
+ 'Wheat straw':('пшеничная солома','wheat straw','бидай сабаны'),'straw':('пшеничная солома','wheat straw','бидай сабаны'),
+ 'Whey':('молочная сыворотка','whey','сарысу'),'dairy_waste':('молочная сыворотка','whey','сарысу')}
 
 
 def choose(lang,ru,en,kk):return {'ru':ru,'en':en,'kk':kk}[lang]
@@ -21,6 +22,9 @@ def answer(state,results,extraction,question,has_llm):
     lang=state.language;intents=set(state.intents);material=state.value('material')
     name=NAMES.get(material,(str(material or ''),)*3)[['ru','en','kk'].index(lang)]
     paragraphs=[];sources={};modes=[];assumptions=[]
+    from src.optimizer.capacity import assess_dialogue_state,render_capacity_notice
+    capacity_notice=render_capacity_notice(assess_dialogue_state(state),lang)
+    if capacity_notice:paragraphs.append(capacity_notice)
     followup=not extraction.intents and bool(extraction.entities)
     def add_source(source):
         if isinstance(source,dict) and source.get('url'):sources[source['url']]=source
@@ -85,9 +89,6 @@ def answer(state,results,extraction,question,has_llm):
         for source in results.get('search_scientific_sources',{}).get('sources',[]):add_source(source)
     methane=results.get('calculate_methane',{})
     if methane.get('status')=='ok':add(choose(lang,f'По указанной органической массе потенциальный CH₄: {fmt(methane["potential_methane_m3"],lang)} м³ при заданных условиях приведения; фактическая выработка не подтверждена.',f'Potential CH₄ from the stated volatile-solids mass: {fmt(methane["potential_methane_m3"],lang)} m³ at the stated reference conditions; actual production remains unverified.',f'Көрсетілген ұшпа зат массасынан ықтимал CH₄: берілген келтіру шарттарында {fmt(methane["potential_methane_m3"],lang)} м³; нақты өндіріс расталмаған.'))
-    volume=state.value('material_volume_l');total=state.value('reactor_total_volume_l')
-    if volume is not None and total is not None and volume>total:
-        add(choose(lang,f'{fmt(volume,lang)} л сырья больше полного объёма реактора {fmt(total,lang)} л: загрузить всё одновременно нельзя. Рабочий объём отличается от полного; число партий без рабочего объёма и режима подачи я не рассчитываю.',f'{fmt(volume,lang)} L of feedstock exceeds the reactor total volume of {fmt(total,lang)} L: it cannot all be loaded at once. Working volume differs from total volume; no batch count is calculated without working volume and feeding mode.',f'{fmt(volume,lang)} л шикізат реактордың {fmt(total,lang)} л толық көлемінен көп: бәрін бірден тиеуге болмайды. Жұмыс көлемі толық көлемнен бөлек; жұмыс көлемі мен беру режимінсіз партия санын есептемеймін.'))
     if 'model_info' in results or 'get_model_info' in results:
         model=results.get('get_model_info',{});accuracy=model.get('accuracy',{})
         score=accuracy.get('macro_lab_MAE',accuracy.get('MAE'))

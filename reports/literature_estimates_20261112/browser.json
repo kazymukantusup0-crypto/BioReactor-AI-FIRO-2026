@@ -1,0 +1,24 @@
+{
+  "base": "http://127.0.0.1:8770",
+  "started": "2026-11-12T06:37:23.109Z",
+  "checks": [
+    "Three real scenario buttons",
+    "A works without requesting a model",
+    "Python returns 150 L methane",
+    "Calculated not measured",
+    "A restored after reload",
+    "B works without requesting a model",
+    "Literature potential is separate from unknown timed yield",
+    "Nominal volume is not working volume",
+    "B restored after reload",
+    "C works without requesting a model",
+    "Oxygen and diverse pathways from sources",
+    "C restored after reload",
+    "No mobile horizontal overflow",
+    "No browser JS errors"
+  ],
+  "live": [],
+  "errors": [],
+  "status": "PASSED",
+  "finished": "2026-11-12T06:37:27.617Z"
+}

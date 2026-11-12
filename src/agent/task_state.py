@@ -25,7 +25,7 @@ def prepare(text, state, extraction):
     entries = extraction.entities
     events = []
     issues = []
-    hypothetical = bool(re.search(r'\bесли\b|what\s+if|\bif\b|егер', text, re.I))
+    hypothetical = bool(re.search(r'\bесли\b|гипотетич\w*|what\s+if|\bif\b|егер|\bscenario\b', text, re.I))
     values = amounts(text)
     # Two unlabelled corrections follow the two previously established roles.
     # Without that unique context, ask about intent rather than alleging conflict.
@@ -45,7 +45,7 @@ def prepare(text, state, extraction):
     # Shared-unit reports such as "47 and 478 litres of the same batch" cannot
     # be represented by last-write-wins. Alternatives and mixtures are exempt.
     shared = re.search(r'('+NUMBER+r')\s*(?:и|and)\s*('+NUMBER+r')\s*(?:литр\w*|л\b|litres?|liters?|L\b|кг\b|kg\b)', text, re.I)
-    same_batch = bool(re.search(r'одновремен|одн\w*\s+и\s+т\w*\s+же\s+парти|same\s+batch|simultaneously', text, re.I))
+    same_batch = bool(re.search(r'одновремен|одн\w*\s+и\s+т\w*\s+же\s+парти|этой\s+же\s+(?:новой\s+)?парт|этого\s+же\s+(?:нового\s+)?batch|this\s+same\s+(?:new\s+)?batch|that\s+same\s+(?:new\s+)?batch|same\s+batch|simultaneously', text, re.I))
     if shared and same_batch and not extraction.correction:
         candidates = [float(shared[i].replace(',', '.')) for i in (1, 2)]
         if candidates[0] != candidates[1]:

@@ -1,0 +1,700 @@
+{
+  "scope": "Metadata inventory from preserved reviewed corpus; not a new primary-source certification",
+  "profiles": [
+    {
+      "profile_id": "oliveira-rm1-2025-v1",
+      "material": "cattle_manure",
+      "form": "slurry",
+      "source_id": "doi:10.1007/s43153-025-00592-x",
+      "title": "Moderate thermal, alkaline and thermal-alkaline pretreatment of cattle manure: effects on methane production and economic feasibility",
+      "url": "https://link.springer.com/article/10.1007/s43153-025-00592-x",
+      "preparation": "Untreated refrigerated cattle slurry; other forms excluded",
+      "approved_scope": "Single untreated RM1 slurry; coarse graph BMP bracket",
+      "properties": {
+        "density_kg_l": {
+          "original_value": "1.013",
+          "original_unit": "g/mL",
+          "low": 1.013,
+          "high": 1.013,
+          "normalized_unit": "kg/L",
+          "locator": "Materials and methods, economic analysis, Eq. 1",
+          "method": "REPORTED_POINT; variation not reported"
+        },
+        "ts_fraction": {
+          "original_value": "13.3 ± 0.61",
+          "original_unit": "% wet weight",
+          "low": 0.1269,
+          "high": 0.1391,
+          "normalized_unit": "kg TS/kg wet",
+          "locator": "Table 1, PDF page 3, journal page 739",
+          "method": "REPORTED_MEAN_PLUS_MINUS_SD_SENSITIVITY; not confidence bounds"
+        },
+        "vs_fraction_wet": {
+          "original_value": "10.8 ± 0.64",
+          "original_unit": "% wet weight",
+          "low": 0.1016,
+          "high": 0.1144,
+          "normalized_unit": "kg VS/kg wet",
+          "locator": "Table 1, PDF page 3, journal page 739",
+          "method": "REPORTED_MEAN_PLUS_MINUS_SD_SENSITIVITY; not percent TS, not confidence bounds"
+        },
+        "bmp_ml_g_vs": {
+          "original_value": "Untreated RM1 bar between major gridlines 200 and 250",
+          "original_unit": "NmL CH4/g VS",
+          "low": 200,
+          "high": 250,
+          "normalized_unit": "mL CH4/g VS at stated reference",
+          "locator": "Figure 1a, untreated RM1 bar only",
+          "method": "GRAPH_READ_ENVELOPE; coarse major-gridline bracket, not reported exact mean or uncertainty interval",
+          "asset_url": "https://media.springernature.com/lw685/springer-static/image/art%3A10.1007%2Fs43153-025-00592-x/MediaObjects/43153_2025_592_Fig1_HTML.jpg"
+        }
+      },
+      "gas_basis": null,
+      "can_supply_mass_TS_VS_BMP": true,
+      "has_density": true,
+      "primary_live_verification": "NOT_PERFORMED_IN_THIS_METADATA_INVENTORY"
+    },
+    {
+      "profile_id": "baek2020-food-pulp",
+      "material": "food_waste",
+      "form": "prepared_pulp",
+      "source_id": "baek2020",
+      "title": "Treatment of Cattle Manure by Anaerobic Co-Digestion with Food Waste and Pig Manure: Methane Yield and Synergistic Effect",
+      "url": "https://www.mdpi.com/1660-4601/17/13/4737",
+      "preparation": "Ground cafeteria food mainly rice, flour products, soup, vegetables and meat; diluted BMP, not an untreated mixed municipal waste",
+      "approved_scope": "Conditional transfer of one measured prepared cafeteria-food sample; not all food waste",
+      "properties": {
+        "density_kg_l": null,
+        "ts_fraction": {
+          "low": 0.1264,
+          "high": 0.1264,
+          "original_value": "126.4 (SD 4.5)",
+          "original_unit": "g TS/kg wet",
+          "locator": "Table 1"
+        },
+        "vs_fraction_wet": {
+          "low": 0.1206,
+          "high": 0.1206,
+          "original_value": "120.6 (SD 3.7)",
+          "original_unit": "g VS/kg wet",
+          "locator": "Table 1"
+        },
+        "bmp_ml_g_vs": {
+          "low": 527.5,
+          "high": 527.5,
+          "original_value": "527.5",
+          "original_unit": "L CH4/kg VS",
+          "locator": "Results 3.2, pure FW run 2, PDF page 5",
+          "method": "REPORTED_EXPERIMENTAL_POINT; no invented uncertainty"
+        }
+      },
+      "gas_basis": {
+        "temperature_k": 273.15,
+        "pressure_pa": 101325,
+        "moisture": "unknown"
+      },
+      "can_supply_mass_TS_VS_BMP": true,
+      "has_density": false,
+      "primary_live_verification": "NOT_PERFORMED_IN_THIS_METADATA_INVENTORY"
+    },
+    {
+      "profile_id": "baek2020-bedded-cattle",
+      "material": "cattle_manure",
+      "form": "bedded",
+      "source_id": "baek2020",
+      "title": "Treatment of Cattle Manure by Anaerobic Co-Digestion with Food Waste and Pig Manure: Methane Yield and Synergistic Effect",
+      "url": "https://www.mdpi.com/1660-4601/17/13/4737",
+      "preparation": "Manure with lignocellulosic bedding from beef/dairy pens; sample collection and pretreatment differ from RM1",
+      "approved_scope": "Conditional transfer of aged Korean cattle manure containing sawdust/bedding and possible lime; not raw slurry",
+      "properties": {
+        "density_kg_l": null,
+        "ts_fraction": {
+          "low": 0.31,
+          "high": 0.31,
+          "original_value": "310.0 (SD 5.3)",
+          "original_unit": "g TS/kg wet",
+          "locator": "Table 1"
+        },
+        "vs_fraction_wet": {
+          "low": 0.2353,
+          "high": 0.2353,
+          "original_value": "235.3 (SD 5.8)",
+          "original_unit": "g VS/kg wet",
+          "locator": "Table 1"
+        },
+        "bmp_ml_g_vs": {
+          "low": 109.2,
+          "high": 109.2,
+          "original_value": "109.2",
+          "original_unit": "L CH4/kg VS",
+          "locator": "Results 3.2, pure CM run 1, PDF page 5",
+          "method": "REPORTED_EXPERIMENTAL_POINT; no invented uncertainty"
+        }
+      },
+      "gas_basis": {
+        "temperature_k": 273.15,
+        "pressure_pa": 101325,
+        "moisture": "unknown"
+      },
+      "can_supply_mass_TS_VS_BMP": true,
+      "has_density": false,
+      "primary_live_verification": "NOT_PERFORMED_IN_THIS_METADATA_INVENTORY"
+    },
+    {
+      "profile_id": "monch2013-horse-dung-A",
+      "material": "horse_manure",
+      "form": "fresh_solid",
+      "source_id": "monch2013",
+      "title": "Investigation of the methane potential of horse manure",
+      "url": "https://cigrjournal.org/index.php/Ejounral/article/view/2445",
+      "preparation": "Barn A; dried 60 C, milled 1 mm before HBT. No population interval.",
+      "approved_scope": "Tables 3 and 8, barn A: TS 23.19% FM, VS 20.51% FM, observed 0.176 Nm3 CH4/kg VS",
+      "properties": {
+        "density_kg_l": null,
+        "ts_fraction": {
+          "low": 0.2319,
+          "high": 0.2319,
+          "locator": "Tables 3 and 8, barn A: TS 23.19% FM, VS 20.51% FM, observed 0.176 Nm3 CH4/kg VS"
+        },
+        "vs_fraction_wet": {
+          "low": 0.2051,
+          "high": 0.2051,
+          "locator": "Tables 3 and 8, barn A: TS 23.19% FM, VS 20.51% FM, observed 0.176 Nm3 CH4/kg VS"
+        },
+        "bmp_ml_g_vs": {
+          "low": 176,
+          "high": 176,
+          "locator": "Tables 3 and 8, barn A: TS 23.19% FM, VS 20.51% FM, observed 0.176 Nm3 CH4/kg VS"
+        }
+      },
+      "gas_basis": {
+        "temperature_k": 273.15,
+        "pressure_pa": 101300,
+        "moisture": "unknown"
+      },
+      "can_supply_mass_TS_VS_BMP": true,
+      "has_density": false,
+      "primary_live_verification": "NOT_PERFORMED_IN_THIS_METADATA_INVENTORY"
+    },
+    {
+      "profile_id": "monch2013-straw-A",
+      "material": "straw",
+      "form": "dry",
+      "source_id": "monch2013",
+      "title": "Investigation of the methane potential of horse manure",
+      "url": "https://cigrjournal.org/index.php/Ejounral/article/view/2445",
+      "preparation": "Barn A; dried 60 C, milled 1 mm before HBT. No population interval.",
+      "approved_scope": "Tables 2 and 7, barn A: TS 81.77% FM, VS 75.61% FM, observed 0.214 Nm3 CH4/kg VS",
+      "properties": {
+        "density_kg_l": null,
+        "ts_fraction": {
+          "low": 0.8177,
+          "high": 0.8177,
+          "locator": "Tables 2 and 7, barn A: TS 81.77% FM, VS 75.61% FM, observed 0.214 Nm3 CH4/kg VS"
+        },
+        "vs_fraction_wet": {
+          "low": 0.7561,
+          "high": 0.7561,
+          "locator": "Tables 2 and 7, barn A: TS 81.77% FM, VS 75.61% FM, observed 0.214 Nm3 CH4/kg VS"
+        },
+        "bmp_ml_g_vs": {
+          "low": 214,
+          "high": 214,
+          "locator": "Tables 2 and 7, barn A: TS 81.77% FM, VS 75.61% FM, observed 0.214 Nm3 CH4/kg VS"
+        }
+      },
+      "gas_basis": {
+        "temperature_k": 273.15,
+        "pressure_pa": 101300,
+        "moisture": "unknown"
+      },
+      "can_supply_mass_TS_VS_BMP": true,
+      "has_density": false,
+      "primary_live_verification": "NOT_PERFORMED_IN_THIS_METADATA_INVENTORY"
+    },
+    {
+      "profile_id": "pham2013-pig-vdi",
+      "material": "swine_manure",
+      "form": "slurry",
+      "source_id": "pham2013",
+      "title": "Validation and Recommendation of Methods to Measure Biogas Production Potential of Animal Manure",
+      "url": "https://doi.org/10.5713/ajas.2012.12623",
+      "preparation": "Fattening pig manure from Fangel biogas plant; VDI assay at 37 C",
+      "approved_scope": "Table 2 paired with VDI methane row of Table 3, not theoretical BMP",
+      "properties": {
+        "density_kg_l": null,
+        "ts_fraction": {
+          "low": 0.0318,
+          "high": 0.0318,
+          "locator": "Table 2: 3.18% total mass; SD .2 percentage points"
+        },
+        "vs_fraction_wet": {
+          "low": 0.02275,
+          "high": 0.02275,
+          "locator": "Table 2: 22.75 g/kg fresh mass; SD .6 g/kg"
+        },
+        "bmp_ml_g_vs": {
+          "low": 207.84,
+          "high": 207.84,
+          "locator": "Table 3: VDI CH4 pig, 207.84 NL/kg VS; reported SD 1.97, not a prediction interval"
+        }
+      },
+      "gas_basis": {
+        "temperature_k": 273,
+        "pressure_pa": 101300,
+        "moisture": "dry"
+      },
+      "can_supply_mass_TS_VS_BMP": true,
+      "has_density": false,
+      "primary_live_verification": "NOT_PERFORMED_IN_THIS_METADATA_INVENTORY"
+    },
+    {
+      "profile_id": "eftaxias2024-cattle",
+      "material": "cattle_manure",
+      "form": "slurry",
+      "source_id": "eftaxias2024",
+      "title": "Techno-Economic Assessment of Anaerobic Digestion Technology for Small- and Medium-Sized Animal Husbandry Enterprises",
+      "url": "https://doi.org/10.3390/app14114957",
+      "preparation": "Specific Greek farm sample, refrigerated at4 C; paired TS/VS/BMP, subtype/bedding unspecified",
+      "approved_scope": "Paired sample means; no population or predictive interval; see source conditions and limits",
+      "properties": {
+        "density_kg_l": null,
+        "ts_fraction": {
+          "low": 0.0831,
+          "high": 0.0831,
+          "locator": "Table1 p5",
+          "reported_spread": 0.0046,
+          "spread_type": "unspecified reported +/-; not interval"
+        },
+        "vs_fraction_wet": {
+          "low": 0.0701,
+          "high": 0.0701,
+          "locator": "Table1 p5",
+          "reported_spread": 0.0040999999999999995,
+          "spread_type": "unspecified reported +/-; not interval"
+        },
+        "bmp_ml_g_vs": {
+          "low": 276,
+          "high": 276,
+          "locator": "Table1 p5",
+          "reported_spread": 3,
+          "spread_type": "unspecified reported +/-; not interval"
+        }
+      },
+      "gas_basis": null,
+      "can_supply_mass_TS_VS_BMP": true,
+      "has_density": false,
+      "primary_live_verification": "NOT_PERFORMED_IN_THIS_METADATA_INVENTORY"
+    },
+    {
+      "profile_id": "eftaxias2024-poultry",
+      "material": "poultry_manure",
+      "form": "fresh_solid",
+      "source_id": "eftaxias2024",
+      "title": "Techno-Economic Assessment of Anaerobic Digestion Technology for Small- and Medium-Sized Animal Husbandry Enterprises",
+      "url": "https://doi.org/10.3390/app14114957",
+      "preparation": "Specific Greek farm sample, refrigerated at4 C; paired TS/VS/BMP, subtype/bedding unspecified",
+      "approved_scope": "Paired sample means; no population or predictive interval; see source conditions and limits",
+      "properties": {
+        "density_kg_l": null,
+        "ts_fraction": {
+          "low": 0.6925,
+          "high": 0.6925,
+          "locator": "Table1 p5",
+          "reported_spread": 0.0040999999999999995,
+          "spread_type": "unspecified reported +/-; not interval"
+        },
+        "vs_fraction_wet": {
+          "low": 0.5546,
+          "high": 0.5546,
+          "locator": "Table1 p5",
+          "reported_spread": 0.0065,
+          "spread_type": "unspecified reported +/-; not interval"
+        },
+        "bmp_ml_g_vs": {
+          "low": 320,
+          "high": 320,
+          "locator": "Table1 p5",
+          "reported_spread": 19,
+          "spread_type": "unspecified reported +/-; not interval"
+        }
+      },
+      "gas_basis": null,
+      "can_supply_mass_TS_VS_BMP": true,
+      "has_density": false,
+      "primary_live_verification": "NOT_PERFORMED_IN_THIS_METADATA_INVENTORY"
+    },
+    {
+      "profile_id": "eftaxias2024-pig",
+      "material": "swine_manure",
+      "form": "slurry",
+      "source_id": "eftaxias2024",
+      "title": "Techno-Economic Assessment of Anaerobic Digestion Technology for Small- and Medium-Sized Animal Husbandry Enterprises",
+      "url": "https://doi.org/10.3390/app14114957",
+      "preparation": "Specific Greek farm sample, refrigerated at4 C; paired TS/VS/BMP, subtype/bedding unspecified",
+      "approved_scope": "Paired sample means; no population or predictive interval; see source conditions and limits",
+      "properties": {
+        "density_kg_l": null,
+        "ts_fraction": {
+          "low": 0.0223,
+          "high": 0.0223,
+          "locator": "Table1 p5",
+          "reported_spread": 0.0025,
+          "spread_type": "unspecified reported +/-; not interval"
+        },
+        "vs_fraction_wet": {
+          "low": 0.015099999999999999,
+          "high": 0.015099999999999999,
+          "locator": "Table1 p5",
+          "reported_spread": 0.0035,
+          "spread_type": "unspecified reported +/-; not interval"
+        },
+        "bmp_ml_g_vs": {
+          "low": 172,
+          "high": 172,
+          "locator": "Table1 p5",
+          "reported_spread": 2,
+          "spread_type": "unspecified reported +/-; not interval"
+        }
+      },
+      "gas_basis": null,
+      "can_supply_mass_TS_VS_BMP": true,
+      "has_density": false,
+      "primary_live_verification": "NOT_PERFORMED_IN_THIS_METADATA_INVENTORY"
+    },
+    {
+      "profile_id": "eftaxias2024-sheep",
+      "material": "sheep_goat_manure",
+      "form": "fresh_solid",
+      "source_id": "eftaxias2024",
+      "title": "Techno-Economic Assessment of Anaerobic Digestion Technology for Small- and Medium-Sized Animal Husbandry Enterprises",
+      "url": "https://doi.org/10.3390/app14114957",
+      "preparation": "Specific Greek farm sample, refrigerated at4 C; paired TS/VS/BMP, subtype/bedding unspecified",
+      "approved_scope": "Paired sample means; no population or predictive interval; see source conditions and limits",
+      "properties": {
+        "density_kg_l": null,
+        "ts_fraction": {
+          "low": 0.3522,
+          "high": 0.3522,
+          "locator": "Table1 p5",
+          "reported_spread": 0.0144,
+          "spread_type": "unspecified reported +/-; not interval"
+        },
+        "vs_fraction_wet": {
+          "low": 0.2363,
+          "high": 0.2363,
+          "locator": "Table1 p5",
+          "reported_spread": 0.0089,
+          "spread_type": "unspecified reported +/-; not interval"
+        },
+        "bmp_ml_g_vs": {
+          "low": 252,
+          "high": 252,
+          "locator": "Table1 p5",
+          "reported_spread": 6,
+          "spread_type": "unspecified reported +/-; not interval"
+        }
+      },
+      "gas_basis": null,
+      "can_supply_mass_TS_VS_BMP": true,
+      "has_density": false,
+      "primary_live_verification": "NOT_PERFORMED_IN_THIS_METADATA_INVENTORY"
+    },
+    {
+      "profile_id": "eftaxias2024-goat",
+      "material": "sheep_goat_manure",
+      "form": "fresh_solid",
+      "source_id": "eftaxias2024",
+      "title": "Techno-Economic Assessment of Anaerobic Digestion Technology for Small- and Medium-Sized Animal Husbandry Enterprises",
+      "url": "https://doi.org/10.3390/app14114957",
+      "preparation": "Specific Greek farm sample, refrigerated at4 C; paired TS/VS/BMP, subtype/bedding unspecified",
+      "approved_scope": "Paired sample means; no population or predictive interval; see source conditions and limits",
+      "properties": {
+        "density_kg_l": null,
+        "ts_fraction": {
+          "low": 0.717,
+          "high": 0.717,
+          "locator": "Table1 p5",
+          "reported_spread": 0.0034,
+          "spread_type": "unspecified reported +/-; not interval"
+        },
+        "vs_fraction_wet": {
+          "low": 0.606,
+          "high": 0.606,
+          "locator": "Table1 p5",
+          "reported_spread": 0.0224,
+          "spread_type": "unspecified reported +/-; not interval"
+        },
+        "bmp_ml_g_vs": {
+          "low": 227,
+          "high": 227,
+          "locator": "Table1 p5",
+          "reported_spread": 9,
+          "spread_type": "unspecified reported +/-; not interval"
+        }
+      },
+      "gas_basis": null,
+      "can_supply_mass_TS_VS_BMP": true,
+      "has_density": false,
+      "primary_live_verification": "NOT_PERFORMED_IN_THIS_METADATA_INVENTORY"
+    },
+    {
+      "profile_id": "ramos2019-layers-HD-sample1",
+      "material": "poultry_manure",
+      "form": "fresh_solid",
+      "source_id": "ramos2019",
+      "title": "Evaluation of poultry manure and goat cheese whey anaerobic co-digestion",
+      "url": "https://doi.org/10.5424/sjar/2019172-14577",
+      "preparation": "Crushed, wet diluted assay on fresh conveyor-belt laying-hen Sample1; frozen after characterization",
+      "approved_scope": "Paired sample means; no population or predictive interval; see source conditions and limits",
+      "properties": {
+        "density_kg_l": null,
+        "ts_fraction": {
+          "low": 0.386,
+          "high": 0.386,
+          "locator": "SupplementTableS1 HD Sample1",
+          "reported_spread": 0.021,
+          "spread_type": "unspecified reported +/-; not interval"
+        },
+        "vs_fraction_wet": {
+          "low": 0.286798,
+          "high": 0.286798,
+          "locator": "Derived from paired SupplementTableS1 TS*VS/TS Sample1"
+        },
+        "bmp_ml_g_vs": {
+          "low": 282.1,
+          "high": 282.1,
+          "locator": "BMP results p6",
+          "reported_spread": 3.98,
+          "spread_type": "standard error"
+        }
+      },
+      "gas_basis": null,
+      "can_supply_mass_TS_VS_BMP": true,
+      "has_density": false,
+      "primary_live_verification": "NOT_PERFORMED_IN_THIS_METADATA_INVENTORY"
+    },
+    {
+      "profile_id": "lallement2023-grass-1",
+      "material": "grass",
+      "form": "fresh_solid",
+      "source_id": "lallement2023",
+      "title": "A Detailed Database of the Chemical Properties and Methane Potential of Biomasses Covering a Large Range of Common Agricultural Biogas Plant Feedstocks",
+      "url": "https://doi.org/10.3390/waste1010014",
+      "preparation": "ENSI grass sample, cooled/frozen laboratory storage; harvest, ensiling and size preparation not specified per sample",
+      "approved_scope": "Individual paired grass sample; state and gas-reference transfer must be explicitly conditional",
+      "properties": {
+        "density_kg_l": null,
+        "ts_fraction": {
+          "low": 0.278,
+          "high": 0.278,
+          "locator": "Table A1 p209, Grass row1",
+          "original_unit": "% fresh mass /100"
+        },
+        "vs_fraction_wet": {
+          "low": 0.247,
+          "high": 0.247,
+          "locator": "Table A1 p209, Grass row1",
+          "original_unit": "% fresh mass /100"
+        },
+        "bmp_ml_g_vs": {
+          "low": 264.3,
+          "high": 264.3,
+          "locator": "Table A1 p209, Grass row1",
+          "original_unit": "Nm3 CH4/t VS = mL CH4/g VS",
+          "reported_spread": 15,
+          "spread_type": "SD of duplicate assays; not prediction interval"
+        }
+      },
+      "gas_basis": null,
+      "can_supply_mass_TS_VS_BMP": true,
+      "has_density": false,
+      "primary_live_verification": "NOT_PERFORMED_IN_THIS_METADATA_INVENTORY"
+    },
+    {
+      "profile_id": "lallement2023-grass-2",
+      "material": "grass",
+      "form": "fresh_solid",
+      "source_id": "lallement2023",
+      "title": "A Detailed Database of the Chemical Properties and Methane Potential of Biomasses Covering a Large Range of Common Agricultural Biogas Plant Feedstocks",
+      "url": "https://doi.org/10.3390/waste1010014",
+      "preparation": "ENSI grass sample, cooled/frozen laboratory storage; harvest, ensiling and size preparation not specified per sample",
+      "approved_scope": "Individual paired grass sample; state and gas-reference transfer must be explicitly conditional",
+      "properties": {
+        "density_kg_l": null,
+        "ts_fraction": {
+          "low": 0.172,
+          "high": 0.172,
+          "locator": "Table A1 p209, Grass row2",
+          "original_unit": "% fresh mass /100"
+        },
+        "vs_fraction_wet": {
+          "low": 0.135,
+          "high": 0.135,
+          "locator": "Table A1 p209, Grass row2",
+          "original_unit": "% fresh mass /100"
+        },
+        "bmp_ml_g_vs": {
+          "low": 406.3,
+          "high": 406.3,
+          "locator": "Table A1 p209, Grass row2",
+          "original_unit": "Nm3 CH4/t VS = mL CH4/g VS",
+          "reported_spread": 4.8,
+          "spread_type": "SD of duplicate assays; not prediction interval"
+        }
+      },
+      "gas_basis": null,
+      "can_supply_mass_TS_VS_BMP": true,
+      "has_density": false,
+      "primary_live_verification": "NOT_PERFORMED_IN_THIS_METADATA_INVENTORY"
+    },
+    {
+      "profile_id": "lallement2023-grass-3",
+      "material": "grass",
+      "form": "fresh_solid",
+      "source_id": "lallement2023",
+      "title": "A Detailed Database of the Chemical Properties and Methane Potential of Biomasses Covering a Large Range of Common Agricultural Biogas Plant Feedstocks",
+      "url": "https://doi.org/10.3390/waste1010014",
+      "preparation": "ENSI grass sample, cooled/frozen laboratory storage; harvest, ensiling and size preparation not specified per sample",
+      "approved_scope": "Individual paired grass sample; state and gas-reference transfer must be explicitly conditional",
+      "properties": {
+        "density_kg_l": null,
+        "ts_fraction": {
+          "low": 0.17600000000000002,
+          "high": 0.17600000000000002,
+          "locator": "Table A1 p209, Ray-grass row",
+          "original_unit": "% fresh mass /100"
+        },
+        "vs_fraction_wet": {
+          "low": 0.16699999999999998,
+          "high": 0.16699999999999998,
+          "locator": "Table A1 p209, Ray-grass row",
+          "original_unit": "% fresh mass /100"
+        },
+        "bmp_ml_g_vs": {
+          "low": 393.3,
+          "high": 393.3,
+          "locator": "Table A1 p209, Ray-grass row",
+          "original_unit": "Nm3 CH4/t VS = mL CH4/g VS",
+          "reported_spread": 26.5,
+          "spread_type": "SD of duplicate assays; not prediction interval"
+        }
+      },
+      "gas_basis": null,
+      "can_supply_mass_TS_VS_BMP": true,
+      "has_density": false,
+      "primary_live_verification": "NOT_PERFORMED_IN_THIS_METADATA_INVENTORY"
+    },
+    {
+      "profile_id": "lallement2023-grass-4",
+      "material": "grass",
+      "form": "fresh_solid",
+      "source_id": "lallement2023",
+      "title": "A Detailed Database of the Chemical Properties and Methane Potential of Biomasses Covering a Large Range of Common Agricultural Biogas Plant Feedstocks",
+      "url": "https://doi.org/10.3390/waste1010014",
+      "preparation": "ENSI grass sample, cooled/frozen laboratory storage; harvest, ensiling and size preparation not specified per sample",
+      "approved_scope": "Individual paired grass sample; state and gas-reference transfer must be explicitly conditional",
+      "properties": {
+        "density_kg_l": null,
+        "ts_fraction": {
+          "low": 0.213,
+          "high": 0.213,
+          "locator": "Table A1 p210, Grass row1",
+          "original_unit": "% fresh mass /100"
+        },
+        "vs_fraction_wet": {
+          "low": 0.18899999999999997,
+          "high": 0.18899999999999997,
+          "locator": "Table A1 p210, Grass row1",
+          "original_unit": "% fresh mass /100"
+        },
+        "bmp_ml_g_vs": {
+          "low": 461.2,
+          "high": 461.2,
+          "locator": "Table A1 p210, Grass row1",
+          "original_unit": "Nm3 CH4/t VS = mL CH4/g VS",
+          "reported_spread": 3.7,
+          "spread_type": "SD of duplicate assays; not prediction interval"
+        }
+      },
+      "gas_basis": null,
+      "can_supply_mass_TS_VS_BMP": true,
+      "has_density": false,
+      "primary_live_verification": "NOT_PERFORMED_IN_THIS_METADATA_INVENTORY"
+    },
+    {
+      "profile_id": "lallement2023-grass-5",
+      "material": "grass",
+      "form": "fresh_solid",
+      "source_id": "lallement2023",
+      "title": "A Detailed Database of the Chemical Properties and Methane Potential of Biomasses Covering a Large Range of Common Agricultural Biogas Plant Feedstocks",
+      "url": "https://doi.org/10.3390/waste1010014",
+      "preparation": "ENSI grass sample, cooled/frozen laboratory storage; harvest, ensiling and size preparation not specified per sample",
+      "approved_scope": "Individual paired grass sample; state and gas-reference transfer must be explicitly conditional",
+      "properties": {
+        "density_kg_l": null,
+        "ts_fraction": {
+          "low": 0.23399999999999999,
+          "high": 0.23399999999999999,
+          "locator": "Table A1 p210, Grass row2",
+          "original_unit": "% fresh mass /100"
+        },
+        "vs_fraction_wet": {
+          "low": 0.213,
+          "high": 0.213,
+          "locator": "Table A1 p210, Grass row2",
+          "original_unit": "% fresh mass /100"
+        },
+        "bmp_ml_g_vs": {
+          "low": 403.2,
+          "high": 403.2,
+          "locator": "Table A1 p210, Grass row2",
+          "original_unit": "Nm3 CH4/t VS = mL CH4/g VS",
+          "reported_spread": 14.2,
+          "spread_type": "SD of duplicate assays; not prediction interval"
+        }
+      },
+      "gas_basis": null,
+      "can_supply_mass_TS_VS_BMP": true,
+      "has_density": false,
+      "primary_live_verification": "NOT_PERFORMED_IN_THIS_METADATA_INVENTORY"
+    },
+    {
+      "profile_id": "lallement2023-grass-6",
+      "material": "grass",
+      "form": "fresh_solid",
+      "source_id": "lallement2023",
+      "title": "A Detailed Database of the Chemical Properties and Methane Potential of Biomasses Covering a Large Range of Common Agricultural Biogas Plant Feedstocks",
+      "url": "https://doi.org/10.3390/waste1010014",
+      "preparation": "ENSI grass sample, cooled/frozen laboratory storage; harvest, ensiling and size preparation not specified per sample",
+      "approved_scope": "Individual paired grass sample; state and gas-reference transfer must be explicitly conditional",
+      "properties": {
+        "density_kg_l": null,
+        "ts_fraction": {
+          "low": 0.39899999999999997,
+          "high": 0.39899999999999997,
+          "locator": "Table A1 p210, Grass row3",
+          "original_unit": "% fresh mass /100"
+        },
+        "vs_fraction_wet": {
+          "low": 0.361,
+          "high": 0.361,
+          "locator": "Table A1 p210, Grass row3",
+          "original_unit": "% fresh mass /100"
+        },
+        "bmp_ml_g_vs": {
+          "low": 187.2,
+          "high": 187.2,
+          "locator": "Table A1 p210, Grass row3",
+          "original_unit": "Nm3 CH4/t VS = mL CH4/g VS",
+          "reported_spread": 11.5,
+          "spread_type": "SD of duplicate assays; not prediction interval"
+        }
+      },
+      "gas_basis": null,
+      "can_supply_mass_TS_VS_BMP": true,
+      "has_density": false,
+      "primary_live_verification": "NOT_PERFORMED_IN_THIS_METADATA_INVENTORY"
+    }
+  ]
+}

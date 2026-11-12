@@ -81,12 +81,12 @@ class CompleteEconomicsTests(unittest.TestCase):
         r=self.measured();row=self.row(r,'B_heat')
         expected=(3*9.97*.8)*10-(100*4*20/3600+1)*20
         self.assertAlmostEqual(row['net_result_kzt']['low'],expected)
-        self.assertEqual(r['decision_analysis']['decision']['status'],'PROCESSING_PREFERRED')
+        self.assertEqual(r['decision_analysis']['decision']['status'],'CONDITIONALLY_PROCESSING_PREFERRED')
     def test_electric_internal_use_counted_once(self):
         s=measured_inputs();s['gas_use']='electricity';r=self.measured(s)
         expected=(3*9.97*.25-(100*4*20/3600+1))*20
         self.assertAlmostEqual(self.row(r,'C_electricity')['net_result_kzt']['low'],expected)
-        self.assertEqual(r['decision_analysis']['decision']['status'],'SELLING_PREFERRED')
+        self.assertEqual(r['decision_analysis']['decision']['status'],'CONDITIONALLY_SELLING_PREFERRED')
     def test_electric_price_break_even_accounts_for_internal_loads(self):
         r=self.measured();row=self.row(r,'C_electricity')
         self.assertAlmostEqual(row['break_even']['minimum_product_price']['low'],100/(3*9.97*.25-(100*4*20/3600+1)))
@@ -162,7 +162,7 @@ class CompleteEconomicsTests(unittest.TestCase):
     def test_reference_benchmark_142_l_real_preserved_prices(self):
         baseline=ROOT/'reports/stage7_5/pre_stage7_5.sqlite3'
         with closing(sqlite3.connect(baseline)) as source,closing(sqlite3.connect(self.store.path)) as target:source.backup(target)
-        r=research_and_estimate(self.store,EstimateRequest(volume_l=142,material_state='slurry',reactor_total_volume_l=200))
+        r=research_and_estimate(self.store,EstimateRequest(volume_l=142,density_kg_l=1.013,material_state='slurry',reactor_total_volume_l=200))
         a=r['decision_analysis'];self.assertAlmostEqual(r['wet_mass_kg']['low'],143.846);self.assertAlmostEqual(r['vs_mass_kg']['low'],14.6147536)
         self.assertAlmostEqual(r['methane_potential_m3']['low'],2.92295072);self.assertAlmostEqual(r['methane_potential_m3']['high'],4.1139956)
         self.assertEqual(r['result_level'],'LITERATURE_ESTIMATE');self.assertAlmostEqual(a['biogas']['potential_biogas_m3']['low'],2.92295072/.6)
@@ -176,9 +176,10 @@ class CompleteEconomicsTests(unittest.TestCase):
         second=agent.ask('Навозная жижа');third=agent.ask('Для отопления');fourth=agent.ask('Для электричества')
         # A resolved form enables a concise numerical answer; it is naturally
         # longer than the initial clarification question.
-        self.assertLess(len(second['answer']),400);self.assertIn('2.92',second['answer']);self.assertNotIn('таблица 1',second['answer'])
+        self.assertLess(len(second['answer']),400);self.assertIn('плотности',second['answer']);self.assertNotIn('2.92',second['answer']);self.assertNotIn('таблица 1',second['answer'])
         # v7.7 does not ask for gas use when the user requested only gas yield.
         self.assertIsNone(second['pending_question']);self.assertEqual(agent.state.value('quantity'),142);self.assertEqual(agent.state.value('reactor_total_volume_l'),200)
+        self.assertIn('рабочий объём не указан',second['answer']);self.assertEqual(second['answer'].count('рабочий объём'),1)
         self.assertEqual(agent.state.decision_settings['gas_use'],'electricity');self.assertIsNone(agent.state.value('thermal_efficiency'))
     def test_structured_inputs_accepted_and_invalid_efficiency_preserves_state(self):
         a=ConversationAgent(llm=HybridLLM(providers=[]),registry=ToolRegistry(self.store),research_enabled=True)
@@ -195,7 +196,7 @@ class CompleteEconomicsTests(unittest.TestCase):
     def test_ru_kk_en_conversation(self):
         for first,second,language in [('I have 142 litres of cattle manure and a 200 litre reactor. How much biogas?','Cattle slurry','en'),('Менде 142 литр сиыр көңі және 200 литр реактор бар. Қанша биогаз?','Сұйық көң','kk')]:
             agent=ConversationAgent(llm=HybridLLM(providers=[]),registry=ToolRegistry(self.store),research_enabled=True)
-            agent.ask(first);r=agent.ask(second);self.assertEqual(r['memory']['language'],language);self.assertEqual(agent.state.value('material_state'),'slurry');self.assertIn('2.92',r['answer'])
+            agent.ask(first);r=agent.ask(second);self.assertEqual(r['memory']['language'],language);self.assertEqual(agent.state.value('material_state'),'slurry');self.assertNotIn('2.92',r['answer'])
     def test_real_fastapi_compatibility_and_new_decision_route(self):
         with TestClient(create_app(self.store,scheduler_enabled=False)) as client:
             body={'volume_l':142,'material_state':'slurry','reactor_total_volume_l':200}

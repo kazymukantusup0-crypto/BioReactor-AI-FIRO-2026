@@ -17,7 +17,7 @@ const statusNames: Record<string, string> = { PROCESSING_PREFERRED: 'Перер�
 const range = (v: R | null | undefined, unit = '') => v ? `${number(v.low, 2)}${v.high !== v.low ? `–${number(v.high, 2)}` : ''} ${unit}` : 'Нет данных'
 const scalar = (v: number | null | undefined) => v === null || v === undefined ? 'Нет данных' : `${number(v, 2)} кВт·ч`
 export default function DecisionCards({ reply, onAnswer, disabled }: { reply: AgentReply; onAnswer?: (text: string) => void; disabled: boolean }) {
- const { mode } = useDisplayMode(); const label = (v: string) => mode === 'legacy' ? v : ({HYPOTHETICAL_SCENARIO:'Условный пример',LITERATURE_ESTIMATE:'Оценка по публикациям',MEASURED:'По измеренным свойствам'}[v] ?? statusNames[v] ?? 'Применимость требует проверки');
+ const { mode } = useDisplayMode(); const label = (v: string) => ({HYPOTHETICAL_SCENARIO:'Условный сценарий',LITERATURE_ESTIMATE:'Литературный ориентир',CALCULATED:'Рассчитано',MEASURED:'Расчёт по входным данным (история)',PREDICTED:'Прогноз модели',UNAVAILABLE:'Не подтверждено'}[v] ?? statusNames[v] ?? 'Не подтверждено');
  const r = reply.technical_metadata?.research_result as { methane_potential_m3: R | null; result_level: string; decision_analysis?: Analysis } | undefined
  if (!r?.decision_analysis) return null
  const a = r.decision_analysis, out = a.energy.outputs, selected = a.scenarios.find(x => x.id === a.decision.selected_scenario), budget = selected?.break_even?.maximum_total_processing_cost_to_match_sale_kzt

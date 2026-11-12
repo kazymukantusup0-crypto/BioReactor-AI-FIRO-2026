@@ -88,7 +88,7 @@ def request_data(state):
     if assumptions: data['assumptions'] = assumptions
     bmp = state.facts.get('bmp_ml_ch4_g_vs') or state.assumptions.get('bmp_ml_ch4_g_vs')
     if bmp:
-        data.setdefault('bmp_provenance', 'scenario_assumption' if bmp.provenance == 'ASSUMED_FOR_SCENARIO' else 'measured')
+        data.setdefault('bmp_provenance', 'scenario_assumption' if bmp.provenance == 'ASSUMED_FOR_SCENARIO' else 'user_reported')
         data.setdefault('bmp_evidence', bmp.evidence)
     selected = state.assumptions.get('process_candidates')
     if selected:
