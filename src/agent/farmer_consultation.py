@@ -40,7 +40,7 @@ class ConsultationInputs(Strict):
     measured_parameters:dict=Field(default_factory=dict)
     literature_assumptions:list=Field(default_factory=list)
     components:list[dict]=Field(default_factory=list)
-    tasks:list[Literal['methane','temperature','economics']]=Field(default_factory=list)
+    tasks:list[Literal['methane','temperature','economics','risks']]=Field(default_factory=list)
 
 def project(state,extraction,text):
     prior=state.advanced.get('farmer_consultation',{})
@@ -49,13 +49,18 @@ def project(state,extraction,text):
     if alternatives:state.advanced['temperature_comparison_c']=alternatives
     elif any(e.name in {'temperature_c','material'} for e in extraction.entities):state.advanced.pop('temperature_comparison_c',None)
     tasks=[task for intent,task in [('methane_yield','methane'),('temperature_recommendation','temperature'),('economic_comparison','economics')] if intent in state.intents]
+    from src.recommendations.retrieval import topics_for
+    if set(topics_for(text)) & {'ph','loading','co_digestion','low_gas'}:tasks.append('risks')
+    def value(key):
+        item=state.assumptions.get(key)
+        return item.value if item is not None else state.value(key)
     changed={e.name for e in extraction.entities}
     if prior and (alternatives or changed.intersection({'temperature_c','duration_days','quantity','mass_kg','material_volume_l','market_region','intended_use','operating_mode'})) and not extraction.new_batch:
         tasks=list(dict.fromkeys(prior.get('tasks',[])+tasks))
-    if not (state.value('material') or state.mixture_components) or not tasks:return None
-    if not prior and not {'temperature','economics'}.intersection(tasks):return None
+    if not (value('material') or state.mixture_components) or not tasks:return None
+    if not prior and not {'temperature','economics','risks'}.intersection(tasks):return None
     temp=state.assumptions.get('temperature_c')
-    typed=ConsultationInputs(substrate=state.value('material'),feedstock_volume_l=state.value('material_volume_l'),reactor_volume_l=state.value('reactor_total_volume_l'),
+    typed=ConsultationInputs(substrate=value('material'),feedstock_volume_l=value('material_volume_l'),reactor_volume_l=value('reactor_total_volume_l'),
         temperature_c=temp.value if temp else state.value('temperature_c'),duration_days=state.value('duration_days'),operating_mode=state.value('operating_mode'),
         intended_use=state.value('intended_use') or state.decision_settings.get('gas_use','unknown'),region=state.value('market_region'),
         measured_parameters={k:v.model_dump(mode='json') for k,v in state.facts.items() if k in {'density_kg_l','ts_percent','vs_percent','vs_mass_kg','bmp_ml_ch4_g_vs'}},
@@ -65,7 +70,7 @@ def project(state,extraction,text):
 
 def required_tools(inputs,state):
     tools=[] if inputs.tasks==['economics'] else ['search_scientific_sources']
-    amount=state.value('quantity') is not None or state.value('mass_kg') is not None or bool(state.mixture_scenario_components or state.mixture_components)
+    amount=any(state.value(k) is not None or k in state.assumptions for k in ['quantity','mass_kg']) or bool(state.mixture_scenario_components or state.mixture_components)
     if amount and {'methane','economics'}.intersection(inputs.tasks):tools.append('estimate_methane_yield' if inputs.feedstock_volume_l is not None else 'assess_substrate_potential')
     if 'temperature' in inputs.tasks:tools.append('assess_process_evidence')
     if amount and 'economics' in inputs.tasks:tools.append('evaluate_partial_economics')
@@ -139,7 +144,8 @@ def explanation_context(results,state,query,evidence):
     from src.advisor.catalog import name
     materials={c['material'] for s in science.get('scenarios',[]) for c in s.get('components',[])}
     if not materials and state.value('material') not in {None,'mixture'}:materials.add(state.value('material'))
-    return {'Запрошенные задачи':[{'methane':'оценка метана','temperature':'температурный режим','economics':'экономический смысл'}[t] for t in payload['tasks']],
+    return {'Запрошенные задачи':[{'methane':'оценка метана','temperature':'температурный режим','economics':'экономический смысл','risks':'применимые риски и недостающие данные'}[t] for t in payload['tasks']],
+        'Проверенные качественные выводы':[(c.get('text') or {}).get('ru') for c in results.get('search_scientific_sources',{}).get('claims',[]) if set(c.get('topics',[])) & {'ph','loading','co_digestion','low_gas'}][:4],
         'Сырьё':[name(m) for m in sorted(materials)],
         'Метан':{'Состояние оценки':('Python рассчитал условный литературный потенциал партии.' if any(s.get('methane_m3') for s in science.get('scenarios',[])) else 'Численный потенциал пока не рассчитан.'),
                   'Выработка установки':'Измерений нет: фактический выход неизвестен; нельзя утверждать, что газ уже произведён или не произведён.',
@@ -265,6 +271,10 @@ def compose(results,state,verification=None):
         parts.append('В небольшой установке теплопотери и работа мешалки могут поглотить полезный выход. Переработка может иметь смысл при спросе на тепло и достаточно малых полных расходах. Прибыль и окупаемость без этих расходов не подтверждены; неизвестные затраты не равны нулю.')
         parts.append('Чувствительность: при неизменных условиях валовая ценность пропорциональна полезной энергии и применимому тарифу. Для безубыточности все расходы должны быть ниже полезной валовой ценности. Тариф природного газа не служит ценой продажи сырого биогаза.')
         sections.append({'title':'Экономическая оценка','body':'\n'.join(dict.fromkeys(parts))})
+    search=results.get('search_scientific_sources',{})
+    claims=[c for c in search.get('claims',[]) if set(c.get('topics',[])) & {'ph','loading','co_digestion','low_gas'}]
+    if claims:
+        sections.append({'title':'Риски и научные ограничения','body':'\n'.join(dict.fromkeys(c['text']['ru'] for c in claims))})
     sections.append({'title':'Практические ограничения','body':'Номинальная вместимость не равна рабочему объёму. До загрузки проверьте объём сырья вместе с водой, инокулятом и остатком, газовое пространство и конструкцию установки. Оценка всей партии не является выходом одного цикла; литературные параметры не становятся вашими измерениями.'})
     from src.optimizer.capacity import assess_dialogue_state,render_capacity_notice
     loading=assess_dialogue_state(state)

@@ -8,7 +8,8 @@ from src.recommendations.knowledge import detect_material, normalize_material
 NUMBERS=set(ECONOMIC_FIELDS)-{'currency','price_date','gas_volume_basis','price_gas_volume_basis'} | set(NUMERIC) | {
     'bmp_ml_ch4_g_vs','vs_mass_kg','material_volume_l','dilution_water_l','reactor_volume_l','density_kg_l','temperature_c',
     'ts_percent','vs_percent','sale_offer_amount','methane_fraction','electricity_efficiency','reactor_working_volume_l',
-    'reported_biogas_volume_m3','reported_methane_volume_m3','heating_value_kwh_m3','duration_days'}
+    'reported_biogas_volume_m3','reported_methane_volume_m3','heating_value_kwh_m3','duration_days',
+    'electricity_tariff_kzt_per_kwh','batch_sale_price_kzt','previous_temperature_c'}
 TEXT={'material','substrate','currency','price_date','gas_volume_basis','price_gas_volume_basis','bmp_unit','model',
     'vs_basis','sale_offer_scope','sale_offer_currency','material_state','physical_state','decay_state'}
 TEXT.update({'market_region','market_commodity','market_start','market_end'})
@@ -18,7 +19,8 @@ EXPECTED_UNITS={'mass_kg':'kg','vs_mass_kg':'kg VS','material_volume_l':'L','rea
     'c_vs_inoc':'g/g','ISR':'g VS/g VS','potential_methane_m3':'m3 CH4','temperature_c':'degC',
     'ts_percent':'%','vs_percent':'%','methane_fraction':'fraction','electricity_efficiency':'fraction','reactor_working_volume_l':'L',
     'reported_biogas_volume_m3':'m3 biogas','reported_methane_volume_m3':'m3 CH4',
-    'heating_value_kwh_m3':'kWh/m3','duration_days':'day'}
+    'heating_value_kwh_m3':'kWh/m3','duration_days':'day',
+    'electricity_tariff_kzt_per_kwh':'KZT/kWh','batch_sale_price_kzt':'KZT/batch','previous_temperature_c':'degC'}
 
 
 def validate_context(data):
@@ -36,7 +38,7 @@ def validate_context(data):
         if field in out:date.fromisoformat(out[field])
     if out.get('market_start','')>out.get('market_end','9999-12-31'):raise ValueError('market_start must not exceed market_end')
     for key in set(out)&NUMBERS:
-        if key=='temperature_c':
+        if key in {'temperature_c','previous_temperature_c'}:
             number(out[key],key,minimum=-273.15,strict=True)
         else:
             number(out[key],key,strict=key in {'mass_kg','vs_mass_kg','material_volume_l','reactor_volume_l','density_kg_l','ISR',

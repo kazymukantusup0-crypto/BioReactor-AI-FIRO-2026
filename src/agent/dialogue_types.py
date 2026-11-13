@@ -27,15 +27,15 @@ class Entity(Strict):
         if self.name in choices and self.value not in choices[self.name]:raise ValueError(f'Invalid {self.name}')
         positive={'duration_days','quantity','mass_kg','material_volume_l','density_kg_l','vs_mass_kg','reactor_total_volume_l','reactor_working_volume_l','reactor_volume_l','ISR',
                   'reported_biogas_volume_m3','reported_methane_volume_m3','heating_value_kwh_m3','bmp_ml_ch4_g_vs'}
-        nonnegative={'dilution_water_l','auxiliary_energy_kwh'}
+        nonnegative={'dilution_water_l','auxiliary_energy_kwh','electricity_tariff_kzt_per_kwh','batch_sale_price_kzt'}
         fractions={'recovery_fraction','methane_fraction','electricity_efficiency','c_vs_sub_m','c_vs_sub_f','c_vs_inoc'}
-        if self.name in positive|fractions|nonnegative|{'temperature_c','ts_percent','vs_percent','sale_offer_amount'}:
+        if self.name in positive|fractions|nonnegative|{'temperature_c','previous_temperature_c','ts_percent','vs_percent','sale_offer_amount'}:
             if isinstance(self.value,bool) or not isinstance(self.value,(int,float)) or not math.isfinite(self.value):raise ValueError(f'{self.name}: finite numeric value required')
             if self.name in positive and self.value<=0:raise ValueError(f'{self.name}: positive value required')
             if self.name in nonnegative and self.value<0:raise ValueError(f'{self.name}: nonnegative value required')
             if self.name in fractions and not 0<=self.value<=1:raise ValueError(f'{self.name}: fraction must be in [0,1]')
             if self.name in {'ts_percent','vs_percent'} and not 0<=self.value<=100:raise ValueError('TS/VS percentage must be in [0,100]')
-            if self.name=='temperature_c' and self.value<=-273.15:raise ValueError('Temperature below absolute zero')
+            if self.name in {'temperature_c','previous_temperature_c'} and self.value<=-273.15:raise ValueError('Temperature below absolute zero')
             if self.name=='sale_offer_amount' and self.value<0:raise ValueError('Negative sale offer')
         return self
 

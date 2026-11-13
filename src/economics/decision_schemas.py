@@ -94,6 +94,8 @@ class DecisionInputs(Strict):
     equipment_evidence:str|None=Field(default=None,max_length=1000)
     reactor:ReactorInputs=Field(default_factory=ReactorInputs)
     quotes:dict[str,Quote]=Field(default_factory=dict)
+    batch_sale_price_kzt:Range|None=None
+    electricity_tariff_kzt_per_kwh:Range|None=None
     price_ids:dict[str,int]=Field(default_factory=dict)
     consumer_class:str|None=None
     tax_basis:str|None=None

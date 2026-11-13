@@ -27,6 +27,8 @@ def propose(text,state,new_batch=False):
                   'electrical_efficiency':r'(?:электрическ\w*\s+КПД|КПД\s+электричества|electrical\s+efficiency|электрлік\s+ПӘК)',
                   'methane_fraction':r'(?:доля\s+метана|метан\w*\s+доля|methane\s+fraction|метан\s+үлесі)'}
         hypothetical=bool(re.search(r'допустим|предполож|условн|\bassum|\bif\b|мысалы|болжам',text,re.I))
+        if re.search(r'вместо\s+электронагрев|instead\s+of\s+electric\s+(?:resistance\s+)?heat',text,re.I):
+            data['replacement_heat_source']='electric_resistance'
         heat_energy=re.search(r'(\d+(?:[.,]\d+)?)\s*(?:кВт\s*[·*.-]?\s*ч|kwh)',text,re.I)
         if heat_energy and (state.pending_question and state.pending_question.id=='heating-kwh' or re.search(r'нагрев|подогрев|heating',text,re.I)):
             reactor=data.setdefault('reactor',{})

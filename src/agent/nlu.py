@@ -281,6 +281,7 @@ def extract(text,state=None):
             value=numeric(match.group(1),lang);unit_raw=match.group(2).casefold()
             unit='m3' if re.search(r'куб|cubic|m\^?3|м[³3]',unit_raw) else 'L' if re.match(r'лит|lit|л$|l$',unit_raw) else 't' if re.match(r'тон|ton|т$',unit_raw) else 'kg' if re.match(r'кг|kg|кило|kilo',unit_raw) else 'g'
             before=text[max(0,match.start()-50):match.start()].casefold();after=text[match.end():match.end()+25].casefold()
+            if re.search(r'(?:вместо|instead\s+of)\s*$',before,re.I):continue  # Rejected previous amount.
             prior_quantity=state.value('quantity');prior_unit=state.value('unit')
             reference_only=bool(re.search(r'(?:не\s+(?:заменяя|замени|заменяй|меняя|меняй|изменяя|перезаписывая)|без\s+замены|without\s+replacing|do\s+not\s+replace|don.t\s+replace|keep\s+(?:the\s+)?(?:confirmed\s+)?(?:recorded\s+)?(?:mass|value))(?:(?![.!?;]).){0,100}$',before,re.I))
             mass_factor={'kg':1,'t':1000,'g':.001};volume_factor={'L':1,'m3':1000}
@@ -351,7 +352,11 @@ def extract(text,state=None):
             temperature=numeric(gas_basis.group(1),lang);pressure=numeric(gas_basis.group(2),lang)
             add('gas_volume_basis',f'{temperature:g} K; {pressure:g} bar; moisture not specified',gas_basis.group())
         temperature=re.search(r'(?:температур\w*|temperature|температура)\s*(?:[=:]|is|равна|будет)?\s*('+NUMBER+r')|('+NUMBER+r')\s*(?:°\s*[cсC]|градус\w*|degrees?)',text,re.I)
-        if temperature and not temperature_alternatives(text):add('temperature_c',numeric(next(v for v in temperature.groups() if v is not None),lang),temperature.group(),'°C')
+        trajectory=re.search(r'(?:с|from)\s*('+NUMBER+r')\s*(?:°\s*[cс])?\s*(?:до|to|→|->)\s*('+NUMBER+r')\s*(?:°\s*[cс]|градус\w*|degrees?)',text,re.I)
+        if trajectory and re.search(r'температур|temperature|градус|°',text,re.I):
+            add('previous_temperature_c',numeric(trajectory[1],lang),trajectory.group(),'°C')
+            add('temperature_c',numeric(trajectory[2],lang),trajectory.group(),'°C')
+        elif temperature and not temperature_alternatives(text):add('temperature_c',numeric(next(v for v in temperature.groups() if v is not None),lang),temperature.group(),'°C')
         from src.agent.quantities9 import user_time_horizons
         horizons=user_time_horizons(text)
         if horizons:add('duration_days',horizons[-1]['value'],horizons[-1]['reference'],'day')
@@ -368,21 +373,14 @@ def extract(text,state=None):
         vs_ts=re.search(r'\bVS(?:\s*/\s*TS)?\s*(?:(?:[=:]|равен|равна|составляет|is)\s*)?'+NUMBER+r'\s*%\s*(?:(?:от|of|on)\s*(?:TS|dry))?',text,re.I)
         if vs_ts and re.search(r'(?:/\s*TS|от\s*TS|of\s*TS|on\s*dry)',vs_ts.group(),re.I):add('vs_basis','TS',vs_ts.group())
         elif re.search(r'\bVS\s*(?:(?:[=:]|равен|равна|составляет|is)\s*)?'+NUMBER+r'\s*%\s*(?:от\s+влажн|of\s+(?:wet|fresh))',text,re.I):add('vs_basis','fresh_mass',text)
-        price=re.search(r'(?:по|за|for|price\s*(?:is)?|'+RU_PRICE_WORD+r'\s*(?:[=:]|составляет)?|продам|предлагают|offer\s+is|бағасы)\s*('+NUMBER+r')\s*(тенге|теңге|₸|kzt|dollars?|usd|руб\w*|rub)',text,re.I)
-        if price:
-            add('sale_offer_amount',numeric(price.group(1),lang),price.group(0))
-            currency='KZT' if re.search(r'тенге|теңге|₸|kzt',price.group(2),re.I) else 'USD' if re.search(r'usd|dollar',price.group(2),re.I) else 'RUB'
-            add('sale_offer_currency',currency,price.group())
+        from src.agent.price_roles import extract_prices
+        for name,value,evidence,unit in extract_prices(text):add(name,value,evidence,unit)
         pending=state.pending_question.id if state.pending_question else None
-        if re.search(r'весь\s+(?:объ[её]м|парти)|всю\s+парти|целую\s+парти|whole\s+batch|entire\s+(?:batch|volume)|бүкіл\s+көлем|барлық\s+көлем',text,re.I) or pending=='sale_scope' and re.fullmatch(r'\s*(?:да|yes|иә)[.!]?\s*',text,re.I):add('sale_offer_scope','batch',text)
-        elif re.search(r'(?:за|per)\s*(?:1\s*)?(?:кг|kg|килограмм)|килограмм\s+үшін',text,re.I):add('sale_offer_scope','kg',text)
-        elif re.search(r'(?:за|per)\s*(?:1\s*)?(?:литр|litre|liter|л\b)|литр\s+үшін',text,re.I):add('sale_offer_scope','L',text)
-        elif re.search(r'(?:за|per)\s*(?:1\s*)?(?:тонн|tonne|ton\b)',text,re.I):add('sale_offer_scope','t',text)
-        for index,entity in enumerate(entities):
-            if entity.name=='sale_offer_amount':
-                currency=next((e.value for e in reversed(entities) if e.name=='sale_offer_currency'),'KZT')
-                scope=next((e.value for e in reversed(entities) if e.name=='sale_offer_scope'),None)
-                if scope:entities[index]=entity.model_copy(update={'unit':f'{currency}/{scope}'})
+        # A standalone scope clarification is allowed; never borrow scope across quotes.
+        if not re.search(r'\d',text) and re.search(r'всю\s+парти|весь\s+объ[её]м|whole\s+batch|entire\s+batch',text,re.I):
+            add('sale_offer_scope','batch',text)
+            if state.value('sale_offer_amount') is not None and state.value('sale_offer_currency')=='KZT':
+                add('batch_sale_price_kzt',state.value('sale_offer_amount'),text,'KZT/batch')
         methane_fraction=re.search(r'(?:дол\w*\s+(?:CH\s*[₄4]|метан\w*|methane)|methane\s+fraction|CH\s*[₄4]\s+fraction)\s*(?:(?:[=:]|равна|равен|составляет|is)\s*)?('+NUMBER+r')\s*%|('+NUMBER+r')\s*%\s*(?:CH\s*[₄4]|метан\w*|methane)',text,re.I)
         if methane_fraction:
             raw=next(group for group in methane_fraction.groups() if group is not None)

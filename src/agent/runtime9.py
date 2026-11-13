@@ -104,6 +104,9 @@ def requirements(state,text,request_kinds=None):
     from src.agent.nlu import classify_request
     request_kinds=set(request_kinds or classify_request(text,state,state.intents,[]))
     intents=set(state.intents);needs=[]
+    from src.recommendations.retrieval import topics_for
+    qualitative=set(topics_for(text)) & {'co_digestion','ph','low_gas','loading'}
+    if qualitative:needs.append('search_scientific_sources')
     amount=state.value('quantity') is not None or state.value('mass_kg') is not None or bool(state.mixture_components or state.mixture_scenario_components)
     digestate_question=('digestate_management' in intents or state.value('market_commodity')=='digestate')
     if 'digestate_management' in intents:
@@ -250,7 +253,7 @@ def fallback_explanations(results,state,query=''):
     if source_search:
         claims=source_search.get('claims',[]) if source_search.get('status') in {'ok','partial'} else []
         if claims:
-            for claim in claims[:4]:
+            for claim in claims[:6]:
                 statement=(claim.get('text') or {}).get(state.language)
                 if isinstance(statement,str) and statement.strip():out.append(statement.strip())
         elif source_search.get('status') in {'ok','partial'}:
@@ -290,7 +293,7 @@ def fallback_heading(results,verification,selected,new_batch=False):
         return 'Объяснение по проверенным научным источникам:'
     science=results.get('assess_substrate_potential',{})
     if science.get('status')=='needs_input':return 'Для научной оценки не хватает исходных данных:'
-    if verification.get('status')=='not_applicable' and results.get('assess_process_evidence'):
+    if verification.get('status') in {'not_applicable','insufficient_evidence'}:
         return 'Качественный анализ по доступным данным:'
     return 'Численные результаты не прошли проверку; подробности доступны в диагностике.'
 
@@ -317,6 +320,9 @@ def run(agent,text,extraction,proposal,started):
     if farm:
         needs=required_tools(farm,state)
         diagnostics.append({'stage':'typed_consultation_tasks','inputs':farm.model_dump(mode='json'),'required_tools':needs})
+    # A qualitative topic remains researchable even without a scalable batch.
+    # Do not let an empty tool plan spend all calls on optional selection.
+    if not needs and 'process_guidance' in state.intents:needs=['search_scientific_sources','assess_process_evidence']
     request_kinds=set(getattr(extraction,'request_kinds',[]) or [])
     concept_route=('scientific_explanation' in request_kinds and not request_kinds.intersection(
         {'substrate_assessment','reactor_management','economic_comparison'}))
@@ -427,7 +433,7 @@ def run(agent,text,extraction,proposal,started):
     except (KeyError,TypeError,ValueError) as exc:verification={'status':'error','checks':[],'error_code':'INVALID_TOOL_RESULT_'+type(exc).__name__}
     evidence,notes=collect(results)
     response=None;rejections=[];quantity_audit=[];review_history=[];previous_draft=None;previous_issues=set()
-    if not deterministic_information_route and may_synthesize(verification,needs) and not [n for n in needs if n not in called] and time.perf_counter()<deadline:
+    if not deterministic_information_route and may_synthesize(verification,needs,results) and not [n for n in needs if n not in called] and time.perf_counter()<deadline:
         agent.emit_progress('responding')
         system=('Write a concise scientific answer in the user language as schema JSON. Finish every sentence, do not repeat the same information across fields, and leave unused fields empty. Use only quantities supported by selected typed evidence or literal user inputs, with matching units. No URLs, invented sources, guarantees or operational safety assertions in prose. '
                 'Select evidence_ids to display exact verified numbers; the server renders them unchanged. Do not merge incompatible scenarios. '

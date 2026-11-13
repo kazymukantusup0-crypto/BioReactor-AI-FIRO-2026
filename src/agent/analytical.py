@@ -24,6 +24,17 @@ def context(state):
     facts.update(process_assumptions)
     import copy
     decision=copy.deepcopy(state.decision_settings)
+    tariff=facts.get('electricity_tariff_kzt_per_kwh')
+    if tariff is not None:
+        source=input_provenance.get('electricity_tariff_kzt_per_kwh',{})
+        decision['electricity_tariff_kzt_per_kwh']={'low':tariff,'high':tariff,
+            'provenance':'HYPOTHETICAL_SCENARIO' if source.get('provenance')=='ASSUMED_FOR_SCENARIO' else 'USER_REPORTED',
+            'evidence':source.get('evidence') or 'Explicit user tariff; applicability not independently verified'}
+    if facts.get('batch_sale_price_kzt') is not None:
+        source=input_provenance.get('batch_sale_price_kzt',{})
+        decision['batch_sale_price_kzt']={'low':facts['batch_sale_price_kzt'],'high':facts['batch_sale_price_kzt'],
+            'provenance':'HYPOTHETICAL_SCENARIO' if source.get('provenance')=='ASSUMED_FOR_SCENARIO' else 'USER_REPORTED',
+            'evidence':source.get('evidence') or 'User batch offer, not confirmed transaction'}
     reactor=decision.setdefault('reactor',{})
     if facts.get('intended_use') in {'heat','electricity','chp','sell_gas'}:decision['gas_use']=facts['intended_use']
     if process_assumptions:reactor['provenance']='HYPOTHETICAL_SCENARIO'
@@ -58,12 +69,17 @@ def explicit_calculations(state):
     calculations=[]
 
     amount=numeric('sale_offer_amount');scope=read('sale_offer_scope');currency=read('sale_offer_currency')
+    batch_price=numeric('batch_sale_price_kzt')
+    if batch_price:
+        amount=batch_price
+        scope={'value':'batch','unit':None,'provenance':batch_price['provenance'],'evidence':batch_price['evidence']}
+        currency={'value':'KZT','unit':None,'provenance':batch_price['provenance'],'evidence':batch_price['evidence']}
     quantity=numeric('quantity');quantity_unit=read('unit')
     mass=numeric('mass_kg')
     sale_kind='sale_gross_value_kzt' if currency and currency['value']=='KZT' else 'sale_gross_value'
     if amount and scope and currency and scope['value']=='batch':
         calculations.append(result(sale_kind,'Валовая цена предложения за всю партию',amount['value'],currency['value'],
-            'quoted amount for the whole batch',{'sale_offer_amount':amount,'sale_offer_scope':scope,'sale_offer_currency':currency},
+            'quoted amount for the whole batch',{'sale_offer_amount':amount,'sale_offer_scope':scope,'sale_offer_currency':currency,**({'batch_sale_price_kzt':batch_price} if batch_price else {})},
             'Валовая цена до расходов; это не прибыль.'))
     elif amount and scope and currency and quantity and quantity_unit:
         units={'kg':1.0,'g':.001,'t':1000.0}

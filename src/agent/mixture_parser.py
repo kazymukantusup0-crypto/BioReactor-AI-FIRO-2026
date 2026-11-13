@@ -49,6 +49,7 @@ def explicit_components(text):
         next_start=values[index+1]['start'] if index+1<len(values) else len(text)
         after=text[a['end']:min(next_start,a['end']+110)]
         before=text[(values[index-1]['end'] if index else 0):a['start']]
+        if re.match(r'\s*(?:CH[₄4]|methane|метан)\s*(?:/|per)\s*(?:g|г)\s*VS',after,re.I):continue
         if re.match(r'\s*[-–]?\s*(?:reactor|digester|реактор)',after,re.I):continue
         if re.match(r'\s*/',after):continue  # density/concentration units are not inventory amounts
         if re.search(r'(?:рабоч\w*\s+объ[её]м|working\s+volume|газов\w*\s+пространств\w*|headspace|остаток\s+жидкости)\s*[:=]?\s*$',before,re.I):continue

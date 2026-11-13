@@ -1,5 +1,9 @@
 # BioReactor AI — AI Agent Final Readiness
 
+## Latest independent universality baseline — 2026-11-13
+
+**NOT READY.** Actual Chrome → async FastAPI Chat → real Qwen3 4B: food120L/reactor250L PARTIAL (four actual calls, accepted model answer without fallback, but acidification guidance missing); cattle+food mixture FAIL (two actual calls, no synthesis, mass-only Python fallback). Next economics admission6651.3<6656MiB blocked; real diagnosis/memory NOT RUN. Both model runs unloaded correctly; maxima67/69C, VRAM3848/3881MiB, minima freeRAM5368.3/5783.3MiB. All resource guards unchanged. No application/source/model tailoring:100 frozen files identical. Same UI tested separately in explicit no_llm for all five cases, finding price-role binding24KZT/kWh→batch instead of900KZT, incorrect current-temperature35→25 binding, and incomplete/error-only delivery. These are not five real-model results. Full answers, traces, scientific review, exact commands, limitations and remaining steps: [universality_baseline_20261113.md](universality_baseline_20261113.md). No general acceptance/holdout success claimed.
+
 ## Latest third-turn completion — 2026-11-12
 
 Same-session real-Qwen three-turn technical check completed: only third question newly executed, first two retained. New Chrome/FastAPI/Ollama job4real calls/4tools, qwen_verified without fallback; context25°C hypothetical/78L/200L preserved; comparison/reload/persistence pass.9.361s, maxGPU59°C/VRAM4156MiB, minfreeRAM5564.2, unload0.219s, models empty. All mandatory guards unchanged. Optional baseline+2 reproducibility criterion remains available by flag, not conflated with hardware safety. Full answer and independent review: [third_turn_completion_20261112.md](third_turn_completion_20261112.md). Science is conditional; unknown costs/heat inputs and generic Qwen prose limit usefulness. Overall FIRO NOT READY; broader independent acceptance/holdout still absent.

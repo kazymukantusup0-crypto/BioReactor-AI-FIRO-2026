@@ -41,10 +41,13 @@ def analyze(store,request,result):
     sale_revenue=gross(result.get('wet_mass_kg'),'feedstock')
     sale_net=subtract(sale_revenue,sale_cost['complete_total']) if sale_revenue and sale_cost['complete_total'] is not None and prices['feedstock']['status']=='confirmed' else None
     reference=result.get('catalog_reference_value_kzt')
-    comparator=sale_net or reference or sale_revenue
-    comparator_basis='CONFIRMED_BUYER_NET' if sale_net else 'REFERENCE_ASKING_VALUE_WITH_UNKNOWN_TRANSACTION_COSTS' if comparator else 'UNAVAILABLE'
+    batch_offer=bounds(s.batch_sale_price_kzt) if s.batch_sale_price_kzt is not None else None
+    if batch_offer is not None:sale_net=None
+    # A literal whole-batch quote must not be replaced by a per-mass market reference.
+    comparator=batch_offer if batch_offer is not None else sale_net or reference or sale_revenue
+    comparator_basis='USER_BATCH_OFFER_GROSS_WITH_UNKNOWN_TRANSACTION_COSTS' if batch_offer is not None else 'CONFIRMED_BUYER_NET' if sale_net else 'REFERENCE_ASKING_VALUE_WITH_UNKNOWN_TRANSACTION_COSTS' if comparator else 'UNAVAILABLE'
     rows=[{'id':'A_sell_feedstock','status':'ok' if sale_net else 'reference_only' if comparator else 'needs_input',
-           'reference_asking_value_kzt':reference,'confirmed_buyer_gross_offer_kzt':sale_revenue if prices['feedstock']['status']=='confirmed' else None,
+           'reference_asking_value_kzt':reference,'user_batch_gross_offer_kzt':batch_offer,'confirmed_buyer_gross_offer_kzt':sale_revenue if batch_offer is None and prices['feedstock']['status']=='confirmed' else None,
            'transaction_costs':sale_cost,'net_result_kzt':sale_net,'evidence_confirmed':sale_net is not None,
            'missing':sale_cost['missing']+([] if prices['feedstock']['status']=='confirmed' else ['confirmed_comparable_buyer_offer'])}]
     outputs=energy['outputs'];balanced=reactor['status']=='ok' and reactor['scope_valid_for_batch'] and mass_scope_consistent and s.reactor.operating_mode!='continuous' and reactor['electricity_input_kwh'] is not None

@@ -85,11 +85,13 @@ def import_document(path):
 
 
 def topics_for(text):
-    patterns={'oxygen':r'кислород|oxygen|оттегі','temperature':r'температур|temperature|градус|degree','ph':r'\bph\b|кислот|қышқыл',
+    patterns={'oxygen':r'кислород|oxygen|оттегі','temperature':r'температур|temperature|градус|degree','ph':r'\bph\b|кислот|закис|буфер|щ[её]лоч|acidif|buffer|alkalin|қышқыл',
         'retention':r'удерж|hrt|retention|ұстау','loading':r'нагруз|загруз|loading|жүктеме','bmp':r'\bbmp\b|бмп|метан|methane',
         'solids':r'\bts\b|\bvs\b|total\s+solids|volatile\s+solids|сух\w*\s+(?:веществ\w*|остат\w*)|летуч\w*\s+(?:веществ\w*|тверд\w*)',
         'capacity':r'working\s+volume|nominal\s+(?:vessel|reactor)\s+volume|(?:reactor|vessel)\s+volume|headspace|freeboard|reactor\s+capacity|рабоч\w*\s+объ[её]м|номинальн\w*\s+объ[её]м|вместимост\w*\s+реактор|объ[её]м\w*.{0,30}реактор|реактор\w*.{0,30}объ[её]м',
-        'low_gas':r'сниз|мало\s+газ|low\s+gas|decreas|газ.*аз','process':r'процесс|режим|process|сбраж|ашыту'}
+        'low_gas':r'сниз|мало\s+газ|low\s+gas|decreas|газ.*аз',
+        'co_digestion':r'совместн\w*\s+сбраж|смеша\w*|смес\w*|co.?digest|mix(?:ing|ture)?\b|бірлес|араласт',
+        'process':r'процесс|режим|process|сбраж|ашыту'}
     return [topic for topic,pattern in patterns.items() if re.search(pattern,text,re.I)]
 
 

@@ -1,0 +1,24 @@
+{
+  "version": "process-consultation-2026-11-13",
+  "sources": [
+    {"id":"baek2020_qualitative","title":"Baek, Kim, Kim, Kim and Lee — Treatment of Cattle Manure by Anaerobic Co-Digestion with Food Waste and Pig Manure: Methane Yield and Synergistic Effect","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC7370025/","year":2020,"doi":"10.3390/ijerph17134737","locator":"Introduction and Discussion; sample-specific batch mixtures, including bedded cattle manure","reviewed_by":"Primary-source review for qualitative scope","verified_on":"2026-11-13","provenance":"SOURCE_VERIFIED"},
+    {"id":"agstar2020_process_review","title":"US EPA AgSTAR — Anaerobic Digester/Biogas System Operator Guidebook","url":"https://www.epa.gov/sites/default/files/2020-11/documents/agstar-operator-guidebook.pdf","year":2020,"locator":"Sections 4.1–4.5, process monitoring, alkalinity and instability; Section 5, measurement","reviewed_by":"Primary guide reviewed for qualitative process constraints","verified_on":"2026-11-13","provenance":"SOURCE_VERIFIED"}
+  ],
+  "claims": [
+    {"id":"codigestion_benefits_limits","source_id":"baek2020_qualitative","topics":["co_digestion"],"materials":["general"],"category":"qualitative","process_type":"anaerobic digestion","values":[],"scope":"Possible mechanisms, not a universal synergy, recipe or quantitative forecast; compatibility of each component and mixture must be checked.","text":{
+      "ru":"Совместное сбраживание может улучшить питательный баланс, буферную способность и разбавить ингибиторы. Эффект зависит от состава: возможны закисление и антагонизм. Универсального соотношения компонентов нет; для расчёта нужны количества, состояние, TS/VS и совместимые данные BMP каждого компонента. Аддитивный потенциал не доказывает синергию смеси.",
+      "en":"Co-digestion may improve nutrient balance, buffering and inhibitor dilution. Composition can also cause acidification or antagonism. There is no universal mixing ratio: quantify component amounts, form, TS/VS and compatible BMP. Additive potential does not establish mixture synergy.",
+      "kk":"Бірлесіп ашыту қоректік теңгерімді, буферлікті және ингибиторлардың сұйылуын жақсартуы мүмкін. Құрамға байланысты қышқылдану мен антагонизм де мүмкін. Әмбебап арақатынас жоқ; компонент мөлшері, күйі, TS/VS және сәйкес BMP қажет. Қосынды әлеует синергияны дәлелдемейді."
+    }},
+    {"id":"organic_loading_buffering_risk","source_id":"agstar2020_process_review","topics":["ph","loading","stability","co_digestion"],"materials":["general"],"category":"qualitative","process_type":"anaerobic digestion","values":[],"scope":"General process-risk mechanism; no universal safe loading, pH target, additive dose or operating authorization.","text":{
+      "ru":"Быстрое поступление доступной органики может перегрузить процесс: кислоты накапливаются, буферная способность снижается, метаногенез становится нестабильным. Проверяйте органическую нагрузку, pH, летучие жирные кислоты и щёлочность; одного pH недостаточно для раннего выявления нарушения. Допустимая загрузка зависит от установки и адаптации биомассы.",
+      "en":"Rapid organic loading can accumulate acids, deplete buffering and destabilize methanogenesis. Monitor organic loading, pH, volatile fatty acids and alkalinity; pH alone may lag instability. Acceptable loading depends on the plant and biomass adaptation.",
+      "kk":"Органиканың жылдам жүктелуі қышқылдарды жинап, буферлікті төмендетіп, метаногенезді тұрақсыздандыруы мүмкін. Органикалық жүктемені, pH, ұшпа май қышқылдарын және сілтілікті бақылаңыз. pH өзгерісі кешігуі мүмкін. Рұқсатты жүктеме қондырғы мен биомассаның бейімделуіне тәуелді."
+    }},
+    {"id":"low_gas_measurement_sequence","source_id":"agstar2020_process_review","topics":["low_gas"],"materials":["general"],"category":"qualitative","process_type":"anaerobic digestion","values":[],"scope":"Non-invasive diagnostic suggestions, not a confirmed cause or an instruction to open gas equipment or change control setpoints.","text":{
+      "ru":"При снижении газа сначала проверьте измерение температуры и журнал нагрева, затем изменения сырья и нагрузки, pH, кислоты и щёлочность. Показания газомера и состав газа сопоставьте с журналом; возможны биологические и технические причины. Без измерений причина не установлена; обслуживание газовой системы выполняют по инструкции установки.",
+      "en":"For declining gas, check temperature readings and heating records, then feed/loading changes, pH, acids and alkalinity. Compare gas-meter and composition records. Biological and equipment causes remain possible; follow the plant maintenance manual.",
+      "kk":"Газ азайса, температура өлшемі мен қыздыру журналын, кейін шикізат пен жүктеме өзгерісін, pH, қышқылдар мен сілтілікті тексеріңіз. Газ өлшегіші мен құрам жазбаларын салыстырыңыз. Себеп өлшемсіз анықталмайды; қондырғының қызмет көрсету нұсқаулығын ұстаныңыз."
+    }}
+  ]
+}

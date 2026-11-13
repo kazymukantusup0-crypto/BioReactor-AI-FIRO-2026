@@ -140,6 +140,12 @@ def _verify_results(results):
         'electricity_kwh':lambda x:x['inputs']['reported_methane_volume_m3']['value']*x['inputs']['heating_value_kwh_m3']['value']*x['inputs']['electricity_efficiency']['value'],
     }
     for row in explicit.get('calculations',[]):
+        if row.get('kind') in {'sale_gross_value','sale_gross_value_kzt'}:
+            inputs=row.get('inputs',{});amount=inputs.get('sale_offer_amount',{});scope=inputs.get('sale_offer_scope',{}).get('value');currency=inputs.get('sale_offer_currency',{}).get('value')
+            valid_unit=amount.get('unit') in {None,f'{currency}/{scope}'}
+            batch=inputs.get('batch_sale_price_kzt')
+            if batch:valid_unit=valid_unit and batch.get('unit')=='KZT/batch' and batch.get('value')==amount.get('value')
+            record('sale_input_role_and_unit',valid_unit,calculation_id=row.get('id'))
         try:
             expected=explicit_formulas[row['kind']](row);observed=row['value']
             passed=(isinstance(expected,(int,float)) and isinstance(observed,(int,float))
@@ -177,8 +183,13 @@ def _verify_results(results):
             'scope':'Arithmetic, source identity, material/form, energy allocation and cost completeness; not biological validation, interval coverage or operating safety.'}
 
 
-def may_synthesize(verification,required_tools):
+def may_synthesize(verification,required_tools,results=None):
     if verification.get('status')=='ok':return verification.get('checked') is True and verification.get('all_checks_passed') is True
+    if verification.get('status')=='insufficient_evidence' and results:
+        search=results.get('search_scientific_sources',{})
+        ids={s.get('id') for s in search.get('sources',[])}
+        # Missing batch inputs prohibit forecasts, not source-bound qualitative explanation.
+        return bool(search.get('claims')) and all(c.get('source_id') in ids for c in search['claims']) and not any(not c.get('passed') for c in verification.get('checks',[]))
     return verification.get('status')=='not_applicable' and not set(required_tools)&{'assess_substrate_potential','evaluate_partial_economics'}
 
 
@@ -274,8 +285,23 @@ def verify_scientific_answer(text,results,query):
     estimate=results.get('assess_substrate_potential',{}).get('estimation_mode')
     scoped_calculation=bool(results.get('assess_substrate_potential',{}).get('scenarios'))
     process=results.get('assess_process_evidence',{}).get('temperature_consultation',{})
-    applicable=bool(estimate or scoped_calculation or process or re.search(r'\bbmp\b|бмп|кислород|oxygen|оттегі|метаноген',query,re.I))
+    applicable=bool(claims or estimate or scoped_calculation or process or re.search(r'\bbmp\b|бмп|кислород|oxygen|оттегі|метаноген',query,re.I))
     if not applicable:return {'status':'not_applicable','checked':False,'checks':[],'all_checks_passed':False}
+    if claims:
+        ids={s.get('id') for s in search.get('sources',[])}
+        record('qualitative_claims_have_sources',all(c.get('source_id') in ids for c in claims))
+        from src.recommendations.retrieval import topics_for
+        requested=set(topics_for(query))
+        # Bounded completeness checks complement contradiction rules. They do not
+        # certify scientific truth merely because a keyword is present.
+        coverage={
+            'ph':(r'кислот|закис|acid|қышқыл',r'буфер|щ[её]лоч|buffer|alkalin|сілті'),
+            'co_digestion':(r'состав|компонент|composition|component|құрам',r'завис|может|depends|may|мүмкін|тәуел'),
+            'low_gas':(r'измер|проверь|measurement|check|өлшем|тексер',r'температур|temperature'),
+        }
+        for topic,patterns in coverage.items():
+            if topic in requested:
+                record('qualitative_coverage_'+topic,all(re.search(p,text,re.I) for p in patterns))
     if estimate:
         from src.advisor.estimation import time_claim_issues
         record('no_unverified_timed_methane_amount',not time_claim_issues(text,results['assess_substrate_potential']))

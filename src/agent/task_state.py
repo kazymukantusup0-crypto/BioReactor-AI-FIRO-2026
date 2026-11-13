@@ -29,7 +29,7 @@ def prepare(text, state, extraction):
     values = amounts(text)
     # Two unlabelled corrections follow the two previously established roles.
     # Without that unique context, ask about intent rather than alleging conflict.
-    unlabelled = extraction.correction and len(values) == 2 and not re.search(r'реактор|reactor|навоз|manure|отход|waste', text, re.I)
+    unlabelled = extraction.correction and len(values) == 2 and not re.search(r'реактор|reactor|навоз|manure|отход|waste|масса|mass', text, re.I)
     if unlabelled:
         single = state.advisor_inventory_mode != 'mixture' and len(state.mixture_components) <= 1
         if single and state.value('unit') in {'L', 'm3'} and state.value('reactor_total_volume_l') is not None and all(v['unit'] in {'L', 'm3'} for v in values):

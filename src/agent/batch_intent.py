@@ -12,6 +12,9 @@ def starts_new_batch(text):
         prefix = text[max(0, marker.start() - 48):marker.start()]
         if ANAPHORA.search(prefix):
             continue
+        # Correcting the price of the revised batch is not an inventory reset.
+        if re.search(r'цен\w*\s+$|price\s+(?:of\s+)?(?:the\s+)?$',prefix,re.I):
+            continue
         return True
     return False
 

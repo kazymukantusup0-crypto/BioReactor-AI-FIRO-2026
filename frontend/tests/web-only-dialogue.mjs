@@ -2,6 +2,7 @@ import {chromium} from 'playwright-core'
 import fs from 'node:fs/promises'
 import assert from 'node:assert/strict'
 import {execFileSync} from 'node:child_process'
+import os from 'node:os'
 const base='http://127.0.0.1:8770',out=process.env.BIOREACTOR_DIALOGUE_OUT??'../reports/three_turn_qwen_retest_20261112'
 await fs.mkdir(out,{recursive:true})
 const questions=JSON.parse(await fs.readFile('../reports/web_only_consultant_20261112/questions.json','utf8'))
@@ -28,6 +29,12 @@ try{
  }
  await page.goto(base+'/dashboard/#/chat')
  if(suitePath){
+  if(process.argv.includes('--preflight-in-backend')){
+   const capability=await(await page.request.get(base+'/api/dashboard/status')).json()
+   assert.equal(capability.experimental_chat?.enabled,true,'Guarded backend required')
+   assert.equal(capability.experimental_chat?.model,'qwen3:4b-q4_K_M')
+   record.admission_location='mandatory existing guarded backend; no duplicate Python sampler'
+  }
   const suite=JSON.parse(await fs.readFile(suitePath,'utf8'));record.suite_origin=suite.origin;record.cases=[]
   const sessions=new Map();let stopped=false
   const save=()=>fs.writeFile(out+'/browser.json',JSON.stringify(record,null,2))
@@ -37,9 +44,26 @@ try{
     const sid=sessions.get(test.continue_case);assert.ok(sid,'Missing source conversation')
     await page.evaluate(id=>localStorage.setItem('bioreactor_chat_session_v4',id),sid);await page.reload()
    }else{await page.getByRole('button',{name:'Новый диалог',exact:true}).click()}
+   if(process.argv.includes('--no-llm'))await page.getByLabel('Режим агента').selectOption('no_llm')
    for(const question of test.questions){
-    const pre=sample();entry.preflight=pre;await save()
-    if(pre.issues.length){entry.status='BLOCKED';stopped=true;break}
+    if(!process.argv.includes('--no-llm')&&process.argv.includes('--preflight-in-backend')){
+     // Let browser startup allocations settle without launching another sampler.
+     // This bounded readiness wait supplements, never replaces, backend admission.
+     const deadline=Date.now()+30000;entry.browser_ram_readiness=[]
+     let freeRam
+     do{
+      freeRam=os.freemem()/1048576
+      entry.browser_ram_readiness.push({timestamp:new Date().toISOString(),free_ram_mib:Math.round(freeRam*10)/10})
+      if(freeRam>=6656)break
+      await page.waitForTimeout(1000)
+     }while(Date.now()<deadline)
+     await save()
+     if(freeRam<6656){entry.status='BLOCKED';entry.block_reason='browser_ready_ram_below_6656_after_30s';stopped=true;break}
+    }
+    if(!process.argv.includes('--no-llm')&&!process.argv.includes('--preflight-in-backend')){
+     const pre=sample();entry.preflight=pre;await save()
+     if(pre.issues.length){entry.status='BLOCKED';stopped=true;break}
+    }
     await page.getByTestId('chat-input').fill(question)
     const accepted=page.waitForResponse(r=>r.request().method()==='POST'&&/\/sessions\/[^/]+\/jobs$/.test(new URL(r.url()).pathname))
     await page.getByTestId('send-chat').click();const job=await(await accepted).json();sessions.set(test.id,job.conversation_id)
@@ -52,6 +76,7 @@ try{
      turn.transport='FAILED';turn.events=await(await page.request.get(base+'/api/dashboard/jobs/'+job.id+'/events')).json();stopped=true;break
     }
     const generated=Boolean(guard?.provider_calls.some(c=>c.model==='qwen3:4b-q4_K_M'&&c.metrics?.some(m=>m.generation_received)))
+    if(process.argv.includes('--preflight-in-backend'))assert.equal(guard?.limits?.admission_ram_mib,6656,'Mandatory admission must remain active')
     turn.real_generation=generated;turn.model_answer_accepted=generated&&reply.technical_metadata.final_author?.startsWith('qwen_')
     turn.model_status=turn.model_answer_accepted?'ACCEPTED_PENDING_INDEPENDENT_REVIEW':generated?'REJECTED_OR_FALLBACK':'NO_MODEL_GENERATION'
     const snapshot=await(await page.request.get(base+'/api/dashboard/chat/sessions/'+job.conversation_id)).json()

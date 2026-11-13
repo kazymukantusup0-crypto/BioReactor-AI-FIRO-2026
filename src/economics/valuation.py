@@ -8,6 +8,12 @@ from src.economics.gas_composition import compatible
 def resolve(store,request,settings,role,gas_basis=None):
     expected={'feedstock':(request.material,'KZT/kg'),'electricity':('electricity','KZT/kWh'),'heat':('useful_heat','KZT/kWh'),'gas_sale':('raw_biogas','KZT/m3'),'digestate':('digestate','KZT/kg')}
     commodity,unit=expected[role]
+    if role=='electricity' and settings.electricity_tariff_kzt_per_kwh is not None:
+        scenario=settings.electricity_tariff_kzt_per_kwh
+        if scenario.low==scenario.high:
+            return {'status':'scenario','value':scenario.low,'unit':unit,'commodity':commodity,'region':None,
+                'published_at':None,'source':scenario.evidence,'provenance':scenario.provenance,
+                'reasons':['Explicit user scenario; billing contract, region and taxes not independently confirmed']}
     q=settings.quotes.get(role)
     if q:
         reasons=[]
