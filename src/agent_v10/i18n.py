@@ -1,0 +1,164 @@
+"""Short phrases in Russian, Kazakh and English used by tools and templates.
+
+Usage:  t("assume_state", "ru", substrate="навоз КРС", state="жидкий")
+"""
+from __future__ import annotations
+
+TEXT: dict[str, dict[str, str]] = {
+    # --- assumptions -------------------------------------------------------
+    "assume_state": {
+        "ru": "принял, что {substrate} — {state}",
+        "en": "assumed that {substrate} is {state}",
+        "kk": "{substrate} — {state} деп алдым",
+    },
+    "assume_density": {
+        "ru": "плотность {substrate} {value} кг/л ({label})",
+        "en": "density of {substrate} {value} kg/L ({label})",
+        "kk": "{substrate} тығыздығы {value} кг/л ({label})",
+    },
+    "assume_composition": {
+        "ru": "органическое вещество и метановый потенциал {substrate} — по {label}",
+        "en": "organic matter and methane potential of {substrate} — from {label}",
+        "kk": "{substrate} органикалық заты мен метан әлеуеті — {label} бойынша",
+    },
+    "assume_bmp": {
+        "ru": "TS и VS — ваши данные, метановый потенциал {substrate} — по {label}",
+        "en": "TS and VS are your data, methane potential of {substrate} — from {label}",
+        "kk": "TS және VS — сіздің деректеріңіз, {substrate} метан әлеуеті — {label} бойынша",
+    },
+    "assume_regime_share": {
+        "ru": "в реакторе за {days_low}–{days_high} дней ({regime}) выходит {share_low}–{share_high}% лабораторного потенциала (допущение модели)",
+        "en": "in {days_low}–{days_high} days ({regime}) the reactor reaches {share_low}–{share_high}% of the laboratory potential (model assumption)",
+        "kk": "{days_low}–{days_high} күнде ({regime}) реактор зертханалық әлеуеттің {share_low}–{share_high}% береді (модель жорамалы)",
+    },
+    "assume_ch4_share": {
+        "ru": "доля метана в биогазе {low}–{high}% (литература)",
+        "en": "methane share in biogas {low}–{high}% (literature)",
+        "kk": "биогаздағы метан үлесі {low}–{high}% (әдебиет)",
+    },
+    "assume_default_batch": {
+        "ru": "сырьё не указано — посчитал для типовой партии: {litres} л жидкого навоза КРС",
+        "en": "feedstock not given — calculated for a typical batch: {litres} L of cattle slurry",
+        "kk": "шикізат көрсетілмеген — әдеттегі партия үшін есептедім: {litres} л сұйық сиыр көңі",
+    },
+    "assume_bucket": {
+        "ru": "1 ведро = 10 л",
+        "en": "1 bucket = 10 L",
+        "kk": "1 шелек = 10 л",
+    },
+    "assume_reactor_volume": {
+        "ru": "объём реактора {volume} л (сырьё занимает ~80% объёма)",
+        "en": "reactor volume {volume} L (feed fills ~80% of it)",
+        "kk": "реактор көлемі {volume} л (шикізат көлемнің ~80% алады)",
+    },
+    "assume_insulation": {
+        "ru": "утепление «{level}» (не было указано)",
+        "en": "insulation \"{level}\" (not specified)",
+        "kk": "жылыту деңгейі «{level}» (көрсетілмеген)",
+    },
+    "assume_ambient": {
+        "ru": "температура снаружи {value} °C (не была указана)",
+        "en": "outside temperature {value} °C (not specified)",
+        "kk": "сырттағы температура {value} °C (көрсетілмеген)",
+    },
+    "assume_feed_temperature": {
+        "ru": "сырьё загружают при {value} °C",
+        "en": "feed is loaded at {value} °C",
+        "kk": "шикізат {value} °C кезінде жүктеледі",
+    },
+    "assume_geometry": {
+        "ru": "реактор — цилиндр высотой с диаметр: Ø {diameter} м, поверхность {area} м²",
+        "en": "reactor is a cylinder with height = diameter: Ø {diameter} m, surface {area} m²",
+        "kk": "реактор — биіктігі диаметрге тең цилиндр: Ø {diameter} м, беті {area} м²",
+    },
+    "assume_u_value": {
+        "ru": "теплопотери через стенку U = {low}–{high} Вт/(м²·К) для утепления «{level}»",
+        "en": "wall heat loss U = {low}–{high} W/(m²·K) for insulation \"{level}\"",
+        "kk": "«{level}» жылыту үшін қабырға арқылы жылу шығыны U = {low}–{high} Вт/(м²·К)",
+    },
+    "assume_mixing": {
+        "ru": "перемешивание {power} Вт по {hours} ч в сутки",
+        "en": "mixing {power} W for {hours} h per day",
+        "kk": "араластыру {power} Вт, тәулігіне {hours} сағ",
+    },
+    "assume_days": {
+        "ru": "срок сбраживания {days} дней",
+        "en": "digestion time {days} days",
+        "kk": "ашыту мерзімі {days} күн",
+    },
+    "assume_boiler": {
+        "ru": "газ сжигают в котле с КПД 85–90%",
+        "en": "gas is burned in a boiler with 85–90% efficiency",
+        "kk": "газ ПӘК 85–90% қазандықта жағылады",
+    },
+    "assume_generator": {
+        "ru": "генератор на биогазе: КПД по электричеству 20–30%; когенерация: 25% электричество + 45% тепло",
+        "en": "biogas generator: 20–30% electrical efficiency; CHP: 25% electricity + 45% heat",
+        "kk": "биогаз генераторы: электр ПӘК 20–30%; когенерация: 25% электр + 45% жылу",
+    },
+    "price_used": {
+        "ru": "цена {what}: {price} ₸ ({date}, {kind})",
+        "en": "{what} price: {price} KZT ({date}, {kind})",
+        "kk": "{what} бағасы: {price} ₸ ({date}, {kind})",
+    },
+    "word_gas": {"ru": "газа", "en": "gas", "kk": "газ"},
+    "word_electricity": {"ru": "электроэнергии", "en": "electricity", "kk": "электр"},
+    "price_missing": {
+        "ru": "сохранённых цен нет — экономия в тенге не посчитана",
+        "en": "no saved prices — savings in tenge were not calculated",
+        "kk": "сақталған бағалар жоқ — теңгедегі үнем есептелмеді",
+    },
+    # --- labels ------------------------------------------------------------
+    "label_measured": {"ru": "ваши данные", "en": "your data", "kk": "сіздің деректеріңіз"},
+    "label_literature": {"ru": "литературе", "en": "literature", "kk": "әдебиет"},
+    "label_assumption": {"ru": "справочным допущениям", "en": "handbook assumptions", "kk": "анықтамалық жорамалдар"},
+    "badge_measured": {"ru": "измерено", "en": "measured", "kk": "өлшенген"},
+    "badge_literature": {"ru": "оценка по литературе", "en": "literature estimate", "kk": "әдебиет бойынша бағалау"},
+    "badge_assumption": {"ru": "допущение", "en": "assumption", "kk": "жорамал"},
+    "insulation_none": {"ru": "без утепления", "en": "no insulation", "kk": "жылытусыз"},
+    "insulation_basic": {"ru": "базовое (3–5 см)", "en": "basic (3–5 cm)", "kk": "негізгі (3–5 см)"},
+    "insulation_good": {"ru": "хорошее (10–15 см)", "en": "good (10–15 cm)", "kk": "жақсы (10–15 см)"},
+    # --- one clarifying question --------------------------------------------
+    "ask_state": {
+        "ru": "Навоз жидкий или твёрдый/с подстилкой? Если другой — скажите, пересчитаю.",
+        "en": "Is the manure liquid or solid/with bedding? If different, tell me and I will recalculate.",
+        "kk": "Көң сұйық па, әлде қатты/төсенішті ме? Басқаша болса, айтыңыз — қайта есептеймін.",
+    },
+    "ask_mass": {
+        "ru": "Если знаете точную массу или плотность партии — скажите, пересчитаю точнее.",
+        "en": "If you know the exact mass or density of the batch, tell me and I will refine it.",
+        "kk": "Партияның нақты массасын немесе тығыздығын білсеңіз, айтыңыз — дәлірек есептеймін.",
+    },
+    "ask_reactor": {
+        "ru": "Какой объём у реактора и утеплён ли он? Тогда посчитаю затраты на подогрев точнее.",
+        "en": "What is the reactor volume and is it insulated? Then I can refine the heating cost.",
+        "kk": "Реактор көлемі қандай және ол жылытылған ба? Сонда қыздыру шығынын дәлірек есептеймін.",
+    },
+    "ask_ambient": {
+        "ru": "Какая температура на улице? От неё сильно зависят затраты на подогрев.",
+        "en": "What is the outside temperature? The heating cost depends strongly on it.",
+        "kk": "Сыртта температура қандай? Қыздыру шығыны соған қатты байланысты.",
+    },
+    "ask_substrate": {
+        "ru": "Какое сырьё и сколько его (литры или кг)? Например: «200 л жидкого навоза КРС».",
+        "en": "What feedstock and how much (litres or kg)? For example: \"200 L of cattle slurry\".",
+        "kk": "Қандай шикізат және қанша (литр не кг)? Мысалы: «200 л сұйық сиыр көңі».",
+    },
+    "ask_amount": {
+        "ru": "Сколько у вас {substrate} — в литрах, вёдрах или килограммах?",
+        "en": "How much {substrate} do you have — in litres, buckets or kilograms?",
+        "kk": "{substrate} қанша — литрмен, шелекпен немесе килограммен?",
+    },
+}
+
+
+def t(key: str, language: str, **values) -> str:
+    """Return a phrase in the requested language (Russian if unknown)."""
+    row = TEXT[key]
+    template = row.get(language) or row["ru"]
+    return template.format(**values)
+
+
+def badge(label: str, language: str) -> str:
+    """'literature' -> 'оценка по литературе'."""
+    return t(f"badge_{label}", language)
