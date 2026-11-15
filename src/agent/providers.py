@@ -362,6 +362,8 @@ class JSONProvider:
         self.model=model or (os.getenv('OLLAMA_MODEL') or configuration.get('model','qwen2.5:1.5b') if kind=='offline' else os.getenv('BIOREACTOR_LLM_MODEL'))
         self.num_ctx=int(os.getenv('BIOREACTOR_LLM_CONTEXT',configuration.get('num_ctx',4096)))
         if not 512<=self.num_ctx<=16384:raise ValueError('Context must be in 512..16384')
+        # How long Ollama keeps the model in VRAM after a request (e.g. "30m").
+        self.keep_alive=configuration.get('keep_alive')
         self.url=url or ('http://127.0.0.1:11434/api/chat' if kind=='offline' else os.getenv('BIOREACTOR_LLM_URL','https://api.openai.com/v1/chat/completions'))
         self.key=key if key is not None else (None if kind=='offline' else os.getenv('BIOREACTOR_LLM_KEY') or os.getenv('OPENAI_API_KEY'))
         try:self.timeout=float(os.getenv('BIOREACTOR_LLM_REQUEST_TIMEOUT',str(timeout)))
@@ -391,6 +393,8 @@ class JSONProvider:
                 if not 0<=layers<=1000:raise ValueError('GPU layer count must be in 0..1000')
                 payload['options'].update(num_gpu=layers,num_batch=64,num_thread=6)
             if self.model.startswith('qwen3'):payload['think']=False
+            if getattr(self,'keep_alive',None) is not None:
+                payload['keep_alive']=self.keep_alive
         else:payload.update(response_format={'type':'json_object'})
         return payload
 
