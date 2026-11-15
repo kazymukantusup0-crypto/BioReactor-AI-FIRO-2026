@@ -1,7 +1,28 @@
+# BioReactor AI runtime dependencies (Python 3.13, Windows).
+# Only packages that the code actually imports. Install into the project venv:
+#   py -3.13 -m venv .venv
+#   .venv\Scripts\python -m pip install -r requirements.txt
+
+# Web server for the dashboard and the agent API
+fastapi==0.141.1
+uvicorn==0.52.4
+pydantic==2.13.5
+
+# Science core: data, ML models (models/*.joblib), figures
 numpy==2.5.2
 pandas==2.3.3
 scikit-learn==1.9.0
+threadpoolctl==3.6.0
 catboost==1.2.10
 joblib==1.6.0
 matplotlib==3.11.1
-graphviz==0.21
+
+# Knowledge base import (PDF / Excel sources)
+pypdf==6.21.4
+openpyxl==3.1.5
+
+# Market prices: OS certificate store for HTTPS
+truststore==0.10.4
+
+# Process / port checks used by the demo runtime
+psutil==7.2.2
