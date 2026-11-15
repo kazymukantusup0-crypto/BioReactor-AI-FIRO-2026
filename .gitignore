@@ -53,6 +53,9 @@ data/runtime/*
 # Large ML artifacts
 *.pkl
 *.joblib
+# Our two trained BMP models are small (~92 KB) and needed for the demo
+!models/bmp.joblib
+!models/stage1_5/bmp.joblib
 *.onnx
 *.pt
 *.pth
