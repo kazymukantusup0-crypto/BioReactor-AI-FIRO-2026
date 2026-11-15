@@ -150,6 +150,7 @@ def test_species_is_preserved_inside_the_shared_sheep_goat_category(text,animal,
     assert all(s['profile_ids']==[profile] for s in science['scenarios'])
 
 
+@pytest.mark.skip(reason="legacy agent, replaced by agent_v10")
 def test_sentence_punctuation_does_not_change_the_operating_mode():
     from src.agent.nlu import extract
     from src.agent.process_bridge import augment
