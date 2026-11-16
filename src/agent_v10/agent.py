@@ -52,7 +52,8 @@ INTENTS = [
 # Questions answered by a FIXED set of tools. Python runs them first and the LLM only explains:
 # in the manual check the model answered "5 коров, сколько газа в день?" and "хватит на плиту?"
 # with estimate_methane for the old 200 L batch, again and again (bug A).
-STOVE_WORDS = r"плит\w*|конфорк\w*|готовк\w*|готовить|приготов\w*|\bstove\w*|\bburner\w*|\bcook\w*|ас\s+пісір\w*|пеш\w*"
+# Word starts only: "утеПЛИТь" (insulate) is not a stove.
+STOVE_WORDS = r"\bплит\w*|\bконфорк\w*|\bготовк\w*|\bготовить|\bприготов\w*|\bstove\w*|\bburner\w*|\bcook\w*|ас\s+пісір\w*|\bпеш\w*"
 DAILY_WORDS = (r"в\s+день|в\s+сутки|за\s+сутки|в\s+сут\w*|ежедневн\w*|суточн\w*|каждый\s+день|per\s+day|a\s+day|\bdaily\b|"
                r"күніне|тәулігіне")
 WORTH_WORDS = (r"есть\s+(?:ли\s+)?смысл|имеет\s+(?:ли\s+)?смысл|стоит\s+ли|выгодно\s+ли|оправда\w*|окупит\w*|"
@@ -67,6 +68,12 @@ HISTORY_WORDS = (r"что\s+было\s+(?:в\s+)?(?:самом\s+)?начал\w*
                  r"что\s+я\s+(?:говорил|писал|спрашивал|сказал)\w*|напомни\w*|о\s+ч[её]м\s+мы\s+говорил\w*|"
                  r"what\s+did\s+(?:i|we)\s+(?:say|start|ask)|at\s+the\s+(?:start|beginning)|recap|"
                  r"басында\s+не|не\s+айттым")
+HEAT_OR_POWER = r"тепл\w*\s+или\s+электр\w*|электр\w*\s+или\s+тепл\w*|heat\s+or\s+electric\w*|жылу\s+(?:әлде|немесе)\s+электр"
+# "жылытылмаған" = not insulated, so the Kazakh "жылыт-" is not used here.
+HEATING_WORDS = r"подогр\w*|нагре\w*|отоплен\w*|\bheating\b|қыздыр\w*"
+REGIME_QUESTION = r"температур\w*|режим\w*|temperature|regime|\bқандай\s+температура"
+ENOUGH_WORDS = r"хват\w*|достаточно|enough|жете\w*"
+KNOWLEDGE_WORDS = r"почему|откуда|источник\w*|доказ\w*|\bwhy\b|\bsource\w*|evidence|неге|дереккөз"
 GAS_WORDS = r"газ\w*|метан\w*|\bgas\b|methane|biogas"
 MONEY_WORDS =r"тенге|₸|деньг\w*|выгод\w*|экономи\w*|окуп\w*|стоимост\w*|money|profit|tenge|cost\s+in|ақша|пайда|тиімді"
 
@@ -92,6 +99,19 @@ def python_first(text: str, facts: dict, updates: dict | None = None) -> list[di
     if re.search(WORTH_WORDS, text, re.IGNORECASE):
         # "Есть смысл?" = the energy balance: gas vs heating, its sign and the advice "before -> after".
         return [{"name": "estimate_methane", "args": {}}, {"name": "estimate_heating_energy", "args": {}}]
+    # In the long eval dialog the model sometimes answered these three without a tool (manual check 2):
+    if re.search(MONEY_WORDS, text, re.IGNORECASE) or re.search(HEAT_OR_POWER, text, re.IGNORECASE):
+        # "Что выгоднее: тепло или электричество?", "Сколько это в тенге?"
+        return [{"name": "energy_balance_and_economics", "args": {}}]
+    if re.search(HEATING_WORDS, text, re.IGNORECASE) and not re.search(REGIME_QUESTION, text, re.IGNORECASE):
+        if re.search(ENOUGH_WORDS, text, re.IGNORECASE) and re.search(GAS_WORDS, text, re.IGNORECASE):
+            # "Хватит газа на подогрев?" — gas against heating.
+            return [{"name": "estimate_methane", "args": {}}, {"name": "estimate_heating_energy", "args": {}}]
+        # "Сколько электричества уйдёт на подогрев?"
+        return [{"name": "estimate_heating_energy", "args": {}}]
+    if re.search(KNOWLEDGE_WORDS, text, re.IGNORECASE):
+        # "Почему мезофильный режим устойчивее?" — an answer from the local knowledge base with sources.
+        return [{"name": "search_knowledge", "args": {"query": text}}]
     return []
 
 

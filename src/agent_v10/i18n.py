@@ -40,13 +40,31 @@ TEXT: dict[str, dict[str, str]] = {
         "en": "compared at the same volume of {volume} L (working volume of the demo reactor)",
         "kk": "бірдей {volume} л көлемде салыстырылды (демо-реактордың жұмыс көлемі)",
     },
-    "assume_handbook": {
-        "ru": "{substrate}: измеренные пробы в базе сильно разбавлены водой (TS {ts} %, {m_low}–{m_high} л CH4/кг); для типичной "
-              "жижи взят справочный выход FNR 2007: {biogas} м³ биогаза на тонну = {low}–{high} л CH4/кг",
-        "en": "{substrate}: the measured samples in the base are strongly diluted (TS {ts} %, {m_low}–{m_high} L CH4/kg); for "
-              "typical slurry the FNR 2007 handbook yield is used: {biogas} m³ biogas per tonne = {low}–{high} L CH4/kg",
-        "kk": "{substrate}: базадағы өлшенген сынамалар қатты суйылтылған (TS {ts} %, {m_low}–{m_high} л CH4/кг); әдеттегі "
-              "сұйық көң үшін FNR 2007 анықтамалық шығымы алынды: тоннаға {biogas} м³ биогаз = {low}–{high} л CH4/кг",
+    "assume_reference_ts": {
+        "ru": "{substrate}: пробы в базе слишком далеки от практики (TS {ts} %, {m_low}–{m_high} л CH4/кг в реакторе); "
+              "взят справочный выход KTBL 2025 «{name}»: {biogas} м³ биогаза на тонну, {percent} % метана = {low}–{high} л CH4/кг "
+              "(±15 %, выход работающих установок — доля режима повторно не применяется)",
+        "en": "{substrate}: the samples in the base are far from practice (TS {ts} %, {m_low}–{m_high} L CH4/kg in a reactor); "
+              "the KTBL 2025 reference \"{name}\" is used: {biogas} m³ biogas per tonne, {percent} % methane = {low}–{high} L CH4/kg "
+              "(±15 %, a yield of working plants — the regime share is not applied again)",
+        "kk": "{substrate}: базадағы сынамалар тәжірибеден алыс (TS {ts} %, реакторда {m_low}–{m_high} л CH4/кг); KTBL 2025 "
+              "«{name}» анықтамалық шығымы алынды: тоннаға {biogas} м³ биогаз, {percent} % метан = {low}–{high} л CH4/кг (±15 %)",
+    },
+    "assume_reference_none": {
+        "ru": "{substrate}: своего профиля в базе нет — взят справочный выход KTBL 2025 «{name}»: {biogas} м³ биогаза на "
+              "тонну, {percent} % метана = {low}–{high} л CH4/кг (±15 %, выход работающих установок)",
+        "en": "{substrate}: no own profile in the base — the KTBL 2025 reference \"{name}\" is used: {biogas} m³ biogas per "
+              "tonne, {percent} % methane = {low}–{high} L CH4/kg (±15 %, a yield of working plants)",
+        "kk": "{substrate}: базада өз профилі жоқ — KTBL 2025 «{name}» анықтамалық шығымы алынды: тоннаға {biogas} м³ биогаз, "
+              "{percent} % метан = {low}–{high} л CH4/кг (±15 %)",
+    },
+    "assume_reference": {
+        "ru": "{substrate}: профиль в базе слишком далёк от практики ({m_low}–{m_high} л CH4/кг в реакторе); взят справочный "
+              "выход KTBL 2025 «{name}»: {biogas} м³ биогаза на тонну, {percent} % метана = {low}–{high} л CH4/кг (±15 %)",
+        "en": "{substrate}: the profile in the base is far from practice ({m_low}–{m_high} L CH4/kg in a reactor); the KTBL 2025 "
+              "reference \"{name}\" is used: {biogas} m³ biogas per tonne, {percent} % methane = {low}–{high} L CH4/kg (±15 %)",
+        "kk": "{substrate}: базадағы профиль тәжірибеден алыс (реакторда {m_low}–{m_high} л CH4/кг); KTBL 2025 «{name}» "
+              "анықтамалық шығымы алынды: тоннаға {biogas} м³ биогаз, {percent} % метан = {low}–{high} л CH4/кг (±15 %)",
     },
     "assume_bmp": {
         "ru": "TS и VS — ваши данные, метановый потенциал {substrate} — по {label}",
@@ -155,9 +173,9 @@ TEXT: dict[str, dict[str, str]] = {
         "kk": "реактор — биіктігі диаметрге тең цилиндр: Ø {diameter} м, беті {area} м²",
     },
     "assume_u_value": {
-        "ru": "теплопотери через стенку U = {low}–{high} Вт/(м²·К): пластиковая стенка 3–5 мм + утепление «{level}», ветер от штиля до слабого",
-        "en": "wall heat loss U = {low}–{high} W/(m²·K): plastic wall 3–5 mm + insulation \"{level}\", calm to light wind",
-        "kk": "қабырға арқылы жылу шығыны U = {low}–{high} Вт/(м²·К): пластик қабырға 3–5 мм + «{level}» жылыту, тымық пен әлсіз жел",
+        "ru": "теплопотери через стенку U = {low}–{high} Вт/(м²·К): пластиковая стенка 3–5 мм, {level}; ветер от штиля до слабого",
+        "en": "wall heat loss U = {low}–{high} W/(m²·K): plastic wall 3–5 mm, {level}; calm to light wind",
+        "kk": "қабырға арқылы жылу шығыны U = {low}–{high} Вт/(м²·К): пластик қабырға 3–5 мм, {level}; тымық пен әлсіз жел",
     },
     "assume_mixing": {
         "ru": "перемешивание {power} Вт по {hours} ч в сутки",
@@ -201,6 +219,8 @@ TEXT: dict[str, dict[str, str]] = {
     "insulation_none": {"ru": "без утепления", "en": "no insulation", "kk": "жылытусыз"},
     "insulation_basic": {"ru": "базовое (3–5 см)", "en": "basic (3–5 cm)", "kk": "негізгі (3–5 см)"},
     "insulation_good": {"ru": "хорошее (10–15 см)", "en": "good (10–15 cm)", "kk": "жақсы (10–15 см)"},
+    "wall_none": {"ru": "без утепления", "en": "no insulation", "kk": "жылытусыз"},
+    "wall_with": {"ru": "утепление: {level}", "en": "insulation: {level}", "kk": "жылыту: {level}"},
     "insulation_eps50": {"ru": "пенополистирол 50 мм", "en": "EPS foam 50 mm", "kk": "пенополистирол 50 мм"},
     # --- one clarifying question --------------------------------------------
     "ask_state": {

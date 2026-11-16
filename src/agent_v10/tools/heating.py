@@ -159,7 +159,9 @@ def estimate_heating_energy(feed_mass_kg: dict | float | None = None, feed_volum
     assumptions.append(t("assume_geometry", language, diameter=f"{geometry['diameter_m']:.2f}",
                          area=f"{geometry['area_m2']:.1f}"))
     assumptions.append(t("assume_u_value", language, low=f"{u['low']:.2f}", high=f"{u['high']:.2f}",
-                         level=t("insulation_" + insulation, language)))
+                         # "+ утепление «без утепления»" read like "insulated" (manual check 2): say it plainly.
+                         level=t("wall_none", language) if insulation == "none" else
+                         t("wall_with", language, level=t("insulation_" + insulation, language))))
 
     low = _energy(feed_mass_kg["low"], HEAT_CAPACITY_KJ_KG_K[0], ua["low"], HEATER_EFFICIENCY[1],
                   target_c, feed_initial_c, ambient_c, days, mixing_w, mixing_hours)

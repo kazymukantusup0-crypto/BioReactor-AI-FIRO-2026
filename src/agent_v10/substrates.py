@@ -115,45 +115,97 @@ def _range_of(value) -> dict | None:
     return make(value, value)
 
 
-def _handbook_check(material: str, state: str, measured: dict) -> dict | None:
-    """Typical handbook yield instead of strongly diluted measured samples.
+# Mesophilic share of the laboratory potential reached in a reactor (temperature_regimes.json): used to put a
+# laboratory profile and a practical handbook yield on the same footing.
+def _meso_share() -> dict:
+    from src.agent_v10.config import temperature_regimes
+    row = next(r for r in temperature_regimes()["regimes"] if r["id"] == "mesophilic")
+    return row["share_of_bmp"]
 
-    Pig slurry in the base: two measured samples with TS 2.2–3.2 % (Pham 2013, Eftaxias 2024)
-    give 2.6–4.7 L CH4 per kg — 3.5–7 times less than the FNR handbook value for typical pig
-    slurry (28 m³ biogas per tonne of fresh mass × 60–65 % CH4 = 16.8–18.2 L CH4/kg). The samples
-    are real but diluted with wash water; for a farmer's slurry the handbook value is the typical one.
-    Rule: if the measured high value is below half of the handbook low value, use the handbook value.
+
+@lru_cache(maxsize=1)
+def reference_table() -> dict:
+    """KTBL 2025 practical biogas yields (data/research/ktbl_2025_yields.json) — one reference for all feeds."""
+    import json
+    from src.agent_v10.config import ROOT
+    return json.loads((ROOT / "data" / "research" / "ktbl_2025_yields.json").read_text(encoding="utf-8"))
+
+
+def reference_row(material: str, state: str) -> dict | None:
+    """The KTBL row that directly matches a material and state (None if there is none)."""
+    return next((r for r in reference_table()["rows"]
+                 if r["material"] == material and r["state"] == state and r["match"] == "direct"), None)
+
+
+def reference_ch4_l_per_kg(row: dict) -> float:
+    """Practical methane yield of the reference, L CH4 per kg fresh mass."""
+    return row["biogas_m3_t_fm"] * row["methane_percent"] / 100
+
+
+def practice_equivalent(found: dict) -> dict:
+    """L CH4 per kg in a mesophilic reactor: a lab yield × 75–90 %; a practical yield as it is."""
+    if found.get("basis") == "practice":
+        return found["yield_l_per_kg"]
+    share = _meso_share()
+    return make(found["yield_l_per_kg"]["low"] * share["low"], found["yield_l_per_kg"]["high"] * share["high"])
+
+
+def _reference_check(material: str, state: str, found: dict) -> dict:
+    """Sanity check against KTBL 2025: a profile far from the practical reference is replaced by it.
+
+    Our mesophilic yield must overlap the reference ±30 %. Otherwise (e.g. pig slurry samples diluted
+    with wash water, TS 2.2–3.2 %) the reference value ±15 % is used as a PRACTICAL yield (basis
+    "practice": the regime share is not applied again) and the measured samples are shown to the user.
     """
-    row = defaults().get("handbook_check", {}).get(f"{material}/{state}")
-    if not row:
-        return None
-    share = methane_fraction(material)
-    handbook = make(row["biogas_m3_per_t_fm"] * share["low"], row["biogas_m3_per_t_fm"] * share["high"])
-    if measured["yield_l_per_kg"]["high"] >= 0.5 * handbook["low"]:
-        return None
-    ts_values = [v for t in measured["ts_fraction"] if t for v in (t["low"], t["high"])]
+    row = reference_row(material, state)
+    if row is None or found.get("basis") == "practice":
+        return found
+    table = reference_table()
+    reference = reference_ch4_l_per_kg(row)
+    ours = practice_equivalent(found)
+    corridor = make(reference * (1 - table["corridor_share"]), reference * (1 + table["corridor_share"]))
+    if ours["high"] >= corridor["low"] and ours["low"] <= corridor["high"]:
+        return found
+    spread = table["practice_spread_share"]
     return {
         "vs_fraction_wet": None,
-        "bmp_ml_g_vs": measured["bmp_ml_g_vs"],  # still used when the user gives his own TS / VS
-        "yield_l_per_kg": handbook,
+        "bmp_ml_g_vs": found.get("bmp_ml_g_vs"),  # still used when the user gives his own TS / VS
+        "yield_l_per_kg": make(reference * (1 - spread), reference * (1 + spread)),
+        "basis": "practice",
         "label": LABEL_LITERATURE,
         "profile_ids": [],
-        "sources": [_defaults_source(row["source_id"])],
-        "handbook": {"biogas_m3_per_t_fm": row["biogas_m3_per_t_fm"], "measured_yield_l_per_kg": measured["yield_l_per_kg"],
-                     "measured_ts_percent": [round(min(ts_values) * 100, 1), round(max(ts_values) * 100, 1)] if ts_values else None},
+        "sources": [table["source"]],
+        "reference": {"name": row["reference"], "biogas_m3_t_fm": row["biogas_m3_t_fm"],
+                      "methane_percent": row["methane_percent"], "replaced_practice_l_per_kg": ours,
+                      "replaced_profiles": found.get("profile_ids") or [],
+                      "replaced_ts_percent": found.get("ts_percent")},
     }
 
 
 def composition(material: str, state: str) -> dict | None:
-    """Organic matter and methane potential of a substrate.
+    """Organic matter and methane potential of a substrate, checked against the KTBL 2025 reference.
 
     Returns ranges of:
-        vs_fraction_wet  kg of volatile solids per kg of wet material
+        vs_fraction_wet  kg of volatile solids per kg of wet material (None for a practical reference yield)
         bmp_ml_g_vs      laboratory methane potential, mL CH4 per g VS
         yield_l_per_kg   litres of CH4 per kg of WET material (paired per study,
                          so a high VS is not combined with a BMP from another study)
+        basis            "lab" (laboratory potential, the regime share is applied later) or
+                         "practice" (yield of working plants: no regime share for the mesophilic regime)
     or None if nothing is known.
     """
+    found = _raw_composition(material, state)
+    if found is None:
+        # No profile at all (e.g. solid cattle manure), but KTBL has the feed: use the reference.
+        row = reference_row(material, state)
+        if row is None:
+            return None
+        found = {"yield_l_per_kg": make(0.0, 0.0), "basis": "lab", "profile_ids": [], "vs_fraction_wet": None,
+                 "bmp_ml_g_vs": None}
+    return _reference_check(material, state, found)
+
+
+def _raw_composition(material: str, state: str) -> dict | None:
     complete = []
     for profile in _profiles():
         if not _profile_matches(profile, material, state):
@@ -163,16 +215,7 @@ def composition(material: str, state: str) -> dict | None:
         if vs and bmp:
             complete.append((profile, vs, bmp))
     if complete:
-        measured = {
-            "vs_fraction_wet": make(min(v["low"] for _, v, _ in complete), max(v["high"] for _, v, _ in complete)),
-            "bmp_ml_g_vs": make(min(b["low"] for _, _, b in complete), max(b["high"] for _, _, b in complete)),
-            "yield_l_per_kg": make(min(v["low"] * b["low"] for _, v, b in complete),
-                                   max(v["high"] * b["high"] for _, v, b in complete)),
-            "ts_fraction": [p.get("ts_fraction") for p, _, _ in complete],
-        }
-        handbook = _handbook_check(material, state, measured)
-        if handbook:
-            return handbook
+        ts_values = [v for p, _, _ in complete if p.get("ts_fraction") for v in (p["ts_fraction"]["low"], p["ts_fraction"]["high"])]
         return {
             "vs_fraction_wet": make(min(v["low"] for _, v, _ in complete), max(v["high"] for _, v, _ in complete)),
             "bmp_ml_g_vs": make(min(b["low"] for _, _, b in complete), max(b["high"] for _, _, b in complete)),
@@ -180,9 +223,11 @@ def composition(material: str, state: str) -> dict | None:
                 min(v["low"] * b["low"] for _, v, b in complete),
                 max(v["high"] * b["high"] for _, v, b in complete),
             ),
+            "basis": "lab",
             "label": LABEL_LITERATURE,
             "profile_ids": [p["id"] for p, _, _ in complete],
             "sources": [s for s in (_source_record(p.get("source")) for p, _, _ in complete) if s],
+            "ts_percent": [round(min(ts_values) * 100, 1), round(max(ts_values) * 100, 1)] if ts_values else None,
         }
     fallback = defaults()["fallback_composition"]
     row = fallback.get(f"{material}/{state}") or fallback.get(material)
@@ -195,6 +240,7 @@ def composition(material: str, state: str) -> dict | None:
         "vs_fraction_wet": vs,
         "bmp_ml_g_vs": bmp,
         "yield_l_per_kg": make(vs["low"] * bmp["low"], vs["high"] * bmp["high"]),
+        "basis": "lab",
         "label": LABEL_ASSUMPTION,
         "profile_ids": [],
         "sources": [_defaults_source(row["source_id"])],

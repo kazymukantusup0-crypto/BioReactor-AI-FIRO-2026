@@ -74,17 +74,29 @@ def compare_feedstocks(materials: list[str], volume_l: float | None = None, regi
     best, other = ranked[0], ranked[1]
     ratio = center(pair(best["methane_m3"])) / max(center(pair(other["methane_m3"])), 1e-9)
     overlap = best["methane_m3"]["low"] <= other["methane_m3"]["high"]
+    # The same feeds in the one reference table (KTBL 2025, per tonne of fresh mass), shown next to our numbers.
+    references = {}
+    for row in rows:
+        state = substrates.default_state(row["substrate"], "volume") or "fresh_solid"
+        reference = substrates.reference_row(row["substrate"], state)
+        if reference:
+            references[row["substrate"]] = reference["biogas_m3_t_fm"]
+    ref_best, ref_other = references.get(best["substrate"]), references.get(other["substrate"])
+    # "About the same": our ranges overlap and the reference values differ by less than 25 %.
+    similar = overlap and bool(ref_best and ref_other) and max(ref_best, ref_other) / min(ref_best, ref_other) < 1.25
     notes_table = daily_data()["feedstock_notes"]
     notes = {r["substrate"]: notes_table[r["substrate"]].get(language, notes_table[r["substrate"]]["ru"])
              for r in rows if r["substrate"] in notes_table}
     if volume_assumed:
         assumptions.insert(0, t("assume_compare_volume", language, volume=f"{volume:g}"))
     data = {"status": "ok", "volume_l": volume, "volume_assumed": volume_assumed, "feeds": rows, "best": best["substrate"],
-            "ratio": ratio, "difference_percent": (ratio - 1) * 100, "ranges_overlap": overlap, "notes": notes}
+            "ratio": ratio, "difference_percent": (ratio - 1) * 100, "ranges_overlap": overlap, "notes": notes,
+            "references_m3_t": references, "similar": similar}
     llm = {
         "same_volume_l": volume,
         "feeds": [{"feed": r["name"], "methane_m3": pair(r["methane_m3"]), "biogas_m3": pair(r["biogas_m3"])} for r in rows],
-        "more_gas": best["name"], "times_more": round(ratio, 1), "ranges_overlap": overlap,
+        "more_gas": "about the same" if similar else best["name"], "times_more": round(ratio, 1), "ranges_overlap": overlap,
+        "reference_ktbl_2025_biogas_m3_per_t": {substrates.material_name(k, language): v for k, v in references.items()},
         "notes": {substrates.material_name(k, language): v for k, v in notes.items()},
         "label": weakest(labels),
     }

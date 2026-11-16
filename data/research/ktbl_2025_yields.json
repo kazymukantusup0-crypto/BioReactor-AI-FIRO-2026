@@ -1,0 +1,37 @@
+{
+  "comment": "Одна справочная таблица для проверки здравого смысла (docs/substrate_sanity.md, scripts/substrate_sanity.py). Выход биогаза на тонну свежей массы в работающих сельскохозяйственных установках (практика, не лабораторный BMP). Значения считаны по длине столбиков графика FNR: ноль на x≈151.5 px, 50 Nm³/t = 54.2 px (линии сетки 205, 260, 315, 368, 423, 477 px); точность считывания ±3 Nm³/t. corridor_share — наш допуск ±30 % вокруг справочного значения (не из источника): так сравниваются диапазоны, а не точки.",
+  "source": {
+    "id": "ktbl-526-2025",
+    "title": "KTBL-Schrift 526 «Gasausbeuten in landwirtschaftlichen Biogasanlagen» (2025), график FNR «Biogasausbeuten» (© FNR 2025)",
+    "year": 2025,
+    "doi": null,
+    "url": "https://mediathek.fnr.de/media/catalog/product/resized/abb_089_2025_0815.jpg"
+  },
+  "corridor_share": 0.30,
+  "practice_spread_share": 0.15,
+  "practice_spread_comment": "Если профиль заменён справочным значением, диапазон расчёта = справочное ±15 % (наше допущение о разбросе вокруг среднего).",
+  "rows": [
+    {"reference": "Schweinegülle", "ru": "свиная жижа", "biogas_m3_t_fm": 13, "methane_percent": 63, "material": "swine_manure", "state": "slurry", "match": "direct"},
+    {"reference": "Rindergülle", "ru": "коровья жижа", "biogas_m3_t_fm": 29, "methane_percent": 60, "material": "cattle_manure", "state": "slurry", "match": "direct"},
+    {"reference": "Rindermist", "ru": "твёрдый навоз КРС (с подстилкой)", "biogas_m3_t_fm": 95, "methane_percent": 56, "material": "cattle_manure", "state": "bedded", "match": "direct"},
+    {"reference": "Rindermist", "ru": "твёрдый навоз КРС", "biogas_m3_t_fm": 95, "methane_percent": 56, "material": "cattle_manure", "state": "fresh_solid", "match": "direct"},
+    {"reference": "Geflügelmist", "ru": "птичий помёт", "biogas_m3_t_fm": 199, "methane_percent": 56, "material": "poultry_manure", "state": "fresh_solid", "match": "direct"},
+    {"reference": "Speisereste", "ru": "пищевые остатки", "biogas_m3_t_fm": 131, "methane_percent": 59, "material": "food_waste", "state": "fresh_solid", "match": "direct"},
+    {"reference": "Maissilage", "ru": "кукурузный силос", "biogas_m3_t_fm": 220, "methane_percent": 54, "material": "silage", "state": "silage", "match": "direct"},
+    {"reference": "Stroh", "ru": "солома", "biogas_m3_t_fm": 380, "methane_percent": 53, "material": "straw", "state": "dry", "match": "direct",
+     "note": "только как добавка и обычно после предобработки (сноска ** на графике)"},
+    {"reference": "Bioabfall", "ru": "биоотходы", "biogas_m3_t_fm": 106, "methane_percent": 60, "material": "vegetable_waste", "state": "fresh_solid", "match": "approximate",
+     "note": "овощные отходы ≠ биоотходы: в овощах больше воды; на графике «stark variierend»"},
+    {"reference": "Grassilage", "ru": "травяной силос", "biogas_m3_t_fm": 189, "methane_percent": 53, "material": "grass", "state": "fresh_solid", "match": "approximate",
+     "note": "свежая трава ≠ силос: у силоса больше сухого вещества"},
+    {"reference": "Kartoffelschlempe", "ru": "картофельная барда", "biogas_m3_t_fm": 34, "methane_percent": 54, "material": null, "state": null, "match": "none"},
+    {"reference": "Getreideschlempe", "ru": "зерновая барда", "biogas_m3_t_fm": 39, "methane_percent": 55, "material": null, "state": null, "match": "none"},
+    {"reference": "Futterrübensilage", "ru": "силос кормовой свёклы", "biogas_m3_t_fm": 130, "methane_percent": 51, "material": null, "state": null, "match": "none"},
+    {"reference": "Landschaftspflegegras", "ru": "трава с лугов", "biogas_m3_t_fm": 127, "methane_percent": 50, "material": null, "state": null, "match": "none"},
+    {"reference": "Sonnenblumensilage", "ru": "силос подсолнечника", "biogas_m3_t_fm": 119, "methane_percent": 57, "material": null, "state": null, "match": "none"},
+    {"reference": "Klee-/Luzernegras", "ru": "клеверо-люцерновая трава", "biogas_m3_t_fm": 155, "methane_percent": 55, "material": null, "state": null, "match": "none"},
+    {"reference": "Sorghumsilage", "ru": "силос сорго", "biogas_m3_t_fm": 150, "methane_percent": 52, "material": null, "state": null, "match": "none"},
+    {"reference": "Zuckerrübensilage", "ru": "силос сахарной свёклы", "biogas_m3_t_fm": 130, "methane_percent": 51, "material": null, "state": null, "match": "none"},
+    {"reference": "Getreide-GPS", "ru": "зерновой силос (GPS)", "biogas_m3_t_fm": 204, "methane_percent": 54, "material": null, "state": null, "match": "none"}
+  ]
+}

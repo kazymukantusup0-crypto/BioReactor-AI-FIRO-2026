@@ -140,14 +140,16 @@ def component_potential(component: dict, state: str, language: str = "ru") -> di
     assumptions = [t("assume_composition", language, substrate=substrates.material_name(substrate, language),
                      label=t("label_" + found["label"], language))]
     labels = [found["label"]]
-    if found.get("handbook"):
-        hb = found["handbook"]
-        measured = hb["measured_yield_l_per_kg"]
-        assumptions = [t("assume_handbook", language, substrate=substrates.material_name(substrate, language),
-                         ts="–".join(f"{v:g}" for v in hb["measured_ts_percent"]) if hb["measured_ts_percent"] else "?",
-                         m_low=f"{measured['low']:.1f}", m_high=f"{measured['high']:.1f}",
-                         biogas=f"{hb['biogas_m3_per_t_fm']:g}", low=f"{found['yield_l_per_kg']['low']:.1f}",
-                         high=f"{found['yield_l_per_kg']['high']:.1f}")]
+    if found.get("reference"):
+        ref = found["reference"]
+        replaced = ref["replaced_practice_l_per_kg"]
+        key = ("assume_reference_none" if not ref.get("replaced_profiles") and replaced["high"] == 0 else
+               "assume_reference_ts" if ref.get("replaced_ts_percent") else "assume_reference")
+        assumptions = [t(key, language, substrate=substrates.material_name(substrate, language),
+                         ts="–".join(dict.fromkeys(f"{v:g}" for v in ref["replaced_ts_percent"] or [])),
+                         m_low=f"{replaced['low']:.1f}", m_high=f"{replaced['high']:.1f}", name=ref["name"],
+                         biogas=f"{ref['biogas_m3_t_fm']:g}", percent=f"{ref['methane_percent']:g}",
+                         low=f"{found['yield_l_per_kg']['low']:.1f}", high=f"{found['yield_l_per_kg']['high']:.1f}")]
     if component.get("analog_of"):
         # No data for the real material: the analogue's composition, always a rough assumption.
         assumptions.insert(0, t("assume_analog", language, name=component["analog_of"],
@@ -155,6 +157,7 @@ def component_potential(component: dict, state: str, language: str = "ru") -> di
                                 why=substrates.analog_reason(component["analog_of"], language)))
         labels = ["assumption"]
     return {"yield_l_per_kg": found["yield_l_per_kg"], "vs_fraction_wet": found["vs_fraction_wet"],
+            "basis": found.get("basis", "lab"),
             "bmp_ml_g_vs": found["bmp_ml_g_vs"], "labels": labels, "sources": found["sources"],
             "profile_ids": found["profile_ids"], "assumptions": assumptions}
 
@@ -176,7 +179,10 @@ def estimate_methane(components: list[dict], regime: str = DEFAULT_REGIME, days:
     rows, assumptions, labels, sources = [], [], [], []
     question = None
     potential_l = point(0.0)
+    methane_total = point(0.0)
     biogas = point(0.0)
+    meso = regime_row("mesophilic")["share_of_bmp"]
+    any_lab = False
     mass_total = point(0.0)
     fractions = []
     for raw in components:
@@ -195,10 +201,19 @@ def estimate_methane(components: list[dict], regime: str = DEFAULT_REGIME, days:
         litres = multiply(mass["mass_kg"], potential["yield_l_per_kg"])
         fraction = substrates.methane_fraction(component["substrate"])
         fractions.append(fraction)
-        expected_m3 = scale(litres, 0.001)
-        expected_m3 = multiply(expected_m3, regime_data["share_of_bmp"])
+        if potential.get("basis") == "practice":
+            # A practical yield of working (mesophilic) plants: the regime share is NOT applied again;
+            # other regimes scale by their share relative to the mesophilic one.
+            factor = make(regime_data["share_of_bmp"]["low"] / meso["low"], regime_data["share_of_bmp"]["high"] / meso["high"])
+            expected_m3 = multiply(scale(litres, 0.001), factor)
+            lab_litres = scale(litres, 1 / ((meso["low"] + meso["high"]) / 2))  # rough laboratory equivalent
+        else:
+            expected_m3 = multiply(scale(litres, 0.001), regime_data["share_of_bmp"])
+            lab_litres = litres
+            any_lab = True
         component_biogas = divide(expected_m3, fraction)
-        potential_l = add(potential_l, litres)
+        potential_l = add(potential_l, lab_litres)
+        methane_total = add(methane_total, expected_m3)
         biogas = add(biogas, component_biogas)
         mass_total = add(mass_total, mass["mass_kg"])
         labels += mass["labels"] + potential["labels"]
@@ -219,14 +234,15 @@ def estimate_methane(components: list[dict], regime: str = DEFAULT_REGIME, days:
         })
 
     potential_m3 = scale(potential_l, 0.001)
-    methane_m3 = multiply(potential_m3, regime_data["share_of_bmp"])
+    methane_m3 = methane_total
     energy_kwh = scale(methane_m3, METHANE_KWH_PER_M3)
     digestion_days = point(float(days)) if days else regime_data["digestion_days"]
     share = regime_data["share_of_bmp"]
     regime_name = regime_data["name"].get(language, regime_data["name"]["ru"])
-    assumptions.append(t("assume_regime_share", language, days_low=fmt(digestion_days["low"]),
-                         days_high=fmt(digestion_days["high"]), regime=f"{regime_name}, {regime_data['setpoint_c']} °C",
-                         share_low=round(share["low"] * 100), share_high=round(share["high"] * 100)))
+    if any_lab:  # a laboratory potential -> the share reached in the reactor (not for practical reference yields)
+        assumptions.append(t("assume_regime_share", language, days_low=fmt(digestion_days["low"]),
+                             days_high=fmt(digestion_days["high"]), regime=f"{regime_name}, {regime_data['setpoint_c']} °C",
+                             share_low=round(share["low"] * 100), share_high=round(share["high"] * 100)))
     ch4_low = min(f["low"] for f in fractions)
     ch4_high = max(f["high"] for f in fractions)
     assumptions.append(t("assume_ch4_share", language, low=round(ch4_low * 100), high=round(ch4_high * 100)))

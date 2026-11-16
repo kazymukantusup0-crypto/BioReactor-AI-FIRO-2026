@@ -123,19 +123,21 @@ def test_j_straw_volume_is_explained_and_does_not_fit_is_no():
 
 # --- K. pig slurry -----------------------------------------------------------------------
 
-def test_k_pig_slurry_uses_the_handbook_value_not_diluted_samples():
+def test_k_pig_slurry_step_by_step():
+    """150 L × 1.0 kg/L = 150 kg; KTBL 2025 "Schweinegülle" 13 m³ biogas/t × 63 % CH4 = 8.19 L CH4/kg ± 15 %;
+    a practical yield of working plants: the mesophilic regime share is NOT applied again."""
     result = estimate_methane([{"substrate": "swine_manure", "amount": 150, "unit": "l"}])
     methane = result["data"]["methane_m3"]
-    # 150 kg × 16.8–18.2 L CH4/kg (FNR 2007: 28 m³ biogas/t × 60–65 % CH4) × 75–90 % in the reactor
-    assert methane["low"] == pytest.approx(150 * 28 * 0.60 / 1000 * 0.75)
-    assert methane["high"] == pytest.approx(150 * 28 * 0.65 / 1000 * 0.90)
-    assert any("FNR 2007" in a and "разбавлены" in a for a in result["assumptions"])
-    assert "fnr-biogas-einfuehrung-2007" in {s["id"] for s in result["sources"]}
+    assert methane["low"] == pytest.approx(150 * 13 * 0.63 * 0.85 / 1000)
+    assert methane["high"] == pytest.approx(150 * 13 * 0.63 * 1.15 / 1000)
+    assert any("KTBL 2025" in a and "TS 2.2–3.2" in a for a in result["assumptions"])
+    assert not any("лабораторного потенциала" in a for a in result["assumptions"])
+    assert "ktbl-526-2025" in {s["id"] for s in result["sources"]}
 
 
 def test_k_cattle_slurry_still_uses_measured_profiles():
     result = estimate_methane([{"substrate": "cattle_manure", "amount": 200, "unit": "l"}])
-    assert not any("FNR 2007" in a for a in result["assumptions"])
+    assert not any("KTBL" in a for a in result["assumptions"])
 
 
 # --- L / M. corrections update the fact and recalculate -------------------------------------
@@ -204,3 +206,43 @@ def test_a_correction_is_recalculated_by_python(text):
     facts = extract("У меня 150 л свиного навоза, сколько газа?")["facts"]
     updates = extract(text, facts)["updates"]
     assert [c["name"] for c in python_first(text, facts, updates)] == ["estimate_methane"]
+
+
+def test_j_reactor_named_earlier_and_compare_says_nothing_about_insulation(tmp_path):
+    agent = Agent(Memory(tmp_path / "m.sqlite3"))
+    finals = {}
+    for text in ["У меня 200 литров коровьего навоза, сколько будет газа?",
+                 "Бочка 200 литров, не утеплена, на улице −15. Есть смысл?",
+                 "Что лучше: куриный помёт или коровий навоз?", "А если 100 л навоза и 20 кг соломы?"]:
+        events = list(agent.run("j", text, use_llm=False))
+        finals[text] = next(e for e in events if e["type"] == "answer")
+    worth = finals["Бочка 200 литров, не утеплена, на улице −15. Есть смысл?"]
+    assert any("без утепления" in a for a in worth["assumptions"])
+    assert not any("утепление «" in a for a in worth["assumptions"])
+    compare = finals["Что лучше: куриный помёт или коровий навоз?"]
+    assert not any("утепл" in a for a in compare["assumptions"])
+    fits = next(v for v in finals["А если 100 л навоза и 20 кг соломы?"]["verdicts"] if v["key"] == "fits")
+    assert fits["code"] == "no" and "насыпная плотность" in fits["text"]
+
+
+@pytest.mark.parametrize("text,tools", [
+    ("Сколько электричества уйдёт на подогрев?", ["estimate_heating_energy"]),
+    ("Хватит газа на подогрев?", ["estimate_methane", "estimate_heating_energy"]),
+    ("Почему мезофильный режим устойчивее?", ["search_knowledge"]),
+    ("Что выгоднее: тепло или электричество?", ["energy_balance_and_economics"]),
+    ("Сколько это в тенге?", ["energy_balance_and_economics"]),
+    ("А если утеплить бочку?", []),
+    ("Какую температуру ставить зимой при −15 на улице, реактор 250 литров, не утеплён?", []),
+    ("Қыста сыртта −20 градус, реактор жылытылмаған, 300 литр сиыр көңі бар. Қандай температура қою керек?", []),
+])
+def test_python_routes_of_manual_check_2(text, tools):
+    from src.agent_v10.agent import python_first
+    from src.agent_v10.facts import empty_facts
+    assert [c["name"] for c in python_first(text, empty_facts())] == tools
+
+
+def test_why_mesophilic_is_answered_from_the_regime_table_with_sources():
+    from src.agent_v10.facts import empty_facts
+    result = run_tool("search_knowledge", {"query": "Почему мезофильный режим устойчивее?"}, empty_facts())
+    assert result["llm"]["quotes"][0].startswith("мезофильный") and "устойчив" in result["llm"]["quotes"][0]
+    assert {"fao_environment", "moset2015"} <= {s["id"] for s in result["sources"]}

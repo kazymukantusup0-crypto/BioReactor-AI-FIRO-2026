@@ -125,6 +125,18 @@ TEXTS = {
         "kk": "Бірдей {volume} л көлемде: {best} — {best_m3} м³ метан, {other} — {other_m3} м³. "
               "Көбірек газды {best_word} береді, шамамен {times} есе.",
     },
+    "best_feed_similar": {
+        "ru": "При одинаковом объёме {volume} л: {best} — {best_m3} м³ метана, {other} — {other_m3} м³. "
+              "Разница небольшая — по газу это примерно одинаково.",
+        "en": "At the same volume of {volume} L: {best} — {best_m3} m³ of methane, {other} — {other_m3} m³. "
+              "The difference is small — about the same gas.",
+        "kk": "Бірдей {volume} л көлемде: {best} — {best_m3} м³ метан, {other} — {other_m3} м³. Айырма аз — газ шамамен бірдей.",
+    },
+    "best_feed_reference": {
+        "ru": " По справочнику KTBL 2025 на тонну: {pairs} м³ биогаза.",
+        "en": " KTBL 2025 reference per tonne: {pairs} m³ of biogas.",
+        "kk": " KTBL 2025 анықтамасы бойынша тоннаға: {pairs} м³ биогаз.",
+    },
     "best_feed_overlap": {
         "ru": " Диапазоны перекрываются, поэтому разница приблизительная.",
         "en": " The ranges overlap, so the difference is approximate.",
@@ -489,16 +501,22 @@ def best_feed_verdict(results: list[dict], language: str) -> dict | None:
     feeds = {row["substrate"]: row for row in data["feeds"]}
     best = feeds[data["best"]]
     other = next(row for row in data["feeds"] if row["substrate"] != data["best"])
-    text = _say(TEXTS, "best_feed", language, volume=f"{data['volume_l']:g}", best=best["name"],
+    text = _say(TEXTS, "best_feed_similar" if data.get("similar") else "best_feed", language,
+                volume=f"{data['volume_l']:g}", best=best["name"],
                 best_word=substrates.material_word(best["substrate"], language),
                 best_m3=approx_text(pair(best["methane_m3"])), other=other["name"],
                 other_m3=approx_text(pair(other["methane_m3"])), times=f"{data['ratio']:.1f}")
-    if data["ranges_overlap"]:
+    if data["ranges_overlap"] and not data.get("similar"):
         text += _say(TEXTS, "best_feed_overlap", language)
+    if data.get("references_m3_t"):
+        text += _say(TEXTS, "best_feed_reference", language, pairs=", ".join(
+            f"{substrates.material_word(k, language)} ≈{v:g}" for k, v in data["references_m3_t"].items()))
     for substrate, note in data["notes"].items():
         if substrate != "cattle_manure":
             text += _say(TEXTS, "feed_note", language, name=substrates.material_word(substrate, language), note=note)
-    return _item("best_feed", data["best"], f"{best['name']}: ×{data['ratio']:.1f}", text, language, "info")
+    code = "similar" if data.get("similar") else data["best"]
+    value = "≈ одинаково" if data.get("similar") else f"{best['name']}: ×{data['ratio']:.1f}"
+    return _item("best_feed", code, value, text, language, "info")
 
 
 def best_use_verdict(results: list[dict], language: str) -> dict | None:

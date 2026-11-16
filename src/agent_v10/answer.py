@@ -405,7 +405,9 @@ def template_explanation(results: list[dict], language: str) -> str:
                           f"{_range_text(llm['biogas_m3_per_day'])} м³ биогаз береді.",
                 }.get(language, ""))
         elif name == "search_knowledge" and llm.get("quotes"):
-            parts.append(llm["quotes"][0])
+            parts += llm["quotes"][:2]
+            if llm.get("sources"):
+                parts.append({"ru": "Источник: ", "en": "Source: ", "kk": "Дереккөз: "}.get(language, "") + llm["sources"][0] + ".")
     if not parts:
         # Nothing calculated: say why ("no data for 'опилки'") instead of an empty answer.
         parts += [item["llm"]["message"] for item in results if not item.get("ok") and item.get("llm", {}).get("message")]
