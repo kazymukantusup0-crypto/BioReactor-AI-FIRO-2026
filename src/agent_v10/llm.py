@@ -26,7 +26,10 @@ class OllamaClient:
         self.model = model or settings["model"]
         self.base_url = (base_url or settings["ollama_url"]).rstrip("/")
         self.timeout = timeout
-        self.options = {"num_ctx": settings["num_ctx"], "num_gpu": settings["num_gpu"], "temperature": 0.2}
+        # num_predict caps one reply: 2–4 sentences need ~60–150 tokens. The cap keeps
+        # the answer fast even when a hot laptop GPU slows down (thermal throttling).
+        self.options = {"num_ctx": settings["num_ctx"], "num_gpu": settings["num_gpu"], "temperature": 0.2,
+                        "num_predict": 256}
         self.think = settings["think"]
         self.keep_alive = settings["keep_alive"]
 

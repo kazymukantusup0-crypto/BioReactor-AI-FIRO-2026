@@ -8,6 +8,8 @@ from __future__ import annotations
 import json
 import sqlite3
 import uuid
+from collections.abc import Iterator
+from contextlib import contextmanager
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -36,10 +38,16 @@ class Memory:
                 " messages_json TEXT NOT NULL, last_answer_json TEXT)"
             )
 
-    def _connect(self) -> sqlite3.Connection:
+    @contextmanager
+    def _connect(self) -> Iterator[sqlite3.Connection]:
+        """Open, commit and ALWAYS close (on Windows an open connection locks the file)."""
         connection = sqlite3.connect(self.path, timeout=10)
         connection.row_factory = sqlite3.Row
-        return connection
+        try:
+            with connection:  # commits on success, rolls back on error
+                yield connection
+        finally:
+            connection.close()
 
     @staticmethod
     def new_id() -> str:
