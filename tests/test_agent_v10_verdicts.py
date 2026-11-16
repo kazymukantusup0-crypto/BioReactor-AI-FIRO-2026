@@ -45,9 +45,11 @@ def test_fits_verdict_warns_about_two_tonnes_in_a_200_litre_barrel():
     assert verdicts.fits_verdict({**facts, "components": CATTLE_150L}, "ru") is None   # 150 L fits: no noise
 
 
-def test_fits_uses_the_demo_reactor_when_the_volume_is_unknown():
+def test_no_capacity_warning_when_the_reactor_volume_was_not_named():
+    """The heating model then sizes the reactor for the batch; a warning would contradict it."""
     facts = {**empty_facts(), "components": [{"substrate": "cattle_manure", "amount": 300, "unit": "l", "state": "slurry"}]}
-    assert verdicts.fits_verdict(facts, "ru")["code"] == "no"
+    assert verdicts.fits_verdict(facts, "ru") is None
+    assert verdicts.fits_verdict({**facts, "reactor_volume_l": 200}, "ru")["code"] == "no"
 
 
 def test_best_use_verdict_follows_the_economics_tool():

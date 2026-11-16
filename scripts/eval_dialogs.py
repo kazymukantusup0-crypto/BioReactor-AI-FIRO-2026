@@ -40,14 +40,16 @@ from src.agent_v10.memory import Memory  # noqa: E402
 #                      "must_text" — regexes that must be in the explanation itself;
 #                      "must_not" — regexes that must NOT be in the explanation;
 #                      "amount" — the remembered batch must contain this amount (L or kg, after normalizing);
-#                      "card" — a number card with this key must be shown.
+#                      "card" — a number card with this key must be shown;
+#                      "verdict" — {key: code} Python verdicts that must be in the answer (e.g. {"net": "minus"}).
 DIALOGS = [
     ("1. Навоз в литрах + уточнение", [
         ("У меня 200 литров коровьего навоза, сколько будет газа?", {"estimate_methane"}, "ru"),
         ("Жидкий.", {"estimate_methane"}, "ru"),
     ]),
     ("2. Зима, реактор без утепления", [
-        ("Какую температуру ставить зимой при −15 на улице, реактор 250 литров, не утеплён?", {"recommend_temperature_regime"}, "ru"),
+        ("Какую температуру ставить зимой при −15 на улице, реактор 250 литров, не утеплён?", {"recommend_temperature_regime"}, "ru",
+         {"verdict": {"regime": "mesophilic", "net": "minus"}, "must_text": [r"мезофил"]}),
     ]),
     ("3. Казахский: сколько газа", [
         ("Сиыр көңі 200 литр, қанша газ болады?", {"estimate_methane"}, "kk"),
@@ -65,7 +67,7 @@ DIALOGS = [
     ]),
     ("7. Что выгоднее: тепло или электричество", [
         ("Что выгоднее из 1 тонны птичьего помёта: тепло или электричество? Сколько это в тенге?",
-         {"energy_balance_and_economics"}, "ru"),
+         {"energy_balance_and_economics"}, "ru", {"verdict": {"best_use": "*"}}),
     ]),
     ("8. Смена сырья", [
         ("500 кг силоса — сколько будет метана?", {"estimate_methane"}, "ru"),
@@ -81,7 +83,8 @@ DIALOGS = [
     ("11. Хватит ли газа на подогрев", [
         ("У меня 150 литров коровьего навоза, бочка 200 литров не утеплена, на улице −10. "
          "Сколько будет газа и хватит ли его на подогрев?", {"estimate_heating_energy"}, "ru",
-         {"must_text": [r"недостат|не хват|не покр|мало"], "must_not": [r"(?<!не )хватит(?! ли)"]}),
+         {"must_text": [r"недостат|не хват|не покр|покрывает только|мало|больше энергии, чем"], "must_not": [r"(?<!не )хватит(?! ли)"],
+          "verdict": {"enough_gas": "no"}}),
     ]),
     # --- robustness (task 5) ---
     ("12. Неизвестное сырьё", [
@@ -112,6 +115,13 @@ DIALOGS = [
         ("скока газа будет с 200 литрв каровьего навоза", {"estimate_methane"}, "ru", {"amount": 200}),
         ("Менде 100 литр сиыр көңі бар, сколько газа будет?", {"estimate_methane"}, ("ru", "kk"), {"amount": 100}),
     ]),
+    # --- the main demo moment (task 2) ---
+    ("19. Зима без утепления → совет", [
+        ("Зима, на улице −15, бочка 200 литров без утепления, 150 литров навоза КРС. Какой режим ставить?",
+         {"recommend_temperature_regime"}, "ru",
+         {"verdict": {"regime": "mesophilic", "net": "minus", "advice": "eps50"}, "must_text": [r"≈"],
+          "must": [r"пенополистирол"]}),
+    ]),
 ]
 
 
@@ -120,6 +130,7 @@ def check_answer(final: dict, facts: dict, checks: dict) -> list[str]:
     failed = []
     explanation = final.get("explanation") or ""
     combined = " ".join([explanation, final.get("question") or "", " ".join(final.get("assumptions") or []),
+                         " ".join(v["text"] for v in final.get("verdicts") or []),
                          " ".join(f"{c['title']} {c['value']}" for c in final.get("numbers") or [])])
     for pattern in checks.get("must", []):
         if not re.search(pattern, combined, re.IGNORECASE):
@@ -136,6 +147,10 @@ def check_answer(final: dict, facts: dict, checks: dict) -> list[str]:
             failed.append(f"количество {checks['amount']} не запомнено ({sorted(amounts)})")
     if "card" in checks and checks["card"] not in {c.get("key") for c in final.get("numbers") or []}:
         failed.append(f"нет карточки {checks['card']}")
+    have = {v["key"]: v["code"] for v in final.get("verdicts") or []}
+    for key, code in (checks.get("verdict") or {}).items():
+        if have.get(key) != code and not (code == "*" and key in have):
+            failed.append(f"вывод {key}={have.get(key)}, ждали {code}")
     return failed
 
 

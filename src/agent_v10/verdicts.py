@@ -242,12 +242,16 @@ def batch_volume_range(components: list[dict]) -> tuple[float, float] | None:
 
 
 def fits_verdict(facts: dict, language: str) -> dict | None:
-    """Only reported when the batch does NOT (or may not) fit — a warning, not noise."""
+    """Only reported when the user NAMED the reactor volume and the batch does not (or may not) fit.
+
+    Without a named reactor the heating model sizes the reactor for the batch, so a warning
+    against the 200 L demo barrel would contradict the rest of the answer.
+    """
+    reactor = facts.get("reactor_volume_l")
     volume = batch_volume_range(facts.get("components") or [])
-    if volume is None:
+    if volume is None or not reactor:
         return None
     demo = demo_reactor()
-    reactor = facts.get("reactor_volume_l") or demo["reactor_volume_l"]
     working = reactor * demo["fill_share"]
     smallest, largest = volume
     if largest <= working:
