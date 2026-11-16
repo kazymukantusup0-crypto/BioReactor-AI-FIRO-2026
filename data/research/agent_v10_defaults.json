@@ -3,6 +3,13 @@
   "purpose": "Fallback values for the agent_v10 tools. Reviewed literature profiles from data/research/*.json are ALWAYS used first; these values are only used where no reviewed profile or density profile exists, and every use is shown to the user as an assumption.",
   "sources": [
     {
+      "id": "fnr-biogas-einfuehrung-2007",
+      "title": "FNR, «Biogas – eine Einführung», 4. Auflage, Juli 2007, Abb. 4 «Biogaserträge verschiedener Substrate» (Schweinegülle 28 m³/t FM)",
+      "organization": "Fachagentur Nachwachsende Rohstoffe e. V.",
+      "url": "https://susana.org/_resources/documents/default/2-500-fnr-2007-biogas-einfuehrung-de.pdf",
+      "year": 2007
+    },
+    {
       "id": "fnr-faustzahlen",
       "title": "FNR — Faustzahlen Biogas (rules of thumb: substrate gas yields, methane content, 9.97 kWh/m3 CH4)",
       "organization": "Fachagentur Nachwachsende Rohstoffe e. V.",
@@ -60,6 +67,10 @@
     "grass": {"low": 0.52, "high": 0.56, "source_id": "fnr-faustzahlen"},
     "silage": {"low": 0.52, "high": 0.55, "source_id": "fnr-faustzahlen"},
     "straw": {"low": 0.50, "high": 0.55, "source_id": "fnr-faustzahlen"}
+  },
+  "handbook_check": {
+    "comment": "Справочный выход на практике (FNR 2007, Abb. 4, м³ биогаза на т свежей массы). Если измеренные образцы в базе дают меньше половины справочного значения (сильно разбавленные пробы), для типичного сырья берётся справочное значение, а измеренные образцы показываются в допущениях. Метан = биогаз × доля метана; агент дальше умножает его на долю режима (75–90 %), поэтому оценка консервативная.",
+    "swine_manure/slurry": {"biogas_m3_per_t_fm": 28, "source_id": "fnr-biogas-einfuehrung-2007", "locator": "Abb. 4: Schweinegülle 28 m³/t FM (Rindergülle 25, Hühnermist 90)"}
   },
   "fallback_composition": {
     "comment": "Typical handbook ranges for materials that have NO reviewed profile in data/research. Labelled as assumptions.",

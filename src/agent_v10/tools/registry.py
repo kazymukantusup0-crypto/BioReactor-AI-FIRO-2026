@@ -12,11 +12,13 @@ from src.agent_v10.config import demo_reactor
 from src.agent_v10.i18n import t
 from src.agent_v10.tools.common import result
 from src.agent_v10.tools.daily import estimate_daily_production, gas_stove_hours
+from src.agent_v10.tools.feedstock import compare_feedstocks, startup_time
 from src.agent_v10.tools.economics import energy_balance_and_economics
 from src.agent_v10.ranges import point
 from src.agent_v10.tools.heating import estimate_heating_over_days
 from src.agent_v10.tools.knowledge import search_knowledge
-from src.agent_v10.tools.methane import batch_mass_and_volume, estimate_methane, normalize_component, regime_row
+from src.agent_v10.tools.methane import (batch_mass_and_volume, estimate_methane, normalize_component, normalize_substrate,
+                                         regime_row)
 from src.agent_v10.tools.regimes import recommend_temperature_regime
 from src.agent_v10.tools.scenarios import compare_scenarios, default_scenarios
 
@@ -79,6 +81,13 @@ TOOL_SCHEMAS = [
     _function("gas_stove_hours",
               "How many hours a day one household gas burner (stove) can run on the biogas of one day. "
               "Use for 'is the gas enough for cooking / for the gas stove'.", {}),
+    _function("startup_time",
+              "When the first gas comes (start-up phase) and how long the full digestion of the batch takes. "
+              "Use for 'how many days until gas', 'when will the gas start'.", {}),
+    _function("compare_feedstocks",
+              "Compare 2-3 kinds of feedstock at the SAME volume: methane of each, which gives more and why. "
+              "Use for 'what is better: chicken or cow manure'.",
+              {"substrates": {"type": "array", "items": {"type": "string", "enum": SUBSTRATES}}}),
     _function("extract_batch_facts",
               "Normalize units and feedstock names in a text (litres, kg, tonnes, buckets).",
               {"text": {"type": "string"}}, ["text"]),
@@ -203,6 +212,14 @@ def run_tool(name: str, args: dict | None, facts: dict, language: str = "ru") ->
             daily = estimate_daily_production(facts.get("animals"), components=batch, reactor_volume_l=reactor,
                                               regime=regime, state=state, language=language)
             return daily if name == "estimate_daily_production" else gas_stove_hours(daily, language)
+        if name == "startup_time":
+            return startup_time(facts.get("components") or [], regime=regime, language=language)
+        if name == "compare_feedstocks":
+            proposed = args.get("substrates") if isinstance(args.get("substrates"), list) else []
+            materials = [normalize_substrate(str(m)) for m in proposed]
+            batch = [c for c in facts.get("components") or [] if c.get("amount") is not None]
+            volume = batch[0]["value"] if len(batch) == 1 and batch[0].get("family") == "volume" else None
+            return compare_feedstocks([m for m in materials if m], volume_l=volume, regime=regime, language=language)
         if name == "search_knowledge":
             substrate = args.get("substrate") or next((c["substrate"] for c in facts.get("components") or []), None)
             return search_knowledge(str(args.get("query", "")), substrate=substrate, language=language)

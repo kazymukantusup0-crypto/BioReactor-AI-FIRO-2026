@@ -43,6 +43,12 @@ STATE_NAMES = {
 }
 
 
+def material_word(material: str, language: str = "ru") -> str:
+    """Name inside a sentence: 'Навоз КРС' -> 'навоз КРС' (abbreviations keep their capitals)."""
+    name = material_name(material, language)
+    return name[:1].lower() + name[1:] if name[1:2].islower() else name
+
+
 def material_name(material: str, language: str = "ru") -> str:
     """Human name of a material in ru / en / kk (from the existing catalog)."""
     return catalog.name(material, language)
@@ -105,6 +111,35 @@ def _range_of(value) -> dict | None:
     return make(value, value)
 
 
+def _handbook_check(material: str, state: str, measured: dict) -> dict | None:
+    """Typical handbook yield instead of strongly diluted measured samples.
+
+    Pig slurry in the base: two measured samples with TS 2.2–3.2 % (Pham 2013, Eftaxias 2024)
+    give 2.6–4.7 L CH4 per kg — 3.5–7 times less than the FNR handbook value for typical pig
+    slurry (28 m³ biogas per tonne of fresh mass × 60–65 % CH4 = 16.8–18.2 L CH4/kg). The samples
+    are real but diluted with wash water; for a farmer's slurry the handbook value is the typical one.
+    Rule: if the measured high value is below half of the handbook low value, use the handbook value.
+    """
+    row = defaults().get("handbook_check", {}).get(f"{material}/{state}")
+    if not row:
+        return None
+    share = methane_fraction(material)
+    handbook = make(row["biogas_m3_per_t_fm"] * share["low"], row["biogas_m3_per_t_fm"] * share["high"])
+    if measured["yield_l_per_kg"]["high"] >= 0.5 * handbook["low"]:
+        return None
+    ts_values = [v for t in measured["ts_fraction"] if t for v in (t["low"], t["high"])]
+    return {
+        "vs_fraction_wet": None,
+        "bmp_ml_g_vs": measured["bmp_ml_g_vs"],  # still used when the user gives his own TS / VS
+        "yield_l_per_kg": handbook,
+        "label": LABEL_LITERATURE,
+        "profile_ids": [],
+        "sources": [_defaults_source(row["source_id"])],
+        "handbook": {"biogas_m3_per_t_fm": row["biogas_m3_per_t_fm"], "measured_yield_l_per_kg": measured["yield_l_per_kg"],
+                     "measured_ts_percent": [round(min(ts_values) * 100, 1), round(max(ts_values) * 100, 1)] if ts_values else None},
+    }
+
+
 def composition(material: str, state: str) -> dict | None:
     """Organic matter and methane potential of a substrate.
 
@@ -124,6 +159,16 @@ def composition(material: str, state: str) -> dict | None:
         if vs and bmp:
             complete.append((profile, vs, bmp))
     if complete:
+        measured = {
+            "vs_fraction_wet": make(min(v["low"] for _, v, _ in complete), max(v["high"] for _, v, _ in complete)),
+            "bmp_ml_g_vs": make(min(b["low"] for _, _, b in complete), max(b["high"] for _, _, b in complete)),
+            "yield_l_per_kg": make(min(v["low"] * b["low"] for _, v, b in complete),
+                                   max(v["high"] * b["high"] for _, v, b in complete)),
+            "ts_fraction": [p.get("ts_fraction") for p, _, _ in complete],
+        }
+        handbook = _handbook_check(material, state, measured)
+        if handbook:
+            return handbook
         return {
             "vs_fraction_wet": make(min(v["low"] for _, v, _ in complete), max(v["high"] for _, v, _ in complete)),
             "bmp_ml_g_vs": make(min(b["low"] for _, _, b in complete), max(b["high"] for _, _, b in complete)),

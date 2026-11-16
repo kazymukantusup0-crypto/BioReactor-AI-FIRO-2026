@@ -28,7 +28,7 @@ import re
 
 from src.agent_v10 import substrates
 from src.agent_v10.config import demo_reactor, temperature_regimes
-from src.agent_v10.i18n import t
+from src.agent_v10.i18n import plural_ru, t
 from src.agent_v10.ranges import approx_text, center, subtract
 from src.agent_v10.tools.common import pair, result
 from src.agent_v10.tools.derived import gas_vs_heating
@@ -80,9 +80,9 @@ TEXTS = {
     },
     "per_load": {
         "ru": " Весь этот газ ({total} м³ биогаза) — со всей партии. За одну загрузку {working} л получится {per_load} м³ "
-              "биогаза; всего нужно примерно {loads} загрузок.",
+              "биогаза; всего нужно примерно {loads} {loads_word}.",
         "en": " All this gas ({total} m³ of biogas) is for the whole batch. One load of {working} L gives {per_load} m³ "
-              "of biogas; about {loads} loads are needed.",
+              "of biogas; about {loads} {loads_word} are needed.",
         "kk": " Бұл газ ({total} м³ биогаз) — бүкіл партиядан. Бір жүктеме {working} л-ден {per_load} м³ биогаз шығады; "
               "шамамен {loads} жүктеме керек.",
     },
@@ -98,6 +98,42 @@ TEXTS = {
               "Your {reactor} L reactor can take only {feed} kg per day — that is {biogas} m³ of biogas per day.",
         "kk": "Барлық көң ({animals}) тәулігіне {total} м³ биогаз береді, бірақ ол үшін {needed} м³ реактор керек. "
               "Сіздің {reactor} л реактор тәулігіне тек {feed} кг көңді өңдейді — бұл тәулігіне {biogas} м³ биогаз.",
+    },
+    "startup_cattle": {
+        "ru": "Первый газ обычно появляется через {first} дня, если в загрузке есть навоз КРС или закваска (перебродившая "
+              "жижа); сначала он плохой (больше 60 % CO₂) и может не гореть. {full} дней — это время полного сбраживания "
+              "партии, а не ожидание газа.",
+        "en": "The first gas usually comes in {first} days if the load contains cattle dung or an inoculum (digested slurry); "
+              "at first it is poor (more than 60% CO₂) and may not burn. {full} days is the time to digest the whole batch, "
+              "not the wait for gas.",
+        "kk": "Жүктемеде сиыр көңі немесе ашытқы (ашыған қоспа) болса, алғашқы газ әдетте {first} күнде шығады; басында ол "
+              "сапасыз (CO₂ 60 %-дан көп) және жанбауы мүмкін. {full} күн — партияның толық ашу уақыты, газды күту емес.",
+    },
+    "startup_other": {
+        "ru": "Первый газ для этого сырья — через несколько дней или недель; с закваской (навоз КРС или перебродившая жижа) "
+              "обычно через 1–2 дня. {full} дней — это время полного сбраживания партии, а не ожидание газа.",
+        "en": "For this feed the first gas comes after several days or weeks; with an inoculum (cattle dung or digested "
+              "slurry) usually in 1–2 days. {full} days is the time to digest the whole batch, not the wait for gas.",
+        "kk": "Бұл шикізатта алғашқы газ бірнеше күннен не аптадан кейін; ашытқымен (сиыр көңі не ашыған қоспа) әдетте "
+              "1–2 күнде. {full} күн — партияның толық ашу уақыты, газды күту емес.",
+    },
+    "best_feed": {
+        "ru": "При одинаковом объёме {volume} л: {best} — {best_m3} м³ метана, {other} — {other_m3} м³. "
+              "Больше газа даёт {best_word}, примерно в {times} раза.",
+        "en": "At the same volume of {volume} L: {best} — {best_m3} m³ of methane, {other} — {other_m3} m³. "
+              "{best} gives more gas, about {times} times more.",
+        "kk": "Бірдей {volume} л көлемде: {best} — {best_m3} м³ метан, {other} — {other_m3} м³. "
+              "Көбірек газды {best_word} береді, шамамен {times} есе.",
+    },
+    "best_feed_overlap": {
+        "ru": " Диапазоны перекрываются, поэтому разница приблизительная.",
+        "en": " The ranges overlap, so the difference is approximate.",
+        "kk": " Аралықтар қиылысады, сондықтан айырма шамамен.",
+    },
+    "feed_note": {
+        "ru": " Особенность: {name} — {note}.",
+        "en": " Note: {name} — {note}.",
+        "kk": " Ерекшелігі: {name} — {note}.",
     },
     "stove_hours": {
         "ru": "Газа хватит на {hours} ч работы одной бытовой конфорки в сутки (конфорка тратит 0.2–0.45 м³/ч).",
@@ -180,6 +216,8 @@ TITLES = {
     "best_use": {"ru": "Что выгоднее", "en": "Best use", "kk": "Не тиімді"},
     "daily_capacity": {"ru": "Хватит объёма реактора?", "en": "Is the reactor big enough?", "kk": "Реактор көлемі жете ме?"},
     "stove": {"ru": "Газовая плита", "en": "Gas stove", "kk": "Газ плитасы"},
+    "startup": {"ru": "Когда пойдёт газ", "en": "When the gas starts", "kk": "Газ қашан шығады"},
+    "best_feed": {"ru": "Что даёт больше газа", "en": "Which gives more gas", "kk": "Қайсысы көп газ береді"},
 }
 WORDS = {
     "yes": {"ru": "да", "en": "yes", "kk": "иә"},
@@ -294,6 +332,39 @@ BATCH_TOOLS = {"estimate_methane", "estimate_heating_energy", "recommend_tempera
                "energy_balance_and_economics"}
 
 
+VOLUME_DETAIL = {
+    "ru": " ({amount} кг {name} при плотности {density} кг/л ≈ {low}–{high} л{why})",
+    "en": " ({amount} kg of {name} at a density of {density} kg/L ≈ {low}–{high} L{why})",
+    "kk": " ({amount} кг {name}, тығыздығы {density} кг/л ≈ {low}–{high} л{why})",
+}
+LOOSE_STRAW = {
+    "ru": "; это насыпная плотность — от рыхлой до прессованной соломы; измельчённая и намокшая солома в жиже займёт меньше",
+    "en": "; this is the bulk density from loose to baled straw; chopped wet straw in the slurry takes less space",
+    "kk": "; бұл үйінді тығыздық — борпылдақтан нығыздалған сабанға дейін; ұсақталып суланған сабан аз орын алады",
+}
+
+
+def volume_details(components: list[dict], language: str) -> str:
+    """Where the litres of a feed given in kg come from (e.g. 20 kg of straw ≈ 56–345 L by bulk density)."""
+    parts = []
+    for raw in components:
+        try:
+            component = normalize_component(raw)
+        except ValueError:
+            continue
+        if component.get("amount") is None or component["family"] != "mass":
+            continue
+        state = component_mass(component)["state"]
+        density = substrates.density(component["substrate"], state)
+        dens = f"{density['low']:g}" if density["low"] == density["high"] else f"{density['low']:g}–{density['high']:g}"
+        why = LOOSE_STRAW.get(language, LOOSE_STRAW["ru"]) if component["substrate"] == "straw" else ""
+        parts.append(VOLUME_DETAIL.get(language, VOLUME_DETAIL["ru"]).format(
+            amount=f"{component['value']:g}", name=substrates.material_word(component["substrate"], language),
+            density=dens, low=f"{component['value'] / density['high']:.0f}", high=f"{component['value'] / density['low']:.0f}",
+            why=why))
+    return "".join(parts)
+
+
 def fits_relevant(context: dict | None) -> bool:
     """Show "does not fit" only when it belongs to THIS message: the user just named the batch,
     or asks about fitting / loading. Otherwise it stuck to every later answer (manual check, bug A)."""
@@ -316,7 +387,8 @@ def batch_too_big_note(facts: dict, results: list[dict], language: str) -> str |
     if volume[1] <= working:
         return None
     shown = f"{center([round(volume[0]), round(volume[1])]):g}" if volume[0] != volume[1] else f"{round(volume[0]):g}"
-    return t("assume_batch_too_big", language, volume=shown, working=f"{working:g}", reactor=f"{reactor:g}")
+    return (t("assume_batch_too_big", language, volume=shown, working=f"{working:g}", reactor=f"{reactor:g}")
+            + volume_details(facts.get("components") or [], language))
 
 
 def fits_verdict(facts: dict, language: str, results: list[dict] | None = None) -> dict | None:
@@ -334,9 +406,12 @@ def fits_verdict(facts: dict, language: str, results: list[dict] | None = None) 
     smallest, largest = volume
     if largest <= working:
         return None
-    code = "no" if smallest > working else "maybe"
+    # "No" when the batch (its central estimate) is larger than the working volume; "maybe" only when
+    # the central estimate fits and just the upper edge does not (manual check: "на грани: 300 > 160").
+    code = "no" if (smallest + largest) / 2 > working else "maybe"
     shown = f"{center([round(smallest), round(largest)]):g}" if smallest != largest else f"{round(smallest):g}"
-    text = _say(TEXTS, "fits_" + code, language, volume=shown, working=f"{working:g}", reactor=f"{reactor:g}")
+    text = _say(TEXTS, "fits_" + code, language, volume=shown if code == "no" else f"{round(smallest):g}–{round(largest):g}",
+                working=f"{working:g}", reactor=f"{reactor:g}") + volume_details(facts.get("components") or [], language)
     gas = _first_ok(results or [], "estimate_methane")
     if gas and code == "no":
         # The gas figure is for the WHOLE batch; the model once said "from 160 L". Give it the per-load number.
@@ -345,9 +420,12 @@ def fits_verdict(facts: dict, language: str, results: list[dict] | None = None) 
         per_load = [biogas[0] * share, biogas[1] * share]
         text += _say(TEXTS, "per_load", language, total=approx_text(biogas), working=f"{working:g}",
                      per_load=approx_text(pair({"low": per_load[0], "high": per_load[1]})),
-                     loads=math.ceil((smallest + largest) / 2 / working))
-    return _item("fits", code, f"{WORDS[code].get(language, WORDS[code]['ru'])}: {shown} > {working:g} л", text, language,
-                 "bad" if code == "no" else "warn")
+                     loads=(loads := math.ceil((smallest + largest) / 2 / working)),
+                     loads_word={"ru": plural_ru(loads, ("загрузка", "загрузки", "загрузок")),
+                                 "en": "load" if loads == 1 else "loads"}.get(language, ""))
+    value = (f"{WORDS[code].get(language, WORDS[code]['ru'])}: {shown} > {working:g} л" if code == "no" else
+             f"{WORDS[code].get(language, WORDS[code]['ru'])}: {round(smallest):g}–{round(largest):g} л, рабочий {working:g} л")
+    return _item("fits", code, value, text, language, "bad" if code == "no" else "warn")
 
 
 def daily_capacity_verdict(results: list[dict], language: str) -> dict | None:
@@ -382,6 +460,45 @@ def stove_verdict(results: list[dict], language: str) -> dict | None:
                      hours=approx_text(in_reactor))
     shown = in_reactor or hours
     return _item("stove", "hours", f"≈{center(shown):g} ч/сут", text, language, "good" if shown[0] >= 1 else "warn")
+
+
+def startup_verdict(results: list[dict], language: str) -> dict | None:
+    """First gas (start-up) is not the full digestion time."""
+    found = _first_ok(results, "startup_time")
+    if not found:
+        return None
+    data = found["data"]
+    full = data["full_digestion_days"]
+    full_text = f"{full['low']:g}–{full['high']:g}"
+    if data["with_cattle_dung"]:
+        first = data["first_gas_days"]
+        text = _say(TEXTS, "startup_cattle", language, first=f"{first['low']:g}–{first['high']:g}", full=full_text)
+        value = f"{first['low']:g}–{first['high']:g} дн."
+    else:
+        text = _say(TEXTS, "startup_other", language, full=full_text)
+        value = "дни–недели"
+    return _item("startup", "cattle" if data["with_cattle_dung"] else "other", value, text, language, "info")
+
+
+def best_feed_verdict(results: list[dict], language: str) -> dict | None:
+    """Which feed gives more methane at the same volume, and by how much."""
+    found = _first_ok(results, "compare_feedstocks")
+    if not found:
+        return None
+    data = found["data"]
+    feeds = {row["substrate"]: row for row in data["feeds"]}
+    best = feeds[data["best"]]
+    other = next(row for row in data["feeds"] if row["substrate"] != data["best"])
+    text = _say(TEXTS, "best_feed", language, volume=f"{data['volume_l']:g}", best=best["name"],
+                best_word=substrates.material_word(best["substrate"], language),
+                best_m3=approx_text(pair(best["methane_m3"])), other=other["name"],
+                other_m3=approx_text(pair(other["methane_m3"])), times=f"{data['ratio']:.1f}")
+    if data["ranges_overlap"]:
+        text += _say(TEXTS, "best_feed_overlap", language)
+    for substrate, note in data["notes"].items():
+        if substrate != "cattle_manure":
+            text += _say(TEXTS, "feed_note", language, name=substrates.material_word(substrate, language), note=note)
+    return _item("best_feed", data["best"], f"{best['name']}: ×{data['ratio']:.1f}", text, language, "info")
 
 
 def best_use_verdict(results: list[dict], language: str) -> dict | None:
@@ -487,6 +604,7 @@ def build(results: list[dict], facts: dict, language: str = "ru", context: dict 
     items = [v for v in (regime_verdict(results, language), net_verdict(results, language),
                          enough_gas_verdict(results, language), fits,
                          daily_capacity_verdict(results, language), stove_verdict(results, language),
+                         startup_verdict(results, language), best_feed_verdict(results, language),
                          best_use_verdict(results, language)) if v]
     note = None if fits else batch_too_big_note(facts, results, language)
     if not items:

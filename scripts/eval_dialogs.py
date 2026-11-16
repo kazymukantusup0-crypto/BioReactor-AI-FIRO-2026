@@ -45,7 +45,8 @@ from src.agent_v10.memory import Memory  # noqa: E402
 #                      "no_verdict" — verdict keys that must NOT be shown (they do not belong to this question);
 #                      "question_not" — regexes the clarifying question must NOT match (asked once already);
 #                      "card_label" — {card key: label} e.g. the methane card keeps "literature";
-#                      "same_card" — [card key, turn index]: the card equals the one of that earlier turn.
+#                      "same_card" — [card key, turn index]: the card equals the one of that earlier turn;
+#                      "substrate" — the remembered batch is this feed (after a correction).
 #   PYTHON_PLAN(tools) as expected tools: Python runs these tools itself (questions with a fixed set of tools:
 #                      per day, gas stove, "есть смысл?"); OK when exactly these tools ran and the LLM only explained.
 class PYTHON_PLAN(frozenset):
@@ -156,6 +157,54 @@ DIALOGS = [
          {"verdict": {"stove": "hours"}, "card": "stove_hours", "no_verdict": ["fits", "daily_capacity"],
           "must_text": [r"конфорк|плит"], "must_not": [r"не помест", r"Партия"], "question_not": [r"жидкий или тв"]}),
     ]),
+    # --- regression: manual check 2 (H first gas vs digestion, I compare feeds, J straw volume, K pig slurry,
+    #     L/M corrections, N history) ---
+    ("21. Ручная проверка 2: исправления и история", [
+        ("У меня 200 литров коровьего навоза, сколько будет газа?", {"estimate_methane"}, "ru", {"substrate": "cattle_manure"}),
+        ("Сколько дней ждать, пока газ пойдёт?", PYTHON_PLAN({"startup_time"}), "ru",
+         {"verdict": {"startup": "cattle"}, "card": "first_gas", "must_text": [r"1[–-]2"],
+          "must_not": [r"(?:начн|пойд|появ)\w*[^.]{0,25}через\s*[≈~]?\s*(?:2\d|3\d)"]}),
+        ("Что лучше: куриный помёт или коровий навоз?", PYTHON_PLAN({"compare_feedstocks"}), "ru",
+         {"verdict": {"best_feed": "poultry_manure"}, "must": [r"азот|аммиак"], "must_not": [r"утеплён"]}),
+        ("А если 100 л навоза и 20 кг соломы?", {"estimate_methane", "compare_scenarios"}, "ru",
+         {"must": [r"плотност\w* 0\.058"]}),
+        ("У меня 150 л свиного навоза, сколько газа?", {"estimate_methane"}, "ru",
+         {"substrate": "swine_manure", "must": [r"FNR 2007"]}),
+        ("Ой, не свиного, а коровьего", {"estimate_methane"}, "ru", {"substrate": "cattle_manure", "amount": 150}),
+        ("И не 150, а 300", {"estimate_methane"}, "ru", {"substrate": "cattle_manure", "amount": 300}),
+        ("А что было в самом начале?", set(), "ru",
+         {"must_text": [r"200 литров коровьего", r"150 л свин", r"300 л навоз КРС", r"исправлени"]}),
+    ]),
+    # --- a long dialog (23 messages): does the history or the context overflow at the end? ---
+    ("22. Длинный диалог: 23 сообщения, исправления в конце", [
+        ("У меня 200 литров коровьего навоза, сколько будет газа?", {"estimate_methane"}, "ru"),
+        ("Жидкий.", {"estimate_methane"}, "ru", {"question_not": [r"жидкий или тв"]}),
+        ("Какую температуру ставить?", {"recommend_temperature_regime"}, "ru", {"verdict": {"regime": "mesophilic"}}),
+        ("Сколько электричества уйдёт на подогрев?", {"estimate_heating_energy"}, "ru"),
+        ("Бочка 200 литров, не утеплена, на улице −15. Есть смысл?",
+         PYTHON_PLAN({"estimate_methane", "estimate_heating_energy"}), "ru", {"verdict": {"net": "minus", "advice": "eps50"}}),
+        ("Сколько дней ждать, пока газ пойдёт?", PYTHON_PLAN({"startup_time"}), "ru", {"verdict": {"startup": "cattle"}}),
+        ("Что лучше: куриный помёт или коровий навоз?", PYTHON_PLAN({"compare_feedstocks"}), "ru",
+         {"verdict": {"best_feed": "poultry_manure"}}),
+        ("А если добавить 20 кг соломы?", {"compare_scenarios", "estimate_methane"}, "ru"),
+        ("Почему мезофильный режим устойчивее?", {"search_knowledge"}, "ru"),
+        ("Что выгоднее: тепло или электричество?", {"energy_balance_and_economics"}, "ru", {"verdict": {"best_use": "*"}}),
+        ("У меня 5 коров, сколько газа в день будет?", PYTHON_PLAN({"estimate_daily_production"}), "ru",
+         {"verdict": {"daily_capacity": "no"}}),
+        ("Хватит газа на газовую плиту?", PYTHON_PLAN({"gas_stove_hours"}), "ru", {"verdict": {"stove": "hours"}}),
+        ("Какая завтра погода в Астане?", set(), "ru", {"must_text": [r"биогаз|реактор|навоз|сырь"]}),
+        ("У меня 150 л свиного навоза, сколько газа?", {"estimate_methane"}, "ru", {"substrate": "swine_manure"}),
+        ("Ой, не свиного, а коровьего", {"estimate_methane"}, "ru", {"substrate": "cattle_manure", "amount": 150}),
+        ("И не 150, а 300", {"estimate_methane"}, "ru", {"substrate": "cattle_manure", "amount": 300}),
+        ("Сколько дней ждать, пока газ пойдёт?", PYTHON_PLAN({"startup_time"}), "ru", {"verdict": {"startup": "cattle"}}),
+        ("Какую температуру ставить?", {"recommend_temperature_regime"}, "ru", {"verdict": {"regime": "mesophilic"}}),
+        ("Сколько это в тенге?", {"energy_balance_and_economics"}, "ru", {"verdict": {"best_use": "*"}}),
+        ("У меня 100 л свиного навоза. Сколько газа?", {"estimate_methane"}, "ru", {"substrate": "swine_manure", "amount": 100}),
+        ("Нет, не свиного, а коровьего.", {"estimate_methane"}, "ru", {"substrate": "cattle_manure", "amount": 100}),
+        ("И не 100, а 250.", {"estimate_methane"}, "ru", {"substrate": "cattle_manure", "amount": 250}),
+        ("А что было в самом начале?", set(), "ru",
+         {"must_text": [r"200 литров коровьего", r"250 л навоз КРС", r"исправлени"]}),
+    ]),
 ]
 
 
@@ -179,6 +228,10 @@ def check_answer(final: dict, facts: dict, checks: dict, previous: list[dict] | 
         amounts = {round(float(c.get("value") or c.get("amount") or 0), 3) for c in facts.get("components") or []}
         if float(checks["amount"]) not in amounts:
             failed.append(f"количество {checks['amount']} не запомнено ({sorted(amounts)})")
+    if "substrate" in checks:
+        feeds = [c.get("substrate") for c in facts.get("components") or []]
+        if feeds != [checks["substrate"]]:
+            failed.append(f"сырьё в памяти {feeds}, ждали {checks['substrate']}")
     if "card" in checks and checks["card"] not in {c.get("key") for c in final.get("numbers") or []}:
         failed.append(f"нет карточки {checks['card']}")
     have = {v["key"]: v["code"] for v in final.get("verdicts") or []}

@@ -33,7 +33,10 @@ TITLES = {
     "best_use": {"ru": "Выгоднее всего", "en": "Best use", "kk": "Ең тиімдісі"},
     "value": {"ru": "Экономия (минус = убыток)", "en": "Savings (minus = loss)", "kk": "Үнем (минус = шығын)"},
     "least_loss": {"ru": "Наименьший убыток", "en": "Smallest loss", "kk": "Ең аз шығын"},
-    "methane_change": {"ru": "Прибавка метана", "en": "Extra methane", "kk": "Метан өсімі"},
+    "methane_change": {"ru": "Разница метана (последний − первый вариант)", "en": "Methane difference (last − first)",
+                       "kk": "Метан айырмасы (соңғы − бірінші)"},
+    "first_gas": {"ru": "Первый газ (с закваской)", "en": "First gas (with inoculum)", "kk": "Алғашқы газ (ашытқымен)"},
+    "full_digestion": {"ru": "Полное сбраживание партии", "en": "Full digestion of the batch", "kk": "Партияның толық ашуы"},
     "enough_gas": {"ru": "Хватит газа на подогрев?", "en": "Enough gas for heating?", "kk": "Газ қыздыруға жете ме?"},
     "gas_covers": {"ru": "Газ покрывает подогрев", "en": "Gas covers heating", "kk": "Газ қыздыруды жабады"},
     "manure_day": {"ru": "Навоз в сутки", "en": "Manure per day", "kk": "Тәулігіне көң"},
@@ -166,6 +169,14 @@ def number_cards(results: list[dict], language: str) -> list[dict]:
             else:
                 cards.append(_card("biogas_day", llm["biogas_m3_per_day"], "m3_day", llm.get("methane_label", label), language))
                 cards.append(_card("methane_day", llm["methane_m3_per_day"], "m3_day", llm.get("methane_label", label), language))
+        elif name == "startup_time":
+            if isinstance(llm["first_gas_days"], list):
+                cards.append(_card("first_gas", llm["first_gas_days"], "days", label, language))
+            cards.append(_card("full_digestion", llm["full_digestion_days_of_the_batch"], "days", "assumption", language))
+        elif name == "compare_feedstocks":
+            for feed in llm["feeds"]:
+                cards.append(_card("methane", feed["methane_m3"], "m3", label, language,
+                                   title=f"{_title('methane', language)}: {feed['feed']} ({llm['same_volume_l']:g} л)"))
         elif name == "gas_stove_hours":
             cards.append(_card("biogas_day", llm["biogas_m3_per_day"], "m3_day", label, language))
             cards.append(_card("stove_hours", llm["one_burner_hours_per_day"], "hours", label, language))
@@ -298,7 +309,8 @@ def template_explanation(results: list[dict], language: str) -> str:
     verdicts = next((r for r in results if r.get("name") == "verdicts" and r.get("ok")), None)
     if verdicts:
         parts += verdicts["llm"]["verdicts"]
-    covered = {"recommend_temperature_regime", "energy_balance_and_economics", "gas_stove_hours"} if verdicts else set()
+    covered = ({"recommend_temperature_regime", "energy_balance_and_economics", "gas_stove_hours", "startup_time",
+                "compare_feedstocks"} if verdicts else set())
     for item in results:
         if not item.get("ok") or item["name"] in covered:
             continue  # the verdicts above already say the regime / best use, do not repeat them
@@ -451,3 +463,171 @@ def trim_to_sentence(text: str) -> str:
         return text
     ends = list(SENTENCE_END.finditer(text))
     return text[: ends[-1].end()] if ends else text
+
+# --- checks of the LLM text beyond numbers (manual check 2) ----------------------------------
+
+NEGATED_MATERIAL = re.compile(r"(?:\bне|вместо|а\s+не|instead\s+of|\bnot|орнына)\s+[\wёәғқңөұүһі-]+(?:\s+[\wёәғқңөұүһі-]+)?",
+                              re.IGNORECASE)
+# "газ начнёт выходить через ≈30 дней": 25–35 days is the full digestion time, the first gas comes in 1–2 days.
+FIRST_GAS_CLAIM = re.compile(
+    r"газ\w*[^.?!]{0,40}?(?:начн\w*|пойд\w*|появ\w*|станет\s+выдел\w*|выдел\w*)[^.?!]{0,25}?(?:через|спустя)\s*[≈~]?\s*(\d+)"
+    r"|(?:через|спустя)\s*[≈~]?\s*(\d+)[^.?!]{0,25}?(?:дн\w*|сут\w*)[^.?!]{0,20}?газ\w*\s+(?:начн\w*|пойд\w*|появ\w*)"
+    r"|gas\s+(?:will\s+)?(?:start|appear|come)\w*[^.?!]{0,25}?(?:in|after)\s*[≈~]?\s*(\d+)",
+    re.IGNORECASE)
+
+
+def _walk_strings(value, bucket: list[str]) -> None:
+    if isinstance(value, str):
+        bucket.append(value)
+    elif isinstance(value, dict):
+        for item in value.values():
+            _walk_strings(item, bucket)
+    elif isinstance(value, (list, tuple)):
+        for item in value:
+            _walk_strings(item, bucket)
+
+
+def calculated_materials(results: list[dict], facts: dict) -> set[str]:
+    """Feeds the answer is about: the remembered batch and every feed named in this message's tool results."""
+    from src.agent_v10 import substrates
+
+    found = {c["substrate"] for c in facts.get("components") or [] if c.get("substrate")}
+    texts: list[str] = []
+    for item in results:
+        if item.get("ok"):
+            _walk_strings(item.get("data"), texts)
+            _walk_strings(item.get("llm"), texts)
+    for value in texts:
+        if value in substrates.known_materials():
+            found.add(substrates.resolve_material(value))
+        else:
+            found.update(substrates.resolve_material(m["material"]) for m in substrates.recognize(value)
+                         if m["material"] != "manure")
+    return found if results else set()
+
+
+def wrong_material(text: str, materials: set[str], language: str) -> list[str]:
+    """The text names a feed that was not calculated (e.g. says "коровьего" over swine numbers)."""
+    from src.agent_v10 import substrates
+
+    if not materials or not text:
+        return []
+    cleaned = NEGATED_MATERIAL.sub(" ", text)  # "не свиного, а коровьего": the negated feed is fine to mention
+    named = {substrates.resolve_material(m["material"]) for m in substrates.recognize(cleaned) if m["material"] != "manure"}
+    wrong = sorted(named - materials)
+    if not wrong:
+        return []
+    names = ", ".join(substrates.material_name(m, "en") for m in wrong)
+    calculated = ", ".join(substrates.material_name(m, "en") for m in sorted(materials))
+    return [f"The text names {names}, but the calculation is for {calculated}. Name only the calculated feed."]
+
+
+def science_problems(text: str) -> list[str]:
+    """Known scientific mix-ups in the text."""
+    problems = []
+    for match in FIRST_GAS_CLAIM.finditer(text or ""):
+        days = next((float(g) for g in match.groups() if g), 0)
+        if days >= 5:
+            problems.append("The digestion time (25–35 days) is NOT the time until the first gas: with cattle dung or "
+                            "digested slurry the first gas comes in 1–2 days.")
+            break
+    return problems
+
+
+# --- answers without a calculation ---------------------------------------------------------------
+
+def batch_text(components: list[dict], language: str) -> str:
+    """'150 л навоз крс + 20 кг солома' from remembered components."""
+    from src.agent_v10.substrates import material_word
+
+    parts = []
+    for c in components or []:
+        name = material_word(c["substrate"], language) if c.get("substrate") else (c.get("unknown_name") or "?")
+        if c.get("amount") is None:
+            parts.append(name)
+            continue
+        unit = {"L": {"ru": "л", "kk": "л", "en": "L"}, "kg": {"ru": "кг", "kk": "кг", "en": "kg"}}.get(
+            c.get("base_unit"), {}).get(language) or c.get("unit") or ""
+        parts.append(f"{c['amount']:g} {unit} {name}".replace("  ", " "))
+    return " + ".join(parts)
+
+
+HISTORY_TEXT = {
+    "ru": {"first": "В самом начале вы спросили: «{first}».", "batch": "Сырьё по ходу разговора: {steps}.",
+           "fixed": "исправление", "now": "Сейчас в расчёте: {now}.", "other": "Ещё известно: {other}.",
+           "none": "Новых расчётов не делал — это пересказ из памяти.",
+           "reactor": "реактор {v:g} л", "insulation": "утепление: {v}", "ambient": "на улице {v:g} °C",
+           "animals": "животные: {v}"},
+    "en": {"first": "At the very beginning you asked: \"{first}\".", "batch": "Feed during the conversation: {steps}.",
+           "fixed": "correction", "now": "Now calculated: {now}.", "other": "Also known: {other}.",
+           "none": "No new calculation — this is a recap from memory.",
+           "reactor": "reactor {v:g} L", "insulation": "insulation: {v}", "ambient": "outside {v:g} °C",
+           "animals": "animals: {v}"},
+    "kk": {"first": "Ең басында сіз сұрадыңыз: «{first}».", "batch": "Әңгіме барысындағы шикізат: {steps}.",
+           "fixed": "түзету", "now": "Қазір есепте: {now}.", "other": "Тағы белгілі: {other}.",
+           "none": "Жаңа есеп жасалмады — бұл жадтан қысқаша мазмұн.",
+           "reactor": "реактор {v:g} л", "insulation": "жылыту: {v}", "ambient": "сыртта {v:g} °C",
+           "animals": "малдар: {v}"},
+}
+
+
+def history_summary(messages: list[dict], text: str, facts: dict, language: str) -> str:
+    """Recap of the dialogue from memory: the first question and how the batch changed (no new calculation).
+
+    The steps are rebuilt by replaying the user's messages through the same fact extraction,
+    so corrections ("не свиного, а коровьего", "не 150, а 300") are marked as corrections.
+    """
+    from src.agent_v10 import facts as facts_module
+    from src.agent_v10.i18n import t
+
+    words = HISTORY_TEXT.get(language, HISTORY_TEXT["ru"])
+    users = [m["content"] for m in messages if m.get("role") == "user"]
+    replay, steps = None, []
+    for message in users:
+        extracted = facts_module.extract(message, replay)
+        replay = extracted["facts"]
+        described = batch_text(replay.get("components"), language)
+        if described and (not steps or steps[-1][0] != described):
+            steps.append((described, bool(extracted["updates"].get("corrected"))))
+    parts = [words["first"].format(first=users[0])] if users else []
+    if steps:
+        parts.append(words["batch"].format(steps=" → ".join(
+            f"{d} ({words['fixed']})" if fixed else d for d, fixed in steps)))
+    now = batch_text(facts.get("components"), language)
+    if now:
+        parts.append(words["now"].format(now=now))
+    other = []
+    if facts.get("reactor_volume_l"):
+        other.append(words["reactor"].format(v=facts["reactor_volume_l"]))
+    if facts.get("insulation"):
+        other.append(words["insulation"].format(v=t("insulation_" + facts["insulation"], language)))
+    if facts.get("ambient_c") is not None:
+        other.append(words["ambient"].format(v=facts["ambient_c"]))
+    if facts.get("animals"):
+        other.append(words["animals"].format(v=", ".join(f"{a['count']:g} {a['species']}" for a in facts["animals"])))
+    if other:
+        parts.append(words["other"].format(other=", ".join(other)))
+    parts.append(words["none"])
+    return " ".join(parts)
+
+
+FALLBACK_TEXT = {
+    "ru": {"remembered": "Запомнил: {what}. Если нужен расчёт — спросите, например: «Сколько будет газа?»",
+           "not_understood": "Не понял, что нужно посчитать. Напишите, например: «Сколько газа даст 150 л навоза КРС?» "
+                             "или «Какую температуру ставить?»"},
+    "en": {"remembered": "Noted: {what}. For a calculation ask, for example: \"How much gas will it give?\"",
+           "not_understood": "I did not understand what to calculate. Try for example: \"How much gas from 150 L of cattle "
+                             "slurry?\" or \"Which temperature should I set?\""},
+    "kk": {"remembered": "Есте сақтадым: {what}. Есеп керек болса, сұраңыз: «Қанша газ болады?»",
+           "not_understood": "Нені есептеу керек екенін түсінбедім. Мысалы: «150 л сиыр көңінен қанша газ шығады?»"},
+}
+
+
+def empty_fallback(updates: dict, facts: dict, language: str) -> str:
+    """Never an empty answer: what was understood, or that nothing was understood and what to write."""
+    words = FALLBACK_TEXT.get(language, FALLBACK_TEXT["ru"])
+    changed = {k for k in updates if k != "corrected"}
+    if changed:
+        what = batch_text(facts.get("components"), language) or ", ".join(sorted(changed))
+        return words["remembered"].format(what=what)
+    return words["not_understood"]

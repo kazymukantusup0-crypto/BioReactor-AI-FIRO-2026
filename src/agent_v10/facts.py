@@ -83,6 +83,69 @@ KEY_VALUE_RE = re.compile(r"\b(?P<key>operating_mode|insulation|режим_ра�
 ANIMAL_RE = re.compile(rf"(?P<number>{NUMBER})\s*(?:голов\w*\s+|head\s+of\s+|бас\s+)?(?P<word>[^\W\d_]+)", re.IGNORECASE)
 
 
+# Corrections: "Ой, не свиного, а коровьего", "И не 150, а 300", "not pig but cow", "шошқа емес, сиыр".
+CORRECTION_RE = re.compile(
+    r"(?:^|[\s,.!?:;—-])(?:нет,?\s+)?не\s+(?P<old>[^,.;!?]{1,40}?)\s*,?\s+а\s+(?P<new>[^,.;!?]{1,40})"
+    r"|\bnot\s+(?P<old_en>[^,.;!?]{1,40}?)\s*,?\s+but\s+(?P<new_en>[^,.;!?]{1,40})"
+    r"|(?P<old_kk>[^,.;!?]{1,40}?)\s+емес\s*,?\s+(?P<new_kk>[^,.;!?]{1,40})",
+    re.IGNORECASE)
+# Adjectives without the word "навоз" ("не свиного, а коровьего"): used only inside a correction.
+ADJECTIVE_MATERIALS = [
+    ("swine_manure", r"свин\w*|pig\w*|swine|шошқа\w*"),
+    ("cattle_manure", r"коров\w*|крс|cow\w*|cattle|сиыр\w*"),
+    ("poultry_manure", r"кур\w*|птич\w*|chicken\w*|poultry|тауық\w*"),
+    ("sheep_goat_manure", r"овеч\w*|коз\w*|sheep|goat\w*|қой\w*|ешкі\w*"),
+    ("horse_manure", r"конск\w*|лошад\w*|horse\w*|жылқы\w*"),
+]
+
+
+def _material_in(part: str) -> str | None:
+    found = substrates.recognize(part)
+    if found:
+        return substrates.resolve_material(found[0]["material"])
+    for material, pattern in ADJECTIVE_MATERIALS:
+        if re.search(rf"(?<!\w)(?:{pattern})", part, re.IGNORECASE):
+            return material
+    return None
+
+
+def correction(text: str, components: list[dict]) -> dict | None:
+    """The user corrects the remembered batch: a new substrate or a new amount (same unit).
+
+    Returns {"components": [...], "what": "substrate" | "amount", "from": ..., "to": ...} or None.
+    """
+    match = CORRECTION_RE.search(text)
+    if not match or not components:
+        return None
+    old = match.group("old") or match.group("old_en") or match.group("old_kk") or ""
+    new = match.group("new") or match.group("new_en") or match.group("new_kk") or ""
+    new_material, old_material = _material_in(new), _material_in(old)
+    if new_material and new_material != old_material:
+        index = next((i for i, c in enumerate(components) if c.get("substrate") == old_material), len(components) - 1)
+        before = components[index]
+        if before.get("substrate") == new_material:
+            return None  # nothing to change
+        state = _state_near(new, 0, len(new))
+        changed = {**before, "substrate": new_material, "state": state}
+        changed.pop("analog_of", None)
+        return {"components": components[:index] + [changed] + components[index + 1:], "what": "substrate",
+                "from": before.get("substrate"), "to": new_material}
+    numbers = re.findall(NUMBER, new)
+    old_numbers = re.findall(NUMBER, old)
+    if numbers and old_numbers:
+        value = parse_number(numbers[0])
+        previous = parse_number(old_numbers[0])
+        index = next((i for i, c in enumerate(components) if c.get("amount") == previous), len(components) - 1)
+        before = components[index]
+        if before.get("amount") is None:
+            return None
+        ratio = value / before["amount"]
+        changed = {**before, "amount": value, "value": (before.get("value") or before["amount"]) * ratio}
+        return {"components": components[:index] + [changed] + components[index + 1:], "what": "amount",
+                "from": before["amount"], "to": value}
+    return None
+
+
 def find_animals(text: str, spans: bool = False) -> list[dict]:
     """Animals with a count: "у меня 5 коров и 10 кур" -> [{cow, 5}, {chicken, 10}]."""
     found: dict[str, float] = {}
@@ -251,7 +314,13 @@ def extract(text: str, known: dict | None = None) -> dict:
     is_add = re.search(ADD_WORDS, text, re.IGNORECASE) is not None
     is_replace = re.search(REPLACE_WORDS, text, re.IGNORECASE) is not None
     components = facts["components"]
-    if new_components:
+    fixed = correction(text, components) if not new_components else None
+    if fixed:
+        # "Ой, не свиного, а коровьего" / "И не 150, а 300": update the fact, the agent recalculates.
+        components = fixed["components"]
+        updates["components"] = components
+        updates["corrected"] = {key: fixed[key] for key in ("what", "from", "to")}
+    elif new_components:
         if is_add and components:
             components = components + new_components
             updates["components_added"] = new_components

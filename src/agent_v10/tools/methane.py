@@ -140,6 +140,14 @@ def component_potential(component: dict, state: str, language: str = "ru") -> di
     assumptions = [t("assume_composition", language, substrate=substrates.material_name(substrate, language),
                      label=t("label_" + found["label"], language))]
     labels = [found["label"]]
+    if found.get("handbook"):
+        hb = found["handbook"]
+        measured = hb["measured_yield_l_per_kg"]
+        assumptions = [t("assume_handbook", language, substrate=substrates.material_name(substrate, language),
+                         ts="–".join(f"{v:g}" for v in hb["measured_ts_percent"]) if hb["measured_ts_percent"] else "?",
+                         m_low=f"{measured['low']:.1f}", m_high=f"{measured['high']:.1f}",
+                         biogas=f"{hb['biogas_m3_per_t_fm']:g}", low=f"{found['yield_l_per_kg']['low']:.1f}",
+                         high=f"{found['yield_l_per_kg']['high']:.1f}")]
     if component.get("analog_of"):
         # No data for the real material: the analogue's composition, always a rough assumption.
         assumptions.insert(0, t("assume_analog", language, name=component["analog_of"],
@@ -246,6 +254,7 @@ def estimate_methane(components: list[dict], regime: str = DEFAULT_REGIME, days:
         "wet_mass_kg": pair(mass_total),
         "regime": f"{regime_name} {regime_data['setpoint_c']} °C",
         "days": pair(digestion_days),
+        "days_meaning": "time to digest the WHOLE batch, NOT the time until the first gas (first gas: 1-2 days with inoculum)",
         "label": label,
         "components": [f"{row['name']} {fmt(row['amount'])} {row['unit']}" for row in rows],
     }

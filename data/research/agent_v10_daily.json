@@ -3,40 +3,121 @@
   "animals": {
     "cow": {
       "substrate": "cattle_manure",
-      "manure_kg_per_day": {"low": 23, "high": 47},
+      "manure_kg_per_day": {
+        "low": 23,
+        "high": 47
+      },
       "live_mass_kg": 454,
-      "names": {"ru": "корова", "en": "cow", "kk": "сиыр"},
+      "names": {
+        "ru": "корова",
+        "en": "cow",
+        "kk": "сиыр"
+      },
       "basis": "навоз с мочой «как выделено» на 1000 lb (454 кг) живого веса: сухостойная корова 51 lb/сут — мясная корова 104 lb/сут; дойная корова (50 lb молока) 97 lb/сут — внутри диапазона",
       "source_id": "nrcs-awmfh-ch4-2008",
       "locator": "Table 4–5(b) Dairy, dry cow 51 lb/d/1000 lb AU; Table 4–8(b) Beef cow in confinement 104 lb/d/1000 lb AU"
     },
     "pig": {
       "substrate": "swine_manure",
-      "manure_kg_per_day": {"low": 4.5, "high": 5.0},
+      "manure_kg_per_day": {
+        "low": 4.5,
+        "high": 5.0
+      },
       "live_mass_kg": null,
-      "names": {"ru": "свинья", "en": "pig", "kk": "шошқа"},
+      "names": {
+        "ru": "свинья",
+        "en": "pig",
+        "kk": "шошқа"
+      },
       "basis": "свинья на откорме 1200 lb за 120 дней = 10 lb/сут; супоросная свиноматка 11 lb/сут",
       "source_id": "nrcs-awmfh-ch4-2008",
       "locator": "Table 4–10(b) Grow to finish 1200 lb/f.a., 120 days fed; Table 4–10(a) Gestating sow 11 lb/d-a"
     },
     "chicken": {
       "substrate": "poultry_manure",
-      "manure_kg_per_day": {"low": 0.086, "high": 0.10},
+      "manure_kg_per_day": {
+        "low": 0.086,
+        "high": 0.1
+      },
       "live_mass_kg": null,
-      "names": {"ru": "курица", "en": "chicken", "kk": "тауық"},
+      "names": {
+        "ru": "курица",
+        "en": "chicken",
+        "kk": "тауық"
+      },
       "basis": "курица-несушка 0.19 lb/сут; бройлер 11 lb за 48 дней = 0.23 lb/сут",
       "source_id": "nrcs-awmfh-ch4-2008",
       "locator": "Table 4–11(a) Layers 0.19 lb/d-a; Table 4–11(c) Broiler 11 lb/f.a., 48 days on feed"
     }
   },
   "stove": {
-    "biogas_m3_per_hour": {"low": 0.2, "high": 0.45},
+    "biogas_m3_per_hour": {
+      "low": 0.2,
+      "high": 0.45
+    },
     "basis": "бытовая биогазовая конфорка: 200–450 л биогаза в час",
     "source_id": "gtz-biogas-digest-2",
     "locator": "Biogas Digest Vol. II, Biogas appliances: household burners 200–450 l/h"
   },
   "sources": [
-    {"id": "nrcs-awmfh-ch4-2008", "title": "USDA NRCS, Agricultural Waste Management Field Handbook, Part 651, Chapter 4 «Agricultural Waste Characteristics» (210–VI–AWMFH, March 2008); значения по ASAE D384.2 (2005)", "year": 2008, "doi": null, "url": "https://directives.nrcs.usda.gov/sites/default/files2/1712930943/17165.pdf"},
-    {"id": "gtz-biogas-digest-2", "title": "GTZ / ISAT, Biogas Digest Volume II: Biogas — Application and Product Development (1999), раздел «Biogas appliances»", "year": 1999, "doi": null, "url": "https://sswm.info/sanitation-systems/sanitation-technologies/biogas-combustion"}
-  ]
+    {
+      "id": "nrcs-awmfh-ch4-2008",
+      "title": "USDA NRCS, Agricultural Waste Management Field Handbook, Part 651, Chapter 4 «Agricultural Waste Characteristics» (210–VI–AWMFH, March 2008); значения по ASAE D384.2 (2005)",
+      "year": 2008,
+      "doi": null,
+      "url": "https://directives.nrcs.usda.gov/sites/default/files2/1712930943/17165.pdf"
+    },
+    {
+      "id": "gtz-biogas-digest-2",
+      "title": "GTZ / ISAT, Biogas Digest Volume II: Biogas — Application and Product Development (1999), раздел «Biogas appliances»",
+      "year": 1999,
+      "doi": null,
+      "url": "https://sswm.info/sanitation-systems/sanitation-technologies/biogas-combustion"
+    },
+    {
+      "id": "gtz-biogas-digest-2-startup",
+      "title": "GTZ / ISAT, Biogas Digest Volume II (1999), раздел «Starting the plant»: первый газ, период запуска, качество газа",
+      "year": 1999,
+      "doi": null,
+      "url": "https://samplecontents.library.ph/en-practical_action/Energy/Biogas/Biogas%20Digest%20Vol%202/page7.html"
+    },
+    {
+      "id": "fnr-biogas-einfuehrung-2007",
+      "title": "FNR, «Biogas – eine Einführung», 4. überarbeitete Auflage, Juli 2007, S. 8 и Abb. 4 «Biogaserträge verschiedener Substrate» (по Handreichung Biogasgewinnung und -nutzung, FNR 2006)",
+      "year": 2007,
+      "doi": null,
+      "url": "https://susana.org/_resources/documents/default/2-500-fnr-2007-biogas-einfuehrung-de.pdf"
+    }
+  ],
+  "startup": {
+    "first_gas_days": {
+      "low": 1,
+      "high": 2
+    },
+    "first_gas_basis": "навоз КРС или перебродившая жижа из работающей установки как закваска (первая загрузка)",
+    "stable": "от нескольких дней до нескольких недель до устойчивого процесса",
+    "breaking_in": "в период запуска газ низкого качества: больше 60 % CO2, сильный запах, падает pH, выход скачет",
+    "vent": "первые два заполнения газгольдера стравить, не используя (остаточный кислород — риск взрыва)",
+    "source_id": "gtz-biogas-digest-2-startup",
+    "locator": "Biogas Digest Vol. II, «Starting the plant»: «Cattle dung can usually be expected to yield good gas production within one or two days»; «the plant may need from several days to several weeks to achieve a stable digesting process»; breaking-in: «low quality biogas containing more than 60% CO2»; «the first two gasholder fillings should be vented unused»"
+  },
+  "feedstock_notes": {
+    "poultry_manure": {
+      "ru": "много азота: аммиак тормозит образование метана — помёт разбавляют водой или смешивают с бедным азотом сырьём (солома, растительные отходы)",
+      "en": "high nitrogen: ammonia inhibits methane formation — dilute it or mix with nitrogen-poor feed (straw, plant waste)",
+      "kk": "азоты көп: аммиак метан түзілуін тежейді — суйылтады немесе азоты аз шикізатпен араластырады"
+    },
+    "swine_manure": {
+      "ru": "бывает много азота (аммиак) — иногда разбавляют или смешивают с бедным азотом сырьём",
+      "en": "can be high in nitrogen (ammonia) — sometimes diluted or mixed with nitrogen-poor feed",
+      "kk": "азоты көп болуы мүмкін — кейде суйылтады немесе азоты аз шикізатпен араластырады"
+    },
+    "cattle_manure": {
+      "ru": "устойчиво бродит и сам служит закваской — хорошая основа для смеси",
+      "en": "digests steadily and works as an inoculum itself — a good base for a mixture",
+      "kk": "тұрақты ашиды және өзі ашытқы бола алады — қоспаға жақсы негіз"
+    },
+    "source_id": "fnr-biogas-einfuehrung-2007",
+    "locator": "FNR, Biogas – eine Einführung (2007), S. 8: «zu hohe Ammoniumkonzentrationen hemmen die Methanproduktion, weshalb Geflügelkot sowie gelegentlich auch Schweinegülle verdünnt oder mit stickstoffarmen Kosubstraten vermischt werden sollten»; cattle dung as starter: Biogas Digest Vol. II «Starting the plant»"
+  }
 }

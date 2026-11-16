@@ -21,6 +21,33 @@ TEXT: dict[str, dict[str, str]] = {
         "en": "organic matter and methane potential of {substrate} — from {label}",
         "kk": "{substrate} органикалық заты мен метан әлеуеті — {label} бойынша",
     },
+    "assume_startup": {
+        "ru": "первый газ — через 1–2 дня, если загрузить навоз КРС или добавить перебродившую жижу как закваску; до "
+              "устойчивого процесса — от нескольких дней до нескольких недель; первый газ плохой (больше 60 % CO2), первые "
+              "два заполнения газгольдера стравить (GTZ/ISAT Biogas Digest, т. II)",
+        "en": "first gas in 1–2 days with cattle dung or digested slurry as inoculum; a stable process takes several days to "
+              "several weeks; the first gas is poor (more than 60% CO2), vent the first two gasholder fillings (GTZ/ISAT Biogas Digest II)",
+        "kk": "алғашқы газ — сиыр көңі немесе ашыған қоспа ашытқы ретінде болса 1–2 күнде; тұрақты процеске дейін — бірнеше "
+              "күннен бірнеше аптаға дейін; алғашқы газ сапасыз (CO2 60 %-дан көп) (GTZ/ISAT Biogas Digest, II т.)",
+    },
+    "assume_full_digestion": {
+        "ru": "{low}–{high} дней — время полного сбраживания партии, а не время до первого газа",
+        "en": "{low}–{high} days is the time to digest the whole batch, not the time until the first gas",
+        "kk": "{low}–{high} күн — партияның толық ашу уақыты, алғашқы газға дейінгі уақыт емес",
+    },
+    "assume_compare_volume": {
+        "ru": "сравнение при одинаковом объёме {volume} л (рабочий объём демо-реактора)",
+        "en": "compared at the same volume of {volume} L (working volume of the demo reactor)",
+        "kk": "бірдей {volume} л көлемде салыстырылды (демо-реактордың жұмыс көлемі)",
+    },
+    "assume_handbook": {
+        "ru": "{substrate}: измеренные пробы в базе сильно разбавлены водой (TS {ts} %, {m_low}–{m_high} л CH4/кг); для типичной "
+              "жижи взят справочный выход FNR 2007: {biogas} м³ биогаза на тонну = {low}–{high} л CH4/кг",
+        "en": "{substrate}: the measured samples in the base are strongly diluted (TS {ts} %, {m_low}–{m_high} L CH4/kg); for "
+              "typical slurry the FNR 2007 handbook yield is used: {biogas} m³ biogas per tonne = {low}–{high} L CH4/kg",
+        "kk": "{substrate}: базадағы өлшенген сынамалар қатты суйылтылған (TS {ts} %, {m_low}–{m_high} л CH4/кг); әдеттегі "
+              "сұйық көң үшін FNR 2007 анықтамалық шығымы алынды: тоннаға {biogas} м³ биогаз = {low}–{high} л CH4/кг",
+    },
     "assume_bmp": {
         "ru": "TS и VS — ваши данные, метановый потенциал {substrate} — по {label}",
         "en": "TS and VS are your data, methane potential of {substrate} — from {label}",
@@ -219,6 +246,18 @@ def t(key: str, language: str, **values) -> str:
     row = TEXT[key]
     template = row.get(language) or row["ru"]
     return template.format(**values)
+
+
+def plural_ru(n: int, forms: tuple[str, str, str]) -> str:
+    """Russian plural by number: 1 загрузка, 2 загрузки, 5 загрузок, 11 загрузок, 21 загрузка."""
+    tens, ones = abs(n) % 100, abs(n) % 10
+    if 11 <= tens <= 14:
+        return forms[2]
+    if ones == 1:
+        return forms[0]
+    if 2 <= ones <= 4:
+        return forms[1]
+    return forms[2]
 
 
 def badge(label: str, language: str) -> str:
