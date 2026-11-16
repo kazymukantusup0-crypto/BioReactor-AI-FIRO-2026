@@ -80,6 +80,17 @@ describe('verdicts and ≈ values', () => {
   })
 })
 
+describe('heat loss card', () => {
+  it('shows U, area, UA and the source under the number', () => {
+    const answer = { text: '', explanation: '', question: null, assumptions: [], sources: [], verified: true, mode: 'llm', tools: [],
+      numbers: [{ key: 'heat_loss', title: 'Теплопотери через стенки', value: '321–972', center: '646', range: '321–972', unit: 'кВт·ч', label: 'assumption', badge: 'допущение',
+        details: ['U без утепления: 5.44–11.16 · с пенополистиролом 50 мм: 0.62–0.75 Вт/(м²·К)', 'площадь стенок: 1.89 м² · UA = U × площадь = 10.3–21.1 Вт/К'] }] }
+    render(<AnswerView answer={answer as never} jury={false} />)
+    expect(screen.getByText(/5.44–11.16/)).toBeTruthy()
+    expect(screen.getByText(/UA = U × площадь = 10.3–21.1/)).toBeTruthy()
+  })
+})
+
 describe('model speed warning', () => {
   const base: AgentStatus = { model: 'qwen3:8b', llm_available: true, offline: true, mode: 'llm', gpu: { loaded: true, gpu_percent: 100, others: [] } }
   it('is silent when the model is fully on the GPU', () => { expect(speedWarning(base)).toBeNull() })

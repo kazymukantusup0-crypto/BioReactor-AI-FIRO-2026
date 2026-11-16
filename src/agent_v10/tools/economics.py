@@ -154,6 +154,7 @@ def energy_balance_and_economics(components: list[dict], regime: str = "mesophil
         } for key, value in options.items()],
         "best_use": OPTION_NAMES[best].get(language, OPTION_NAMES[best]["ru"]),
         "prices_saved": bool(prices), "label": "assumption",
+        "wall": heat["llm"]["wall"],
     }
     best_value = options[best]["value_kzt"]
     all_negative = best_value is not None and best_value["high"] < 0

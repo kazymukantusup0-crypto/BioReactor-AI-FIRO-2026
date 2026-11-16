@@ -26,6 +26,7 @@ TITLES = {
     "biogas": {"ru": "Биогаз", "en": "Biogas", "kk": "Биогаз"},
     "energy": {"ru": "Энергия газа", "en": "Gas energy", "kk": "Газ энергиясы"},
     "heating": {"ru": "Затраты на подогрев и перемешивание", "en": "Heating and mixing", "kk": "Қыздыру мен араластыру"},
+    "heat_loss": {"ru": "Теплопотери через стенки", "en": "Heat loss through the walls", "kk": "Қабырға арқылы жылу шығыны"},
     "regime": {"ru": "Рекомендуемый режим", "en": "Recommended regime", "kk": "Ұсынылған режим"},
     "net": {"ru": "Чистый баланс", "en": "Net balance", "kk": "Таза баланс"},
     "days": {"ru": "Срок сбраживания", "en": "Digestion time", "kk": "Ашыту мерзімі"},
@@ -64,6 +65,37 @@ def _card(key: str, values: list, unit_key: str | None, label: str, language: st
     return {"key": key, "title": title or _title(key, language), "low": values[0], "high": values[1],
             "value": _range_text(values), "center": None if same else str(center(values)).replace("-", "−"),
             "range": None if same else _range_text(values), "unit": unit, "label": label, "badge": badge(label, language)}
+
+
+WALL_TEXT = {
+    "ru": ["U сейчас ({level}): {u} Вт/(м²·К)", "U без утепления: {u_none} · с пенополистиролом 50 мм: {u_eps50} Вт/(м²·К)",
+           "площадь стенок: {area} м² · UA = U × площадь = {ua} Вт/К · ΔT = {dt} К",
+           "U = 1/(1/h + стенка/λ + утеплитель/λ): h = 6–12 Вт/(м²·К) (ISO 6946 даёт 25 при ветре 4 м/с), "
+           "пластик 3–5 мм (λ 0.29–0.48), пенополистирол λ 0.035–0.040 (EN 13163)"],
+    "en": ["U now ({level}): {u} W/(m²·K)", "U bare: {u_none} · with EPS 50 mm: {u_eps50} W/(m²·K)",
+           "wall area: {area} m² · UA = U × area = {ua} W/K · ΔT = {dt} K",
+           "U = 1/(1/h + wall/λ + insulation/λ): h = 6–12 W/(m²·K) (ISO 6946 uses 25 at wind 4 m/s), "
+           "plastic 3–5 mm (λ 0.29–0.48), EPS λ 0.035–0.040 (EN 13163)"],
+    "kk": ["Қазіргі U ({level}): {u} Вт/(м²·К)", "жылытусыз U: {u_none} · пенополистирол 50 мм: {u_eps50} Вт/(м²·К)",
+           "қабырға ауданы: {area} м² · UA = U × аудан = {ua} Вт/К · ΔT = {dt} К",
+           "U = 1/(1/h + қабырға/λ + жылытқыш/λ): h = 6–12 Вт/(м²·К) (ISO 6946 бойынша жел 4 м/с кезінде 25), "
+           "пластик 3–5 мм (λ 0.29–0.48), пенополистирол λ 0.035–0.040 (EN 13163)"],
+}
+
+
+def wall_card(wall: dict, label: str, language: str) -> dict:
+    """Heat-loss card: kWh lost through the walls, and what is behind it (U, area, UA, sources)."""
+    from src.agent_v10.i18n import t
+
+    card = _card("heat_loss", wall["heat_loss_kwh"], "kwh", label, language)
+    def span(values):
+        return _range_text(values)
+    lines = WALL_TEXT.get(language, WALL_TEXT["ru"])
+    values = {"level": t("insulation_" + wall["insulation"], language), "u": span(wall["u_w_m2k"]),
+              "u_none": span(wall["u_none_w_m2k"]), "u_eps50": span(wall["u_eps50_w_m2k"]),
+              "area": f"{wall['area_m2']:.2f}", "ua": span(wall["ua_w_k"]), "dt": tidy(wall["delta_t_k"])}
+    card["details"] = [line.format(**values) for line in lines]
+    return card
 
 
 def number_cards(results: list[dict], language: str) -> list[dict]:
@@ -109,6 +141,9 @@ def number_cards(results: list[dict], language: str) -> list[dict]:
                 _card("methane_change", last["methane_change_vs_first_m3"], "m3", label, language),
                 _card("net", last["net_kwh"], "kwh", label, language, title=f"{_title('net', language)}: {last['name']}"),
             ]
+    wall = next((item["llm"]["wall"] for item in results if item.get("ok") and item["llm"].get("wall")), None)
+    if wall:
+        cards.append(wall_card(wall, "assumption", language))
     # Same card twice (e.g. methane from two tools): keep the first one.
     unique, seen = [], set()
     for card in cards:

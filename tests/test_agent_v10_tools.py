@@ -98,23 +98,26 @@ def test_cylinder_geometry():
 
 
 def test_u_values_from_insulation_layer():
-    """U = 1/(1/h + d/λ): basic 1/(1/6+0.05/0.035)=0.627 ... 1/(1/12+0.03/0.04)=1.2."""
-    assert approx_range(u_value("none"), 6.0, 12.0)
-    assert approx_range(u_value("basic"), 0.627, 1.2, rel=1e-2)
+    """U = 1/(1/h + wall/λ_wall + d/λ), barrel wall HDPE 3–5 mm (λ 0.29–0.48):
+    none:  1/(1/6 + 0.005/0.29) = 5.44 ... 1/(1/12 + 0.003/0.48) = 11.16
+    basic: 1/(1/6 + 0.005/0.29 + 0.05/0.035) = 0.620 ... 1/(1/12 + 0.003/0.48 + 0.03/0.04) = 1.19."""
+    assert approx_range(u_value("none"), 5.4375, 11.163, rel=1e-3)
+    assert approx_range(u_value("basic"), 0.620, 1.191, rel=1e-2)
     assert u_value("good")["high"] < u_value("basic")["low"]
 
 
 def test_heating_hand_calculation():
     """100 kg from 7 °C to 37 °C, 1000 L reactor, no insulation, 7 °C outside, 10 days:
     feed: 100 × 4.0 × 30 / 3600 = 3.333 kWh (eff 1.0) ... 100 × 4.18 × 30 / 3600 / 0.95 = 3.667 kWh
-    losses: UA = 6 × 5.536 = 33.2 W/K; 33.2 × 30 × 240 h / 1000 = 239.1 kWh (eff 1.0)
+    losses: U = 1/(1/6 + 0.005/0.29) = 5.4375; UA = 5.4375 × 5.536 = 30.1 W/K;
+            30.1 × 30 × 240 h / 1000 = 216.7 kWh (eff 1.0)
     mixing: 100 W × 2 h × 10 d = 2 kWh
     """
     result = estimate_heating_energy(feed_mass_kg=100, reactor_volume_l=1000, insulation="none", ambient_c=7,
                                      target_c=37, days=10, feed_initial_c=7, mixing_power_w=100, mixing_hours_per_day=2)
     data = result["data"]
     assert approx_range(data["feed_heating_kwh"], 3.333, 4.18 * 30 / 36 / 0.95, rel=1e-3)
-    assert data["heat_loss_kwh"]["low"] == pytest.approx(6 * 5.536 * 30 * 240 / 1000, rel=1e-3)
+    assert data["heat_loss_kwh"]["low"] == pytest.approx(5.4375 * 5.536 * 30 * 240 / 1000, rel=1e-3)
     assert approx_range(data["mixing_kwh"], 2.0, 2.0)
 
 
@@ -255,8 +258,8 @@ def test_heating_defaults_come_from_demo_reactor_hand_calculation():
 
     feed:   m·c·ΔT = 160 kg × 4.0 kJ/(kg·K) × (37−5) K / 3600 = 5.69 kWh  (high: ×4.18, /0.95 = 6.26)
     barrel: D = (4·0.2/π)^(1/3) = 0.634 m,  A = 1.5·π·D² = 1.894 m²
-    walls:  no insulation -> U = h_outside = 6 ... 12 W/(m²·K) -> UA = 11.36 ... 22.72 W/K
-    losses: UA·ΔT·t = 11.36 × 32 × 720 h / 1000 = 261.8 kWh  (high: 22.72 × 32 × 720 / 1000 / 0.95 = 551.0)
+    walls:  no insulation -> U = 1/(1/h + plastic wall) = 5.44 ... 11.16 W/(m²·K) -> UA = 10.29 ... 21.13 W/K
+    losses: UA·ΔT·t = 10.29 × 32 × 720 h / 1000 = 237.2 kWh  (high: 21.13 × 32 × 720 / 1000 / 0.95 = 512.5)
     mixing: 100 W × 2 h × 30 days = 6 kWh
     """
     result = estimate_heating_energy(feed_volume_l=160)
@@ -266,8 +269,9 @@ def test_heating_defaults_come_from_demo_reactor_hand_calculation():
     area = 1.5 * math.pi * (4 * 0.2 / math.pi) ** (2 / 3)
     assert area == pytest.approx(1.894, rel=1e-3)
     feed_low, feed_high = 160 * 4.0 * 32 / 3600, 160 * 4.18 * 32 / 3600 / 0.95
-    loss_low, loss_high = 6 * area * 32 * 720 / 1000, 12 * area * 32 * 720 / 1000 / 0.95
-    assert loss_low == pytest.approx(261.8, rel=1e-3) and loss_high == pytest.approx(551.0, rel=1e-3)
+    u_low, u_high = 1 / (1 / 6 + 0.005 / 0.29), 1 / (1 / 12 + 0.003 / 0.48)
+    loss_low, loss_high = u_low * area * 32 * 720 / 1000, u_high * area * 32 * 720 / 1000 / 0.95
+    assert loss_low == pytest.approx(237.2, rel=1e-3) and loss_high == pytest.approx(512.5, rel=1e-3)
     assert approx_range(data["total_kwh"], feed_low + loss_low + 6, feed_high + loss_high + 6, rel=1e-2)
     text = " ".join(result["assumptions"])
     assert "200" in text and "5 °C" in text and result["question"]
@@ -320,3 +324,26 @@ def test_registry_ignores_physical_numbers_invented_by_the_llm():
     assert (data["days"], data["ambient_c"], data["insulation"], data["reactor_volume_l"], data["target_c"]) == (30, 5, "none", 250, 37)
     told = run_tool("estimate_heating_energy", {"days": 20}, {**facts, "days": 12, "ambient_c": -10})["data"]
     assert (told["days"], told["ambient_c"]) == (12, -10)
+
+
+def test_outside_film_coefficient_is_not_overstated():
+    """h = 6–12 W/(m²·K): long-wave radiation alone is 4·ε·σ·T³ = 4·0.9·5.67e-8·278³ = 4.4 W/(m²·K)
+    at +5 °C, plus natural convection 2–7; ISO 6946 uses 25 (wind 4 m/s). So the bare-barrel U is
+    not inflated: if anything it is low for a windy yard."""
+    from src.agent_v10.tools.heating import H_OUTSIDE
+    radiation = 4 * 0.9 * 5.67e-8 * 278 ** 3
+    assert radiation == pytest.approx(4.39, rel=1e-2)
+    assert H_OUTSIDE[0] >= radiation + 1.5 and H_OUTSIDE[1] < 25
+
+
+def test_heat_loss_card_shows_u_area_ua_and_sources():
+    from src.agent_v10.answer import number_cards
+    result = estimate_heating_energy(feed_volume_l=160)
+    wall = result["llm"]["wall"]
+    assert wall["area_m2"] == pytest.approx(1.89, abs=0.01)
+    assert wall["u_none_w_m2k"] == [5.44, 11.16] and wall["u_eps50_w_m2k"] == [0.62, 0.75]
+    assert wall["ua_w_k"] == [10.3, 21.1]
+    card = next(c for c in number_cards([result], "ru") if c["key"] == "heat_loss")
+    text = " ".join(card["details"])
+    assert "5.44–11.16" in text and "0.62–0.75" in text and "1.89" in text and "10.3–21.1" in text and "ISO 6946" in text
+    assert any("ISO 6946" in (s.get("title") or "") for s in result["sources"])

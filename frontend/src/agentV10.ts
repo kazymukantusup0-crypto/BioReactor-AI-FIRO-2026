@@ -2,7 +2,7 @@
 // POST /api/agent/chat answers with Server-Sent Events: "event: <type>\ndata: <json>\n\n".
 // EventSource only supports GET, so the stream is read with fetch + ReadableStream.
 
-export interface NumberCard { key: string; title: string; value: string; unit: string; label: string; badge: string; low?: number; high?: number; center?: string | null; range?: string | null }
+export interface NumberCard { key: string; title: string; value: string; unit: string; label: string; badge: string; low?: number; high?: number; center?: string | null; range?: string | null; details?: string[] }
 /** A conclusion decided by Python (src/agent_v10/verdicts.py); the LLM only retells it. */
 export interface Verdict { key: string; code: string; title: string; value: string; text: string; tone: 'good' | 'bad' | 'warn' | 'info' | string; before?: number[]; after?: number[] }
 export interface Source { id?: string; title?: string; year?: number | null; url?: string | null; doi?: string | null }

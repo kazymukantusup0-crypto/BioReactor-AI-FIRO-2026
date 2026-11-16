@@ -121,10 +121,13 @@ export function AnswerView({ answer, jury }: { answer: AgentAnswer; jury: boolea
   return <div className="ac-answer">
     {answer.verdicts && answer.verdicts.length > 0 && <Verdicts items={answer.verdicts} />}
     {answer.numbers.length > 0 && <div className="ac-cards">
-      {answer.numbers.map(card => <div key={card.title} className="ac-card">
+      {answer.numbers.map(card => <div key={card.title} className={`ac-card ${card.details?.length ? 'ac-card-wide' : ''}`}>
         <span className="ac-card-title">{card.title}</span>
         <CardValue card={card} />
         <span className={`badge badge-${badgeTone(card.label)}`}><span className="badge-dot" />{card.badge}</span>
+        {card.details && card.details.length > 0 && <ul className="ac-card-details">
+          {card.details.map(line => <li key={line}>{line}</li>)}
+        </ul>}
       </div>)}
     </div>}
     {answer.explanation && <p className="ac-explanation">{answer.explanation}</p>}

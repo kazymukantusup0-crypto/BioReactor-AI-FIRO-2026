@@ -145,10 +145,11 @@ def test_no_advice_when_the_gain_is_tiny():
 
 
 def test_u_value_of_50_mm_eps():
-    """U = 1/(1/h + d/λ): 1/(1/6 + 0.05/0.035) = 0.627 ... 1/(1/12 + 0.05/0.040) = 0.75 W/(m²·K)."""
+    """U = 1/(1/h + wall/λ + d/λ): 1/(1/6 + 0.005/0.29 + 0.05/0.035) = 0.620 ...
+    1/(1/12 + 0.003/0.48 + 0.05/0.040) = 0.7465 W/(m²·K)."""
     from src.agent_v10.tools.heating import u_value
     u = u_value("eps50")
-    assert u["low"] == pytest.approx(0.627, rel=1e-2) and u["high"] == pytest.approx(0.75, rel=1e-2)
+    assert u["low"] == pytest.approx(0.620, rel=1e-2) and u["high"] == pytest.approx(0.7465, rel=1e-2)
 
 
 def test_llm_cannot_switch_the_goal_only_the_user_can():

@@ -95,6 +95,10 @@ def _regime_case(components: list[dict], regime: dict, ambient_c: float | None, 
         "total_cost_kwh": cost, "net_kwh": net, "stability": regime["stability"],
         "risk": regime["risks"].get(language, regime["risks"]["ru"]),
         "_gas": gas, "_heat": long,
+        # Heat loss over the same span of days as the cost (short low ... long high), so the
+        # heat-loss card is always a part of the heating card.
+        "_wall": {**long["llm"]["wall"], "heat_loss_kwh": [short["llm"]["wall"]["heat_loss_kwh"][0],
+                                                           long["llm"]["wall"]["heat_loss_kwh"][1]]},
     }
 
 
@@ -171,6 +175,7 @@ def recommend_temperature_regime(components: list[dict], ambient_c: float | None
         regime=llm["recommended"], heating=range_text(pair(chosen["total_cost_kwh"])),
         gas=range_text(pair(chosen["gas_heat_kwh"])), net=range_text(pair(chosen["net_kwh"])),
         days=range_text(pair(chosen["days"])))
+    llm["wall"] = chosen["_wall"]  # U, area, UA behind the heat loss (card "heat loss")
     if what_if:
         llm["if_good_insulation_net_kwh"] = pair(what_if["net_kwh"])
     return result("recommend_temperature_regime", ok=True, data=data, llm=llm, assumptions=unique(assumptions),

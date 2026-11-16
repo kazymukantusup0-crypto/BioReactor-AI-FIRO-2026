@@ -100,9 +100,9 @@ TEXT: dict[str, dict[str, str]] = {
         "kk": "реактор — биіктігі диаметрге тең цилиндр: Ø {diameter} м, беті {area} м²",
     },
     "assume_u_value": {
-        "ru": "теплопотери через стенку U = {low}–{high} Вт/(м²·К) для утепления «{level}»",
-        "en": "wall heat loss U = {low}–{high} W/(m²·K) for insulation \"{level}\"",
-        "kk": "«{level}» жылыту үшін қабырға арқылы жылу шығыны U = {low}–{high} Вт/(м²·К)",
+        "ru": "теплопотери через стенку U = {low}–{high} Вт/(м²·К): пластиковая стенка 3–5 мм + утепление «{level}», ветер от штиля до слабого",
+        "en": "wall heat loss U = {low}–{high} W/(m²·K): plastic wall 3–5 mm + insulation \"{level}\", calm to light wind",
+        "kk": "қабырға арқылы жылу шығыны U = {low}–{high} Вт/(м²·К): пластик қабырға 3–5 мм + «{level}» жылыту, тымық пен әлсіз жел",
     },
     "assume_mixing": {
         "ru": "перемешивание {power} Вт по {hours} ч в сутки",

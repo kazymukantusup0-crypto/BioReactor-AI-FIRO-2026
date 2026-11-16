@@ -8,10 +8,15 @@ Physics is reused from src/optimizer/energy_model.py (estimate_energy):
 What is new here is how UA (W/K) is estimated when nobody measured it:
     * the reactor is a cylinder with height = diameter:
           D = (4 V / π)^(1/3),   surface A = π D H + 2 π D² / 4 = 1.5 π D²
-    * U (W/m²K) of the wall from the insulation layer:
-          U = 1 / (1 / h_outside + thickness / λ)
-      with h_outside = 6–12 W/m²K (still air ... light wind) and
-      λ = 0.035–0.040 W/mK (foam / mineral wool).
+    * U (W/m²K) of the wall: outside air film + plastic wall + insulation layer
+          U = 1 / (1 / h_outside + d_wall / λ_wall + d_insulation / λ_insulation)
+      h_outside = 6–12 W/m²K: still air ... light wind, convection 2–7 plus long-wave
+          radiation 4εσT³ ≈ 4.4 W/m²K at +5 °C (ISO 6946 uses 25 = design wind 4 m/s,
+          so 6–12 is NOT an overstatement for a sheltered barrel);
+      plastic wall (HDPE barrel) 3–5 mm, λ = 0.29–0.48 W/mK;
+      insulation λ = 0.035–0.040 W/mK (EPS foam / mineral wool).
+      The liquid film inside (h > 100 W/m²K) adds < 1 % and is left out.
+    Bare barrel: U = 5.4–11.2;  EPS 50 mm: U = 0.62–0.75 W/m²K (see U_SOURCES).
 """
 from __future__ import annotations
 
@@ -27,6 +32,9 @@ from src.optimizer.energy_model import SOURCES as ENERGY_SOURCES, estimate_energ
 H_OUTSIDE = (6.0, 12.0)
 # Thermal conductivity of foam / mineral wool, W/(m·K).
 LAMBDA_INSULATION = (0.035, 0.040)
+# Plastic wall of the barrel (HDPE): thickness, m, and conductivity, W/(m·K).
+WALL_THICKNESS = (0.003, 0.005)
+LAMBDA_WALL = (0.29, 0.48)
 # Insulation thickness, m.
 # "eps50" = expanded polystyrene 50 mm: the concrete advice the agent gives for a cold barrel.
 INSULATION_THICKNESS = {"none": (0.0, 0.0), "basic": (0.03, 0.05), "good": (0.10, 0.15), "eps50": (0.05, 0.05)}
@@ -43,6 +51,18 @@ SOURCES = [{"id": f"energy_model_{index}", "title": source["title"], "year": sou
             "url": source.get("url")} for index, source in enumerate(ENERGY_SOURCES)]
 
 
+# Where the U values come from (shown in the answer next to the heat-loss card).
+U_SOURCES = [
+    {"id": "iso_6946", "title": "ISO 6946:2017 Building components — Thermal resistance and transmittance, "
+     "Annex C: external surface resistance Rse = 0.04 m²·K/W (h ≈ 25 W/m²K at wind 4 m/s)", "year": 2017,
+     "doi": None, "url": None},
+    {"id": "hdpe_lambda", "title": "MatWeb: HDPE, injection molded — thermal conductivity 0.288–0.480 W/m·K",
+     "year": None, "doi": None, "url": "https://www.matweb.com/"},
+    {"id": "eps_lambda", "title": "EN 13163: expanded polystyrene (EPS) — declared λ 0.031–0.040 W/m·K",
+     "year": 2012, "doi": None, "url": None},
+]
+
+
 def cylinder(volume_l: float) -> dict:
     """Diameter and outer surface of a cylinder with height = diameter."""
     volume_m3 = volume_l / 1000.0
@@ -54,9 +74,20 @@ def cylinder(volume_l: float) -> dict:
 def u_value(insulation: str) -> dict:
     """Range of the wall heat transfer coefficient U, W/(m²·K)."""
     thin, thick = INSULATION_THICKNESS[insulation]
-    low = 1.0 / (1.0 / H_OUTSIDE[0] + thick / LAMBDA_INSULATION[0])
-    high = 1.0 / (1.0 / H_OUTSIDE[1] + thin / LAMBDA_INSULATION[1])
+    low = 1.0 / (1.0 / H_OUTSIDE[0] + WALL_THICKNESS[1] / LAMBDA_WALL[0] + thick / LAMBDA_INSULATION[0])
+    high = 1.0 / (1.0 / H_OUTSIDE[1] + WALL_THICKNESS[0] / LAMBDA_WALL[1] + thin / LAMBDA_INSULATION[1])
     return make(low, high)
+
+
+def wall_info(geometry: dict, insulation: str, loss_kwh: dict, delta_t: float) -> dict:
+    """Everything behind the heat loss, for the card: area, U (this case, bare, EPS 50 mm), UA."""
+    u = u_value(insulation)
+    return {"insulation": insulation, "area_m2": round(geometry["area_m2"], 2),
+            "u_w_m2k": [round(u["low"], 2), round(u["high"], 2)],
+            "u_none_w_m2k": [round(v, 2) for v in (u_value("none")["low"], u_value("none")["high"])],
+            "u_eps50_w_m2k": [round(v, 2) for v in (u_value("eps50")["low"], u_value("eps50")["high"])],
+            "ua_w_k": [round(u["low"] * geometry["area_m2"], 1), round(u["high"] * geometry["area_m2"], 1)],
+            "delta_t_k": round(delta_t, 1), "heat_loss_kwh": pair(loss_kwh)}
 
 
 def _energy(mass_kg: float, cp: float, ua: float, efficiency: float, target_c: float, feed_c: float,
@@ -152,8 +183,9 @@ def estimate_heating_energy(feed_mass_kg: dict | float | None = None, feed_volum
     llm = {
         "total_kwh": pair(total_kwh), "feed_heating_kwh": pair(feed_kwh), "heat_loss_kwh": pair(loss_kwh),
         "mixing_kwh": pair(mixing_kwh), "heat_loss_power_w": pair(loss_power_w),
+        "wall": wall_info(geometry, insulation, loss_kwh, delta_outside),
         "target_c": target_c, "outside_c": ambient_c, "days": days, "insulation": insulation,
         "reactor_volume_l": reactor_volume_l, "label": "assumption" if assumptions else "measured",
     }
     return result("estimate_heating_energy", ok=True, data=data, llm=llm, assumptions=assumptions,
-                  sources=SOURCES, label="assumption", question=question)
+                  sources=SOURCES + U_SOURCES, label="assumption", question=question)

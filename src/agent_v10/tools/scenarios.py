@@ -84,6 +84,7 @@ def compare_scenarios(scenarios: list[dict], ambient_c: float | None = None, ins
             "methane_change_vs_first_m3": pair(row["methane_difference_m3"]),
         } for row in rows],
         "label": "assumption",
+        "wall": heat["llm"]["wall"],  # same reactor for every scenario
     }
     return result("compare_scenarios", ok=True, data=data, llm=llm, assumptions=unique(assumptions),
                   sources=unique_sources(sources), label="assumption", question=question)
