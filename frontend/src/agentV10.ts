@@ -2,12 +2,14 @@
 // POST /api/agent/chat answers with Server-Sent Events: "event: <type>\ndata: <json>\n\n".
 // EventSource only supports GET, so the stream is read with fetch + ReadableStream.
 
-export interface NumberCard { key: string; title: string; value: string; unit: string; label: string; badge: string; low?: number; high?: number }
+export interface NumberCard { key: string; title: string; value: string; unit: string; label: string; badge: string; low?: number; high?: number; center?: string | null; range?: string | null }
+/** A conclusion decided by Python (src/agent_v10/verdicts.py); the LLM only retells it. */
+export interface Verdict { key: string; code: string; title: string; value: string; text: string; tone: 'good' | 'bad' | 'warn' | 'info' | string; before?: number[]; after?: number[] }
 export interface Source { id?: string; title?: string; year?: number | null; url?: string | null; doi?: string | null }
 export interface LlmStats { duration_ms?: number; first_token_ms?: number | null; prompt_tokens?: number | null; output_tokens?: number | null; tokens_per_s?: number | null }
 export interface AgentAnswer {
   text: string; explanation: string; numbers: NumberCard[]; question: string | null; assumptions: string[]; sources: Source[]
-  tools: string[]; data: Record<string, unknown>; mode: 'llm' | 'no_llm' | 'llm_fallback' | string; verified: boolean; language: string
+  verdicts?: Verdict[]; tools: string[]; data: Record<string, unknown>; mode: 'llm' | 'no_llm' | 'llm_fallback' | string; verified: boolean; language: string
   model?: string; timings?: { total_ms?: number; first_answer_token_ms?: number | null; prompt_tokens_max?: number; llm_steps?: LlmStats[] }
 }
 export interface Component { substrate?: string; amount?: number | null; unit?: string; base_unit?: string; value?: number | null; state?: string | null }
@@ -18,7 +20,7 @@ export interface Facts {
 export type AgentEvent = { type: string; t_ms?: number; [key: string]: unknown }
 export interface AgentStatus { model: string; llm_available: boolean; offline: boolean; mode: string; gpu: { loaded: boolean; gpu_percent?: number; vram_gb?: number; context?: number } }
 export interface DemoReactor { name: string; reactor_volume_l: number; working_volume_l: number; insulation: string; ambient_c: number; target_c: number; days: number; location?: string; feedstock: { substrate: string; state: string } }
-export interface StoredMessage { role: string; content: string; numbers?: NumberCard[]; question?: string | null; verified?: boolean; mode?: string }
+export interface StoredMessage { role: string; content: string; numbers?: NumberCard[]; verdicts?: Verdict[]; question?: string | null; verified?: boolean; mode?: string }
 export interface Conversation { id: string; exists: boolean; facts: Facts; messages: StoredMessage[]; last_answer: AgentAnswer | null; language?: string }
 
 /** Split an SSE text into complete events; returns the events and the unfinished tail. */
@@ -88,6 +90,7 @@ export const TOOL_LABELS: Record<string, string> = {
   energy_balance_and_economics: 'Энергобаланс и деньги',
   search_knowledge: 'Поиск в источниках',
   extract_batch_facts: 'Разбор сырья и единиц',
+  verdicts: 'Выводы и совет (считает Python)',
 }
 export const SUBSTRATE_LABELS: Record<string, string> = {
   cattle_manure: 'навоз КРС', swine_manure: 'свиной навоз', poultry_manure: 'птичий помёт', sheep_goat_manure: 'навоз МРС',

@@ -56,8 +56,7 @@ TOOL_SCHEMAS = [
     _function("recommend_temperature_regime",
               "Compare psychrophilic 20 C, mesophilic 37 C and thermophilic 52 C: gas, days, heating cost, "
               "net energy. Recommends one. Use for 'which temperature / regime'.",
-              {"ambient_c": {"type": "number"}, "insulation": {"type": "string", "enum": INSULATION},
-               "goal": {"type": "string", "enum": ["net_energy", "max_gas", "fastest"]}}),
+              {"ambient_c": {"type": "number"}, "insulation": {"type": "string", "enum": INSULATION}}),
     _function("compare_scenarios",
               "Compare 2-3 variants (feedstock, mixture, regime) in one table. Use for 'what if I add ...' "
               "or 'which is better A or B'. Scenarios may be omitted: the remembered batch is compared.",
@@ -167,7 +166,7 @@ def run_tool(name: str, args: dict | None, facts: dict, language: str = "ru") ->
                                            language=language)
         if name == "recommend_temperature_regime":
             return recommend_temperature_regime(_components(args, facts), ambient_c=ambient, insulation=insulation,
-                                                reactor_volume_l=reactor, goal=args.get("goal") or "net_energy",
+                                                reactor_volume_l=reactor, goal=facts.get("goal") or "net_energy",
                                                 language=language)
         if name == "compare_scenarios":
             # A remembered mixture ("200 L manure" + "30 kg food waste") is compared

@@ -166,7 +166,8 @@ class Agent:
         # The assistant message also keeps the number cards, so the UI can show them after a page reload.
         messages = state["messages"] + [{"role": "user", "content": text},
                                         {"role": "assistant", "content": final["explanation"] or final["text"],
-                                         "numbers": final["numbers"], "question": final["question"],
+                                         "numbers": final["numbers"], "verdicts": final["verdicts"],
+                                         "question": final["question"],
                                          "verified": final["verified"], "mode": final["mode"]}]
         self.memory.save(conversation_id, facts=facts, messages=messages, language=language, last_answer=final)
         yield event("answer", **final)

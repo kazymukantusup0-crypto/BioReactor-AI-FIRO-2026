@@ -275,8 +275,8 @@ def best_use_verdict(results: list[dict], language: str) -> dict | None:
                  "bad" if key == "best_loss" else "good")
 
 
-def _advice_cases(facts: dict, language: str) -> dict | None:
-    """Mesophilic net balance [low, high] for: as now, EPS 50 mm, 35 °C, both."""
+def _advice_cases(facts: dict, language: str, regime_id: str = "mesophilic") -> dict | None:
+    """Net balance [low, high] of the recommended regime: as now, EPS 50 mm, (mesophilic only) 35 °C, both."""
     from src.agent_v10.tools.registry import default_batch
     from src.agent_v10.tools.regimes import _regime_case
 
@@ -286,27 +286,29 @@ def _advice_cases(facts: dict, language: str) -> dict | None:
     insulation = facts.get("insulation") or demo["insulation"]
     ambient = facts.get("ambient_c") if facts.get("ambient_c") is not None else demo["ambient_c"]
     reactor = facts.get("reactor_volume_l")
-    meso = next(r for r in temperature_regimes()["regimes"] if r["id"] == "mesophilic")
-    low_meso = {**meso, "setpoint_c": meso["temperature_range_c"][0]}
+    regime = next(r for r in temperature_regimes()["regimes"] if r["id"] == regime_id)
     try:
         cases = {
-            "before": _regime_case(components, meso, ambient, insulation, reactor, language),
-            "eps50": _regime_case(components, meso, ambient, "eps50", reactor, language),
-            "t35": _regime_case(components, low_meso, ambient, insulation, reactor, language),
-            "eps50_t35": _regime_case(components, low_meso, ambient, "eps50", reactor, language),
+            "before": _regime_case(components, regime, ambient, insulation, reactor, language),
+            "eps50": _regime_case(components, regime, ambient, "eps50", reactor, language),
         }
+        if regime_id == "mesophilic":
+            # 35 °C: the lower edge of the mesophilic range from the sources.
+            low_meso = {**regime, "setpoint_c": regime["temperature_range_c"][0]}
+            cases["t35"] = _regime_case(components, low_meso, ambient, insulation, reactor, language)
+            cases["eps50_t35"] = _regime_case(components, low_meso, ambient, "eps50", reactor, language)
     except (ValueError, KeyError, TypeError):
         return None
     if insulation in {"good"}:
         # Already well insulated: 50 mm would be a step back.
-        cases.pop("eps50"), cases.pop("eps50_t35")
+        cases.pop("eps50", None), cases.pop("eps50_t35", None)
     return {key: pair(case["net_kwh"]) for key, case in cases.items()}
 
 
-def advice_item(facts: dict, language: str) -> dict | None:
-    """The best way to improve a negative balance, as 'before -> after'."""
-    cases = _advice_cases(facts, language)
-    if not cases:
+def advice_item(facts: dict, language: str, regime_id: str = "mesophilic") -> dict | None:
+    """The best way to improve a negative balance, as 'before -> after' (same regime as recommended)."""
+    cases = _advice_cases(facts, language, regime_id)
+    if not cases or len(cases) < 2:
         return None
     before = cases.pop("before")
     gains = {key: sum(values) - sum(before) for key, values in cases.items()}
@@ -339,7 +341,9 @@ def build(results: list[dict], facts: dict, language: str = "ru") -> dict | None
         return None
     losing = any((i["key"] == "net" and i["code"] == "minus") or (i["key"] == "enough_gas" and i["code"] == "no")
                  for i in items)
-    advice = advice_item(facts, language) if losing else None
+    regime = _first_ok(results, "recommend_temperature_regime")
+    regime_id = regime["data"]["recommended"] if regime else "mesophilic"
+    advice = advice_item(facts, language, regime_id) if losing else None
     if advice:
         items.append(advice)
     coverage = gas_vs_heating(results, language)

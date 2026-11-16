@@ -52,6 +52,19 @@
 .ac-card-value{font-size:18px;color:#e8f6f1;font-variant-numeric:tabular-nums;line-height:1.2;overflow-wrap:anywhere}
 .ac-card-value small{font-size:12px;color:#9ab4b0;font-weight:500}
 .ac-card .badge{align-self:flex-start;font-size:9.5px;white-space:normal}
+.ac-card-range{font-size:11px;color:#8fa9ae;font-variant-numeric:tabular-nums;margin-top:-3px}
+.ac-verdicts{display:flex;flex-direction:column;gap:6px}
+.ac-verdict{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline;padding:7px 11px;border-radius:8px;border:1px solid #27403f;
+  border-left-width:3px;background:#101d22;font-size:13px;color:#dbe9e6}
+.ac-verdict strong{font-weight:600}
+.ac-verdict-title{font-size:11px;color:#8fa9ae}
+.ac-verdict.good,.ac-advice.good{border-left-color:#55d6af}
+.ac-verdict.bad{border-left-color:#e07a7a}
+.ac-verdict.warn,.ac-advice.warn{border-left-color:#ddbb80}
+.ac-verdict.info{border-left-color:#77c5d2}
+.ac-advice{padding:10px 12px;border-radius:9px;border:1px solid #2f5a4c;border-left-width:3px;background:linear-gradient(135deg,#123128,#0f1f22)}
+.ac-advice-value{display:block;font-size:19px;color:#e8f6f1;font-variant-numeric:tabular-nums;margin:2px 0 4px}
+.ac-advice p{margin:0;font-size:12.5px;line-height:1.55;color:#c9e3dc}
 .ac-explanation{margin:0;font-size:13.5px;line-height:1.65;color:#dbe9e6;overflow-wrap:anywhere}
 .ac-live{color:#c3d7d3}
 .ac-caret{display:inline-block;width:7px;height:14px;background:#55d6af;margin-left:2px;vertical-align:-2px;animation:ac-blink 1s steps(2) infinite}

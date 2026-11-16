@@ -144,3 +144,21 @@ def test_u_value_of_50_mm_eps():
     from src.agent_v10.tools.heating import u_value
     u = u_value("eps50")
     assert u["low"] == pytest.approx(0.627, rel=1e-2) and u["high"] == pytest.approx(0.75, rel=1e-2)
+
+
+def test_llm_cannot_switch_the_goal_only_the_user_can():
+    """The model once sent goal=max_gas for 'какой режим ставить?' and got thermophilic at −15 °C."""
+    facts = winter_facts(ambient_c=-15)
+    assert run_tool("recommend_temperature_regime", {"goal": "max_gas"}, facts)["data"]["recommended"] == "mesophilic"
+    asked = extract("Какой режим даст больше всего газа?", facts)["facts"]
+    assert run_tool("recommend_temperature_regime", {}, asked)["data"]["recommended"] == "thermophilic"
+
+
+def test_advice_starts_from_the_recommended_regime():
+    facts = {**winter_facts(ambient_c=-15), "goal": "max_gas"}
+    result = run_tool("recommend_temperature_regime", {}, facts)
+    items = {i["key"]: i for i in verdicts.build([result], facts)["data"]["items"]}
+    chosen = next(r for r in result["data"]["regimes"] if r["id"] == "thermophilic")
+    assert items["advice"]["before"] == [round(v) for v in (chosen["net_kwh"]["low"], chosen["net_kwh"]["high"])] \
+        or items["advice"]["before"][0] == pytest.approx(chosen["net_kwh"]["low"], rel=0.01)
+    assert "35 °C" not in items["advice"]["text"]      # 35 °C is a mesophilic option only

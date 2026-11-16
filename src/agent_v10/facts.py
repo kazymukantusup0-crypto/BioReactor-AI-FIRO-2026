@@ -25,6 +25,7 @@ EMPTY_FACTS: dict = {
     "days": None,              # digestion time, days
     "operating_mode": None,    # batch | continuous
     "price_class": None,       # household | business (electricity tariff)
+    "goal": None,              # max_gas | fastest — only when the USER asks; default is the best net energy
 }
 
 # "1000 м³ газа", "50 кВт·ч" — what the user wants to GET, not what is loaded.
@@ -278,10 +279,16 @@ def extract(text: str, known: dict | None = None) -> dict:
             updates["operating_mode"] = "batch"
         elif re.search(r"непрерывн\w*|ежедневн\w*|continuous\w*|үздіксіз", text, re.IGNORECASE):
             updates["operating_mode"] = "continuous"
+    if re.search(r"больше\s+(?:всего\s+)?газа|максимум\w*\s+газ\w*|most\s+gas|max\w*\s+gas|ең\s+көп\s+газ|көбірек\s+газ",
+                 text, re.IGNORECASE):
+        updates["goal"] = "max_gas"
+    elif re.search(r"(?:быстрее|побыстрее|скорее)\s+(?:всего\s+)?(?:сбражива|переработ|получ)\w*|fastest|быстр\w*\s+режим|"
+                   r"ең\s+жылдам", text, re.IGNORECASE):
+        updates["goal"] = "fastest"
     if re.search(r"предприят\w*|организац\w*|юрлиц\w*|business|company|кәсіпорын", text, re.IGNORECASE):
         updates["price_class"] = "business"
 
-    for key in ["reactor_volume_l", "ambient_c", "target_c", "days", "insulation", "operating_mode", "price_class"]:
+    for key in ["reactor_volume_l", "ambient_c", "target_c", "days", "insulation", "operating_mode", "price_class", "goal"]:
         if key in updates:
             facts[key] = updates[key]
     return {"facts": facts, "updates": updates, "language": detect_language(text)}

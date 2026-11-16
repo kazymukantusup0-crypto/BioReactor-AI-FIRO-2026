@@ -5,7 +5,7 @@ import { useCallback, useEffect, useRef, useState, type FormEvent } from 'react'
 import { ArrowUp, Bot, BookOpen, Check, CircleStop, Cpu, Gavel, LoaderCircle, MessageSquarePlus, Pencil, ShieldAlert, ShieldCheck, User } from 'lucide-react'
 import {
   agentApi, componentText, INSULATION_LABELS, MODE_LABELS, newConversationId, streamAgentChat, TOOL_LABELS,
-  type AgentAnswer, type AgentEvent, type AgentStatus, type DemoReactor, type Facts,
+  type AgentAnswer, type AgentEvent, type AgentStatus, type DemoReactor, type Facts, type NumberCard, type Verdict,
 } from '../agentV10'
 import '../agentChat.css'
 
@@ -58,9 +58,11 @@ export function feedLine(event: AgentEvent): FeedLine | null {
     case 'tool_result': return { icon: '📊', title: `Результат: ${TOOL_LABELS[String(event.name)] ?? event.name}${event.ok ? '' : ' — ошибка'} · ${event.duration_ms} мс`, detail: event.summary, tone: event.ok ? 'ok' : 'bad' }
     case 'verification': {
       const unknown = (event.unknown_numbers ?? []) as number[]
-      return event.ok
-        ? { icon: '✅', title: 'Проверка чисел: все числа в тексте взяты из расчётов', tone: 'ok' }
-        : { icon: '⚠️', title: `Проверка чисел: ${unknown.join(', ')} нет в расчётах — ${event.attempt === 1 ? 'прошу модель переписать' : 'заменяю текст шаблоном'}`, tone: 'warn' }
+      const against = (event.contradicts ?? []) as string[]
+      const next = event.attempt === 1 ? 'прошу модель переписать' : 'заменяю текст шаблоном'
+      if (event.ok) return { icon: '✅', title: 'Проверка: числа взяты из расчётов, выводы не противоречат Python', tone: 'ok' }
+      if (against.length) return { icon: '⚠️', title: `Текст противоречит выводу Python — ${next}`, detail: { 'вывод': against, 'чужие числа': unknown }, tone: 'warn' }
+      return { icon: '⚠️', title: `Проверка чисел: ${unknown.join(', ')} нет в расчётах — ${next}`, tone: 'warn' }
     }
     case 'note': return { icon: 'ℹ️', title: String(event.message ?? event.code), tone: 'warn' }
     case 'token_reset': return event.reason === 'template' ? { icon: '📝', title: 'Текст собран по шаблону из расчётов', tone: 'warn' } : null
@@ -90,12 +92,37 @@ function ThinkingFeed({ turn, jury }: { turn: Turn; jury: boolean }) {
 // ---------- answer ----------
 function badgeTone(label: string) { return label === 'measured' ? 'green' : label === 'literature' ? 'cyan' : 'amber' }
 
-function AnswerView({ answer, jury }: { answer: AgentAnswer; jury: boolean }) {
+/** Big central estimate (≈), small "from–to" range under it. */
+export function CardValue({ card }: { card: NumberCard }) {
+  if (!card.center) return <strong className="ac-card-value">{card.value}<small> {card.unit}</small></strong>
+  return <>
+    <strong className="ac-card-value" aria-label={`примерно ${card.center} ${card.unit}, от ${card.range}`}>≈{card.center}<small> {card.unit}</small></strong>
+    <span className="ac-card-range">{card.range} {card.unit}</span>
+  </>
+}
+
+function Verdicts({ items }: { items: Verdict[] }) {
+  const advice = items.find(item => item.key === 'advice')
+  const rest = items.filter(item => item.key !== 'advice')
+  return <div className="ac-verdicts" aria-label="Выводы, рассчитанные программой">
+    {rest.map(item => <div key={item.key} className={`ac-verdict ${item.tone}`}>
+      <span className="ac-verdict-title">{item.title}</span><strong>{item.value}</strong>
+    </div>)}
+    {advice && <div className={`ac-advice ${advice.tone}`}>
+      <span className="ac-verdict-title">{advice.title}</span>
+      <strong className="ac-advice-value">{advice.value}</strong>
+      <p>{advice.text}</p>
+    </div>}
+  </div>
+}
+
+export function AnswerView({ answer, jury }: { answer: AgentAnswer; jury: boolean }) {
   return <div className="ac-answer">
+    {answer.verdicts && answer.verdicts.length > 0 && <Verdicts items={answer.verdicts} />}
     {answer.numbers.length > 0 && <div className="ac-cards">
       {answer.numbers.map(card => <div key={card.title} className="ac-card">
         <span className="ac-card-title">{card.title}</span>
-        <strong className="ac-card-value">{card.value}<small> {card.unit}</small></strong>
+        <CardValue card={card} />
         <span className={`badge badge-${badgeTone(card.label)}`}><span className="badge-dot" />{card.badge}</span>
       </div>)}
     </div>}
@@ -233,7 +260,7 @@ export default function AgentChat() {
         if (state.messages[i]?.role !== 'user') continue
         const reply = state.messages[i + 1]
         restored.push({ id: `r${i}`, user: state.messages[i].content, events: [], live: '', running: false, restored: true,
-          answer: { text: reply?.content ?? '', explanation: reply?.content ?? '', numbers: reply?.numbers ?? [], question: reply?.question ?? null,
+          answer: { text: reply?.content ?? '', explanation: reply?.content ?? '', numbers: reply?.numbers ?? [], verdicts: reply?.verdicts ?? [], question: reply?.question ?? null,
             assumptions: [], sources: [], tools: [], data: {}, mode: reply?.mode ?? 'llm', verified: reply?.verified ?? true, language: 'ru' } })
       }
       if (restored.length && state.last_answer) restored[restored.length - 1] = { ...restored[restored.length - 1], answer: state.last_answer }

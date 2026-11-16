@@ -1,7 +1,7 @@
 // UI fixtures only: the numbers below are test data, not measurements.
 import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
-import AgentChat, { applyEvent, feedLine, type Turn } from '../src/pages/AgentChat'
+import AgentChat, { AnswerView, applyEvent, feedLine, type Turn } from '../src/pages/AgentChat'
 import { componentText, parseSSE } from '../src/agentV10'
 
 const FACTS = { components: [{ substrate: 'cattle_manure', amount: 200, unit: 'L', state: 'slurry' }], reactor_volume_l: null, insulation: null, ambient_c: null, target_c: null, days: null }
@@ -23,6 +23,7 @@ const EVENTS = [
   { type: 'answer', t_ms: 3050, ...ANSWER },
   { type: 'done', t_ms: 3100, mode: 'llm', total_ms: 3100 },
 ]
+function AnswerHarness({ turn }: { turn: Turn }) { return <AnswerView answer={turn.answer!} jury={false} /> }
 const sse = (events: object[]) => events.map(e => `event: ${(e as { type: string }).type}\ndata: ${JSON.stringify(e)}\n\n`).join('')
 
 function streamBody(text: string) {
@@ -54,6 +55,28 @@ describe('agent v10 SSE client', () => {
   it('names components in plain Russian', () => {
     expect(componentText({ substrate: 'cattle_manure', amount: 200, unit: 'L', state: 'slurry' })).toBe('навоз КРС: 200 л, жидкий')
     expect(componentText({ substrate: 'swine_manure', amount: 2, unit: 'ведра', value: 20, base_unit: 'L', state: null })).toBe('свиной навоз: 20 л')
+  })
+})
+
+describe('verdicts and ≈ values', () => {
+  it('shows the central estimate big and the range small, and the advice as before → after', () => {
+    const answer = { ...ANSWER,
+      numbers: [{ key: 'methane', title: 'Метан', value: '2.9–5.2', center: '4', range: '2.9–5.2', unit: 'м³', label: 'literature', badge: 'оценка по литературе' }],
+      verdicts: [
+        { key: 'net', code: 'minus', title: 'Энергобаланс', value: 'минус: ≈−685 (−1040 … −330)', text: 'Чистый энергобаланс отрицательный', tone: 'bad' },
+        { key: 'advice', code: 'eps50', title: 'Совет: было → стало', value: '≈−685 → ≈−36 кВт·ч', text: 'Совет: утеплите реактор пенополистиролом 50 мм', tone: 'warn' },
+      ] }
+    const turn: Turn = { id: 't', user: 'q', events: [], live: '', running: false, answer: answer as never }
+    render(<AnswerHarness turn={turn} />)
+    expect(screen.getByText('≈4')).toBeInTheDocument()
+    expect(screen.getByText('2.9–5.2 м³')).toBeInTheDocument()
+    expect(screen.getByText('минус: ≈−685 (−1040 … −330)')).toBeInTheDocument()
+    expect(screen.getByText('≈−685 → ≈−36 кВт·ч')).toBeInTheDocument()
+    expect(screen.getByText('Совет: утеплите реактор пенополистиролом 50 мм')).toBeInTheDocument()
+  })
+  it('explains a contradiction with a Python verdict in the feed', () => {
+    const line = feedLine({ type: 'verification', ok: false, unknown_numbers: [], contradicts: ['Газа не хватит на подогрев'], attempt: 1 })
+    expect(line?.title).toContain('противоречит выводу Python')
   })
 })
 
