@@ -36,6 +36,15 @@ await page.waitForTimeout(400)
 await page.screenshot({ path: `${shots}/4-answer-jury.png`, fullPage: true })
 check(await page.locator('.ac-feed-detail').count() >= 2, 'jury mode shows step details')
 
+// Fallback demo: the same tools without the LLM (what happens if Ollama is down).
+await page.getByLabel('Без ИИ-модели').check()
+await page.getByLabel('Сообщение агенту').fill('Сколько энергии уйдёт на подогрев?')
+await page.getByRole('button', { name: 'Отправить' }).click()
+await page.locator('.ac-answer').nth(1).waitFor({ timeout: 30000 })
+check(await page.locator('.ac-answer').nth(1).getByText('без ИИ-модели: только расчёты').count() === 1, 'no-LLM mode answers with templates')
+await page.getByLabel('Без ИИ-модели').uncheck()
+await page.screenshot({ path: `${shots}/6-no-llm.png`, fullPage: true })
+
 const phone = await context.newPage()
 await phone.setViewportSize({ width: 390, height: 844 })
 await phone.goto(`${base}/dashboard/#/chat`)

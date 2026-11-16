@@ -10,7 +10,7 @@ export interface AgentAnswer {
   tools: string[]; data: Record<string, unknown>; mode: 'llm' | 'no_llm' | 'llm_fallback' | string; verified: boolean; language: string
   model?: string; timings?: { total_ms?: number; first_answer_token_ms?: number | null; prompt_tokens_max?: number; llm_steps?: LlmStats[] }
 }
-export interface Component { substrate?: string; amount?: number | null; unit?: string; state?: string | null }
+export interface Component { substrate?: string; amount?: number | null; unit?: string; base_unit?: string; value?: number | null; state?: string | null }
 export interface Facts {
   components: Component[]; reactor_volume_l: number | null; insulation: string | null; ambient_c: number | null
   target_c: number | null; days: number | null; operating_mode?: string | null; price_class?: string | null
@@ -103,8 +103,11 @@ export const MODE_LABELS: Record<string, string> = {
 
 export function componentText(component: Component): string {
   const name = SUBSTRATE_LABELS[component.substrate ?? ''] ?? component.substrate ?? '?'
-  const unit = (component.unit ?? '').toLowerCase()
-  const amount = component.amount != null ? `${component.amount} ${unit === 'l' ? 'л' : unit === 'kg' ? 'кг' : unit}`.trim() : 'количество ?'
+  // base_unit/value are normalized by Python ("2 ведра" -> 20 L); the user's own word is shown only as a fallback.
+  const unit = (component.base_unit ?? component.unit ?? '').toLowerCase()
+  const amount = component.value ?? component.amount
+  const unitText = unit === 'l' ? 'л' : unit === 'kg' ? 'кг' : unit === 'm3' ? 'м³' : unit === 't' ? 'т' : unit
+  const amountText = amount != null ? `${amount} ${unitText}`.trim() : 'количество ?'
   const state = component.state ? `, ${STATE_LABELS[component.state] ?? component.state}` : ''
-  return `${name}: ${amount}${state}`
+  return `${name}: ${amountText}${state}`
 }

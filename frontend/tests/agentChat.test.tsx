@@ -53,6 +53,7 @@ describe('agent v10 SSE client', () => {
   })
   it('names components in plain Russian', () => {
     expect(componentText({ substrate: 'cattle_manure', amount: 200, unit: 'L', state: 'slurry' })).toBe('навоз КРС: 200 л, жидкий')
+    expect(componentText({ substrate: 'swine_manure', amount: 2, unit: 'ведра', value: 20, base_unit: 'L', state: null })).toBe('свиной навоз: 20 л')
   })
 })
 
