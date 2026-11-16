@@ -1,6 +1,6 @@
 """Exit code 0 if frontend/dist must be (re)built, 1 if the build is up to date.
 
-Used by start.bat: frontend/dist is not in git, so after `git pull` the old build
+Used by ЗАПУСК_BioReactor.bat: frontend/dist is not in git, so after `git pull` the old build
 would still be served. The build is stale when any file in frontend/src,
 frontend/index.html or the package/vite configs is newer than dist/index.html.
 """

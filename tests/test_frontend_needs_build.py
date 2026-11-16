@@ -1,4 +1,4 @@
-"""start.bat rebuilds the UI when frontend/src is newer than frontend/dist."""
+"""ЗАПУСК_BioReactor.bat rebuilds the UI when frontend/src is newer than frontend/dist."""
 import os
 import sys
 from pathlib import Path

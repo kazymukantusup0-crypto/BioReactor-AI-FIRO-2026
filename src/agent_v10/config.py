@@ -1,7 +1,7 @@
 """Paths and LLM settings for agent v10.
 
 LLM settings live in ONE file, data/config/llm_selection.json, shared with
-the old dashboard agent, start.bat warm-up and the benchmark script.
+the old dashboard agent, ЗАПУСК_BioReactor.bat warm-up and the benchmark script.
 """
 from __future__ import annotations
 

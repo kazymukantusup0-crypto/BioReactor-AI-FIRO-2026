@@ -1,6 +1,6 @@
 """Load the main LLM into GPU memory before the first user question.
 
-start.bat runs this in the background. The model is loaded with exactly the
+ЗАПУСК_BioReactor.bat runs this in the background. The model is loaded with exactly the
 same options as the agent uses (num_ctx, num_gpu from
 data/config/llm_selection.json); otherwise Ollama would reload it on the
 first real question and the jury would wait several extra seconds.
