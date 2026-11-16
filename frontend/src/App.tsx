@@ -5,6 +5,7 @@ import { api } from './api'
 import { useQuery } from './hooks'
 import Overview from './pages/Overview'
 import Chat from './pages/Chat'
+import AgentChat from './pages/AgentChat'
 import Market from './pages/Market'
 import Reactor from './pages/Reactor'
 import Science from './pages/Science'
@@ -21,6 +22,7 @@ const pages = [
  {id:'overview',title:'Обзор',en:'Overview',icon:LayoutDashboard},
  {id:'substrates',title:'Сырьё и смеси',en:'Substrates & Mixtures',icon:FlaskConical},
  {id:'chat',title:'AI Chat',en:'AI assistant',icon:MessageSquare},
+ {id:'chat-v9',title:'AI Chat v9 (старый)',en:'AI assistant v9 (legacy)',icon:MessageSquare},
  {id:'reactor',title:'Реактор',en:'Reactor',icon:Activity},
  {id:'market',title:'Рыночные цены',en:'Market prices',icon:ChartNoAxesCombined},
  {id:'science',title:'Источники и данные',en:'Sources & data',icon:Microscope},
@@ -49,7 +51,7 @@ function Workspace() {
         <a className="brand" href="#/overview" aria-label="BioReactor AI, обзор"><div className="brand-symbol"><FlaskConical size={25} /></div><div><strong>BioReactor<span>AI</span></strong><small>BIOGAS ASSISTANT</small></div></a>
         <div className="workspace-pill"><span className="status-dot" /><span>Моя установка</span><span className="workspace-code">KZ</span></div>
         <span className="nav-caption">РАБОЧАЯ СРЕДА</span>
-        <nav aria-label="Основная навигация">{pages.filter(item => !['system', 'demo'].includes(item.id)).map(item => <button key={item.id} className={`nav-item ${page === item.id ? 'active' : ''}`} aria-current={page === item.id ? 'page' : undefined} onClick={() => navigate(item.id)}><item.icon size={19} /><span>{item.title}</span>{page === item.id && <span className="nav-indicator" />}</button>)}</nav>
+        <nav aria-label="Основная навигация">{pages.filter(item => !['system', 'demo', 'chat-v9'].includes(item.id)).map(item => <button key={item.id} className={`nav-item ${page === item.id ? 'active' : ''}`} aria-current={page === item.id ? 'page' : undefined} onClick={() => navigate(item.id)}><item.icon size={19} /><span>{item.title}</span>{page === item.id && <span className="nav-indicator" />}</button>)}</nav>
         <span className="nav-caption nav-caption-system">СИСТЕМА</span>
         <nav aria-label="Диагностика"><button className={`nav-item ${page === 'system' ? 'active' : ''}`} aria-current={page === 'system' ? 'page' : undefined} onClick={() => navigate('system')}><Server size={19} /><span>Состояние системы</span><span className={`nav-state ${system ? 'connected' : ''}`} /></button></nav>
         <div className="sidebar-bottom"><div className="local-card"><div><ShieldCheck size={15} /><strong>Локальная среда</strong></div><p>Научные данные остаются<br />под вашим контролем</p><span>v8.3 <span>•</span> Research prototype</span></div></div>
@@ -63,7 +65,7 @@ function Workspace() {
         </header>
         <main id="main-content" tabIndex={-1}>
           <motion.div key={page} className="page-content" initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .18 }}>
-            {page === 'overview' && <Overview navigate={navigate} />}{page === 'chat' && <Chat />}{page === 'substrates' && <SubstrateAdvisor mixture />}{page === 'market' && <Market onChange={health.refresh} />}{page === 'reactor' && <Reactor />}{page === 'science' && <Science />}{page === 'system' && <System />}{page === 'demo' && <Demo navigate={navigate} />}
+            {page === 'overview' && <Overview navigate={navigate} />}{page === 'chat' && <AgentChat />}{page === 'chat-v9' && <Chat />}{page === 'substrates' && <SubstrateAdvisor mixture />}{page === 'market' && <Market onChange={health.refresh} />}{page === 'reactor' && <Reactor />}{page === 'science' && <Science />}{page === 'system' && <System />}{page === 'demo' && <Demo navigate={navigate} />}
           </motion.div>
           <footer className="app-footer"><span>BioReactor AI <span className="footer-divider">/</span> Локальный ассистент по биогазу</span><span><ShieldCheck size={12} />Проверяемые данные · ответственные выводы</span></footer>
         </main>

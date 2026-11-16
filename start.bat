@@ -67,20 +67,32 @@ echo.
 rem ---------- 3. Frontend build ----------
 :frontend
 echo [3/4] Проверяю сборку интерфейса frontend\dist ...
-if exist "frontend\dist\index.html" goto :frontend_ready
+rem Rebuild when the build is missing OR older than frontend\src (after git pull).
+python scripts\frontend_needs_build.py
+if errorlevel 1 goto :frontend_ready
 where npm >nul 2>&1
-if errorlevel 1 goto :error_node
-echo       Сборки нет - собираю: npm ci и npm run build. 1-3 минуты.
+if errorlevel 1 goto :no_npm
+echo       Сборки нет или она устарела - собираю интерфейс. 1-3 минуты.
 pushd frontend
+if exist "node_modules" goto :npm_build
 call npm ci
 if errorlevel 1 (popd & goto :error_build)
+:npm_build
 call npm run build
 if errorlevel 1 (popd & goto :error_build)
 popd
 :frontend_ready
 echo       OK
 
+goto :dashboard
+
+:no_npm
+if not exist "frontend\dist\index.html" goto :error_node
+echo       ВНИМАНИЕ: интерфейс изменился, но Node.js/npm не найден - запускаю старую сборку.
+echo       Чтобы увидеть новый интерфейс, установите Node.js LTS с nodejs.org.
+
 rem ---------- 4. Dashboard ----------
+:dashboard
 echo [4/4] Запускаю дашборд ...
 curl -s -m 2 http://127.0.0.1:%PORT%/health >nul 2>&1
 if errorlevel 1 goto :run_dashboard

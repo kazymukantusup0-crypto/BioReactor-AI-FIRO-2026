@@ -5,6 +5,7 @@
     POST /api/agent/conversations/{id}/facts  edit facts ("What the agent knows" panel)
     POST /api/agent/reset                     forget a conversation
     GET  /api/agent/status                    model, offline, GPU share (for the UI indicator)
+    GET  /api/agent/demo-reactor              defaults used when the user did not give a value
 
 SSE format: every event is sent as
     event: <type>
@@ -20,6 +21,7 @@ from fastapi.responses import StreamingResponse
 from pydantic import BaseModel, Field
 
 from src.agent_v10.agent import Agent
+from src.agent_v10.config import demo_reactor
 from src.agent_v10.facts import EMPTY_FACTS, apply_overrides
 from src.agent_v10.memory import Memory
 
@@ -36,6 +38,26 @@ class ResetRequest(BaseModel):
 
 class FactsRequest(BaseModel):
     facts: dict
+
+
+NUMBER_FACTS = {"reactor_volume_l": (1, 1_000_000), "ambient_c": (-60, 60), "target_c": (5, 70), "days": (1, 365)}
+CHOICE_FACTS = {"insulation": {"none", "basic", "good"}, "operating_mode": {"batch", "continuous"},
+                "price_class": {"household", "business"}}
+
+
+def fact_error(key: str, value) -> str | None:
+    """Why a value typed in the 'What the agent knows' panel is not accepted (None = fine)."""
+    if value is None:
+        return None
+    if key in NUMBER_FACTS:
+        low, high = NUMBER_FACTS[key]
+        if isinstance(value, bool) or not isinstance(value, (int, float)) or not low <= value <= high:
+            return f"{key} must be a number from {low} to {high}"
+    if key in CHOICE_FACTS and value not in CHOICE_FACTS[key]:
+        return f"{key} must be one of {sorted(CHOICE_FACTS[key])}"
+    if key == "components" and not isinstance(value, list):
+        return "components must be a list"
+    return None
 
 
 def sse(event: dict) -> str:
@@ -77,6 +99,9 @@ def create_router(agent: Agent | None = None) -> APIRouter:
         unknown = set(body.facts) - set(EMPTY_FACTS)
         if unknown:
             return {"ok": False, "error": f"unknown facts: {sorted(unknown)}"}
+        errors = [error for key, value in body.facts.items() if (error := fact_error(key, value))]
+        if errors:
+            return {"ok": False, "error": "; ".join(errors)}
         memory = get_agent().memory
         merged = apply_overrides(memory.get(conversation_id)["facts"], body.facts)
         return {"ok": True, **memory.update_facts(conversation_id, merged)}
@@ -92,5 +117,9 @@ def create_router(agent: Agent | None = None) -> APIRouter:
         available = llm.available()
         return {"model": llm.model, "llm_available": available, "offline": True,
                 "mode": "llm" if available else "no_llm", "gpu": llm.gpu_status() if available else {"loaded": False}}
+
+    @router.get("/demo-reactor")
+    def demo() -> dict:
+        return demo_reactor()
 
     return router

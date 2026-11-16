@@ -170,3 +170,16 @@ def test_api_streams_sse_and_manages_conversations(memory):
     assert client.post("/api/agent/reset", json={"conversation_id": conversation_id}).json()["ok"]
     assert client.get(f"/api/agent/conversations/{conversation_id}").json()["exists"] is False
     assert client.get("/api/agent/status").json()["mode"] == "no_llm"
+    assert client.get("/api/agent/demo-reactor").json()["working_volume_l"] == 160
+
+
+def test_api_rejects_bad_fact_values(memory):
+    app = FastAPI()
+    app.include_router(create_router(Agent(memory, FakeLLM([], available=False))))
+    client = TestClient(app)
+    url = "/api/agent/conversations/test-conversation/facts"
+    assert client.post(url, json={"facts": {"insulation": "very"}}).json()["ok"] is False
+    assert client.post(url, json={"facts": {"ambient_c": "cold"}}).json()["ok"] is False
+    assert client.post(url, json={"facts": {"reactor_volume_l": -5}}).json()["ok"] is False
+    accepted = client.post(url, json={"facts": {"reactor_volume_l": 200, "ambient_c": -15, "insulation": None}}).json()
+    assert accepted["ok"] and accepted["facts"]["ambient_c"] == -15
