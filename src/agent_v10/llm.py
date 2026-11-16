@@ -6,12 +6,40 @@ data/config/llm_selection.json. Only the Python standard library is used.
 from __future__ import annotations
 
 import json
+import re
 import time
 import urllib.error
 import urllib.request
 from collections.abc import Iterator
 
 from src.agent_v10.config import llm_settings
+
+
+# qwen3 sometimes writes the call as TEXT instead of a structured tool call (manual check 3, S):
+#   <tool_call> {"name": "compare_feedstocks", "arguments": {...}} </tool_call>
+INLINE_CALL = re.compile(r"<tool_call>\s*(\{.*?\})\s*</tool_call>", re.DOTALL)
+BARE_CALL = re.compile(r"^\s*(\{\s*\"name\"\s*:.*\})\s*$", re.DOTALL)
+
+
+def split_inline_tool_calls(content: str) -> tuple[str, list[dict]]:
+    """Move tool calls written as text into real tool calls; return (text without them, calls)."""
+    calls = []
+
+    def take(raw: str) -> bool:
+        try:
+            data = json.loads(raw)
+        except ValueError:
+            return False
+        if not isinstance(data, dict) or not isinstance(data.get("name"), str):
+            return False
+        calls.append({"function": {"name": data["name"], "arguments": data.get("arguments") or data.get("parameters") or {}}})
+        return True
+
+    content = INLINE_CALL.sub(lambda m: "" if take(m.group(1)) else "", content)
+    bare = BARE_CALL.match(content)
+    if bare and take(bare.group(1)):
+        content = ""
+    return content.strip(), calls
 
 
 class LLMUnavailable(RuntimeError):
@@ -102,10 +130,12 @@ class OllamaClient:
         except (urllib.error.URLError, OSError, ValueError) as error:
             raise LLMUnavailable(str(error)) from error
         eval_seconds = (final_chunk.get("eval_duration") or 0) / 1e9
+        content, inline_calls = split_inline_tool_calls("".join(content_parts))
         yield {
             "type": "final",
-            "content": "".join(content_parts),
-            "tool_calls": tool_calls,
+            "content": content,
+            "tool_calls": tool_calls + inline_calls,
+            "inline_tool_calls": bool(inline_calls),
             "stats": {
                 "duration_ms": round((time.perf_counter() - started) * 1000),
                 "first_token_ms": first_token_ms,

@@ -21,7 +21,8 @@ UNIT_PATTERNS: list[tuple[str, str, float, str | None]] = [
     (r"(?:в[её]д[её]р\w*|ведр\w*|шелек\w*|bucket\w*)", "volume", BUCKET_LITRES, BUCKET_ASSUMPTION),
     (r"(?:меш[оке]\w*|мешочк\w*|қап\w*|bags?|sacks?)", "volume", BAG_LITRES, BAG_ASSUMPTION),
     (r"(?:тонн\w*|т|t|tonn?e?s?|ton)", "mass", 1000.0, None),
-    (r"(?:килограмм\w*|кг|kg|kilo\w*)", "mass", 1.0, None),
+    # "50 кил", "50 кило", "50 килов" — spoken forms (manual check 3).
+    (r"(?:килограмм\w*|кг|kg|kilo\w*|кило\w*|кил)", "mass", 1.0, None),
 ]
 
 # A number: 200 | 1,5 | 1.5 | 1 000

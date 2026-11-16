@@ -11,6 +11,7 @@ src/advisor/conversion.py.
 """
 from __future__ import annotations
 
+import re
 from functools import lru_cache
 
 from src.advisor import catalog
@@ -54,13 +55,39 @@ def material_name(material: str, language: str = "ru") -> str:
     return catalog.name(material, language)
 
 
+# Words the shared catalog (src/advisor/catalog.py, also used by v9) does not know, v10 only (manual check 3):
+# an animal adjective without the word "навоз" ("Что лучше: свиной или коровий?") and farmer typos ("навозу каровы").
+EXTRA_NAMES = [
+    ("cattle_manure", r"кар[оа]в\w*|\bкрс\b|\bсиыр\w*|\bcows?\b|\bcattle\b"),
+    ("swine_manure", r"свин(?:ой|ая|ое|ого|ому|ую|ым|ые|ых|ыми)\b|свиньи|свиней|\bшошқа\w*|\bpigs?\b|\bswine\b|\bhogs?\b"),
+    ("poultry_manure", r"курин\w*|птич\w*|\bтауық\w*(?:\s+саңғыры\w*)?|\bchickens?\b|\bpoultry\b|\bhens?\b"),
+]
+
+
 def recognize(text: str) -> list[dict]:
     """Find substrate names in a free text (ru / kk / en).
 
     A name must start a word: the catalog pattern "трав…" also matched inside "стравить"
     (vent the gas) and made the answer check think the text named grass.
+    "навоз" + an animal word next to it ("навозу каровы", "свиной навоз") is ONE material of that animal.
     """
-    return [m for m in catalog.matches(text) if m["start"] == 0 or not text[m["start"] - 1].isalpha()]
+    found = [m for m in catalog.matches(text) if m["start"] == 0 or not text[m["start"] - 1].isalpha()]
+    for material, pattern in EXTRA_NAMES:
+        for match in re.finditer(pattern, text, re.IGNORECASE):
+            if match.start() and text[match.start() - 1].isalpha():
+                continue
+            if any(match.start() < m["end"] and match.end() > m["start"] and m["material"] != "manure" for m in found):
+                continue
+            extra = {"material": material, "start": match.start(), "end": match.end(), "text": match.group()}
+            # A generic "навоз" right before or after the animal word becomes part of this material.
+            for generic in [m for m in found if m["material"] == "manure"]:
+                gap = text[min(generic["end"], extra["end"]):max(generic["start"], extra["start"])]
+                if (generic["start"] < extra["end"] and generic["end"] > extra["start"]) or (len(gap) <= 3 and not gap.strip()):
+                    found.remove(generic)
+                    extra.update(start=min(extra["start"], generic["start"]), end=max(extra["end"], generic["end"]))
+                    extra["text"] = text[extra["start"]:extra["end"]]
+            found.append(extra)
+    return sorted(found, key=lambda m: m["start"])
 
 
 def known_materials() -> list[str]:

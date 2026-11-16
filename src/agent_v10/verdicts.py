@@ -23,6 +23,8 @@ Proactive advice (only when the net balance is negative or the gas is not enough
 """
 from __future__ import annotations
 
+from src.agent_v10.ranges import plain
+
 import math
 import re
 
@@ -239,6 +241,20 @@ WORDS = {
     "minus": {"ru": "минус", "en": "minus", "kk": "теріс"},
     "uncertain": {"ru": "около нуля", "en": "near zero", "kk": "нөлге жақын"},
 }
+# Units inside the short verdict values (the value line of a verdict card).
+UNIT_WORDS = {
+    "l": {"ru": "л", "en": "L", "kk": "л"},
+    "working": {"ru": "рабочий", "en": "working", "kk": "жұмыс көлемі"},
+    "m3": {"ru": "м³", "en": "m³", "kk": "м³"},
+    "kwh": {"ru": "кВт·ч", "en": "kWh", "kk": "кВт·сағ"},
+    "h_day": {"ru": "ч/сут", "en": "h/day", "kk": "сағ/тәул"},
+    "days": {"ru": "дн.", "en": "days", "kk": "күн"},
+    "days_weeks": {"ru": "дни–недели", "en": "days–weeks", "kk": "күндер–апталар"},
+}
+
+
+def _unit(key: str, language: str) -> str:
+    return UNIT_WORDS[key].get(language, UNIT_WORDS[key]["ru"])
 
 
 def _say(table: dict, key: str, language: str, **values) -> str:
@@ -368,10 +384,10 @@ def volume_details(components: list[dict], language: str) -> str:
             continue
         state = component_mass(component)["state"]
         density = substrates.density(component["substrate"], state)
-        dens = f"{density['low']:g}" if density["low"] == density["high"] else f"{density['low']:g}–{density['high']:g}"
+        dens = f"{plain(density['low'])}" if density["low"] == density["high"] else f"{plain(density['low'])}–{plain(density['high'])}"
         why = LOOSE_STRAW.get(language, LOOSE_STRAW["ru"]) if component["substrate"] == "straw" else ""
         parts.append(VOLUME_DETAIL.get(language, VOLUME_DETAIL["ru"]).format(
-            amount=f"{component['value']:g}", name=substrates.material_word(component["substrate"], language),
+            amount=f"{plain(component['value'])}", name=substrates.material_word(component["substrate"], language),
             density=dens, low=f"{component['value'] / density['high']:.0f}", high=f"{component['value'] / density['low']:.0f}",
             why=why))
     return "".join(parts)
@@ -398,8 +414,8 @@ def batch_too_big_note(facts: dict, results: list[dict], language: str) -> str |
     working = reactor * demo["fill_share"]
     if volume[1] <= working:
         return None
-    shown = f"{center([round(volume[0]), round(volume[1])]):g}" if volume[0] != volume[1] else f"{round(volume[0]):g}"
-    return (t("assume_batch_too_big", language, volume=shown, working=f"{working:g}", reactor=f"{reactor:g}")
+    shown = f"{plain(center([round(volume[0]), round(volume[1])]))}" if volume[0] != volume[1] else f"{plain(round(volume[0]))}"
+    return (t("assume_batch_too_big", language, volume=shown, working=f"{plain(working)}", reactor=f"{plain(reactor)}")
             + volume_details(facts.get("components") or [], language))
 
 
@@ -421,22 +437,24 @@ def fits_verdict(facts: dict, language: str, results: list[dict] | None = None) 
     # "No" when the batch (its central estimate) is larger than the working volume; "maybe" only when
     # the central estimate fits and just the upper edge does not (manual check: "на грани: 300 > 160").
     code = "no" if (smallest + largest) / 2 > working else "maybe"
-    shown = f"{center([round(smallest), round(largest)]):g}" if smallest != largest else f"{round(smallest):g}"
-    text = _say(TEXTS, "fits_" + code, language, volume=shown if code == "no" else f"{round(smallest):g}–{round(largest):g}",
-                working=f"{working:g}", reactor=f"{reactor:g}") + volume_details(facts.get("components") or [], language)
+    shown = f"{plain(center([round(smallest), round(largest)]))}" if smallest != largest else f"{plain(round(smallest))}"
+    text = _say(TEXTS, "fits_" + code, language, volume=shown if code == "no" else f"{plain(round(smallest))}–{plain(round(largest))}",
+                working=f"{plain(working)}", reactor=f"{plain(reactor)}") + volume_details(facts.get("components") or [], language)
     gas = _first_ok(results or [], "estimate_methane")
     if gas and code == "no":
         # The gas figure is for the WHOLE batch; the model once said "from 160 L". Give it the per-load number.
         share = working / ((smallest + largest) / 2)
         biogas = pair(gas["data"]["biogas_m3"])
         per_load = [biogas[0] * share, biogas[1] * share]
-        text += _say(TEXTS, "per_load", language, total=approx_text(biogas), working=f"{working:g}",
+        text += _say(TEXTS, "per_load", language, total=approx_text(biogas), working=f"{plain(working)}",
                      per_load=approx_text(pair({"low": per_load[0], "high": per_load[1]})),
                      loads=(loads := math.ceil((smallest + largest) / 2 / working)),
                      loads_word={"ru": plural_ru(loads, ("загрузка", "загрузки", "загрузок")),
-                                 "en": "load" if loads == 1 else "loads"}.get(language, ""))
-    value = (f"{WORDS[code].get(language, WORDS[code]['ru'])}: {shown} > {working:g} л" if code == "no" else
-             f"{WORDS[code].get(language, WORDS[code]['ru'])}: {round(smallest):g}–{round(largest):g} л, рабочий {working:g} л")
+                                 "en": "load" if loads == 1 else "loads", "kk": "жүктеме"}.get(language, ""))
+    litre, working_word = _unit("l", language), _unit("working", language)
+    value = (f"{WORDS[code].get(language, WORDS[code]['ru'])}: {shown} > {plain(working)} {litre}" if code == "no" else
+             f"{WORDS[code].get(language, WORDS[code]['ru'])}: {plain(round(smallest))}–{plain(round(largest))} {litre}, "
+             f"{working_word} {plain(working)} {litre}")
     return _item("fits", code, value, text, language, "bad" if code == "no" else "warn")
 
 
@@ -449,10 +467,10 @@ def daily_capacity_verdict(results: list[dict], language: str) -> dict | None:
     needed = llm["reactor_needed_for_all_manure_m3"]
     text = _say(TEXTS, "daily_small", language, animals=llm["animals"], needed=approx_text(needed),
                 total=approx_text(llm["biogas_m3_per_day_from_all_manure"]),
-                reactor=f"{data['reactor_volume_l']:g}", feed=approx_text(llm["your_reactor_can_take_kg_per_day"]),
+                reactor=f"{plain(data['reactor_volume_l'])}", feed=approx_text(llm["your_reactor_can_take_kg_per_day"]),
                 biogas=approx_text(llm["biogas_m3_per_day_in_your_reactor"]))
     code = data["reactor_enough"]
-    return _item("daily_capacity", code, f"{WORDS[code].get(language, WORDS[code]['ru'])}: ≈{center(needed):g} м³",
+    return _item("daily_capacity", code, f"{WORDS[code].get(language, WORDS[code]['ru'])}: ≈{plain(center(needed))} {_unit('m3', language)}",
                  text, language, "bad" if code == "no" else "warn")
 
 
@@ -468,10 +486,11 @@ def stove_verdict(results: list[dict], language: str) -> dict | None:
         text += _say(TEXTS, "stove_many", language)
     in_reactor = found["llm"].get("one_burner_hours_per_day_in_your_reactor")
     if in_reactor:
-        text += _say(TEXTS, "stove_reactor", language, reactor=f"{found['data']['reactor_volume_l']:g}",
+        text += _say(TEXTS, "stove_reactor", language, reactor=f"{plain(found['data']['reactor_volume_l'])}",
                      hours=approx_text(in_reactor))
     shown = in_reactor or hours
-    return _item("stove", "hours", f"≈{center(shown):g} ч/сут", text, language, "good" if shown[0] >= 1 else "warn")
+    return _item("stove", "hours", f"≈{plain(center(shown))} {_unit('h_day', language)}", text, language,
+                 "good" if shown[0] >= 1 else "warn")
 
 
 def startup_verdict(results: list[dict], language: str) -> dict | None:
@@ -481,14 +500,14 @@ def startup_verdict(results: list[dict], language: str) -> dict | None:
         return None
     data = found["data"]
     full = data["full_digestion_days"]
-    full_text = f"{full['low']:g}–{full['high']:g}"
+    full_text = f"{plain(full['low'])}–{plain(full['high'])}"
     if data["with_cattle_dung"]:
         first = data["first_gas_days"]
-        text = _say(TEXTS, "startup_cattle", language, first=f"{first['low']:g}–{first['high']:g}", full=full_text)
-        value = f"{first['low']:g}–{first['high']:g} дн."
+        text = _say(TEXTS, "startup_cattle", language, first=f"{plain(first['low'])}–{plain(first['high'])}", full=full_text)
+        value = f"{plain(first['low'])}–{plain(first['high'])} {_unit('days', language)}"
     else:
         text = _say(TEXTS, "startup_other", language, full=full_text)
-        value = "дни–недели"
+        value = _unit("days_weeks", language)
     return _item("startup", "cattle" if data["with_cattle_dung"] else "other", value, text, language, "info")
 
 
@@ -502,7 +521,7 @@ def best_feed_verdict(results: list[dict], language: str) -> dict | None:
     best = feeds[data["best"]]
     other = next(row for row in data["feeds"] if row["substrate"] != data["best"])
     text = _say(TEXTS, "best_feed_similar" if data.get("similar") else "best_feed", language,
-                volume=f"{data['volume_l']:g}", best=best["name"],
+                volume=f"{plain(data['volume_l'])}", best=best["name"],
                 best_word=substrates.material_word(best["substrate"], language),
                 best_m3=approx_text(pair(best["methane_m3"])), other=other["name"],
                 other_m3=approx_text(pair(other["methane_m3"])), times=f"{data['ratio']:.1f}")
@@ -510,7 +529,7 @@ def best_feed_verdict(results: list[dict], language: str) -> dict | None:
         text += _say(TEXTS, "best_feed_overlap", language)
     if data.get("references_m3_t"):
         text += _say(TEXTS, "best_feed_reference", language, pairs=", ".join(
-            f"{substrates.material_word(k, language)} ≈{v:g}" for k, v in data["references_m3_t"].items()))
+            f"{substrates.material_word(k, language)} ≈{plain(v)}" for k, v in data["references_m3_t"].items()))
     refs = data.get("references_m3_t") or {}
     if {"swine_manure", "cattle_manure"} <= set(refs) and refs["swine_manure"] < refs["cattle_manure"]:
         # Per tonne pig slurry gives less, per kg of organic matter it does not: one sentence with the source.
@@ -606,7 +625,7 @@ def advice_item(results: list[dict], facts: dict, language: str) -> dict | None:
     text = _say(ADVICE, best, language, before=approx_text(before), after=approx_text(after))
     if after[1] < 0:
         text += _say(ADVICE, "still_minus", language)
-    item = _item("advice", best, f"≈{center(before):g} → ≈{center(after):g} кВт·ч".replace("-", "−"), text, language,
+    item = _item("advice", best, f"≈{plain(center(before))} → ≈{plain(center(after))} {_unit('kwh', language)}".replace("-", "−"), text, language,
                  "good" if after[0] > 0 else "warn")
     item.update(before=list(before), after=list(after),
                 assumptions=[_say(ADVICE, "assume_eps50", language)] * ("eps50" in best)

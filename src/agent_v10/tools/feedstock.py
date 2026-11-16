@@ -14,6 +14,8 @@ compare_feedstocks — "Что лучше: куриный помёт или ко
 """
 from __future__ import annotations
 
+from src.agent_v10.ranges import plain
+
 from src.agent_v10 import substrates
 from src.agent_v10.config import demo_reactor
 from src.agent_v10.i18n import t
@@ -46,7 +48,7 @@ def startup_time(components: list[dict], regime: str = "mesophilic", language: s
         "label": "literature",
     }
     assumptions = [t("assume_startup", language), t("assume_full_digestion", language,
-                                                     low=f"{digestion['low']:g}", high=f"{digestion['high']:g}")]
+                                                     low=f"{plain(digestion['low'])}", high=f"{plain(digestion['high'])}")]
     return result("startup_time", ok=True, data=data, llm=llm, assumptions=assumptions,
                   sources=_sources("gtz-biogas-digest-2-startup"), label="literature")
 
@@ -88,7 +90,7 @@ def compare_feedstocks(materials: list[str], volume_l: float | None = None, regi
     notes = {r["substrate"]: notes_table[r["substrate"]].get(language, notes_table[r["substrate"]]["ru"])
              for r in rows if r["substrate"] in notes_table}
     if volume_assumed:
-        assumptions.insert(0, t("assume_compare_volume", language, volume=f"{volume:g}"))
+        assumptions.insert(0, t("assume_compare_volume", language, volume=f"{plain(volume)}"))
     data = {"status": "ok", "volume_l": volume, "volume_assumed": volume_assumed, "feeds": rows, "best": best["substrate"],
             "ratio": ratio, "difference_percent": (ratio - 1) * 100, "ranges_overlap": overlap, "notes": notes,
             "references_m3_t": references, "similar": similar}

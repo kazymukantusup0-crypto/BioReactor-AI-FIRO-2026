@@ -12,9 +12,11 @@ regenerates once and then falls back to the template explanation.
 """
 from __future__ import annotations
 
+from src.agent_v10.ranges import plain
+
 import re
 
-from src.agent_v10.i18n import badge
+from src.agent_v10.i18n import badge, t
 from src.agent_v10.ranges import approx_text, center, range_text as _range_text, tidy
 
 # Small numbers such as "2 варианта", "1 вопрос" are always allowed.
@@ -122,12 +124,16 @@ def number_cards(results: list[dict], language: str) -> list[dict]:
             continue
         llm, label, name = item["llm"], item["label"], item["name"]
         if name == "estimate_methane":
-            cards += [
+            gas_cards = [
                 _card("methane", llm["methane_m3"], "m3", label, language),
                 _card("biogas", llm["biogas_m3"], "m3", label, language),
                 _card("energy", llm["energy_kwh"], "kwh", label, language),
-                _card("days", llm["days"], "days", "assumption", language),
             ]
+            if item["data"].get("aged"):
+                # Stored manure: these are the fresh-manure numbers, i.e. the upper bound (manual check 3, V).
+                for card in gas_cards:
+                    card["title"] += t("aged_card_suffix", language)
+            cards += gas_cards + [_card("days", llm["days"], "days", "assumption", language)]
         elif name == "estimate_heating_energy":
             cards.append(_card("heating", llm["total_kwh"], "kwh", label, language))
         elif name == "recommend_temperature_regime":
@@ -176,7 +182,7 @@ def number_cards(results: list[dict], language: str) -> list[dict]:
         elif name == "compare_feedstocks":
             for feed in llm["feeds"]:
                 cards.append(_card("methane", feed["methane_m3"], "m3", label, language,
-                                   title=f"{_title('methane', language)}: {feed['feed']} ({llm['same_volume_l']:g} л)"))
+                                   title=f"{_title('methane', language)}: {feed['feed']} ({plain(llm['same_volume_l'])} {'L' if language == 'en' else 'л'})"))
         elif name == "gas_stove_hours":
             cards.append(_card("biogas_day", llm["biogas_m3_per_day"], "m3_day", label, language))
             cards.append(_card("stove_hours", llm["one_burner_hours_per_day"], "hours", label, language))
@@ -455,12 +461,25 @@ def compose(*, explanation: str, results: list[dict], language: str, mode: str, 
 SENTENCE_END = re.compile(r"[.!?…](?=\s|$)")
 
 
+# Service markup must never reach the user (manual check 3, S): a tool call written as text, thinking tags,
+# code fences, a JSON object of a call.
+MARKUP = re.compile(r"<(tool_call|think|tool_response|function[^>]*)>.*?</\1\s*>|</?(?:tool_call|think|tool_response)>|"
+                    r"```.*?```|\{\s*\"(?:name|arguments|function)\"\s*:.*?\}\s*\}?", re.DOTALL | re.IGNORECASE)
+
+
+def strip_markup(text: str) -> str:
+    """Text without service markup; a leftover unclosed '<tool_call>' cuts the rest of the text."""
+    text = MARKUP.sub("", text or "")
+    text = re.split(r"<tool_call>|<think>|\{\s*\"name\"", text, maxsplit=1)[0]
+    return re.sub(r"[ \t]{2,}", " ", text).strip()
+
+
 def trim_to_sentence(text: str) -> str:
     """Drop an unfinished last sentence (the reply hit the num_predict cap mid-sentence).
 
     "≈7.2" is not a sentence end: a dot counts only when followed by a space or the end.
     """
-    text = text.strip()
+    text = strip_markup(text)
     if not text or text[-1] in ".!?…»)":
         return text
     ends = list(SENTENCE_END.finditer(text))
@@ -533,7 +552,35 @@ def science_problems(text: str) -> list[str]:
             problems.append("The digestion time (25–35 days) is NOT the time until the first gas: with cattle dung or "
                             "digested slurry the first gas comes in 1–2 days.")
             break
+    if ORGANIC_CLAIM.search(text or ""):
+        problems.append("Do not say that cattle manure has more organic matter or that pig manure is poorer in organic "
+                        "matter: per kg of organic matter pig manure gives MORE methane (Møller 2004); per tonne it gives "
+                        "less only because pig slurry is more diluted with water.")
     return problems
+
+
+# "навоз КРС содержит больше органического вещества" (manual check 3, U) — the opposite of the Python sentence.
+ORGANIC_CLAIM = re.compile(
+    r"(?:крс|коров\w*|cattle|cow\w*|сиыр\w*)[^.?!]{0,50}?(?:больше|выше|богаче|more|richer|higher|көбірек|көп)[^.?!,;()]{0,25}?"
+    r"(?:органи\w*|organic)"
+    r"|(?:свин\w*|pig\w*|swine|шошқа\w*)[^.?!]{0,50}?(?:меньше|ниже|беднее|less|poorer|lower|аз)[^.?!,;()]{0,25}?(?:органи\w*|organic)",
+    re.IGNORECASE)
+
+
+def python_sentences(results: list[dict], language: str) -> list[str]:
+    """Sentences that Python always adds to the answer, whatever the model wrote (manual check 3, U)."""
+    sentences = []
+    for item in results:
+        if item.get("name") == "estimate_methane" and item.get("ok") and item["data"].get("aged"):
+            sentences.append(t("aged_sentence", language))
+        if item.get("name") != "compare_feedstocks" or not item.get("ok"):
+            continue
+        refs = item["data"].get("references_m3_t") or {}
+        if {"swine_manure", "cattle_manure"} <= set(refs) and refs["swine_manure"] < refs["cattle_manure"]:
+            from src.agent_v10.tools.daily import daily_data
+            why = daily_data()["swine_vs_cattle"]
+            sentences.append(why.get(language, why["ru"]))
+    return sentences
 
 
 # --- answers without a calculation ---------------------------------------------------------------
@@ -550,7 +597,7 @@ def batch_text(components: list[dict], language: str) -> str:
             continue
         unit = {"L": {"ru": "л", "kk": "л", "en": "L"}, "kg": {"ru": "кг", "kk": "кг", "en": "kg"}}.get(
             c.get("base_unit"), {}).get(language) or c.get("unit") or ""
-        parts.append(f"{c['amount']:g} {unit} {name}".replace("  ", " "))
+        parts.append(f"{plain(c['amount'])} {unit} {name}".replace("  ", " "))
     return " + ".join(parts)
 
 
@@ -606,7 +653,7 @@ def history_summary(messages: list[dict], text: str, facts: dict, language: str)
     if facts.get("ambient_c") is not None:
         other.append(words["ambient"].format(v=facts["ambient_c"]))
     if facts.get("animals"):
-        other.append(words["animals"].format(v=", ".join(f"{a['count']:g} {a['species']}" for a in facts["animals"])))
+        other.append(words["animals"].format(v=", ".join(f"{plain(a['count'])} {a['species']}" for a in facts["animals"])))
     if other:
         parts.append(words["other"].format(other=", ".join(other)))
     parts.append(words["none"])
@@ -633,3 +680,100 @@ def empty_fallback(updates: dict, facts: dict, language: str) -> str:
         what = batch_text(facts.get("components"), language) or ", ".join(sorted(changed))
         return words["remembered"].format(what=what)
     return words["not_understood"]
+
+
+# --- "Почему ты уверен?" and "Откуда эти данные?" (manual check 3, T) -------------------------------------
+# Two different answers built by Python from the LAST calculation in the conversation; the LLM gave two almost
+# identical answers about 35 °C to both questions.
+
+TRUST_TEXT = {
+    "ru": {
+        "how": "Числа считает не языковая модель, а программа по формулам: метан = масса сырья × органическое вещество (VS) × "
+               "метановый потенциал (BMP) × доля, которую реактор получает за срок сбраживания; биогаз = метан ÷ доля "
+               "метана; энергия = метан × 9.97 кВт·ч/м³.",
+        "estimate": "Исходные значения — оценка по литературе, а не замер вашего сырья, поэтому ответ — диапазон{range}: "
+                    "он и показывает неопределённость.",
+        "checked": "Каждое число в тексте ответа сверено с результатом расчёта; если модель пишет чужое число, ответ "
+                   "заменяется шаблоном.",
+        "assumed": "Часть значений — допущения ({count}), они перечислены под ответом.",
+        "better": "Точнее станет после замера сухого вещества (TS) или плотности вашей партии.",
+        "range": " (метан {value} м³)",
+        "none": "Пока не было расчёта. Спросите, например: «Сколько газа даст 150 л навоза КРС?» — и я объясню, откуда числа.",
+        "sources": "Источники последнего расчёта ({what}):",
+        "no_sources": "В последнем расчёте нет внешних источников: всё взято из допущений, перечисленных под ответом.",
+    },
+    "en": {
+        "how": "The numbers are calculated not by the language model but by the program with formulas: methane = feed mass × "
+               "organic matter (VS) × methane potential (BMP) × the share a reactor reaches in the digestion time; "
+               "biogas = methane ÷ methane share; energy = methane × 9.97 kWh/m³.",
+        "estimate": "The inputs are a literature estimate, not a measurement of your feed, so the answer is a range{range}: "
+                    "it shows the uncertainty.",
+        "checked": "Every number in the answer text is checked against the calculation; if the model writes a foreign "
+                   "number, the answer is replaced by a template.",
+        "assumed": "Some values are assumptions ({count}); they are listed under the answer.",
+        "better": "It gets more precise after measuring the dry matter (TS) or the density of your batch.",
+        "range": " (methane {value} m³)",
+        "none": "There was no calculation yet. Ask for example: \"How much gas from 150 L of cattle slurry?\" — and I will "
+                "explain where the numbers come from.",
+        "sources": "Sources of the last calculation ({what}):",
+        "no_sources": "The last calculation has no external sources: everything comes from the assumptions listed under it.",
+    },
+    "kk": {
+        "how": "Сандарды тіл моделі емес, бағдарлама формулалар бойынша есептейді: метан = шикізат массасы × органикалық "
+               "зат (VS) × метан әлеуеті (BMP) × реактор ашыту мерзімінде алатын үлес; биогаз = метан ÷ метан үлесі; "
+               "энергия = метан × 9.97 кВт·сағ/м³.",
+        "estimate": "Бастапқы мәндер — әдебиет бойынша бағалау, сіздің шикізатыңыздың өлшемі емес, сондықтан жауап — "
+                    "диапазон{range}: ол белгісіздікті көрсетеді.",
+        "checked": "Жауап мәтініндегі әр сан есеп нәтижесімен салыстырылады; модель бөтен сан жазса, жауап үлгімен "
+                   "ауыстырылады.",
+        "assumed": "Кейбір мәндер — жорамалдар ({count}), олар жауаптың астында көрсетілген.",
+        "better": "Партияңыздың құрғақ затын (TS) немесе тығыздығын өлшесеңіз, есеп дәлірек болады.",
+        "range": " (метан {value} м³)",
+        "none": "Әзірге есеп болған жоқ. Мысалы, сұраңыз: «150 л сиыр көңінен қанша газ шығады?» — сандар қайдан "
+                "алынғанын түсіндіремін.",
+        "sources": "Соңғы есептің дереккөздері ({what}):",
+        "no_sources": "Соңғы есепте сыртқы дереккөз жоқ: барлығы жауаптың астындағы жорамалдардан алынған.",
+    },
+}
+
+
+def last_calculation(messages: list[dict]) -> dict | None:
+    """The last assistant message with number cards (a calculation, not a recap or a refusal)."""
+    return next((m for m in reversed(messages) if m.get("role") == "assistant" and m.get("numbers")), None)
+
+
+def trust_answer(messages: list[dict], language: str) -> str:
+    """Why the numbers can be trusted — and how far."""
+    words = TRUST_TEXT.get(language, TRUST_TEXT["ru"])
+    last = last_calculation(messages)
+    if last is None:
+        return words["none"]
+    methane = next((card for card in last["numbers"] if card.get("key") == "methane"), None)
+    value = (f"≈{methane['center']} ({methane['range']})" if methane and methane.get("center") is not None
+             else methane["value"] if methane else None)
+    parts = [words["how"], words["estimate"].format(range=words["range"].format(value=value) if value else "")]
+    if last.get("verified", True):
+        parts.append(words["checked"])
+    assumed = [card for card in last["numbers"] if card.get("label") == "assumption"]
+    if assumed:
+        parts.append(words["assumed"].format(count=", ".join(card["title"] for card in assumed)))
+    parts.append(words["better"])
+    return " ".join(parts)
+
+
+def sources_answer(messages: list[dict], language: str) -> str:
+    """Named sources of the last calculation."""
+    words = TRUST_TEXT.get(language, TRUST_TEXT["ru"])
+    last = last_calculation(messages)
+    if last is None:
+        return words["none"]
+    what = ", ".join(card["title"] for card in last["numbers"][:3])
+    sources = last.get("sources") or []
+    if not sources:
+        return words["no_sources"]
+    lines = []
+    for source in sources[:6]:
+        title = source.get("title") or source.get("id")
+        year = f" ({source['year']})" if source.get("year") else ""
+        lines.append(f"• {title}{year}")
+    return words["sources"].format(what=what) + "\n" + "\n".join(lines)

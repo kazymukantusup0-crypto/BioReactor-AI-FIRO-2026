@@ -27,11 +27,23 @@ EMPTY_FACTS: dict = {
     "price_class": None,       # household | business (electricity tariff)
     "goal": None,              # max_gas | fastest — only when the USER asks; default is the best net energy
     "animals": [],             # [{species: cow | pig | chicken, count}] — "у меня 5 коров" (daily production)
+    "aged": None,              # True: the manure was stored ("старый, неделю стоял"), False: "свежий"
 }
+
+# "А если навоз старый, неделю стоял?" (manual check 3, V): during storage part of the easily degradable organic
+# matter is already lost, so the gas is LOWER than for fresh manure.
+AGED_WORDS = re.compile(r"\bстар(?:ый|ая|ое|ого|ом|ые|ых|ую|ой)\b|\bпрошлогодн\w*|\bлежал\w*|\bстоял\w*|\bхранил\w*|\bзалежал\w*|\bпролежал\w*|\bнеделю\s+(?:стоял|лежал)\w*|"
+                        r"\bold\b|\bstored\b|\baged\b|\bескі\w*|\bсақтал\w*|\bжатқан\w*", re.IGNORECASE)
+FRESH_WORDS = re.compile(r"\bсвеж\w*|\bfresh\b|\bжаңа\b", re.IGNORECASE)
+# "старый реактор", "бочка старая" — the age of the reactor, not of the manure.
+REACTOR_AGE = re.compile(r"стар\w*\s+(?:реактор|бочк|ёмкост|емкост|бак)\w*|(?:реактор|бочк|ёмкост|емкост|бак)\w*\s+стар\w*|"
+                         r"\bold\s+(?:reactor|tank|barrel|digester)", re.IGNORECASE)
 
 # "1000 м³ газа", "50 кВт·ч" — what the user wants to GET, not what is loaded.
 OUTPUT_AFTER = re.compile(r"^\s*(?:\S+\s+)?(?:био)?газ\w*|^\s*(?:\S+\s+)?метан\w*|^\s*(?:bio)?gas\b|^\s*methane|^\s*биогаз\w*",
                           re.IGNORECASE)
+GAS_BEFORE = re.compile(r"(?:био)?газ\w*|метан\w*|\b(?:bio)?gas\b|methane", re.IGNORECASE)
+CUBIC_METRES = re.compile(r"м3|м³|m3|m³|куб\w*", re.IGNORECASE)
 # Words after an amount that are not a material name.
 NOT_MATERIAL = re.compile(r"^(?:в|во|на|за|по|из|и|или|до|от|с|со|a|of|the|in|into|for|бар|болса|болады|сколько|газа?|"
                           r"биогаза?|метана?|воды|навоза?|помёта|реактор\w*|бочк\w*|ёмкост\w*|дн\w*|день|сут\w*|"
@@ -184,6 +196,18 @@ def detect_language(text: str) -> str:
     return "en"
 
 
+def answer_language(text: str, ui_language: str | None = None) -> str:
+    """Language of the answer: the language of the message; the interface language (RU / ҚАЗ / EN switch)
+    only when the message has no words to tell it ("160", "−15 °C", "200 l")."""
+    if ui_language not in {"ru", "kk", "en"}:
+        return detect_language(text)
+    words = [w for w in re.findall(r"[^\W\d_]+", text) if not re.fullmatch(
+        r"л|l|кг|kg|т|t|м|m|°?c|°?с|ч|h|кВт|kwh|квт|м³|m³|мл|ml|см|cm|мм|mm", w, re.IGNORECASE)]
+    if not words:
+        return ui_language
+    return detect_language(text)
+
+
 def _near(text: str, start: int, end: int, pattern: str, before: int = 30, after: int = 30) -> bool:
     window = text[max(0, start - before): min(len(text), end + after)]
     return re.search(pattern, window, re.IGNORECASE) is not None
@@ -274,6 +298,11 @@ def extract(text: str, known: dict | None = None) -> dict:
     materials.sort(key=lambda m: m["start"])
     # "получится 1000 м³ газа" is the expected OUTPUT, never a feedstock amount.
     quantities = [q for q in find_quantities(text) if not OUTPUT_AFTER.match(text[q["end"]:q["end"] + 30])]
+    # "газа будет 1000 м³" too (manual check 3, P): cubic metres after a gas word and with no material right
+    # after them are gas. "Сколько газа из 2 м³ навоза" stays a feedstock amount.
+    quantities = [q for q in quantities if not (
+        CUBIC_METRES.fullmatch(q["unit_word"]) and GAS_BEFORE.search(text[max(0, q["start"] - 30):q["start"]])
+        and not any(0 <= m["start"] - q["end"] < 12 for m in materials))]
     if animals:
         updates["animals"] = animals
 
@@ -395,9 +424,13 @@ def extract(text: str, known: dict | None = None) -> dict:
         updates["goal"] = "fastest"
     if re.search(r"предприят\w*|организац\w*|юрлиц\w*|business|company|кәсіпорын", text, re.IGNORECASE):
         updates["price_class"] = "business"
+    if facts["components"] and AGED_WORDS.search(text) and not REACTOR_AGE.search(text):
+        updates["aged"] = True
+    elif facts["components"] and FRESH_WORDS.search(text) and facts.get("aged"):
+        updates["aged"] = False
 
     for key in ["reactor_volume_l", "ambient_c", "target_c", "days", "insulation", "operating_mode", "price_class", "goal",
-                "animals"]:
+                "animals", "aged"]:
         if key in updates:
             facts[key] = updates[key]
     return {"facts": facts, "updates": updates, "language": detect_language(text)}

@@ -13,6 +13,8 @@ the temperature regime and digestion time (data/research/temperature_regimes.jso
 """
 from __future__ import annotations
 
+from src.agent_v10.ranges import plain
+
 from src.agent_v10 import substrates
 from src.agent_v10.config import METHANE_KWH_PER_M3, temperature_regimes
 from src.agent_v10.i18n import t
@@ -114,7 +116,7 @@ def component_mass(component: dict, language: str = "ru") -> dict:
         labels.append(density["label"])
         sources += density["sources"]
         density_assumed = True
-        value_text = f"{density['low']:g}" if density["low"] == density["high"] else f"{density['low']:g}–{density['high']:g}"
+        value_text = f"{plain(density['low'])}" if density["low"] == density["high"] else f"{plain(density['low'])}–{plain(density['high'])}"
         assumptions.append(t("assume_density", language, substrate=substrates.material_name(substrate, language),
                              value=value_text, label=t("badge_" + density["label"], language)))
     return {"mass_kg": mass, "state": state, "state_assumed": state_assumed, "density_assumed": density_assumed,
@@ -146,9 +148,9 @@ def component_potential(component: dict, state: str, language: str = "ru") -> di
         key = ("assume_reference_none" if not ref.get("replaced_profiles") and replaced["high"] == 0 else
                "assume_reference_ts" if ref.get("replaced_ts_percent") else "assume_reference")
         assumptions = [t(key, language, substrate=substrates.material_name(substrate, language),
-                         ts="–".join(dict.fromkeys(f"{v:g}" for v in ref["replaced_ts_percent"] or [])),
+                         ts="–".join(dict.fromkeys(f"{plain(v)}" for v in ref["replaced_ts_percent"] or [])),
                          m_low=f"{replaced['low']:.1f}", m_high=f"{replaced['high']:.1f}", name=ref["name"],
-                         biogas=f"{ref['biogas_m3_t_fm']:g}", percent=f"{ref['methane_percent']:g}",
+                         biogas=f"{plain(ref['biogas_m3_t_fm'])}", percent=f"{plain(ref['methane_percent'])}",
                          low=f"{found['yield_l_per_kg']['low']:.1f}", high=f"{found['yield_l_per_kg']['high']:.1f}")]
     if component.get("analog_of"):
         # No data for the real material: the analogue's composition, always a rough assumption.

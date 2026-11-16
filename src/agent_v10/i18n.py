@@ -86,6 +86,43 @@ TEXT: dict[str, dict[str, str]] = {
         "en": "feedstock not given — calculated for the demo reactor: {litres} L of cattle slurry",
         "kk": "шикізат көрсетілмеген — демо-реактор үшін есептедім: {litres} л сұйық сиыр көңі",
     },
+    "assume_aged": {
+        "ru": "навоз хранился (старый): числа посчитаны для свежего навоза — это верхняя граница; надёжного числа потерь "
+              "при хранении в нашей базе нет",
+        "en": "the manure was stored (old): the numbers are for fresh manure — an upper bound; our base has no reviewed "
+              "number for the storage loss",
+        "kk": "көң сақталған (ескі): сандар жаңа көң үшін есептелген — бұл жоғарғы шек; сақтау кезіндегі шығынның "
+              "сенімді саны біздің базада жоқ",
+    },
+    "aged_card_suffix": {
+        "ru": " (свежий — верхняя граница)",
+        "en": " (fresh — upper bound)",
+        "kk": " (жаңа — жоғарғы шек)",
+    },
+    "aged_sentence": {
+        "ru": "Старый навоз даст МЕНЬШЕ газа, чем свежий: пока он стоит, часть легкоразлагаемой органики уже сбраживается "
+              "в куче и уходит в воздух. Сколько теряется — зависит от температуры хранения (в тепле больше, на морозе мало); "
+              "надёжного числа в нашей базе нет, поэтому числа выше — верхняя граница.",
+        "en": "Old manure gives LESS gas than fresh: while it is stored, part of the easily degradable organic matter already "
+              "ferments in the heap and is lost to the air. How much depends on the storage temperature (more when warm, "
+              "little in frost); our base has no reviewed number, so the numbers above are an upper bound.",
+        "kk": "Ескі көң жаңасынан АЗ газ береді: ол тұрған кезде оңай ыдырайтын органиканың бір бөлігі үйіндіде ашып, ауаға "
+              "кетеді. Қанша жоғалатыны сақтау температурасына байланысты (жылыда көп, аязда аз); біздің базада сенімді сан "
+              "жоқ, сондықтан жоғарыдағы сандар — жоғарғы шек.",
+    },
+    "assume_default_amount": {
+        "ru": "количество не указано — посчитал для рабочего объёма демо-реактора: {litres} л ({substrate})",
+        "en": "amount not given — calculated for the working volume of the demo reactor: {litres} L ({substrate})",
+        "kk": "мөлшері көрсетілмеген — демо-реактордың жұмыс көлеміне есептедім: {litres} л ({substrate})",
+    },
+    "injection_refused": {
+        "ru": "Я не меняю свои правила и не называю чисел, которых не посчитал. Все цифры считает программа по формулам "
+              "и справочникам. Спросите, например: «Сколько газа даст 150 л навоза КРС?»",
+        "en": "I do not change my rules and do not state numbers I have not calculated. Every number is calculated by the "
+              "program from formulas and references. Try for example: \"How much gas from 150 L of cattle slurry?\"",
+        "kk": "Мен ережелерімді өзгертпеймін және есептемеген санды айтпаймын. Барлық санды бағдарлама формулалар мен "
+              "анықтамалықтар бойынша есептейді. Мысалы, сұраңыз: «150 л сиыр көңінен қанша газ шығады?»",
+    },
     "off_topic": {
         "ru": "Я помогаю только с биогазовой установкой: сырьё, выход газа, подогрев, температурный режим и выгода. "
               "Спросите, например: «Сколько газа даст 150 л навоза КРС?»",

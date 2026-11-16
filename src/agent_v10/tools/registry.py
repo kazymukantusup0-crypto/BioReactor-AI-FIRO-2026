@@ -15,6 +15,7 @@ from src.agent_v10.tools.daily import estimate_daily_production, gas_stove_hours
 from src.agent_v10.tools.feedstock import compare_feedstocks, startup_time
 from src.agent_v10.tools.economics import energy_balance_and_economics
 from src.agent_v10.ranges import point
+from src.agent_v10.substrates import material_word
 from src.agent_v10.tools.heating import estimate_heating_over_days
 from src.agent_v10.tools.knowledge import search_knowledge
 from src.agent_v10.tools.methane import (batch_mass_and_volume, estimate_methane, normalize_component, normalize_substrate,
@@ -112,25 +113,29 @@ def regime_for(target_c: float | None) -> str | None:
 
 
 def _components(args: dict, facts: dict) -> list[dict]:
-    """Remembered components first; the LLM's list only if memory is empty."""
-    remembered = [c for c in facts.get("components") or [] if c.get("amount") is not None]
-    if remembered:
-        return remembered
-    proposed = args.get("components") or []
-    if not isinstance(proposed, list):
-        raise ToolCallError("components must be a list")
-    return [c for c in proposed if isinstance(c, dict)]
+    """The batch: ONLY components with an amount the user said (Python extracted it from the user's words).
+
+    The LLM's "components" argument is never used. Manual check 3 (bugs P, Q, R, W): for "Сколько газа?" the model
+    invented 10 m³ / 10 t of manure (≈201 m³ of methane), for an injection it passed "1000 m³" as the batch, then
+    repeated it from the history, and for "банановых кожурок" it invented 1 kg. Without an amount the tools use
+    the demo reactor's working volume (default_batch), always shown as an assumption.
+    """
+    return [c for c in facts.get("components") or [] if c.get("amount") is not None]
 
 
 def default_batch(facts: dict) -> list[dict]:
-    """Batch used when the question is about temperature / heating / money but the
-    feedstock is unknown: the demo reactor's feedstock (data/config/demo_reactor.json)
-    filling its working volume, or the same share of the user's reactor.
+    """Batch used when the amount is unknown: the working volume of the demo reactor
+    (data/config/demo_reactor.json) or the same share of the user's reactor, filled with
+    the feedstock the user named, else with the demo feedstock (liquid cattle manure).
     Always reported as an assumption."""
     demo = demo_reactor()
     litres = float(demo["working_volume_l"])
     if facts.get("reactor_volume_l"):
         litres = round(facts["reactor_volume_l"] * demo["fill_share"])
+    named = next((c for c in facts.get("components") or [] if c.get("substrate")), None)
+    if named:
+        component = {key: value for key, value in named.items() if key not in {"amount", "unit", "family", "value", "base_unit"}}
+        return [{**component, "amount": litres, "unit": "l"}]
     feed = demo["feedstock"]
     return [{"substrate": feed["substrate"], "amount": litres, "unit": "l", "state": feed["state"]}]
 
@@ -138,8 +143,15 @@ def default_batch(facts: dict) -> list[dict]:
 def _with_default_batch(result_dict: dict, components: list[dict], language: str) -> dict:
     """Mark a result that was calculated for the assumed default batch."""
     litres = components[0]["amount"]
-    result_dict["assumptions"].insert(0, t("assume_default_batch", language, litres=int(litres)))
-    result_dict["question"] = t("ask_substrate", language)
+    demo_feed = demo_reactor()["feedstock"]["substrate"]
+    if components[0]["substrate"] == demo_feed and not components[0].get("analog_of"):
+        result_dict["assumptions"].insert(0, t("assume_default_batch", language, litres=int(litres)))
+        result_dict["question"] = t("ask_substrate", language)
+    else:
+        # The user named the feedstock ("банановые кожурки") but not the amount: ask only for the amount.
+        name = components[0].get("analog_of") or material_word(components[0]["substrate"], language)
+        result_dict["assumptions"].insert(0, t("assume_default_amount", language, litres=int(litres), substrate=name))
+        result_dict["question"] = t("ask_amount", language, substrate=name)
     result_dict["llm"]["assumed_batch"] = f"{components[0]['substrate']} {components[0]['state']} {int(litres)} L (assumption)"
     result_dict["label"] = "assumption"
     if "methane_label" in result_dict["llm"]:
@@ -169,14 +181,24 @@ def run_tool(name: str, args: dict | None, facts: dict, language: str = "ru") ->
     insulation = facts.get("insulation")
     reactor = facts.get("reactor_volume_l")
     regime = _first(args.get("regime"), regime_for(facts.get("target_c")), "mesophilic")
-    needs_batch = name in {"estimate_heating_energy", "recommend_temperature_regime", "energy_balance_and_economics"}
+    needs_batch = name in {"estimate_methane", "estimate_heating_energy", "recommend_temperature_regime",
+                           "energy_balance_and_economics"}
     if needs_batch and not _components(args, facts):
         batch_components = default_batch(facts)
         answer = run_tool(name, args, {**facts, "components": batch_components}, language)
         return _with_default_batch(answer, batch_components, language)
     try:
         if name == "estimate_methane":
-            return estimate_methane(_components(args, facts), regime=regime, days=facts.get("days"), language=language)
+            answer = estimate_methane(_components(args, facts), regime=regime, days=facts.get("days"), language=language)
+            if facts.get("aged") and answer.get("ok"):
+                # Stored manure (manual check 3, V): the fresh-manure numbers are an UPPER bound. Our base has no
+                # reviewed number for the storage loss, so it is said in words, not invented.
+                answer["data"]["aged"] = True
+                answer["llm"]["stored_manure"] = ("the manure was stored: real gas is LOWER than these fresh-manure "
+                                                  "numbers (upper bound); say this")
+                answer["assumptions"].insert(0, t("assume_aged", language))
+                answer["label"] = "assumption"
+            return answer
         if name == "estimate_heating_energy":
             batch = batch_mass_and_volume(_components(args, facts), language) or {}
             regime_data = regime_row(regime)

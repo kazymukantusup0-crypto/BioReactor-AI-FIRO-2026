@@ -13,6 +13,8 @@ SSE format: every event is sent as
 """
 from __future__ import annotations
 
+from typing import Literal
+
 import json
 import threading
 import time
@@ -33,6 +35,8 @@ class ChatRequest(BaseModel):
     message: str = Field(min_length=1, max_length=2000)
     conversation_id: str | None = Field(default=None, pattern=r"^[a-zA-Z0-9_-]{8,64}$")
     use_llm: bool = True
+    # The interface language switch (RU / ҚАЗ / EN); the agent still answers in the language of the message.
+    ui_language: Literal["ru", "kk", "en"] | None = None
 
 
 class ResetRequest(BaseModel):
@@ -101,7 +105,8 @@ def create_router(agent: Agent | None = None) -> APIRouter:
                     # twice as slow (measured: 4.5 s -> 8.7 s, docs/benchmark.md). Say so instead of hiding it.
                     yield sse({"type": "note", "code": "llm_busy",
                                "message": "Модель сейчас отвечает на другой запрос — этот ответ будет в очереди"})
-                for event in get_agent().run(conversation_id, body.message, use_llm=body.use_llm):
+                for event in get_agent().run(conversation_id, body.message, use_llm=body.use_llm,
+                                                 ui_language=body.ui_language):
                     yield sse(event)
             except Exception as error:  # the stream must always end with a clear event
                 yield sse({"type": "error", "message": f"{type(error).__name__}: {error}"})

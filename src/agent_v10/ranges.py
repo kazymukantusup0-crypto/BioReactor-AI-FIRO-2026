@@ -66,6 +66,14 @@ def fmt(value: float) -> str:
     return str(tidy(value))
 
 
+def plain(value: float) -> str:
+    """Like f"{value:g}" but never in exponent form: 1000000 -> '1000000', not '1e+06' (manual check 3, P)."""
+    text = f"{value:g}"
+    if "e" in text:
+        text = f"{float(value):.0f}" if abs(value) >= 1 else f"{float(value):.6f}".rstrip("0").rstrip(".")
+    return text
+
+
 def display_range(a: dict) -> dict:
     """Rounded copy of a range, for the LLM and the UI cards."""
     return {"low": display(a["low"]), "high": display(a["high"])}

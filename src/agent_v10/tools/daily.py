@@ -18,6 +18,8 @@ gas_stove_hours — one household biogas burner uses 0.20–0.45 m³ of biogas p
 """
 from __future__ import annotations
 
+from src.agent_v10.ranges import plain
+
 import json
 from functools import lru_cache
 
@@ -42,7 +44,7 @@ def _sources(*ids: str) -> list[dict]:
 
 def _animal_text(animals: list[dict], language: str) -> str:
     rows = daily_data()["animals"]
-    return ", ".join(f"{a['count']:g} × {rows[a['species']]['names'].get(language, rows[a['species']]['names']['ru'])}"
+    return ", ".join(f"{plain(a['count'])} × {rows[a['species']]['names'].get(language, rows[a['species']]['names']['ru'])}"
                      for a in animals)
 
 
@@ -108,7 +110,7 @@ def estimate_daily_production(animals: list[dict] | None, components: list[dict]
 
     who = _animal_text(animals, language)
     assumptions = [t("assume_manure_per_animal", language, name=table[a["species"]]["names"].get(language, table[a["species"]]["names"]["ru"]),
-                     low=f"{table[a['species']]['manure_kg_per_day']['low']:g}", high=f"{table[a['species']]['manure_kg_per_day']['high']:g}",
+                     low=f"{plain(table[a['species']]['manure_kg_per_day']['low'])}", high=f"{plain(table[a['species']]['manure_kg_per_day']['high'])}",
                      basis=table[a["species"]]["basis"]) for a in animals]
     assumptions.append(t("assume_continuous", language))
     if reactor_assumed:
