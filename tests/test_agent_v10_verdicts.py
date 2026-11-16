@@ -120,3 +120,27 @@ def test_central_estimate_text_and_cards():
         "methane_m3": "≈4 (2.9–5.2)", "label": "literature"}
     card = answer.number_cards([run_tool("estimate_methane", {}, {**empty_facts(), "components": CATTLE_150L})], "ru")[0]
     assert card["center"] and card["range"] == card["value"]
+
+
+# ---------- proactive advice ------------------------------------------------------------
+
+def test_cold_barrel_gets_insulation_advice_before_and_after():
+    """150 L at −15 °C without insulation: EPS 50 mm cuts U from 6–12 to ≈0.6–0.7 W/(m²·K)."""
+    facts = winter_facts(ambient_c=-15)
+    item = verdicts.advice_item(facts, "ru")
+    assert item["code"] == "eps50" and "пенополистиролом 50 мм" in item["text"]
+    assert item["before"][1] < 0 and center(item["after"]) > center(item["before"])
+    built = verdicts.build([run_tool("recommend_temperature_regime", {}, facts)], facts)
+    assert "advice" in {i["key"] for i in built["data"]["items"]}
+    assert any("пенополистирол" in a for a in built["assumptions"])
+
+
+def test_no_advice_when_the_gain_is_tiny():
+    assert verdicts.advice_item(winter_facts(ambient_c=-15, insulation="good"), "ru") is None
+
+
+def test_u_value_of_50_mm_eps():
+    """U = 1/(1/h + d/λ): 1/(1/6 + 0.05/0.035) = 0.627 ... 1/(1/12 + 0.05/0.040) = 0.75 W/(m²·K)."""
+    from src.agent_v10.tools.heating import u_value
+    u = u_value("eps50")
+    assert u["low"] == pytest.approx(0.627, rel=1e-2) and u["high"] == pytest.approx(0.75, rel=1e-2)

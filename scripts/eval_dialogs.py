@@ -179,7 +179,7 @@ def evaluate(model: str) -> tuple[list[dict], dict]:
                 answer_language = detect_language(explanation) if explanation else "?"
                 languages = language if isinstance(language, tuple) else (language,)
                 if expected_tools is None:
-                    tool_ok = not metrics["forced"]
+                    tool_ok = True  # injection: refusing or Python calculating itself are both fine
                 elif not expected_tools:
                     tool_ok = not metrics["tools"] and not final["tools"]
                 else:

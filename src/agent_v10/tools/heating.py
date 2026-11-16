@@ -28,7 +28,8 @@ H_OUTSIDE = (6.0, 12.0)
 # Thermal conductivity of foam / mineral wool, W/(m·K).
 LAMBDA_INSULATION = (0.035, 0.040)
 # Insulation thickness, m.
-INSULATION_THICKNESS = {"none": (0.0, 0.0), "basic": (0.03, 0.05), "good": (0.10, 0.15)}
+# "eps50" = expanded polystyrene 50 mm: the concrete advice the agent gives for a cold barrel.
+INSULATION_THICKNESS = {"none": (0.0, 0.0), "basic": (0.03, 0.05), "good": (0.10, 0.15), "eps50": (0.05, 0.05)}
 
 HEAT_CAPACITY_KJ_KG_K = (4.0, 4.18)   # wet feed is mostly water
 HEATER_EFFICIENCY = (0.95, 1.0)       # electric heater

@@ -12,13 +12,22 @@ Verdicts:
     enough_gas  is the gas enough to keep the reactor warm   (estimate_methane + estimate_heating_energy)
     fits        does the batch fit the working volume        (facts: batch + reactor, demo reactor if unknown)
     best_use    heat vs electricity vs CHP                   (energy_balance_and_economics)
+
+Proactive advice (only when the net balance is negative or the gas is not enough):
+    the same batch in the mesophilic regime is recalculated
+        A) with 50 mm expanded polystyrene (λ 0.035–0.040 W/(m·K)),
+        B) at 35 °C instead of 37 °C (lower edge of the mesophilic range 35–38 °C; the gas
+           yield is assumed equal — a model assumption, said to the user),
+        C) both;
+    the best variant is shown as "before -> after".
 """
 from __future__ import annotations
 
 import re
 
 from src.agent_v10 import substrates
-from src.agent_v10.config import demo_reactor
+from src.agent_v10.config import demo_reactor, temperature_regimes
+from src.agent_v10.i18n import t
 from src.agent_v10.ranges import approx_text, center, subtract
 from src.agent_v10.tools.common import pair, result
 from src.agent_v10.tools.derived import gas_vs_heating
@@ -89,7 +98,44 @@ TEXTS = {
         "kk": "Энергия бойынша ең тиімдісі — {best} (бағалар сақталмаған, теңгеге есептелмеді).",
     },
 }
+ADVICE = {
+    "eps50": {
+        "ru": "Совет: утеплите реактор пенополистиролом 50 мм — баланс станет {after} кВт·ч вместо {before} кВт·ч.",
+        "en": "Advice: insulate the reactor with 50 mm EPS foam — the balance becomes {after} kWh instead of {before} kWh.",
+        "kk": "Кеңес: реакторды 50 мм пенополистиролмен жылытыңыз — баланс {before} кВт·сағ орнына {after} кВт·сағ болады.",
+    },
+    "t35": {
+        "ru": "Совет: держите 35 °C вместо 37 °C — баланс станет {after} кВт·ч вместо {before} кВт·ч.",
+        "en": "Advice: keep 35 °C instead of 37 °C — the balance becomes {after} kWh instead of {before} kWh.",
+        "kk": "Кеңес: 37 °C орнына 35 °C ұстаңыз — баланс {before} кВт·сағ орнына {after} кВт·сағ болады.",
+    },
+    "eps50_t35": {
+        "ru": "Совет: утеплите реактор пенополистиролом 50 мм и держите 35 °C вместо 37 °C — баланс станет {after} кВт·ч "
+              "вместо {before} кВт·ч.",
+        "en": "Advice: insulate with 50 mm EPS foam and keep 35 °C instead of 37 °C — the balance becomes {after} kWh "
+              "instead of {before} kWh.",
+        "kk": "Кеңес: реакторды 50 мм пенополистиролмен жылытып, 37 °C орнына 35 °C ұстаңыз — баланс {before} кВт·сағ "
+              "орнына {after} кВт·сағ болады.",
+    },
+    "still_minus": {
+        "ru": " Это всё ещё минус: для такой партии в холод газа мало — загружайте больше сырья или грейте и электричеством.",
+        "en": " It is still negative: this batch gives too little gas for the cold — load more feed or also heat with electricity.",
+        "kk": " Бұл әлі де теріс: суықта бұл партияның газы аз — шикізатты көбірек жүктеңіз немесе электрмен де жылытыңыз.",
+    },
+    "assume_t35": {
+        "ru": "35 °C — нижняя граница мезофильного диапазона 35–38 °C; выход газа принят как при 37 °C (допущение модели)",
+        "en": "35 °C is the lower edge of the mesophilic range 35–38 °C; the gas yield is taken as at 37 °C (model assumption)",
+        "kk": "35 °C — мезофильді 35–38 °C аралығының төменгі шегі; газ шығымы 37 °C-тағыдай алынды (модель жорамалы)",
+    },
+    "assume_eps50": {
+        "ru": "пенополистирол 50 мм, теплопроводность 0.035–0.040 Вт/(м·К)",
+        "en": "EPS foam 50 mm, thermal conductivity 0.035–0.040 W/(m·K)",
+        "kk": "пенополистирол 50 мм, жылу өткізгіштігі 0.035–0.040 Вт/(м·К)",
+    },
+}
+
 TITLES = {
+    "advice": {"ru": "Совет: было → стало", "en": "Advice: before → after", "kk": "Кеңес: болды → болады"},
     "regime": {"ru": "Режим", "en": "Regime", "kk": "Режим"},
     "net": {"ru": "Энергобаланс", "en": "Energy balance", "kk": "Энергия балансы"},
     "enough_gas": {"ru": "Хватит газа на подогрев?", "en": "Enough gas for heating?", "kk": "Газ қыздыруға жете ме?"},
@@ -229,6 +275,59 @@ def best_use_verdict(results: list[dict], language: str) -> dict | None:
                  "bad" if key == "best_loss" else "good")
 
 
+def _advice_cases(facts: dict, language: str) -> dict | None:
+    """Mesophilic net balance [low, high] for: as now, EPS 50 mm, 35 °C, both."""
+    from src.agent_v10.tools.registry import default_batch
+    from src.agent_v10.tools.regimes import _regime_case
+
+    components = [c for c in facts.get("components") or [] if c.get("amount") is not None and c.get("substrate")]
+    components = components or default_batch(facts)
+    demo = demo_reactor()
+    insulation = facts.get("insulation") or demo["insulation"]
+    ambient = facts.get("ambient_c") if facts.get("ambient_c") is not None else demo["ambient_c"]
+    reactor = facts.get("reactor_volume_l")
+    meso = next(r for r in temperature_regimes()["regimes"] if r["id"] == "mesophilic")
+    low_meso = {**meso, "setpoint_c": meso["temperature_range_c"][0]}
+    try:
+        cases = {
+            "before": _regime_case(components, meso, ambient, insulation, reactor, language),
+            "eps50": _regime_case(components, meso, ambient, "eps50", reactor, language),
+            "t35": _regime_case(components, low_meso, ambient, insulation, reactor, language),
+            "eps50_t35": _regime_case(components, low_meso, ambient, "eps50", reactor, language),
+        }
+    except (ValueError, KeyError, TypeError):
+        return None
+    if insulation in {"good"}:
+        # Already well insulated: 50 mm would be a step back.
+        cases.pop("eps50"), cases.pop("eps50_t35")
+    return {key: pair(case["net_kwh"]) for key, case in cases.items()}
+
+
+def advice_item(facts: dict, language: str) -> dict | None:
+    """The best way to improve a negative balance, as 'before -> after'."""
+    cases = _advice_cases(facts, language)
+    if not cases:
+        return None
+    before = cases.pop("before")
+    gains = {key: sum(values) - sum(before) for key, values in cases.items()}
+    top = max(gains.values())
+    # The simplest advice that gives at least 90 % of the best gain (one change is easier than two).
+    best = next(key for key in ("eps50", "t35", "eps50_t35") if key in gains and gains[key] >= 0.9 * top)
+    after = cases[best]
+    gain = center(after) - center(before)
+    if gain < max(5.0, 0.1 * abs(center(before))):
+        return None  # a tiny gain is noise, not advice
+    text = _say(ADVICE, best, language, before=approx_text(before), after=approx_text(after))
+    if after[1] < 0:
+        text += _say(ADVICE, "still_minus", language)
+    item = _item("advice", best, f"≈{center(before):g} → ≈{center(after):g} кВт·ч".replace("-", "−"), text, language,
+                 "good" if after[0] > 0 else "warn")
+    item.update(before=before, after=after,
+                assumptions=[_say(ADVICE, "assume_eps50", language)] * ("eps50" in best)
+                + [_say(ADVICE, "assume_t35", language)] * ("t35" in best))
+    return item
+
+
 def build(results: list[dict], facts: dict, language: str = "ru") -> dict | None:
     """All verdicts that apply, as one result (name "verdicts"); None if there is nothing to conclude."""
     if _first_ok(results, "verdicts"):
@@ -238,14 +337,19 @@ def build(results: list[dict], facts: dict, language: str = "ru") -> dict | None
                          best_use_verdict(results, language)) if v]
     if not items:
         return None
+    losing = any((i["key"] == "net" and i["code"] == "minus") or (i["key"] == "enough_gas" and i["code"] == "no")
+                 for i in items)
+    advice = advice_item(facts, language) if losing else None
+    if advice:
+        items.append(advice)
     coverage = gas_vs_heating(results, language)
     data = {"status": "ok", "items": items}
     if coverage:
         data["gas_vs_heating"] = coverage["data"]
     llm = {"verdicts": [item["text"] for item in items],
            "instruction": "Start the answer with these verdicts in your own words. Never contradict them."}
-    return result("verdicts", ok=True, data=data, llm=llm,
-                  assumptions=coverage["assumptions"] if coverage else [], label="assumption")
+    assumptions = (coverage["assumptions"] if coverage else []) + (advice["assumptions"] if advice else [])
+    return result("verdicts", ok=True, data=data, llm=llm, assumptions=assumptions, label="assumption")
 
 
 # --- does the LLM text contradict a verdict? --------------------------------------

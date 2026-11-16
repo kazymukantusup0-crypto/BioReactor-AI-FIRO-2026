@@ -146,6 +146,7 @@ TEXT: dict[str, dict[str, str]] = {
     "insulation_none": {"ru": "без утепления", "en": "no insulation", "kk": "жылытусыз"},
     "insulation_basic": {"ru": "базовое (3–5 см)", "en": "basic (3–5 cm)", "kk": "негізгі (3–5 см)"},
     "insulation_good": {"ru": "хорошее (10–15 см)", "en": "good (10–15 cm)", "kk": "жақсы (10–15 см)"},
+    "insulation_eps50": {"ru": "пенополистирол 50 мм", "en": "EPS foam 50 mm", "kk": "пенополистирол 50 мм"},
     # --- one clarifying question --------------------------------------------
     "ask_state": {
         "ru": "Навоз жидкий или твёрдый/с подстилкой? Если другой — скажите, пересчитаю.",
