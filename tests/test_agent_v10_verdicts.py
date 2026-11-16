@@ -43,6 +43,8 @@ def test_fits_verdict_warns_about_two_tonnes_in_a_200_litre_barrel():
     item = verdicts.fits_verdict(facts, "ru")
     assert item["code"] == "no" and "не поместится" in item["text"] and "160" in item["text"]
     assert verdicts.fits_verdict({**facts, "components": CATTLE_150L}, "ru") is None   # 150 L fits: no noise
+    with_gas = verdicts.fits_verdict(facts, "ru", [run_tool("estimate_methane", {}, facts)])
+    assert "За одну загрузку 160 л" in with_gas["text"] and "13 загрузок" in with_gas["text"]   # 1980–2000 L / 160 L
 
 
 def test_no_capacity_warning_when_the_reactor_volume_was_not_named():

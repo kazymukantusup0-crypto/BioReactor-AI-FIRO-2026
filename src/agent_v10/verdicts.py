@@ -23,6 +23,7 @@ Proactive advice (only when the net balance is negative or the gas is not enough
 """
 from __future__ import annotations
 
+import math
 import re
 
 from src.agent_v10 import substrates
@@ -76,6 +77,14 @@ TEXTS = {
               "Load at most {working} L at a time — the gas below is calculated for the whole batch.",
         "kk": "Партия реакторға сыймайды: {volume} л, ал жұмыс көлемі {working} л (реактор {reactor} л). "
               "Бір ретте {working} л-ден артық жүктемеңіз — төмендегі газ бүкіл партия үшін есептелген.",
+    },
+    "per_load": {
+        "ru": " Весь этот газ ({total} м³ биогаза) — со всей партии. За одну загрузку {working} л получится {per_load} м³ "
+              "биогаза; всего нужно примерно {loads} загрузок.",
+        "en": " All this gas ({total} m³ of biogas) is for the whole batch. One load of {working} L gives {per_load} m³ "
+              "of biogas; about {loads} loads are needed.",
+        "kk": " Бұл газ ({total} м³ биогаз) — бүкіл партиядан. Бір жүктеме {working} л-ден {per_load} м³ биогаз шығады; "
+              "шамамен {loads} жүктеме керек.",
     },
     "fits_maybe": {
         "ru": "Партия может не поместиться: {volume} л при рабочем объёме {working} л (зависит от плотности сырья).",
@@ -247,7 +256,7 @@ def batch_volume_range(components: list[dict]) -> tuple[float, float] | None:
     return low, high
 
 
-def fits_verdict(facts: dict, language: str) -> dict | None:
+def fits_verdict(facts: dict, language: str, results: list[dict] | None = None) -> dict | None:
     """Only reported when the user NAMED the reactor volume and the batch does not (or may not) fit.
 
     Without a named reactor the heating model sizes the reactor for the batch, so a warning
@@ -265,6 +274,15 @@ def fits_verdict(facts: dict, language: str) -> dict | None:
     code = "no" if smallest > working else "maybe"
     shown = f"{center([round(smallest), round(largest)]):g}" if smallest != largest else f"{round(smallest):g}"
     text = _say(TEXTS, "fits_" + code, language, volume=shown, working=f"{working:g}", reactor=f"{reactor:g}")
+    gas = _first_ok(results or [], "estimate_methane")
+    if gas and code == "no":
+        # The gas figure is for the WHOLE batch; the model once said "from 160 L". Give it the per-load number.
+        share = working / ((smallest + largest) / 2)
+        biogas = pair(gas["data"]["biogas_m3"])
+        per_load = [biogas[0] * share, biogas[1] * share]
+        text += _say(TEXTS, "per_load", language, total=approx_text(biogas), working=f"{working:g}",
+                     per_load=approx_text(pair({"low": per_load[0], "high": per_load[1]})),
+                     loads=math.ceil((smallest + largest) / 2 / working))
     return _item("fits", code, f"{WORDS[code].get(language, WORDS[code]['ru'])}: {shown} > {working:g} л", text, language,
                  "bad" if code == "no" else "warn")
 
@@ -363,7 +381,7 @@ def build(results: list[dict], facts: dict, language: str = "ru") -> dict | None
     if _first_ok(results, "verdicts"):
         return None
     items = [v for v in (regime_verdict(results, language), net_verdict(results, language),
-                         enough_gas_verdict(results, language), fits_verdict(facts, language),
+                         enough_gas_verdict(results, language), fits_verdict(facts, language, results),
                          best_use_verdict(results, language)) if v]
     if not items:
         return None
