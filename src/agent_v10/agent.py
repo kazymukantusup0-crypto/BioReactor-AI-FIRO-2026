@@ -30,6 +30,7 @@ from src.agent_v10.config import MAX_AGENT_STEPS
 from src.agent_v10.llm import LLMUnavailable, OllamaClient
 from src.agent_v10.memory import Memory
 from src.agent_v10.substrates import material_name
+from src.agent_v10.tools.derived import gas_vs_heating
 from src.agent_v10.tools.registry import TOOL_SCHEMAS, ToolCallError, run_tool
 
 LANGUAGE_NAMES = {"ru": "Russian", "kk": "Kazakh", "en": "English"}
@@ -174,11 +175,25 @@ class Agent:
             results.append(output)
         return results
 
+    @staticmethod
+    def _derive(results: list[dict], language: str, event, messages: list[dict] | None = None) -> Iterator[dict]:
+        """Python conclusions from two results ("is the gas enough for heating?"), added like a tool result."""
+        derived = gas_vs_heating(results, language)
+        if derived is None:
+            return
+        yield event("tool_call", name=derived["name"], args={}, by="python")
+        yield event("tool_result", name=derived["name"], ok=True, summary=derived["llm"], label=derived["label"],
+                    duration_ms=0, data=derived["data"])
+        results.append(derived)
+        if messages is not None:
+            messages.append(_tool_message(derived))
+
     def _run_without_llm(self, text: str, facts: dict, language: str, event) -> Iterator[dict]:
         calls = plan_tools(text, facts)
         if not calls:
             calls = [{"name": "estimate_methane", "args": {}}]
         results = yield from self._run_tools(calls, facts, language, event)
+        yield from self._derive(results, language, event)
         return {"results": results, "explanation": answer_module.template_explanation(results, language),
                 "mode": "no_llm", "verified": True}
 
@@ -251,6 +266,7 @@ class Agent:
                         results.append(output)
                         messages.append(_tool_message(output))
                         new_call = True
+                    yield from self._derive(results, language, event, messages)
                     if new_call:
                         continue
                     # Only repeated calls: ask for the final answer without tools.
@@ -268,6 +284,7 @@ class Agent:
                         messages.append({"role": "assistant", "content": "", "tool_calls": [
                             {"function": {"name": r["name"], "arguments": {}}} for r in forced]})
                         messages += [_tool_message(r) for r in forced]
+                        yield from self._derive(results, language, event, messages)
                         yield event("token_reset", reason="forced_tools")
                         continue
                 break

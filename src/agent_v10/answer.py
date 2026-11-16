@@ -16,6 +16,7 @@ import re
 
 from src.agent_v10.i18n import badge
 from src.agent_v10.ranges import range_text as _range_text, tidy
+from src.agent_v10.tools.derived import VERDICT_TEXT
 
 # Small numbers such as "2 варианта", "1 вопрос" are always allowed.
 ALWAYS_ALLOWED = {float(n) for n in range(0, 11)}
@@ -33,11 +34,14 @@ TITLES = {
     "value": {"ru": "Экономия (минус = убыток)", "en": "Savings (minus = loss)", "kk": "Үнем (минус = шығын)"},
     "least_loss": {"ru": "Наименьший убыток", "en": "Smallest loss", "kk": "Ең аз шығын"},
     "methane_change": {"ru": "Прибавка метана", "en": "Extra methane", "kk": "Метан өсімі"},
+    "enough_gas": {"ru": "Хватит газа на подогрев?", "en": "Enough gas for heating?", "kk": "Газ қыздыруға жете ме?"},
+    "gas_covers": {"ru": "Газ покрывает подогрев", "en": "Gas covers heating", "kk": "Газ қыздыруды жабады"},
 }
 UNITS = {
     "m3": {"ru": "м³", "en": "m³", "kk": "м³"},
     "kwh": {"ru": "кВт·ч", "en": "kWh", "kk": "кВт·сағ"},
     "days": {"ru": "дней", "en": "days", "kk": "күн"},
+    "percent": {"ru": "%", "en": "%", "kk": "%"},
     "kzt": {"ru": "₸", "en": "KZT", "kk": "₸"},
 }
 QUESTION_PREFIX = "❓ "
@@ -96,6 +100,13 @@ def number_cards(results: list[dict], language: str) -> list[dict]:
             ]
             if best.get("value_kzt"):
                 cards.append(_card("value", best["value_kzt"], "kzt", label, language))
+        elif name == "gas_vs_heating":
+            cards += [
+                {"key": "enough_gas", "title": _title("enough_gas", language),
+                 "value": VERDICT_TEXT[llm["enough_gas_for_heating"]].get(language, VERDICT_TEXT[llm["enough_gas_for_heating"]]["ru"]),
+                 "unit": "", "label": label, "badge": badge(label, language)},
+                _card("gas_covers", llm["gas_covers_heating_percent"], "percent", label, language),
+            ]
         elif name == "compare_scenarios":
             last = llm["scenarios"][-1]
             cards += [
@@ -267,6 +278,20 @@ def template_explanation(results: list[dict], language: str) -> str:
                 "kk": f"«{last['name']}» нұсқасы {_range_text(last['methane_m3'])} м³ метан береді, ал «{first['name']}» — "
                       f"{_range_text(first['methane_m3'])} м³; таза баланс {_range_text(last['net_kwh'])} және "
                       f"{_range_text(first['net_kwh'])} кВт·сағ.",
+            }.get(language, ""))
+        elif name == "gas_vs_heating":
+            verdict = llm["enough_gas_for_heating"]
+            covers = _range_text(llm["gas_covers_heating_percent"])
+            parts.append({
+                "ru": {"no": f"Газа не хватит на подогрев: он покрывает {covers}% нужного тепла, остальное — от электричества.",
+                       "yes": f"Газа хватит на подогрев: он покрывает {covers}% нужного тепла.",
+                       "maybe": f"Газа может хватить, а может и нет: он покрывает {covers}% нужного тепла."}[verdict],
+                "en": {"no": f"The gas is not enough for heating: it covers {covers}% of the heat; the rest comes from electricity.",
+                       "yes": f"The gas is enough for heating: it covers {covers}% of the heat.",
+                       "maybe": f"The gas may or may not be enough: it covers {covers}% of the heat."}[verdict],
+                "kk": {"no": f"Газ қыздыруға жетпейді: қажетті жылудың {covers}% жабады, қалғаны — электрден.",
+                       "yes": f"Газ қыздыруға жетеді: қажетті жылудың {covers}% жабады.",
+                       "maybe": f"Газ жетуі де, жетпеуі де мүмкін: қажетті жылудың {covers}% жабады."}[verdict],
             }.get(language, ""))
         elif name == "search_knowledge" and llm.get("quotes"):
             parts.append(llm["quotes"][0])

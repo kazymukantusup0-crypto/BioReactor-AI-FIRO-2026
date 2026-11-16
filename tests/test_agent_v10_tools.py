@@ -284,3 +284,39 @@ def test_registry_normalizes_llm_state_words():
     result = run_tool("estimate_methane", {"components": [{"substrate": "cattle_manure", "amount": 200,
                                                            "unit": "l", "state": "liquid"}]}, facts)
     assert result["ok"] and result["data"]["components"][0]["state"] == "slurry"
+
+
+# ---------- gas_vs_heating (derived by Python) -----------------------------------
+
+def test_gas_vs_heating_hand_calculation_and_verdict():
+    """Hand check: gas energy 22–39 kWh × boiler 0.85–0.90 = 18.7–35.1 kWh usable heat;
+    heating need 266–549 kWh -> coverage 18.7/549 = 3.4 % ... 35.1/266 = 13.2 % -> NOT enough."""
+    from src.agent_v10.tools.derived import gas_vs_heating
+    gas = {"name": "estimate_methane", "ok": True, "label": "literature", "data": {"energy_kwh": {"low": 22.0, "high": 39.0}}}
+    heat = {"name": "estimate_heating_energy", "ok": True, "label": "assumption", "data": {"total_kwh": {"low": 266.0, "high": 549.0}}}
+    derived = gas_vs_heating([gas, heat])
+    coverage = derived["data"]["coverage_percent"]
+    assert coverage["low"] == pytest.approx(22 * 0.85 / 549 * 100, rel=1e-6)
+    assert coverage["high"] == pytest.approx(39 * 0.90 / 266 * 100, rel=1e-6)
+    assert derived["llm"]["enough_gas_for_heating"] == "no" and derived["label"] == "assumption"
+    assert gas_vs_heating([gas]) is None
+
+
+def test_gas_vs_heating_yes_and_borderline():
+    from src.agent_v10.tools.derived import gas_vs_heating
+    gas = {"name": "estimate_methane", "ok": True, "label": "literature", "data": {"energy_kwh": {"low": 200.0, "high": 300.0}}}
+    small = {"name": "estimate_heating_energy", "ok": True, "label": "literature", "data": {"total_kwh": {"low": 50.0, "high": 100.0}}}
+    close = {"name": "estimate_heating_energy", "ok": True, "label": "literature", "data": {"total_kwh": {"low": 150.0, "high": 250.0}}}
+    assert gas_vs_heating([gas, small])["llm"]["enough_gas_for_heating"] == "yes"
+    assert gas_vs_heating([gas, close])["llm"]["enough_gas_for_heating"] == "maybe"
+
+
+def test_registry_ignores_physical_numbers_invented_by_the_llm():
+    """The model once sent "days": 20 nobody said: the tool must use the demo default (30) and say so."""
+    facts = {**empty_facts(), "components": CATTLE_200L}
+    result = run_tool("estimate_heating_energy", {"days": 20, "ambient_c": -30, "insulation": "good",
+                                                  "reactor_volume_l": 5000, "target_c": 55}, facts)
+    data = result["data"]
+    assert (data["days"], data["ambient_c"], data["insulation"], data["reactor_volume_l"], data["target_c"]) == (30, 5, "none", 250, 37)
+    told = run_tool("estimate_heating_energy", {"days": 20}, {**facts, "days": 12, "ambient_c": -10})["data"]
+    assert (told["days"], told["ambient_c"]) == (12, -10)

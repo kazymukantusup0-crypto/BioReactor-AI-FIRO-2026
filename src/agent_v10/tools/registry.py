@@ -142,9 +142,13 @@ def run_tool(name: str, args: dict | None, facts: dict, language: str = "ru") ->
     if not isinstance(args, dict):
         raise ToolCallError("arguments must be a JSON object")
 
-    ambient = _first(facts.get("ambient_c"), args.get("ambient_c"))
-    insulation = _first(facts.get("insulation"), args.get("insulation"))
-    reactor = _first(facts.get("reactor_volume_l"), args.get("reactor_volume_l"))
+    # Physical numbers come ONLY from facts that Python extracted from the user's words
+    # (or the user typed in the facts panel). Values the LLM put into the arguments
+    # are ignored: in tests the model invented e.g. "days": 20 that nobody said.
+    # Missing values get the demo-reactor default, always listed as an assumption.
+    ambient = facts.get("ambient_c")
+    insulation = facts.get("insulation")
+    reactor = facts.get("reactor_volume_l")
     regime = _first(args.get("regime"), regime_for(facts.get("target_c")), "mesophilic")
     needs_batch = name in {"estimate_heating_energy", "recommend_temperature_regime", "energy_balance_and_economics"}
     if needs_batch and not _components(args, facts):
@@ -156,10 +160,10 @@ def run_tool(name: str, args: dict | None, facts: dict, language: str = "ru") ->
             return estimate_methane(_components(args, facts), regime=regime, days=facts.get("days"), language=language)
         if name == "estimate_heating_energy":
             batch = batch_mass_and_volume(_components(args, facts), language) or {}
-            target = _first(facts.get("target_c"), args.get("target_c"), 37.0)
+            target = _first(facts.get("target_c"), 37.0)
             return estimate_heating_energy(feed_mass_kg=batch.get("mass_kg"), feed_volume_l=batch.get("volume_l"),
                                            reactor_volume_l=reactor, insulation=insulation, ambient_c=ambient,
-                                           target_c=float(target), days=_first(facts.get("days"), args.get("days")),
+                                           target_c=float(target), days=facts.get("days"),
                                            language=language)
         if name == "recommend_temperature_regime":
             return recommend_temperature_regime(_components(args, facts), ambient_c=ambient, insulation=insulation,

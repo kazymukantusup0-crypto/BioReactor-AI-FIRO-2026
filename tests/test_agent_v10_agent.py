@@ -183,3 +183,14 @@ def test_api_rejects_bad_fact_values(memory):
     assert client.post(url, json={"facts": {"reactor_volume_l": -5}}).json()["ok"] is False
     accepted = client.post(url, json={"facts": {"reactor_volume_l": 200, "ambient_c": -15, "insulation": None}}).json()
     assert accepted["ok"] and accepted["facts"]["ambient_c"] == -15
+
+
+def test_gas_and_heating_question_gets_python_verdict_without_llm(memory):
+    agent = Agent(memory, FakeLLM([], available=False))
+    events = list(agent.run("gas-heat-test", "150 литров навоза КРС, бочка 200 л не утеплена, на улице −10. "
+                                             "Сколько газа и хватит ли на подогрев?"))
+    answer = next(e for e in events if e["type"] == "answer")
+    assert "gas_vs_heating" in answer["tools"]
+    cards = {card["key"]: card for card in answer["numbers"]}
+    assert cards["enough_gas"]["value"] == "нет"
+    assert "не хватит" in answer["explanation"]
