@@ -68,3 +68,6 @@ data/runtime/*
 Thumbs.db
 .vscode/
 .idea/
+
+# Market download cache
+data/market/raw/*.bin
