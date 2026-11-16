@@ -27,6 +27,15 @@ EMPTY_FACTS: dict = {
     "price_class": None,       # household | business (electricity tariff)
 }
 
+# "1000 м³ газа", "50 кВт·ч" — what the user wants to GET, not what is loaded.
+OUTPUT_AFTER = re.compile(r"^\s*(?:\S+\s+)?(?:био)?газ\w*|^\s*(?:\S+\s+)?метан\w*|^\s*(?:bio)?gas\b|^\s*methane|^\s*биогаз\w*",
+                          re.IGNORECASE)
+# Words after an amount that are not a material name.
+NOT_MATERIAL = re.compile(r"^(?:в|во|на|за|по|из|и|или|до|от|с|со|a|of|the|in|into|for|бар|болса|болады|сколько|газа?|"
+                          r"биогаза?|метана?|воды|навоза?|помёта|реактор\w*|бочк\w*|ёмкост\w*|дн\w*|день|сут\w*|"
+                          r"будет|получится|выйдет|нужно|надо|есть|у|меня|мне|this|that|is|will)$", re.IGNORECASE)
+UNKNOWN_AFTER = re.compile(r"^\s+(?P<words>[а-яёa-zәғқңөұүһі-]{3,}(?:\s+[а-яёa-zәғқңөұүһі-]{3,})?)", re.IGNORECASE)
+
 REACTOR_WORDS = r"(?:реактор\w*|бочк\w*|ёмкост\w*|емкост\w*|резервуар\w*|метантенк\w*|reactor|digester|tank|vessel|barrel|ыдыс\w*|бөшке\w*)"
 
 STATE_PATTERNS = [
@@ -93,6 +102,12 @@ def _state_near(text: str, start: int, end: int) -> str | None:
 def _component(material: dict, quantity: dict | None, text: str) -> dict:
     substrate = substrates.resolve_material(material["material"])
     item = {"substrate": substrate, "state": _state_near(text, material["start"], material["end"])}
+    if material.get("analog_of"):
+        item["analog_of"] = material["analog_of"]
+    elif substrates.analog_for(substrate):
+        # The catalog knows the name but has no reviewed composition ("фруктовые отходы").
+        item["analog_of"] = substrates.material_name(substrate, "ru")
+        item["substrate"] = substrates.analog_for(substrate)
     if quantity is not None:
         item.update(amount=quantity["amount"], unit=quantity["unit_word"], family=quantity["family"],
                     value=quantity["value"], base_unit=quantity["unit"])
@@ -153,7 +168,11 @@ def extract(text: str, known: dict | None = None) -> dict:
     updates: dict = {}
 
     materials = substrates.recognize(text)
-    quantities = find_quantities(text)
+    materials += [a for a in substrates.recognize_analogs(text)
+                  if not any(a["start"] < m["end"] and a["end"] > m["start"] for m in materials)]
+    materials.sort(key=lambda m: m["start"])
+    # "получится 1000 м³ газа" is the expected OUTPUT, never a feedstock amount.
+    quantities = [q for q in find_quantities(text) if not OUTPUT_AFTER.match(text[q["end"]:q["end"] + 30])]
 
     # 1. Reactor volume: a volume next to the word "reactor" / "tank".
     batch_quantities = []
@@ -169,12 +188,24 @@ def extract(text: str, known: dict | None = None) -> dict:
     # 2. Batch components: pair each amount with its material.
     new_components = []
     used_materials = set()
+    unknown_components = []
     for quantity in batch_quantities:
         material = _closest_material(quantity, materials)
         if material is None:
+            # "50 кг <something we do not know>": remember the name, never guess the material.
+            after = UNKNOWN_AFTER.match(text[quantity["end"]:])
+            words = after.group("words") if after else ""
+            first_word = words.split()[0] if words else ""
+            if words and not NOT_MATERIAL.match(first_word):
+                unknown_components.append({
+                    "substrate": None, "unknown_name": words, "state": None, "amount": quantity["amount"],
+                    "unit": quantity["unit_word"], "family": quantity["family"], "value": quantity["value"],
+                    "base_unit": quantity["unit"], **({"unit_assumption": quantity["assumption"]} if quantity.get("assumption") else {})})
             continue
         used_materials.add(material["start"])
         new_components.append(_component(material, quantity, text))
+    if not new_components and unknown_components:
+        new_components = unknown_components
     unpaired_materials = [m for m in materials if m["start"] not in used_materials]
 
     is_add = re.search(ADD_WORDS, text, re.IGNORECASE) is not None

@@ -82,6 +82,7 @@ def normalize_component(raw: dict) -> dict:
         "density_kg_l": raw.get("density_kg_l"),
         "ts_percent": raw.get("ts_percent"),
         "vs_percent_of_ts": raw.get("vs_percent_of_ts"),
+        "analog_of": raw.get("analog_of"),
     }
 
 
@@ -98,7 +99,7 @@ def component_mass(component: dict, language: str = "ru") -> dict:
         assumptions.append(t("assume_state", language, substrate=substrates.material_name(substrate, language),
                              state=substrates.STATE_NAMES[language if language in substrates.STATE_NAMES else "ru"].get(state, state)))
     if component.get("unit_assumption"):
-        assumptions.append(t("assume_bucket", language))
+        assumptions.append(t("assume_bag" if "меш" in component["unit_assumption"] else "assume_bucket", language))
     if family == "mass":
         mass = point(component["value"])
         labels.append("measured")
@@ -136,11 +137,18 @@ def component_potential(component: dict, state: str, language: str = "ru") -> di
     found = substrates.composition(substrate, state)
     if found is None:
         return None
+    assumptions = [t("assume_composition", language, substrate=substrates.material_name(substrate, language),
+                     label=t("label_" + found["label"], language))]
+    labels = [found["label"]]
+    if component.get("analog_of"):
+        # No data for the real material: the analogue's composition, always a rough assumption.
+        assumptions.insert(0, t("assume_analog", language, name=component["analog_of"],
+                                analog=substrates.material_name(substrate, language),
+                                why=substrates.analog_reason(component["analog_of"], language)))
+        labels = ["assumption"]
     return {"yield_l_per_kg": found["yield_l_per_kg"], "vs_fraction_wet": found["vs_fraction_wet"],
-            "bmp_ml_g_vs": found["bmp_ml_g_vs"], "labels": [found["label"]], "sources": found["sources"],
-            "profile_ids": found["profile_ids"],
-            "assumptions": [t("assume_composition", language, substrate=substrates.material_name(substrate, language),
-                              label=t("label_" + found["label"], language))]}
+            "bmp_ml_g_vs": found["bmp_ml_g_vs"], "labels": labels, "sources": found["sources"],
+            "profile_ids": found["profile_ids"], "assumptions": assumptions}
 
 
 def estimate_methane(components: list[dict], regime: str = DEFAULT_REGIME, days: float | None = None,
@@ -149,6 +157,13 @@ def estimate_methane(components: list[dict], regime: str = DEFAULT_REGIME, days:
     if not components:
         return result("estimate_methane", ok=False, data={"status": "needs_substrate"},
                       llm={"status": "needs_substrate"}, question=t("ask_substrate", language))
+    unknown = next((c for c in components if not c.get("substrate") and c.get("unknown_name")), None)
+    if unknown is not None:
+        # Honest answer: no data and no close analogue -> no numbers.
+        name = unknown["unknown_name"]
+        return result("estimate_methane", ok=False, data={"status": "no_data", "substrate": name},
+                      llm={"status": "no_data", "substrate": name, "message": t("no_data", language, name=name)},
+                      question=t("ask_composition", language, name=name))
     regime_data = regime_row(regime)
     rows, assumptions, labels, sources = [], [], [], []
     question = None
@@ -167,8 +182,8 @@ def estimate_methane(components: list[dict], regime: str = DEFAULT_REGIME, days:
         potential = component_potential(component, mass["state"], language)
         if potential is None:
             return result("estimate_methane", ok=False, data={"status": "no_data", "substrate": component["substrate"]},
-                          llm={"status": "no_data_for_substrate", "substrate": name},
-                          question=t("ask_substrate", language))
+                          llm={"status": "no_data", "substrate": name, "message": t("no_data", language, name=name)},
+                          question=t("ask_composition", language, name=name))
         litres = multiply(mass["mass_kg"], potential["yield_l_per_kg"])
         fraction = substrates.methane_fraction(component["substrate"])
         fractions.append(fraction)
@@ -192,6 +207,7 @@ def estimate_methane(components: list[dict], regime: str = DEFAULT_REGIME, days:
             "bmp_ml_g_vs": potential["bmp_ml_g_vs"], "yield_l_ch4_per_kg": potential["yield_l_per_kg"],
             "methane_potential_m3": scale(litres, 0.001), "methane_m3": expected_m3, "biogas_m3": component_biogas,
             "methane_share": make(fraction["low"], fraction["high"]), "label": weakest(mass["labels"] + potential["labels"]),
+            "analog_of": component.get("analog_of"),
         })
 
     potential_m3 = scale(potential_l, 0.001)
@@ -233,6 +249,11 @@ def estimate_methane(components: list[dict], regime: str = DEFAULT_REGIME, days:
         "label": label,
         "components": [f"{row['name']} {fmt(row['amount'])} {row['unit']}" for row in rows],
     }
+    analog_rows = [row for row in rows if row.get("analog_of")]
+    if analog_rows:
+        # The LLM must say "по аналогии": there is no data for the real material.
+        llm["by_analogy"] = [f"no data for '{row['analog_of']}', calculated by analogy with '{row['name']}'"
+                             for row in analog_rows]
     return result("estimate_methane", ok=True, data=data, llm=llm, assumptions=assumptions,
                   sources=unique_sources(sources), label=label, question=question)
 

@@ -41,6 +41,34 @@ TEXT: dict[str, dict[str, str]] = {
         "en": "feedstock not given — calculated for the demo reactor: {litres} L of cattle slurry",
         "kk": "шикізат көрсетілмеген — демо-реактор үшін есептедім: {litres} л сұйық сиыр көңі",
     },
+    "off_topic": {
+        "ru": "Я помогаю только с биогазовой установкой: сырьё, выход газа, подогрев, температурный режим и выгода. "
+              "Спросите, например: «Сколько газа даст 150 л навоза КРС?»",
+        "en": "I only help with the biogas plant: feedstock, gas yield, heating, temperature regime and money. "
+              "Try for example: \"How much gas from 150 L of cattle slurry?\"",
+        "kk": "Мен тек биогаз қондырғысы бойынша көмектесемін: шикізат, газ шығымы, қыздыру, температура режимі және пайда. "
+              "Мысалы, сұраңыз: «150 л сиыр көңінен қанша газ шығады?»",
+    },
+    "assume_bag": {
+        "ru": "1 мешок ≈ 50 л (мешки бывают разные — скажите объём или вес, пересчитаю)",
+        "en": "1 sack ≈ 50 L (sacks differ — tell me the volume or weight and I will recalculate)",
+        "kk": "1 қап ≈ 50 л (қаптар әртүрлі — көлемін не салмағын айтыңыз, қайта есептеймін)",
+    },
+    "assume_analog": {
+        "ru": "нет проверенных данных по «{name}» — посчитано по аналогии с «{analog}» ({why}); это грубая оценка",
+        "en": "no reviewed data for \"{name}\" — calculated by analogy with \"{analog}\" ({why}); a rough estimate",
+        "kk": "«{name}» бойынша тексерілген дерек жоқ — «{analog}» ұқсастығы бойынша есептелді ({why}); бұл шамамен баға",
+    },
+    "ask_composition": {
+        "ru": "Если знаете сухое вещество (TS, %) и органическое вещество (VS, % от TS) для «{name}» — скажите, посчитаю точнее.",
+        "en": "If you know the dry matter (TS, %) and organic matter (VS, % of TS) of \"{name}\", tell me and I will recalculate.",
+        "kk": "«{name}» үшін құрғақ зат (TS, %) және органикалық зат (VS, TS-тен %) белгілі болса — айтыңыз, нақтырақ есептеймін.",
+    },
+    "no_data": {
+        "ru": "По сырью «{name}» у меня нет проверенных данных и нет близкого аналога, поэтому выход газа не считаю, чтобы не выдумывать.",
+        "en": "I have no reviewed data and no close analogue for \"{name}\", so I do not estimate the gas rather than invent it.",
+        "kk": "«{name}» шикізаты бойынша тексерілген дерек те, жақын ұқсасы да жоқ, сондықтан ойдан шығармау үшін газды есептемеймін.",
+    },
     "assume_bucket": {
         "ru": "1 ведро = 10 л",
         "en": "1 bucket = 10 L",

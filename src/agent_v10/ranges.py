@@ -83,3 +83,17 @@ def range_text(values: list) -> str:
     if low < 0 or high < 0:
         return f"{_signed(low)} … {_signed(high)}"
     return f"{low}–{high}"
+
+
+def center(values: list) -> float | int:
+    """Central estimate of a displayed range: [2.9, 5.2] -> 4 (rounded like every other number)."""
+    low, high = values
+    return tidy((low + high) / 2)
+
+
+def approx_text(values: list) -> str:
+    """'≈4 (2.9–5.2)'; a single value stays as it is: [52, 52] -> '52'."""
+    low, high = values
+    if low == high:
+        return _signed(low)
+    return f"≈{_signed(center(values))} ({range_text(values)})"

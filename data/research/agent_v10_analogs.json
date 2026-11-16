@@ -1,0 +1,38 @@
+{
+  "version": "10.1",
+  "purpose": "Materials WITHOUT reviewed composition data are calculated BY ANALOGY with the closest material that has data. Every use is shown to the user as 'по аналогии' with the label 'assumption' and a request for the real dry matter / organic matter. If no rule matches, the agent says honestly that there is no data and does not calculate.",
+  "rules": [
+    {
+      "id": "fruit_veg_peels",
+      "pattern": "банан\\w*|апельсин\\w*|мандарин\\w*|яблок\\w*|груш\\w*|фрукт\\w*|кожур\\w*|очистк\\w*|овощн\\w*\\s+очист\\w*|картофельн\\w*|арбуз\\w*|дын\\w*|banana\\w*|peel\\w*|fruit\\w*|orange\\w*|apple\\w*|жеміс\\w*|алма\\w*|қабығ\\w*",
+      "analog": "vegetable_waste",
+      "why": {"ru": "сочные растительные отходы: много воды, легко разлагаются", "en": "juicy plant waste: mostly water, easy to digest", "kk": "шырынды өсімдік қалдықтары: суы көп, оңай ыдырайды"}
+    },
+    {
+      "id": "kitchen_leftovers",
+      "pattern": "объедк\\w*|остатк\\w*\\s+еды|кухонн\\w*|столов\\w*\\s+отход\\w*|хлеб\\w*|каш\\w*|leftover\\w*|kitchen\\s+waste|ас\\s+қалдық\\w*",
+      "analog": "food_waste",
+      "why": {"ru": "смешанные остатки еды", "en": "mixed food leftovers", "kk": "аралас тамақ қалдықтары"}
+    },
+    {
+      "id": "green_leaves",
+      "pattern": "лист\\w*|ботв\\w*|сорняк\\w*|скошенн\\w*|газон\\w*|leaves|weeds|жапырақ\\w*|арамшөп\\w*",
+      "analog": "grass",
+      "why": {"ru": "зелёная растительная масса", "en": "green plant matter", "kk": "жасыл өсімдік массасы"}
+    },
+    {
+      "id": "dry_lignocellulose",
+      "pattern": "лузг\\w*|шелух\\w*|сен[оа]\\b|сена\\b|стебл\\w*|husk\\w*|hay\\b|қауыз\\w*|пішен\\w*",
+      "analog": "straw",
+      "why": {"ru": "сухая волокнистая растительная масса", "en": "dry fibrous plant matter", "kk": "құрғақ талшықты өсімдік массасы"}
+    }
+  ],
+  "catalog_without_data": {
+    "comment": "Materials the catalog recognises but that have no reviewed composition yet.",
+    "fruit_waste": "vegetable_waste",
+    "apple_pomace": "vegetable_waste",
+    "beet_pulp": "vegetable_waste",
+    "plant_residue": "grass",
+    "sunflower_husk": "straw"
+  }
+}

@@ -8,12 +8,18 @@ from __future__ import annotations
 import re
 
 BUCKET_LITRES = 10.0
+# A "мешок" (sack) is not a fixed unit. 50 L is a common polypropylene sack; always shown as an assumption.
+BAG_LITRES = 50.0
+BUCKET_ASSUMPTION = "1 ведро = 10 л"
+BAG_ASSUMPTION = "1 мешок ≈ 50 л"
 
 # (regex, family, factor to L or kg, assumption text or None)
 UNIT_PATTERNS: list[tuple[str, str, float, str | None]] = [
     (r"(?:м3|м³|куб\w*|кубометр\w*|m3|m³|cubic\s*met\w*)", "volume", 1000.0, None),
     (r"(?:литр\w*|л|l|liter\w*|litre\w*)", "volume", 1.0, None),
-    (r"(?:вед[её]р\w*|ведр\w*|шелек\w*|bucket\w*)", "volume", BUCKET_LITRES, "1 ведро = 10 л"),
+    # "ведро, ведра, вёдер, ведер, ведрами"
+    (r"(?:в[её]д[её]р\w*|ведр\w*|шелек\w*|bucket\w*)", "volume", BUCKET_LITRES, BUCKET_ASSUMPTION),
+    (r"(?:меш[оке]\w*|мешочк\w*|қап\w*|bags?|sacks?)", "volume", BAG_LITRES, BAG_ASSUMPTION),
     (r"(?:тонн\w*|т|t|tonn?e?s?|ton)", "mass", 1000.0, None),
     (r"(?:килограмм\w*|кг|kg|kilo\w*)", "mass", 1.0, None),
 ]

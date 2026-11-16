@@ -189,3 +189,44 @@ def _defaults_source(source_id: str) -> dict:
     if source is None:
         return {"id": source_id, "title": source_id, "year": None, "doi": None, "url": None}
     return {"id": source["id"], "title": source["title"], "year": source.get("year"), "doi": None, "url": source.get("url")}
+
+
+# --- materials without data: calculate by analogy (data/research/agent_v10_analogs.json) ---
+
+def recognize_analogs(text: str) -> list[dict]:
+    """Unknown materials that have a rule 'similar to X': [{material: X, analog_of: words, start, end, rule}]."""
+    import re
+    from src.agent_v10.config import analogs
+
+    found = []
+    for rule in analogs()["rules"]:
+        for match in re.finditer(rule["pattern"], text, re.IGNORECASE):
+            # Take the whole noun phrase around the hit ("банановой кожуры", "картофельные очистки").
+            start, end = match.start(), match.end()
+            tail = re.match(r"(?:\s+[а-яёa-zәғқңөұүһі]{3,})?", text[end:], re.IGNORECASE)
+            words = text[start:end + (tail.end() if tail else 0)].strip()
+            found.append({"material": rule["analog"], "start": start, "end": end + (tail.end() if tail else 0),
+                          "text": words, "analog_of": words, "rule": rule["id"]})
+    accepted = []
+    for item in sorted(found, key=lambda x: x["start"]):
+        if not any(item["start"] < x["end"] and item["end"] > x["start"] for x in accepted):
+            accepted.append(item)
+    return accepted
+
+
+def analog_for(material: str) -> str | None:
+    """Catalog material without reviewed composition -> material with data, or None."""
+    from src.agent_v10.config import analogs
+
+    return analogs()["catalog_without_data"].get(material)
+
+
+def analog_reason(analog_of: str, language: str = "ru") -> str:
+    """Why the analogue was chosen, for the assumption text."""
+    import re
+    from src.agent_v10.config import analogs
+
+    for rule in analogs()["rules"]:
+        if re.search(rule["pattern"], analog_of, re.IGNORECASE):
+            return rule["why"].get(language, rule["why"]["ru"])
+    return {"ru": "похожий материал", "en": "a similar material", "kk": "ұқсас материал"}.get(language, "похожий материал")

@@ -17,6 +17,7 @@ REGIMES_PATH = ROOT / "data" / "research" / "temperature_regimes.json"
 MARKET_DB_PATH = ROOT / "data" / "market" / "market.sqlite3"
 MEMORY_DB_PATH = ROOT / "data" / "runtime" / "agent_v10.sqlite3"
 DEMO_REACTOR_PATH = ROOT / "data" / "config" / "demo_reactor.json"
+ANALOGS_PATH = ROOT / "data" / "research" / "agent_v10_analogs.json"
 
 # Lower heating value of methane, FNR "Faustzahlen Biogas" (source id fnr-energy-lhv).
 METHANE_KWH_PER_M3 = 9.97
@@ -56,3 +57,9 @@ def demo_reactor() -> dict:
     reactor = json.loads(DEMO_REACTOR_PATH.read_text(encoding="utf-8"))
     reactor["fill_share"] = reactor["working_volume_l"] / reactor["reactor_volume_l"]
     return reactor
+
+
+@lru_cache(maxsize=1)
+def analogs() -> dict:
+    """Rules 'unknown material -> closest material with data' (data/research/agent_v10_analogs.json)."""
+    return json.loads(ANALOGS_PATH.read_text(encoding="utf-8"))
