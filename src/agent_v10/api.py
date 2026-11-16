@@ -26,6 +26,7 @@ from pydantic import BaseModel, Field
 
 from src.agent_v10.agent import Agent
 from src.agent_v10.config import demo_reactor
+from src.agent_v10.version import server_version
 from src.agent_v10.facts import EMPTY_FACTS, apply_overrides
 from src.agent_v10.keepalive import KeepAlive, interval_from_env, ping
 from src.agent_v10.memory import Memory
@@ -145,7 +146,7 @@ def create_router(agent: Agent | None = None) -> APIRouter:
         llm = get_agent().llm
         available = llm.available()
         keepalive = holder.get("keepalive")
-        return {"model": llm.model, "llm_available": available, "offline": True,
+        return {"model": llm.model, "llm_available": available, "offline": True, "version": server_version(),
                 "mode": "llm" if available else "no_llm", "gpu": llm.gpu_status() if available else {"loaded": False},
                 "keepalive": {"interval_s": keepalive.interval, "pings": keepalive.pings, "errors": keepalive.errors}
                 if keepalive else None}

@@ -884,5 +884,10 @@
  "server.sensors": "Mock mode: sensors are not connected, there are no readings. The agent does not control the heater, the pump or the valves.",
  "server.evaluation": "MAE 53.92 — training-only nested GroupKFold, not an independent check. MAE 80.38 — the earlier viewed final test of one study. Metrics of different schemes cannot be compared as one test.",
  "server.contract": "Contract of a future integration. Measurements are not accepted, there are no commands to equipment. An MQ sensor does not measure exact CH4 without a separate measurement system.",
- "system.noSensorData": "NO LIVE SENSOR DATA"
+ "system.noSensorData": "NO LIVE SENSOR DATA",
+ "version.current": "server {v0} · started {v1}",
+ "version.stale": "⚠ server is stale ({v0}, on disk {v1}) — run the launcher .bat again",
+ "version.title": "Code fingerprint {v0}; commit on disk {v1}",
+ "agentV10.toolTrust": "Why the numbers can be trusted (Python)",
+ "agentV10.toolSources": "Sources of the last calculation (Python)"
 }

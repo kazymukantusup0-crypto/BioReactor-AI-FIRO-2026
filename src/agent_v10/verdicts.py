@@ -531,11 +531,8 @@ def best_feed_verdict(results: list[dict], language: str) -> dict | None:
         text += _say(TEXTS, "best_feed_reference", language, pairs=", ".join(
             f"{substrates.material_word(k, language)} ≈{plain(v)}" for k, v in data["references_m3_t"].items()))
     refs = data.get("references_m3_t") or {}
-    if {"swine_manure", "cattle_manure"} <= set(refs) and refs["swine_manure"] < refs["cattle_manure"]:
-        # Per tonne pig slurry gives less, per kg of organic matter it does not: one sentence with the source.
-        from src.agent_v10.tools.daily import daily_data
-        why = daily_data()["swine_vs_cattle"]
-        text += " " + why.get(language, why["ru"])
+    # Pig vs cattle: the reason (dilution, Møller 2004) is added ONCE by Python to the answer (answer.python_sentences),
+    # not here: the model retold the verdict with the reason and Python added it again (manual check 3, bug 3).
     for substrate, note in data["notes"].items():
         if substrate != "cattle_manure":
             text += _say(TEXTS, "feed_note", language, name=substrates.material_word(substrate, language), note=note)

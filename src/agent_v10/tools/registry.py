@@ -89,6 +89,12 @@ TOOL_SCHEMAS = [
               "Compare 2-3 kinds of feedstock at the SAME volume: methane of each, which gives more and why. "
               "Use for 'what is better: chicken or cow manure'.",
               {"substrates": {"type": "array", "items": {"type": "string", "enum": SUBSTRATES}}}),
+    _function("explain_confidence",
+              "Why the numbers of the LAST calculation can be trusted and how precise they are. Use for 'are you sure', "
+              "'can I trust you', 'how accurate is it', 'what if you are wrong'. The answer is written by the program.", {}),
+    _function("list_sources",
+              "The scientific sources of the LAST calculation. Use for 'where do the numbers come from', 'what is it "
+              "based on', 'which sources'. The answer is written by the program.", {}),
     _function("extract_batch_facts",
               "Normalize units and feedstock names in a text (litres, kg, tonnes, buckets).",
               {"text": {"type": "string"}}, ["text"]),
@@ -245,6 +251,9 @@ def run_tool(name: str, args: dict | None, facts: dict, language: str = "ru") ->
         if name == "search_knowledge":
             substrate = args.get("substrate") or next((c["substrate"] for c in facts.get("components") or []), None)
             return search_knowledge(str(args.get("query", "")), substrate=substrate, language=language)
+        if name in {"explain_confidence", "list_sources"}:
+            # Answered by the agent from the dialog memory (agent.PYTHON_ANSWER_TOOLS); nothing to calculate here.
+            return result(name, ok=True, data={"status": "ok"}, llm={"note": "the program writes this answer"}, label="measured")
         return extract_batch_facts(str(args.get("text", "")), facts)
     except (TypeError, KeyError) as error:
         raise ToolCallError(f"bad arguments for {name}: {error}") from error

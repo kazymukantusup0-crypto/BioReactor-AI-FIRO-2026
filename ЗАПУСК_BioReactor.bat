@@ -102,11 +102,27 @@ echo       Чтобы увидеть новый интерфейс, устано
 rem ---------- 4. Dashboard ----------
 :dashboard
 echo [4/4] Запускаю дашборд ...
-curl -s -m 2 http://127.0.0.1:%PORT%/health >nul 2>&1
-if errorlevel 1 goto :run_dashboard
-echo       Дашборд уже запущен - просто открываю браузер.
+rem A server that is already running may use OLD code (manual check 3: the tester talked to a stale process).
+rem scripts\server_version.py compares its code fingerprint with the files on disk:
+rem   0 = current code -> just open the browser, 2 = stale -> stop it and start a new one, 3 = no server.
+python scripts\server_version.py --port %PORT%
+if errorlevel 3 goto :run_dashboard
+if errorlevel 2 goto :stop_stale
 start "" "%DASHBOARD_URL%"
 goto :end
+
+:stop_stale
+rem Stop the process that listens on the port (and its children), then wait until the port is free.
+for /f "tokens=5" %%p in ('netstat -ano ^| findstr /r /c:"127.0.0.1:%PORT% .*LISTENING" /c:"0.0.0.0:%PORT% .*LISTENING"') do taskkill /PID %%p /T /F >nul 2>&1
+set /a WAITED=0
+:wait_stopped
+"%SystemRoot%\System32\PING.EXE" -n 2 127.0.0.1 >nul
+set /a WAITED+=1
+curl -s -m 2 http://127.0.0.1:%PORT%/health >nul 2>&1
+if errorlevel 1 goto :run_dashboard
+if %WAITED% lss 15 goto :wait_stopped
+echo       Не удалось остановить старый сервер на порту %PORT%. Закройте его окно и запустите этот файл снова.
+goto :fail
 
 :run_dashboard
 echo       Адрес: %DASHBOARD_URL%

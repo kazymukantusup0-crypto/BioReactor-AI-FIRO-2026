@@ -567,6 +567,77 @@ ORGANIC_CLAIM = re.compile(
     re.IGNORECASE)
 
 
+# "45 кг жидкой коровьей мочи" (the model translated "liquid cow manure" as urine) and "the reactor is insulated" when
+# the facts say it is not (manual check 3, bug 4). Both are contradictions: the answer is regenerated, then templated.
+URINE = re.compile(r"\bмоч[аиеуой]\w*|\bурин\w*|\burine\b|\bнесеп\w*|\bзәр\b|\bзәрі\w*", re.IGNORECASE)
+SAYS_NOT_INSULATED = re.compile(r"не\s*утепл\w*|без\s+утепл\w*|not\s+insulated|uninsulated|no\s+insulation|without\s+insulation|"
+                                r"жылытылмаған|оқшауланбаған|жылытусыз", re.IGNORECASE)
+SAYS_INSULATED = re.compile(r"(?<![Нн]е\s)(?<![Нн]е)утепл[её]н(?:а|о|ы|ный|ная|ное|ные|ного|ной)?\b|(?<!not\s)(?<!un)\binsulated\b|"
+                            r"(?<!\S)жылытылған\b|(?<!\S)оқшауланған\b", re.IGNORECASE)
+
+
+def fact_problems(text: str, facts: dict) -> list[str]:
+    """Words of the answer that contradict the remembered facts."""
+    problems = []
+    feeds = [c.get("substrate") or "" for c in facts.get("components") or []]
+    if URINE.search(text or "") and any("manure" in feed for feed in feeds):
+        problems.append("The feedstock is MANURE (dung), not urine: name it exactly as in 'feed names' of the known facts.")
+    insulation = facts.get("insulation")
+    if SAYS_INSULATED.search(text or "") and not SAYS_NOT_INSULATED.search(text or "") and insulation in (None, "none"):
+        problems.append("The reactor is NOT insulated (or the user did not say it is): do not call it insulated.")
+    if SAYS_NOT_INSULATED.search(text or "") and insulation in ("basic", "good"):
+        problems.append("The reactor IS insulated according to the user: do not call it uninsulated.")
+    return problems
+
+
+REASON_WORDS = re.compile(
+    r"связан\w*|потому|из-за|так\s+как|поскольку|причин\w*|объясня\w*|органическ\w*|разбав\w*|сух\w+\s+веществ\w*|вод[аыо]\w*|"
+    r"\bbecause\b|\bdue\s+to\b|\bsince\b|\breason\w*|organic|dilut\w*|dry\s+matter|water|"
+    r"себебі|өйткені|себеп\w*|органика\w*|сұйылт\w*|суйылт\w*|құрғақ\s+зат\w*|\bсу\b|\bсуы\w*|Møller|Moller",
+    re.IGNORECASE)
+
+
+def pig_vs_cattle(results: list[dict]) -> bool:
+    """The comparison of pig and cattle manure where pig gives less per tonne (the reason is Python's only)."""
+    for item in results:
+        refs = (item.get("data") or {}).get("references_m3_t") or {} if item.get("name") == "compare_feedstocks" else {}
+        if item.get("ok") and {"swine_manure", "cattle_manure"} <= set(refs) and refs["swine_manure"] < refs["cattle_manure"]:
+            return True
+    return False
+
+
+def summary_without_reasons(text: str, results: list[dict]) -> str:
+    """One sentence of the model's summary without any reason; else the Python verdict (manual check 3, bug 3:
+    "this is related to more organic matter" before the Python sentence, and the dilution said twice)."""
+    for sentence in re.split(r"(?<=[.!?])\s+", (text or "").strip()):
+        if sentence and not REASON_WORDS.search(sentence):
+            return sentence
+    verdict = next((r for r in results if r.get("name") == "verdicts" and r.get("ok")), None)
+    best = next((v for v in (verdict or {}).get("data", {}).get("items", []) if v.get("key") == "best_feed"), None)
+    return re.split(r"(?<=[.!?])\s+", best["text"].strip())[0] if best else ""
+
+
+CALCULATIONS = {"estimate_methane", "estimate_heating_energy", "recommend_temperature_regime", "energy_balance_and_economics",
+                "compare_scenarios", "estimate_daily_production", "gas_stove_hours"}
+
+
+def analog_sentences(results: list[dict], facts: dict, language: str) -> list[str]:
+    """"No data for banana peels — calculated by analogy with vegetable waste" in the answer text itself
+    (manual check 3, bug 2), not only in the list of assumptions."""
+    from src.agent_v10 import substrates
+
+    if not any(r.get("name") in CALCULATIONS and r.get("ok") for r in results):
+        return []
+    sentences = []
+    for component in facts.get("components") or []:
+        if component.get("analog_of") and component.get("substrate"):
+            text = t("assume_analog", language, name=component["analog_of"],
+                     analog=substrates.material_name(component["substrate"], language),
+                     why=substrates.analog_reason(component["analog_of"], language))
+            sentences.append(text[:1].upper() + text[1:] + ".")
+    return sentences
+
+
 def python_sentences(results: list[dict], language: str) -> list[str]:
     """Sentences that Python always adds to the answer, whatever the model wrote (manual check 3, U)."""
     sentences = []

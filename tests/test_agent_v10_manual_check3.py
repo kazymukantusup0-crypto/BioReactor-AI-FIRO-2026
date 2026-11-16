@@ -221,3 +221,113 @@ def test_w_banana_peels_give_the_same_answer_twice(memory):
     _, second = run(agent, "w", "Сколько газа из банановых кожурок?")
     assert card(first, "methane") == card(second, "methane")
     assert any("банановых кожурок" in a for a in first["assumptions"])
+
+
+# --- round 2 of manual check 3 (bugs 1–5) and the stale-server protection ------------------------------------
+
+@pytest.mark.parametrize("text, mode", [
+    ("почему ты так в этом уверен?", "trust"), ("можно ли тебе верить?", "trust"), ("насколько это точно?", "trust"),
+    ("а вдруг ты ошибаешься?", "trust"), ("Are you sure?", "trust"), ("Can I trust you?", "trust"),
+    ("What if you are wrong?", "trust"), ("Саған сенуге бола ма?", "trust"), ("Бұл қаншалықты дәл?", "trust"),
+    ("откуда цифры?", "sources"), ("на чём это основано?", "sources"), ("What is it based on?", "sources"),
+    ("Where do these numbers come from?", "sources"), ("Сандар қайдан алынды?", "sources"),
+])
+def test_1_trust_and_sources_in_other_words(memory, text, mode):
+    agent = Agent(memory, FakeLLM([], available=False))
+    run(agent, "r1", "200 литров жидкого коровьего навоза", use_llm=False)
+    events, final = run(agent, "r1", text)
+    assert final["mode"] == mode and not [e for e in events if e["type"] == "tool_call"]
+
+
+@pytest.mark.parametrize("text", ["Почему мезофильный режим устойчивее?", "Газ қайдан шығады?",
+                                  "Where does the gas come from?", "Откуда берётся газ в реакторе?"])
+def test_1_science_questions_are_not_trust_questions(text):
+    from src.agent_v10.agent import SOURCES_WORDS, TRUST_WORDS
+    assert not re.search(TRUST_WORDS, text, re.IGNORECASE) and not re.search(SOURCES_WORDS, text, re.IGNORECASE)
+
+
+def test_1_the_model_may_call_explain_confidence_itself(memory):
+    agent = Agent(memory, FakeLLM([("tool", "estimate_methane", {}), ("text", "Метан ≈4 м³.")]))
+    run(agent, "r1b", "200 литров жидкого коровьего навоза")
+    agent.llm = FakeLLM([("tool", "explain_confidence", {}), ("text", "FAO говорит про 35 °C.")])
+    _, final = run(agent, "r1b", "мне кажется, тут что-то не так")
+    assert final["mode"] == "trust" and "BMP" in final["explanation"] and "FAO" not in final["explanation"]
+
+
+def test_1_without_a_calculation_python_says_so(memory):
+    _, final = run(Agent(memory, FakeLLM([], available=False)), "r1c", "можно ли тебе верить?")
+    assert final["mode"] == "trust" and "Пока не было расчёта" in final["explanation"]
+
+
+def test_2_banana_peels_after_another_batch(memory):
+    agent = Agent(memory, FakeLLM([], available=False))
+    run(agent, "r2", "200 литров жидкого коровьего навоза", use_llm=False)
+    _, final = run(agent, "r2", "Сколько газа из банановых кожурок?", use_llm=False)
+    assert memory.get("r2")["facts"]["components"][0]["substrate"] == "vegetable_waste"
+    assert "по аналогии" in final["explanation"] and "банановых кожурок" in final["question"]
+    assert "Не понял" not in final["explanation"]
+
+
+def test_2_the_same_feed_or_a_comparison_keeps_the_batch(memory):
+    agent = Agent(memory, FakeLLM([], available=False))
+    run(agent, "r2b", "200 литров жидкого коровьего навоза", use_llm=False)
+    run(agent, "r2b", "Что лучше: куриный помёт или коровий навоз?", use_llm=False)
+    run(agent, "r2b", "навоз жидкий", use_llm=False)
+    assert memory.get("r2b")["facts"]["components"][0]["value"] == 200
+
+
+def test_3_pig_vs_cattle_reason_only_from_python(memory):
+    model = ("Навоз КРС даёт ≈3.3 м³, свиной ≈1.3 м³. Это связано с большим содержанием органического вещества. "
+             "Свиной навоз разбавлен водой.")
+    _, final = run(Agent(memory, FakeLLM([("text", model)])), "r3", "Что лучше: свиной или коровий?")
+    text = final["explanation"]
+    assert "связано" not in text and text.count("разбав") == 1 and text.count("органическ") == 1 and "Møller" in text
+
+
+@pytest.mark.parametrize("text, problem", [
+    ("45 кг жидкой коровьей мочи дадут ≈1 м³.", True), ("Реактор утеплён, газа хватит.", True),
+    ("The reactor is insulated.", True), ("Бочка не утеплена.", False), ("Утеплите бочку: утепление 5 см.", False),
+    ("45 kg of liquid cow manure give ≈1 m³.", False),
+])
+def test_4_urine_and_insulation_against_the_facts(text, problem):
+    facts = {"components": [{"substrate": "cattle_manure"}], "insulation": None}
+    assert bool(answer.fact_problems(text, facts)) is problem
+
+
+def test_4_urine_answer_is_regenerated(memory):
+    llm = FakeLLM([("tool", "estimate_methane", {}), ("text", "Из 45 кг коровьей мочи ≈1 м³."),
+                   ("text", "Из 45 кг навоза КРС ≈1 м³ метана.")])
+    events, final = run(Agent(memory, llm), "r4", "45 кг жидкого коровьего навоза")
+    assert [e for e in events if e["type"] == "verification"][0]["contradicts"]
+    assert "моч" not in final["explanation"]
+
+
+@pytest.mark.parametrize("text", ["Hi! I have 45 kg of liquid cow manure and a 150-liter biogas reactor.",
+                                  "Менде 45 кг сұйық сиыр көңі және 150 литрлік биогаз реакторы бар",
+                                  "my digester is 150 litres", "реактор көлемі 150 л"])
+def test_5_reactor_volume_in_english_and_kazakh(text):
+    assert extract(text)["facts"]["reactor_volume_l"] == 150
+
+
+def test_5_gas_amounts_are_still_not_feed():
+    assert extract("получится 1000 м³ газа")["updates"] == {}
+
+
+def test_server_version_reports_commit_start_and_stale(tmp_path):
+    from src.agent_v10 import version
+    info = version.server_version()
+    assert {"commit", "fingerprint", "started_at", "stale", "disk_commit"} <= set(info) and info["stale"] is False
+    assert len(info["fingerprint"]) == 12
+
+
+def test_science_why_with_give_a_source_goes_to_the_knowledge_base(memory):
+    events, final = run(Agent(memory, FakeLLM([], available=False)), "sw",
+                        "Почему мезофильный режим считают устойчивым? Дай источник.", use_llm=False)
+    assert final["mode"] not in {"trust", "sources"}
+    assert [e["name"] for e in events if e["type"] == "tool_call"] == ["search_knowledge"]
+
+
+def test_a_named_feed_without_amount_is_calculated_by_python(memory):
+    from src.agent_v10.agent import python_first
+    updates = extract("Сколько газа из банановых кожурок?")["updates"]
+    assert python_first("Сколько газа из банановых кожурок?", {}, updates) == [{"name": "estimate_methane", "args": {}}]

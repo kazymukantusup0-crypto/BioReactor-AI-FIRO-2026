@@ -226,12 +226,12 @@ def test_search_knowledge_returns_quotes_with_sources():
     assert result["ok"] and result["llm"]["quotes"] and result["sources"]
 
 
-def test_registry_has_eleven_tools_with_schemas():
-    assert len(TOOL_SCHEMAS) == 11
+def test_registry_has_thirteen_tools_with_schemas():
+    assert len(TOOL_SCHEMAS) == 13
     assert set(TOOL_NAMES) == {"estimate_methane", "estimate_heating_energy", "recommend_temperature_regime",
                                "compare_scenarios", "energy_balance_and_economics", "search_knowledge",
                                "extract_batch_facts", "estimate_daily_production", "gas_stove_hours",
-                               "startup_time", "compare_feedstocks"}
+                               "startup_time", "compare_feedstocks", "explain_confidence", "list_sources"}
 
 
 def test_registry_fills_arguments_from_memory_and_rejects_unknown_tools():

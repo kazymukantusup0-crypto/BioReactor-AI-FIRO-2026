@@ -95,7 +95,7 @@ DIALOGS = [
     ("11. Хватит ли газа на подогрев", [
         ("У меня 150 литров коровьего навоза, бочка 200 литров не утеплена, на улице −10. "
          "Сколько будет газа и хватит ли его на подогрев?", PYTHON_PLAN({"estimate_methane", "estimate_heating_energy"}), "ru",
-         {"must_text": [r"недостат|не хват|не покр|покрывает только|мало|больше энергии, чем"], "must_not": [r"(?<!не )хватит(?! ли)"],
+         {"must_text": [r"недостат|не хват|не покр|покрывает только|мало|больше энергии, чем"], "must_not": [r"(?<!не )хватит(?! ли)(?!\s+(?:только|лишь)\s+на)"],
           "verdict": {"enough_gas": "no"}}),
     ]),
     # --- robustness (task 5) ---
@@ -218,9 +218,9 @@ DIALOGS = [
         ("160 л жидкого навоза КРС", {"estimate_methane"}, "ru", {"same_card": ["methane", 0]}),
     ]),
     ("25. Банановые кожурки два раза", [
-        ("Сколько газа из банановых кожурок?", {"estimate_methane"}, "ru",
+        ("Сколько газа из банановых кожурок?", PYTHON_PLAN({"estimate_methane"}), "ru",
          {"card": "methane", "must": [r"банан"], "must_not": [r"tool_call", r"\{", r"данных нет"]}),
-        ("Сколько газа из банановых кожурок?", {"estimate_methane"}, "ru",
+        ("Сколько газа из банановых кожурок?", PYTHON_PLAN({"estimate_methane"}), "ru",
          {"same_card": ["methane", 0], "must_not": [r"tool_call", r"\{", r"данных нет"]}),
     ]),
     ("26. Почему уверен / откуда данные", [
@@ -272,6 +272,41 @@ DIALOGS = [
         ("What is better: pig or cow manure?", PYTHON_PLAN({"compare_feedstocks"}), "en",
          {"verdict": {"best_feed": "cattle_manure"}, "must_text": [r"Møller", r"diluted"]}),
     ]),
+    # --- manual check 3, round 2 (bugs 1–5) ---
+    ("35. Уверенность и источники другими словами", [
+        ("45 кг жидкого коровьего навоза, бочка 150 л", {"estimate_methane"}, "ru", {"reactor": 150}),
+        ("почему ты так в этом уверен?", set(), "ru", {"mode": "trust", "must_text": [r"\bVS\b", r"BMP"]}),
+        ("а вдруг ты ошибаешься?", set(), "ru", {"mode": "trust"}),
+        ("насколько это точно?", set(), "ru", {"mode": "trust"}),
+        ("откуда цифры?", set(), "ru", {"mode": "sources", "must_text": [r"Источники последнего расчёта"]}),
+        ("на чём это основано?", set(), "ru", {"mode": "sources"}),
+    ]),
+    ("36. Trust in English and Kazakh", [
+        ("I have 200 litres of cattle slurry, how much gas will it give?", {"estimate_methane"}, "en"),
+        ("Can I trust you?", set(), "en", {"mode": "trust"}),
+        ("What is it based on?", set(), "en", {"mode": "sources"}),
+        ("Саған сенуге бола ма?", set(), "kk", {"mode": "trust"}),
+    ]),
+    ("37. Банановые кожурки после другой партии", [
+        ("200 литров жидкого коровьего навоза", {"estimate_methane"}, "ru"),
+        ("Сколько газа из банановых кожурок?", PYTHON_PLAN({"estimate_methane"}), "ru",
+         {"substrate": "vegetable_waste", "card": "methane", "must_text": [r"по аналогии"], "must_not": [r"Не понял"],
+          "must": [r"Сколько у вас банановых кожурок"]}),
+    ]),
+    ("38. Свиной или КРС: причина только от Python", [
+        ("Что лучше: свиной или коровий?", PYTHON_PLAN({"compare_feedstocks"}), "ru",
+         {"verdict": {"best_feed": "cattle_manure"}, "must_text": [r"Møller"],
+          "max_count": {r"разбав": 1, r"органическ": 1}, "must_not": [r"связан\w*\s+с"]}),
+    ]),
+    ("39. Объём реактора, навоз — не моча, утепление по фактам", [
+        ("Hi! I have 45 kg of liquid cow manure and a 150-liter biogas reactor. How much gas will I get?",
+         {"estimate_methane"}, "en", {"amount": 45, "reactor": 150, "must_not": [r"urine", r"(?<!not )(?<!un)\binsulated"],
+                                      "question_not": [r"reactor volume"]}),
+        ("45 кг жидкого коровьего навоза и реактор 150 литров. Сколько газа?", {"estimate_methane"}, "ru",
+         {"reactor": 150, "must_not": [r"\bмоч", r"(?<![Нн]е )утепл[её]н(?:а|о|ы|ный)?\b"]}),
+        ("Менде 45 кг сұйық сиыр көңі және 150 литрлік биогаз реакторы бар. Қанша газ шығады?", {"estimate_methane"}, "kk",
+         {"reactor": 150, "must_not": [r"несеп|\bзәр"]}),
+    ]),
 ]
 
 
@@ -315,6 +350,12 @@ def check_answer(final: dict, facts: dict, checks: dict, previous: list[dict] | 
     for key, label in (checks.get("card_label") or {}).items():
         if (cards.get(key) or {}).get("label") != label:
             failed.append(f"метка {key}={(cards.get(key) or {}).get('label')}, ждали {label}")
+    for pattern, limit in (checks.get("max_count") or {}).items():
+        found = len(re.findall(pattern, explanation, re.IGNORECASE))
+        if found > limit:
+            failed.append(f"«{pattern}» в тексте {found} раз, можно не больше {limit}")
+    if "reactor" in checks and facts.get("reactor_volume_l") != checks["reactor"]:
+        failed.append(f"объём реактора {facts.get('reactor_volume_l')}, ждали {checks['reactor']}")
     if "mode" in checks and final.get("mode") != checks["mode"]:
         failed.append(f"режим ответа {final.get('mode')}, ждали {checks['mode']}")
     for key, limit in (checks.get("card_max") or {}).items():
@@ -330,6 +371,38 @@ def check_answer(final: dict, facts: dict, checks: dict, previous: list[dict] | 
             failed.append(f"карточка {key} не совпала с ответом {turn + 1}: "
                           f"{before and (before['low'], before['high'])} vs {now and (now['low'], now['high'])}")
     return failed
+
+
+class HttpAgent:
+    """The running server instead of an in-process Agent: the same events, read from POST /api/agent/chat (SSE).
+
+    --api http://127.0.0.1:8765 checks exactly what the browser gets (manual check 3: a stale server process was
+    tested). The server version (commit, start time, stale) goes into the report.
+    """
+
+    def __init__(self, base_url: str):
+        import json
+        import urllib.request
+        self.base, self._json, self._request = base_url.rstrip("/"), json, urllib.request
+        self.memory = self  # agent.memory.get(id) -> the conversation from the server
+
+    def _get(self, path: str) -> dict:
+        with self._request.urlopen(self.base + path, timeout=30) as response:
+            return self._json.loads(response.read().decode("utf-8"))
+
+    def status(self) -> dict:
+        return self._get("/api/agent/status")
+
+    def get(self, conversation_id: str) -> dict:
+        return self._get(f"/api/agent/conversations/{conversation_id}")
+
+    def run(self, conversation_id: str, text: str):
+        body = self._json.dumps({"message": text, "conversation_id": conversation_id, "use_llm": True}).encode("utf-8")
+        request = self._request.Request(self.base + "/api/agent/chat", body, {"Content-Type": "application/json"})
+        with self._request.urlopen(request, timeout=300) as response:
+            for line in response:
+                if line.startswith(b"data: "):
+                    yield self._json.loads(line[6:].decode("utf-8"))
 
 
 def run_message(agent: Agent, conversation_id: str, text: str) -> dict:
@@ -375,7 +448,7 @@ def gpu_temperature() -> str:
         return "?"
 
 
-def evaluate(model: str, pause_s: float = 0.0) -> tuple[list[dict], dict]:
+def evaluate(model: str, pause_s: float = 0.0, api: str | None = None) -> tuple[list[dict], dict]:
     client = OllamaClient(model=model)
     if not client.available():
         raise SystemExit(f"Ollama or model {model} is not available")
@@ -387,7 +460,10 @@ def evaluate(model: str, pause_s: float = 0.0) -> tuple[list[dict], dict]:
     if loaded_before.get("others"):
         print(f"WARNING: other models in VRAM: {loaded_before['others']} — times will include a reload")
     with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as folder:
-        agent = Agent(memory=Memory(Path(folder) / "eval.sqlite3"), llm=client)
+        agent = HttpAgent(api) if api else Agent(memory=Memory(Path(folder) / "eval.sqlite3"), llm=client)
+        server = agent.status().get("version") if api else None
+        if api:
+            print(f"server {api}: {server}")
         for dialog_name, turns in DIALOGS:
             conversation_id = Memory.new_id()
             finals: list[dict] = []
@@ -448,6 +524,7 @@ def evaluate(model: str, pause_s: float = 0.0) -> tuple[list[dict], dict]:
         "gpu_temperature": f"{gpu_before} → {gpu_temperature()}",
         "gpu": client.gpu_status(),
         "other_models_before": loaded_before.get("others", []),
+        "server": server,
     }
     return rows, summary
 
@@ -467,6 +544,9 @@ def write_report(rows: list[dict], summary: dict, output: Path) -> None:
         f"Видеокарта в начале → в конце прогона: {summary.get('gpu_temperature', '?')}. "
         "Время ответа зависит от нагрева: горячий ноутбук снижает частоту видеокарты (троттлинг).",
         "",
+        *([f"**Прогон через HTTP API запущенного сервера:** коммит {summary['server'].get('commit')}, запущен "
+           f"{summary['server'].get('started_at')}, отпечаток кода {summary['server'].get('fingerprint')}, "
+           f"устарел: {'ДА' if summary['server'].get('stale') else 'нет'}.", ""] if summary.get("server") else []),
         "## Итог",
         "",
         "| Метрика | Результат | Цель |",
@@ -521,11 +601,12 @@ def main() -> None:
     parser.add_argument("--output", type=Path, default=ROOT / "docs" / "eval.md")
     parser.add_argument("--only", nargs="*", help="run only dialogs whose number is listed, e.g. --only 12 13")
     parser.add_argument("--pause", type=float, default=0.0, help="seconds between messages (jury pace), default 0")
+    parser.add_argument("--api", help="run against the running server (e.g. http://127.0.0.1:8765) via HTTP")
     parser.add_argument("--json", type=Path, help="also save raw rows and summary as JSON (for A/B tables)")
     args = parser.parse_args()
     if args.only:
         DIALOGS[:] = [d for d in DIALOGS if d[0].split(".")[0] in args.only]
-    rows, summary = evaluate(args.model, args.pause)
+    rows, summary = evaluate(args.model, args.pause, args.api)
     summary["pause_s"] = args.pause
     write_report(rows, summary, args.output)
     if args.json:

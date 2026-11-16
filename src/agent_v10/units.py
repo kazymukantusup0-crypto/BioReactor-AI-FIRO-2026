@@ -61,9 +61,9 @@ def to_base(amount: float, unit: str) -> dict:
     }
 
 
-# "200 л", "30 кг", "1,5 т", "2 ведра", "0.5 m3"
+# "200 л", "30 кг", "1,5 т", "2 ведра", "0.5 m3", "a 150-liter reactor"
 QUANTITY_RE = re.compile(
-    rf"(?P<number>{NUMBER})\s*(?P<unit>м3|м³|m3|m³|[a-zа-яёәғқңөұүһі]+)\b\.?",
+    rf"(?P<number>{NUMBER})(?:\s*|-)(?P<unit>м3|м³|m3|m³|[a-zа-яёәғқңөұүһі]+)\b\.?",
     re.IGNORECASE,
 )
 

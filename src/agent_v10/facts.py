@@ -40,8 +40,10 @@ REACTOR_AGE = re.compile(r"стар\w*\s+(?:реактор|бочк|ёмкост
                          r"\bold\s+(?:reactor|tank|barrel|digester)", re.IGNORECASE)
 
 # "1000 м³ газа", "50 кВт·ч" — what the user wants to GET, not what is loaded.
-OUTPUT_AFTER = re.compile(r"^\s*(?:\S+\s+)?(?:био)?газ\w*|^\s*(?:\S+\s+)?метан\w*|^\s*(?:bio)?gas\b|^\s*methane|^\s*биогаз\w*",
-                          re.IGNORECASE)
+# "a 150-liter biogas reactor" / "150 литрлік биогаз реакторы" is a reactor, not 150 L of gas (manual check 3).
+_NOT_PLANT = r"(?!\s+(?:реактор\w*|установк\w*|қондырғ\w*|reactor\w*|plant\w*|digester\w*|unit\w*))"
+OUTPUT_AFTER = re.compile(rf"^\s*(?:\S+\s+)?(?:био)?газ\w*{_NOT_PLANT}|^\s*(?:\S+\s+)?метан\w*{_NOT_PLANT}|"
+                          rf"^\s*(?:bio)?gas\b{_NOT_PLANT}|^\s*methane{_NOT_PLANT}|^\s*биогаз\w*{_NOT_PLANT}", re.IGNORECASE)
 GAS_BEFORE = re.compile(r"(?:био)?газ\w*|метан\w*|\b(?:bio)?gas\b|methane", re.IGNORECASE)
 CUBIC_METRES = re.compile(r"м3|м³|m3|m³|куб\w*", re.IGNORECASE)
 # Words after an amount that are not a material name.
@@ -51,6 +53,7 @@ NOT_MATERIAL = re.compile(r"^(?:в|во|на|за|по|из|и|или|до|от|
 UNKNOWN_AFTER = re.compile(r"^\s+(?P<words>[а-яёa-zәғқңөұүһі-]{3,}(?:\s+[а-яёa-zәғқңөұүһі-]{3,})?)", re.IGNORECASE)
 
 REACTOR_WORDS = r"(?:реактор\w*|бочк\w*|ёмкост\w*|емкост\w*|резервуар\w*|метантенк\w*|reactor|digester|tank|vessel|barrel|ыдыс\w*|бөшке\w*)"
+REACTOR_AFTER = re.compile(r"[\s,-]*(?:[^\W\d_]+\s+){0,2}" + REACTOR_WORDS, re.IGNORECASE)
 
 STATE_PATTERNS = [
     ("bedded", r"подстил\w*|bedding|bedded|төсеніш\w*"),
@@ -66,7 +69,8 @@ INSULATION_PATTERNS = [
     ("basic", r"утепл[её]н\w*|утеплен\w*|утеплил\w*|insulated|жылытылған|оқшауланған|пенопласт\w*|минват\w*"),
 ]
 
-ADD_WORDS = r"(?:добав\w*|ещ[её]|плюс|подмеша\w*|add\w*|plus|also|қос\w*|тағы)"
+COMPARE_OR = r"\bили\b|\bлучше\b|сравн\w*|\bor\b|\bvs\b|better|compare|немесе|\bма\b|\bме\b|салыстыр\w*|жақсы"
+ADD_WORDS =r"(?:добав\w*|ещ[её]|плюс|подмеша\w*|add\w*|plus|also|қос\w*|тағы)"
 REPLACE_WORDS = r"(?:вместо|замен\w*|если\s+это|а\s+если\s+(?:у\s+меня\s+)?(?:будет\s+)?(?=\S+\s+навоз)|instead|replace\w*|орнына)"
 
 AMBIENT_WORDS = r"(?:улиц\w*|снаружи|наружн\w*|мороз\w*|зим\w*|outside|outdoor\w*|ambient|winter|сырт\w*|аяз\w*|қыс\w*|ауа)"
@@ -309,7 +313,9 @@ def extract(text: str, known: dict | None = None) -> dict:
     # 1. Reactor volume: a volume next to the word "reactor" / "tank".
     batch_quantities = []
     for quantity in quantities:
-        near_reactor = _near(text, quantity["start"], quantity["end"], REACTOR_WORDS, before=35, after=12)
+        # "бочка 200 л", "200 л реактор", "a 150-liter biogas reactor", "150 литрлік биогаз реакторы" (manual check 3)
+        near_reactor = (_near(text, quantity["start"], quantity["end"], REACTOR_WORDS, before=35, after=12)
+                        or REACTOR_AFTER.match(text, quantity["end"]) is not None)
         material = _closest_material(quantity, materials)
         material_is_closer = material is not None and abs(material["start"] - quantity["end"]) < 12
         if quantity["family"] == "volume" and near_reactor and not material_is_closer:
@@ -372,6 +378,14 @@ def extract(text: str, known: dict | None = None) -> dict:
     elif unpaired_materials and not components:
         # Substrate without amount: remember it, the amount may come later.
         components = [_component(m, None, text) for m in unpaired_materials]
+        updates["components"] = components
+    elif (unpaired_materials and not is_add and not re.search(COMPARE_OR, text, re.IGNORECASE)
+          and len({_component(m, None, text)["substrate"] for m in unpaired_materials}) == 1
+          and _component(unpaired_materials[0], None, text)["substrate"] not in {c.get("substrate") for c in components}):
+        # A NEW feed named without an amount ("Сколько газа из банановых кожурок?" after 200 L of cattle manure) is the
+        # feed of this question; before, the old batch was recalculated and the model said "I did not understand"
+        # (manual check 3). "Что лучше: A или B?" keeps the batch; the same feed again only refines it.
+        components = [_component(unpaired_materials[0], None, text)]
         updates["components"] = components
 
     # A state word without a new substrate ("навоз жидкий") refines the known component.

@@ -252,8 +252,10 @@ def test_pig_vs_cattle_explains_dilution_with_a_source_in_one_sentence():
     from src.agent_v10 import verdicts
     from src.agent_v10.tools.feedstock import compare_feedstocks
     result = compare_feedstocks(["swine_manure", "cattle_manure"], 200)
-    text = verdicts.best_feed_verdict([result], "ru")["text"]
-    assert text.count("Почему:") == 1 and "разбавлена" in text and "Møller" in text
+    from src.agent_v10 import answer
+    # Since manual check 3 (bug 3) the reason is added once by Python to the answer, not inside the verdict text.
+    assert "Почему:" not in verdicts.best_feed_verdict([result], "ru")["text"]
+    sentences = answer.python_sentences([result], "ru")
+    assert len(sentences) == 1 and "разбавлена" in sentences[0] and "Møller" in sentences[0]
     assert "moller2004" in {s["id"] for s in result["sources"]}
-    other = verdicts.best_feed_verdict([compare_feedstocks(["poultry_manure", "cattle_manure"], 200)], "ru")["text"]
-    assert "Почему:" not in other
+    assert answer.python_sentences([compare_feedstocks(["poultry_manure", "cattle_manure"], 200)], "ru") == []

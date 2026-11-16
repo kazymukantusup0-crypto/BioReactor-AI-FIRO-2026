@@ -19,7 +19,8 @@ export interface Facts {
   target_c: number | null; days: number | null; operating_mode?: string | null; price_class?: string | null
 }
 export type AgentEvent = { type: string; t_ms?: number; [key: string]: unknown }
-export interface AgentStatus { model: string; llm_available: boolean; offline: boolean; mode: string; gpu: { loaded: boolean; gpu_percent?: number; vram_gb?: number; context?: number; others?: string[] } }
+export interface ServerVersion { commit: string; branch: string; fingerprint: string; started_at: string; disk_commit: string; disk_fingerprint: string; stale: boolean }
+export interface AgentStatus { model: string; version?: ServerVersion; llm_available: boolean; offline: boolean; mode: string; gpu: { loaded: boolean; gpu_percent?: number; vram_gb?: number; context?: number; others?: string[] } }
 export interface DemoReactor { name: string; name_i18n?: { en?: string; kk?: string }; location_i18n?: { en?: string; kk?: string }; reactor_volume_l: number; working_volume_l: number; insulation: string; ambient_c: number; target_c: number; days: number; location?: string; feedstock: { substrate: string; state: string } }
 export interface StoredMessage { role: string; content: string; numbers?: NumberCard[]; verdicts?: Verdict[]; question?: string | null; verified?: boolean; mode?: string }
 export interface Conversation { id: string; exists: boolean; facts: Facts; messages: StoredMessage[]; last_answer: AgentAnswer | null; language?: string }
@@ -93,7 +94,7 @@ export const TOOL_LABELS: Record<string, string> = localized(() => ({
   extract_batch_facts: tr('agentV10.7'),
   estimate_daily_production: tr('agentV10.8'),
   gas_stove_hours: tr('agentV10.9'),
-  verdicts: tr('agentV10.10'),
+  verdicts: tr('agentV10.10'), explain_confidence: tr('agentV10.toolTrust'), list_sources: tr('agentV10.toolSources'),
 }))
 /** Russian plural by number: pluralRu(1, ['расчёт', 'расчёта', 'расчётов']) -> 'расчёт' (2 расчёта, 5 расчётов, 11 расчётов, 21 расчёт). */
 export function pluralRu(n: number, forms: [string, string, string]): string {

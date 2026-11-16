@@ -323,6 +323,7 @@ export default function AgentChat() {
       <div className="ac-controls">
         <span className={`badge badge-${status?.llm_available ? slow ? 'amber' : 'green' : status ? 'amber' : 'muted'}`} title={slow ?? undefined}><Cpu size={11} />
           {status ? status.llm_available ? `${status.model}${gpu?.loaded ? ` · GPU ${gpu.gpu_percent}%` : ''}` : tr('agentChat.81') : tr('agentChat.82')}{slow ? ' · ⚠' : ''}</span>
+        {status?.version && <span className={`badge badge-${status.version.stale ? 'red' : 'muted'}`} data-testid="server-version" title={tr('version.title', { v0: status.version.fingerprint, v1: status.version.disk_commit })}>{status.version.stale ? tr('version.stale', { v0: status.version.commit, v1: status.version.disk_commit }) : tr('version.current', { v0: status.version.commit, v1: (status.version.started_at ?? '').slice(11, 16) })}</span>}
         <label className="ac-switch"><input type="checkbox" checked={!useLlm} onChange={e => setUseLlm(!e.target.checked)} />{tr('agentChat.83')}</label>
         <button className={`ac-btn ${jury ? "ac-btn-primary" : ""}`} aria-pressed={jury} onClick={() => setJury(!jury)}><Gavel size={14} />{tr('agentChat.84')}</button>
         <button className="ac-btn" onClick={newDialog}><MessageSquarePlus size={14} />{tr('agentChat.85')}</button>
