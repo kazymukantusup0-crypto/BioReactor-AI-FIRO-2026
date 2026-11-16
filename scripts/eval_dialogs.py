@@ -176,11 +176,24 @@ def run_message(agent: Agent, conversation_id: str, text: str) -> dict:
     }
 
 
+def gpu_temperature() -> str:
+    """GPU temperature and clock (nvidia-smi): answer times depend on it (a hot laptop throttles)."""
+    import subprocess
+    try:
+        out = subprocess.run(["nvidia-smi", "--query-gpu=temperature.gpu,clocks.sm", "--format=csv,noheader"],
+                             capture_output=True, text=True, timeout=10, check=True).stdout.strip()
+        temperature, clock = [part.strip() for part in out.split(",")[:2]]
+        return f"{temperature} °C, {clock}"
+    except (OSError, subprocess.SubprocessError, ValueError):
+        return "?"
+
+
 def evaluate(model: str) -> tuple[list[dict], dict]:
     client = OllamaClient(model=model)
     if not client.available():
         raise SystemExit(f"Ollama or model {model} is not available")
     rows = []
+    gpu_before = gpu_temperature()
     with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as folder:
         agent = Agent(memory=Memory(Path(folder) / "eval.sqlite3"), llm=client)
         for dialog_name, turns in DIALOGS:
@@ -228,6 +241,7 @@ def evaluate(model: str) -> tuple[list[dict], dict]:
         "total_max_s": max(r["total_s"] for r in rows),
         "prompt_tokens_max": max(r["prompt_tokens"] for r in rows),
         "num_ctx": llm_settings()["num_ctx"],
+        "gpu_temperature": f"{gpu_before} → {gpu_temperature()}",
         "gpu": client.gpu_status(),
     }
     return rows, summary
@@ -244,6 +258,9 @@ def write_report(rows: list[dict], summary: dict, output: Path) -> None:
         f"Дата: {datetime.now():%Y-%m-%d %H:%M} · {summary['dialogs']} диалогов, {n} сообщений · "
         f"num_ctx={summary['num_ctx']} · GPU: {summary['gpu'].get('gpu_percent', '?')}% · "
         "скрипт `scripts/eval_dialogs.py`",
+        "",
+        f"Видеокарта в начале → в конце прогона: {summary.get('gpu_temperature', '?')}. "
+        "Время ответа зависит от нагрева: горячий ноутбук снижает частоту видеокарты (троттлинг).",
         "",
         "## Итог",
         "",
