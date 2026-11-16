@@ -1,0 +1,17 @@
+{
+  "comment": "Демо-реактор: значения по умолчанию, пока нет реальных параметров. Агент берёт их ТОЛЬКО если пользователь не назвал своё значение, и всегда показывает каждое как допущение. Замените числа на свои — код менять не нужно.",
+  "name": "Пластиковая бочка 200 л",
+  "reactor_volume_l": 200,
+  "working_volume_l": 160,
+  "insulation": "none",
+  "insulation_options": ["none", "basic", "good"],
+  "feedstock": {
+    "substrate": "cattle_manure",
+    "state": "slurry",
+    "comment": "жидкий навоз КРС; объём загрузки = working_volume_l"
+  },
+  "ambient_c": 5,
+  "location": "Казахстан, осень",
+  "target_c": 37,
+  "days": 30
+}

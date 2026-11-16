@@ -8,6 +8,7 @@ the user's own words have priority over numbers the LLM might invent.
 from __future__ import annotations
 
 from src.agent_v10 import facts as facts_module
+from src.agent_v10.config import demo_reactor
 from src.agent_v10.i18n import t
 from src.agent_v10.tools.common import result
 from src.agent_v10.tools.economics import energy_balance_and_economics
@@ -104,18 +105,17 @@ def _components(args: dict, facts: dict) -> list[dict]:
     return [c for c in proposed if isinstance(c, dict)]
 
 
-# Typical batch used when the question is about temperature / heating / money
-# but the feedstock is still unknown. Always reported as an assumption.
-DEFAULT_BATCH_LITRES = 200.0
-DEFAULT_FILL_SHARE = 0.8
-
-
 def default_batch(facts: dict) -> list[dict]:
-    """Cattle slurry filling 80 % of the known reactor, or 200 L if nothing is known."""
-    litres = DEFAULT_BATCH_LITRES
+    """Batch used when the question is about temperature / heating / money but the
+    feedstock is unknown: the demo reactor's feedstock (data/config/demo_reactor.json)
+    filling its working volume, or the same share of the user's reactor.
+    Always reported as an assumption."""
+    demo = demo_reactor()
+    litres = float(demo["working_volume_l"])
     if facts.get("reactor_volume_l"):
-        litres = round(facts["reactor_volume_l"] * DEFAULT_FILL_SHARE)
-    return [{"substrate": "cattle_manure", "amount": litres, "unit": "l", "state": "slurry"}]
+        litres = round(facts["reactor_volume_l"] * demo["fill_share"])
+    feed = demo["feedstock"]
+    return [{"substrate": feed["substrate"], "amount": litres, "unit": "l", "state": feed["state"]}]
 
 
 def _with_default_batch(result_dict: dict, components: list[dict], language: str) -> dict:
@@ -123,7 +123,7 @@ def _with_default_batch(result_dict: dict, components: list[dict], language: str
     litres = components[0]["amount"]
     result_dict["assumptions"].insert(0, t("assume_default_batch", language, litres=int(litres)))
     result_dict["question"] = t("ask_substrate", language)
-    result_dict["llm"]["assumed_batch"] = f"cattle slurry {int(litres)} L (assumption)"
+    result_dict["llm"]["assumed_batch"] = f"{components[0]['substrate']} {components[0]['state']} {int(litres)} L (assumption)"
     result_dict["label"] = "assumption"
     return result_dict
 

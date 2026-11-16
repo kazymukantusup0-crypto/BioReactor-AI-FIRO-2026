@@ -4,7 +4,7 @@ import sqlite3
 
 import pytest
 
-from src.agent_v10.config import METHANE_KWH_PER_M3
+from src.agent_v10.config import METHANE_KWH_PER_M3, demo_reactor
 from src.agent_v10.tools import economics
 from src.agent_v10.tools.heating import cylinder, estimate_heating_energy, u_value
 from src.agent_v10.tools.knowledge import search_knowledge
@@ -238,7 +238,45 @@ def test_registry_fills_arguments_from_memory_and_rejects_unknown_tools():
 def test_registry_default_batch_when_feedstock_unknown():
     facts = {**empty_facts(), "ambient_c": -15, "insulation": "none"}
     result = run_tool("recommend_temperature_regime", {}, facts)
-    assert result["ok"] and "типовой партии" in result["assumptions"][0]
+    assert result["ok"] and "демо-реактора: 160 л" in result["assumptions"][0]
+
+
+# ---------- demo reactor (data/config/demo_reactor.json) -----------------------
+
+def test_demo_reactor_config_values():
+    demo = demo_reactor()
+    assert (demo["reactor_volume_l"], demo["working_volume_l"], demo["insulation"], demo["ambient_c"]) == (200, 160, "none", 5)
+    assert demo["fill_share"] == pytest.approx(0.8)
+    assert demo["feedstock"] == {**demo["feedstock"], "substrate": "cattle_manure", "state": "slurry"}
+
+
+def test_heating_defaults_come_from_demo_reactor_hand_calculation():
+    """160 L feed, nothing else known -> demo barrel 200 L, no insulation, +5 °C outside, 30 days.
+
+    feed:   m·c·ΔT = 160 kg × 4.0 kJ/(kg·K) × (37−5) K / 3600 = 5.69 kWh  (high: ×4.18, /0.95 = 6.26)
+    barrel: D = (4·0.2/π)^(1/3) = 0.634 m,  A = 1.5·π·D² = 1.894 m²
+    walls:  no insulation -> U = h_outside = 6 ... 12 W/(m²·K) -> UA = 11.36 ... 22.72 W/K
+    losses: UA·ΔT·t = 11.36 × 32 × 720 h / 1000 = 261.8 kWh  (high: 22.72 × 32 × 720 / 1000 / 0.95 = 551.0)
+    mixing: 100 W × 2 h × 30 days = 6 kWh
+    """
+    result = estimate_heating_energy(feed_volume_l=160)
+    data = result["data"]
+    assert result["ok"] and data["reactor_volume_l"] == 200 and data["insulation"] == "none"
+    assert data["ambient_c"] == 5 and data["days"] == 30
+    area = 1.5 * math.pi * (4 * 0.2 / math.pi) ** (2 / 3)
+    assert area == pytest.approx(1.894, rel=1e-3)
+    feed_low, feed_high = 160 * 4.0 * 32 / 3600, 160 * 4.18 * 32 / 3600 / 0.95
+    loss_low, loss_high = 6 * area * 32 * 720 / 1000, 12 * area * 32 * 720 / 1000 / 0.95
+    assert loss_low == pytest.approx(261.8, rel=1e-3) and loss_high == pytest.approx(551.0, rel=1e-3)
+    assert approx_range(data["total_kwh"], feed_low + loss_low + 6, feed_high + loss_high + 6, rel=1e-2)
+    text = " ".join(result["assumptions"])
+    assert "200" in text and "5 °C" in text and result["question"]
+
+
+def test_user_values_override_demo_reactor():
+    data = estimate_heating_energy(feed_volume_l=100, reactor_volume_l=500, insulation="good", ambient_c=-10,
+                                   days=20)["data"]
+    assert (data["reactor_volume_l"], data["insulation"], data["ambient_c"], data["days"]) == (500, "good", -10, 20)
 
 
 def test_registry_normalizes_llm_state_words():

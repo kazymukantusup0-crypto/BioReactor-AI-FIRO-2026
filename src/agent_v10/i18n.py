@@ -37,9 +37,9 @@ TEXT: dict[str, dict[str, str]] = {
         "kk": "биогаздағы метан үлесі {low}–{high}% (әдебиет)",
     },
     "assume_default_batch": {
-        "ru": "сырьё не указано — посчитал для типовой партии: {litres} л жидкого навоза КРС",
-        "en": "feedstock not given — calculated for a typical batch: {litres} L of cattle slurry",
-        "kk": "шикізат көрсетілмеген — әдеттегі партия үшін есептедім: {litres} л сұйық сиыр көңі",
+        "ru": "сырьё не указано — посчитал для демо-реактора: {litres} л жидкого навоза КРС",
+        "en": "feedstock not given — calculated for the demo reactor: {litres} L of cattle slurry",
+        "kk": "шикізат көрсетілмеген — демо-реактор үшін есептедім: {litres} л сұйық сиыр көңі",
     },
     "assume_bucket": {
         "ru": "1 ведро = 10 л",

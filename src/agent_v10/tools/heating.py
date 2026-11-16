@@ -17,6 +17,7 @@ from __future__ import annotations
 
 import math
 
+from src.agent_v10.config import demo_reactor
 from src.agent_v10.i18n import t
 from src.agent_v10.ranges import add, fmt, make, point, scale
 from src.agent_v10.tools.common import pair, result
@@ -33,10 +34,8 @@ HEAT_CAPACITY_KJ_KG_K = (4.0, 4.18)   # wet feed is mostly water
 HEATER_EFFICIENCY = (0.95, 1.0)       # electric heater
 DEFAULT_MIXING_W = 100.0
 DEFAULT_MIXING_HOURS = 2.0
-DEFAULT_DAYS = 30.0
-DEFAULT_AMBIENT_C = 5.0
-DEFAULT_INSULATION = "basic"
-FILL_SHARE = 0.8                      # feed fills ~80% of the reactor
+# Reactor volume, insulation, outside temperature, days and fill share of the
+# demo reactor come from data/config/demo_reactor.json (see config.demo_reactor).
 MIN_FEED_TEMPERATURE_C = 5.0          # manure is usually stored above freezing
 
 SOURCES = [{"id": f"energy_model_{index}", "title": source["title"], "year": source.get("year"), "doi": None,
@@ -90,23 +89,28 @@ def estimate_heating_energy(feed_mass_kg: dict | float | None = None, feed_volum
                       llm={"status": "needs_batch_or_reactor_volume"}, question=t("ask_substrate", language))
     if isinstance(feed_mass_kg, (int, float)):
         feed_mass_kg = point(float(feed_mass_kg))
+    demo = demo_reactor()
+    fill_share = demo["fill_share"]
     if feed_mass_kg is None:
-        # Only the reactor is known: assume it is filled to 80% with water-like feed.
-        feed_mass_kg = point((feed_volume_l or reactor_volume_l * FILL_SHARE) * 1.0)
+        # Only the reactor is known: assume it is filled like the demo reactor with water-like feed.
+        feed_mass_kg = point((feed_volume_l or reactor_volume_l * fill_share) * 1.0)
     if reactor_volume_l is None:
-        reactor_volume_l = round((feed_volume_l or feed_mass_kg["high"]) / FILL_SHARE, -1)
+        feed_l = feed_volume_l or feed_mass_kg["high"]
+        # The demo reactor if the feed fits into its working volume, otherwise a reactor sized for the feed.
+        reactor_volume_l = (float(demo["reactor_volume_l"]) if feed_l <= demo["working_volume_l"]
+                            else round(feed_l / fill_share, -1))
         assumptions.append(t("assume_reactor_volume", language, volume=fmt(reactor_volume_l)))
         question = t("ask_reactor", language)
     if insulation not in INSULATION_THICKNESS:
-        insulation = DEFAULT_INSULATION
+        insulation = demo["insulation"]
         assumptions.append(t("assume_insulation", language, level=t("insulation_" + insulation, language)))
         question = question or t("ask_reactor", language)
     if ambient_c is None:
-        ambient_c = DEFAULT_AMBIENT_C
+        ambient_c = float(demo["ambient_c"])
         assumptions.append(t("assume_ambient", language, value=fmt(ambient_c)))
         question = question or t("ask_ambient", language)
     if days is None:
-        days = DEFAULT_DAYS
+        days = float(demo["days"])
         assumptions.append(t("assume_days", language, days=fmt(days)))
     if feed_initial_c is None:
         feed_initial_c = max(ambient_c, MIN_FEED_TEMPERATURE_C)
