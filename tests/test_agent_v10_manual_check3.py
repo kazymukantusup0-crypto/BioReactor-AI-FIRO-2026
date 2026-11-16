@@ -331,3 +331,15 @@ def test_a_named_feed_without_amount_is_calculated_by_python(memory):
     from src.agent_v10.agent import python_first
     updates = extract("Сколько газа из банановых кожурок?")["updates"]
     assert python_first("Сколько газа из банановых кожурок?", {}, updates) == [{"name": "estimate_methane", "args": {}}]
+
+
+def test_eval20_number_after_insulation_must_be_calculated_by_python():
+    """Eval dialog 20: "Утепление пенополистиролом 50 мм снизит расход до ≈398 кВт·ч" — 398 is the loss WITHOUT
+    insulation; 50 mm itself is a fact of the wall result and is not an unknown number."""
+    from src.agent_v10.tools.registry import run_tool
+    facts = extract("200 литров жидкого коровьего навоза")["facts"]
+    heating = run_tool("estimate_heating_energy", {}, facts)
+    wrong = "Утепление пенополистиролом 50 мм снизит расход до ≈398 кВт·ч."
+    assert answer.insulation_claims(wrong, [heating])
+    assert answer.unknown_numbers(wrong, answer.allowed_numbers([heating], "", facts)) == []
+    assert not answer.insulation_claims("Утепление пенополистиролом 50 мм снизит теплопотери.", [heating])

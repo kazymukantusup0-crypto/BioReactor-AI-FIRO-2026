@@ -580,6 +580,7 @@ class Agent:
             against += answer_module.wrong_material(candidate, materials, language)
             against += answer_module.science_problems(candidate)
             against += answer_module.fact_problems(candidate, facts)
+            against += answer_module.insulation_claims(candidate, results)
             yield event("verification", ok=not unknown and not against, unknown_numbers=unknown,
                         contradicts=against, attempt=attempt)
             return unknown, against

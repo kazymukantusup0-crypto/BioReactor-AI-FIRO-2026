@@ -287,6 +287,8 @@ def allowed_numbers(results: list[dict], user_text: str, facts: dict) -> set[flo
         _collect(approx_payload(item.get("llm")), bucket)
         _collect(item.get("assumptions"), bucket)
     _collect(facts, bucket)
+    if any(((item.get("llm") or {}).get("wall") or {}).get("u_eps50_w_m2k") for item in results):
+        bucket.add(50.0)  # the wall result compares the bare barrel with EPS 50 mm: "пенополистирол 50 мм" is a fact
     bucket.update({-abs(v) for v in list(bucket)})  # "−15" written with or without the sign
     bucket.update({abs(v) for v in list(bucket)})
     return bucket
@@ -587,6 +589,35 @@ def fact_problems(text: str, facts: dict) -> list[str]:
         problems.append("The reactor is NOT insulated (or the user did not say it is): do not call it insulated.")
     if SAYS_NOT_INSULATED.search(text or "") and insulation in ("basic", "good"):
         problems.append("The reactor IS insulated according to the user: do not call it uninsulated.")
+    return problems
+
+
+# "Утепление пенополистиролом 50 мм снизит расход до ≈398 кВт·ч" (eval dialog 20): 398 is the wall loss WITHOUT
+# insulation (198–598), so the number passed the number check while the claim was wrong. A number "after insulation"
+# must be the "after" value Python calculated (the advice verdict "before → after"); without it, no number at all.
+INSULATION_CLAIM = re.compile(
+    r"(?:утепл|пенополистирол|insulat|polystyrene|\bEPS\b|жылыт|оқшаула)[^.!?]{0,90}?"
+    r"(?:\bдо\b|\bto\b|\bдейін\b|снизит\w*\s+на|reduce\w*\s+by)\s*[≈~]?\s*[−-]?(\d[\d\s]*(?:[.,]\d+)?)",
+    re.IGNORECASE)
+
+
+def insulation_claims(text: str, results: list[dict]) -> list[str]:
+    """Numbers said to be the result of insulating the reactor that Python did not calculate."""
+    after: list[float] = []
+    for item in results:
+        if item.get("name") == "verdicts" and item.get("ok"):
+            for verdict in item["data"].get("items", []):
+                if verdict.get("key") == "advice" and verdict.get("after"):
+                    low, high = verdict["after"]
+                    after += [abs(low), abs(high), abs(center([low, high]))]
+    problems = []
+    for match in INSULATION_CLAIM.finditer(text or ""):
+        number = abs(float(match.group(1).replace(" ", "").replace(",", ".")))
+        if not any(abs(number - value) <= max(1.0, 0.05 * value) for value in after):
+            problems.append("Do not give a number for the energy after insulation: Python did not calculate it for this "
+                            "question (the heat-loss numbers are for the barrel WITHOUT insulation). Say only that "
+                            "insulation would reduce the heat loss.")
+            break
     return problems
 
 
