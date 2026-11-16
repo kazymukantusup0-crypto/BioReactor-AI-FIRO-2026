@@ -79,6 +79,10 @@ def python_first(text: str, facts: dict, updates: dict | None = None) -> list[di
             and not {"components", "components_added"} & set(updates)):
         # "Что лучше: куриный помёт или коровий навоз?" — two feeds at the same volume.
         return [{"name": "compare_feedstocks", "args": {"substrates": materials}}]
+    if updates.get("corrected"):
+        # "Ой, не свиного, а коровьего" / "И не 150, а 300": recalculate the corrected batch. In the long dialog
+        # the model answered such a correction without a tool and repeated the old (swine) numbers.
+        return [{"name": "estimate_methane", "args": {}}]
     if re.search(STARTUP_WORDS, text, re.IGNORECASE):
         return [{"name": "startup_time", "args": {}}]
     if re.search(STOVE_WORDS, text, re.IGNORECASE):

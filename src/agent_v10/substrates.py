@@ -55,8 +55,12 @@ def material_name(material: str, language: str = "ru") -> str:
 
 
 def recognize(text: str) -> list[dict]:
-    """Find substrate names in a free text (ru / kk / en)."""
-    return catalog.matches(text)
+    """Find substrate names in a free text (ru / kk / en).
+
+    A name must start a word: the catalog pattern "трав…" also matched inside "стравить"
+    (vent the gas) and made the answer check think the text named grass.
+    """
+    return [m for m in catalog.matches(text) if m["start"] == 0 or not text[m["start"] - 1].isalpha()]
 
 
 def known_materials() -> list[str]:

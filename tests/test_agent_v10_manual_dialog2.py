@@ -189,3 +189,18 @@ def test_o_long_dialog_keeps_facts_and_corrections(long_turns):
     assert long_turns[21]["facts"]["reactor_volume_l"] == 200 and long_turns[21]["facts"]["ambient_c"] == -15
     assert "250 л навоз КРС (исправление)" in long_turns[22]["final"]["explanation"]
     assert verdict(long_turns[16], "startup")["code"] == "cattle"
+
+
+def test_vent_the_gas_is_not_grass():
+    """"стравить" (vent) contains "травить": a material name must start a word."""
+    from src.agent_v10 import substrates
+    assert not substrates.recognize("Первые два заполнения газгольдера стравить.")
+    assert [m["material"] for m in substrates.recognize("трава и навоз")][:1] == ["grass"]
+
+
+@pytest.mark.parametrize("text", ["Ой, не свиного, а коровьего", "И не 150, а 300"])
+def test_a_correction_is_recalculated_by_python(text):
+    from src.agent_v10.agent import python_first
+    facts = extract("У меня 150 л свиного навоза, сколько газа?")["facts"]
+    updates = extract(text, facts)["updates"]
+    assert [c["name"] for c in python_first(text, facts, updates)] == ["estimate_methane"]
