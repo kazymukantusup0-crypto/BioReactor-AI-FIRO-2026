@@ -47,8 +47,12 @@ INTENTS = [
 ]
 
 
-def plan_tools(text: str, facts: dict) -> list[dict]:
-    """Deterministic choice of tools for a message (no LLM needed)."""
+def plan_tools(text: str, facts: dict, updated: bool = True) -> list[dict]:
+    """Deterministic choice of tools for a message (no LLM needed).
+
+    updated: the message changed the facts ("Жидкий.", "300 литров"). Only then a message
+    without topic words recalculates the remembered batch; "какая погода?" does not.
+    """
     calls = []
     for name, pattern in INTENTS:
         if re.search(pattern, text, re.IGNORECASE):
@@ -58,7 +62,7 @@ def plan_tools(text: str, facts: dict) -> list[dict]:
     if "compare_scenarios" in names and len(facts.get("components") or []) < 2:
         calls = [c for c in calls if c["name"] != "compare_scenarios"]
     names = [c["name"] for c in calls]
-    if not calls and has_batch:
+    if not calls and has_batch and updated:
         calls = [{"name": "estimate_methane", "args": {}}]
     # The regime and scenario tools already contain the gas estimate.
     if {"recommend_temperature_regime", "compare_scenarios", "energy_balance_and_economics"} & set(names):
@@ -154,9 +158,9 @@ class Agent:
         if use_llm and not llm_ok:
             yield event("note", code="no_llm", message="Ollama недоступна — режим без ИИ-модели")
         if llm_ok:
-            outcome = yield from self._run_with_llm(text, facts, language, state, event)
+            outcome = yield from self._run_with_llm(text, facts, language, state, event, (bool(extracted["updates"]) or facts_module.on_topic(text)))
         else:
-            outcome = yield from self._run_without_llm(text, facts, language, event)
+            outcome = yield from self._run_without_llm(text, facts, language, event, (bool(extracted["updates"]) or facts_module.on_topic(text)))
 
         final = answer_module.compose(explanation=outcome["explanation"], results=outcome["results"],
                                       language=language, mode=outcome["mode"], verified=outcome["verified"])
@@ -199,9 +203,9 @@ class Agent:
         if messages is not None:
             messages.append(_tool_message(derived))
 
-    def _run_without_llm(self, text: str, facts: dict, language: str, event) -> Iterator[dict]:
-        calls = plan_tools(text, facts)
-        if not calls and not facts.get("components"):
+    def _run_without_llm(self, text: str, facts: dict, language: str, event, updated: bool = True) -> Iterator[dict]:
+        calls = plan_tools(text, facts, updated)
+        if not calls and (not facts.get("components") or not updated):
             # Not about the biogas plant ("какая погода?"): no tools, a polite way back.
             yield event("note", code="off_topic", message="Вопрос не про биогаз — расчёты не нужны")
             return {"results": [], "explanation": t("off_topic", language), "mode": "no_llm", "verified": True}
@@ -232,7 +236,8 @@ class Agent:
         final["first_token_t_ms"] = first_token_t_ms
         return final
 
-    def _run_with_llm(self, text: str, facts: dict, language: str, state: dict, event) -> Iterator[dict]:
+    def _run_with_llm(self, text: str, facts: dict, language: str, state: dict, event,
+                      updated: bool = True) -> Iterator[dict]:
         messages = [{"role": "system", "content": system_prompt(facts, language)}]
         messages += Memory.history(state["messages"])
         messages.append({"role": "user", "content": text})
@@ -290,7 +295,7 @@ class Agent:
 
                 explanation = final["content"].strip()
                 if not results:
-                    planned = plan_tools(text, facts)
+                    planned = plan_tools(text, facts, updated)
                     if planned:
                         # The model skipped the tools on a numeric question: Python calls them.
                         yield event("note", code="forced_tools", message="Модель ответила без расчёта — вызываю инструменты сам")
@@ -305,7 +310,7 @@ class Agent:
                 break
         except (LLMUnavailable, ToolCallError) as error:
             yield event("note", code="llm_fallback", message=f"Запасной путь: {error}")
-            fallback = yield from self._run_without_llm(text, facts, language, event)
+            fallback = yield from self._run_without_llm(text, facts, language, event, updated)
             fallback["results"] = results + [r for r in fallback["results"] if r["name"] not in {x["name"] for x in results}]
             fallback["mode"] = "llm_fallback"
             fallback["explanation"] = answer_module.template_explanation(fallback["results"], language)

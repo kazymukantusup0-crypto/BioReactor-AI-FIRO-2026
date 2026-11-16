@@ -73,6 +73,14 @@ VS_RE = re.compile(rf"(?:\bVS\b|органическ\w*\s+веществ\w*|ле
 KEY_VALUE_RE = re.compile(r"\b(?P<key>operating_mode|insulation|режим_работы)\s*[=:]\s*(?P<value>[A-Za-zА-Яа-яЁё_]+)")
 
 
+def on_topic(text: str) -> bool:
+    """The message talks about the plant (state, material, amount, reactor, insulation), even if no fact changed."""
+    if substrates.recognize(text) or find_quantities(text):
+        return True
+    patterns = [pattern for _, pattern in STATE_PATTERNS + INSULATION_PATTERNS] + [REACTOR_WORDS]
+    return any(re.search(pattern, text, re.IGNORECASE) for pattern in patterns)
+
+
 def empty_facts() -> dict:
     """A fresh, independent copy of the empty fact structure."""
     return copy.deepcopy(EMPTY_FACTS)

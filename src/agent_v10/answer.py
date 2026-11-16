@@ -228,9 +228,10 @@ def template_explanation(results: list[dict], language: str) -> str:
     verdicts = next((r for r in results if r.get("name") == "verdicts" and r.get("ok")), None)
     if verdicts:
         parts += verdicts["llm"]["verdicts"]
+    covered = {"recommend_temperature_regime", "energy_balance_and_economics"} if verdicts else set()
     for item in results:
-        if not item.get("ok"):
-            continue
+        if not item.get("ok") or item["name"] in covered:
+            continue  # the verdicts above already say the regime / best use, do not repeat them
         llm, name = item["llm"], item["name"]
         if name == "estimate_methane":
             parts.append({

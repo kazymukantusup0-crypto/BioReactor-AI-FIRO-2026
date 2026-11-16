@@ -236,3 +236,12 @@ def test_off_topic_question_without_llm_gets_a_polite_way_back(memory):
     events, final = run(Agent(memory, FakeLLM([], available=False)), "off-topic", "Какая завтра погода в Астане?")
     assert final["tools"] == [] and "биогаз" in final["explanation"]
     assert not [e for e in events if e["type"] == "tool_call"]
+
+
+def test_off_topic_inside_a_dialog_with_a_batch_does_not_recalculate(memory):
+    agent = Agent(memory, FakeLLM([], available=False))
+    run(agent, "off-topic-2", "200 л жидкого навоза КРС, сколько газа?")
+    events, final = run(agent, "off-topic-2", "Какая завтра погода в Астане?")
+    assert final["tools"] == [] and "биогаз" in final["explanation"]
+    _, refined = run(agent, "off-topic-2", "Жидкий.")          # a fact update still recalculates
+    assert refined["tools"] == ["estimate_methane"]

@@ -182,19 +182,25 @@ def regime_verdict(results: list[dict], language: str) -> dict | None:
     return _item("regime", found["data"]["recommended"], llm["recommended"], text, language, "info")
 
 
-def net_values(results: list[dict]) -> list | None:
-    """Net balance [low, high] kWh from the most specific result available."""
+def net_source(results: list[dict]) -> tuple[str, list] | None:
+    """('regime' | 'gas_heating' | 'scenarios', net balance [low, high] kWh) from the most specific result."""
     regime = _first_ok(results, "recommend_temperature_regime")
     if regime:
         chosen = next(r for r in regime["data"]["regimes"] if r["id"] == regime["data"]["recommended"])
-        return pair(chosen["net_kwh"])
+        return "regime", pair(chosen["net_kwh"])
     both = gas_vs_heating(results)
     if both:
-        return pair(subtract(both["data"]["gas_heat_kwh"], both["data"]["heating_need_kwh"]))
+        return "gas_heating", pair(subtract(both["data"]["gas_heat_kwh"], both["data"]["heating_need_kwh"]))
     scenarios = _first_ok(results, "compare_scenarios")
     if scenarios:
-        return scenarios["llm"]["scenarios"][-1]["net_kwh"]
+        return "scenarios", list(scenarios["llm"]["scenarios"][-1]["net_kwh"])
     return None
+
+
+def net_values(results: list[dict]) -> list | None:
+    """Net balance [low, high] kWh shown to the user."""
+    found = net_source(results)
+    return found[1] if found else None
 
 
 def net_verdict(results: list[dict], language: str) -> dict | None:
@@ -279,56 +285,74 @@ def best_use_verdict(results: list[dict], language: str) -> dict | None:
                  "bad" if key == "best_loss" else "good")
 
 
-def _advice_cases(facts: dict, language: str, regime_id: str = "mesophilic") -> dict | None:
-    """Net balance [low, high] of the recommended regime: as now, EPS 50 mm, (mesophilic only) 35 °C, both."""
-    from src.agent_v10.tools.registry import default_batch
+def _variants(source: str, results: list[dict], facts: dict, language: str) -> dict:
+    """Net balance [low, high] of each improvement, calculated by the SAME tool as the balance shown.
+
+    regime      -> the regime calculation again (EPS 50 mm; mesophilic also 35 °C and both)
+    gas_heating -> the heating calculation again with EPS 50 mm, the same gas
+    scenarios   -> the scenario comparison again with EPS 50 mm
+    """
+    from src.agent_v10.tools.registry import default_batch, run_tool
     from src.agent_v10.tools.regimes import _regime_case
 
-    components = [c for c in facts.get("components") or [] if c.get("amount") is not None and c.get("substrate")]
-    components = components or default_batch(facts)
-    demo = demo_reactor()
-    insulation = facts.get("insulation") or demo["insulation"]
-    ambient = facts.get("ambient_c") if facts.get("ambient_c") is not None else demo["ambient_c"]
-    reactor = facts.get("reactor_volume_l")
-    regime = next(r for r in temperature_regimes()["regimes"] if r["id"] == regime_id)
+    insulation = facts.get("insulation") or demo_reactor()["insulation"]
+    variants: dict = {}
+    with_eps = {**facts, "insulation": "eps50"}
     try:
-        cases = {
-            "before": _regime_case(components, regime, ambient, insulation, reactor, language),
-            "eps50": _regime_case(components, regime, ambient, "eps50", reactor, language),
-        }
-        if regime_id == "mesophilic":
-            # 35 °C: the lower edge of the mesophilic range from the sources.
-            low_meso = {**regime, "setpoint_c": regime["temperature_range_c"][0]}
-            cases["t35"] = _regime_case(components, low_meso, ambient, insulation, reactor, language)
-            cases["eps50_t35"] = _regime_case(components, low_meso, ambient, "eps50", reactor, language)
-    except (ValueError, KeyError, TypeError):
-        return None
-    if insulation in {"good"}:
-        # Already well insulated: 50 mm would be a step back.
-        cases.pop("eps50", None), cases.pop("eps50_t35", None)
-    return {key: pair(case["net_kwh"]) for key, case in cases.items()}
+        if source == "regime":
+            regime_result = _first_ok(results, "recommend_temperature_regime")
+            regime_id = regime_result["data"]["recommended"]
+            regime = next(r for r in temperature_regimes()["regimes"] if r["id"] == regime_id)
+            components = [c for c in facts.get("components") or [] if c.get("amount") is not None and c.get("substrate")]
+            components = components or default_batch(facts)
+            ambient = regime_result["data"]["ambient_c"]
+            reactor = facts.get("reactor_volume_l")
+            if insulation != "good":
+                variants["eps50"] = pair(_regime_case(components, regime, ambient, "eps50", reactor, language)["net_kwh"])
+            if regime_id == "mesophilic":
+                # 35 °C: the lower edge of the mesophilic range from the sources.
+                low = {**regime, "setpoint_c": regime["temperature_range_c"][0]}
+                variants["t35"] = pair(_regime_case(components, low, ambient, insulation, reactor, language)["net_kwh"])
+                if insulation != "good":
+                    variants["eps50_t35"] = pair(_regime_case(components, low, ambient, "eps50", reactor, language)["net_kwh"])
+        elif insulation != "good" and source == "gas_heating":
+            gas_heat = gas_vs_heating(results)["data"]["gas_heat_kwh"]
+            need = run_tool("estimate_heating_energy", {}, with_eps, language)["data"]["total_kwh"]
+            variants["eps50"] = pair(subtract(gas_heat, need))
+        elif insulation != "good" and source == "scenarios":
+            again = run_tool("compare_scenarios", {}, with_eps, language)
+            if again.get("ok"):
+                variants["eps50"] = list(again["llm"]["scenarios"][-1]["net_kwh"])
+    except (ValueError, KeyError, TypeError, StopIteration):
+        return {}
+    return variants
 
 
-def advice_item(facts: dict, language: str, regime_id: str = "mesophilic") -> dict | None:
-    """The best way to improve a negative balance, as 'before -> after' (same regime as recommended)."""
-    cases = _advice_cases(facts, language, regime_id)
-    if not cases or len(cases) < 2:
+def advice_item(results: list[dict], facts: dict, language: str) -> dict | None:
+    """The simplest change that improves a negative balance most, as 'before -> after'.
+
+    'before' is exactly the net balance shown to the user; 'after' comes from the same tool.
+    """
+    found = net_source(results)
+    if not found:
         return None
-    before = cases.pop("before")
-    gains = {key: sum(values) - sum(before) for key, values in cases.items()}
+    source, before = found
+    cases = _variants(source, results, facts, language)
+    if not cases:
+        return None
+    gains = {key: center(values) - center(before) for key, values in cases.items()}
     top = max(gains.values())
     # The simplest advice that gives at least 90 % of the best gain (one change is easier than two).
     best = next(key for key in ("eps50", "t35", "eps50_t35") if key in gains and gains[key] >= 0.9 * top)
     after = cases[best]
-    gain = center(after) - center(before)
-    if gain < max(5.0, 0.1 * abs(center(before))):
+    if gains[best] < max(5.0, 0.1 * abs(center(before))):
         return None  # a tiny gain is noise, not advice
     text = _say(ADVICE, best, language, before=approx_text(before), after=approx_text(after))
     if after[1] < 0:
         text += _say(ADVICE, "still_minus", language)
     item = _item("advice", best, f"≈{center(before):g} → ≈{center(after):g} кВт·ч".replace("-", "−"), text, language,
                  "good" if after[0] > 0 else "warn")
-    item.update(before=before, after=after,
+    item.update(before=list(before), after=list(after),
                 assumptions=[_say(ADVICE, "assume_eps50", language)] * ("eps50" in best)
                 + [_say(ADVICE, "assume_t35", language)] * ("t35" in best))
     return item
@@ -345,9 +369,7 @@ def build(results: list[dict], facts: dict, language: str = "ru") -> dict | None
         return None
     losing = any((i["key"] == "net" and i["code"] == "minus") or (i["key"] == "enough_gas" and i["code"] == "no")
                  for i in items)
-    regime = _first_ok(results, "recommend_temperature_regime")
-    regime_id = regime["data"]["recommended"] if regime else "mesophilic"
-    advice = advice_item(facts, language, regime_id) if losing else None
+    advice = advice_item(results, facts, language) if losing else None
     if advice:
         items.append(advice)
     coverage = gas_vs_heating(results, language)

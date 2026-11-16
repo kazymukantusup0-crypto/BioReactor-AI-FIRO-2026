@@ -7,6 +7,7 @@ import {
   agentApi, componentText, INSULATION_LABELS, MODE_LABELS, newConversationId, streamAgentChat, TOOL_LABELS,
   type AgentAnswer, type AgentEvent, type AgentStatus, type DemoReactor, type Facts, type NumberCard, type Verdict,
 } from '../agentV10'
+import { DEMO_SCENARIOS, type DemoScenario } from '../demoScenarios'
 import '../agentChat.css'
 
 const STORAGE_ID = 'bioreactor-agent-v10-conversation'
@@ -270,16 +271,16 @@ export default function AgentChat() {
   }, [conversationId])
   useEffect(() => { bottom.current?.scrollIntoView?.({ behavior: 'smooth', block: 'end' }) }, [turns])
 
-  const send = async (text: string) => {
+  const send = async (text: string, options: { conversation?: string; llm?: boolean; force?: boolean } = {}) => {
     const message = text.trim()
-    if (!message || running) return
+    if (!message || (running && !options.force)) return
     const id = `t${Date.now()}`
     setTurns(current => [...current, { id, user: message, events: [], live: '', running: true }])
     setInput('')
     const update = (change: (turn: Turn) => Turn) => setTurns(current => current.map(turn => turn.id === id ? change(turn) : turn))
     const controller = new AbortController(); abort.current = controller
     try {
-      await streamAgentChat({ message, conversation_id: conversationId, use_llm: useLlm }, event => {
+      await streamAgentChat({ message, conversation_id: options.conversation ?? conversationId, use_llm: options.llm ?? useLlm }, event => {
         if (event.type === 'facts' && event.facts) setFacts(event.facts as Facts)
         update(turn => applyEvent(turn, event))
       }, controller.signal)
@@ -293,7 +294,18 @@ export default function AgentChat() {
   const newDialog = async () => {
     abort.current?.abort()
     try { await agentApi.reset(conversationId) } catch { /* the new id is enough */ }
-    setTurns([]); setFacts(null); setConversationId(newConversationId())
+    const id = newConversationId()
+    setTurns([]); setFacts(null); setConversationId(id)
+    return id
+  }
+  // Jury scenario: a new dialog, then the messages one after another (each waits for the answer).
+  const [scenario, setScenario] = useState<string | null>(null)
+  const runScenario = async (item: DemoScenario) => {
+    setScenario(item.id)
+    const id = await newDialog()
+    try {
+      for (const message of item.messages) await send(message, { conversation: id, llm: item.noLlm ? false : useLlm, force: true })
+    } finally { setScenario(null) }
   }
 
   const gpu = status?.gpu
@@ -311,6 +323,12 @@ export default function AgentChat() {
       </div>
     </div>
     {jury && <JuryPipeline />}
+    {jury && <div className="ac-scenarios" role="group" aria-label="Сценарии для показа">
+      {DEMO_SCENARIOS.map(item => <button key={item.id} className={`ac-scenario ${item.main ? 'main' : ''}`} title={item.goal}
+        disabled={running || scenario !== null} aria-busy={scenario === item.id} onClick={() => void runScenario(item)}>
+        <strong>{item.title}</strong><span>{item.goal}</span>
+      </button>)}
+    </div>}
     <div className="ac-layout">
       <section className="ac-chat panel" aria-label="Диалог">
         <div className="ac-messages" aria-live="polite">

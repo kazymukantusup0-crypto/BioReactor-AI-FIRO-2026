@@ -129,7 +129,7 @@ def test_central_estimate_text_and_cards():
 def test_cold_barrel_gets_insulation_advice_before_and_after():
     """150 L at −15 °C without insulation: EPS 50 mm cuts U from 6–12 to ≈0.6–0.7 W/(m²·K)."""
     facts = winter_facts(ambient_c=-15)
-    item = verdicts.advice_item(facts, "ru")
+    item = verdicts.advice_item([run_tool("recommend_temperature_regime", {}, facts)], facts, "ru")
     assert item["code"] == "eps50" and "пенополистиролом 50 мм" in item["text"]
     assert item["before"][1] < 0 and center(item["after"]) > center(item["before"])
     built = verdicts.build([run_tool("recommend_temperature_regime", {}, facts)], facts)
@@ -138,7 +138,8 @@ def test_cold_barrel_gets_insulation_advice_before_and_after():
 
 
 def test_no_advice_when_the_gain_is_tiny():
-    assert verdicts.advice_item(winter_facts(ambient_c=-15, insulation="good"), "ru") is None
+    facts = winter_facts(ambient_c=-15, insulation="good")
+    assert verdicts.advice_item([run_tool("recommend_temperature_regime", {}, facts)], facts, "ru") is None
 
 
 def test_u_value_of_50_mm_eps():
@@ -164,3 +165,16 @@ def test_advice_starts_from_the_recommended_regime():
     assert items["advice"]["before"] == [round(v) for v in (chosen["net_kwh"]["low"], chosen["net_kwh"]["high"])] \
         or items["advice"]["before"][0] == pytest.approx(chosen["net_kwh"]["low"], rel=0.01)
     assert "35 °C" not in items["advice"]["text"]      # 35 °C is a mesophilic option only
+
+
+def test_advice_before_is_exactly_the_net_shown_to_the_user():
+    """Mixture: the net verdict comes from compare_scenarios; the advice must start from that number."""
+    facts = {**empty_facts(), "ambient_c": -15, "insulation": "none", "components": CATTLE_150L + [
+        {"substrate": "food_waste", "amount": 20, "unit": "kg"}]}
+    results = [run_tool("compare_scenarios", {}, facts)]
+    items = {i["key"]: i for i in verdicts.build(results, facts)["data"]["items"]}
+    advice = items["advice"]
+    assert advice["before"] == verdicts.net_values(results)
+    assert advice["after"][0] <= advice["after"][1]                       # a proper range
+    again = run_tool("compare_scenarios", {}, {**facts, "insulation": "eps50"})
+    assert advice["after"] == list(again["llm"]["scenarios"][-1]["net_kwh"])   # the same tool, only EPS 50 mm

@@ -151,4 +151,17 @@ describe('AgentChat page', () => {
     const chatCall = fetchMock.mock.calls.find(call => call[0] === '/api/agent/chat')!
     expect(JSON.parse((chatCall[1] as RequestInit).body as string).use_llm).toBe(false)
   })
+
+  it('runs a jury scenario: new dialog, then the messages in order in the same conversation', async () => {
+    localStorage.clear()
+    const fetchMock = stubServer()
+    render(<AgentChat />)
+    fireEvent.click(screen.getByRole('button', { name: /Режим жюри/ }))
+    fireEvent.click(screen.getByRole('button', { name: /Сколько газа из вёдер/ }))
+    await waitFor(() => expect(fetchMock.mock.calls.filter(call => call[0] === '/api/agent/chat')).toHaveLength(2))
+    const bodies = fetchMock.mock.calls.filter(call => call[0] === '/api/agent/chat').map(call => JSON.parse((call[1] as RequestInit).body as string))
+    expect(bodies.map(b => b.message)).toEqual(['У меня 5 вёдер коровьего навоза, сколько будет газа?', 'Жидкий.'])
+    expect(bodies[0].conversation_id).toBe(bodies[1].conversation_id)
+    expect(fetchMock.mock.calls.some(call => call[0] === '/api/agent/reset')).toBe(true)
+  })
 })
