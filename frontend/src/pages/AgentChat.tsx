@@ -4,7 +4,7 @@
 import { useCallback, useEffect, useRef, useState, type FormEvent } from 'react'
 import { ArrowUp, Bot, BookOpen, Check, CircleStop, Cpu, Gavel, LoaderCircle, MessageSquarePlus, Pencil, ShieldAlert, ShieldCheck, User } from 'lucide-react'
 import {
-  agentApi, componentText, INSULATION_LABELS, MODE_LABELS, newConversationId, streamAgentChat, TOOL_LABELS,
+  agentApi, componentText, INSULATION_LABELS, MODE_LABELS, newConversationId, speedWarning, streamAgentChat, TOOL_LABELS,
   type AgentAnswer, type AgentEvent, type AgentStatus, type DemoReactor, type Facts, type NumberCard, type Verdict,
 } from '../agentV10'
 import { DEMO_SCENARIOS, type DemoScenario } from '../demoScenarios'
@@ -309,13 +309,14 @@ export default function AgentChat() {
   }
 
   const gpu = status?.gpu
+  const slow = speedWarning(status)
   return <div className="ac-page">
     <div className="ac-topline">
       <div><span className="eyebrow">АГЕНТ v10 · ЛОКАЛЬНО, БЕЗ ИНТЕРНЕТА</span><h1>AI Chat</h1>
         <p>Модель выбирает инструмент, Python считает, каждое число в ответе сверяется с расчётом.</p></div>
       <div className="ac-controls">
-        <span className={`badge badge-${status?.llm_available ? 'green' : status ? 'amber' : 'muted'}`}><Cpu size={11} />
-          {status ? status.llm_available ? `${status.model}${gpu?.loaded ? ` · GPU ${gpu.gpu_percent}%` : ''}` : 'Ollama недоступна — режим без ИИ' : 'проверяю модель…'}</span>
+        <span className={`badge badge-${status?.llm_available ? slow ? 'amber' : 'green' : status ? 'amber' : 'muted'}`} title={slow ?? undefined}><Cpu size={11} />
+          {status ? status.llm_available ? `${status.model}${gpu?.loaded ? ` · GPU ${gpu.gpu_percent}%` : ''}` : 'Ollama недоступна — режим без ИИ' : 'проверяю модель…'}{slow ? ' · ⚠' : ''}</span>
         <label className="ac-switch"><input type="checkbox" checked={!useLlm} onChange={e => setUseLlm(!e.target.checked)} />Без ИИ-модели</label>
         <button className={`ac-btn ${jury ? "ac-btn-primary" : ""}`} aria-pressed={jury} onClick={() => setJury(!jury)}><Gavel size={14} />Режим жюри</button>
         <button className="ac-btn" onClick={newDialog}><MessageSquarePlus size={14} />Новый диалог</button>

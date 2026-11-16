@@ -50,13 +50,16 @@ class OllamaClient:
                 loaded = json.loads(response.read().decode("utf-8")).get("models", [])
         except (OSError, ValueError):
             return {"loaded": False}
+        # Other models in VRAM (old chat, benchmark, `ollama run`) push ours out or onto the CPU:
+        # the next answer then waits ~5 s for a reload (docs/benchmark.md, "Почему ответ был 10 с").
+        others = sorted({m.get("name") for m in loaded} - {self.model, f"{self.model}:latest"} - {None})
         for model in loaded:
             if model.get("name") == self.model or model.get("model") == self.model:
                 size = model.get("size") or 0
                 vram = model.get("size_vram") or 0
                 return {"loaded": True, "gpu_percent": round(100 * vram / size) if size else 0,
-                        "context": model.get("context_length"), "vram_gb": round(vram / 1e9, 2)}
-        return {"loaded": False}
+                        "context": model.get("context_length"), "vram_gb": round(vram / 1e9, 2), "others": others}
+        return {"loaded": False, "others": others}
 
     def chat_stream(self, messages: list[dict], tools: list[dict] | None = None) -> Iterator[dict]:
         """Stream one chat step.

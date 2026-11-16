@@ -14,6 +14,7 @@ SSE format: every event is sent as
 from __future__ import annotations
 
 import json
+import threading
 from collections.abc import Iterator
 
 from fastapi import APIRouter
@@ -69,6 +70,8 @@ def create_router(agent: Agent | None = None) -> APIRouter:
     """Router factory; tests pass their own Agent (temporary DB, fake LLM)."""
     router = APIRouter(prefix="/api/agent", tags=["agent v10"])
     holder: dict = {"agent": agent}
+    busy = {"active": 0}  # chat streams in progress in this server
+    busy_lock = threading.Lock()
 
     def get_agent() -> Agent:
         if holder["agent"] is None:
@@ -80,12 +83,23 @@ def create_router(agent: Agent | None = None) -> APIRouter:
         conversation_id = body.conversation_id or Memory.new_id()
 
         def stream() -> Iterator[str]:
+            with busy_lock:
+                busy["active"] += 1
+                waiting = busy["active"] > 1
             try:
+                if waiting and body.use_llm:
+                    # Ollama answers one request at a time: a second chat waits in a queue and looks
+                    # twice as slow (measured: 4.5 s -> 8.7 s, docs/benchmark.md). Say so instead of hiding it.
+                    yield sse({"type": "note", "code": "llm_busy",
+                               "message": "Модель сейчас отвечает на другой запрос — этот ответ будет в очереди"})
                 for event in get_agent().run(conversation_id, body.message, use_llm=body.use_llm):
                     yield sse(event)
             except Exception as error:  # the stream must always end with a clear event
                 yield sse({"type": "error", "message": f"{type(error).__name__}: {error}"})
                 yield sse({"type": "done", "mode": "error"})
+            finally:
+                with busy_lock:
+                    busy["active"] -= 1
 
         return StreamingResponse(stream(), media_type="text/event-stream",
                                  headers={"Cache-Control": "no-cache", "X-Conversation-Id": conversation_id})

@@ -18,7 +18,7 @@ export interface Facts {
   target_c: number | null; days: number | null; operating_mode?: string | null; price_class?: string | null
 }
 export type AgentEvent = { type: string; t_ms?: number; [key: string]: unknown }
-export interface AgentStatus { model: string; llm_available: boolean; offline: boolean; mode: string; gpu: { loaded: boolean; gpu_percent?: number; vram_gb?: number; context?: number } }
+export interface AgentStatus { model: string; llm_available: boolean; offline: boolean; mode: string; gpu: { loaded: boolean; gpu_percent?: number; vram_gb?: number; context?: number; others?: string[] } }
 export interface DemoReactor { name: string; reactor_volume_l: number; working_volume_l: number; insulation: string; ambient_c: number; target_c: number; days: number; location?: string; feedstock: { substrate: string; state: string } }
 export interface StoredMessage { role: string; content: string; numbers?: NumberCard[]; verdicts?: Verdict[]; question?: string | null; verified?: boolean; mode?: string }
 export interface Conversation { id: string; exists: boolean; facts: Facts; messages: StoredMessage[]; last_answer: AgentAnswer | null; language?: string }
@@ -114,4 +114,14 @@ export function componentText(component: Component): string {
   const amountText = amount != null ? `${amount} ${unitText}`.trim() : 'количество ?'
   const state = component.state ? `, ${STATE_LABELS[component.state] ?? component.state}` : ''
   return `${name}: ${amountText}${state}`
+}
+
+/** Why the next answer may be slow (shown next to the model badge), or null when the model is ready. */
+export function speedWarning(status: AgentStatus | null): string | null {
+  if (!status?.llm_available) return null
+  const gpu = status.gpu
+  if (gpu.others?.length) return `в видеопамяти ещё ${gpu.others.join(', ')} — следующий ответ может ждать перезагрузку модели`
+  if (!gpu.loaded) return 'модель ещё не загружена — первый ответ на 5–10 с дольше'
+  if ((gpu.gpu_percent ?? 100) < 100) return `только ${gpu.gpu_percent}% модели на видеокарте — ответы будут медленнее`
+  return null
 }

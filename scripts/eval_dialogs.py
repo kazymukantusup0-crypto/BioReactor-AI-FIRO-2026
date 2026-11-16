@@ -157,14 +157,16 @@ def check_answer(final: dict, facts: dict, checks: dict) -> list[str]:
 def run_message(agent: Agent, conversation_id: str, text: str) -> dict:
     """Run one message and collect the metrics from the event stream."""
     started = time.perf_counter()
-    llm_tools, forced, prompt_tokens, final = [], False, [], None
+    llm_tools, forced, prompt_tokens, final, steps = [], False, [], None, []
     for event in agent.run(conversation_id, text):
         if event["type"] == "tool_call" and event.get("by") == "llm":
             llm_tools.append(event["name"])
         elif event["type"] == "note" and event.get("code") in {"forced_tools", "llm_fallback"}:
             forced = True
-        elif event["type"] == "llm_step" and event.get("prompt_tokens"):
-            prompt_tokens.append(event["prompt_tokens"])
+        elif event["type"] == "llm_step":
+            steps.append(event)
+            if event.get("prompt_tokens"):
+                prompt_tokens.append(event["prompt_tokens"])
         elif event["type"] == "answer":
             final = event
     total = time.perf_counter() - started
@@ -173,6 +175,11 @@ def run_message(agent: Agent, conversation_id: str, text: str) -> dict:
         "tools": llm_tools, "forced": forced, "final": final, "total_s": total,
         "first_token_s": first_token_ms / 1000 if first_token_ms else None,
         "prompt_tokens": max(prompt_tokens) if prompt_tokens else 0,
+        # where the time goes: number of model calls, tokens written, generation speed
+        "llm_steps": len(steps),
+        "output_tokens": sum(s.get("output_tokens") or 0 for s in steps),
+        "tokens_per_s": min((s["tokens_per_s"] for s in steps if s.get("tokens_per_s")), default=None),
+        "llm_ms": sum(s.get("duration_ms") or 0 for s in steps),
     }
 
 
@@ -194,6 +201,11 @@ def evaluate(model: str) -> tuple[list[dict], dict]:
         raise SystemExit(f"Ollama or model {model} is not available")
     rows = []
     gpu_before = gpu_temperature()
+    # Run alone: a second Ollama client (browser check, demo rehearsal, another model) makes every
+    # answer wait in a queue or for a reload, and the times stop meaning anything (docs/benchmark.md).
+    loaded_before = client.gpu_status()
+    if loaded_before.get("others"):
+        print(f"WARNING: other models in VRAM: {loaded_before['others']} — times will include a reload")
     with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as folder:
         agent = Agent(memory=Memory(Path(folder) / "eval.sqlite3"), llm=client)
         for dialog_name, turns in DIALOGS:
@@ -222,11 +234,14 @@ def evaluate(model: str) -> tuple[list[dict], dict]:
                     "language_ok": answer_language in languages, "mode": final["mode"],
                     "first_token_s": metrics["first_token_s"], "total_s": metrics["total_s"],
                     "prompt_tokens": metrics["prompt_tokens"], "explanation": explanation,
+                    "llm_steps": metrics["llm_steps"], "output_tokens": metrics["output_tokens"],
+                    "tokens_per_s": metrics["tokens_per_s"], "llm_s": metrics["llm_ms"] / 1000,
                     "numbers": "; ".join(f"{c['title']}: {c['value']} {c['unit']}".strip() for c in final["numbers"][:3]),
                 }
                 rows.append(row)
                 good = row['tool_ok'] and row['numbers_ok'] and row['language_ok'] and row['checks_ok']
-                print(f"{'OK ' if good else 'BAD'} {row['total_s']:5.1f}s tools={row['tools']} verified={row['numbers_ok']} "
+                print(f"{'OK ' if good else 'BAD'} {row['total_s']:5.1f}s steps={row['llm_steps']} "
+                      f"out={row['output_tokens']} tok/s={row['tokens_per_s']} llm={row['llm_s']:.1f}s tools={row['tools']} verified={row['numbers_ok']} "
                       f"lang={answer_language} failed={failed} | {text[:60]}")
     first_tokens = [r["first_token_s"] for r in rows if r["first_token_s"]]
     summary = {
@@ -243,6 +258,7 @@ def evaluate(model: str) -> tuple[list[dict], dict]:
         "num_ctx": llm_settings()["num_ctx"],
         "gpu_temperature": f"{gpu_before} → {gpu_temperature()}",
         "gpu": client.gpu_status(),
+        "other_models_before": loaded_before.get("others", []),
     }
     return rows, summary
 
@@ -311,11 +327,17 @@ def main() -> None:
     parser.add_argument("--model", default=llm_settings()["model"])
     parser.add_argument("--output", type=Path, default=ROOT / "docs" / "eval.md")
     parser.add_argument("--only", nargs="*", help="run only dialogs whose number is listed, e.g. --only 12 13")
+    parser.add_argument("--json", type=Path, help="also save raw rows and summary as JSON (for A/B tables)")
     args = parser.parse_args()
     if args.only:
         DIALOGS[:] = [d for d in DIALOGS if d[0].split(".")[0] in args.only]
     rows, summary = evaluate(args.model)
     write_report(rows, summary, args.output)
+    if args.json:
+        import json
+        args.json.parent.mkdir(parents=True, exist_ok=True)
+        args.json.write_text(json.dumps({"summary": summary, "rows": [{k: v for k, v in r.items() if k != "final"} for r in rows]},
+                                        ensure_ascii=False, indent=1, default=str), encoding="utf-8")
     print({k: v for k, v in summary.items() if k != "gpu"})
 
 

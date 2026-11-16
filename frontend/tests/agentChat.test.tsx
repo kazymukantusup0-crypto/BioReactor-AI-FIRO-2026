@@ -2,7 +2,7 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 import AgentChat, { AnswerView, applyEvent, feedLine, type Turn } from '../src/pages/AgentChat'
-import { componentText, parseSSE } from '../src/agentV10'
+import { componentText, parseSSE, speedWarning, type AgentStatus } from '../src/agentV10'
 
 const FACTS = { components: [{ substrate: 'cattle_manure', amount: 200, unit: 'L', state: 'slurry' }], reactor_volume_l: null, insulation: null, ambient_c: null, target_c: null, days: null }
 const ANSWER = {
@@ -77,6 +77,17 @@ describe('verdicts and ≈ values', () => {
   it('explains a contradiction with a Python verdict in the feed', () => {
     const line = feedLine({ type: 'verification', ok: false, unknown_numbers: [], contradicts: ['Газа не хватит на подогрев'], attempt: 1 })
     expect(line?.title).toContain('противоречит выводу Python')
+  })
+})
+
+describe('model speed warning', () => {
+  const base: AgentStatus = { model: 'qwen3:8b', llm_available: true, offline: true, mode: 'llm', gpu: { loaded: true, gpu_percent: 100, others: [] } }
+  it('is silent when the model is fully on the GPU', () => { expect(speedWarning(base)).toBeNull() })
+  it('warns about another model, a cold model and a CPU share', () => {
+    expect(speedWarning({ ...base, gpu: { loaded: true, gpu_percent: 100, others: ['qwen3:4b-q4_K_M'] } })).toContain('qwen3:4b-q4_K_M')
+    expect(speedWarning({ ...base, gpu: { loaded: false } })).toContain('не загружена')
+    expect(speedWarning({ ...base, gpu: { loaded: true, gpu_percent: 70 } })).toContain('70%')
+    expect(speedWarning({ ...base, llm_available: false })).toBeNull()
   })
 })
 

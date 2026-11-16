@@ -1,0 +1,536 @@
+t_s,power_source,temp_c,sm_mhz,mem_mhz,vram_used_mib,power_w,power_limit_w,pstate,util_pct,reasons_mask,sw_power_cap,hw_slowdown,hw_thermal,sw_thermal,power_brake,ollama
+0.0,AC,53,285,405,6691,17.23,[N/A],P8,37,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+1.1,AC,53,270,405,6691,17.31,[N/A],P8,38,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+2.1,AC,59,1095,7001,6695,85.49,[N/A],P0,96,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+3.2,AC,60,1140,7001,6694,104.85,[N/A],P0,96,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+4.2,AC,61,1155,7001,6689,97.55,[N/A],P0,96,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+5.3,AC,62,1140,7001,6689,103.18,[N/A],P0,96,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+6.3,AC,62,1470,7001,6689,104.75,[N/A],P0,94,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+7.4,AC,64,1365,7001,6689,96.62,[N/A],P0,100,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+8.5,AC,63,1095,7001,6689,104.55,[N/A],P0,97,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+9.5,AC,63,1110,7001,6689,104.64,[N/A],P0,96,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+10.5,AC,63,1110,7001,6686,104.57,[N/A],P0,97,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+11.6,AC,66,1140,7001,6686,98.10,[N/A],P0,96,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+12.6,AC,65,1140,7001,6686,104.65,[N/A],P0,96,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+13.7,AC,65,1065,7001,6686,104.59,[N/A],P0,97,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+14.7,AC,66,1365,7001,6686,99.54,[N/A],P0,97,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+15.8,AC,66,1125,7001,6686,104.80,[N/A],P0,96,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+16.8,AC,66,1080,7001,6686,104.89,[N/A],P0,97,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+17.9,AC,66,1125,7001,6686,104.81,[N/A],P0,97,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+18.9,AC,68,1125,7001,6686,101.46,[N/A],P0,100,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+20.0,AC,67,1125,7001,6686,104.54,[N/A],P0,98,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+21.0,AC,67,1110,7001,6686,104.80,[N/A],P0,97,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+22.1,AC,66,1530,7001,6686,104.46,[N/A],P0,97,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+23.1,AC,68,1110,7001,6686,103.48,[N/A],P0,95,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+24.2,AC,68,1110,7001,6686,104.82,[N/A],P0,97,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+25.3,AC,71,1395,7001,6686,99.02,[N/A],P0,99,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+26.3,AC,69,1125,7001,6686,104.76,[N/A],P0,97,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+27.4,AC,70,1065,7001,6686,105.06,[N/A],P0,96,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+28.4,AC,71,1365,7001,6686,94.07,[N/A],P0,99,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+29.5,AC,70,1065,7001,6686,105.00,[N/A],P0,96,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+30.5,AC,71,1080,7001,6686,105.12,[N/A],P0,95,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+31.6,AC,69,1800,7001,6686,98.81,[N/A],P0,13,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+32.7,AC,71,945,7001,6686,95.79,[N/A],P0,97,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+33.7,AC,71,1110,7001,6686,105.04,[N/A],P0,97,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+34.8,AC,73,1080,7001,6695,99.58,[N/A],P0,80,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+35.8,AC,72,1080,7001,6695,104.92,[N/A],P0,97,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+36.9,AC,72,975,7001,6690,104.13,[N/A],P0,96,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+37.9,AC,74,1110,7001,6690,98.39,[N/A],P0,91,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+39.0,AC,73,1110,7001,6690,104.90,[N/A],P0,96,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+40.0,AC,73,1095,7001,6686,104.78,[N/A],P0,97,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+41.1,AC,74,1140,7001,6686,104.91,[N/A],P0,100,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+42.2,AC,73,1080,7001,6686,104.97,[N/A],P0,97,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+43.2,AC,74,1080,7001,6686,97.64,[N/A],P0,97,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+44.3,AC,75,1110,7001,6686,102.11,[N/A],P0,97,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+45.3,AC,74,1125,7001,6686,104.65,[N/A],P0,97,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+46.4,AC,76,1350,7001,6686,99.06,[N/A],P0,100,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+47.5,AC,76,1365,7001,6686,103.65,[N/A],P0,63,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+48.5,AC,75,1050,7001,6686,103.68,[N/A],P0,97,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+49.6,AC,75,1035,7001,6686,104.76,[N/A],P0,97,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+50.6,AC,75,1080,7001,6686,104.74,[N/A],P0,97,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+51.7,AC,76,1080,7001,6686,104.83,[N/A],P0,97,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+52.7,AC,78,1365,7001,6686,95.78,[N/A],P0,36,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+53.8,AC,77,1095,7001,6686,104.84,[N/A],P0,97,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+54.9,AC,77,1080,7001,6691,104.96,[N/A],P0,96,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+55.9,AC,78,1170,7001,6691,104.97,[N/A],P0,75,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+57.0,AC,77,1095,7001,6687,104.96,[N/A],P0,97,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+58.0,AC,76,1740,7001,6687,104.08,[N/A],P0,97,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+59.1,AC,78,945,7001,6687,96.00,[N/A],P0,99,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+60.2,AC,78,990,7001,6687,104.81,[N/A],P0,97,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+61.3,AC,76,1860,7001,6687,96.66,[N/A],P0,5,0x0000000000000000,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+62.3,AC,78,1080,7001,6687,99.88,[N/A],P0,97,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+63.4,AC,80,1080,7001,6687,103.72,[N/A],P0,98,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+64.4,AC,79,1080,7001,6687,105.02,[N/A],P0,96,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+65.5,AC,79,1005,7001,6687,104.97,[N/A],P0,96,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+66.5,AC,79,1035,7001,6687,95.24,[N/A],P0,97,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+67.6,AC,80,1080,7001,6687,104.55,[N/A],P0,97,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+68.6,AC,80,1065,7001,6687,104.85,[N/A],P0,96,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+69.7,AC,80,1035,7001,6687,104.72,[N/A],P0,96,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+70.7,AC,80,990,7001,6687,105.15,[N/A],P0,97,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+71.8,AC,80,1020,7001,6687,104.82,[N/A],P0,96,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+72.9,AC,82,1035,7001,6687,97.61,[N/A],P0,100,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+74.0,AC,81,1425,7001,6687,103.17,[N/A],P0,97,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+75.0,AC,81,1095,7001,6687,103.91,[N/A],P0,97,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+76.1,AC,83,1095,7001,6687,98.24,[N/A],P0,100,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+77.1,AC,82,1065,7001,6687,104.82,[N/A],P0,95,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+78.2,AC,82,1050,7001,6687,104.67,[N/A],P0,96,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+79.3,AC,83,1065,7001,6687,98.12,[N/A],P0,96,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+80.4,AC,82,1065,7001,6687,105.04,[N/A],P0,96,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+81.4,AC,82,780,7001,6687,104.86,[N/A],P0,97,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+82.5,AC,83,1320,7001,6687,97.90,[N/A],P0,100,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+83.5,AC,83,1020,7001,6687,104.75,[N/A],P0,96,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+84.6,AC,83,990,7001,6687,104.96,[N/A],P0,97,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+85.7,AC,82,1830,7001,6687,103.51,[N/A],P0,78,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+86.7,AC,84,1335,7001,6687,99.65,[N/A],P0,96,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+87.8,AC,84,1035,7001,6687,104.65,[N/A],P0,83,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+88.8,AC,85,975,7001,6687,105.28,[N/A],P0,97,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+89.9,AC,84,1065,7001,6687,105.30,[N/A],P0,97,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+90.9,AC,86,1320,7001,6687,100.71,[N/A],P0,71,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+92.0,AC,84,1065,7001,6687,104.91,[N/A],P0,96,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+93.1,AC,85,1065,7001,6687,104.90,[N/A],P0,77,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+94.1,AC,85,1065,7001,6687,104.58,[N/A],P0,96,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+95.2,AC,86,1065,7001,6687,97.07,[N/A],P0,95,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+96.3,AC,86,1320,7001,6687,103.52,[N/A],P0,99,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+97.3,AC,85,1065,7001,6687,104.89,[N/A],P0,96,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+98.4,AC,85,1050,7001,6687,104.92,[N/A],P0,96,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+99.4,AC,85,1020,7001,6687,104.86,[N/A],P0,97,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+100.5,AC,83,1830,7001,6692,72.56,[N/A],P0,0,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+101.5,AC,82,1830,7001,6696,51.06,[N/A],P0,0,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+102.6,AC,79,315,6001,6696,27.05,[N/A],P3,6,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+103.6,AC,78,210,810,6696,18.53,[N/A],P5,5,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+104.7,AC,77,210,405,6696,17.52,[N/A],P8,8,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+105.8,AC,77,210,405,6696,18.27,[N/A],P8,12,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+106.8,AC,76,210,405,6696,16.98,[N/A],P8,8,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+107.9,AC,76,210,405,6691,17.20,[N/A],P8,18,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+108.9,AC,76,210,405,6691,16.86,[N/A],P8,7,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+110.0,AC,75,210,405,6696,19.40,[N/A],P8,4,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+111.1,AC,75,240,405,6700,17.08,[N/A],P8,4,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+112.2,AC,75,210,405,6698,17.16,[N/A],P8,15,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+113.2,AC,74,210,405,6698,16.55,[N/A],P8,3,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+114.3,AC,74,210,405,6698,16.42,[N/A],P8,0,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+115.4,AC,73,210,405,6697,16.63,[N/A],P8,4,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+116.4,AC,73,225,405,6692,17.22,[N/A],P8,44,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+117.5,AC,73,255,405,6696,18.94,[N/A],P8,40,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+118.6,AC,73,255,405,6700,16.48,[N/A],P8,3,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+119.6,AC,73,210,405,6700,17.62,[N/A],P8,2,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+120.7,AC,72,255,405,6701,16.46,[N/A],P8,3,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+121.8,AC,72,210,405,6701,16.82,[N/A],P8,7,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+122.8,AC,72,210,405,6697,17.21,[N/A],P8,7,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+123.9,AC,72,210,405,6695,16.54,[N/A],P8,3,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+125.0,AC,72,210,405,6693,16.51,[N/A],P8,3,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+126.0,AC,71,210,405,6693,16.36,[N/A],P8,3,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+127.1,AC,71,210,405,6693,16.38,[N/A],P8,5,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+128.1,AC,71,255,405,586,19.51,[N/A],P8,42,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,no model
+129.6,AC,71,1560,7001,590,19.76,[N/A],P0,44,0x0000000000000000,Not Active,Not Active,Not Active,Not Active,Not Active,no model
+130.7,AC,73,1875,7001,3221,39.15,[N/A],P0,10,0x0000000000000000,Not Active,Not Active,Not Active,Not Active,Not Active,no model
+131.8,AC,75,1875,7001,3220,49.96,[N/A],P0,22,0x0000000000000000,Not Active,Not Active,Not Active,Not Active,Not Active,no model
+132.8,AC,75,1560,7001,4588,56.65,[N/A],P0,6,0x0000000000000000,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:4b-q4_K_M 100% GPU 3.73/3.73 GiB ctx 8192
+133.9,AC,73,1560,7001,590,38.63,[N/A],P0,6,0x0000000000000000,Not Active,Not Active,Not Active,Not Active,Not Active,no model
+135.0,AC,73,1560,7001,586,36.40,[N/A],P0,22,0x0000000000000000,Not Active,Not Active,Not Active,Not Active,Not Active,no model
+136.0,AC,74,1875,7001,5363,39.80,[N/A],P0,14,0x0000000000000000,Not Active,Not Active,Not Active,Not Active,Not Active,no model
+137.1,AC,75,1875,7001,5363,50.17,[N/A],P0,24,0x0000000000000000,Not Active,Not Active,Not Active,Not Active,Not Active,no model
+138.2,AC,75,1650,7001,6679,50.34,[N/A],P0,23,0x0000000000000000,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+139.2,AC,79,930,7001,6679,102.97,[N/A],P0,96,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+140.3,AC,81,1110,7001,6679,104.48,[N/A],P0,96,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+141.3,AC,80,990,7001,6679,104.98,[N/A],P0,96,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+142.4,AC,80,1140,7001,6679,104.73,[N/A],P0,95,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+143.5,AC,79,1860,7001,6679,98.00,[N/A],P0,7,0x0000000000000000,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+144.5,AC,81,915,7001,6681,98.32,[N/A],P0,97,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+145.6,AC,81,945,7001,6681,103.42,[N/A],P0,97,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+146.6,AC,82,1410,7001,6681,102.65,[N/A],P0,66,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+147.7,AC,82,930,7001,6681,103.55,[N/A],P0,98,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+148.7,AC,82,1065,7001,6681,104.91,[N/A],P0,98,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+149.8,AC,84,1320,7001,6681,98.22,[N/A],P0,91,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+150.8,AC,84,1320,7001,6681,103.97,[N/A],P0,96,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+151.9,AC,83,1020,7001,6681,105.05,[N/A],P0,96,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+152.9,AC,83,1065,7001,6681,104.98,[N/A],P0,97,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+154.0,AC,84,1050,7001,6681,104.97,[N/A],P0,97,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+155.0,AC,80,1470,7001,6688,63.05,[N/A],P0,6,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+156.1,AC,79,1470,7001,6692,38.01,[N/A],P0,0,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+157.2,AC,77,300,810,6689,21.40,[N/A],P5,3,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+158.2,AC,76,210,405,6689,17.06,[N/A],P8,0,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+159.3,AC,76,210,405,6689,19.78,[N/A],P8,42,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+160.4,AC,75,225,405,6689,16.74,[N/A],P8,0,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+161.4,AC,75,210,405,6688,16.76,[N/A],P8,6,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+162.5,AC,74,210,405,6685,17.11,[N/A],P8,16,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+163.5,AC,74,210,405,6685,16.82,[N/A],P8,7,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+164.6,AC,74,210,405,6685,16.66,[N/A],P8,3,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+165.7,AC,74,210,405,6685,16.40,[N/A],P8,0,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+166.7,AC,73,225,405,6686,17.68,[N/A],P8,3,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+167.8,AC,73,270,405,6686,19.34,[N/A],P8,39,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+168.9,AC,73,300,405,6689,19.06,[N/A],P8,38,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+169.9,AC,73,315,405,6689,19.08,[N/A],P8,45,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+171.0,AC,73,315,405,6689,19.06,[N/A],P8,46,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+172.1,AC,73,315,405,6683,18.99,[N/A],P8,48,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+173.1,AC,73,315,405,6683,19.05,[N/A],P8,46,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+174.2,AC,72,315,405,6680,18.91,[N/A],P8,43,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+175.3,AC,72,300,405,6688,18.99,[N/A],P8,43,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+176.3,AC,72,300,405,6688,18.91,[N/A],P8,76,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+177.4,AC,79,915,7001,6683,90.13,[N/A],P0,96,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+178.5,AC,81,1335,7001,6683,103.16,[N/A],P0,100,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+179.5,AC,80,1005,7001,6683,105.21,[N/A],P0,97,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+180.6,AC,83,1320,7001,6680,98.83,[N/A],P0,100,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+181.7,AC,81,1050,7001,6680,104.84,[N/A],P0,96,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+182.7,AC,82,1065,7001,6680,105.11,[N/A],P0,97,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+183.8,AC,82,1050,7001,6680,96.83,[N/A],P0,8,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+184.8,AC,83,1050,7001,6680,105.18,[N/A],P0,100,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+185.9,AC,83,1050,7001,6680,104.40,[N/A],P0,96,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+186.9,AC,83,1020,7001,6680,105.03,[N/A],P0,97,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+188.0,AC,82,1860,7001,6680,94.76,[N/A],P0,97,0x0000000000000000,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+189.0,AC,83,960,7001,6680,99.12,[N/A],P0,96,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+190.1,AC,84,915,7001,6680,103.77,[N/A],P0,97,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+191.2,AC,85,915,7001,6688,104.57,[N/A],P0,55,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+192.2,AC,85,1050,7001,6688,105.03,[N/A],P0,96,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+193.3,AC,85,1065,7001,6688,94.92,[N/A],P0,96,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+194.3,AC,87,1050,7001,6688,104.84,[N/A],P0,97,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+195.4,AC,86,1035,7001,6688,105.15,[N/A],P0,97,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+196.4,AC,86,1035,7001,6688,105.07,[N/A],P0,96,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+197.5,AC,86,960,7001,6688,104.96,[N/A],P0,97,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+198.6,AC,83,1860,7001,6695,62.81,[N/A],P0,0,0x0000000000000000,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+199.6,AC,82,480,7001,6700,50.79,[N/A],P0,3,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+200.7,AC,80,315,6001,6699,26.24,[N/A],P3,1,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+201.7,AC,78,210,810,6698,18.99,[N/A],P5,2,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+202.8,AC,78,210,405,6697,17.50,[N/A],P8,7,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+203.9,AC,78,210,405,6697,17.11,[N/A],P8,3,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+204.9,AC,77,225,405,6699,19.10,[N/A],P8,3,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+206.0,AC,77,225,405,6699,17.08,[N/A],P8,6,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+207.0,AC,77,210,405,6699,17.07,[N/A],P8,6,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+208.1,AC,77,210,405,6698,17.40,[N/A],P8,11,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+209.2,AC,76,210,405,6696,16.98,[N/A],P8,7,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+210.2,AC,76,210,405,6693,17.02,[N/A],P8,6,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+211.3,AC,76,210,405,6693,19.62,[N/A],P8,43,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+212.4,AC,76,270,405,6693,19.77,[N/A],P8,46,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+213.4,AC,76,300,405,6696,19.61,[N/A],P8,46,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+214.5,AC,76,300,405,6696,19.40,[N/A],P8,44,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+215.5,AC,75,300,405,6696,19.39,[N/A],P8,42,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+216.6,AC,75,300,405,6696,19.26,[N/A],P8,35,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+217.7,AC,75,285,405,6690,19.29,[N/A],P8,39,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+218.7,AC,75,300,405,6688,19.36,[N/A],P8,38,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+219.8,AC,75,315,405,6688,18.70,[N/A],P8,40,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+220.8,AC,75,315,405,6688,20.25,[N/A],P8,38,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+221.9,AC,75,300,405,6688,19.06,[N/A],P8,37,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+223.0,AC,74,285,405,6688,19.25,[N/A],P8,38,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+224.0,AC,74,285,405,6688,19.16,[N/A],P8,38,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+225.1,AC,74,300,405,6688,19.16,[N/A],P8,38,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+226.2,AC,74,300,405,6688,19.12,[N/A],P8,35,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+227.2,AC,74,300,405,6696,19.02,[N/A],P8,34,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+228.3,AC,74,315,405,6696,18.83,[N/A],P8,34,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+229.3,AC,74,285,405,6692,19.40,[N/A],P8,36,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+230.4,AC,74,285,405,6692,18.98,[N/A],P8,35,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+231.4,AC,73,300,405,6692,19.17,[N/A],P8,36,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+232.5,AC,73,300,405,6688,19.23,[N/A],P8,40,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+233.6,AC,73,345,405,6688,19.27,[N/A],P8,34,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+234.6,AC,73,345,405,6688,19.01,[N/A],P8,32,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+235.7,AC,73,315,405,6688,19.00,[N/A],P8,35,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+236.7,AC,73,330,405,6688,19.07,[N/A],P8,36,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+237.8,AC,73,300,405,6688,19.05,[N/A],P8,36,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+238.8,AC,73,300,405,6688,18.98,[N/A],P8,37,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+239.9,AC,73,285,405,6688,19.04,[N/A],P8,37,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+241.0,AC,73,300,405,6696,19.02,[N/A],P8,35,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+242.0,AC,73,300,405,6691,18.81,[N/A],P8,35,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+243.1,AC,72,315,405,6691,19.18,[N/A],P8,37,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+244.2,AC,72,315,405,6691,18.88,[N/A],P8,34,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+245.2,AC,72,330,405,6691,18.57,[N/A],P8,35,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+246.3,AC,72,300,405,6688,18.93,[N/A],P8,33,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+247.4,AC,72,300,405,6688,18.99,[N/A],P8,36,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+248.5,AC,72,285,405,6688,18.97,[N/A],P8,37,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+249.5,AC,72,315,405,6688,18.79,[N/A],P8,35,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+250.6,AC,72,315,405,6688,18.85,[N/A],P8,35,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+251.6,AC,72,315,405,6688,18.91,[N/A],P8,36,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+252.7,AC,72,315,405,6688,18.88,[N/A],P8,36,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+253.8,AC,71,330,405,6688,18.95,[N/A],P8,34,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+254.8,AC,71,330,405,6688,18.84,[N/A],P8,40,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+255.9,AC,71,345,405,6696,18.18,[N/A],P8,48,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+257.0,AC,71,345,405,6692,18.65,[N/A],P8,32,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+258.0,AC,71,300,405,6692,19.02,[N/A],P8,45,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+259.1,AC,71,315,405,6692,19.16,[N/A],P8,42,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+260.1,AC,71,300,405,6692,19.47,[N/A],P8,41,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+261.2,AC,71,315,405,6688,19.00,[N/A],P8,41,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+262.2,AC,71,315,405,6688,18.78,[N/A],P8,37,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+263.3,AC,71,315,405,6688,18.78,[N/A],P8,34,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+264.4,AC,71,300,405,6688,18.60,[N/A],P8,35,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+265.4,AC,71,345,405,6688,19.01,[N/A],P8,33,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+266.5,AC,70,345,405,6688,18.58,[N/A],P8,33,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+267.6,AC,70,315,405,6688,18.80,[N/A],P8,36,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+268.6,AC,70,300,405,6688,18.43,[N/A],P8,34,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+269.7,AC,70,300,405,6692,18.71,[N/A],P8,39,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+270.7,AC,70,315,405,6692,18.77,[N/A],P8,34,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+271.8,AC,70,300,405,6688,18.61,[N/A],P8,33,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+272.8,AC,70,315,405,6688,18.72,[N/A],P8,36,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+273.9,AC,70,315,405,6688,18.76,[N/A],P8,33,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+275.0,AC,70,300,405,6688,18.71,[N/A],P8,34,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+276.0,AC,70,300,405,6688,18.61,[N/A],P8,39,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+277.1,AC,70,300,405,6688,18.61,[N/A],P8,35,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+278.2,AC,70,300,405,6688,18.77,[N/A],P8,37,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+279.2,AC,70,300,405,6688,18.44,[N/A],P8,35,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+280.3,AC,70,300,405,6688,18.43,[N/A],P8,37,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+281.4,AC,70,330,405,6688,18.74,[N/A],P8,37,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+282.4,AC,70,330,405,6688,18.55,[N/A],P8,36,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+283.5,AC,69,315,405,6688,18.57,[N/A],P8,36,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+284.5,AC,69,300,405,6696,18.69,[N/A],P8,35,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+285.6,AC,69,285,405,6696,18.62,[N/A],P8,37,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+286.7,AC,69,285,405,6692,19.27,[N/A],P8,39,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+287.7,AC,69,300,405,6692,18.94,[N/A],P8,39,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+288.8,AC,69,300,405,6692,18.66,[N/A],P8,36,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+289.9,AC,69,345,405,6688,18.71,[N/A],P8,36,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+290.9,AC,69,345,405,6688,18.64,[N/A],P8,34,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+292.0,AC,69,315,405,6688,18.67,[N/A],P8,32,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+293.0,AC,69,300,405,6688,19.00,[N/A],P8,36,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+294.1,AC,69,300,405,6688,18.85,[N/A],P8,35,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+295.2,AC,69,285,405,6688,18.70,[N/A],P8,45,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+296.3,AC,69,285,405,6688,18.74,[N/A],P8,43,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+297.3,AC,69,285,405,6688,19.10,[N/A],P8,44,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+298.4,AC,69,330,405,6688,18.57,[N/A],P8,41,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+299.4,AC,68,300,405,6688,18.39,[N/A],P8,36,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+300.5,AC,69,300,405,6688,18.52,[N/A],P8,35,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+301.6,AC,68,285,405,6688,18.52,[N/A],P8,36,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+302.6,AC,68,285,405,6696,18.58,[N/A],P8,37,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+303.7,AC,68,315,405,6696,18.62,[N/A],P8,34,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+304.7,AC,68,330,405,6691,18.51,[N/A],P8,35,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+305.8,AC,68,330,405,6691,18.68,[N/A],P8,37,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+306.9,AC,68,330,405,6691,18.31,[N/A],P8,36,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+308.0,AC,68,330,405,6688,18.56,[N/A],P8,35,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+309.0,AC,68,300,405,6688,18.50,[N/A],P8,31,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+310.1,AC,68,285,405,6688,18.52,[N/A],P8,35,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+311.1,AC,68,285,405,6688,18.49,[N/A],P8,36,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+312.2,AC,68,285,405,6688,18.51,[N/A],P8,36,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+313.2,AC,68,285,405,6688,18.04,[N/A],P8,37,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+314.3,AC,68,300,405,6688,18.55,[N/A],P8,37,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+315.3,AC,68,300,405,6688,18.47,[N/A],P8,35,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+316.4,AC,68,285,405,6688,18.47,[N/A],P8,38,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+317.5,AC,68,315,405,6696,18.57,[N/A],P8,35,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+318.5,AC,68,315,405,6696,18.54,[N/A],P8,33,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+319.6,AC,68,300,405,6692,18.31,[N/A],P8,33,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+320.7,AC,68,285,405,6692,18.33,[N/A],P8,32,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+321.7,AC,68,270,405,6692,18.34,[N/A],P8,35,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+322.8,AC,67,285,405,6688,18.48,[N/A],P8,38,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+323.9,AC,67,300,405,6688,18.49,[N/A],P8,35,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+324.9,AC,67,285,405,6688,18.21,[N/A],P8,31,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+326.0,AC,67,285,405,6688,18.40,[N/A],P8,35,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+327.1,AC,67,300,405,6688,18.41,[N/A],P8,36,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+328.1,AC,67,300,405,6688,18.41,[N/A],P8,37,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+329.2,AC,67,300,405,6692,18.36,[N/A],P8,32,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+330.2,AC,67,315,405,6697,17.17,[N/A],P8,32,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+331.3,AC,67,315,405,6698,15.78,[N/A],P8,5,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+332.4,AC,67,210,405,6698,16.91,[N/A],P8,13,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+333.5,AC,67,210,405,6698,15.90,[N/A],P8,3,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+334.5,AC,67,210,405,6698,15.94,[N/A],P8,4,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+335.6,AC,67,225,405,6697,18.45,[N/A],P8,42,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+336.6,AC,67,255,405,6697,18.68,[N/A],P8,46,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+337.7,AC,67,285,405,6697,18.38,[N/A],P8,37,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+338.8,AC,68,1560,7001,6744,21.70,[N/A],P0,13,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+339.8,AC,68,1560,7001,6761,37.44,[N/A],P0,8,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+340.9,AC,69,1560,7001,6754,37.22,[N/A],P0,7,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+342.0,AC,69,1560,7001,6752,37.26,[N/A],P0,7,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+343.0,AC,68,450,810,6752,23.27,[N/A],P5,21,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+344.1,AC,67,600,810,6739,19.07,[N/A],P5,55,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+345.2,AC,67,600,810,6729,18.97,[N/A],P5,18,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+346.2,AC,67,390,405,6729,18.78,[N/A],P8,38,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+347.3,AC,67,450,810,6724,18.86,[N/A],P5,42,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+348.4,AC,67,450,810,6742,18.55,[N/A],P5,19,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+349.4,AC,69,1560,7001,6747,37.28,[N/A],P0,7,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+350.5,AC,69,1560,7001,6754,37.18,[N/A],P0,5,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+351.5,AC,69,1560,7001,6753,36.85,[N/A],P0,0,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+352.6,AC,69,1560,7001,6753,36.76,[N/A],P0,2,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+353.7,AC,68,360,810,6753,20.40,[N/A],P5,1,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+354.7,AC,67,240,405,6753,16.09,[N/A],P8,3,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+355.8,AC,67,210,405,6753,15.99,[N/A],P8,3,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+356.8,AC,67,210,405,6752,15.99,[N/A],P8,4,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+357.9,AC,67,210,405,6752,16.11,[N/A],P8,9,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+359.0,AC,67,210,405,6754,16.78,[N/A],P8,52,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+360.0,AC,67,210,405,6754,15.64,[N/A],P8,0,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+361.1,AC,67,210,405,6754,16.33,[N/A],P8,0,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+362.2,AC,67,255,405,6754,18.61,[N/A],P8,38,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+363.2,AC,67,270,405,6757,17.43,[N/A],P8,18,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+364.3,AC,66,270,405,6757,15.75,[N/A],P8,3,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+365.4,AC,66,210,405,6754,15.94,[N/A],P8,6,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+366.5,AC,66,210,405,6754,15.74,[N/A],P8,3,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+367.5,AC,66,240,405,6754,18.36,[N/A],P8,39,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+368.6,AC,68,1185,7001,6749,20.80,[N/A],P0,56,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+369.7,AC,74,1365,7001,6748,98.91,[N/A],P0,99,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+370.7,AC,74,1080,7001,6758,105.05,[N/A],P0,97,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+371.8,AC,75,1095,7001,6755,104.93,[N/A],P0,96,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+372.8,AC,75,1125,7001,6750,104.79,[N/A],P0,96,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+373.9,AC,76,1125,7001,6750,104.64,[N/A],P0,96,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+375.0,AC,76,1080,7001,6737,104.88,[N/A],P0,97,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+376.0,AC,77,645,7001,6737,104.91,[N/A],P0,99,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+377.1,AC,77,915,7001,6737,104.38,[N/A],P0,97,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+378.2,AC,75,1650,7001,6737,96.79,[N/A],P0,97,0x0000000000000000,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+379.2,AC,79,1335,7001,6737,97.27,[N/A],P0,96,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+380.3,AC,78,1020,7001,6737,104.28,[N/A],P0,96,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+381.4,AC,79,1050,7001,6737,104.63,[N/A],P0,96,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+382.4,AC,77,1860,7001,6737,92.90,[N/A],P0,5,0x0000000000000000,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+383.5,AC,76,1860,7001,6745,49.85,[N/A],P0,0,0x0000000000000000,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+384.6,AC,74,465,6001,6743,26.10,[N/A],P3,2,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+385.6,AC,73,300,6001,6743,24.85,[N/A],P3,1,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+386.7,AC,72,210,810,6743,22.57,[N/A],P5,2,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+387.7,AC,71,210,810,6743,17.82,[N/A],P5,9,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+388.8,AC,71,210,405,6743,16.48,[N/A],P8,7,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+389.8,AC,71,210,405,6743,16.39,[N/A],P8,9,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+390.9,AC,70,210,405,6743,16.66,[N/A],P8,3,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+392.0,AC,70,225,405,6748,18.60,[N/A],P8,41,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+393.0,AC,70,285,405,6745,18.92,[N/A],P8,39,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+394.1,AC,77,1080,7001,6740,79.57,[N/A],P0,96,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+395.2,AC,78,990,7001,6744,104.71,[N/A],P0,80,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+396.2,AC,77,1875,7001,6744,101.29,[N/A],P0,98,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+397.3,AC,79,1080,7001,6739,91.39,[N/A],P0,96,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+398.3,AC,79,1395,7001,6739,104.89,[N/A],P0,96,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+399.4,AC,80,885,7001,6738,103.05,[N/A],P0,99,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+400.4,AC,80,1080,7001,6735,105.00,[N/A],P0,97,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+401.5,AC,80,1065,7001,6735,104.99,[N/A],P0,97,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+402.5,AC,81,1050,7001,6735,101.54,[N/A],P0,96,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+403.6,AC,80,1185,7001,6735,98.68,[N/A],P0,54,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+404.6,AC,81,1050,7001,6735,100.53,[N/A],P0,96,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+405.7,AC,81,1035,7001,6735,104.41,[N/A],P0,97,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+406.8,AC,84,1335,7001,6735,103.80,[N/A],P0,99,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+407.8,AC,83,1065,7001,6735,104.86,[N/A],P0,96,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+408.9,AC,84,1065,7001,6735,102.08,[N/A],P0,96,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+409.9,AC,83,1080,7001,6735,104.93,[N/A],P0,97,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+411.0,AC,84,1065,7001,6735,101.29,[N/A],P0,97,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+412.0,AC,84,1065,7001,6735,105.05,[N/A],P0,97,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+413.1,AC,82,1860,7001,6735,103.00,[N/A],P0,97,0x0000000000000000,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+414.1,AC,85,1305,7001,6735,99.36,[N/A],P0,97,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+415.2,AC,84,960,7001,6735,104.31,[N/A],P0,97,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+416.2,AC,86,1320,7001,6735,102.15,[N/A],P0,97,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+417.3,AC,85,1035,7001,6735,104.91,[N/A],P0,97,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+418.4,AC,85,1050,7001,6735,104.93,[N/A],P0,97,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+419.4,AC,85,1305,7001,6735,97.50,[N/A],P0,51,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+420.5,AC,85,810,7001,6748,102.02,[N/A],P0,96,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+421.6,AC,84,1170,7001,6748,94.75,[N/A],P0,59,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+422.6,AC,86,795,7001,6745,100.16,[N/A],P0,98,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+423.7,AC,86,750,7001,6745,104.15,[N/A],P0,97,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+424.7,AC,86,765,7001,6745,104.53,[N/A],P0,98,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+425.7,AC,87,1185,7001,6742,88.20,[N/A],P0,59,0x0000000000000020,Not Active,Not Active,Not Active,Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+426.8,AC,87,870,7001,6742,110.36,[N/A],P0,96,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+427.9,AC,87,885,7001,6742,105.94,[N/A],P0,97,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+428.9,AC,88,1110,7001,6742,88.64,[N/A],P0,76,0x0000000000000020,Not Active,Not Active,Not Active,Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+430.0,AC,87,705,7001,6742,103.20,[N/A],P0,97,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+431.1,AC,88,1065,7001,6747,100.91,[N/A],P0,100,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+432.1,AC,88,1110,7001,6747,94.09,[N/A],P0,97,0x0000000000000020,Not Active,Not Active,Not Active,Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+433.2,AC,88,810,7001,6748,103.44,[N/A],P0,100,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+434.2,AC,88,1245,7001,6746,105.20,[N/A],P0,97,0x0000000000000020,Not Active,Not Active,Not Active,Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+435.3,AC,88,585,7001,6746,103.03,[N/A],P0,97,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+436.3,AC,88,660,7001,6746,105.59,[N/A],P0,96,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+437.4,AC,88,1110,7001,6747,88.95,[N/A],P0,97,0x0000000000000020,Not Active,Not Active,Not Active,Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+438.4,AC,89,855,7001,6748,110.96,[N/A],P0,95,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+439.5,AC,88,585,7001,6748,94.02,[N/A],P0,97,0x0000000000000020,Not Active,Not Active,Not Active,Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+440.6,AC,89,825,7001,6748,90.50,[N/A],P0,96,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+441.6,AC,89,825,7001,6745,104.27,[N/A],P0,96,0x0000000000000004,Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+442.7,AC,89,735,7001,6745,99.68,[N/A],P0,96,0x0000000000000020,Not Active,Not Active,Not Active,Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+443.7,AC,89,960,7001,6744,82.55,[N/A],P0,100,0x0000000000000020,Not Active,Not Active,Not Active,Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+444.8,AC,89,615,7001,6741,96.20,[N/A],P0,96,0x0000000000000020,Not Active,Not Active,Not Active,Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+445.9,AC,89,645,7001,6741,95.63,[N/A],P0,97,0x0000000000000020,Not Active,Not Active,Not Active,Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+446.9,AC,88,825,7001,6748,79.41,[N/A],P0,97,0x0000000000000020,Not Active,Not Active,Not Active,Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+448.0,AC,89,675,7001,6748,87.60,[N/A],P0,98,0x0000000000000020,Not Active,Not Active,Not Active,Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+449.1,AC,89,705,7001,6740,93.77,[N/A],P0,97,0x0000000000000020,Not Active,Not Active,Not Active,Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+450.1,AC,89,675,7001,6744,93.45,[N/A],P0,97,0x0000000000000020,Not Active,Not Active,Not Active,Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+451.2,AC,88,1530,7001,6744,39.18,[N/A],P0,97,0x0000000000000020,Not Active,Not Active,Not Active,Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+452.2,AC,86,1110,7001,6742,47.83,[N/A],P0,58,0x0000000000000020,Not Active,Not Active,Not Active,Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+453.3,AC,85,645,6001,6744,40.44,[N/A],P3,6,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+454.3,AC,84,420,6001,6748,26.86,[N/A],P3,0,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+455.4,AC,83,270,6001,6748,26.58,[N/A],P3,2,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+456.4,AC,83,210,6001,6748,26.27,[N/A],P3,0,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+457.5,AC,82,210,810,6748,19.29,[N/A],P5,6,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+458.6,AC,83,1560,7001,6748,41.23,[N/A],P0,1,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+459.6,AC,83,1560,7001,6743,40.89,[N/A],P0,0,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+460.7,AC,83,1560,7001,6744,41.10,[N/A],P0,6,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+461.7,AC,82,390,810,6744,33.21,[N/A],P5,1,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+462.8,AC,81,255,405,6742,19.81,[N/A],P8,10,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+463.8,AC,81,210,405,6742,17.34,[N/A],P8,3,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+464.9,AC,80,240,405,6748,17.81,[N/A],P8,39,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+466.0,AC,80,240,405,6747,17.28,[N/A],P8,0,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+467.1,AC,79,210,405,6747,16.93,[N/A],P8,3,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+468.1,AC,79,225,405,6747,17.79,[N/A],P8,10,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+469.2,AC,79,225,405,6745,16.99,[N/A],P8,0,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+470.2,AC,79,210,405,6745,17.51,[N/A],P8,7,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+471.3,AC,79,210,405,6743,17.55,[N/A],P8,7,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+472.4,AC,78,210,405,6747,17.25,[N/A],P8,1,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+473.4,AC,78,240,405,6755,17.50,[N/A],P8,6,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+474.5,AC,78,240,405,6753,17.06,[N/A],P8,8,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+475.5,AC,77,210,405,6756,19.90,[N/A],P8,7,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+476.6,AC,77,210,405,6754,16.94,[N/A],P8,10,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+477.7,AC,77,210,405,6754,16.97,[N/A],P8,10,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+478.7,AC,77,210,405,6754,17.05,[N/A],P8,0,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+479.8,AC,77,210,405,6754,16.86,[N/A],P8,3,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+480.9,AC,77,210,405,6749,17.83,[N/A],P8,0,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+481.9,AC,76,210,405,6749,17.83,[N/A],P8,3,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+483.0,AC,76,210,405,6737,17.26,[N/A],P8,10,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+484.1,AC,76,210,405,6737,16.64,[N/A],P8,1,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+485.1,AC,76,255,405,6756,18.94,[N/A],P8,41,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+486.2,AC,76,255,405,6748,16.83,[N/A],P8,3,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+487.3,AC,75,210,405,6747,17.11,[N/A],P8,3,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+488.3,AC,75,210,405,6745,17.44,[N/A],P8,10,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+489.4,AC,75,210,405,6745,16.66,[N/A],P8,3,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+490.4,AC,75,210,405,6741,16.81,[N/A],P8,1,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+491.5,AC,75,210,405,6741,16.67,[N/A],P8,0,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+492.6,AC,74,210,405,6741,16.71,[N/A],P8,7,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+493.6,AC,74,210,405,6755,17.05,[N/A],P8,3,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+494.7,AC,74,270,405,6755,19.30,[N/A],P8,38,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+495.8,AC,74,270,405,6752,16.76,[N/A],P8,3,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+496.8,AC,74,210,405,6745,16.33,[N/A],P8,0,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+497.9,AC,74,210,405,6753,16.95,[N/A],P8,6,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+498.9,AC,74,210,405,6753,16.42,[N/A],P8,3,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+500.0,AC,73,210,405,6753,16.55,[N/A],P8,3,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+501.1,AC,73,240,405,6753,19.46,[N/A],P8,4,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+502.2,AC,73,270,405,6747,18.18,[N/A],P8,38,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+503.2,AC,73,270,405,6743,17.28,[N/A],P8,8,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+504.3,AC,73,210,405,6747,17.01,[N/A],P8,19,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+505.4,AC,73,210,405,6746,16.71,[N/A],P8,5,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+506.4,AC,73,210,405,6744,16.65,[N/A],P8,13,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+507.5,AC,72,210,405,6744,16.51,[N/A],P8,12,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+508.6,AC,73,240,405,6747,20.03,[N/A],P8,44,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+509.6,AC,72,270,405,6747,16.94,[N/A],P8,2,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+510.7,AC,72,270,405,6759,16.88,[N/A],P8,3,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+511.7,AC,72,210,405,6759,16.38,[N/A],P8,0,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+512.8,AC,72,225,405,6759,17.95,[N/A],P8,6,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+513.9,AC,72,255,405,6751,17.89,[N/A],P8,7,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+514.9,AC,72,255,405,6747,15.87,[N/A],P8,2,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+516.0,AC,72,210,405,6747,16.53,[N/A],P8,7,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+517.0,AC,71,210,405,6745,16.13,[N/A],P8,7,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+518.1,AC,71,210,405,6743,16.62,[N/A],P8,6,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+519.2,AC,73,1560,7001,6741,37.71,[N/A],P0,10,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+520.2,AC,73,1560,7001,6741,37.84,[N/A],P0,0,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+521.3,AC,73,1560,7001,6747,38.02,[N/A],P0,0,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+522.3,AC,72,315,405,6747,18.85,[N/A],P8,18,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+523.4,AC,71,315,405,6739,18.99,[N/A],P8,34,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+524.4,AC,71,300,405,6747,18.90,[N/A],P8,36,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+525.5,AC,71,360,405,6747,18.88,[N/A],P8,33,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+526.6,AC,71,330,405,6744,18.86,[N/A],P8,37,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+527.6,AC,71,315,405,6739,18.86,[N/A],P8,35,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+528.7,AC,71,315,405,6739,18.94,[N/A],P8,36,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+529.8,AC,71,330,405,6737,18.93,[N/A],P8,34,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+530.8,AC,71,345,405,6742,18.90,[N/A],P8,33,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+531.9,AC,71,450,810,6741,19.15,[N/A],P5,18,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+532.9,AC,73,1560,7001,6796,28.00,[N/A],P0,17,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+534.0,AC,73,1560,7001,6808,38.36,[N/A],P0,3,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+535.1,AC,74,1560,7001,6818,38.66,[N/A],P0,5,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+536.2,AC,72,405,810,6822,23.01,[N/A],P5,23,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+537.3,AC,74,1560,7001,6819,32.85,[N/A],P0,3,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+538.3,AC,74,1560,7001,6767,38.88,[N/A],P0,7,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+539.4,AC,74,1560,7001,6813,38.77,[N/A],P0,6,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+540.5,AC,73,435,810,6807,22.13,[N/A],P5,33,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+541.5,AC,74,1560,7001,6806,38.25,[N/A],P0,5,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+542.6,AC,74,1560,7001,6804,39.04,[N/A],P0,7,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+543.6,AC,75,1560,7001,6789,39.18,[N/A],P0,6,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+544.7,AC,73,435,810,6799,21.05,[N/A],P5,2,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+5,6739,18.96,[N/A],P8,36,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+547.4,AC,71,360,405,6747,19.01,[N/A],P8,35,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+548.4,AC,71,360,405,6747,18.88,[N/A],P8,33,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+549.5,AC,71,330,405,6744,18.86,[N/A],P8,37,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+550.6,AC,71,315,405,6739,18.86,[N/A],P8,35,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+551.6,AC,71,315,405,6739,18.94,[N/A],P8,36,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+552.7,AC,71,330,405,6737,18.93,[N/A],P8,34,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+553.8,AC,71,345,405,6740,18.90,[N/A],P8,33,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+554.8,AC,71,450,810,6741,19.34,[N/A],P5,18,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+555.9,AC,73,1560,7001,6796,28.00,[N/A],P0,17,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+556.9,AC,73,1560,7001,6823,38.36,[N/A],P0,3,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+558.0,AC,74,1560,7001,6815,38.66,[N/A],P0,5,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+559.1,AC,72,405,810,6819,23.01,[N/A],P5,23,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+560.2,AC,74,1560,7001,6819,32.85,[N/A],P0,3,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+561.2,AC,74,1560,7001,6765,38.88,[N/A],P0,7,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+562.3,AC,74,1560,7001,6813,38.77,[N/A],P0,6,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+563.4,AC,73,1560,7001,6807,39.95,[N/A],P0,10,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+564.4,AC,74,1560,7001,6806,38.25,[N/A],P0,5,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+565.5,AC,74,1560,7001,6804,39.04,[N/A],P0,7,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+566.5,AC,75,1560,7001,6789,39.18,[N/A],P0,6,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192
+567.6,AC,73,435,810,6800,21.05,[N/A],P5,2,0x0000000000000001,Not Active,Not Active,Not Active,Not Active,Not Active,qwen3:8b 100% GPU 5.77/5.77 GiB ctx 8192

@@ -245,3 +245,17 @@ def test_off_topic_inside_a_dialog_with_a_batch_does_not_recalculate(memory):
     assert final["tools"] == [] and "биогаз" in final["explanation"]
     _, refined = run(agent, "off-topic-2", "Жидкий.")          # a fact update still recalculates
     assert refined["tools"] == ["estimate_methane"]
+
+
+def test_gpu_status_lists_other_models_in_vram(monkeypatch):
+    """Another model in VRAM (old chat, benchmark) makes the next answer wait for a reload: the UI must see it."""
+    import io
+    from src.agent_v10 import llm as llm_module
+
+    loaded = {"models": [{"name": "qwen3:8b", "size": 100, "size_vram": 100, "context_length": 8192},
+                         {"name": "qwen2.5:1.5b", "size": 10, "size_vram": 10}]}
+    monkeypatch.setattr(llm_module.urllib.request, "urlopen", lambda *a, **k: io.BytesIO(json.dumps(loaded).encode()))
+    status = llm_module.OllamaClient(model="qwen3:8b").gpu_status()
+    assert status["loaded"] and status["gpu_percent"] == 100 and status["others"] == ["qwen2.5:1.5b"]
+    loaded["models"] = loaded["models"][1:]
+    assert llm_module.OllamaClient(model="qwen3:8b").gpu_status() == {"loaded": False, "others": ["qwen2.5:1.5b"]}
