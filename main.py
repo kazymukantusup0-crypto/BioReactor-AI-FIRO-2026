@@ -2,19 +2,6 @@
 from pathlib import Path
 import sys
 ROOT = Path(__file__).resolve().parent
-_local_deps = ROOT / '.deps'
-if _local_deps.exists():
-    # Some managed environments expose the directory but deny reads of a
-    # shadowing vendored module. Do not make the whole CLI unusable in that
-    # case; the interpreter can continue with its normal installed packages.
-    _shadowed_six = _local_deps / 'six.py'
-    try:
-        if _shadowed_six.exists():
-            with _shadowed_six.open('rb'):
-                pass
-        sys.path.insert(0, str(_local_deps))
-    except OSError:
-        pass
 import argparse
 import json
 

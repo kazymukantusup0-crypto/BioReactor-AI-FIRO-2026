@@ -1,8 +1,5 @@
-"""Scientific BMP research pipeline."""
-from pathlib import Path
-import sys
+"""Scientific BMP research pipeline.
 
-# Optional project-local binary dependencies, shared by CLI, API and pytest.
-_runtime = Path(__file__).resolve().parent.parent / '.runtime-deps'
-if _runtime.is_dir() and str(_runtime) not in sys.path:
-    sys.path.insert(0, str(_runtime))
+Dependencies are installed into the project virtual environment (.venv)
+from requirements.txt; no vendored package folders are used.
+"""

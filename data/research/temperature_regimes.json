@@ -1,0 +1,58 @@
+{
+  "version": "10.0",
+  "purpose": "Simplified comparison of the three classic digestion temperature regimes for the agent_v10 tool recommend_temperature_regime. The reference temperatures come from the cited sources. The digestion days and the share of the laboratory methane potential (BMP) reached in that time are MODEL ASSUMPTIONS (typical review ranges), shown to the user as such.",
+  "label": "ASSUMPTION",
+  "regimes": [
+    {
+      "id": "psychrophilic",
+      "name": {"ru": "психрофильный", "en": "psychrophilic", "kk": "психрофильді"},
+      "temperature_range_c": [15, 25],
+      "setpoint_c": 20,
+      "digestion_days": {"low": 60, "high": 90},
+      "share_of_bmp": {"low": 0.45, "high": 0.65},
+      "stability": "high",
+      "risks": {
+        "ru": "Очень медленно: газа заметно меньше и сбраживание идёт 2–3 месяца.",
+        "en": "Very slow: noticeably less gas and digestion takes 2–3 months.",
+        "kk": "Өте баяу: газ айтарлықтай аз, ашыту 2–3 айға созылады."
+      },
+      "source_ids": ["kashyap2003", "epa_agstar_operator_2020"]
+    },
+    {
+      "id": "mesophilic",
+      "name": {"ru": "мезофильный", "en": "mesophilic", "kk": "мезофильді"},
+      "temperature_range_c": [35, 38],
+      "setpoint_c": 37,
+      "digestion_days": {"low": 25, "high": 35},
+      "share_of_bmp": {"low": 0.75, "high": 0.90},
+      "stability": "high",
+      "risks": {
+        "ru": "Самый распространённый и устойчивый режим; бактерии прощают небольшие колебания температуры.",
+        "en": "The most common and stable regime; bacteria tolerate small temperature swings.",
+        "kk": "Ең кең таралған және тұрақты режим; бактериялар температураның шағын ауытқуына төзімді."
+      },
+      "source_ids": ["fao_environment", "moset2015"]
+    },
+    {
+      "id": "thermophilic",
+      "name": {"ru": "термофильный", "en": "thermophilic", "kk": "термофильді"},
+      "temperature_range_c": [50, 55],
+      "setpoint_c": 52,
+      "digestion_days": {"low": 15, "high": 20},
+      "share_of_bmp": {"low": 0.80, "high": 0.95},
+      "stability": "low",
+      "risks": {
+        "ru": "Быстрее и лучше обеззараживает, но нужен точный нагрев (±1 °C) и есть риск аммиачного ингибирования.",
+        "en": "Faster and better sanitation, but needs precise heating (±1 °C) and risks ammonia inhibition.",
+        "kk": "Жылдам әрі жақсы залалсыздандырады, бірақ дәл қыздыру (±1 °C) керек және аммиак тежелу қаупі бар."
+      },
+      "source_ids": ["fao_environment", "moset2015"]
+    }
+  ],
+  "sources": [
+    {"id": "fao_environment", "title": "FAO, Marchaim (1992) — Biogas processes for sustainable development: environmental factors (reference points 35 °C and 55 °C; temperature stability)", "doi": null, "year": 1992, "url": "https://www.fao.org/4/t0541e/T0541E06.htm"},
+    {"id": "moset2015", "title": "Moset et al. (2015) — Mesophilic versus thermophilic anaerobic digestion of cattle manure: methane productivity and microbial ecology", "doi": "10.1111/1751-7915.12271", "year": 2015, "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4554467/"},
+    {"id": "kashyap2003", "title": "Kashyap, Dadhich, Sharma (2003) — Biomethanation under psychrophilic conditions: a review. Bioresource Technology 87(2)", "doi": "10.1016/S0960-8524(02)00205-5", "year": 2003, "url": null},
+    {"id": "epa_agstar_operator_2020", "title": "US EPA AgSTAR (2020) — Anaerobic Digester/Biogas System Operator Guidebook (temperature affects rate and microbes)", "doi": null, "year": 2020, "url": "https://www.epa.gov/sites/default/files/2020-11/documents/agstar-operator-guidebook.pdf"}
+  ]
+}

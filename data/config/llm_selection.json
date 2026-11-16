@@ -1,9 +1,14 @@
 {
   "model": "qwen3:8b",
-  "num_ctx": 2048,
+  "fallback_model": "qwen3:4b-q4_K_M",
   "quantization": "Q4_K_M",
-  "benchmark": "reports/stage7/llm_benchmark.json",
-  "selection_basis": "Identical production NLU prompt and task suite: success 9/11 versus 5/11; required-tool inclusion 3/3 each. Small proxy benchmark, not a general quality guarantee.",
-  "fallback_model": "qwen2.5:1.5b",
-  "limitations": "Literal-span validation and deterministic arithmetic remain mandatory. Temperature and no-measurement cases still require parser safeguards."
+  "num_ctx": 8192,
+  "think": false,
+  "keep_alive": "30m",
+  "num_predict": 300,
+  "num_gpu": 999,
+  "ollama_url": "http://127.0.0.1:11434",
+  "benchmark": "docs/benchmark.md",
+  "notes": "num_ctx=8192: checked in docs/benchmark.md — qwen3:8b stays 100% on GPU (6.2 of 8 GB), same speed as 4096, and long dialogs are not cut from the start. num_gpu=999 asks Ollama to put every layer on the GPU (RTX 3070 Laptop, 8 GB). think=false disables qwen3 reasoning tokens for fast answers. keep_alive keeps the model in VRAM for 30 minutes between questions.",
+  "limitations": "All numbers come from Python tools; the LLM only chooses tools and explains results."
 }

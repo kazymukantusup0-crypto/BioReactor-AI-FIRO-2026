@@ -1,3 +1,0 @@
--r requirements-market.txt
-pypdf==6.21.4
-PyMuPDF==1.26.7

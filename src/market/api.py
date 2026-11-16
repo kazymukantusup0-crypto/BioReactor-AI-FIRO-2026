@@ -139,6 +139,9 @@ def create_app(store=None,scheduler_enabled=None,interval=None,*,firo_demo=False
     app.include_router(research_router(db))
     from src.advisor.api import create_router as advisor_router
     app.include_router(advisor_router(db))
+    # Agent v10: tool-calling LLM agent with an SSE "thinking feed" (/api/agent/*).
+    from src.agent_v10.api import create_router as agent_v10_router
+    app.include_router(agent_v10_router())
     if (ROOT/'frontend/dist/index.html').is_file():
         app.mount('/dashboard',StaticFiles(directory=ROOT/'frontend/dist',html=True),name='dashboard')
     return app

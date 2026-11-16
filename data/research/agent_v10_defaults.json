@@ -1,0 +1,70 @@
+{
+  "version": "10.0",
+  "purpose": "Fallback values for the agent_v10 tools. Reviewed literature profiles from data/research/*.json are ALWAYS used first; these values are only used where no reviewed profile or density profile exists, and every use is shown to the user as an assumption.",
+  "sources": [
+    {
+      "id": "fnr-faustzahlen",
+      "title": "FNR — Faustzahlen Biogas (rules of thumb: substrate gas yields, methane content, 9.97 kWh/m3 CH4)",
+      "organization": "Fachagentur Nachwachsende Rohstoffe e. V.",
+      "url": "https://biogas.fnr.de/daten-und-fakten/faustzahlen",
+      "year": null
+    },
+    {
+      "id": "fnr-cattle-slurry-composition-2024",
+      "title": "FNR — Basisdaten Bioenergie Deutschland 2024 (cattle slurry methane content 55 %)",
+      "organization": "FNR",
+      "url": "https://www.fnr.de/fileadmin/Projekte/2023/Mediathek/Broschuere_Basisdaten_Bioenergie_2023_web.pdf",
+      "year": 2023
+    },
+    {
+      "id": "alberta2005",
+      "title": "Alberta Agriculture — Manure density reference values (Table 3)",
+      "organization": "Alberta Agriculture",
+      "url": null,
+      "year": 2005
+    }
+  ],
+  "default_state": {
+    "comment": "Physical state assumed when the user does not say it. volume = amount given in litres/m3/buckets, mass = kg/t.",
+    "cattle_manure": {"volume": "slurry", "mass": "slurry"},
+    "swine_manure": {"volume": "slurry", "mass": "slurry"},
+    "poultry_manure": {"volume": "fresh_solid", "mass": "fresh_solid"},
+    "sheep_goat_manure": {"volume": "fresh_solid", "mass": "fresh_solid"},
+    "horse_manure": {"volume": "fresh_solid", "mass": "fresh_solid"},
+    "food_waste": {"volume": "fresh_solid", "mass": "fresh_solid"},
+    "vegetable_waste": {"volume": "fresh_solid", "mass": "fresh_solid"},
+    "grass": {"volume": "fresh_solid", "mass": "fresh_solid"},
+    "silage": {"volume": "silage", "mass": "silage"},
+    "straw": {"volume": "dry", "mass": "dry"},
+    "manure": {"volume": "slurry", "mass": "slurry"}
+  },
+  "generic_manure_material": "cattle_manure",
+  "density_kg_l": {
+    "comment": "Used only when data/research/advanced_profiles.json has no density for this material and state.",
+    "slurry": {"low": 1.0, "high": 1.02, "source_id": "alberta2005", "note": "liquid manure is close to water"},
+    "prepared_pulp": {"low": 1.0, "high": 1.05, "source_id": null, "note": "pulped wet waste close to water"},
+    "fresh_solid": {"low": 0.5, "high": 0.8, "source_id": null, "note": "loose wet solids; packing varies a lot"},
+    "silage": {"low": 0.55, "high": 0.75, "source_id": null, "note": "compacted silage"},
+    "dry": {"low": 0.06, "high": 0.36, "source_id": "alberta2005", "note": "loose to baled straw"},
+    "bedded": {"low": 0.6, "high": 0.9, "source_id": "alberta2005", "note": "manure with bedding"}
+  },
+  "methane_fraction": {
+    "comment": "Share of CH4 in biogas. Literature reference ranges, used to convert methane to total biogas.",
+    "cattle_manure": {"low": 0.55, "high": 0.60, "source_id": "fnr-cattle-slurry-composition-2024"},
+    "swine_manure": {"low": 0.60, "high": 0.65, "source_id": "fnr-faustzahlen"},
+    "poultry_manure": {"low": 0.55, "high": 0.65, "source_id": "fnr-faustzahlen"},
+    "sheep_goat_manure": {"low": 0.55, "high": 0.60, "source_id": "fnr-faustzahlen"},
+    "horse_manure": {"low": 0.55, "high": 0.60, "source_id": "fnr-faustzahlen"},
+    "food_waste": {"low": 0.55, "high": 0.65, "source_id": "fnr-faustzahlen"},
+    "vegetable_waste": {"low": 0.52, "high": 0.60, "source_id": "fnr-faustzahlen"},
+    "grass": {"low": 0.52, "high": 0.56, "source_id": "fnr-faustzahlen"},
+    "silage": {"low": 0.52, "high": 0.55, "source_id": "fnr-faustzahlen"},
+    "straw": {"low": 0.50, "high": 0.55, "source_id": "fnr-faustzahlen"}
+  },
+  "fallback_composition": {
+    "comment": "Typical handbook ranges for materials that have NO reviewed profile in data/research. Labelled as assumptions.",
+    "silage": {"ts_fraction": {"low": 0.30, "high": 0.35}, "vs_fraction_of_ts": {"low": 0.94, "high": 0.96}, "bmp_ml_g_vs": {"low": 310, "high": 360}, "source_id": "fnr-faustzahlen", "label": "maize silage, typical handbook range"},
+    "food_waste/fresh_solid": {"ts_fraction": {"low": 0.20, "high": 0.30}, "vs_fraction_of_ts": {"low": 0.85, "high": 0.95}, "bmp_ml_g_vs": {"low": 400, "high": 500}, "source_id": "fnr-faustzahlen", "label": "kitchen/canteen food waste, typical range"},
+    "vegetable_waste": {"ts_fraction": {"low": 0.08, "high": 0.15}, "vs_fraction_of_ts": {"low": 0.80, "high": 0.90}, "bmp_ml_g_vs": {"low": 300, "high": 400}, "source_id": "fnr-faustzahlen", "label": "vegetable waste, typical range"}
+  }
+}
