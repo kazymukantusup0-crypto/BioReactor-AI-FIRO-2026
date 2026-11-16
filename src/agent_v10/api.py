@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import json
 import threading
+import time
 from collections.abc import Iterator
 
 from fastapi import APIRouter
@@ -24,6 +25,7 @@ from pydantic import BaseModel, Field
 from src.agent_v10.agent import Agent
 from src.agent_v10.config import demo_reactor
 from src.agent_v10.facts import EMPTY_FACTS, apply_overrides
+from src.agent_v10.keepalive import KeepAlive, interval_from_env, ping
 from src.agent_v10.memory import Memory
 
 
@@ -70,13 +72,20 @@ def create_router(agent: Agent | None = None) -> APIRouter:
     """Router factory; tests pass their own Agent (temporary DB, fake LLM)."""
     router = APIRouter(prefix="/api/agent", tags=["agent v10"])
     holder: dict = {"agent": agent}
-    busy = {"active": 0}  # chat streams in progress in this server
+    busy = {"active": 0, "last_used": time.monotonic()}  # chat streams in progress, end of the last one
     busy_lock = threading.Lock()
 
     def get_agent() -> Agent:
         if holder["agent"] is None:
             holder["agent"] = Agent()
         return holder["agent"]
+
+    interval = interval_from_env()
+    if interval:
+        # Demo mode (ЗАПУСК_BioReactor.bat): keep the model and the GPU awake between questions.
+        holder["keepalive"] = KeepAlive(interval, is_busy=lambda: busy["active"] > 0,
+                                        last_used=lambda: busy["last_used"],
+                                        do_ping=lambda: ping(get_agent().llm)).start()
 
     @router.post("/chat")
     def chat(body: ChatRequest) -> StreamingResponse:
@@ -100,6 +109,7 @@ def create_router(agent: Agent | None = None) -> APIRouter:
             finally:
                 with busy_lock:
                     busy["active"] -= 1
+                    busy["last_used"] = time.monotonic()
 
         return StreamingResponse(stream(), media_type="text/event-stream",
                                  headers={"Cache-Control": "no-cache", "X-Conversation-Id": conversation_id})
@@ -129,8 +139,11 @@ def create_router(agent: Agent | None = None) -> APIRouter:
     def status() -> dict:
         llm = get_agent().llm
         available = llm.available()
+        keepalive = holder.get("keepalive")
         return {"model": llm.model, "llm_available": available, "offline": True,
-                "mode": "llm" if available else "no_llm", "gpu": llm.gpu_status() if available else {"loaded": False}}
+                "mode": "llm" if available else "no_llm", "gpu": llm.gpu_status() if available else {"loaded": False},
+                "keepalive": {"interval_s": keepalive.interval, "pings": keepalive.pings, "errors": keepalive.errors}
+                if keepalive else None}
 
     @router.get("/demo-reactor")
     def demo() -> dict:

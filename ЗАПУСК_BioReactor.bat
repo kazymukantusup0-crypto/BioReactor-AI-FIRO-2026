@@ -10,6 +10,10 @@ cd /d "%~dp0"
 title BioReactor AI
 
 set "PORT=8765"
+rem Demo mode: every 150 s without questions the server sends the model a one-token "ping",
+rem so the GPU and the model do not fall asleep between the jury's questions (src/agent_v10/keepalive.py).
+rem The ping is skipped while an answer is running. Set 0 to switch it off.
+if not defined BIOREACTOR_KEEPALIVE_S set "BIOREACTOR_KEEPALIVE_S=150"
 if not defined OLLAMA_URL set "OLLAMA_URL=http://127.0.0.1:11434"
 set "DASHBOARD_URL=http://127.0.0.1:%PORT%/dashboard/#/chat"
 
@@ -103,6 +107,7 @@ goto :end
 :run_dashboard
 echo       Адрес: %DASHBOARD_URL%
 echo       Браузер откроется сам. Чтобы остановить - закройте это окно или нажмите Ctrl+C.
+echo       Модель не засыпает: короткий пинг раз в %BIOREACTOR_KEEPALIVE_S% с, если нет вопросов.
 echo.
 python main.py dashboard --port %PORT%
 if errorlevel 1 goto :error_dashboard
