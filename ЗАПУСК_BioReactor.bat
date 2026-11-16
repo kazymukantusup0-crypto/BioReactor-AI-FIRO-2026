@@ -5,6 +5,10 @@ rem  1) Python environment (.venv)   2) Ollama + model warm-up
 rem  3) Frontend build (if missing)  4) Dashboard + browser on AI Chat
 rem ==================================================================
 chcp 65001 >nul
+rem UTF-8 for every Python started from here (console output and files opened without an encoding),
+rem so Russian/Kazakh text and signs like "−" or "→" never crash on the Windows cp1251 console.
+set "PYTHONUTF8=1"
+set "PYTHONIOENCODING=utf-8"
 setlocal EnableExtensions
 cd /d "%~dp0"
 title BioReactor AI

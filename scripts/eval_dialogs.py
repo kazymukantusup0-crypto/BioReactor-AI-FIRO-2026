@@ -439,6 +439,10 @@ def write_report(rows: list[dict], summary: dict, output: Path) -> None:
 
 
 def main() -> None:
+    # Windows console is cp1251: without this a printed "−" or "→" crashes the run (happened 2026-11-16).
+    for stream in (sys.stdout, sys.stderr):
+        if hasattr(stream, "reconfigure"):
+            stream.reconfigure(encoding="utf-8", errors="replace")
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--model", default=llm_settings()["model"])
     parser.add_argument("--output", type=Path, default=ROOT / "docs" / "eval.md")
