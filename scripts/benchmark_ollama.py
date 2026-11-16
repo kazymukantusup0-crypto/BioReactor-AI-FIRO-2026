@@ -10,6 +10,11 @@ from data/config/llm_selection.json):
 Usage:
     .venv\\Scripts\\python scripts\\benchmark_ollama.py
     .venv\\Scripts\\python scripts\\benchmark_ollama.py --models qwen3:8b --runs 5
+    .venv\\Scripts\\python scripts\\benchmark_ollama.py --num-ctx 4096 8192   # context window check
+
+"Long prompt" run: a NEW ~2000-token prompt (like the agent's system prompt + tool
+schemas + history) that Ollama cannot take from its cache. Its first-token time is
+the honest prompt-processing cost for one agent step.
 """
 from __future__ import annotations
 
@@ -72,14 +77,22 @@ def chat_options(config: dict) -> dict:
     }
 
 
-def run_streaming_chat(base_url: str, model: str, config: dict) -> dict:
+def long_prompt(tag: int) -> str:
+    """A unique ~2000-token prompt (the tag defeats Ollama's prompt cache)."""
+    line = ("Запись {i}: реактор {v} л, навоз КРС, температура 37 °C, наружный воздух {t} °C, "
+            "утепление базовое, выход метана 2.9–5.2 м³ за 30 дней.")
+    body = "\n".join(line.format(i=i, v=150 + i, t=tag % 20 - i % 7) for i in range(55))
+    return f"Сеанс {tag}. Журнал наблюдений:\n{body}\n\nКратко, одним предложением: какой средний объём реактора?"
+
+
+def run_streaming_chat(base_url: str, model: str, config: dict, prompt: str = BENCHMARK_PROMPT) -> dict:
     """Run one streamed chat request and time the first token.
 
     Returns a dict with first_token_s, total_s and Ollama's own counters.
     """
     payload = {
         "model": model,
-        "messages": [{"role": "user", "content": BENCHMARK_PROMPT}],
+        "messages": [{"role": "user", "content": prompt}],
         "stream": True,
         "think": config["think"],
         "keep_alive": config["keep_alive"],
@@ -107,6 +120,7 @@ def run_streaming_chat(base_url: str, model: str, config: dict) -> dict:
     eval_seconds = final_chunk.get("eval_duration", 0) / 1e9
     return {
         "first_token_s": first_token_s or total_s,
+        "prompt_tokens": final_chunk.get("prompt_eval_count", 0),
         "total_s": total_s,
         "load_s": final_chunk.get("load_duration", 0) / 1e9,
         "output_tokens": final_chunk.get("eval_count", 0),
@@ -161,8 +175,15 @@ def benchmark_model(base_url: str, model: str, config: dict, runs: int) -> dict:
             f"run {index + 1}: first token {result['first_token_s']:.2f} s, "
             f"{result['tokens_per_s']:.1f} tok/s, total {result['total_s']:.1f} s"
         )
+    long_runs = [run_streaming_chat(base_url, model, config, long_prompt(int(time.time()) + index))
+                 for index in range(runs)]
+    long_first = statistics.median(r["first_token_s"] for r in long_runs)
+    print(f"long prompt (~{long_runs[0]['prompt_tokens']} tokens, no cache): first token {long_first:.2f} s")
     return {
         "model": model,
+        "num_ctx": config["num_ctx"],
+        "long_prompt_tokens": long_runs[0]["prompt_tokens"],
+        "long_first_token_s": long_first,
         "cold": cold,
         "placement": placement,
         "first_token_s": statistics.median(r["first_token_s"] for r in warm_runs),
@@ -179,20 +200,22 @@ def write_report(results: list[dict], config: dict, runs: int) -> None:
         "",
         f"Дата замера: {datetime.now():%Y-%m-%d %H:%M}  ",
         f"Железо: {gpu_name()}, {platform.processor() or platform.machine()}  ",
-        f"Настройки (из `data/config/llm_selection.json`): num_ctx={config['num_ctx']}, "
+        f"Настройки (из `data/config/llm_selection.json`): num_ctx в таблице, "
         f"think={str(config['think']).lower()}, keep_alive=\"{config['keep_alive']}\", "
         f"num_gpu={config['num_gpu']} (все слои на GPU)  ",
         f"Скрипт: `scripts/benchmark_ollama.py`, медиана из {runs} «тёплых» запусков, "
         "ответ ~200 токенов на русском.",
         "",
-        "| Модель | На GPU | VRAM, ГБ | Холодная загрузка, с | Первый токен, с | Скорость, ток/с | Ответ целиком, с |",
-        "|---|---|---|---|---|---|---|",
+        "| Модель | num_ctx | На GPU | VRAM, ГБ | Холодная загрузка, с | Первый токен, с | "
+        "Первый токен, длинный промпт, с | Скорость, ток/с | Ответ целиком, с |",
+        "|---|---|---|---|---|---|---|---|---|",
     ]
     for item in results:
         lines.append(
-            f"| {item['model']} | {item['placement']['gpu_percent']:.0f}% "
+            f"| {item['model']} | {item['num_ctx']} | {item['placement']['gpu_percent']:.0f}% "
             f"| {item['placement']['vram_gb']:.2f} | {item['cold']['load_s']:.1f} "
-            f"| {item['first_token_s']:.2f} | {item['tokens_per_s']:.1f} | {item['total_s']:.1f} |"
+            f"| {item['first_token_s']:.2f} | {item['long_first_token_s']:.2f} (~{item['long_prompt_tokens']} ток.) "
+            f"| {item['tokens_per_s']:.1f} | {item['total_s']:.1f} |"
         )
     lines += [
         "",
@@ -203,6 +226,10 @@ def write_report(results: list[dict], config: dict, runs: int) -> None:
         "  В «тёплых» запусках вопрос одинаковый, и Ollama берёт его обработку из кэша,",
         "  поэтому первый токен почти мгновенный. Для нового вопроса с описанием",
         "  инструментов агента он будет больше; реальные времена агента — в `docs/eval.md`.",
+        "- **Длинный промпт** — новый текст ~2000 токенов (как системный промпт + схемы инструментов + история),",
+        "  который Ollama не может взять из кэша: честная цена одного шага агента.",
+        "- **num_ctx** — окно контекста. Больше окно = больше памяти под KV-кэш. Если модель перестаёт",
+        "  помещаться в 8 ГБ, «На GPU» падает ниже 100% и скорость резко проседает.",
         "",
     ]
     REPORT_PATH.parent.mkdir(parents=True, exist_ok=True)
@@ -215,10 +242,13 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--models", nargs="+", default=[config["model"], config["fallback_model"]])
     parser.add_argument("--runs", type=int, default=3)
+    parser.add_argument("--num-ctx", type=int, nargs="+", default=[config["num_ctx"]],
+                        help="context windows to compare, e.g. 4096 8192")
     args = parser.parse_args()
 
     base_url = config["ollama_url"]
-    results = [benchmark_model(base_url, model, config, args.runs) for model in args.models]
+    results = [benchmark_model(base_url, model, {**config, "num_ctx": num_ctx}, args.runs)
+               for model in args.models for num_ctx in args.num_ctx]
     write_report(results, config, args.runs)
     # Leave the main model loaded for the demo.
     run_streaming_chat(base_url, config["model"], config)

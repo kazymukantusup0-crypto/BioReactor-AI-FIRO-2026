@@ -2,12 +2,12 @@
   "model": "qwen3:8b",
   "fallback_model": "qwen3:4b-q4_K_M",
   "quantization": "Q4_K_M",
-  "num_ctx": 4096,
+  "num_ctx": 8192,
   "think": false,
   "keep_alive": "30m",
   "num_gpu": 999,
   "ollama_url": "http://127.0.0.1:11434",
   "benchmark": "docs/benchmark.md",
-  "notes": "num_gpu=999 asks Ollama to put every layer on the GPU (RTX 3070 Laptop, 8 GB). think=false disables qwen3 reasoning tokens for fast answers. keep_alive keeps the model in VRAM for 30 minutes between questions.",
+  "notes": "num_ctx=8192: checked in docs/benchmark.md — qwen3:8b stays 100% on GPU (6.2 of 8 GB), same speed as 4096, and long dialogs are not cut from the start. num_gpu=999 asks Ollama to put every layer on the GPU (RTX 3070 Laptop, 8 GB). think=false disables qwen3 reasoning tokens for fast answers. keep_alive keeps the model in VRAM for 30 minutes between questions.",
   "limitations": "All numbers come from Python tools; the LLM only chooses tools and explains results."
 }
