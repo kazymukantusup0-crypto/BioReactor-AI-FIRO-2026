@@ -101,4 +101,6 @@ def compare_feedstocks(materials: list[str], volume_l: float | None = None, regi
         "label": weakest(labels),
     }
     return result("compare_feedstocks", ok=True, data=data, llm=llm, assumptions=unique(assumptions),
-                  sources=unique_sources(sources + _sources("fnr-biogas-einfuehrung-2007")), label=weakest(labels))
+                  sources=unique_sources(sources + _sources("fnr-biogas-einfuehrung-2007")
+                                         + (_sources("moller2004") if {"swine_manure", "cattle_manure"} <= set(materials) else [])),
+                  label=weakest(labels))

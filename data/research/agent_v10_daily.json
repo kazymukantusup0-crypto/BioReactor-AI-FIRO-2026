@@ -87,6 +87,13 @@
       "year": 2007,
       "doi": null,
       "url": "https://susana.org/_resources/documents/default/2-500-fnr-2007-biogas-einfuehrung-de.pdf"
+    },
+    {
+      "id": "moller2004",
+      "title": "Møller H.B., Sommer S.G., Ahring B.K. (2004) Methane productivity of manure, straw and solid fractions of manure. Biomass and Bioenergy, pp. 485–495",
+      "year": 2004,
+      "doi": null,
+      "url": "https://search.isc.ac/inventory/10/407413.htm"
     }
   ],
   "startup": {
@@ -100,6 +107,13 @@
     "vent": "первые два заполнения газгольдера стравить, не используя (остаточный кислород — риск взрыва)",
     "source_id": "gtz-biogas-digest-2-startup",
     "locator": "Biogas Digest Vol. II, «Starting the plant»: «Cattle dung can usually be expected to yield good gas production within one or two days»; «the plant may need from several days to several weeks to achieve a stable digesting process»; breaking-in: «low quality biogas containing more than 60% CO2»; «the first two gasholder fillings should be vented unused»"
+  },
+  "swine_vs_cattle": {
+    "ru": "Почему: свиная жижа обычно сильнее разбавлена водой (меньше сухого вещества), а на 1 кг органического вещества свиной навоз даёт даже больше метана (≈356 против ≈148 л, Møller и др. 2004).",
+    "en": "Why: pig slurry is usually more diluted (less dry matter), while per kg of organic matter pig manure gives even more methane (≈356 vs ≈148 L, Møller et al. 2004).",
+    "kk": "Себебі: шошқа сұйық көңі әдетте көбірек суйылтылған (құрғақ заты аз), ал 1 кг органикалық затқа шошқа көңі тіпті көбірек метан береді (≈356 және ≈148 л, Møller т.б. 2004).",
+    "source_id": "moller2004",
+    "locator": "Abstract: ultimate methane yield 356 l/kg VS (pig), 275 (sow), 148 (dairy cattle)"
   },
   "feedstock_notes": {
     "poultry_manure": {
