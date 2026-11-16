@@ -96,5 +96,5 @@ class Memory:
 
     @staticmethod
     def history(messages: list[dict]) -> list[dict]:
-        """The last messages to send to the LLM."""
-        return messages[-HISTORY_MESSAGES:]
+        """The last messages to send to the LLM (only role and text; the UI extras are dropped)."""
+        return [{"role": m["role"], "content": m["content"]} for m in messages[-HISTORY_MESSAGES:]]

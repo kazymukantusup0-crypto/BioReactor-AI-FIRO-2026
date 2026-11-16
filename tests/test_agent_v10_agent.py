@@ -194,3 +194,11 @@ def test_gas_and_heating_question_gets_python_verdict_without_llm(memory):
     cards = {card["key"]: card for card in answer["numbers"]}
     assert cards["enough_gas"]["value"] == "нет"
     assert "не хватит" in answer["explanation"]
+
+
+def test_history_keeps_cards_for_the_ui_but_sends_only_text_to_the_llm(memory):
+    agent = Agent(memory, FakeLLM([], available=False))
+    list(agent.run("history-test", "200 л жидкого навоза КРС, сколько газа?"))
+    saved = memory.get("history-test")["messages"]
+    assert saved[1]["role"] == "assistant" and saved[1]["numbers"][0]["key"] == "methane"
+    assert all(set(m) == {"role", "content"} for m in Memory.history(saved))

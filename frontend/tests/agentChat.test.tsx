@@ -80,6 +80,21 @@ describe('thinking feed', () => {
 })
 
 describe('AgentChat page', () => {
+  it('restores an earlier dialog with its number cards after a reload', async () => {
+    localStorage.setItem('bioreactor-agent-v10-conversation', 'saved-conversation')
+    const fetchMock = stubServer()
+    const base = fetchMock.getMockImplementation()!
+    fetchMock.mockImplementation(async (url: string, init?: RequestInit) => url.startsWith('/api/agent/conversations/')
+      ? { ok: true, status: 200, json: async () => ({ id: 'saved-conversation', exists: true, facts: FACTS, last_answer: null, messages: [
+          { role: 'user', content: 'Сколько газа из 200 л?' },
+          { role: 'assistant', content: 'Около 4.9 м³ биогаза.', numbers: ANSWER.numbers, question: null, verified: true, mode: 'llm' }] }) }
+      : base(url, init))
+    render(<AgentChat />)
+    expect(await screen.findByText('Около 4.9 м³ биогаза.')).toBeInTheDocument()
+    expect(screen.getByText('2.9–5.2')).toBeInTheDocument()
+    expect(fetchMock.mock.calls.some(call => call[0] === '/api/agent/conversations/saved-conversation')).toBe(true)
+  })
+
   it('sends a question and shows the feed, number cards, question and facts', async () => {
     localStorage.clear()
     const fetchMock = stubServer()

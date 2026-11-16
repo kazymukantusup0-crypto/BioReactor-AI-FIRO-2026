@@ -217,8 +217,10 @@ export default function AgentChat() {
       const restored: Turn[] = []
       for (let i = 0; i < state.messages.length; i += 2) {
         if (state.messages[i]?.role !== 'user') continue
+        const reply = state.messages[i + 1]
         restored.push({ id: `r${i}`, user: state.messages[i].content, events: [], live: '', running: false, restored: true,
-          answer: { text: state.messages[i + 1]?.content ?? '', explanation: state.messages[i + 1]?.content ?? '', numbers: [], question: null, assumptions: [], sources: [], tools: [], data: {}, mode: 'llm', verified: true, language: 'ru' } })
+          answer: { text: reply?.content ?? '', explanation: reply?.content ?? '', numbers: reply?.numbers ?? [], question: reply?.question ?? null,
+            assumptions: [], sources: [], tools: [], data: {}, mode: reply?.mode ?? 'llm', verified: reply?.verified ?? true, language: 'ru' } })
       }
       if (restored.length && state.last_answer) restored[restored.length - 1] = { ...restored[restored.length - 1], answer: state.last_answer }
       setTurns(current => current.length ? current : restored)

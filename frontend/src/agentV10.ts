@@ -18,7 +18,8 @@ export interface Facts {
 export type AgentEvent = { type: string; t_ms?: number; [key: string]: unknown }
 export interface AgentStatus { model: string; llm_available: boolean; offline: boolean; mode: string; gpu: { loaded: boolean; gpu_percent?: number; vram_gb?: number; context?: number } }
 export interface DemoReactor { name: string; reactor_volume_l: number; working_volume_l: number; insulation: string; ambient_c: number; target_c: number; days: number; location?: string; feedstock: { substrate: string; state: string } }
-export interface Conversation { id: string; exists: boolean; facts: Facts; messages: { role: string; content: string }[]; last_answer: AgentAnswer | null; language?: string }
+export interface StoredMessage { role: string; content: string; numbers?: NumberCard[]; question?: string | null; verified?: boolean; mode?: string }
+export interface Conversation { id: string; exists: boolean; facts: Facts; messages: StoredMessage[]; last_answer: AgentAnswer | null; language?: string }
 
 /** Split an SSE text into complete events; returns the events and the unfinished tail. */
 export function parseSSE(buffer: string): { events: AgentEvent[]; rest: string } {
