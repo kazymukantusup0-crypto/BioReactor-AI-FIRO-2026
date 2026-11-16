@@ -1,5 +1,6 @@
 import type { AgentReply, Catalog, ChangeSeries, Demo, EconomicResult, EconomicSchema, ModelSchema, Overview, Prediction, Price, Reactor, Science, Session, SourceState, SystemStatus } from './types'
 import type { AgentJob, JobResult } from './types'
+import { tr } from './i18n'
 
 export class ApiError extends Error {
   constructor(message: string, public status?: number) { super(message); this.name = 'ApiError' }
@@ -25,10 +26,10 @@ export async function request<T>(path: string, options: Options = {}): Promise<T
       if (options.signal?.aborted) throw error
       if (method === 'GET' && attempt === 0 && (!(error instanceof ApiError) || (error.status ?? 0) >= 500)) continue
       if (error instanceof ApiError) throw error
-      throw new ApiError(controller.signal.aborted ? 'Время ожидания истекло. Проверьте историю перед повторной отправкой.' : 'Нет соединения с локальным сервером. Проверьте запуск FastAPI.')
+      throw new ApiError(controller.signal.aborted ? tr('api.1') : tr('api.2'))
     } finally { clearTimeout(timer); options.signal?.removeEventListener('abort', abort) }
   }
-  throw new ApiError('Запрос не завершён')
+  throw new ApiError(tr('api.3'))
 }
 const query = (values: Record<string, string | undefined>) => new URLSearchParams(Object.entries(values).filter((entry): entry is [string, string] => entry[1] !== undefined)).toString()
 const root = '/api/dashboard'

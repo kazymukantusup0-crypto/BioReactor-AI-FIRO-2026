@@ -1,6 +1,7 @@
 // Client of the agent v10 API (src/agent_v10/api.py).
 // POST /api/agent/chat answers with Server-Sent Events: "event: <type>\ndata: <json>\n\n".
 // EventSource only supports GET, so the stream is read with fetch + ReadableStream.
+import { getLang, localized, tr } from './i18n'
 
 export interface NumberCard { key: string; title: string; value: string; unit: string; label: string; badge: string; low?: number; high?: number; center?: string | null; range?: string | null; details?: string[] }
 /** A conclusion decided by Python (src/agent_v10/verdicts.py); the LLM only retells it. */
@@ -19,7 +20,7 @@ export interface Facts {
 }
 export type AgentEvent = { type: string; t_ms?: number; [key: string]: unknown }
 export interface AgentStatus { model: string; llm_available: boolean; offline: boolean; mode: string; gpu: { loaded: boolean; gpu_percent?: number; vram_gb?: number; context?: number; others?: string[] } }
-export interface DemoReactor { name: string; reactor_volume_l: number; working_volume_l: number; insulation: string; ambient_c: number; target_c: number; days: number; location?: string; feedstock: { substrate: string; state: string } }
+export interface DemoReactor { name: string; name_i18n?: { en?: string; kk?: string }; location_i18n?: { en?: string; kk?: string }; reactor_volume_l: number; working_volume_l: number; insulation: string; ambient_c: number; target_c: number; days: number; location?: string; feedstock: { substrate: string; state: string } }
 export interface StoredMessage { role: string; content: string; numbers?: NumberCard[]; verdicts?: Verdict[]; question?: string | null; verified?: boolean; mode?: string }
 export interface Conversation { id: string; exists: boolean; facts: Facts; messages: StoredMessage[]; last_answer: AgentAnswer | null; language?: string }
 
@@ -42,7 +43,7 @@ export async function streamAgentChat(
   onEvent: (event: AgentEvent) => void,
   signal?: AbortSignal,
 ): Promise<void> {
-  const response = await fetch('/api/agent/chat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body), signal })
+  const response = await fetch('/api/agent/chat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...body, ui_language: getLang() }), signal })
   if (!response.ok || !response.body) {
     let detail = `HTTP ${response.status}`
     try { const data = await response.json(); detail = typeof data.detail === 'string' ? data.detail : JSON.stringify(data.detail ?? data) } catch { /* keep the status */ }
@@ -82,18 +83,18 @@ export function newConversationId(): string {
 }
 
 // ---------- labels for people (Russian UI) ----------
-export const TOOL_LABELS: Record<string, string> = {
-  estimate_methane: 'Расчёт метана и биогаза',
-  estimate_heating_energy: 'Расчёт подогрева',
-  recommend_temperature_regime: 'Выбор температурного режима',
-  compare_scenarios: 'Сравнение сценариев',
-  energy_balance_and_economics: 'Энергобаланс и деньги',
-  search_knowledge: 'Поиск в источниках',
-  extract_batch_facts: 'Разбор сырья и единиц',
-  estimate_daily_production: 'Газ в сутки от животных',
-  gas_stove_hours: 'Хватит ли газа на плиту',
-  verdicts: 'Выводы и совет (считает Python)',
-}
+export const TOOL_LABELS: Record<string, string> = localized(() => ({
+  estimate_methane: tr('agentV10.1'),
+  estimate_heating_energy: tr('agentV10.2'),
+  recommend_temperature_regime: tr('agentV10.3'),
+  compare_scenarios: tr('agentV10.4'),
+  energy_balance_and_economics: tr('agentV10.5'),
+  search_knowledge: tr('agentV10.6'),
+  extract_batch_facts: tr('agentV10.7'),
+  estimate_daily_production: tr('agentV10.8'),
+  gas_stove_hours: tr('agentV10.9'),
+  verdicts: tr('agentV10.10'),
+}))
 /** Russian plural by number: pluralRu(1, ['расчёт', 'расчёта', 'расчётов']) -> 'расчёт' (2 расчёта, 5 расчётов, 11 расчётов, 21 расчёт). */
 export function pluralRu(n: number, forms: [string, string, string]): string {
   const tens = Math.abs(n) % 100
@@ -104,26 +105,28 @@ export function pluralRu(n: number, forms: [string, string, string]): string {
   return forms[2]
 }
 
-export const SUBSTRATE_LABELS: Record<string, string> = {
-  cattle_manure: 'навоз КРС', swine_manure: 'свиной навоз', poultry_manure: 'птичий помёт', sheep_goat_manure: 'навоз МРС',
-  horse_manure: 'конский навоз', food_waste: 'пищевые отходы', vegetable_waste: 'овощные отходы', grass: 'трава',
-  silage: 'силос', straw: 'солома', manure: 'навоз',
-}
-export const STATE_LABELS: Record<string, string> = {
-  slurry: 'жидкий', fresh_solid: 'твёрдый', dry: 'сухой', silage: 'силос', bedded: 'с подстилкой', prepared_pulp: 'пульпа',
-}
-export const INSULATION_LABELS: Record<string, string> = { none: 'нет', basic: 'базовое (3–5 см)', good: 'хорошее (10–15 см)' }
-export const MODE_LABELS: Record<string, string> = {
-  llm: 'ИИ-модель + инструменты', no_llm: 'без ИИ-модели: только расчёты', llm_fallback: 'запасной путь: шаблон вместо модели',
-}
+export const SUBSTRATE_LABELS: Record<string, string> = localized(() => ({
+  cattle_manure: tr('agentV10.11'), swine_manure: tr('agentV10.12'), poultry_manure: tr('agentV10.13'), sheep_goat_manure: tr('agentV10.14'),
+  horse_manure: tr('agentV10.15'), food_waste: tr('agentV10.16'), vegetable_waste: tr('agentV10.17'), grass: tr('agentV10.18'),
+  silage: tr('agentV10.19'), straw: tr('agentV10.20'), manure: tr('agentV10.21'),
+}))
+export const STATE_LABELS: Record<string, string> = localized(() => ({
+  slurry: tr('agentV10.22'), fresh_solid: tr('agentV10.23'), dry: tr('agentV10.24'), silage: tr('agentV10.19'), bedded: tr('agentV10.25'), prepared_pulp: tr('agentV10.26'),
+}))
+export const INSULATION_LABELS: Record<string, string> = localized(() => ({ none: tr('agentV10.27'), basic: tr('agentV10.28'), good: tr('agentV10.29') }))
+export const MODE_LABELS: Record<string, string> = localized(() => ({
+  llm: tr('agentV10.30'), no_llm: tr('agentV10.31'), llm_fallback: tr('agentV10.32'),
+  history: tr('agentV10.33'), refused: tr('agentV10.34'),
+  trust: tr('agentV10.35'), sources: tr('agentV10.36'),
+}))
 
 export function componentText(component: Component): string {
   const name = SUBSTRATE_LABELS[component.substrate ?? ''] ?? component.substrate ?? '?'
   // base_unit/value are normalized by Python ("2 ведра" -> 20 L); the user's own word is shown only as a fallback.
   const unit = (component.base_unit ?? component.unit ?? '').toLowerCase()
   const amount = component.value ?? component.amount
-  const unitText = unit === 'l' ? 'л' : unit === 'kg' ? 'кг' : unit === 'm3' ? 'м³' : unit === 't' ? 'т' : unit
-  const amountText = amount != null ? `${amount} ${unitText}`.trim() : 'количество ?'
+  const unitText = unit === 'l' ? tr('agentV10.37') : unit === 'kg' ? tr('agentV10.38') : unit === 'm3' ? tr('agentV10.39') : unit === 't' ? tr('agentV10.40') : unit
+  const amountText = amount != null ? `${amount} ${unitText}`.trim() : tr('agentV10.41')
   const state = component.state ? `, ${STATE_LABELS[component.state] ?? component.state}` : ''
   return `${name}: ${amountText}${state}`
 }
@@ -132,8 +135,8 @@ export function componentText(component: Component): string {
 export function speedWarning(status: AgentStatus | null): string | null {
   if (!status?.llm_available) return null
   const gpu = status.gpu
-  if (gpu.others?.length) return `в видеопамяти ещё ${gpu.others.join(', ')} — следующий ответ может ждать перезагрузку модели`
-  if (!gpu.loaded) return 'модель ещё не загружена — первый ответ на 5–10 с дольше'
-  if ((gpu.gpu_percent ?? 100) < 100) return `только ${gpu.gpu_percent}% модели на видеокарте — ответы будут медленнее`
+  if (gpu.others?.length) return tr('agentV10.42', { v0: gpu.others.join(', ') })
+  if (!gpu.loaded) return tr('agentV10.43')
+  if ((gpu.gpu_percent ?? 100) < 100) return tr('agentV10.44', { v0: gpu.gpu_percent })
   return null
 }

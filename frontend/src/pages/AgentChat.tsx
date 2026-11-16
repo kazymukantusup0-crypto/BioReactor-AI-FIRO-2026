@@ -9,22 +9,23 @@ import {
 } from '../agentV10'
 import { DEMO_SCENARIOS, type DemoScenario } from '../demoScenarios'
 import '../agentChat.css'
+import { localized, materialName, tr } from '../i18n'
 
 const STORAGE_ID = 'bioreactor-agent-v10-conversation'
 const STORAGE_JURY = 'bioreactor-agent-v10-jury'
-const EXAMPLES = [
-  'У меня 200 литров коровьего навоза, сколько будет газа?',
-  'Какую температуру ставить зимой при −15 на улице? Бочка не утеплена.',
-  'А если добавить 30 кг пищевых отходов?',
-  'Что выгоднее: тепло или электричество? Сколько это в тенге?',
-  'Сиыр көңі 200 литр, қанша газ болады?',
-]
+const EXAMPLES = localized(() => ([
+  tr('agentChat.1'),
+  tr('agentChat.2'),
+  tr('agentChat.3'),
+  tr('agentChat.4'),
+  tr('agentChat.5'),
+]))
 
 export interface Turn { id: string; user: string; events: AgentEvent[]; live: string; answer?: AgentAnswer; error?: string; running: boolean; restored?: boolean }
 
 function read(key: string): string | null { try { return localStorage.getItem(key) } catch { return null } }
 function write(key: string, value: string) { try { localStorage.setItem(key, value) } catch { /* optional */ } }
-const seconds = (ms?: number | null) => ms == null ? '—' : `${(ms / 1000).toFixed(1)} с`
+const seconds = (ms?: number | null) => ms == null ? '—' : tr('agentChat.6', { v0: (ms / 1000).toFixed(1) })
 
 /** Apply one SSE event to a turn (pure: easy to test). */
 export function applyEvent(turn: Turn, event: AgentEvent): Turn {
@@ -33,7 +34,7 @@ export function applyEvent(turn: Turn, event: AgentEvent): Turn {
     case 'token': return { ...turn, live: turn.live + String(event.text ?? '') }
     case 'token_reset': return { ...turn, events, live: '' }
     case 'answer': return { ...turn, events, answer: event as unknown as AgentAnswer, live: '' }
-    case 'error': return { ...turn, events, error: String(event.message ?? 'Ошибка'), running: false }
+    case 'error': return { ...turn, events, error: String(event.message ?? tr('agentChat.7')), running: false }
     case 'done': return { ...turn, events, running: false }
     default: return { ...turn, events }
   }
@@ -45,30 +46,31 @@ function json(value: unknown) { return JSON.stringify(value, null, 1).replace(/\
 
 export function feedLine(event: AgentEvent): FeedLine | null {
   switch (event.type) {
-    case 'understood': return { icon: '🧠', title: `Понял вопрос · язык: ${({ ru: 'русский', kk: 'казахский', en: 'английский' } as Record<string, string>)[String(event.language)] ?? event.language}` }
+    case 'understood': return { icon: '🧠', title: tr('agentChat.8', { v0: ({ ru: tr('agentChat.97'), kk: tr('agentChat.98'), en: tr('agentChat.99') } as Record<string, string>)[String(event.language)] ?? event.language }) }
     case 'facts': {
       const updates = (event.updates ?? {}) as Record<string, unknown>
       const keys = Object.keys(updates)
-      return { icon: '📋', title: keys.length ? `Записал факты: ${keys.join(', ')}` : 'Новых фактов нет — беру из памяти диалога', detail: updates }
+      return { icon: '📋', title: keys.length ? tr('agentChat.9', { v0: keys.join(', ') }) : tr('agentChat.10'), detail: updates }
     }
     case 'llm_step': {
-      const decision = event.decision === 'tool_calls' ? 'вызвать инструмент' : 'написать ответ'
-      return { icon: '🤖', title: `Шаг ${event.step}: модель решила — ${decision}`, detail: { 'промпт, токенов': event.prompt_tokens, 'ответ, токенов': event.output_tokens, 'время': seconds(event.duration_ms as number), 'ток/с': event.tokens_per_s } }
+      const decision = event.decision === 'tool_calls' ? tr('agentChat.11') : tr('agentChat.12')
+      return { icon: '🤖', title: tr('agentChat.13', { v0: event.step, v1: decision }), detail: { [tr('agentChat.102')]: event.prompt_tokens, [tr('agentChat.103')]: event.output_tokens, [tr('agentChat.104')]: seconds(event.duration_ms as number), [tr('agentChat.105')]: event.tokens_per_s } }
     }
-    case 'tool_call': return { icon: '🔧', title: `${TOOL_LABELS[String(event.name)] ?? event.name} · выбрал ${event.by === 'llm' ? 'ИИ' : 'Python'}`, detail: { tool: event.name, args: event.args } }
-    case 'tool_result': return { icon: '📊', title: `Результат: ${TOOL_LABELS[String(event.name)] ?? event.name}${event.ok ? '' : ' — ошибка'} · ${event.duration_ms} мс`, detail: event.summary, tone: event.ok ? 'ok' : 'bad' }
+    case 'tool_call': return { icon: '🔧', title: tr('agentChat.14', { v0: TOOL_LABELS[String(event.name)] ?? event.name, v1: event.by === 'llm' ? tr('agentChat.100') : 'Python' }), detail: { tool: event.name, args: event.args } }
+    case 'tool_result': return { icon: '📊', title: tr('agentChat.15', { v0: TOOL_LABELS[String(event.name)] ?? event.name, v1: event.ok ? '' : tr('agentChat.101'), v2: event.duration_ms }), detail: event.summary, tone: event.ok ? 'ok' : 'bad' }
     case 'verification': {
       const unknown = (event.unknown_numbers ?? []) as number[]
       const against = (event.contradicts ?? []) as string[]
-      const next = event.attempt === 1 ? 'прошу модель переписать' : 'заменяю текст шаблоном'
-      if (event.ok) return { icon: '✅', title: 'Проверка: числа взяты из расчётов, выводы не противоречат Python', tone: 'ok' }
-      if (against.length) return { icon: '⚠️', title: `Текст противоречит выводу Python — ${next}`, detail: { 'вывод': against, 'чужие числа': unknown }, tone: 'warn' }
-      return { icon: '⚠️', title: `Проверка чисел: ${unknown.join(', ')} нет в расчётах — ${next}`, tone: 'warn' }
+      const next = event.attempt === 1 ? tr('agentChat.16') : tr('agentChat.17')
+      if (event.ok) return { icon: '✅', title: tr('agentChat.18'), tone: 'ok' }
+      if (against.length) return { icon: '⚠️', title: tr('agentChat.19', { v0: next }), detail: { [tr('agentChat.106')]: against, [tr('agentChat.107')]: unknown }, tone: 'warn' }
+      return { icon: '⚠️', title: tr('agentChat.20', { v0: unknown.join(', '), v1: next }), tone: 'warn' }
     }
-    case 'note': return { icon: 'ℹ️', title: String(event.message ?? event.code), tone: 'warn' }
-    case 'token_reset': return event.reason === 'template' ? { icon: '📝', title: 'Текст собран по шаблону из расчётов', tone: 'warn' } : null
-    case 'answer': return { icon: '💬', title: `Ответ готов · ${MODE_LABELS[String(event.mode)] ?? event.mode}` }
-    case 'done': return { icon: '⏱️', title: `Готово за ${seconds(event.total_ms as number)}` }
+    // Notes come from Python in Russian; the text in the interface language is taken by the note code.
+    case 'note': return { icon: 'ℹ️', title: tr(`note.${String(event.code)}`) === `note.${String(event.code)}` ? String(event.message ?? event.code) : tr(`note.${String(event.code)}`), tone: 'warn' }
+    case 'token_reset': return event.reason === 'template' ? { icon: '📝', title: tr('agentChat.21'), tone: 'warn' } : null
+    case 'answer': return { icon: '💬', title: tr('agentChat.22', { v0: MODE_LABELS[String(event.mode)] ?? event.mode }) }
+    case 'done': return { icon: '⏱️', title: tr('agentChat.23', { v0: seconds(event.total_ms as number) }) }
     case 'error': return { icon: '❌', title: String(event.message), tone: 'bad' }
     default: return null
   }
@@ -84,11 +86,11 @@ function ThinkingFeed({ turn, jury }: { turn: Turn; jury: boolean }) {
         {jury && line!.detail != null && Object.keys(line!.detail as object).length > 0 && <code className="ac-feed-detail">{json(line!.detail)}</code>}
       </div>
     </li>)}
-    {turn.running && <li className="ac-feed-item"><LoaderCircle size={14} className="spin" /><div><span>Думаю…</span></div></li>}
+    {turn.running && <li className="ac-feed-item"><LoaderCircle size={14} className="spin" /><div><span>{tr('agentChat.24')}</span></div></li>}
   </ol>
-  if (jury || turn.running) return <div className="ac-feed" aria-label="Ход рассуждений агента">{list}</div>
+  if (jury || turn.running) return <div className="ac-feed" aria-label={tr('agentChat.25')}>{list}</div>
   const calls = lines.filter(l => l.event.type === 'tool_call').length
-  return <details className="ac-feed ac-feed-collapsed"><summary>Как агент получил ответ · {calls} {pluralRu(calls, ['расчёт', 'расчёта', 'расчётов'])}</summary>{list}</details>
+  return <details className="ac-feed ac-feed-collapsed"><summary>{tr('agentChat.26')} {calls} {pluralRu(calls, [tr('agentChat.27'), tr('agentChat.28'), tr('agentChat.29')])}</summary>{list}</details>
 }
 
 // ---------- answer ----------
@@ -98,7 +100,7 @@ function badgeTone(label: string) { return label === 'measured' ? 'green' : labe
 export function CardValue({ card }: { card: NumberCard }) {
   if (!card.center) return <strong className="ac-card-value">{card.value}<small> {card.unit}</small></strong>
   return <>
-    <strong className="ac-card-value" aria-label={`примерно ${card.center} ${card.unit}, от ${card.range}`}>≈{card.center}<small> {card.unit}</small></strong>
+    <strong className="ac-card-value" aria-label={tr('agentChat.30', { v0: card.center, v1: card.unit, v2: card.range })}>≈{card.center}<small> {card.unit}</small></strong>
     <span className="ac-card-range">{card.range} {card.unit}</span>
   </>
 }
@@ -106,7 +108,7 @@ export function CardValue({ card }: { card: NumberCard }) {
 function Verdicts({ items }: { items: Verdict[] }) {
   const advice = items.find(item => item.key === 'advice')
   const rest = items.filter(item => item.key !== 'advice')
-  return <div className="ac-verdicts" aria-label="Выводы, рассчитанные программой">
+  return <div className="ac-verdicts" aria-label={tr('agentChat.31')}>
     {rest.map(item => <div key={item.key} className={`ac-verdict ${item.tone}`}>
       <span className="ac-verdict-title">{item.title}</span><strong>{item.value}</strong>
     </div>)}
@@ -135,34 +137,34 @@ export function AnswerView({ answer, jury }: { answer: AgentAnswer; jury: boolea
     {answer.question && <p className="ac-question">❓ {answer.question}</p>}
     <div className="ac-answer-meta">
       {answer.verified
-        ? <span className="badge badge-green"><ShieldCheck size={11} />Числа сверены с расчётами</span>
-        : <span className="badge badge-amber"><ShieldAlert size={11} />Текст модели заменён шаблоном</span>}
+        ? <span className="badge badge-green"><ShieldCheck size={11} />{tr('agentChat.32')}</span>
+        : <span className="badge badge-amber"><ShieldAlert size={11} />{tr('agentChat.33')}</span>}
       <span className="badge">{MODE_LABELS[answer.mode] ?? answer.mode}</span>
       {jury && answer.model && <span className="badge">{answer.model}</span>}
-      {jury && answer.timings && <span className="badge">всего {seconds(answer.timings.total_ms)} · 1-й токен {seconds(answer.timings.first_answer_token_ms)} · промпт ≤ {answer.timings.prompt_tokens_max ?? '—'} ток.</span>}
+      {jury && answer.timings && <span className="badge">{tr('agentChat.34')} {seconds(answer.timings.total_ms)} {tr('agentChat.35')} {seconds(answer.timings.first_answer_token_ms)} {tr('agentChat.36')} {answer.timings.prompt_tokens_max ?? '—'} {tr('agentChat.37')}</span>}
     </div>
     {answer.assumptions.length > 0 && <details className="ac-details" open={jury}>
-      <summary>Допущения ({answer.assumptions.length}) — замените своими данными, и расчёт уточнится</summary>
+      <summary>{tr('agentChat.38')}{answer.assumptions.length}{tr('agentChat.39')}</summary>
       <ul>{answer.assumptions.map(item => <li key={item}>{item}</li>)}</ul>
     </details>}
     {answer.sources.length > 0 && <details className="ac-details" open={jury}>
-      <summary><BookOpen size={12} /> Источники ({answer.sources.length})</summary>
+      <summary><BookOpen size={12} /> {tr('agentChat.40')}{answer.sources.length})</summary>
       <ul>{answer.sources.map((source, index) => <li key={source.id ?? index}>
         {source.url ? <a href={source.url} target="_blank" rel="noreferrer">{source.title ?? source.id}</a> : source.title ?? source.id}{source.year ? ` (${source.year})` : ''}
       </li>)}</ul>
     </details>}
-    {jury && <details className="ac-details"><summary>Сырые данные инструментов (JSON)</summary><pre>{JSON.stringify(answer.data, null, 2)}</pre></details>}
+    {jury && <details className="ac-details"><summary>{tr('agentChat.41')}</summary><pre>{JSON.stringify(answer.data, null, 2)}</pre></details>}
   </div>
 }
 
 // ---------- "What the agent knows" ----------
 type Editable = 'reactor_volume_l' | 'ambient_c' | 'target_c' | 'days'
-const FIELDS: { key: Editable; label: string; unit: string; demo: (d: DemoReactor) => number }[] = [
-  { key: 'reactor_volume_l', label: 'Объём реактора', unit: 'л', demo: d => d.reactor_volume_l },
-  { key: 'ambient_c', label: 'На улице', unit: '°C', demo: d => d.ambient_c },
-  { key: 'target_c', label: 'Температура в реакторе', unit: '°C', demo: d => d.target_c },
-  { key: 'days', label: 'Срок сбраживания', unit: 'дней', demo: d => d.days },
-]
+const FIELDS: { key: Editable; label: string; unit: string; demo: (d: DemoReactor) => number }[] = localized(() => ([
+  { key: 'reactor_volume_l', label: tr('agentChat.42'), unit: tr('agentChat.43'), demo: d => d.reactor_volume_l },
+  { key: 'ambient_c', label: tr('agentChat.44'), unit: '°C', demo: d => d.ambient_c },
+  { key: 'target_c', label: tr('agentChat.45'), unit: '°C', demo: d => d.target_c },
+  { key: 'days', label: tr('agentChat.46'), unit: tr('agentChat.47'), demo: d => d.days },
+]))
 
 function FactsPanel({ facts, demo, conversationId, onSaved, disabled }: { facts: Facts | null; demo: DemoReactor | null; conversationId: string; onSaved: (facts: Facts) => void; disabled: boolean }) {
   const [editing, setEditing] = useState(false)
@@ -178,56 +180,56 @@ function FactsPanel({ facts, demo, conversationId, onSaved, disabled }: { facts:
       const raw = (draft[field.key] ?? '').trim().replace(',', '.').replace('−', '-')
       if (raw === '') { update[field.key] = null; continue }
       const value = Number(raw)
-      if (!Number.isFinite(value)) { setError(`${field.label}: нужно число`); return }
+      if (!Number.isFinite(value)) { setError(tr('agentChat.48', { v0: field.label })); return }
       update[field.key] = value
     }
     update.insulation = draft.insulation || null
     try {
       const result = await agentApi.editFacts(conversationId, update as Partial<Facts>)
-      if (!result.ok || !result.facts) { setError(result.error ?? 'Не сохранилось'); return }
+      if (!result.ok || !result.facts) { setError(result.error ?? tr('agentChat.49')); return }
       onSaved(result.facts); setEditing(false)
     } catch (caught) { setError(caught instanceof Error ? caught.message : String(caught)) }
   }
   const value = (known: unknown, unit: string, fallback?: string) => known != null && known !== ''
     ? <strong>{String(known)} {unit}</strong>
-    : <span className="ac-default">{fallback ? `не указано → ${fallback}` : 'не указано'}</span>
-  return <aside className="ac-side panel" aria-label="Что агент знает">
-    <div className="ac-side-head"><h2>Что агент знает</h2>
-      {!editing && <button className="ac-link" onClick={start} disabled={disabled}><Pencil size={12} />Исправить</button>}
+    : <span className="ac-default">{fallback ? tr('agentChat.50', { v0: fallback }) : tr('agentChat.51')}</span>
+  return <aside className="ac-side panel" aria-label={tr('agentChat.52')}>
+    <div className="ac-side-head"><h2>{tr('agentChat.52')}</h2>
+      {!editing && <button className="ac-link" onClick={start} disabled={disabled}><Pencil size={12} />{tr('agentChat.53')}</button>}
     </div>
-    <p className="ac-side-hint">Агент запоминает факты из диалога. Пустые поля он заполняет значениями демо-реактора и пишет это в допущениях.</p>
+    <p className="ac-side-hint">{tr('agentChat.54')}</p>
     <dl className="ac-facts">
-      <dt>Сырьё</dt>
-      <dd>{facts?.components?.length ? facts.components.map(c => <div key={componentText(c)}>{componentText(c)}</div>) : <span className="ac-default">не указано → {demo ? `${demo.working_volume_l} л жидкого навоза КРС` : 'демо-партия'}</span>}</dd>
+      <dt>{tr('agentChat.55')}</dt>
+      <dd>{facts?.components?.length ? facts.components.map(c => <div key={componentText(c)}>{componentText(c)}</div>) : <span className="ac-default">{tr('agentChat.56')} {demo ? tr('agentChat.57', { v0: demo.working_volume_l }) : tr('agentChat.58')}</span>}</dd>
       {FIELDS.map(field => <div key={field.key} className="ac-fact-row"><dt>{field.label}</dt><dd>
         {editing
           ? <input aria-label={field.label} inputMode="decimal" value={draft[field.key] ?? ''} placeholder={demo ? String(field.demo(demo)) : ''} onChange={e => setDraft({ ...draft, [field.key]: e.target.value })} />
           : value(facts?.[field.key], field.unit, demo ? `${field.demo(demo)} ${field.unit}` : undefined)}
       </dd></div>)}
-      <div className="ac-fact-row"><dt>Утепление</dt><dd>
+      <div className="ac-fact-row"><dt>{tr('agentChat.59')}</dt><dd>
         {editing
-          ? <select aria-label="Утепление" value={draft.insulation ?? ''} onChange={e => setDraft({ ...draft, insulation: e.target.value })}>
-              <option value="">не указано</option>{Object.entries(INSULATION_LABELS).map(([key, label]) => <option key={key} value={key}>{label}</option>)}
+          ? <select aria-label={tr('agentChat.59')} value={draft.insulation ?? ''} onChange={e => setDraft({ ...draft, insulation: e.target.value })}>
+              <option value="">{tr('agentChat.51')}</option>{Object.entries(INSULATION_LABELS).map(([key, label]) => <option key={key} value={key}>{label}</option>)}
             </select>
           : value(facts?.insulation ? INSULATION_LABELS[facts.insulation] ?? facts.insulation : null, '', demo ? INSULATION_LABELS[demo.insulation] : undefined)}
       </dd></div>
     </dl>
-    {editing && <div className="ac-edit-actions"><button className="ac-btn ac-btn-primary" onClick={save}>Сохранить</button><button className="ac-btn" onClick={() => setEditing(false)}>Отмена</button></div>}
+    {editing && <div className="ac-edit-actions"><button className="ac-btn ac-btn-primary" onClick={save}>{tr('agentChat.60')}</button><button className="ac-btn" onClick={() => setEditing(false)}>{tr('agentChat.61')}</button></div>}
     {error && <p className="ac-error" role="alert">{error}</p>}
-    {demo && <p className="ac-demo">Демо-реактор: {demo.name}, рабочий объём {demo.working_volume_l} л, {demo.location ?? ''}. Файл <code>data/config/demo_reactor.json</code>.</p>}
+    {demo && <p className="ac-demo">{tr('agentChat.62')} {materialName({ ru: demo.name, ...demo.name_i18n })}{tr('agentChat.63')} {demo.working_volume_l} {tr('agentChat.64')} {materialName({ ru: demo.location ?? '', ...demo.location_i18n })}{tr('agentChat.65')} <code>data/config/demo_reactor.json</code>.</p>}
   </aside>
 }
 
 // ---------- jury: how an answer is made ----------
-const PIPELINE = [
-  { title: 'Факты', text: 'Python разбирает текст: сырьё, «2 ведра» → 20 л, −15 °C, «не утеплена».' },
-  { title: 'Выбор', text: 'Модель qwen3:8b (локально) выбирает инструмент из 7. Не больше 5 шагов.' },
-  { title: 'Расчёт', text: 'Python: метан = VS × BMP; энергия = CH₄ × 9.97 кВт·ч/м³; подогрев = m·c·ΔT + UA·ΔT·t.' },
-  { title: 'Объяснение', text: 'Модель пишет 2–4 предложения только по результатам расчёта.' },
-  { title: 'Проверка', text: 'Каждое число в тексте сверяется с расчётом; чужое число → переписать, затем шаблон.' },
-]
+const PIPELINE = localized(() => ([
+  { title: tr('agentChat.66'), text: tr('agentChat.67') },
+  { title: tr('agentChat.68'), text: tr('agentChat.69') },
+  { title: tr('agentChat.70'), text: tr('agentChat.71') },
+  { title: tr('agentChat.72'), text: tr('agentChat.73') },
+  { title: tr('agentChat.74'), text: tr('agentChat.75') },
+]))
 function JuryPipeline() {
-  return <ol className="ac-pipeline" aria-label="Как агент получает ответ">
+  return <ol className="ac-pipeline" aria-label={tr('agentChat.76')}>
     {PIPELINE.map((step, index) => <li key={step.title}><span className="ac-pipeline-n">{index + 1}</span><div><strong>{step.title}</strong><p>{step.text}</p></div></li>)}
   </ol>
 }
@@ -291,7 +293,7 @@ export default function AgentChat() {
       update(turn => ({ ...turn, running: false }))
     } catch (caught) {
       const stopped = controller.signal.aborted
-      update(turn => ({ ...turn, running: false, error: stopped ? 'Остановлено' : `Нет связи с сервером: ${caught instanceof Error ? caught.message : String(caught)}` }))
+      update(turn => ({ ...turn, running: false, error: stopped ? tr('agentChat.77') : tr('agentChat.78', { v0: caught instanceof Error ? caught.message : String(caught) }) }))
     } finally { abort.current = null }
   }
   const submit = (event: FormEvent) => { event.preventDefault(); void send(input) }
@@ -316,30 +318,30 @@ export default function AgentChat() {
   const slow = speedWarning(status)
   return <div className="ac-page">
     <div className="ac-topline">
-      <div><span className="eyebrow">АГЕНТ v10 · ЛОКАЛЬНО, БЕЗ ИНТЕРНЕТА</span><h1>AI Chat</h1>
-        <p>Модель выбирает инструмент, Python считает, каждое число в ответе сверяется с расчётом.</p></div>
+      <div><span className="eyebrow">{tr('agentChat.79')}</span><h1>{tr('app.chat')}</h1>
+        <p>{tr('agentChat.80')}</p></div>
       <div className="ac-controls">
         <span className={`badge badge-${status?.llm_available ? slow ? 'amber' : 'green' : status ? 'amber' : 'muted'}`} title={slow ?? undefined}><Cpu size={11} />
-          {status ? status.llm_available ? `${status.model}${gpu?.loaded ? ` · GPU ${gpu.gpu_percent}%` : ''}` : 'Ollama недоступна — режим без ИИ' : 'проверяю модель…'}{slow ? ' · ⚠' : ''}</span>
-        <label className="ac-switch"><input type="checkbox" checked={!useLlm} onChange={e => setUseLlm(!e.target.checked)} />Без ИИ-модели</label>
-        <button className={`ac-btn ${jury ? "ac-btn-primary" : ""}`} aria-pressed={jury} onClick={() => setJury(!jury)}><Gavel size={14} />Режим жюри</button>
-        <button className="ac-btn" onClick={newDialog}><MessageSquarePlus size={14} />Новый диалог</button>
-        <a className="ac-link" href="#/chat-v9" title="Предыдущая версия чата (v9)">старый чат</a>
+          {status ? status.llm_available ? `${status.model}${gpu?.loaded ? ` · GPU ${gpu.gpu_percent}%` : ''}` : tr('agentChat.81') : tr('agentChat.82')}{slow ? ' · ⚠' : ''}</span>
+        <label className="ac-switch"><input type="checkbox" checked={!useLlm} onChange={e => setUseLlm(!e.target.checked)} />{tr('agentChat.83')}</label>
+        <button className={`ac-btn ${jury ? "ac-btn-primary" : ""}`} aria-pressed={jury} onClick={() => setJury(!jury)}><Gavel size={14} />{tr('agentChat.84')}</button>
+        <button className="ac-btn" onClick={newDialog}><MessageSquarePlus size={14} />{tr('agentChat.85')}</button>
+        <a className="ac-link" href="#/chat-v9" title={tr('agentChat.86')}>{tr('agentChat.87')}</a>
       </div>
     </div>
     {jury && <JuryPipeline />}
-    {jury && <div className="ac-scenarios" role="group" aria-label="Сценарии для показа">
+    {jury && <div className="ac-scenarios" role="group" aria-label={tr('agentChat.88')}>
       {DEMO_SCENARIOS.map(item => <button key={item.id} className={`ac-scenario ${item.main ? 'main' : ''}`} title={item.goal}
         disabled={running || scenario !== null} aria-busy={scenario === item.id} onClick={() => void runScenario(item)}>
         <strong>{item.title}</strong><span>{item.goal}</span>
       </button>)}
     </div>}
     <div className="ac-layout">
-      <section className="ac-chat panel" aria-label="Диалог">
+      <section className="ac-chat panel" aria-label={tr('agentChat.89')}>
         <div className="ac-messages" aria-live="polite">
           {!turns.length && <div className="ac-empty">
-            <Bot size={30} /><h2>Спросите про свою установку</h2>
-            <p>Можно писать как удобно: «2 ведра», «бочка не утеплена», по-русски, по-казахски или по-английски.</p>
+            <Bot size={30} /><h2>{tr('agentChat.90')}</h2>
+            <p>{tr('agentChat.91')}</p>
             <div className="ac-examples">{EXAMPLES.map(example => <button key={example} className="ac-chip" onClick={() => void send(example)}>{example}</button>)}</div>
           </div>}
           {turns.map(turn => <article key={turn.id} className="ac-turn">
@@ -354,13 +356,13 @@ export default function AgentChat() {
           <div ref={bottom} />
         </div>
         <form className="ac-composer" onSubmit={submit}>
-          <textarea aria-label="Сообщение агенту" rows={2} maxLength={2000} value={input} placeholder="Например: 150 л навоза КРС, на улице −10, бочка без утепления"
+          <textarea aria-label={tr('agentChat.92')} rows={2} maxLength={2000} value={input} placeholder={tr('agentChat.93')}
             onChange={e => setInput(e.target.value)} onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); void send(input) } }} />
           {running
-            ? <button type="button" className="ac-btn" onClick={() => abort.current?.abort()} aria-label="Остановить"><CircleStop size={16} /></button>
-            : <button type="submit" className="ac-btn ac-btn-primary" disabled={!input.trim()} aria-label="Отправить"><ArrowUp size={16} /></button>}
+            ? <button type="button" className="ac-btn" onClick={() => abort.current?.abort()} aria-label={tr('agentChat.94')}><CircleStop size={16} /></button>
+            : <button type="submit" className="ac-btn ac-btn-primary" disabled={!input.trim()} aria-label={tr('agentChat.95')}><ArrowUp size={16} /></button>}
         </form>
-        <p className="ac-footnote"><Check size={11} />Все цифры считает Python по формулам и данным из литературы; ИИ только выбирает расчёт и объясняет его словами.</p>
+        <p className="ac-footnote"><Check size={11} />{tr('agentChat.96')}</p>
       </section>
       <FactsPanel facts={facts} demo={demo} conversationId={conversationId} onSaved={setFacts} disabled={running} />
     </div>
