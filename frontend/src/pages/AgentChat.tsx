@@ -186,6 +186,20 @@ function FactsPanel({ facts, demo, conversationId, onSaved, disabled }: { facts:
   </aside>
 }
 
+// ---------- jury: how an answer is made ----------
+const PIPELINE = [
+  { title: 'Факты', text: 'Python разбирает текст: сырьё, «2 ведра» → 20 л, −15 °C, «не утеплена».' },
+  { title: 'Выбор', text: 'Модель qwen3:8b (локально) выбирает инструмент из 7. Не больше 5 шагов.' },
+  { title: 'Расчёт', text: 'Python: метан = VS × BMP; энергия = CH₄ × 9.97 кВт·ч/м³; подогрев = m·c·ΔT + UA·ΔT·t.' },
+  { title: 'Объяснение', text: 'Модель пишет 2–4 предложения только по результатам расчёта.' },
+  { title: 'Проверка', text: 'Каждое число в тексте сверяется с расчётом; чужое число → переписать, затем шаблон.' },
+]
+function JuryPipeline() {
+  return <ol className="ac-pipeline" aria-label="Как агент получает ответ">
+    {PIPELINE.map((step, index) => <li key={step.title}><span className="ac-pipeline-n">{index + 1}</span><div><strong>{step.title}</strong><p>{step.text}</p></div></li>)}
+  </ol>
+}
+
 // ---------- page ----------
 export default function AgentChat() {
   const [conversationId, setConversationId] = useState(() => read(STORAGE_ID) ?? newConversationId())
@@ -269,6 +283,7 @@ export default function AgentChat() {
         <a className="ac-link" href="#/chat-v9" title="Предыдущая версия чата (v9)">старый чат</a>
       </div>
     </div>
+    {jury && <JuryPipeline />}
     <div className="ac-layout">
       <section className="ac-chat panel" aria-label="Диалог">
         <div className="ac-messages" aria-live="polite">

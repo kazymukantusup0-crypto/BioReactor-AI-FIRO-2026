@@ -113,6 +113,7 @@ describe('AgentChat page', () => {
     expect(screen.getByText('Расчёт метана и биогаза · выбрал ИИ')).toBeVisible()
     expect(screen.getByText('Сырые данные инструментов (JSON)')).toBeInTheDocument()
     expect(screen.getByText(/промпт ≤ 1500 ток/)).toBeInTheDocument()
+    expect(screen.getByRole('list', { name: 'Как агент получает ответ' })).toBeInTheDocument()
   })
 
   it('sends use_llm=false in the no-LLM mode and shows demo defaults for unknown facts', async () => {

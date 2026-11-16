@@ -87,7 +87,14 @@
 .ac-demo{margin:0;padding-top:8px;border-top:1px solid #1e2f36;color:#6f8c92;font-size:11px;line-height:1.5}
 .ac-demo code{font-size:10.5px;color:#93b0b5}
 
+.ac-pipeline{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+.ac-pipeline li{display:flex;gap:8px;border:1px solid #27403f;background:#101d22;border-radius:9px;padding:9px 10px;min-width:0}
+.ac-pipeline strong{font-size:12px;color:#dff5ee}
+.ac-pipeline p{margin:2px 0 0;font-size:11px;line-height:1.45;color:#8fa9ae}
+.ac-pipeline-n{flex-shrink:0;width:20px;height:20px;border-radius:50%;background:#1d4d40;color:#bff3e2;font-size:11px;display:grid;place-items:center}
+
 @media (max-width:1000px){
+  .ac-pipeline{grid-template-columns:repeat(2,minmax(0,1fr))}
   .ac-layout{grid-template-columns:minmax(0,1fr)}
   .ac-side{position:static}
 }
@@ -96,5 +103,6 @@
   .ac-chat{min-height:0}
   .ac-cards{grid-template-columns:repeat(2,minmax(0,1fr))}
   .ac-user p{max-width:100%}
+  .ac-pipeline{grid-template-columns:minmax(0,1fr)}
 }
 @media (prefers-reduced-motion:reduce){.ac-feed-item,.ac-caret{animation:none}}
