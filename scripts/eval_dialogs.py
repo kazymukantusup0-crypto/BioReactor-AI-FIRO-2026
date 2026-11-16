@@ -195,7 +195,7 @@ def gpu_temperature() -> str:
         return "?"
 
 
-def evaluate(model: str) -> tuple[list[dict], dict]:
+def evaluate(model: str, pause_s: float = 0.0) -> tuple[list[dict], dict]:
     client = OllamaClient(model=model)
     if not client.available():
         raise SystemExit(f"Ollama or model {model} is not available")
@@ -213,6 +213,8 @@ def evaluate(model: str) -> tuple[list[dict], dict]:
             for turn in turns:
                 text, expected_tools, language = turn[:3]
                 checks = turn[3] if len(turn) > 3 else {}
+                if pause_s and rows:
+                    time.sleep(pause_s)  # jury pace: a person reads the answer before the next question
                 metrics = run_message(agent, conversation_id, text)
                 final = metrics["final"]
                 explanation = final["explanation"]
@@ -327,11 +329,13 @@ def main() -> None:
     parser.add_argument("--model", default=llm_settings()["model"])
     parser.add_argument("--output", type=Path, default=ROOT / "docs" / "eval.md")
     parser.add_argument("--only", nargs="*", help="run only dialogs whose number is listed, e.g. --only 12 13")
+    parser.add_argument("--pause", type=float, default=0.0, help="seconds between messages (jury pace), default 0")
     parser.add_argument("--json", type=Path, help="also save raw rows and summary as JSON (for A/B tables)")
     args = parser.parse_args()
     if args.only:
         DIALOGS[:] = [d for d in DIALOGS if d[0].split(".")[0] in args.only]
-    rows, summary = evaluate(args.model)
+    rows, summary = evaluate(args.model, args.pause)
+    summary["pause_s"] = args.pause
     write_report(rows, summary, args.output)
     if args.json:
         import json

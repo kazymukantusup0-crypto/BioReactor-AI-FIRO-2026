@@ -31,6 +31,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG_PATH = ROOT / "data" / "config" / "llm_selection.json"
 REPORT_PATH = ROOT / "docs" / "benchmark.md"
+MANUAL_MARKER = "<!-- manual: kept when this script rewrites the file -->"
 
 # A typical agent task: explain tool results in plain language.
 BENCHMARK_PROMPT = (
@@ -233,6 +234,10 @@ def write_report(results: list[dict], config: dict, runs: int) -> None:
         "",
     ]
     REPORT_PATH.parent.mkdir(parents=True, exist_ok=True)
+    # Keep the hand-written part (speed investigation, A/B) below the marker.
+    old = REPORT_PATH.read_text(encoding="utf-8") if REPORT_PATH.exists() else ""
+    if MANUAL_MARKER in old:
+        lines.append(MANUAL_MARKER + old.split(MANUAL_MARKER, 1)[1])
     REPORT_PATH.write_text("\n".join(lines), encoding="utf-8")
     print(f"\nReport written to {REPORT_PATH}")
 
