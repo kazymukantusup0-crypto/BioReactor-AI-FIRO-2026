@@ -26,10 +26,11 @@ class OllamaClient:
         self.model = model or settings["model"]
         self.base_url = (base_url or settings["ollama_url"]).rstrip("/")
         self.timeout = timeout
-        # num_predict caps one reply: 2–4 sentences need ~60–150 tokens. The cap keeps
-        # the answer fast even when a hot laptop GPU slows down (thermal throttling).
+        # num_predict caps one reply: 2–4 sentences need ~60–180 tokens (a Russian or Kazakh word
+        # takes 2–3 tokens). At ~50 tokens/s, 300 tokens = 6 s at most; an unfinished last sentence
+        # is cut off by answer.trim_to_sentence. The jury reads the cards, not a long text.
         self.options = {"num_ctx": settings["num_ctx"], "num_gpu": settings["num_gpu"], "temperature": 0.2,
-                        "num_predict": 256}
+                        "num_predict": settings.get("num_predict", 300)}
         self.think = settings["think"]
         self.keep_alive = settings["keep_alive"]
 

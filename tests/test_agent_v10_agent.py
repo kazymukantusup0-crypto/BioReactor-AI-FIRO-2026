@@ -259,3 +259,9 @@ def test_gpu_status_lists_other_models_in_vram(monkeypatch):
     assert status["loaded"] and status["gpu_percent"] == 100 and status["others"] == ["qwen2.5:1.5b"]
     loaded["models"] = loaded["models"][1:]
     assert llm_module.OllamaClient(model="qwen3:8b").gpu_status() == {"loaded": False, "others": ["qwen2.5:1.5b"]}
+
+
+def test_unfinished_last_sentence_is_cut_but_decimals_are_not_sentence_ends():
+    assert answer.trim_to_sentence("Будет ≈7.2 м³ биогаза. Основное допущение — жидкий нав") == "Будет ≈7.2 м³ биогаза."
+    assert answer.trim_to_sentence("Будет ≈7.2 м³ биогаза.") == "Будет ≈7.2 м³ биогаза."
+    assert answer.trim_to_sentence("Будет ≈7.2 м³") == "Будет ≈7.2 м³"   # nothing to keep -> leave as is

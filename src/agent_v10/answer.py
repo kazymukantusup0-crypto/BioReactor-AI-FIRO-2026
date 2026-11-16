@@ -339,3 +339,18 @@ def compose(*, explanation: str, results: list[dict], language: str, mode: str, 
         "verified": verified,
         "language": language,
     }
+
+
+SENTENCE_END = re.compile(r"[.!?…](?=\s|$)")
+
+
+def trim_to_sentence(text: str) -> str:
+    """Drop an unfinished last sentence (the reply hit the num_predict cap mid-sentence).
+
+    "≈7.2" is not a sentence end: a dot counts only when followed by a space or the end.
+    """
+    text = text.strip()
+    if not text or text[-1] in ".!?…»)":
+        return text
+    ends = list(SENTENCE_END.finditer(text))
+    return text[: ends[-1].end()] if ends else text
