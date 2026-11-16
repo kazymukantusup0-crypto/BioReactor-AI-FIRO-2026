@@ -135,8 +135,10 @@ def test_warm_weather_needs_no_heat_loss_compensation():
 
 
 def test_heating_assumptions_and_question_when_reactor_unknown():
+    # One source of reactor parameters: the demo reactor (200 L), never a reactor "sized for the feed".
     result = estimate_heating_energy(feed_volume_l=200)
-    assert result["ok"] and result["data"]["reactor_volume_l"] == 250
+    assert result["ok"] and result["data"]["reactor_volume_l"] == 200
+    assert any("демо-реактор" in a and "160" in a for a in result["assumptions"])
     assert result["question"]
 
 
@@ -224,11 +226,11 @@ def test_search_knowledge_returns_quotes_with_sources():
     assert result["ok"] and result["llm"]["quotes"] and result["sources"]
 
 
-def test_registry_has_seven_tools_with_schemas():
-    assert len(TOOL_SCHEMAS) == 7
+def test_registry_has_nine_tools_with_schemas():
+    assert len(TOOL_SCHEMAS) == 9
     assert set(TOOL_NAMES) == {"estimate_methane", "estimate_heating_energy", "recommend_temperature_regime",
                                "compare_scenarios", "energy_balance_and_economics", "search_knowledge",
-                               "extract_batch_facts"}
+                               "extract_batch_facts", "estimate_daily_production", "gas_stove_hours"}
 
 
 def test_registry_fills_arguments_from_memory_and_rejects_unknown_tools():
@@ -316,12 +318,13 @@ def test_gas_vs_heating_yes_and_borderline():
 
 
 def test_registry_ignores_physical_numbers_invented_by_the_llm():
-    """The model once sent "days": 20 nobody said: the tool must use the demo default (30) and say so."""
+    """The model once sent "days": 20 nobody said: the tool must use the regime's digestion time (25–35 days)."""
     facts = {**empty_facts(), "components": CATTLE_200L}
     result = run_tool("estimate_heating_energy", {"days": 20, "ambient_c": -30, "insulation": "good",
                                                   "reactor_volume_l": 5000, "target_c": 55}, facts)
     data = result["data"]
-    assert (data["days"], data["ambient_c"], data["insulation"], data["reactor_volume_l"], data["target_c"]) == (30, 5, "none", 250, 37)
+    assert (data["days"], data["ambient_c"], data["insulation"], data["reactor_volume_l"], data["target_c"]) == (
+        {"low": 25, "high": 35}, 5, "none", 200, 37)
     told = run_tool("estimate_heating_energy", {"days": 20}, {**facts, "days": 12, "ambient_c": -10})["data"]
     assert (told["days"], told["ambient_c"]) == (12, -10)
 

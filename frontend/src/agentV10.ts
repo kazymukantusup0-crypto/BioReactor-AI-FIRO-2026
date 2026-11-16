@@ -90,8 +90,20 @@ export const TOOL_LABELS: Record<string, string> = {
   energy_balance_and_economics: 'Энергобаланс и деньги',
   search_knowledge: 'Поиск в источниках',
   extract_batch_facts: 'Разбор сырья и единиц',
+  estimate_daily_production: 'Газ в сутки от животных',
+  gas_stove_hours: 'Хватит ли газа на плиту',
   verdicts: 'Выводы и совет (считает Python)',
 }
+/** Russian plural by number: pluralRu(1, ['расчёт', 'расчёта', 'расчётов']) -> 'расчёт' (2 расчёта, 5 расчётов, 11 расчётов, 21 расчёт). */
+export function pluralRu(n: number, forms: [string, string, string]): string {
+  const tens = Math.abs(n) % 100
+  const ones = tens % 10
+  if (tens >= 11 && tens <= 14) return forms[2]
+  if (ones === 1) return forms[0]
+  if (ones >= 2 && ones <= 4) return forms[1]
+  return forms[2]
+}
+
 export const SUBSTRATE_LABELS: Record<string, string> = {
   cattle_manure: 'навоз КРС', swine_manure: 'свиной навоз', poultry_manure: 'птичий помёт', sheep_goat_manure: 'навоз МРС',
   horse_manure: 'конский навоз', food_waste: 'пищевые отходы', vegetable_waste: 'овощные отходы', grass: 'трава',

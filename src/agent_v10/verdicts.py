@@ -91,6 +91,34 @@ TEXTS = {
         "en": "The batch may not fit: {volume} L with a working volume of {working} L (depends on the density).",
         "kk": "Партия сыймауы мүмкін: {volume} л, жұмыс көлемі {working} л (тығыздыққа байланысты).",
     },
+    "daily_small": {
+        "ru": "Весь навоз ({animals}) даст {total} м³ биогаза в сутки, но для этого нужен реактор {needed} м³. "
+              "Ваш реактор {reactor} л переработает только {feed} кг навоза в сутки — это {biogas} м³ биогаза в сутки.",
+        "en": "All the manure ({animals}) gives {total} m³ of biogas per day, but it needs a reactor of {needed} m³. "
+              "Your {reactor} L reactor can take only {feed} kg per day — that is {biogas} m³ of biogas per day.",
+        "kk": "Барлық көң ({animals}) тәулігіне {total} м³ биогаз береді, бірақ ол үшін {needed} м³ реактор керек. "
+              "Сіздің {reactor} л реактор тәулігіне тек {feed} кг көңді өңдейді — бұл тәулігіне {biogas} м³ биогаз.",
+    },
+    "stove_hours": {
+        "ru": "Газа хватит на {hours} ч работы одной бытовой конфорки в сутки (конфорка тратит 0.2–0.45 м³/ч).",
+        "en": "The gas is enough for {hours} h of one household burner per day (a burner uses 0.2–0.45 m³/h).",
+        "kk": "Газ бір тұрмыстық оттықтың тәулігіне {hours} сағ жұмысына жетеді (оттық 0.2–0.45 м³/сағ жұмсайды).",
+    },
+    "stove_all_day": {
+        "ru": "Газа хватит на круглосуточную работу одной бытовой конфорки: {hours} ч в сутки (конфорка тратит 0.2–0.45 м³/ч).",
+        "en": "The gas is enough to run one household burner all day: {hours} h per day (a burner uses 0.2–0.45 m³/h).",
+        "kk": "Газ бір тұрмыстық оттықтың тәулік бойы жұмысына жетеді: тәулігіне {hours} сағ (оттық 0.2–0.45 м³/сағ).",
+    },
+    "stove_many": {
+        "ru": " Это больше 24 ч — такого количества газа хватит и на несколько конфорок.",
+        "en": " That is more than 24 h — this much gas is enough for several burners.",
+        "kk": " Бұл 24 сағаттан көп — мұндай газ бірнеше оттыққа жетеді.",
+    },
+    "stove_reactor": {
+        "ru": " Но в вашем реакторе {reactor} л — только на {hours} ч в сутки.",
+        "en": " But in your {reactor} L reactor only {hours} h per day.",
+        "kk": " Бірақ сіздің {reactor} л реакторда — тәулігіне тек {hours} сағ.",
+    },
     "best_gain": {
         "ru": "Выгоднее всего — {best}: {value} ₸.",
         "en": "The best option is {best}: {value} KZT.",
@@ -150,6 +178,8 @@ TITLES = {
     "enough_gas": {"ru": "Хватит газа на подогрев?", "en": "Enough gas for heating?", "kk": "Газ қыздыруға жете ме?"},
     "fits": {"ru": "Поместится в реактор?", "en": "Fits the reactor?", "kk": "Реакторға сыя ма?"},
     "best_use": {"ru": "Что выгоднее", "en": "Best use", "kk": "Не тиімді"},
+    "daily_capacity": {"ru": "Хватит объёма реактора?", "en": "Is the reactor big enough?", "kk": "Реактор көлемі жете ме?"},
+    "stove": {"ru": "Газовая плита", "en": "Gas stove", "kk": "Газ плитасы"},
 }
 WORDS = {
     "yes": {"ru": "да", "en": "yes", "kk": "иә"},
@@ -256,11 +286,44 @@ def batch_volume_range(components: list[dict]) -> tuple[float, float] | None:
     return low, high
 
 
+# The question is about fitting / loading the reactor.
+FIT_QUESTION = re.compile(r"помест\w*|влез\w*|влаз\w*|вмест\w*|загруз\w*|рабоч\w+\s+объ[её]м\w*|\bfits?\b|\bload\w*|сыя\w*|жүкте\w*",
+                          re.IGNORECASE)
+# Tools whose numbers are calculated for the remembered batch.
+BATCH_TOOLS = {"estimate_methane", "estimate_heating_energy", "recommend_temperature_regime", "compare_scenarios",
+               "energy_balance_and_economics"}
+
+
+def fits_relevant(context: dict | None) -> bool:
+    """Show "does not fit" only when it belongs to THIS message: the user just named the batch,
+    or asks about fitting / loading. Otherwise it stuck to every later answer (manual check, bug A)."""
+    if context is None:
+        return True
+    updates = context.get("updates") or {}
+    return bool({"components", "components_added"} & set(updates)) or FIT_QUESTION.search(context.get("text") or "") is not None
+
+
+def batch_too_big_note(facts: dict, results: list[dict], language: str) -> str | None:
+    """Assumption line when the batch is larger than the working volume of the reactor in use (named or demo)."""
+    if not any(r.get("name") in BATCH_TOOLS and r.get("ok") for r in results):
+        return None
+    volume = batch_volume_range(facts.get("components") or [])
+    if volume is None:
+        return None
+    demo = demo_reactor()
+    reactor = facts.get("reactor_volume_l") or demo["reactor_volume_l"]
+    working = reactor * demo["fill_share"]
+    if volume[1] <= working:
+        return None
+    shown = f"{center([round(volume[0]), round(volume[1])]):g}" if volume[0] != volume[1] else f"{round(volume[0]):g}"
+    return t("assume_batch_too_big", language, volume=shown, working=f"{working:g}", reactor=f"{reactor:g}")
+
+
 def fits_verdict(facts: dict, language: str, results: list[dict] | None = None) -> dict | None:
     """Only reported when the user NAMED the reactor volume and the batch does not (or may not) fit.
 
-    Without a named reactor the heating model sizes the reactor for the batch, so a warning
-    against the 200 L demo barrel would contradict the rest of the answer.
+    Without a named reactor the answer is about the batch itself; the batch being larger than
+    the 200 L demo barrel is an assumption line instead (batch_too_big_note).
     """
     reactor = facts.get("reactor_volume_l")
     volume = batch_volume_range(facts.get("components") or [])
@@ -285,6 +348,40 @@ def fits_verdict(facts: dict, language: str, results: list[dict] | None = None) 
                      loads=math.ceil((smallest + largest) / 2 / working))
     return _item("fits", code, f"{WORDS[code].get(language, WORDS[code]['ru'])}: {shown} > {working:g} л", text, language,
                  "bad" if code == "no" else "warn")
+
+
+def daily_capacity_verdict(results: list[dict], language: str) -> dict | None:
+    """Daily manure of the animals vs the reactor: only when the reactor is too small."""
+    found = _first_ok(results, "estimate_daily_production")
+    if not found or found["data"].get("basis") != "animals" or found["data"]["reactor_enough"] == "yes":
+        return None
+    llm, data = found["llm"], found["data"]
+    needed = llm["reactor_needed_for_all_manure_m3"]
+    text = _say(TEXTS, "daily_small", language, animals=llm["animals"], needed=approx_text(needed),
+                total=approx_text(llm["biogas_m3_per_day_from_all_manure"]),
+                reactor=f"{data['reactor_volume_l']:g}", feed=approx_text(llm["your_reactor_can_take_kg_per_day"]),
+                biogas=approx_text(llm["biogas_m3_per_day_in_your_reactor"]))
+    code = data["reactor_enough"]
+    return _item("daily_capacity", code, f"{WORDS[code].get(language, WORDS[code]['ru'])}: ≈{center(needed):g} м³",
+                 text, language, "bad" if code == "no" else "warn")
+
+
+def stove_verdict(results: list[dict], language: str) -> dict | None:
+    """Hours of one household burner per day (and in the user's reactor, if it limits the gas)."""
+    found = _first_ok(results, "gas_stove_hours")
+    if not found:
+        return None
+    hours = found["llm"]["one_burner_hours_per_day"]
+    key = "stove_all_day" if hours[0] >= 24 else "stove_hours"
+    text = _say(TEXTS, key, language, hours=approx_text(hours))
+    if center(hours) > 24:
+        text += _say(TEXTS, "stove_many", language)
+    in_reactor = found["llm"].get("one_burner_hours_per_day_in_your_reactor")
+    if in_reactor:
+        text += _say(TEXTS, "stove_reactor", language, reactor=f"{found['data']['reactor_volume_l']:g}",
+                     hours=approx_text(in_reactor))
+    shown = in_reactor or hours
+    return _item("stove", "hours", f"≈{center(shown):g} ч/сут", text, language, "good" if shown[0] >= 1 else "warn")
 
 
 def best_use_verdict(results: list[dict], language: str) -> dict | None:
@@ -376,15 +473,27 @@ def advice_item(results: list[dict], facts: dict, language: str) -> dict | None:
     return item
 
 
-def build(results: list[dict], facts: dict, language: str = "ru") -> dict | None:
-    """All verdicts that apply, as one result (name "verdicts"); None if there is nothing to conclude."""
+def build(results: list[dict], facts: dict, language: str = "ru", context: dict | None = None) -> dict | None:
+    """All verdicts that apply to THIS message, as one result (name "verdicts"); None if there is nothing to conclude.
+
+    context = {"text": user message, "updates": facts it changed}. Every verdict except "fits" comes from
+    a tool called for this message; "fits" comes from the remembered facts, so it is shown only when it
+    belongs to this message (fits_relevant), otherwise it is an assumption line.
+    """
     if _first_ok(results, "verdicts"):
         return None
+    uses_batch = any(r.get("name") in BATCH_TOOLS for r in results)
+    fits = fits_verdict(facts, language, results) if uses_batch and fits_relevant(context) else None
     items = [v for v in (regime_verdict(results, language), net_verdict(results, language),
-                         enough_gas_verdict(results, language), fits_verdict(facts, language, results),
+                         enough_gas_verdict(results, language), fits,
+                         daily_capacity_verdict(results, language), stove_verdict(results, language),
                          best_use_verdict(results, language)) if v]
+    note = None if fits else batch_too_big_note(facts, results, language)
     if not items:
-        return None
+        if note is None:
+            return None
+        return result("verdicts", ok=True, data={"status": "ok", "items": []}, llm={"verdicts": []},
+                      assumptions=[note], label="assumption")
     losing = any((i["key"] == "net" and i["code"] == "minus") or (i["key"] == "enough_gas" and i["code"] == "no")
                  for i in items)
     advice = advice_item(results, facts, language) if losing else None
@@ -396,7 +505,8 @@ def build(results: list[dict], facts: dict, language: str = "ru") -> dict | None
         data["gas_vs_heating"] = coverage["data"]
     llm = {"verdicts": [item["text"] for item in items],
            "instruction": "Start the answer with these verdicts in your own words. Never contradict them."}
-    assumptions = (coverage["assumptions"] if coverage else []) + (advice["assumptions"] if advice else [])
+    assumptions = ((coverage["assumptions"] if coverage else []) + (advice["assumptions"] if advice else [])
+                   + ([note] if note else []))
     return result("verdicts", ok=True, data=data, llm=llm, assumptions=assumptions, label="assumption")
 
 

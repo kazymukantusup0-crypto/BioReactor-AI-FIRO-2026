@@ -41,7 +41,17 @@ from src.agent_v10.memory import Memory  # noqa: E402
 #                      "must_not" — regexes that must NOT be in the explanation;
 #                      "amount" — the remembered batch must contain this amount (L or kg, after normalizing);
 #                      "card" — a number card with this key must be shown;
-#                      "verdict" — {key: code} Python verdicts that must be in the answer (e.g. {"net": "minus"}).
+#                      "verdict" — {key: code} Python verdicts that must be in the answer (e.g. {"net": "minus"});
+#                      "no_verdict" — verdict keys that must NOT be shown (they do not belong to this question);
+#                      "question_not" — regexes the clarifying question must NOT match (asked once already);
+#                      "card_label" — {card key: label} e.g. the methane card keeps "literature";
+#                      "same_card" — [card key, turn index]: the card equals the one of that earlier turn.
+#   PYTHON_PLAN(tools) as expected tools: Python runs these tools itself (questions with a fixed set of tools:
+#                      per day, gas stove, "есть смысл?"); OK when exactly these tools ran and the LLM only explained.
+class PYTHON_PLAN(frozenset):
+    """Expected tools that Python runs itself (note "python_plan"), the LLM only explains."""
+
+
 DIALOGS = [
     ("1. Навоз в литрах + уточнение", [
         ("У меня 200 литров коровьего навоза, сколько будет газа?", {"estimate_methane"}, "ru"),
@@ -122,11 +132,35 @@ DIALOGS = [
          {"verdict": {"regime": "mesophilic", "net": "minus", "advice": "eps50"}, "must_text": [r"≈"],
           "must": [r"пенополистирол"]}),
     ]),
+    # --- regression: the manual check of 2026-11-16 (loop on 5–7, broken answer 4, 476 vs 448 kWh, ...) ---
+    ("20. Ручная проверка: 7 вопросов подряд", [
+        ("У меня 200 литров коровьего навоза, сколько будет газа?", {"estimate_methane"}, "ru",
+         {"card_label": {"methane": "literature"}}),
+        ("Какую температуру ставить?", {"recommend_temperature_regime"}, "ru",
+         {"verdict": {"regime": "mesophilic"}, "card_label": {"methane": "literature"},
+          "question_not": [r"жидкий или тв"], "no_verdict": ["fits"]}),
+        ("Сколько электричества уйдёт на подогрев?", {"estimate_heating_energy"}, "ru",
+         {"same_card": ["heating", 1], "question_not": [r"жидкий или тв"], "no_verdict": ["fits"],
+          "must_not": [r"250"]}),
+        ("Бочка 200 литров, не утеплена, на улице −15. Есть смысл?",
+         PYTHON_PLAN({"estimate_methane", "estimate_heating_energy"}), "ru",
+         {"verdict": {"net": "minus", "advice": "eps50"}, "no_verdict": ["fits"], "card_label": {"methane": "literature"},
+          "must_not": [r"не помест"], "question_not": [r"жидкий или тв"]}),
+        ("У меня 5 коров, сколько газа в день будет?", PYTHON_PLAN({"estimate_daily_production"}), "ru",
+         {"verdict": {"daily_capacity": "no"}, "card": "biogas_day", "no_verdict": ["fits"],
+          "must_not": [r"не помест", r"Партия"], "question_not": [r"жидкий или тв"]}),
+        ("У меня 5 коров, сколько газа в день будет?", PYTHON_PLAN({"estimate_daily_production"}), "ru",
+         {"verdict": {"daily_capacity": "no"}, "card": "biogas_day", "same_card": ["biogas_day", 4],
+          "no_verdict": ["fits"], "must_not": [r"не помест", r"Партия"], "question_not": [r"жидкий или тв"]}),
+        ("Хватит газа на газовую плиту?", PYTHON_PLAN({"gas_stove_hours"}), "ru",
+         {"verdict": {"stove": "hours"}, "card": "stove_hours", "no_verdict": ["fits", "daily_capacity"],
+          "must_text": [r"конфорк|плит"], "must_not": [r"не помест", r"Партия"], "question_not": [r"жидкий или тв"]}),
+    ]),
 ]
 
 
-def check_answer(final: dict, facts: dict, checks: dict) -> list[str]:
-    """Names of the failed checks (empty list = all passed)."""
+def check_answer(final: dict, facts: dict, checks: dict, previous: list[dict] | None = None) -> list[str]:
+    """Names of the failed checks (empty list = all passed). previous = finals of the earlier turns of the dialog."""
     failed = []
     explanation = final.get("explanation") or ""
     combined = " ".join([explanation, final.get("question") or "", " ".join(final.get("assumptions") or []),
@@ -151,18 +185,37 @@ def check_answer(final: dict, facts: dict, checks: dict) -> list[str]:
     for key, code in (checks.get("verdict") or {}).items():
         if have.get(key) != code and not (code == "*" and key in have):
             failed.append(f"вывод {key}={have.get(key)}, ждали {code}")
+    for key in checks.get("no_verdict", []):
+        if key in have:
+            failed.append(f"лишний вывод {key}")
+    for pattern in checks.get("question_not", []):
+        if re.search(pattern, final.get("question") or "", re.IGNORECASE):
+            failed.append(f"вопрос повторён «{pattern}»")
+    cards = {c.get("key"): c for c in final.get("numbers") or []}
+    for key, label in (checks.get("card_label") or {}).items():
+        if (cards.get(key) or {}).get("label") != label:
+            failed.append(f"метка {key}={(cards.get(key) or {}).get('label')}, ждали {label}")
+    if "same_card" in checks:
+        key, turn = checks["same_card"]
+        before = {c.get("key"): c for c in (previous or [])[turn].get("numbers") or []}.get(key) if previous and len(previous) > turn else None
+        now = cards.get(key)
+        if not before or not now or (before["low"], before["high"]) != (now["low"], now["high"]):
+            failed.append(f"карточка {key} не совпала с ответом {turn + 1}: "
+                          f"{before and (before['low'], before['high'])} vs {now and (now['low'], now['high'])}")
     return failed
 
 
 def run_message(agent: Agent, conversation_id: str, text: str) -> dict:
     """Run one message and collect the metrics from the event stream."""
     started = time.perf_counter()
-    llm_tools, forced, prompt_tokens, final, steps = [], False, [], None, []
+    llm_tools, forced, prompt_tokens, final, steps, python_plan = [], False, [], None, [], False
     for event in agent.run(conversation_id, text):
         if event["type"] == "tool_call" and event.get("by") == "llm":
             llm_tools.append(event["name"])
         elif event["type"] == "note" and event.get("code") in {"forced_tools", "llm_fallback"}:
             forced = True
+        elif event["type"] == "note" and event.get("code") == "python_plan":
+            python_plan = True
         elif event["type"] == "llm_step":
             steps.append(event)
             if event.get("prompt_tokens"):
@@ -172,7 +225,7 @@ def run_message(agent: Agent, conversation_id: str, text: str) -> dict:
     total = time.perf_counter() - started
     first_token_ms = (final.get("timings") or {}).get("first_answer_token_ms")
     return {
-        "tools": llm_tools, "forced": forced, "final": final, "total_s": total,
+        "tools": llm_tools, "forced": forced, "python_plan": python_plan, "final": final, "total_s": total,
         "first_token_s": first_token_ms / 1000 if first_token_ms else None,
         "prompt_tokens": max(prompt_tokens) if prompt_tokens else 0,
         # where the time goes: number of model calls, tokens written, generation speed
@@ -210,6 +263,7 @@ def evaluate(model: str, pause_s: float = 0.0) -> tuple[list[dict], dict]:
         agent = Agent(memory=Memory(Path(folder) / "eval.sqlite3"), llm=client)
         for dialog_name, turns in DIALOGS:
             conversation_id = Memory.new_id()
+            finals: list[dict] = []
             for turn in turns:
                 text, expected_tools, language = turn[:3]
                 checks = turn[3] if len(turn) > 3 else {}
@@ -220,17 +274,23 @@ def evaluate(model: str, pause_s: float = 0.0) -> tuple[list[dict], dict]:
                 explanation = final["explanation"]
                 answer_language = detect_language(explanation) if explanation else "?"
                 languages = language if isinstance(language, tuple) else (language,)
-                if expected_tools is None:
+                if isinstance(expected_tools, PYTHON_PLAN):
+                    tool_ok = metrics["python_plan"] and set(final["tools"]) == set(expected_tools) and not metrics["tools"]
+                elif expected_tools is None:
                     tool_ok = True  # injection: refusing or Python calculating itself are both fine
                 elif not expected_tools:
                     tool_ok = not metrics["tools"] and not final["tools"]
                 else:
                     tool_ok = bool(set(metrics["tools"]) & expected_tools) and not metrics["forced"]
-                failed = check_answer(final, agent.memory.get(conversation_id)["facts"], checks)
+                failed = check_answer(final, agent.memory.get(conversation_id)["facts"], checks, finals)
+                finals.append(final)
                 row = {
                     "dialog": dialog_name, "message": text,
-                    "expected": "любой" if expected_tools is None else sorted(expected_tools) or ["без инструментов"],
-                    "tools": metrics["tools"], "forced": metrics["forced"],
+                    "expected": "любой" if expected_tools is None else (
+                        ["Python: " + ", ".join(sorted(expected_tools))] if isinstance(expected_tools, PYTHON_PLAN)
+                        else sorted(expected_tools) or ["без инструментов"]),
+                    "tools": metrics["tools"] or (["Python: " + ", ".join(final["tools"])] if metrics["python_plan"] else []),
+                    "forced": metrics["forced"],
                     "tool_ok": tool_ok, "has_checks": bool(checks), "checks_ok": not failed, "failed": failed,
                     "numbers_ok": final["verified"], "language": answer_language,
                     "language_ok": answer_language in languages, "mode": final["mode"],
@@ -284,7 +344,7 @@ def write_report(rows: list[dict], summary: dict, output: Path) -> None:
         "",
         "| Метрика | Результат | Цель |",
         "|---|---|---|",
-        f"| Модель сама выбрала правильный инструмент | {summary['tool_ok']}/{n} | все |",
+        f"| Правильный инструмент (модель сама; для вопросов «в сутки», «плита», «есть смысл?» — Python) | {summary['tool_ok']}/{n} | все |",
         f"| Числа в тексте совпадают с инструментами | {summary['numbers_ok']}/{n} | все |",
         f"| Ответ на языке пользователя | {summary['language_ok']}/{n} | все |",
         f"| Проверки смысла и устойчивости (вердикты, перегруз, единицы, injection…) | "

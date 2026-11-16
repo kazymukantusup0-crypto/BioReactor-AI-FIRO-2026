@@ -2,7 +2,7 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 import AgentChat, { AnswerView, applyEvent, feedLine, type Turn } from '../src/pages/AgentChat'
-import { componentText, parseSSE, speedWarning, type AgentStatus } from '../src/agentV10'
+import { componentText, parseSSE, pluralRu, speedWarning, type AgentStatus } from '../src/agentV10'
 
 const FACTS = { components: [{ substrate: 'cattle_manure', amount: 200, unit: 'L', state: 'slurry' }], reactor_volume_l: null, insulation: null, ambient_c: null, target_c: null, days: null }
 const ANSWER = {
@@ -185,5 +185,16 @@ describe('AgentChat page', () => {
     expect(bodies.map(b => b.message)).toEqual(['У меня 5 вёдер коровьего навоза, сколько будет газа?', 'Жидкий.'])
     expect(bodies[0].conversation_id).toBe(bodies[1].conversation_id)
     expect(fetchMock.mock.calls.some(call => call[0] === '/api/agent/reset')).toBe(true)
+  })
+})
+
+
+describe('pluralRu', () => {
+  it('declines «расчёт» by the number', () => {
+    const forms: [string, string, string] = ['расчёт', 'расчёта', 'расчётов']
+    expect([1, 2, 4, 5, 11, 12, 14, 21, 22, 25, 101, 111].map(n => `${n} ${pluralRu(n, forms)}`)).toEqual([
+      '1 расчёт', '2 расчёта', '4 расчёта', '5 расчётов', '11 расчётов', '12 расчётов', '14 расчётов',
+      '21 расчёт', '22 расчёта', '25 расчётов', '101 расчёт', '111 расчётов',
+    ])
   })
 })

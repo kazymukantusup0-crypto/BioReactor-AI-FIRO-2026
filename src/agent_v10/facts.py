@@ -26,6 +26,7 @@ EMPTY_FACTS: dict = {
     "operating_mode": None,    # batch | continuous
     "price_class": None,       # household | business (electricity tariff)
     "goal": None,              # max_gas | fastest — only when the USER asks; default is the best net energy
+    "animals": [],             # [{species: cow | pig | chicken, count}] — "у меня 5 коров" (daily production)
 }
 
 # "1000 м³ газа", "50 кВт·ч" — what the user wants to GET, not what is loaded.
@@ -70,12 +71,37 @@ DENSITY_RE = re.compile(rf"(?:плотност\w*|density|тығыздығ\w*)\D
 TS_RE = re.compile(rf"(?:\bTS\b|сух\w*\s+веществ\w*|\bСВ\b|құрғақ\s+зат\w*)\D{{0,12}}(?P<number>{NUMBER})\s*%", re.IGNORECASE)
 VS_RE = re.compile(rf"(?:\bVS\b|органическ\w*\s+веществ\w*|летуч\w*\s+\w*|\bОВ\b|органикалық\s+зат\w*)\D{{0,12}}(?P<number>{NUMBER})\s*%", re.IGNORECASE)
 # operating_mode=batch.  The trailing punctuation must not become part of the value.
+# "5 коров", "20 кур", "3 свиньи", "10 cows", "5 сиыр". "коровий навоз" (adjective) is a material, not animals.
+ANIMAL_PATTERNS = [
+    ("cow", r"коров(?:а|ы|у|ой|ам|ами|ах)?|бур[её]нк\w*|т[её]л(?:ок|ки|ка)|cows?|cattle|сиыр(?:ым|лар\w*)?"),
+    ("pig", r"свин(?:ей|ьи|ья|ью|ьям|ьями)|порос[яё]\w*|pigs?|hogs?|шошқа\w*"),
+    ("chicken", r"кур(?:ы|ам|ами|ах)?|куриц\w*|несуш\w*|бройлер\w*|chickens?|hens?|тауық\w*"),
+]
+# The next word makes it a material: "5 сиыр көңі" = cow manure, not five cows.
+MANURE_NEXT = re.compile(r"\s+(?:к[өо]ң\w*|навоз\w*|помет\w*|помёт\w*|саңғырығ\w*|manure|dung)", re.IGNORECASE)
 KEY_VALUE_RE = re.compile(r"\b(?P<key>operating_mode|insulation|режим_работы)\s*[=:]\s*(?P<value>[A-Za-zА-Яа-яЁё_]+)")
+ANIMAL_RE = re.compile(rf"(?P<number>{NUMBER})\s*(?:голов\w*\s+|head\s+of\s+|бас\s+)?(?P<word>[^\W\d_]+)", re.IGNORECASE)
+
+
+def find_animals(text: str, spans: bool = False) -> list[dict]:
+    """Animals with a count: "у меня 5 коров и 10 кур" -> [{cow, 5}, {chicken, 10}]."""
+    found: dict[str, float] = {}
+    where: list[tuple[int, int]] = []
+    for match in ANIMAL_RE.finditer(text):
+        if MANURE_NEXT.match(text, match.end("word")):
+            continue
+        for species, pattern in ANIMAL_PATTERNS:
+            if re.fullmatch(pattern, match.group("word"), re.IGNORECASE):
+                found[species] = found.get(species, 0) + parse_number(match.group("number"))
+                where.append((match.start(), match.end()))
+                break
+    animals = [{"species": species, "count": count} for species, count in found.items()]
+    return (animals, where) if spans else animals
 
 
 def on_topic(text: str) -> bool:
     """The message talks about the plant (state, material, amount, reactor, insulation), even if no fact changed."""
-    if substrates.recognize(text) or find_quantities(text):
+    if substrates.recognize(text) or find_quantities(text) or find_animals(text):
         return True
     patterns = [pattern for _, pattern in STATE_PATTERNS + INSULATION_PATTERNS] + [REACTOR_WORDS]
     return any(re.search(pattern, text, re.IGNORECASE) for pattern in patterns)
@@ -176,12 +202,17 @@ def extract(text: str, known: dict | None = None) -> dict:
         facts.setdefault(key, copy.deepcopy(value))
     updates: dict = {}
 
+    animals, animal_spans = find_animals(text, spans=True)
     materials = substrates.recognize(text)
     materials += [a for a in substrates.recognize_analogs(text)
                   if not any(a["start"] < m["end"] and a["end"] > m["start"] for m in materials)]
+    # "5 коров" are animals, not the material "cattle manure" without an amount.
+    materials = [m for m in materials if not any(m["start"] < end and m["end"] > start for start, end in animal_spans)]
     materials.sort(key=lambda m: m["start"])
     # "получится 1000 м³ газа" is the expected OUTPUT, never a feedstock amount.
     quantities = [q for q in find_quantities(text) if not OUTPUT_AFTER.match(text[q["end"]:q["end"] + 30])]
+    if animals:
+        updates["animals"] = animals
 
     # 1. Reactor volume: a volume next to the word "reactor" / "tank".
     batch_quantities = []
@@ -296,7 +327,8 @@ def extract(text: str, known: dict | None = None) -> dict:
     if re.search(r"предприят\w*|организац\w*|юрлиц\w*|business|company|кәсіпорын", text, re.IGNORECASE):
         updates["price_class"] = "business"
 
-    for key in ["reactor_volume_l", "ambient_c", "target_c", "days", "insulation", "operating_mode", "price_class", "goal"]:
+    for key in ["reactor_volume_l", "ambient_c", "target_c", "days", "insulation", "operating_mode", "price_class", "goal",
+                "animals"]:
         if key in updates:
             facts[key] = updates[key]
     return {"facts": facts, "updates": updates, "language": detect_language(text)}

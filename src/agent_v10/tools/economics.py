@@ -22,7 +22,7 @@ from src.agent_v10.config import MARKET_DB_PATH, METHANE_KWH_PER_M3
 from src.agent_v10.i18n import t
 from src.agent_v10.ranges import add, make, mid, point, range_text, scale, subtract
 from src.agent_v10.tools.common import pair, result, unique_sources
-from src.agent_v10.tools.heating import estimate_heating_energy
+from src.agent_v10.tools.heating import estimate_heating_over_days
 from src.agent_v10.tools.methane import batch_mass_and_volume, estimate_methane
 from src.economics.energy_conversion import convert
 
@@ -97,9 +97,9 @@ def energy_balance_and_economics(components: list[dict], regime: str = "mesophil
         return {**gas, "name": "energy_balance_and_economics"}
     batch = batch_mass_and_volume(components, language)
     days = gas["data"]["days"]
-    heat = estimate_heating_energy(feed_mass_kg=batch["mass_kg"], feed_volume_l=batch["volume_l"],
-                                   reactor_volume_l=reactor_volume_l, insulation=insulation, ambient_c=ambient_c,
-                                   target_c=gas["data"]["temperature_c"], days=mid(days), language=language)
+    heat = estimate_heating_over_days(days, feed_mass_kg=batch["mass_kg"], feed_volume_l=batch["volume_l"],
+                                      reactor_volume_l=reactor_volume_l, insulation=insulation, ambient_c=ambient_c,
+                                      target_c=gas["data"]["temperature_c"], language=language)
     heating_need = heat["data"]["heating_kwh"]
     mixing_need = heat["data"]["mixing_kwh"]
 
@@ -153,7 +153,7 @@ def energy_balance_and_economics(components: list[dict], regime: str = "mesophil
             "value_kzt": pair(value["value_kzt"]) if value["value_kzt"] else None,
         } for key, value in options.items()],
         "best_use": OPTION_NAMES[best].get(language, OPTION_NAMES[best]["ru"]),
-        "prices_saved": bool(prices), "label": "assumption",
+        "prices_saved": bool(prices), "label": "assumption", "methane_label": gas["label"],
         "wall": heat["llm"]["wall"],
     }
     best_value = options[best]["value_kzt"]

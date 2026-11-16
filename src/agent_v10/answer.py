@@ -36,6 +36,16 @@ TITLES = {
     "methane_change": {"ru": "Прибавка метана", "en": "Extra methane", "kk": "Метан өсімі"},
     "enough_gas": {"ru": "Хватит газа на подогрев?", "en": "Enough gas for heating?", "kk": "Газ қыздыруға жете ме?"},
     "gas_covers": {"ru": "Газ покрывает подогрев", "en": "Gas covers heating", "kk": "Газ қыздыруды жабады"},
+    "manure_day": {"ru": "Навоз в сутки", "en": "Manure per day", "kk": "Тәулігіне көң"},
+    "biogas_day": {"ru": "Биогаз в сутки", "en": "Biogas per day", "kk": "Тәулігіне биогаз"},
+    "methane_day": {"ru": "Метан в сутки", "en": "Methane per day", "kk": "Тәулігіне метан"},
+    "reactor_needed": {"ru": "Нужен реактор для всего навоза", "en": "Reactor needed for all manure",
+                       "kk": "Барлық көңге керек реактор"},
+    "reactor_biogas_day": {"ru": "Биогаз в сутки в вашем реакторе", "en": "Biogas per day in your reactor",
+                           "kk": "Сіздің реактордағы тәуліктік биогаз"},
+    "stove_hours": {"ru": "Одна конфорка, часов в сутки", "en": "One burner, hours per day", "kk": "Бір оттық, тәулігіне сағат"},
+    "stove_hours_reactor": {"ru": "Конфорка в вашем реакторе, ч/сут", "en": "Burner with your reactor, h/day",
+                            "kk": "Сіздің реактормен оттық, сағ/тәул"},
 }
 UNITS = {
     "m3": {"ru": "м³", "en": "m³", "kk": "м³"},
@@ -43,6 +53,9 @@ UNITS = {
     "days": {"ru": "дней", "en": "days", "kk": "күн"},
     "percent": {"ru": "%", "en": "%", "kk": "%"},
     "kzt": {"ru": "₸", "en": "KZT", "kk": "₸"},
+    "kg_day": {"ru": "кг/сут", "en": "kg/day", "kk": "кг/тәул"},
+    "m3_day": {"ru": "м³/сут", "en": "m³/day", "kk": "м³/тәул"},
+    "hours": {"ru": "ч", "en": "h", "kk": "сағ"},
 }
 QUESTION_PREFIX = "❓ "
 
@@ -119,7 +132,7 @@ def number_cards(results: list[dict], language: str) -> list[dict]:
             cards += [
                 {"key": "regime", "title": _title("regime", language), "value": llm["recommended"], "unit": "",
                  "label": "assumption", "badge": badge("assumption", language)},
-                _card("methane", chosen["methane_m3"], "m3", label, language),
+                _card("methane", chosen["methane_m3"], "m3", llm.get("methane_label", label), language),
                 _card("heating", chosen["heating_cost_kwh"], "kwh", label, language),
                 _card("net", chosen["net_kwh"], "kwh", label, language),
                 _card("days", chosen["days"], "days", "assumption", language),
@@ -127,7 +140,7 @@ def number_cards(results: list[dict], language: str) -> list[dict]:
         elif name == "energy_balance_and_economics":
             best = next(o for o in llm["options"] if o["use"] == llm["best_use"])
             cards += [
-                _card("energy", llm["gas_energy_kwh"], "kwh", label, language),
+                _card("energy", llm["gas_energy_kwh"], "kwh", llm.get("methane_label", label), language),
                 {"key": "best_use", "title": _title("least_loss" if llm.get("all_options_lose_money") else "best_use", language),
                  "value": llm["best_use"], "unit": "",
                  "label": label, "badge": badge(label, language)},
@@ -137,10 +150,27 @@ def number_cards(results: list[dict], language: str) -> list[dict]:
         elif name == "compare_scenarios":
             last = llm["scenarios"][-1]
             cards += [
-                _card("methane", last["methane_m3"], "m3", label, language, title=f"{_title('methane', language)}: {last['name']}"),
+                _card("methane", last["methane_m3"], "m3", llm.get("methane_label", label), language,
+                      title=f"{_title('methane', language)}: {last['name']}"),
                 _card("methane_change", last["methane_change_vs_first_m3"], "m3", label, language),
                 _card("net", last["net_kwh"], "kwh", label, language, title=f"{_title('net', language)}: {last['name']}"),
             ]
+        elif name == "estimate_daily_production":
+            if "manure_kg_per_day" in llm:
+                cards.append(_card("manure_day", llm["manure_kg_per_day"], "kg_day", "assumption", language))
+                cards.append(_card("biogas_day", llm["biogas_m3_per_day_from_all_manure"], "m3_day", label, language))
+                cards.append(_card("methane_day", llm["methane_m3_per_day_from_all_manure"], "m3_day", label, language))
+                if llm["your_reactor_is_big_enough"] != "yes":
+                    cards.append(_card("reactor_needed", llm["reactor_needed_for_all_manure_m3"], "m3", "assumption", language))
+                    cards.append(_card("reactor_biogas_day", llm["biogas_m3_per_day_in_your_reactor"], "m3_day", label, language))
+            else:
+                cards.append(_card("biogas_day", llm["biogas_m3_per_day"], "m3_day", llm.get("methane_label", label), language))
+                cards.append(_card("methane_day", llm["methane_m3_per_day"], "m3_day", llm.get("methane_label", label), language))
+        elif name == "gas_stove_hours":
+            cards.append(_card("biogas_day", llm["biogas_m3_per_day"], "m3_day", label, language))
+            cards.append(_card("stove_hours", llm["one_burner_hours_per_day"], "hours", label, language))
+            if llm.get("one_burner_hours_per_day_in_your_reactor"):
+                cards.append(_card("stove_hours_reactor", llm["one_burner_hours_per_day_in_your_reactor"], "hours", label, language))
     wall = next((item["llm"]["wall"] for item in results if item.get("ok") and item["llm"].get("wall")), None)
     if wall:
         cards.append(wall_card(wall, "assumption", language))
@@ -257,13 +287,18 @@ def unknown_numbers(text: str, allowed: set[float]) -> list[float]:
 
 # --- templates (no-LLM mode and fallback) -------------------------------------
 
+def _days(value) -> str:
+    """30 -> '30', [25, 35] -> '25–35'."""
+    return _range_text(list(value)) if isinstance(value, (list, tuple)) else f"{tidy(value)}"
+
+
 def template_explanation(results: list[dict], language: str) -> str:
     """2–3 plain sentences built only from tool results; Python verdicts come first."""
     parts: list[str] = []
     verdicts = next((r for r in results if r.get("name") == "verdicts" and r.get("ok")), None)
     if verdicts:
         parts += verdicts["llm"]["verdicts"]
-    covered = {"recommend_temperature_regime", "energy_balance_and_economics"} if verdicts else set()
+    covered = {"recommend_temperature_regime", "energy_balance_and_economics", "gas_stove_hours"} if verdicts else set()
     for item in results:
         if not item.get("ok") or item["name"] in covered:
             continue  # the verdicts above already say the regime / best use, do not repeat them
@@ -285,13 +320,13 @@ def template_explanation(results: list[dict], language: str) -> str:
             }.get(language, ""))
         elif name == "estimate_heating_energy":
             parts.append({
-                "ru": f"Чтобы держать {llm['target_c']} °C при {llm['outside_c']} °C снаружи {llm['days']} дней, нужно "
+                "ru": f"Чтобы держать {tidy(llm['target_c'])} °C при {tidy(llm['outside_c'])} °C снаружи {_days(llm['days'])} дней, нужно "
                       f"{_range_text(llm['total_kwh'])} кВт·ч; основная часть — теплопотери через стенки "
                       f"({_range_text(llm['heat_loss_kwh'])} кВт·ч).",
-                "en": f"Keeping {llm['target_c']} °C with {llm['outside_c']} °C outside for {llm['days']} days needs "
+                "en": f"Keeping {tidy(llm['target_c'])} °C with {tidy(llm['outside_c'])} °C outside for {_days(llm['days'])} days needs "
                       f"{_range_text(llm['total_kwh'])} kWh; most of it is heat loss through the walls "
                       f"({_range_text(llm['heat_loss_kwh'])} kWh).",
-                "kk": f"Сыртта {llm['outside_c']} °C болғанда {llm['days']} күн бойы {llm['target_c']} °C ұстау үшін "
+                "kk": f"Сыртта {tidy(llm['outside_c'])} °C болғанда {_days(llm['days'])} күн бойы {tidy(llm['target_c'])} °C ұстау үшін "
                       f"{_range_text(llm['total_kwh'])} кВт·сағ керек; негізгі бөлігі — қабырға арқылы жылу шығыны "
                       f"({_range_text(llm['heat_loss_kwh'])} кВт·сағ).",
             }.get(language, ""))
@@ -335,6 +370,28 @@ def template_explanation(results: list[dict], language: str) -> str:
                       f"{_range_text(first['methane_m3'])} м³; таза баланс {_range_text(last['net_kwh'])} және "
                       f"{_range_text(first['net_kwh'])} кВт·сағ.",
             }.get(language, ""))
+        elif name == "estimate_daily_production":
+            if "manure_kg_per_day" in llm:
+                parts.append({
+                    "ru": f"Навоз ({llm['animals']}) — {_range_text(llm['manure_kg_per_day'])} кг в сутки; в непрерывном режиме "
+                          f"это {_range_text(llm['biogas_m3_per_day_from_all_manure'])} м³ биогаза в сутки "
+                          f"({_range_text(llm['methane_m3_per_day_from_all_manure'])} м³ метана).",
+                    "en": f"The manure ({llm['animals']}) is {_range_text(llm['manure_kg_per_day'])} kg per day; in a continuous "
+                          f"reactor that gives {_range_text(llm['biogas_m3_per_day_from_all_manure'])} m³ of biogas per day "
+                          f"({_range_text(llm['methane_m3_per_day_from_all_manure'])} m³ of methane).",
+                    "kk": f"Көң ({llm['animals']}) — тәулігіне {_range_text(llm['manure_kg_per_day'])} кг; үздіксіз режимде "
+                          f"бұл тәулігіне {_range_text(llm['biogas_m3_per_day_from_all_manure'])} м³ биогаз "
+                          f"({_range_text(llm['methane_m3_per_day_from_all_manure'])} м³ метан).",
+                }.get(language, ""))
+            else:
+                parts.append({
+                    "ru": f"В среднем партия даёт {_range_text(llm['biogas_m3_per_day'])} м³ биогаза в сутки "
+                          f"за {_range_text(llm['days'])} дней сбраживания.",
+                    "en": f"On average the batch gives {_range_text(llm['biogas_m3_per_day'])} m³ of biogas per day "
+                          f"over {_range_text(llm['days'])} days of digestion.",
+                    "kk": f"Орта есеппен партия {_range_text(llm['days'])} күн ішінде тәулігіне "
+                          f"{_range_text(llm['biogas_m3_per_day'])} м³ биогаз береді.",
+                }.get(language, ""))
         elif name == "search_knowledge" and llm.get("quotes"):
             parts.append(llm["quotes"][0])
     if not parts:
@@ -343,13 +400,18 @@ def template_explanation(results: list[dict], language: str) -> str:
     return " ".join(part for part in parts if part)
 
 
-def compose(*, explanation: str, results: list[dict], language: str, mode: str, verified: bool) -> dict:
-    """The final answer object sent to the UI and saved in memory."""
+def compose(*, explanation: str, results: list[dict], language: str, mode: str, verified: bool,
+            asked: set[str] | None = None) -> dict:
+    """The final answer object sent to the UI and saved in memory.
+
+    asked: questions already asked in this conversation — each clarifying question is asked once.
+    """
     cards = number_cards(results, language)
+    asked = asked or set()
     successful = [item for item in results if item.get("ok")]
-    question = next((item["question"] for item in successful if item.get("question")), None)
+    question = next((item["question"] for item in successful if item.get("question") and item["question"] not in asked), None)
     if not successful:
-        question = next((item["question"] for item in results if item.get("question")), None)
+        question = next((item["question"] for item in results if item.get("question") and item["question"] not in asked), None)
     assumptions: list[str] = []
     sources: list[dict] = []
     for item in successful:

@@ -7,9 +7,9 @@ is consistent:  methane, biogas, heating cost and net balance (gas heat − cost
 from __future__ import annotations
 
 from src.agent_v10.i18n import t
-from src.agent_v10.ranges import make, mid, multiply, subtract
+from src.agent_v10.ranges import make, multiply, subtract
 from src.agent_v10.tools.common import pair, result, unique, unique_sources
-from src.agent_v10.tools.heating import estimate_heating_energy
+from src.agent_v10.tools.heating import estimate_heating_over_days
 from src.agent_v10.tools.methane import batch_mass_and_volume, estimate_methane, normalize_component
 from src.agent_v10.tools.regimes import BOILER_EFFICIENCY
 
@@ -55,18 +55,18 @@ def compare_scenarios(scenarios: list[dict], ambient_c: float | None = None, ins
         if not gas["ok"]:
             return {**gas, "name": "compare_scenarios"}
         batch = batch_mass_and_volume(components, language)
-        heat = estimate_heating_energy(
-            feed_mass_kg=batch["mass_kg"], feed_volume_l=batch["volume_l"],
+        heat = estimate_heating_over_days(
+            gas["data"]["days"], feed_mass_kg=batch["mass_kg"], feed_volume_l=batch["volume_l"],
             reactor_volume_l=scenario.get("reactor_volume_l", reactor_volume_l),
             insulation=scenario.get("insulation", insulation), ambient_c=scenario.get("ambient_c", ambient_c),
-            target_c=gas["data"]["temperature_c"], days=mid(gas["data"]["days"]), language=language)
+            target_c=gas["data"]["temperature_c"], language=language)
         net = subtract(multiply(gas["data"]["energy_kwh"], BOILER_EFFICIENCY), heat["data"]["total_kwh"])
         rows.append({
             "label": scenario.get("label") or f"#{len(rows) + 1}",
             "components": gas["llm"]["components"], "regime": gas["data"]["regime_name"],
             "temperature_c": gas["data"]["temperature_c"],
             "methane_m3": gas["data"]["methane_m3"], "biogas_m3": gas["data"]["biogas_m3"],
-            "energy_kwh": gas["data"]["energy_kwh"], "heating_kwh": heat["data"]["total_kwh"], "net_kwh": net,
+            "energy_kwh": gas["data"]["energy_kwh"], "heating_kwh": heat["data"]["total_kwh"], "net_kwh": net, "methane_label": gas["label"],
         })
         assumptions += gas["assumptions"] + heat["assumptions"]
         sources += gas["sources"] + heat["sources"]
@@ -84,6 +84,7 @@ def compare_scenarios(scenarios: list[dict], ambient_c: float | None = None, ins
             "methane_change_vs_first_m3": pair(row["methane_difference_m3"]),
         } for row in rows],
         "label": "assumption",
+        "methane_label": rows[-1]["methane_label"],
         "wall": heat["llm"]["wall"],  # same reactor for every scenario
     }
     return result("compare_scenarios", ok=True, data=data, llm=llm, assumptions=unique(assumptions),

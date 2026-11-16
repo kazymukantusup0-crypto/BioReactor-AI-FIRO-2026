@@ -11,10 +11,12 @@ from src.agent_v10 import facts as facts_module
 from src.agent_v10.config import demo_reactor
 from src.agent_v10.i18n import t
 from src.agent_v10.tools.common import result
+from src.agent_v10.tools.daily import estimate_daily_production, gas_stove_hours
 from src.agent_v10.tools.economics import energy_balance_and_economics
-from src.agent_v10.tools.heating import estimate_heating_energy
+from src.agent_v10.ranges import point
+from src.agent_v10.tools.heating import estimate_heating_over_days
 from src.agent_v10.tools.knowledge import search_knowledge
-from src.agent_v10.tools.methane import batch_mass_and_volume, estimate_methane, normalize_component
+from src.agent_v10.tools.methane import batch_mass_and_volume, estimate_methane, normalize_component, regime_row
 from src.agent_v10.tools.regimes import recommend_temperature_regime
 from src.agent_v10.tools.scenarios import compare_scenarios, default_scenarios
 
@@ -70,6 +72,13 @@ TOOL_SCHEMAS = [
     _function("search_knowledge",
               "Short quotes and source names from the local scientific base. Use for 'why', 'source', 'is it true'.",
               {"query": {"type": "string"}, "substrate": {"type": "string", "enum": SUBSTRATES}}, ["query"]),
+    _function("estimate_daily_production",
+              "Biogas PER DAY in a continuous (daily-fed) reactor from the manure of the animals the user has "
+              "(cows, pigs, chickens), and whether the reactor is big enough. Use for 'how much gas per day', "
+              "'I have 5 cows'. Animals are taken from memory.", {}),
+    _function("gas_stove_hours",
+              "How many hours a day one household gas burner (stove) can run on the biogas of one day. "
+              "Use for 'is the gas enough for cooking / for the gas stove'.", {}),
     _function("extract_batch_facts",
               "Normalize units and feedstock names in a text (litres, kg, tonnes, buckets).",
               {"text": {"type": "string"}}, ["text"]),
@@ -124,6 +133,8 @@ def _with_default_batch(result_dict: dict, components: list[dict], language: str
     result_dict["question"] = t("ask_substrate", language)
     result_dict["llm"]["assumed_batch"] = f"{components[0]['substrate']} {components[0]['state']} {int(litres)} L (assumption)"
     result_dict["label"] = "assumption"
+    if "methane_label" in result_dict["llm"]:
+        result_dict["llm"]["methane_label"] = "assumption"  # the batch itself is assumed
     return result_dict
 
 
@@ -159,11 +170,13 @@ def run_tool(name: str, args: dict | None, facts: dict, language: str = "ru") ->
             return estimate_methane(_components(args, facts), regime=regime, days=facts.get("days"), language=language)
         if name == "estimate_heating_energy":
             batch = batch_mass_and_volume(_components(args, facts), language) or {}
-            target = _first(facts.get("target_c"), 37.0)
-            return estimate_heating_energy(feed_mass_kg=batch.get("mass_kg"), feed_volume_l=batch.get("volume_l"),
-                                           reactor_volume_l=reactor, insulation=insulation, ambient_c=ambient,
-                                           target_c=float(target), days=facts.get("days"),
-                                           language=language)
+            regime_data = regime_row(regime)
+            target = _first(facts.get("target_c"), regime_data["setpoint_c"])
+            # The same digestion time as the gas estimate (mesophilic 25–35 days), unless the user named it.
+            days = point(float(facts["days"])) if facts.get("days") else regime_data["digestion_days"]
+            return estimate_heating_over_days(days, feed_mass_kg=batch.get("mass_kg"), feed_volume_l=batch.get("volume_l"),
+                                              reactor_volume_l=reactor, insulation=insulation, ambient_c=ambient,
+                                              target_c=float(target), language=language)
         if name == "recommend_temperature_regime":
             return recommend_temperature_regime(_components(args, facts), ambient_c=ambient, insulation=insulation,
                                                 reactor_volume_l=reactor, goal=facts.get("goal") or "net_energy",
@@ -184,6 +197,12 @@ def run_tool(name: str, args: dict | None, facts: dict, language: str = "ru") ->
                                                 insulation=insulation, reactor_volume_l=reactor,
                                                 price_class=_first(facts.get("price_class"), args.get("price_class")),
                                                 language=language)
+        if name in {"estimate_daily_production", "gas_stove_hours"}:
+            batch = [c for c in facts.get("components") or [] if c.get("amount") is not None]
+            state = next((c.get("state") for c in facts.get("components") or [] if c.get("state")), None)
+            daily = estimate_daily_production(facts.get("animals"), components=batch, reactor_volume_l=reactor,
+                                              regime=regime, state=state, language=language)
+            return daily if name == "estimate_daily_production" else gas_stove_hours(daily, language)
         if name == "search_knowledge":
             substrate = args.get("substrate") or next((c["substrate"] for c in facts.get("components") or []), None)
             return search_knowledge(str(args.get("query", "")), substrate=substrate, language=language)

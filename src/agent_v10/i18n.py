@@ -75,9 +75,37 @@ TEXT: dict[str, dict[str, str]] = {
         "kk": "1 шелек = 10 л",
     },
     "assume_reactor_volume": {
-        "ru": "объём реактора {volume} л (сырьё занимает ~80% объёма)",
-        "en": "reactor volume {volume} L (feed fills ~80% of it)",
-        "kk": "реактор көлемі {volume} л (шикізат көлемнің ~80% алады)",
+        "ru": "реактор не указан — взял демо-реактор: бочка {volume} л, рабочий объём {working} л",
+        "en": "reactor not given — used the demo reactor: barrel {volume} L, working volume {working} L",
+        "kk": "реактор көрсетілмеген — демо-реактор алынды: бөшке {volume} л, жұмыс көлемі {working} л",
+    },
+    "assume_manure_per_animal": {
+        "ru": "{name}: {low}–{high} кг навоза с мочой в сутки ({basis}; NRCS AWMFH, гл. 4) — справочное допущение",
+        "en": "{name}: {low}–{high} kg of manure with urine per day (NRCS AWMFH, ch. 4) — handbook assumption",
+        "kk": "{name}: тәулігіне {low}–{high} кг көң (NRCS AWMFH, 4-тарау) — анықтамалық жорамал",
+    },
+    "assume_continuous": {
+        "ru": "непрерывный режим: каждый день загружают суточный навоз; за сутки выходит столько газа, сколько одна "
+              "суточная загрузка даёт за весь срок сбраживания; 1 кг сырого навоза ≈ 1 л",
+        "en": "continuous mode: the daily manure is loaded every day; per day the reactor gives what one daily load "
+              "gives over the whole digestion time; 1 kg of wet manure ≈ 1 L",
+        "kk": "үздіксіз режим: күн сайын тәуліктік көң жүктеледі; тәулігіне бір тәуліктік жүктеменің бүкіл ашыту "
+              "мерзіміндегі газы шығады; 1 кг дымқыл көң ≈ 1 л",
+    },
+    "assume_batch_per_day": {
+        "ru": "газ партии распределён на срок сбраживания {days} дней (в среднем за сутки)",
+        "en": "the batch gas is spread over the digestion time of {days} days (average per day)",
+        "kk": "партия газы {days} күндік ашыту мерзіміне бөлінді (тәулігіне орташа)",
+    },
+    "assume_stove": {
+        "ru": "одна бытовая конфорка расходует {low}–{high} м³ биогаза в час (GTZ/ISAT Biogas Digest, т. II)",
+        "en": "one household burner uses {low}–{high} m³ of biogas per hour (GTZ/ISAT Biogas Digest, vol. II)",
+        "kk": "бір тұрмыстық оттық сағатына {low}–{high} м³ биогаз жұмсайды (GTZ/ISAT Biogas Digest, II т.)",
+    },
+    "assume_batch_too_big": {
+        "ru": "партия {volume} л больше рабочего объёма реактора {working} л (реактор {reactor} л) — расчёт сделан для всей партии",
+        "en": "the batch of {volume} L is larger than the working volume {working} L (reactor {reactor} L) — calculated for the whole batch",
+        "kk": "{volume} л партия реактордың {working} л жұмыс көлемінен көп (реактор {reactor} л) — бүкіл партия үшін есептелді",
     },
     "assume_insulation": {
         "ru": "утепление «{level}» (не было указано)",
@@ -172,6 +200,11 @@ TEXT: dict[str, dict[str, str]] = {
         "ru": "Какое сырьё и сколько его (литры или кг)? Например: «200 л жидкого навоза КРС».",
         "en": "What feedstock and how much (litres or kg)? For example: \"200 L of cattle slurry\".",
         "kk": "Қандай шикізат және қанша (литр не кг)? Мысалы: «200 л сұйық сиыр көңі».",
+    },
+    "ask_animals": {
+        "ru": "Сколько у вас животных и каких? Например: «5 коров» или «20 кур».",
+        "en": "How many animals do you have and which? For example: \"5 cows\" or \"20 chickens\".",
+        "kk": "Қанша және қандай малыңыз бар? Мысалы: «5 сиыр» немесе «20 тауық».",
     },
     "ask_amount": {
         "ru": "Сколько у вас {substrate} — в литрах, вёдрах или килограммах?",

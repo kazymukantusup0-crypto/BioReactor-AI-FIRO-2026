@@ -4,7 +4,7 @@
 import { useCallback, useEffect, useRef, useState, type FormEvent } from 'react'
 import { ArrowUp, Bot, BookOpen, Check, CircleStop, Cpu, Gavel, LoaderCircle, MessageSquarePlus, Pencil, ShieldAlert, ShieldCheck, User } from 'lucide-react'
 import {
-  agentApi, componentText, INSULATION_LABELS, MODE_LABELS, newConversationId, speedWarning, streamAgentChat, TOOL_LABELS,
+  agentApi, componentText, INSULATION_LABELS, MODE_LABELS, newConversationId, pluralRu, speedWarning, streamAgentChat, TOOL_LABELS,
   type AgentAnswer, type AgentEvent, type AgentStatus, type DemoReactor, type Facts, type NumberCard, type Verdict,
 } from '../agentV10'
 import { DEMO_SCENARIOS, type DemoScenario } from '../demoScenarios'
@@ -87,7 +87,8 @@ function ThinkingFeed({ turn, jury }: { turn: Turn; jury: boolean }) {
     {turn.running && <li className="ac-feed-item"><LoaderCircle size={14} className="spin" /><div><span>Думаю…</span></div></li>}
   </ol>
   if (jury || turn.running) return <div className="ac-feed" aria-label="Ход рассуждений агента">{list}</div>
-  return <details className="ac-feed ac-feed-collapsed"><summary>Как агент получил ответ · {lines.filter(l => l.event.type === 'tool_call').length} расчёт(а)</summary>{list}</details>
+  const calls = lines.filter(l => l.event.type === 'tool_call').length
+  return <details className="ac-feed ac-feed-collapsed"><summary>Как агент получил ответ · {calls} {pluralRu(calls, ['расчёт', 'расчёта', 'расчётов'])}</summary>{list}</details>
 }
 
 // ---------- answer ----------

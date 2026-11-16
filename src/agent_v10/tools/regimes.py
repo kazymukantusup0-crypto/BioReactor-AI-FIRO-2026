@@ -19,7 +19,7 @@ from src.agent_v10.config import temperature_regimes
 from src.agent_v10.i18n import t
 from src.agent_v10.ranges import make, mid, multiply, range_text, subtract
 from src.agent_v10.tools.common import pair, result, unique, unique_sources, weakest
-from src.agent_v10.tools.heating import estimate_heating_energy
+from src.agent_v10.tools.heating import estimate_heating_over_days
 from src.agent_v10.tools.methane import batch_mass_and_volume, estimate_methane
 
 BOILER_EFFICIENCY = make(0.85, 0.90)
@@ -77,13 +77,11 @@ def _regime_case(components: list[dict], regime: dict, ambient_c: float | None, 
     batch = batch_mass_and_volume(components, language)
     days = regime["digestion_days"]
     setpoint = regime["setpoint_c"]
-    short = estimate_heating_energy(feed_mass_kg=batch["mass_kg"], feed_volume_l=batch["volume_l"],
-                                    reactor_volume_l=reactor_volume_l, insulation=insulation, ambient_c=ambient_c,
-                                    target_c=setpoint, days=days["low"], language=language)
-    long = estimate_heating_energy(feed_mass_kg=batch["mass_kg"], feed_volume_l=batch["volume_l"],
-                                   reactor_volume_l=reactor_volume_l, insulation=insulation, ambient_c=ambient_c,
-                                   target_c=setpoint, days=days["high"], language=language)
-    cost = make(short["data"]["total_kwh"]["low"], long["data"]["total_kwh"]["high"])
+    # The same function as the tool estimate_heating_energy -> the same numbers.
+    heat = estimate_heating_over_days(days, feed_mass_kg=batch["mass_kg"], feed_volume_l=batch["volume_l"],
+                                      reactor_volume_l=reactor_volume_l, insulation=insulation, ambient_c=ambient_c,
+                                      target_c=setpoint, language=language)
+    cost = heat["data"]["total_kwh"]
     gas_heat = multiply(gas["data"]["energy_kwh"], BOILER_EFFICIENCY)
     net = subtract(gas_heat, cost)
     return {
@@ -91,14 +89,12 @@ def _regime_case(components: list[dict], regime: dict, ambient_c: float | None, 
         "setpoint_c": setpoint, "temperature_range_c": regime["temperature_range_c"], "days": days,
         "methane_m3": gas["data"]["methane_m3"], "biogas_m3": gas["data"]["biogas_m3"],
         "gas_energy_kwh": gas["data"]["energy_kwh"], "gas_heat_kwh": gas_heat,
-        "heating_kwh": make(short["data"]["heating_kwh"]["low"], long["data"]["heating_kwh"]["high"]),
+        "heating_kwh": heat["data"]["heating_kwh"],
         "total_cost_kwh": cost, "net_kwh": net, "stability": regime["stability"],
         "risk": regime["risks"].get(language, regime["risks"]["ru"]),
-        "_gas": gas, "_heat": long,
-        # Heat loss over the same span of days as the cost (short low ... long high), so the
-        # heat-loss card is always a part of the heating card.
-        "_wall": {**long["llm"]["wall"], "heat_loss_kwh": [short["llm"]["wall"]["heat_loss_kwh"][0],
-                                                           long["llm"]["wall"]["heat_loss_kwh"][1]]},
+        "_gas": gas, "_heat": heat,
+        # Heat loss over the same span of days as the cost, so the heat-loss card is a part of the heating card.
+        "_wall": heat["llm"]["wall"],
     }
 
 
@@ -170,6 +166,9 @@ def recommend_temperature_regime(components: list[dict], ambient_c: float | None
             "stability": case["stability"],
         } for case in cases],
         "label": "assumption",
+        # The methane card keeps the label of the methane data itself (literature / measured),
+        # not the weaker label of the heating part.
+        "methane_label": first["label"],
     }
     llm["summary"] = SUMMARY.get(language, SUMMARY["ru"]).format(
         regime=llm["recommended"], heating=range_text(pair(chosen["total_cost_kwh"])),

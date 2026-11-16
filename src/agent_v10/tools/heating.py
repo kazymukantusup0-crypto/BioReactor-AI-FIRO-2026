@@ -127,11 +127,12 @@ def estimate_heating_energy(feed_mass_kg: dict | float | None = None, feed_volum
         # Only the reactor is known: assume it is filled like the demo reactor with water-like feed.
         feed_mass_kg = point((feed_volume_l or reactor_volume_l * fill_share) * 1.0)
     if reactor_volume_l is None:
-        feed_l = feed_volume_l or feed_mass_kg["high"]
-        # The demo reactor if the feed fits into its working volume, otherwise a reactor sized for the feed.
-        reactor_volume_l = (float(demo["reactor_volume_l"]) if feed_l <= demo["working_volume_l"]
-                            else round(feed_l / fill_share, -1))
-        assumptions.append(t("assume_reactor_volume", language, volume=fmt(reactor_volume_l)))
+        # ONE source of reactor parameters for the whole dialog: the demo reactor
+        # (data/config/demo_reactor.json). A reactor "sized for the feed" (e.g. 250 L)
+        # made two answers of one dialog disagree.
+        reactor_volume_l = float(demo["reactor_volume_l"])
+        assumptions.append(t("assume_reactor_volume", language, volume=fmt(reactor_volume_l),
+                             working=fmt(demo["working_volume_l"])))
         question = t("ask_reactor", language)
     if insulation not in INSULATION_THICKNESS:
         insulation = demo["insulation"]
@@ -189,3 +190,28 @@ def estimate_heating_energy(feed_mass_kg: dict | float | None = None, feed_volum
     }
     return result("estimate_heating_energy", ok=True, data=data, llm=llm, assumptions=assumptions,
                   sources=SOURCES + U_SOURCES, label="assumption", question=question)
+
+
+def estimate_heating_over_days(days: dict, **kwargs) -> dict:
+    """Heating for a digestion time given as a range (e.g. mesophilic 25–35 days).
+
+    low  = the low corner with the SHORT time, high = the high corner with the LONG time.
+    Every tool (heating, regimes, scenarios, economics) uses this one function, so the
+    same batch, reactor and weather always give the same heating number in one dialog.
+    """
+    short = estimate_heating_energy(days=days["low"], **kwargs)
+    if not short["ok"] or days["low"] == days["high"]:
+        return short
+    long = estimate_heating_energy(days=days["high"], **kwargs)
+    data = dict(long["data"])
+    for key in ["feed_heating_kwh", "heat_loss_kwh", "heating_kwh", "mixing_kwh", "total_kwh"]:
+        data[key] = make(short["data"][key]["low"], long["data"][key]["high"])
+    data["days"] = days
+    llm = dict(long["llm"])
+    for key in ["total_kwh", "feed_heating_kwh", "heat_loss_kwh", "mixing_kwh"]:
+        llm[key] = pair(data[key])
+    llm["days"] = pair(days)
+    llm["wall"] = {**long["llm"]["wall"], "heat_loss_kwh": pair(data["heat_loss_kwh"])}
+    assumptions = [a for a in long["assumptions"]]
+    return result("estimate_heating_energy", ok=True, data=data, llm=llm, assumptions=assumptions,
+                  sources=long["sources"], label=long["label"], question=long["question"])
