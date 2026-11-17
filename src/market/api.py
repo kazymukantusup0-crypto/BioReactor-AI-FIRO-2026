@@ -142,6 +142,9 @@ def create_app(store=None,scheduler_enabled=None,interval=None,*,firo_demo=False
     # Agent v10: tool-calling LLM agent with an SSE "thinking feed" (/api/agent/*).
     from src.agent_v10.api import create_router as agent_v10_router
     app.include_router(agent_v10_router())
+    # «Сырьё и смеси» page: the agent's own estimate_methane, so the page and the chat give equal numbers.
+    from src.dashboard.substrates_api import create_router as substrates_router
+    app.include_router(substrates_router())
     if (ROOT/'frontend/dist/index.html').is_file():
         app.mount('/dashboard',StaticFiles(directory=ROOT/'frontend/dist',html=True),name='dashboard')
     return app
