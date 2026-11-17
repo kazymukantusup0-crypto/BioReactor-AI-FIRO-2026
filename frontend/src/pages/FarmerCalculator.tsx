@@ -87,7 +87,7 @@ export default function FarmerCalculator({ scientific }: { scientific: boolean }
   }
 
   const data = result?.data
-  const ok = result?.ok && data?.status === 'ok' && valid
+  const ok = result?.ok && data?.status === 'ok'  // with a bad amount the last valid result stays, dimmed
   const parts = data?.components ?? []
   return <div className="farm">
     <section className="farm-input ds-card" aria-label={tr('farm.input')}>
@@ -130,7 +130,7 @@ export default function FarmerCalculator({ scientific }: { scientific: boolean }
     {!valid && result && <p className="ds-notice">{tr('farm.fixInput')}</p>}
     {result && !result.ok && valid && <div className="ds-notice ds-notice-warn" data-testid="farm-no-data"><strong>{tr('farm.noDataTitle')}</strong><p>{result.question ?? tr('farm.noDataText')}</p></div>}
 
-    {ok && data && <section aria-label={tr('farm.results')} className={`farm-results ${busy ? 'is-busy' : ''}`} data-testid="farm-results">
+    {ok && data && <section aria-label={tr('farm.results')} className={`farm-results ${busy || !valid ? 'is-busy' : ''}`} data-testid="farm-results">
       <div className="farm-cards">
         {[
           { id: 'methane', icon: Flame, title: tr('farm.card.methane'), value: data.methane_m3!, unit: tr('farm.unit.m3'), note: tr('farm.card.lab', { v0: num(data.methane_potential_m3!.high), v1: tr('farm.unit.m3') }) },

@@ -422,10 +422,21 @@ export function LegacyAdvisor({ mixture = true }: { mixture?: boolean }) {
 export default function SubstrateAdvisorV81(_props: { mixture?: boolean }) {
   const { mode } = useDisplayMode()
   const [legacyOpen, setLegacyOpen] = useState(false)
+  // Opening the v8 block: it calculates the SAME mixture as the farmer view above (its own saved draft is replaced).
+  const openLegacy = (open: boolean) => {
+    if (open) try {
+      const rows = JSON.parse(localStorage.getItem('bioreactor-farm-calculator-v10') ?? 'null') as { id: string; material: string; state: string; quantity: string; unit: Unit }[] | null
+      const components = (rows ?? []).map(row => ({ id: row.id, material: row.material, material_state: row.state || 'unknown', quantity: Number(String(row.quantity).replace(',', '.')), unit: row.unit }))
+      if (components.length && components.every(c => Number.isFinite(c.quantity) && c.quantity > 0 && Object.hasOwn(UNIT_FACTORS, c.unit))) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(components)); localStorage.removeItem(DRAFT_KEY)
+      }
+    } catch { /* the v8 block keeps its own rows */ }
+    setLegacyOpen(open)
+  }
   return <div className="advisor-page">
     <div className="page-heading"><div><h1>{tr('substrateAdvisorV81.17')}</h1><p>{tr('farm.subtitle')}</p></div></div>
     <FarmerCalculator scientific={mode === 'scientific'} />
-    {mode === 'scientific' && <details className="ds-collapse farm-legacy" data-testid="legacy-v8" onToggle={event => setLegacyOpen((event.target as HTMLDetailsElement).open)}>
+    {mode === 'scientific' && <details className="ds-collapse farm-legacy" data-testid="legacy-v8" onToggle={event => openLegacy((event.target as HTMLDetailsElement).open)}>
       <summary>{tr('farm.legacy')}</summary><p className="ds-muted">{tr('farm.legacyNote')}</p>{legacyOpen && <LegacyAdvisor mixture />}
     </details>}
   </div>

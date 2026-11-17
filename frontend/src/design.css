@@ -217,3 +217,18 @@ main { font-size: var(--fs-md); }
 .home-status-item .ds-status::before { margin-top: 7px; flex-shrink: 0; }
 /* reactor readings: value, unit and note one under another */
 .reactor-reading { display: flex; flex-direction: column; gap: var(--sp-2); }
+/* phone: the header keeps the menu, the language and the view switch; status details are on «Обзор» */
+@media (max-width: 600px) {
+  .topbar-right > .badge, .topbar-region, .header-system-button, .user-mark { display: none; }
+  .topbar-right { gap: var(--sp-2); }
+  .breadcrumb > span:first-child, .breadcrumb > svg { display: none; }
+  .topbar .display-mode button { padding-left: var(--sp-2); padding-right: var(--sp-2); }
+  .home-hero h1 { font-size: var(--fs-2xl); }
+}
+.ac-controls { flex-wrap: wrap; }
+.ac-controls .badge { white-space: normal; max-width: 100%; }
+.table-scroll { overflow-x: auto; max-width: 100%; }
+@media (max-width: 600px) {
+  .topbar-right { min-width: 0; flex-wrap: wrap; justify-content: flex-end; }
+  .topbar .display-mode button, .language-switch [role="radio"] { font-size: var(--fs-xs); }
+}

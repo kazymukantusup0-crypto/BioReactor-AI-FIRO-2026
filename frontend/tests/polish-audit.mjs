@@ -62,6 +62,8 @@ for (const lang of Object.keys(LANGS)) {
     for (const section of SECTIONS) {
       await page.evaluate(id => { window.location.hash = '/' + id }, section)
       await page.waitForTimeout(1800)
+      // lazy images (Sources figures) load only when scrolled into view
+      await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight)); await page.waitForTimeout(700); await page.evaluate(() => window.scrollTo(0, 0))
       await page.screenshot({ path: `${out}/${lang}-${vp}-${section}.png`, fullPage: vp !== 'projector' })
       if (vp === '1366') {
         const m = await measure(page)
@@ -84,10 +86,11 @@ const step = async (page, lang, name, action) => {
   const text = await resultText(page)
   audit.substrates[`${lang}-${name}`] = {
     numbers: (text.match(/[≈~]?\s?\d+[.,]?\d*\s?[–-]\s?\d+[.,]?\d*\s?(м³|m³|кВт·ч|kWh|л|L)/g) ?? []).slice(0, 12),
-    notices: await page.locator('.notice, [role=status], [role=alert]').allInnerTexts().then(v => v.map(s => s.slice(0, 160)).slice(0, 6)),
+    notices: await page.locator('.notice, .ds-notice, [role=alert]').allInnerTexts().then(v => v.map(s => s.slice(0, 160)).slice(0, 6)),
     height: await page.evaluate(() => document.documentElement.scrollHeight),
   }
 }
+if (stage === 'before') {
 for (const lang of Object.keys(LANGS)) {
   const { context, page } = await open({ width: 1366, height: 768 }, lang)
   await page.evaluate(() => { localStorage.removeItem('bioreactor-inventory-v8.1'); localStorage.removeItem('bioreactor-calculator-draft-v9') })
@@ -116,6 +119,53 @@ for (const lang of Object.keys(LANGS)) {
     await page.locator('[data-testid="material-2"]').selectOption('straw')
   })
   await context.close()
+}
+
+} else {
+const farmText = page => page.locator('[data-testid="farm-results"]').innerText().catch(() => '')
+const topMode = (page, index) => page.locator('.topbar .display-mode button').nth(index).click()
+for (const lang of Object.keys(LANGS)) {
+  const { context, page } = await open({ width: 1366, height: 768 }, lang)
+  await page.evaluate(() => { localStorage.removeItem('bioreactor-farm-calculator-v10'); localStorage.setItem('bioreactor-display-mode', 'simple') })
+  await page.evaluate(() => { window.location.hash = '/substrates' })
+  await page.waitForTimeout(400); await page.reload(); await page.locator('[data-testid="farm-material-0"]').waitFor()
+  const amount = page.locator('[data-testid="farm-amount-0"]'), unit = page.locator('[data-testid="farm-unit-0"]'), material = page.locator('[data-testid="farm-material-0"]')
+  await step(page, lang, '1-single-200L', async () => {})
+  await step(page, lang, '2-single-50kg', async () => { await unit.selectOption('kg'); await amount.fill('50') })
+  await step(page, lang, '3-unit-t', async () => { await unit.selectOption('t'); await amount.fill('2') })
+  await step(page, lang, '4-empty-quantity', async () => { await amount.fill('') })
+  await step(page, lang, '5-negative', async () => { await amount.fill('-5') })
+  await step(page, lang, '6-huge', async () => { await amount.fill('1e12') })
+  await step(page, lang, '7-no-data-other-organic', async () => {
+    await topMode(page, 1); await material.selectOption('other_organic'); await unit.selectOption('kg'); await amount.fill('30') })
+  await step(page, lang, '8-mixture-3', async () => {
+    await topMode(page, 0); await material.selectOption('cattle_manure'); await amount.fill('100')
+    await page.locator('[data-testid="farm-add"]').click(); await page.locator('[data-testid="farm-add"]').click() })
+  audit.substrates[`${lang}-8-mixture-3`].cards = await farmText(page)
+  await step(page, lang, '9-scientific-v8', async () => {
+    await topMode(page, 1); await page.locator('[data-testid="legacy-v8"] > summary').click(); await page.waitForTimeout(2500) })
+  // The «Спросить ИИ» button end to end (RU): the agent's answer in the chat must carry the page's numbers.
+  if (lang === 'ru') {
+    await topMode(page, 0); await page.waitForTimeout(1500)
+    const methane = await page.locator('[data-testid="farm-card-methane"]').innerText()
+    await page.locator('[data-testid="farm-ask"]').click()
+    const box = page.locator('.ac-composer textarea')
+    await box.waitFor()
+    const question = await box.inputValue()
+    await box.press('Enter')
+    await page.locator('.ac-answer').first().waitFor({ timeout: 120000 })
+    await page.waitForTimeout(800)
+    const cards = await page.locator('.ac-card').allInnerTexts()
+    const nums = text => (text.replace(/,/g, '.').match(/\d+(?:\.\d+)?/g) ?? []).map(Number)
+    const range = nums(methane.split('\n').find(line => /–/.test(line)) ?? '').slice(0, 2)
+    const chatMethane = cards.find(card => /метан/i.test(card)) ?? ''
+    const ok = range.length === 2 && range.every(value => nums(chatMethane).includes(value))
+    audit.askAi = { question, pageMethane: methane, chatCards: cards, sameNumbers: ok }
+    await page.screenshot({ path: `${out}/ru-ask-ai-chat.png`, fullPage: false })
+    console.log(`ask AI: ${ok ? 'OK' : 'DIFFERENT'} — page ${range.join('–')} / chat: ${chatMethane.replace(/\n/g, ' ')}`)
+  }
+  await context.close()
+}
 }
 
 writeFileSync(`${out}/audit.json`, JSON.stringify(audit, null, 1))
