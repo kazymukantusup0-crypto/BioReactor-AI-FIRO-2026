@@ -17,6 +17,7 @@ export const TRANSLATED_FILES = [
   'src/AdvisorResults.tsx', 'src/MaterialPropertiesFields.tsx', 'src/advisorApi.ts', 'src/pages/AgentChat.tsx', 'src/agentV10.ts',
   'src/pages/Reactor.tsx', 'src/pages/Market.tsx', 'src/MarketChart.tsx', 'src/pages/Science.tsx', 'src/pages/System.tsx',
   'src/pages/Demo.tsx', 'src/pages/FiroDemoMvp.tsx', 'src/firoDemo.ts', 'src/demoScenarios.ts', 'src/LanguageSwitch.tsx',
+  'src/pages/FarmerCalculator.tsx', 'src/substratesApi.ts',
 ]
 // Example questions that show the agent understands Kazakh: they stay in Kazakh in every interface language.
 const KEEP_KAZAKH = new Set(['agentChat.5', 'scenario.kazakh.message.1'])

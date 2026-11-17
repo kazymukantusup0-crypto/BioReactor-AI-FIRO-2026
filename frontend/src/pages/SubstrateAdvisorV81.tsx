@@ -11,6 +11,8 @@ import { Notice } from '../ui'
 import '../advisor.css'
 import MaterialPropertiesFields from '../MaterialPropertiesFields'
 import { localized, materialName, optionLabel, tr } from '../i18n'
+import { useDisplayMode } from '../DisplayMode'
+import FarmerCalculator from './FarmerCalculator'
 
 const STORAGE_KEY = 'bioreactor-inventory-v8.1'
 const DRAFT_KEY = 'bioreactor-calculator-draft-v9'
@@ -34,7 +36,8 @@ const factorLabels: Record<string, string> = localized(() => ({
   bmp_ml_g_vs: 'BMP', gas_basis: tr('substrateAdvisorV81.5'),
 }))
 
-export default function SubstrateAdvisorV81({ mixture = true }: { mixture?: boolean }) {
+/** The v8 advisor (laboratory potential, load balance, economics). Shown only in the «Научный» view, folded. */
+export function LegacyAdvisor({ mixture = true }: { mixture?: boolean }) {
   const catalog = useQuery('advisor-catalog', advisorApi.catalog)
   const [rows, setRows] = useState<ComponentInput[]>(() => {
     try {
@@ -334,9 +337,9 @@ export default function SubstrateAdvisorV81({ mixture = true }: { mixture?: bool
     } finally { setBusy(false) }
   }
 
-  return <div className="advisor-page">
-    <div className="page-heading"><div><h1>{tr('substrateAdvisorV81.17')}</h1><p>{tr('substrateAdvisorV81.18')}</p></div><div className="display-mode" role="group" aria-label={tr('substrateAdvisorV81.19')}><button type="button" aria-pressed={displayMode === 'simple'} onClick={() => setDisplayMode('simple')}>{tr('substrateAdvisorV81.20')}</button><button type="button" aria-pressed={displayMode === 'scientific'} onClick={() => setDisplayMode('scientific')}>{tr('substrateAdvisorV81.21')}</button></div></div>
-    {catalog.error && <Notice tone="red">{catalog.error}</Notice>}
+  return <div className="advisor-page legacy-advisor">
+    <div className="legacy-mode display-mode" role="group" aria-label={tr('substrateAdvisorV81.19')}><button type="button" aria-pressed={displayMode === 'simple'} onClick={() => setDisplayMode('simple')}>{tr('substrateAdvisorV81.20')}</button><button type="button" aria-pressed={displayMode === 'scientific'} onClick={() => setDisplayMode('scientific')}>{tr('substrateAdvisorV81.21')}</button></div>
+    {catalog.error &&<Notice tone="red">{catalog.error}</Notice>}
     {catalog.data && <details className="catalog-detail"><summary>{tr('substrateAdvisorV81.22')}</summary><div className="advisor-catalog-strip">
       <span><strong>{catalog.data.recognized_categories}</strong> {tr('substrateAdvisorV81.23')}</span>
       <span><strong>{catalog.data.materials_with_approved_profiles.length}</strong> {tr('substrateAdvisorV81.24')}</span>
@@ -413,5 +416,17 @@ export default function SubstrateAdvisorV81({ mixture = true }: { mixture?: bool
     {refreshing && <p role="status">{tr('substrateAdvisorV81.88')}</p>}
     {error && <Notice tone="red">{error}</Notice>}
     {result && <>{dirty && <Notice tone="amber">{tr('substrateAdvisorV81.89')}</Notice>}<FunctionalResults key={String(result.calculated_at)} result={result} comparison={comparison} names={names} /></>}
+  </div>
+}
+
+export default function SubstrateAdvisorV81(_props: { mixture?: boolean }) {
+  const { mode } = useDisplayMode()
+  const [legacyOpen, setLegacyOpen] = useState(false)
+  return <div className="advisor-page">
+    <div className="page-heading"><div><h1>{tr('substrateAdvisorV81.17')}</h1><p>{tr('farm.subtitle')}</p></div></div>
+    <FarmerCalculator scientific={mode === 'scientific'} />
+    {mode === 'scientific' && <details className="ds-collapse farm-legacy" data-testid="legacy-v8" onToggle={event => setLegacyOpen((event.target as HTMLDetailsElement).open)}>
+      <summary>{tr('farm.legacy')}</summary><p className="ds-muted">{tr('farm.legacyNote')}</p>{legacyOpen && <LegacyAdvisor mixture />}
+    </details>}
   </div>
 }

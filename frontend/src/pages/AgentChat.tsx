@@ -9,6 +9,7 @@ import {
 } from '../agentV10'
 import { DEMO_SCENARIOS, type DemoScenario } from '../demoScenarios'
 import '../agentChat.css'
+import { CHAT_PREFILL_KEY } from '../substratesApi'
 import { localized, materialName, tr } from '../i18n'
 
 const STORAGE_ID = 'bioreactor-agent-v10-conversation'
@@ -236,10 +237,14 @@ function JuryPipeline() {
 
 // ---------- page ----------
 export default function AgentChat() {
-  const [conversationId, setConversationId] = useState(() => read(STORAGE_ID) ?? newConversationId())
+  // «Спросить ИИ об этой смеси» on the substrates page: the question waits in the box, in a NEW dialog
+  // (an old batch in the chat memory must not mix with the page's mixture).
+  const [prefill] = useState(() => { try { return sessionStorage.getItem(CHAT_PREFILL_KEY) } catch { return null } })
+  useEffect(() => { try { sessionStorage.removeItem(CHAT_PREFILL_KEY) } catch { /* optional */ } }, [])
+  const [conversationId, setConversationId] = useState(() => prefill ? newConversationId() : read(STORAGE_ID) ?? newConversationId())
   const [turns, setTurns] = useState<Turn[]>([])
   const [facts, setFacts] = useState<Facts | null>(null)
-  const [input, setInput] = useState('')
+  const [input, setInput] = useState(prefill ?? '')
   const [jury, setJury] = useState(() => read(STORAGE_JURY) === '1')
   const [useLlm, setUseLlm] = useState(true)
   const [status, setStatus] = useState<AgentStatus | null>(null)
@@ -275,7 +280,8 @@ export default function AgentChat() {
     }).catch(() => { /* server offline: start empty */ })
     return () => { cancelled = true }
   }, [conversationId])
-  useEffect(() => { bottom.current?.scrollIntoView?.({ behavior: 'smooth', block: 'end' }) }, [turns])
+  // Follow a new answer; an empty or restored dialog keeps the page at the top (on a projector the header stayed hidden).
+  useEffect(() => { if (turns.some(turn => !turn.restored)) bottom.current?.scrollIntoView?.({ behavior: 'smooth', block: 'end' }) }, [turns])
 
   const send = async (text: string, options: { conversation?: string; llm?: boolean; force?: boolean } = {}) => {
     const message = text.trim()

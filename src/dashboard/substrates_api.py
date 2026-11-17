@@ -9,11 +9,14 @@ are turned into kg and L, and the input is checked (amount > 0, at most 10⁹).
 """
 from __future__ import annotations
 
+from functools import lru_cache
 from typing import Literal
 
 from fastapi import APIRouter
 from pydantic import BaseModel, Field
 
+from src.agent_v10 import substrates
+from src.agent_v10.tools.methane import estimate_methane
 from src.agent_v10.tools.registry import run_tool
 
 # Page unit -> (agent unit, factor). The agent knows kg, t, L, m3.
@@ -56,8 +59,20 @@ def estimate(body: EstimateRequest) -> dict:
             "question": answer.get("question"), "label": answer.get("label"), "agent_components": components}
 
 
+@lru_cache(maxsize=1)
+def materials_with_data() -> list[str]:
+    """Materials the agent has a yield for (its reference table). Others get an honest «no data» answer."""
+    known = sorted(substrates.known_materials())
+    return [m for m in known if m != "manure" and substrates.resolve_material(m) == m
+            and estimate_methane([{"substrate": m, "amount": 1, "unit": "kg"}])["data"].get("status") == "ok"]
+
+
 def create_router() -> APIRouter:
     router = APIRouter(prefix="/api/substrates", tags=["Substrates page (agent calculation)"])
+
+    @router.get("/materials")
+    def materials() -> dict:
+        return {"with_data": materials_with_data()}
 
     @router.post("/estimate")
     def estimate_route(body: EstimateRequest) -> dict:

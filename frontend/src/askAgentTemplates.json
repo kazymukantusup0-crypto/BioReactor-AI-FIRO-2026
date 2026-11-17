@@ -1,0 +1,9 @@
+{
+  "comment": "«Спросить ИИ об этой смеси»: the question the substrates page puts into the chat. Shared with tests/test_substrates_page_same_as_agent.py, which sends exactly this text to the agent and checks the numbers equal the page.",
+  "ru": {"intro": "У меня", "and": "и", "ask": "Сколько будет газа?", "units": {"kg": "кг", "t": "т", "L": "л", "m3": "м³"},
+         "states": {"slurry": "жидкий", "fresh_solid": "твёрдый", "dry": "сухой"}},
+  "kk": {"intro": "Менде", "and": "және", "ask": "Қанша газ болады?", "units": {"kg": "кг", "t": "т", "L": "л", "m3": "м³"},
+         "states": {"slurry": "сұйық", "fresh_solid": "қатты", "dry": "құрғақ"}},
+  "en": {"intro": "I have", "and": "and", "ask": "How much gas will it give?", "units": {"kg": "kg", "t": "t", "L": "L", "m3": "m³"},
+         "states": {"slurry": "liquid", "fresh_solid": "solid", "dry": "dry"}}
+}
