@@ -343,3 +343,54 @@ def test_eval20_number_after_insulation_must_be_calculated_by_python():
     assert answer.insulation_claims(wrong, [heating])
     assert answer.unknown_numbers(wrong, answer.allowed_numbers([heating], "", facts)) == []
     assert not answer.insulation_claims("Утепление пенополистиролом 50 мм снизит теплопотери.", [heating])
+
+
+# --- dashboard check 18.11: a total of the mixture given as the number of one component ------------------------
+
+MIXTURE = "У меня 100 кг навоз крс, 20 кг пищевые отходы и 20 кг солома. Сколько будет газа?"
+
+
+def mixture_result():
+    return run_tool("estimate_methane", {}, extract(MIXTURE)["facts"])
+
+
+@pytest.mark.parametrize("text, problem", [
+    # the real answer of qwen3:8b to the «Спросить ИИ» question (6.5 m³ = the whole mixture; cattle manure ≈2 m³)
+    ("Ваш биогаз составит ≈12 (8.4–15) м³. Основной фактор — навоз КРС, который даёт около 6.5 м³ метана.", True),
+    ("Cattle manure gives about 6.5 m³ of methane.", True),
+    ("Сиыр көңі шамамен 6,5 м³ метан береді.", True),
+    ("Солома даёт около 12 м³ биогаза.", True),
+    ("Смесь даст около 6.5 м³ метана и 12 м³ биогаза.", False),                     # the total, said as the total
+    ("Если добавить солому, метана станет около 6.5 м³.", False),                   # the new total after adding
+    ("Adding straw increases methane to about 6.5 m³.", False),
+    ("Сабанды қоссаңыз, метан шамамен 6,5 м³ болады.", False),
+    ("Навоз КРС, пищевые отходы и солома вместе дадут ≈6.5 м³ метана.", False),     # all components named
+    ("Всего из навоза КРС с добавками получится ≈6.5 м³ метана.", False),            # «всего» = the total
+    ("Навоз КРС даёт около 2 м³ метана, солома — больше.", False),                  # the component's own number
+    ("Из 100 кг навоза КРС и других отходов получится газ.", False),                # no total number
+])
+def test_mixture_total_is_not_given_to_one_component(text, problem):
+    assert bool(answer.mixture_total_claims(text, [mixture_result()])) is problem
+
+
+def test_mixture_rule_only_for_mixtures():
+    single = run_tool("estimate_methane", {}, extract("200 литров жидкого коровьего навоза")["facts"])
+    methane = plain(single["data"]["methane_m3"]["high"])
+    assert not answer.mixture_total_claims(f"Навоз КРС даст до {methane} м³ метана.", [single])
+
+
+def test_mixture_total_given_to_one_component_is_regenerated_then_templated(memory):
+    wrong = "Основной фактор — навоз КРС, который даёт около 6.5 м³ метана."
+    llm = FakeLLM([("tool", "estimate_methane", {}), ("text", wrong), ("text", wrong)])
+    events, final = run(Agent(memory, llm), "mix1", MIXTURE)
+    checks = [e for e in events if e["type"] == "verification"]
+    assert checks[0]["contradicts"] and checks[-1]["contradicts"]
+    assert "который даёт около 6.5" not in final["explanation"]
+
+
+def test_mixture_total_fixed_on_regeneration_is_accepted(memory):
+    llm = FakeLLM([("tool", "estimate_methane", {}), ("text", "Навоз КРС даёт около 6.5 м³ метана."),
+                   ("text", "Вся смесь даст около 6.5 м³ метана.")])
+    events, final = run(Agent(memory, llm), "mix2", MIXTURE)
+    assert [e for e in events if e["type"] == "verification"][-1]["ok"]
+    assert final["verified"] and final["explanation"] == "Вся смесь даст около 6.5 м³ метана."
