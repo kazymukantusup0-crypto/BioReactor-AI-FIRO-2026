@@ -232,3 +232,6 @@ main { font-size: var(--fs-md); }
   .topbar-right { min-width: 0; flex-wrap: wrap; justify-content: flex-end; }
   .topbar .display-mode button, .language-switch [role="radio"] { font-size: var(--fs-xs); }
 }
+/* long Kazakh menu labels must not squeeze the icons */
+.nav-item > svg { flex-shrink: 0; }
+.nav-item > span:not(.nav-indicator):not(.nav-state) { min-width: 0; line-height: 1.3; white-space: normal; overflow-wrap: anywhere; }
