@@ -4,9 +4,16 @@ import { useQuery } from '../hooks'
 import { Badge, JsonDetails, LoadState, Notice, PageTitle, Panel, timestamp } from '../ui'
 import { serverText, tr } from '../i18n'
 
+// While the first check runs (it asks Ollama, up to ~2 s): the outline of the six cards instead of a spinner.
+function SystemSkeleton() {
+  return <div className="diagnostic-grid" aria-busy="true" aria-label={tr('system.loading')} data-testid="system-skeleton">
+    {Array.from({ length: 6 }, (_, index) => <div key={index} className="ds-skeleton system-skeleton-card" />)}
+  </div>
+}
+
 export default function System() {
   const status = useQuery('system-status', api.status); const data = status.data
-  return <><PageTitle eyebrow={tr('system.eyebrow')} title={tr('system.1')} description={tr('system.2')} action={<button className="btn btn-secondary" disabled={status.loading} onClick={status.refresh}>{status.loading ? <LoaderCircle size={15} className="spin" /> : <RefreshCw size={15} />}{tr('system.3')}</button>} /><LoadState loading={status.loading} error={status.error} retry={status.refresh} />{data && <><div className="diagnostic-grid">{[
+  return <><PageTitle eyebrow={tr('system.eyebrow')} title={tr('system.1')} description={tr('system.2')} action={<button className="btn btn-secondary" disabled={status.loading} onClick={status.refresh}>{status.loading ? <LoaderCircle size={15} className="spin" /> : <RefreshCw size={15} />}{tr('system.3')}</button>} />{status.loading && !data && <SystemSkeleton />}<LoadState loading={false} error={status.error} retry={status.refresh} />{data &&<><div className="diagnostic-grid">{[
     { name: 'FastAPI', icon: <Server size={22} />, ok: data.fastapi.status === 'ok', status: tr('system.4'), detail: tr('system.5') },
     { name: 'SQLite', icon: <Database size={22} />, ok: data.sqlite.status === 'ok', status: data.sqlite.status === 'ok' ? tr('system.6') : tr('system.7'), detail: tr('system.8', { v0: data.sqlite.observations ?? '—', v1: data.sqlite.test_observations ?? '—' }) },
     { name: 'Ollama', icon: <Bot size={22} />, ok: data.ollama.available, status: data.ollama.available ? tr('system.9') : tr('system.10'), detail: tr('system.11', { v0: data.ollama.model }) },

@@ -1,11 +1,68 @@
-import { ArrowRight, MessageSquare, Layers, Radio } from 'lucide-react'
-import { useEffect } from 'react'
-import { api } from '../api'
-import { useQuery } from '../hooks'
-import { LoadState, PriceStatus, number } from '../ui'
+// «Обзор» — the first screen the jury sees: what the system does, its live state, three big buttons.
+import { useEffect, useState } from 'react'
+import { ArrowRight, Calculator, Cpu, Gavel, Languages, MessageSquare, Server, ShieldCheck, Sparkles, Thermometer, WifiOff } from 'lucide-react'
+import { motion } from 'motion/react'
+import { agentApi, type AgentStatus } from '../agentV10'
 import { tr } from '../i18n'
-export default function Overview({navigate}:{navigate:(page:string)=>void}){
-const prices=useQuery('home-prices',signal=>api.prices('KZ-Karaganda',signal))
-useEffect(()=>{const timer=setInterval(prices.refresh,60000);return()=>clearInterval(timer)},[prices.refresh])
-return <div className="clean-home"><div className="clean-intro"><h1>{tr('overview.1')}</h1><p>{tr('overview.2')}</p></div><div className="home-actions"><button className="home-action" onClick={()=>navigate('substrates')}><Layers size={25}/><h2>{tr('overview.3')}</h2><p>{tr('overview.4')}</p><ArrowRight size={17}/></button><button className="home-action" onClick={()=>navigate('chat')}><MessageSquare size={25}/><h2>{tr('overview.5')}</h2><p>{tr('overview.6')}</p><ArrowRight size={17}/></button></div><div className="home-status"><Radio size={19}/><span>{tr('overview.7')}</span><button className="text-button" onClick={()=>navigate('reactor')}>{tr('overview.8')}</button></div>{<section className="home-market"><h2>{tr('overview.9')}</h2><LoadState loading={prices.loading} error={prices.error} retry={prices.refresh}/>{prices.data?.prices.slice(0,3).map(p=><div className="home-market-row" key={p.id}><span>{p.commodity==='electricity'?tr('overview.10'):tr('overview.11')}<small>{p.price_type==='reference'?tr('overview.12'):tr('overview.13')} · {p.region}</small></span><span>{number(p.normalized_value)} {p.normalized_unit.includes(p.currency)?p.normalized_unit:p.currency+'/'+p.normalized_unit}<PriceStatus price={p}/></span></div>)}<button className="text-button" onClick={()=>navigate('market')}>{tr('overview.14')} <ArrowRight size={14}/></button></section>}</div>
+
+const JURY_KEY = 'bioreactor-agent-v10-jury'  // the same key the chat reads
+
+export default function Overview({ navigate }: { navigate: (page: string) => void }) {
+  const [status, setStatus] = useState<AgentStatus | null>(null)
+  const [failed, setFailed] = useState(false)
+  useEffect(() => {
+    const load = () => agentApi.status().then(value => { setStatus(value); setFailed(false) }).catch(() => setFailed(true))
+    load()
+    const timer = setInterval(load, 20000)
+    return () => clearInterval(timer)
+  }, [])
+  const openJury = () => { try { localStorage.setItem(JURY_KEY, '1') } catch { /* the chat opens in the farmer view */ } navigate('chat') }
+
+  const gpu = status?.gpu
+  const model = !status ? (failed ? tr('home.status.serverDown') : tr('home.status.loading'))
+    : !status.llm_available ? tr('home.status.noModel')
+    : gpu?.loaded ? tr('home.status.gpu', { v0: status.model, v1: gpu.gpu_percent ?? 100 }) : tr('home.status.modelReady', { v0: status.model })
+  const version = status?.version
+  const items = [
+    { id: 'model', icon: Cpu, label: tr('home.status.model'), value: model, tone: status?.llm_available ? (gpu?.loaded ? 'ok' : 'warn') : 'bad' },
+    { id: 'offline', icon: WifiOff, label: tr('home.status.network'), value: status?.offline === false ? tr('home.status.online') : tr('home.status.offline'), tone: status ? 'ok' : 'warn' },
+    { id: 'server', icon: Server, label: tr('home.status.server'), tone: version ? (version.stale ? 'bad' : 'ok') : 'warn',
+      value: version ? (version.stale ? tr('home.status.stale') : tr('home.status.version', { v0: version.commit, v1: (version.started_at ?? '').slice(11, 16) })) : '—' },
+    { id: 'sensors', icon: Thermometer, label: tr('home.status.sensors'), value: tr('home.status.noSensors'), tone: 'warn' },
+  ]
+  const skills = [
+    { icon: Languages, title: tr('home.skill.1.title'), text: tr('home.skill.1.text') },
+    { icon: Calculator, title: tr('home.skill.2.title'), text: tr('home.skill.2.text') },
+    { icon: ShieldCheck, title: tr('home.skill.3.title'), text: tr('home.skill.3.text') },
+    { icon: Sparkles, title: tr('home.skill.4.title'), text: tr('home.skill.4.text') },
+  ]
+  return <div className="home">
+    <motion.header className="home-hero" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .3 }}>
+      <span className="home-eyebrow">{tr('home.eyebrow')}</span>
+      <h1>{tr('home.title')}</h1>
+      <p>{tr('home.lead')}</p>
+      <div className="home-buttons">
+        <button className="ds-button ds-button-primary home-button" data-testid="home-ask" onClick={() => navigate('chat')}><MessageSquare size={20} />{tr('home.ask')}</button>
+        <button className="ds-button home-button" data-testid="home-calc" onClick={() => navigate('substrates')}><Calculator size={20} />{tr('home.calc')}</button>
+        <button className="ds-button home-button" data-testid="home-jury" onClick={openJury}><Gavel size={20} />{tr('home.jury')}</button>
+      </div>
+    </motion.header>
+
+    <section className="home-status-strip" aria-label={tr('home.status.title')} data-testid="home-status">
+      {items.map((item, index) => <motion.div key={item.id} className="home-status-item" initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .25, delay: .1 + index * .05 }}>
+        <item.icon size={20} />
+        <div><span>{item.label}</span><strong className="ds-status" data-tone={item.tone} data-testid={`home-status-${item.id}`}>{item.value}</strong></div>
+      </motion.div>)}
+    </section>
+
+    <section className="home-skills" aria-label={tr('home.skills')}>
+      {skills.map((skill, index) => <motion.article key={skill.title} className="home-skill ds-card" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .25, delay: .2 + index * .06 }}>
+        <skill.icon size={24} />
+        <h2>{skill.title}</h2>
+        <p>{skill.text}</p>
+      </motion.article>)}
+    </section>
+
+    <button className="home-more" onClick={() => navigate('science')}>{tr('home.more')} <ArrowRight size={16} /></button>
+  </div>
 }

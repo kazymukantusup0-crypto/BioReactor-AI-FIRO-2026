@@ -138,3 +138,82 @@ main { font-size: var(--fs-md); }
   .farm-bar-value { text-align: left; }
 }
 @media (max-width: 480px) { .farm-cards { grid-template-columns: 1fr; } }
+
+/* ---------- shell ---------- */
+.brand small { letter-spacing: .06em; white-space: nowrap; }
+.sidebar-bottom .local-card p, .sidebar-bottom .local-card span { line-height: 1.5; }
+
+/* ---------- «Обзор» (first screen for the jury) ---------- */
+.home { display: flex; flex-direction: column; gap: var(--sp-6); padding-top: var(--sp-3); }
+.home-hero { display: flex; flex-direction: column; gap: var(--sp-4); max-width: 980px; }
+.home-eyebrow { font-size: var(--fs-sm); font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); }
+.home-hero h1 { font-size: var(--fs-hero); line-height: 1.12; color: var(--text-strong); letter-spacing: -.02em; }
+.home-hero p { font-size: var(--fs-lg); line-height: 1.6; color: var(--text-muted); max-width: 70ch; }
+.home-buttons { display: flex; flex-wrap: wrap; gap: var(--sp-3); margin-top: var(--sp-2); }
+.home-button { min-height: 52px; font-size: var(--fs-lg); padding: 0 var(--sp-5); }
+.home-status-strip { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--sp-3); }
+.home-status-item { display: flex; gap: var(--sp-3); align-items: flex-start; background: var(--surface-1); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: var(--sp-4); }
+.home-status-item > svg { color: var(--accent); flex-shrink: 0; margin-top: 2px; }
+.home-status-item span { display: block; font-size: var(--fs-sm); color: var(--text-muted); margin-bottom: var(--sp-1); }
+.home-status-item strong { font-size: var(--fs-md); color: var(--text-strong); font-weight: 600; }
+.home-skills { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--sp-4); }
+.home-skill { display: flex; flex-direction: column; gap: var(--sp-3); }
+.home-skill > svg { color: var(--accent); }
+.home-skill h2 { font-size: var(--fs-xl); color: var(--text-strong); }
+.home-skill p { font-size: var(--fs-md); color: var(--text-muted); line-height: 1.6; }
+.home-more { align-self: flex-start; display: inline-flex; gap: var(--sp-2); align-items: center; background: none; border: 0; color: var(--accent); font-size: var(--fs-md); font-weight: 600; cursor: pointer; padding: 0; }
+.home-more:hover { color: var(--accent-strong); }
+@media (max-width: 1100px) { .home-status-strip, .home-skills { grid-template-columns: repeat(2, minmax(0, 1fr)); } .home-hero h1 { font-size: var(--fs-3xl); } }
+@media (max-width: 560px) { .home-status-strip, .home-skills { grid-template-columns: 1fr; } }
+
+/* ---------- «Реактор» ---------- */
+.reactor-page { display: flex; flex-direction: column; gap: var(--sp-4); }
+.reactor-state { display: flex; gap: var(--sp-4); align-items: center; border-color: #6b5527; background: linear-gradient(90deg, var(--warn-soft), var(--surface-1) 70%); }
+.reactor-state-icon { display: grid; place-items: center; width: 60px; height: 60px; border-radius: var(--radius-lg); background: var(--surface-2); color: var(--warn); flex-shrink: 0; }
+.reactor-state h2 { font-size: var(--fs-2xl); color: var(--text-strong); }
+.reactor-state p { font-size: var(--fs-md); color: var(--text-muted); line-height: 1.6; margin-top: var(--sp-1); max-width: 80ch; }
+.reactor-readings { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sp-4); }
+.reactor-chain h2 { font-size: var(--fs-xl); color: var(--text-strong); }
+.reactor-chain-list { list-style: none; padding: 0; margin-top: var(--sp-5); display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: var(--sp-2); }
+.reactor-chain-list li { display: flex; align-items: center; gap: var(--sp-2); min-width: 0; }
+.reactor-chain-step { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: var(--sp-2); padding: var(--sp-4); border: 1px solid var(--border-strong); border-radius: var(--radius-lg); background: var(--surface-2); min-height: 150px; }
+.reactor-chain-step svg { color: var(--accent); }
+.reactor-chain-step strong { font-size: var(--fs-md); color: var(--text-strong); }
+.reactor-chain-step span { font-size: var(--fs-sm); color: var(--text-muted); line-height: 1.5; }
+.reactor-chain-arrow { color: var(--text-faint); flex-shrink: 0; }
+.reactor-dev-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--sp-5); margin: var(--sp-4) 0; }
+.ds-collapse > summary svg { vertical-align: -2px; }
+.ds-collapse h3 svg { vertical-align: -2px; }
+@media (max-width: 1100px) { .reactor-chain-list { grid-template-columns: repeat(3, minmax(0, 1fr)); } .reactor-chain-arrow { display: none; } }
+@media (max-width: 760px) { .reactor-readings, .reactor-dev-grid { grid-template-columns: 1fr; } .reactor-chain-list { grid-template-columns: 1fr 1fr; } }
+
+/* ---------- «Источники и данные» ---------- */
+.science-plain { margin-bottom: var(--sp-4); }
+.science-plain h2 { font-size: var(--fs-xl); color: var(--text-strong); margin-bottom: var(--sp-3); }
+.science-plain ul { padding-left: 1.2em; display: flex; flex-direction: column; gap: var(--sp-2); font-size: var(--fs-md); line-height: 1.6; color: var(--text); }
+.science-explain { font-size: var(--fs-md); line-height: 1.6; color: var(--text); background: var(--surface-2); border-left: 3px solid var(--accent); border-radius: var(--radius-sm); padding: var(--sp-3) var(--sp-4); margin: var(--sp-3) 0; }
+/* the saved matplotlib figures are white: shown inverted so they sit in the dark theme (hues kept by the rotation) */
+.scientific-figure { background: var(--surface-2) !important; border-radius: var(--radius); padding: var(--sp-3); }
+.scientific-figure img { filter: invert(.92) hue-rotate(180deg) contrast(.95); border-radius: var(--radius-sm); }
+
+/* ---------- «Рынок», «Состояние системы» ---------- */
+.market-codes { font-family: ui-monospace, Consolas, monospace; color: var(--text-faint) !important; overflow-wrap: anywhere; }
+.price-table td, .table-scroll td { overflow-wrap: anywhere; }
+.system-skeleton-card { height: 190px; }
+
+/* ---------- fixes after the type scale grew ---------- */
+/* Tailwind preflight makes svg a block: icons inside a line of text stay inline */
+.ds-collapse > summary svg, .ds-collapse h3 svg, .home-more svg { display: inline-block; }
+/* the sidebar fits 1366×768 and a 1280×720 projector: shorter gaps, the local card hides on short screens */
+.workspace-pill { margin: var(--sp-4) 7px var(--sp-4); }
+.nav-caption { margin-bottom: var(--sp-2); }
+.sidebar nav { gap: 2px; }
+.nav-item { padding: 10px 12px; }
+.nav-caption-system { margin-top: var(--sp-4); }
+.sidebar-bottom .local-card > span { display: block; }
+@media (max-height: 820px) { .sidebar-bottom .local-card p { display: none; } .sidebar-bottom { padding-top: var(--sp-3); } }
+/* status values: the dot stays at the first line when the text wraps */
+.home-status-item .ds-status { align-items: flex-start; }
+.home-status-item .ds-status::before { margin-top: 7px; flex-shrink: 0; }
+/* reactor readings: value, unit and note one under another */
+.reactor-reading { display: flex; flex-direction: column; gap: var(--sp-2); }
