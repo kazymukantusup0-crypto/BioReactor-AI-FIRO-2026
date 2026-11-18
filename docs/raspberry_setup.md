@@ -15,9 +15,15 @@
   Имя `.local` в точке доступа iPhone находится не всегда — тогда по IP (`ssh bio@172.20.10.3`, адрес может меняться).
 - Код: `~/BioReactor_AI` (ветка `reactor-hardware`, клон без истории), venv `raspberry/.venv` с pyserial из `wheels/`.
 - `sudo` на Pi спрашивает пароль → `install.sh` и сетевые команды запускает человек.
-- Проверка без Arduino и без sudo: `~/BioReactor_AI/raspberry/run_simulated.sh start` → на ноутбуке
+- Ручная проверка без Arduino и без sudo (когда службы ещё нет): сначала `cd ~/BioReactor_AI && git pull`
+  (скрипт появился в коммите c1435c7), затем `~/BioReactor_AI/raspberry/run_simulated.sh start` → на ноутбуке
   `BIOREACTOR_SENSORS=pi BIOREACTOR_PI_URL=http://<адрес Pi>:8780`, страница показывает
   «RASPBERRY PI (<адрес>) → ВИРТУАЛЬНЫЙ ARDUINO» (`docs/reactor/real_pi_virtual_arduino.png`).
+- Ручной запуск и служба `bioreactor-pi` делят порт 8780 — одновременно работать не могут.
+  Перед установкой службы: `~/BioReactor_AI/raspberry/run_simulated.sh stop` (install.sh теперь делает это сам).
+  Установка (пароль sudo вводит человек):
+  `ssh -t bioreactor "cd ~/BioReactor_AI && git pull && cd raspberry && ./run_simulated.sh stop; sudo ./install.sh --simulate"`
+- 18.11 служба установлена с `--simulate` и работает (`systemctl status bioreactor-pi` → active (running)).
 - Trixie: сетевые профили создаёт netplan (`netplan-eth0`, `netplan-wlan0-…`), управляет ими NetworkManager.
 
 ## 1. Первый запуск Pi (один раз, с монитором или по SSH)

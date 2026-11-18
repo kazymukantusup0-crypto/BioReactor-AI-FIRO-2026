@@ -54,6 +54,10 @@ fi
 chown -R bioreactor:bioreactor "$DATA"
 
 echo "[5/5] systemd service bioreactor-pi"
+# A manual test run (run_simulated.sh) holds port 8780 and the service would fail with "Address already in use".
+if [[ -n "${SUDO_USER:-}" && -x "$HERE/run_simulated.sh" ]]; then
+  sudo -u "$SUDO_USER" "$HERE/run_simulated.sh" stop || true
+fi
 sed "s|@SIMULATE@|$SIMULATE|" "$HERE/bioreactor-pi.service" > /etc/systemd/system/bioreactor-pi.service
 systemctl daemon-reload
 systemctl enable bioreactor-pi
@@ -62,6 +66,12 @@ sleep 2
 systemctl --no-pager --lines=5 status bioreactor-pi || true
 
 PORT=$(python3 -c "import json;print(json.load(open('$CONF/config.json'))['http']['port'])")
+if ! systemctl is-active --quiet bioreactor-pi; then
+  echo
+  echo "!! The service is not running. If the log says 'Address already in use', something else holds port $PORT:"
+  ss -ltnp "sport = :$PORT" || true
+  echo "   stop that process, then: sudo systemctl restart bioreactor-pi"
+fi
 echo
 echo "Done. Check from the Pi:      curl http://127.0.0.1:$PORT/health"
 echo "Check from the laptop:        http://<Pi address>:$PORT/health   (direct cable: http://192.168.50.2:$PORT/health)"
