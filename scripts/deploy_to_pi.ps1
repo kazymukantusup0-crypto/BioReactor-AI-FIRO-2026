@@ -70,7 +70,9 @@ for ($i = 0; $i -lt 30; $i++) {
     Start-Sleep -Seconds 1
     try {
         $h = Invoke-RestMethod -Uri "http://${pi}:8780/health" -TimeoutSec 3
-        if ($h.ok -and $h.deployed -eq $stamp) { $ok = $true; break }
+        # the new code answers, and the Arduino (it resets when the port opens: ~3 s) is on line again
+        if ($h.ok -and $h.deployed -eq $stamp -and $h.arduino_ok) { $ok = $true; break }
+        if ($h.ok -and $h.deployed -eq $stamp -and $i -ge 25) { $ok = $true; break }
     } catch { }
 }
 if (-not $ok) { Write-Host "/health did not answer with the new code in 30 s: journalctl -u bioreactor-pi -n 30" -ForegroundColor Red; exit 1 }
