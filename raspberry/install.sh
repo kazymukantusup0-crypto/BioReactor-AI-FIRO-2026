@@ -67,11 +67,12 @@ systemctl --no-pager --lines=5 status bioreactor-pi || true
 
 # Code updates without internet (scripts/deploy_to_pi.ps1 on the laptop): a root-owned helper that only copies the
 # bioreactor_pi package from ~/BioReactor_AI/raspberry and restarts this service; the deploying user may run exactly it
-# without a password.
+# (no arguments) without a password. The helper never opens the user's files as root (see bioreactor-deploy.sh).
 if [[ -n "${SUDO_USER:-}" && -f "$HERE/bioreactor-deploy.sh" ]]; then
   install -o root -g root -m 755 "$HERE/bioreactor-deploy.sh" /usr/local/sbin/bioreactor-deploy
   RULE="/etc/sudoers.d/bioreactor-deploy"
-  echo "$SUDO_USER ALL=(root) NOPASSWD: /usr/local/sbin/bioreactor-deploy" > "$RULE.tmp"
+  # "" = no arguments allowed; the helper reads the user's files only as that user (see bioreactor-deploy.sh)
+  echo "$SUDO_USER ALL=(root) NOPASSWD: /usr/local/sbin/bioreactor-deploy \"\"" > "$RULE.tmp"
   chmod 440 "$RULE.tmp"
   if visudo -cf "$RULE.tmp" >/dev/null; then mv "$RULE.tmp" "$RULE"; else rm -f "$RULE.tmp"; echo "sudoers rule invalid, skipped"; fi
   echo "      deploy helper: /usr/local/sbin/bioreactor-deploy (sudo without password for $SUDO_USER, this file only)"
