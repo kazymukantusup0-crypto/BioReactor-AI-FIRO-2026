@@ -76,11 +76,15 @@ def main() -> int:
     try:
         log(f"laptop Wi-Fi now: {ssid()}; school Wi-Fi -> connect manually (for the test only)")
         log(run(["netsh", "wlan", "set", "profileparameter", f"name={SCHOOL}", "connectionmode=manual"]))
-        log(run(["netsh", "wlan", "connect", f"name={PI_WIFI}"]))
-        for _ in range(60):
+        # «netsh wlan connect» only works for networks in Windows' last scan; while on the 5 GHz school network the
+        # 2.4 GHz BioReactor-Pi may be missing from it — ask again every 3 s until Windows has rescanned
+        for attempt in range(30):
+            answer = run(["netsh", "wlan", "connect", f"name={PI_WIFI}"])
+            if attempt == 0 or attempt % 5 == 0:
+                log(f"connect to {PI_WIFI} (attempt {attempt + 1}): {answer}")
+            time.sleep(3)
             if ssid() == PI_WIFI and health("10.42.0.1"):
                 break
-            time.sleep(1)
         else:
             log("could not join BioReactor-Pi before the test — stop")
             result["ok"] = False
