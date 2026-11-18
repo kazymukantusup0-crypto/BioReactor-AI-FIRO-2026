@@ -1,69 +1,63 @@
-"""Pi-side protection (the SECOND layer; the Arduino sketch is the main one). Pure functions.
+"""Pi-side rules (the SECOND layer; the Arduino sketch is the main one and has the last word). Pure functions.
 
-The Pi repeats the Arduino's rules (leak, overheat, broken temperature sensor, interlock) so a command that the
-Arduino would refuse is refused already here, with a clear reason, and so a firmware bug is caught twice.
-It adds what the Arduino cannot know: «no link with the Arduino», and the person-only leak reset.
+Thresholds are NOT a Pi setting any more: the Arduino keeps them in EEPROM and sends them in every status
+(temp_min, temp_max, temp_hard_max, gas_out_limit, gas_in_limit). The Pi uses them for:
+    level()          norm / attention / danger of a reading, for the page
+    refuse_reason()  the same checks as requestRelay() in the sketch, so a command that the Arduino would refuse is
+                     refused here with the same reason (and a firmware bug is caught twice)
 """
 from __future__ import annotations
 
-LEVELS = ("ok", "warn", "danger")
+RH_WARN_PCT = 95.0          # condensate on the DHT11
+GAS_OUT_WARN_SHARE = 0.8    # gas outside >= 80 % of the leak limit -> attention
 
 
-def level(name: str, value: float | None, th: dict) -> str:
-    """norm / attention / danger of one reading; 'unknown' when the sensor does not answer."""
+def level(name: str, value: float | None, limits: dict | None) -> str:
+    """ok / warn / danger of one reading; 'unknown' when the sensor does not answer or the limits are not known yet."""
     if value is None:
         return "unknown"
-    if name == "temp_c":
-        t = th["temp_c"]
-        if value <= t["danger_low"] or value >= t["danger_high"]:
-            return "danger"
-        if value < t["warn_low"] or value > t["warn_high"]:
-            return "warn"
-        return "ok"
     if name == "rh_pct":
-        t = th["rh_pct"]
-        return "danger" if value >= t["danger_high"] else "warn" if value >= t["warn_high"] else "ok"
+        return "warn" if value >= RH_WARN_PCT else "ok"
+    if not limits:
+        return "ok"
+    if name == "temp_c":
+        if value >= limits["temp_hard_max"]:
+            return "danger"
+        return "warn" if value < limits["temp_min"] or value > limits["temp_max"] else "ok"
     if name == "gas_in":
-        # Inside the barrel gas is the product, not a danger: very low only means «little gas is forming».
-        return "warn" if value < th["gas_in_raw"]["warn_low"] else "ok"
+        # Inside the barrel gas is the product: above the limit only means «time to pump it out».
+        return "warn" if value > limits["gas_in_limit"] else "ok"
     if name == "gas_out":
-        t = th["gas_out_raw"]
-        return "danger" if value >= t["leak"] else "warn" if value >= t["warn"] else "ok"
-    if name == "p_kpa":
-        t = th["pressure_kpa"]
-        return "danger" if value >= t["danger"] else "warn" if value >= t["pump_warn"] else "ok"
+        if value > limits["gas_out_limit"]:
+            return "danger"
+        return "warn" if value >= GAS_OUT_WARN_SHARE * limits["gas_out_limit"] else "ok"
     raise KeyError(name)
 
 
-def is_leak(gas_out: float | None, th: dict) -> bool:
-    return gas_out is not None and gas_out >= th["gas_out_raw"]["leak"]
-
-
-def is_overheat(temp_c: float | None, th: dict, active: bool) -> bool:
-    """With hysteresis: starts at overheat_c, ends below overheat_release_c."""
-    if temp_c is None:
-        return active
-    return temp_c >= th["overheat_release_c"] if active else temp_c >= th["overheat_c"]
-
-
-def refuse_reason(name: str, on: bool, *, link_ok: bool, relays: dict, leak_latched: bool, overheat: bool,
-                  temp_known: bool = True, warmup: bool = False) -> str | None:
-    """Why a person's command is refused (None = allowed). Switching OFF is always allowed when there is a link."""
+def refuse_reason(name: str, on: bool, *, link_ok: bool, relays: dict, alarms: dict) -> str | None:
+    """Why a person's relay command is refused (None = allowed). Mirrors requestRelay() in the sketch.
+    Reasons are the Arduino's error codes in lower case (estop, leak, warmup, no_temp, overheat, interlock)."""
     if name not in relays:
         return "unknown_relay"
     if not link_ok:
         return "no_link"
     if not on:
         return None
+    if alarms.get("estop"):
+        return "estop"
+    if alarms.get("leak"):
+        return "leak"
     if name == "heat":
-        if leak_latched:
-            return "leak_lock"
-        if not temp_known:
-            return "temp_sensor"
-        if overheat:
-            return "overheat"
-        if warmup:
+        if alarms.get("warmup"):
             return "warmup"
-    if (name == "heat" and relays.get("cool")) or (name == "cool" and relays.get("heat")):
+        if alarms.get("no_temp"):
+            return "no_temp"
+        if alarms.get("overheat"):
+            return "overheat"
+        if relays.get("cool"):
+            return "interlock"
+    if name == "cool" and relays.get("heat"):
         return "interlock"
+    if name == "pump" and alarms.get("warmup"):
+        return "warmup"
     return None

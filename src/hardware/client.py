@@ -3,12 +3,17 @@ watchdog). Commands go to POST /relay. Two places where the link can break, both
 
     laptop -X- Pi       no answer for link_timeout_s   -> link.level "pi"       «НЕТ СВЯЗИ С RASPBERRY PI»
     Pi -X- Arduino      the Pi reports arduino_link.ok = false -> link.level "arduino"  «НЕТ СВЯЗИ С ARDUINO»
-Either way: values are not shown as current, every button is disabled and every command is refused.
+Either way: values are not shown as current, every button is disabled and every command is refused (E-STOP is still
+sent while the Pi answers and its USB port is open).
+
+Mode "auto": the Pi is looked for at each address of pi_candidates in turn (Wi-Fi of the Pi 10.42.0.1, the direct cable
+192.168.50.2, bioreactor.local in a shared network); the first that answers /health is used until it stops answering,
+then the search starts again. The page shows the route: «Wi-Fi Pi», «кабель», «общая сеть». Mode "pi": one fixed pi_url.
 
 Mode "simulator": the SAME Pi bridge code (raspberry/bioreactor_pi) with the virtual Arduino runs inside this
 server on 127.0.0.1 and this client talks to it over HTTP — the whole chain works without hardware, and the page
 always says СИМУЛЯТОР. The «оборвать сеть» simulator button stops this client's requests, so the Pi's own
-laptop watchdog can be shown (after 15 s it switches every relay off).
+laptop watchdog can be shown (after 15 s it switches off the relays that were switched on from the Pi).
 """
 from __future__ import annotations
 
@@ -20,8 +25,8 @@ import urllib.request
 from collections.abc import Callable
 from urllib.parse import urlsplit
 
-RELAYS = ("heat", "cool", "pump")
-SENSORS = ("temp_c", "rh_pct", "gas_in", "gas_out", "p_kpa")
+RELAYS = ("heat", "cool", "pump", "auger")
+SENSORS = ("temp_c", "rh_pct", "gas_in", "gas_out")
 
 
 class PiUnreachable(OSError):
@@ -39,6 +44,10 @@ class ReactorClient:
         self.sim = None                   # (bridge, server) of the in-process simulated Pi
         self._journal_path = journal_path
         self.pi_url = config["pi_url"].rstrip("/")
+        self.candidates = [dict(c, url=c["url"].rstrip("/")) for c in config.get("pi_candidates", [])]
+        if self.mode == "auto" and self.candidates:
+            self.pi_url = self.candidates[0]["url"]
+        self.searching = False
         self.last_state: dict | None = None
         self.last_ok: float | None = None
         self.error: str | None = None
@@ -85,10 +94,36 @@ class ReactorClient:
         except (urllib.error.URLError, OSError, ValueError) as error:
             raise PiUnreachable(str(getattr(error, "reason", error))) from error
 
+    def route(self) -> str | None:
+        """How the laptop reaches the Pi: pi_wifi | cable | lan (from pi_candidates), None if the address is not listed."""
+        return next((c["route"] for c in self.candidates if c["url"] == self.pi_url), None)
+
+    def find_pi(self) -> bool:
+        """Mode auto: the first candidate that answers /health becomes pi_url."""
+        if self.network_cut:
+            return False
+        self.searching = True
+        try:
+            for candidate in self.candidates:
+                request = urllib.request.Request(candidate["url"] + "/health",
+                                                 headers={**({"X-Bioreactor-Token": self.token} if self.token else {})})
+                try:
+                    with urllib.request.urlopen(request, timeout=float(self.config.get("search_timeout_s", 1.5))) as response:
+                        if json.loads(response.read().decode("utf-8")).get("ok"):
+                            self.pi_url = candidate["url"]
+                            return True
+                except (urllib.error.URLError, OSError, ValueError):
+                    continue
+            return False
+        finally:
+            self.searching = False
+
     def poll(self) -> None:
         try:
             state = self._request("GET", "/state")
         except PiUnreachable as error:
+            if self.mode == "auto" and self.find_pi():
+                return self.poll()
             with self._lock:
                 self.error = str(error)
             return
@@ -109,16 +144,19 @@ class ReactorClient:
         net = self.network_ok()
         arduino = bool(net and state and state["arduino_link"]["ok"])
         level = None if arduino else "pi" if not net else "arduino"
-        source = {"kind": self.mode, "address": None if self.mode == "simulator" else self.address(),
+        source = {"kind": "simulator" if self.mode == "simulator" else "pi", "mode": self.mode,
+                  "address": None if self.mode == "simulator" else self.address(),
+                  "route": None if self.mode == "simulator" else self.route(),
                   "arduino_port": (state or {}).get("bridge", {}).get("port"),
                   "firmware": (state or {}).get("bridge", {}).get("firmware")}
         if state is None:
             return {"source": source, "link": {"ok": False, "level": "pi", "network_ok": False, "arduino_ok": False,
                                                "seconds_since_pi": since, "error": error},
                     "readings": {n: {"value": None, "last": None, "level": "unknown"} for n in SENSORS},
-                    "relays": {n: {"on": False, "on_for_s": 0, "total_s": 0, "on_blocked": "no_link"} for n in RELAYS},
-                    "alarms": [{"code": "pi_lost", "level": "danger", "error": error}], "leak_latched": False,
-                    "overheat": False, "controls_enabled": False, "thresholds": None, "laptop_watchdog": None,
+                    "relays": {n: {"on": False, "remote": False, "on_for_s": 0, "total_s": 0, "on_blocked": "no_link"}
+                               for n in RELAYS},
+                    "alarms": [{"code": "pi_lost", "level": "danger", "error": error}], "auto": None, "limits": None,
+                    "arduino_alarms": None, "controls_enabled": False, "estop_enabled": False, "laptop_watchdog": None,
                     "simulator": self._simulator_flags(None), "time": time.time()}
         out = json.loads(json.dumps(state))
         out.pop("bridge", None)
@@ -128,12 +166,14 @@ class ReactorClient:
             for relay in out["relays"].values():
                 relay["on_blocked"] = "no_link"
             out["alarms"] = [{"code": "pi_lost", "level": "danger", "error": error}] + [
-                a for a in out["alarms"] if a["code"] in {"leak"}]
+                a for a in out["alarms"] if a["code"] in {"leak", "estop"}]
         out["source"] = source
         out["link"] = {"ok": arduino, "level": level, "network_ok": net, "arduino_ok": arduino,
                        "seconds_since_pi": since, "error": error,
                        "seconds_since_data": out["arduino_link"]["seconds_since_data"]}
         out["controls_enabled"] = arduino
+        # E-STOP is tried whenever the Pi answers and its USB port is open — even if the Arduino status is late
+        out["estop_enabled"] = bool(net and state["arduino_link"].get("connected"))
         out["simulator"] = self._simulator_flags(out.get("simulator"))
         return out
 
@@ -154,11 +194,30 @@ class ReactorClient:
         self.poll()  # the page and the agent see the new relay state at once, not after the next poll
         return result
 
-    def reset_leak(self, who: str = "operator") -> dict:
+    def _post(self, path: str, body: dict) -> dict:
         try:
-            return self._request("POST", "/reset", {"who": who, "confirm": True}, timeout=self.timeout + 3)
+            result = self._request("POST", path, body, timeout=self.timeout + 3)
         except PiUnreachable as error:
             return {"ok": False, "reason": "no_link", "error": str(error)}
+        self.poll()
+        return result
+
+    def set_auto(self, on: bool, who: str = "operator") -> dict:
+        if not self.status()["controls_enabled"]:
+            return {"ok": False, "reason": "no_link"}
+        return self._post("/auto", {"on": on, "who": who, "confirm": True})
+
+    def set_limit(self, name: str, value: float, who: str = "operator") -> dict:
+        if not self.status()["controls_enabled"]:
+            return {"ok": False, "reason": "no_link"}
+        return self._post("/limit", {"name": name, "value": value, "who": who, "confirm": True})
+
+    def estop(self, who: str = "operator") -> dict:
+        """No confirmation and no «controls enabled» check: the Pi decides; an emergency stop is never held back here."""
+        return self._post("/estop", {"who": who})
+
+    def reset_alarms(self, who: str = "operator") -> dict:
+        return self._post("/reset", {"who": who, "confirm": True})
 
     def simulate(self, what: str, on: bool, who: str = "operator") -> dict:
         if self.mode != "simulator":
@@ -179,9 +238,17 @@ class ReactorClient:
         try:
             health = self._request("GET", "/health", timeout=3)
         except PiUnreachable as error:
-            return {"ok": False, "url": self.pi_url, "mode": self.mode, "error": str(error),
-                    "latency_ms": round((time.perf_counter() - started) * 1000)}
-        return {"ok": True, "url": self.pi_url, "mode": self.mode, "latency_ms": round((time.perf_counter() - started) * 1000),
+            if not (self.mode == "auto" and self.find_pi()):
+                return {"ok": False, "url": self.pi_url, "mode": self.mode, "route": self.route(), "error": str(error),
+                        "latency_ms": round((time.perf_counter() - started) * 1000)}
+            started = time.perf_counter()
+            try:
+                health = self._request("GET", "/health", timeout=3)
+            except PiUnreachable as error2:
+                return {"ok": False, "url": self.pi_url, "mode": self.mode, "route": self.route(), "error": str(error2),
+                        "latency_ms": round((time.perf_counter() - started) * 1000)}
+        return {"ok": True, "url": self.pi_url, "mode": self.mode, "route": self.route(),
+                "latency_ms": round((time.perf_counter() - started) * 1000),
                 "arduino_ok": health.get("arduino_ok"), "port": health.get("port"), "firmware": health.get("firmware"),
                 "simulated": health.get("simulated"), "version": health.get("version")}
 

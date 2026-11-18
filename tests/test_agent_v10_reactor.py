@@ -15,24 +15,25 @@ from src.hardware import live
 
 ROOT = Path(__file__).resolve().parents[1]
 
-THRESHOLDS = {"temp_c": {"target": 37, "danger_low": 25, "warn_low": 33, "warn_high": 40, "danger_high": 43},
-              "overheat_c": 45, "overheat_release_c": 43, "rh_pct": {"warn_high": 95, "danger_high": 99},
-              "gas_in_raw": {"warn_low": 150}, "gas_out_raw": {"warn": 300, "leak": 400},
-              "pressure_kpa": {"pump_warn": 2.0, "danger": 3.0, "scale_max": 3.5, "pump_stop": 0.1}}
+LIMITS = {"temp_min": 35.0, "temp_max": 38.0, "temp_hard_max": 45.0, "gas_out_limit": 400, "gas_in_limit": 700}
+ALARMS = ("estop", "leak", "overheat", "warmup", "no_temp", "link_lost", "auger_timeout")
 
 
-def status(temp=31.2, p=1.2, gas_out=80, heat=False, link=True, level=None, kind="simulator", leak=False):
+def status(temp=31.2, gas_in=420, gas_out=80, heat=False, pump=False, link=True, level=None, kind="simulator", auto=False,
+           port=None, **alarms):
     def reading(value, lvl="ok"):
         return {"value": value if link else None, "last": value, "level": lvl if link else "unknown"}
-    return {"source": {"kind": kind, "address": "192.168.50.2:8780" if kind == "pi" else None},
+    flags = {name: bool(alarms.get(name)) for name in ALARMS}
+    return {"source": {"kind": kind, "address": "10.42.0.1:8780" if kind == "pi" else None,
+                       "arduino_port": port or ("/dev/ttyUSB0" if kind == "pi" else "virtual")},
             "link": {"ok": link, "level": level},
-            "readings": {"temp_c": reading(temp, "warn" if temp < 33 else "ok"), "rh_pct": reading(87.0),
-                         "gas_in": reading(420), "gas_out": reading(gas_out, "danger" if gas_out >= 400 else "ok"),
-                         "p_kpa": reading(p, "warn" if p >= 2 else "ok")},
-            "relays": {n: {"on": n == "heat" and heat, "on_for_s": 0, "total_s": 0, "on_blocked": None}
-                       for n in ("heat", "cool", "pump")},
-            "alarms": [{"code": "leak", "level": "danger"}] if leak else [], "leak_latched": leak, "overheat": False,
-            "thresholds": THRESHOLDS}
+            "readings": {"temp_c": reading(temp, "warn" if temp < 35 else "ok"), "rh_pct": reading(87.0),
+                         "gas_in": reading(gas_in, "warn" if gas_in > 700 else "ok"),
+                         "gas_out": reading(gas_out, "danger" if gas_out > 400 else "ok")},
+            "relays": {n: {"on": (n == "heat" and heat) or (n == "pump" and pump), "remote": False, "on_for_s": 0,
+                           "total_s": 0, "on_blocked": None} for n in ("heat", "cool", "pump", "auger")},
+            "alarms": [{"code": n, "level": "danger"} for n, on in flags.items() if on], "auto": auto, "limits": LIMITS,
+            "arduino_alarms": flags}
 
 
 class FakeManager:
@@ -92,11 +93,12 @@ def test_answer_says_simulator_and_advises_heating(agent, manager):
     text = answer["explanation"]
     assert "СИМУЛЯТОР" in text and "31.2 °C" in text
     assert "рекомендую включить подогрев" in text and "только человек" in text
-    assert "не % метана" in text, "MQ is an index, never «% methane»"
+    assert "не % метана" in text and "сырое значение 0–1023" in text, "MQ is a raw indicator, never ppm or «% methane»"
+    assert "шнек" in text and "Режим: ручной режим" in text
 
 
 @pytest.mark.parametrize("text,language", [("Включи подогрев", "ru"), ("Выключи насос", "ru"), ("Turn on the heater", "en"),
-                                           ("Қыздыруды қос", "kk")])
+                                           ("Қыздыруды қос", "kk"), ("Включи шнек", "ru"), ("Turn the auger on", "en")])
 def test_control_requests_are_refused(agent, manager, text, language):
     _, answer = ask(agent, text)
     first = {"ru": "Я не управляю реле", "en": "I do not control the relays", "kk": "Мен релені басқармаймын"}[language]
@@ -109,7 +111,7 @@ def test_real_pi_source_and_no_link(agent):
     live.register(fake)
     try:
         _, answer = ask(agent, "Что сейчас в реакторе?")
-        assert "RASPBERRY PI → ARDUINO (192.168.50.2:8780)" in answer["explanation"]
+        assert "RASPBERRY PI → ARDUINO (10.42.0.1:8780)" in answer["explanation"]
         fake.data = status(kind="pi", link=False, level="arduino")
         _, answer = ask(agent, "Что сейчас в реакторе?", "conv-reactor-2")
         assert "НЕТ СВЯЗИ Raspberry Pi с Arduino" in answer["explanation"] and "°C (" not in answer["explanation"]
@@ -119,14 +121,32 @@ def test_real_pi_source_and_no_link(agent):
 
 def test_advice_rules():
     codes = lambda s: [a["code"] for a in reactor_tool.advice(s, "ru")]
-    assert codes(status(temp=37.0)) == ["ok"]
+    assert codes(status(temp=36.5)) == ["ok"]
     assert codes(status(temp=31.0)) == ["heat_on"]
     assert codes(status(temp=31.0, heat=True)) == ["heating"]
-    assert codes(status(temp=41.0)) == ["cool_on"]
-    assert codes(status(temp=37.0, p=2.2)) == ["pump_on"]
-    assert codes(status(temp=37.0, p=3.1)) == ["pump_now"]
+    assert codes(status(temp=31.0, auto=True)) == ["auto_temp"], "AUTO already holds the temperature"
+    assert codes(status(temp=39.0)) == ["cool_on"]
+    assert codes(status(temp=36.5, gas_in=750)) == ["pump_on"]
+    assert codes(status(temp=36.5, gas_in=750, pump=True)) == ["pumping"]
     assert codes(status(temp=31.0, leak=True)) == ["leak"], "never advise heating during a leak"
+    assert codes(status(temp=31.0, estop=True)) == ["estop"]
+    assert codes(status(temp=46.0, overheat=True)) == ["overheat"]
+    assert codes(status(temp=36.5, no_temp=True)) == ["no_temp"]
+    assert codes(status(temp=31.0, warmup=True)) == ["warmup"], "no heating advice while heater is locked by warm-up"
+    assert codes(status(temp=36.5, link_lost=True)) == ["link_lost"]
+    assert codes(status(temp=36.5, auger_timeout=True)) == ["auger_timeout"]
     assert codes(status(link=False, level="pi")) == ["no_link_pi"]
+    assert codes(status(link=False, level="arduino")) == ["no_link_arduino"]
+
+
+def test_real_pi_with_virtual_arduino_is_named(agent):
+    fake = FakeManager(status(kind="pi", port="virtual"))
+    live.register(fake)
+    try:
+        _, answer = ask(agent, "Что сейчас в реакторе?")
+        assert "ВИРТУАЛЬНЫЙ ARDUINO" in answer["explanation"]
+    finally:
+        live.unregister(fake)
 
 
 def test_no_live_connection(agent):

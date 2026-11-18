@@ -5,11 +5,15 @@
     GET  /history?window=600     points for charts (600 = 10 min, 3600 = 1 hour)
     GET  /journal?limit=50       commands and alarms
     GET  /events                 Server-Sent Events: "event: state" with /state every second
-    POST /relay                  {"name":"heat","state":1,"who":"operator","confirm":true}
-    POST /reset                  {"who":"operator","confirm":true}    a person resets the leak alarm
+    POST /relay                  {"name":"heat"|"cool"|"pump"|"auger","state":1,"who":"operator","confirm":true}
+    POST /auto                   {"on":true,"confirm":true}                 the Arduino's automatic regime
+    POST /limit                  {"name":"temp_min","value":35.5,"confirm":true}   one EEPROM threshold (SET)
+    POST /estop                  {"who":"operator"}                         EMERGENCY STOP: no confirmation, never delayed
+    POST /reset                  {"who":"operator","confirm":true}          a person clears E-STOP / leak / link_lost
     POST /simulate               {"what":"leak"|"usb"|"arduino_silent"|"temp_sensor","on":true}  --simulate only
 
-Every request from the laptop resets the laptop watchdog (laptop silent > 15 s -> all relays OFF).
+Every request from the laptop resets the laptop watchdog (laptop silent > 15 s -> the relays switched ON from the Pi
+go OFF; the Arduino's AUTO regime keeps running).
 If "token" is set in the config, every request needs the header X-Bioreactor-Token: <token>.
 """
 from __future__ import annotations
@@ -26,7 +30,7 @@ MAX_BODY = 4096
 
 def make_handler(bridge, token: str = ""):
     class Handler(BaseHTTPRequestHandler):
-        server_version = "BioReactorPi/" + "0.1"
+        server_version = "BioReactorPi/1.0"
         protocol_version = "HTTP/1.1"
 
         def log_message(self, format, *args):  # quiet: the journal is the log
@@ -121,17 +125,26 @@ def make_handler(bridge, token: str = ""):
             if body is None:
                 return
             who = str(body.get("who") or "operator")[:40]
+            if path == "/estop":
+                return self._json(200, bridge.estop(who=who))
+            if body.get("confirm") is not True and path in ("/relay", "/auto", "/limit", "/reset"):
+                return self._json(428, {"error": "confirmation required"})
             if path == "/relay":
                 name, state = body.get("name"), body.get("state")
                 if name not in protocol.RELAYS or state not in (0, 1, True, False):
-                    return self._json(400, {"error": "name must be heat|cool|pump and state 0|1"})
-                if body.get("confirm") is not True:
-                    return self._json(428, {"error": "confirmation required"})
+                    return self._json(400, {"error": "name must be heat|cool|pump|auger and state 0|1"})
                 return self._json(200, bridge.command(name, bool(state), who=who))
+            if path == "/auto":
+                if not isinstance(body.get("on"), bool):
+                    return self._json(400, {"error": "on: true|false"})
+                return self._json(200, bridge.set_auto(body["on"], who=who))
+            if path == "/limit":
+                name, value = body.get("name"), body.get("value")
+                if name not in protocol.LIMITS or isinstance(value, bool) or not isinstance(value, (int, float)):
+                    return self._json(400, {"error": "name: " + "|".join(protocol.LIMITS) + ", value: a number"})
+                return self._json(200, bridge.set_limit(name, float(value), who=who))
             if path == "/reset":
-                if body.get("confirm") is not True:
-                    return self._json(428, {"error": "confirmation required"})
-                return self._json(200, bridge.reset_leak(who=who))
+                return self._json(200, bridge.reset_alarms(who=who))
             if path == "/simulate":
                 if body.get("what") not in ("leak", "usb", "arduino_silent", "temp_sensor") or not isinstance(body.get("on"), bool):
                     return self._json(400, {"error": "what: leak|usb|arduino_silent|temp_sensor, on: true|false"})

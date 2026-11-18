@@ -4,8 +4,12 @@
     GET  /api/reactor/history?window=600  chart points (600 = 10 min, 3600 = 1 hour)
     GET  /api/reactor/journal?limit=50    commands and alarms (the Pi's SQLite journal)
     POST /api/reactor/check               «Проверить связь»: one request to the Pi, with its time
-    POST /api/reactor/relay               {"relay":"heat","on":true,"confirm":true} — a PERSON's button only
-    POST /api/reactor/alarm/reset         {"confirm":true} — a person resets the leak alarm (only when the gas is gone)
+    POST /api/reactor/relay               {"relay":"heat"|"cool"|"pump"|"auger","on":true,"confirm":true} — a PERSON's button
+    POST /api/reactor/auto                {"on":true,"confirm":true} — the Arduino's automatic regime
+    POST /api/reactor/limit               {"name":"temp_min","value":35.5,"confirm":true} — one EEPROM threshold
+    POST /api/reactor/estop               {} — EMERGENCY STOP, no confirmation
+    POST /api/reactor/alarm/reset         {"confirm":true} — a person clears E-STOP / leak / link lost (leak only when the
+                                          gas outside is below the limit)
     POST /api/reactor/simulator           {"what":"leak"|"usb"|"arduino_silent"|"temp_sensor"|"network","on":true}
 
 Commands need "confirm": true (the page asks first). The AI agent has no route here (it reads src/hardware/live.py).
@@ -19,8 +23,19 @@ from pydantic import BaseModel
 
 
 class RelayCommand(BaseModel):
-    relay: Literal["heat", "cool", "pump"]
+    relay: Literal["heat", "cool", "pump", "auger"]
     on: bool
+    confirm: bool = False
+
+
+class AutoCommand(BaseModel):
+    on: bool
+    confirm: bool = False
+
+
+class LimitCommand(BaseModel):
+    name: Literal["temp_min", "temp_max", "temp_hard_max", "gas_out_limit", "gas_in_limit"]
+    value: float
     confirm: bool = False
 
 
@@ -60,11 +75,27 @@ def create_router(client) -> APIRouter:
             raise HTTPException(428, "confirmation required")
         return client.command(body.relay, body.on, who="operator")
 
+    @router.post("/auto")
+    def auto(body: AutoCommand) -> dict:
+        if not body.confirm:
+            raise HTTPException(428, "confirmation required")
+        return client.set_auto(body.on, who="operator")
+
+    @router.post("/limit")
+    def limit(body: LimitCommand) -> dict:
+        if not body.confirm:
+            raise HTTPException(428, "confirmation required")
+        return client.set_limit(body.name, body.value, who="operator")
+
+    @router.post("/estop")
+    def estop() -> dict:
+        return client.estop(who="operator")
+
     @router.post("/alarm/reset")
     def reset(body: Confirm) -> dict:
         if not body.confirm:
             raise HTTPException(428, "confirmation required")
-        return client.reset_leak(who="operator")
+        return client.reset_alarms(who="operator")
 
     @router.post("/simulator")
     def simulator(body: SimulatorCommand) -> dict:

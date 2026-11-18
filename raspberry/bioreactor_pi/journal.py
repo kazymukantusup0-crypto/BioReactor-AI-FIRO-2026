@@ -1,7 +1,7 @@
 """SQLite journal on the Pi: readings (every few seconds), commands and alarms (time, what, who, result).
 
 events.kind   command | alarm | safety | link | system
-events.who    operator (a person, button on the laptop) | pi_safety | arduino_safety | system
+events.who    operator (a person, button on the laptop) | pi_safety | arduino_safety | arduino | system
 events.source "arduino /dev/ttyACM0" or "virtual" — a simulated record is never mistaken for a real one
 Records are only appended, never edited.
 """
@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS events(
     who TEXT NOT NULL, result TEXT, source TEXT NOT NULL, details_json TEXT);
 CREATE TABLE IF NOT EXISTS readings(
     id INTEGER PRIMARY KEY AUTOINCREMENT, ts TEXT NOT NULL, temp_c REAL, rh_pct REAL, gas_in REAL, gas_out REAL,
-    p_kpa REAL, heat INTEGER, cool INTEGER, pump INTEGER, source TEXT NOT NULL);
+    p_kpa REAL, heat INTEGER, cool INTEGER, pump INTEGER, source TEXT NOT NULL, auger INTEGER);
 """
 
 
@@ -42,6 +42,10 @@ class Journal:
             self._con.row_factory = sqlite3.Row
             with self._con:
                 self._con.executescript(SCHEMA)
+                # a journal from the first bridge version has no auger column: add it, keep every old row
+                columns = {row[1] for row in self._con.execute("PRAGMA table_info(readings)")}
+                if "auger" not in columns:
+                    self._con.execute("ALTER TABLE readings ADD COLUMN auger INTEGER")
         return self._con
 
     def add(self, kind: str, what: str, who: str, source: str, result: str | None = None,
@@ -55,9 +59,11 @@ class Journal:
 
     def reading(self, values: dict, relays: dict, source: str) -> None:
         with self._lock, self._connection() as con:
-            con.execute("INSERT INTO readings(ts,temp_c,rh_pct,gas_in,gas_out,p_kpa,heat,cool,pump,source) VALUES(?,?,?,?,?,?,?,?,?,?)",
+            con.execute("INSERT INTO readings(ts,temp_c,rh_pct,gas_in,gas_out,p_kpa,heat,cool,pump,auger,source) "
+                        "VALUES(?,?,?,?,?,?,?,?,?,?,?)",
                         (now_iso(), values.get("temp_c"), values.get("rh_pct"), values.get("gas_in"), values.get("gas_out"),
-                         values.get("p_kpa"), int(relays["heat"]), int(relays["cool"]), int(relays["pump"]), source))
+                         values.get("p_kpa"), int(relays["heat"]), int(relays["cool"]), int(relays["pump"]),
+                         int(relays.get("auger", False)), source))
 
     def recent(self, limit: int = 50) -> list[dict]:
         with self._lock:

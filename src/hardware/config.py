@@ -1,4 +1,6 @@
-"""Laptop settings: data/config/reactor_hardware.json + environment (BIOREACTOR_SENSORS, BIOREACTOR_PI_URL)."""
+"""Laptop settings: data/config/reactor_hardware.json + environment (BIOREACTOR_SENSORS, BIOREACTOR_PI_URL).
+
+BIOREACTOR_PI_URL sets one fixed address (mode "pi" unless BIOREACTOR_SENSORS says otherwise)."""
 from __future__ import annotations
 
 import json
@@ -9,18 +11,21 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 CONFIG_PATH = ROOT / "data/config/reactor_hardware.json"
 RASPBERRY_DIR = ROOT / "raspberry"
+MODES = ("auto", "pi", "simulator")
 
 
 def load_config(overrides: dict | None = None) -> dict:
     config = json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
     mode = os.getenv("BIOREACTOR_SENSORS")
-    if mode in {"simulator", "pi"}:
-        config["mode"] = mode
     if os.getenv("BIOREACTOR_PI_URL"):
         config["pi_url"] = os.environ["BIOREACTOR_PI_URL"]
+        if config["mode"] == "auto":
+            config["mode"] = "pi"
+    if mode in MODES:
+        config["mode"] = mode
     config.update(overrides or {})
-    if config["mode"] not in {"simulator", "pi"}:
-        raise ValueError("reactor_hardware.json: mode must be simulator or pi")
+    if config["mode"] not in MODES:
+        raise ValueError("reactor_hardware.json: mode must be auto, pi or simulator")
     return config
 
 

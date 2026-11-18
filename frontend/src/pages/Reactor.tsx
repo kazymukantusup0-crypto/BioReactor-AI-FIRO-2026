@@ -1,17 +1,24 @@
-// «Реактор»: live sensors and manual relays. Chain: Arduino -> USB -> Raspberry Pi -> network -> this page.
-// The page only shows what the Pi reports; every command is a person's button + a confirmation. Automatic protection
-// (Arduino first, then the Pi) only switches relays OFF. The AI agent reads the same data and never presses buttons.
+// «Реактор»: live sensors, the Arduino's automatic mode, manual relays, thresholds, E-STOP.
+// Chain: Arduino (firmware bioreactor-1.0, main protection + AUTO) -> USB -> Raspberry Pi -> network -> this page.
+// The page only shows what the Pi reports. Every manual command is a person's button + a confirmation; E-STOP is one
+// click with no confirmation. The AI agent reads the same data and never presses buttons.
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { AlertOctagon, AlertTriangle, ArrowRight, Bot, Cable, CheckCircle2, Cpu, Droplets, Fan, Flame, Gauge, Gavel, HelpCircle, Laptop, LayoutDashboard, Network, PlugZap, Power, RadioTower, RefreshCw, ShieldAlert, Thermometer, Wind, Wrench, XCircle } from 'lucide-react'
+import { AlertOctagon, AlertTriangle, ArrowRight, Bot, Cable, CheckCircle2, Cog, Cpu, Droplets, Fan, Flame, Gavel, HelpCircle, Laptop, Network, OctagonX, PlugZap, Power, RadioTower, RefreshCw, RotateCcw, ShieldAlert, SlidersHorizontal, Thermometer, Wifi, Wind, Wrench, XCircle } from 'lucide-react'
 import { CartesianGrid, Line, LineChart, ReferenceLine, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
-import { reactorApi, RELAYS, SENSORS, type CheckResult, type HistoryPoint, type JournalItem, type Level, type ReactorStatus, type RelayName, type SensorName, type SimulatorSwitch, type Thresholds } from '../reactorApi'
+import { ALARM_CODES, LIMITS, reactorApi, RELAYS, SENSORS, type Alarm, type CheckResult, type CommandResult, type HistoryPoint, type JournalItem, type Level, type LimitName, type Limits, type ReactorStatus, type RelayName, type SensorName, type SimulatorSwitch } from '../reactorApi'
 import { tr } from '../i18n'
 import '../reactor.css'
 
 const JURY_KEY = 'bioreactor-reactor-jury'
-const ICONS: Record<SensorName, typeof Thermometer> = { temp_c: Thermometer, rh_pct: Droplets, gas_in: Wind, gas_out: ShieldAlert, p_kpa: Gauge }
-const RELAY_ICONS: Record<RelayName, typeof Flame> = { heat: Flame, cool: Fan, pump: Power }
-const DIGITS: Record<SensorName, number> = { temp_c: 1, rh_pct: 1, gas_in: 0, gas_out: 0, p_kpa: 2 }
+const ICONS: Record<SensorName, typeof Thermometer> = { temp_c: Thermometer, rh_pct: Droplets, gas_in: Wind, gas_out: ShieldAlert }
+const RELAY_ICONS: Record<RelayName, typeof Flame> = { heat: Flame, cool: Fan, pump: Power, auger: Cog }
+const DIGITS: Record<SensorName, number> = { temp_c: 1, rh_pct: 1, gas_in: 0, gas_out: 0 }
+// Same ranges as validSettings() in the sketch; the step is the encoder's step on the Arduino screen
+const LIMIT_INPUT: Record<LimitName, { min: number; max: number; step: number }> = {
+  temp_min: { min: 0, max: 67.5, step: 0.5 }, temp_max: { min: 0.5, max: 68, step: 0.5 }, temp_hard_max: { min: 2.5, max: 70, step: 0.5 },
+  gas_out_limit: { min: 50, max: 1000, step: 10 }, gas_in_limit: { min: 50, max: 1000, step: 10 },
+}
+const isTempLimit = (name: LimitName) => name.startsWith('temp')
 
 function readStorage(key: string): string | null { try { return localStorage.getItem(key) } catch { return null } }
 function writeStorage(key: string, value: string) { try { localStorage.setItem(key, value) } catch { /* optional preference */ } }
@@ -30,6 +37,8 @@ export function duration(seconds: number): string {
 
 const unit = (name: SensorName) => tr(`rx.unit.${name}`)
 const levelText = (level: Level) => tr(`rx.level.${level}`)
+const limitText = (name: LimitName, value: number) => isTempLimit(name) ? `${value.toFixed(1)} °C` : String(Math.round(value))
+const reasonText = (reason: string | null | undefined) => { const key = `rx.reason.${reason ?? 'unknown'}`; const text = tr(key); return text === key ? (reason ?? '') : text }
 
 function LevelChip({ level }: { level: Level }) {
   const Icon = level === 'ok' ? CheckCircle2 : level === 'warn' ? AlertTriangle : level === 'danger' ? AlertOctagon : HelpCircle
@@ -40,22 +49,25 @@ function LevelChip({ level }: { level: Level }) {
 export function SourceBadge({ status, big = false }: { status: ReactorStatus | null; big?: boolean }) {
   if (!status) return <span className={`rx-source rx-source-unknown ${big ? 'rx-big' : ''}`} data-testid="rx-source"><Cable size={16} />{tr('rx.source.unknown')}</span>
   const simulator = status.source.kind === 'simulator'
+  const route = status.source.route
   return <span className={`rx-source ${simulator ? 'rx-source-sim' : 'rx-source-pi'} ${big ? 'rx-big' : ''}`} data-testid="rx-source">
     {simulator ? <Cpu size={16} /> : <RadioTower size={16} />}
     {simulator ? tr('rx.source.sim')
       // a real Pi started with --simulate: the network is real, the sensors are not — say so
       : status.source.arduino_port === 'virtual' ? tr('rx.source.piVirtual', { address: status.source.address ?? '?' })
       : tr('rx.source.pi', { address: status.source.address ?? '?' })}
+    {!simulator && route && <span className="rx-route" data-testid="rx-route">{route === 'pi_wifi' ? <Wifi size={14} /> : route === 'cable' ? <Cable size={14} /> : <Network size={14} />}{tr(`rx.route.${route}`)}</span>}
   </span>
 }
 
 function LinkBanner({ status, serverDown }: { status: ReactorStatus | null; serverDown: boolean }) {
   if (!serverDown && status?.link.ok) return null
-  const level = serverDown ? 'server' : status?.link.level === 'arduino' ? 'arduino' : 'pi'
-  return <section className="rx-nolink" role="alert" data-testid="rx-nolink">
+  const starting = !serverDown && status?.alarms.some(a => a.code === 'arduino_starting')
+  const level = serverDown ? 'server' : starting ? 'starting' : status?.link.level === 'arduino' ? 'arduino' : 'pi'
+  return <section className={`rx-nolink ${starting ? 'is-starting' : ''}`} role="alert" data-testid="rx-nolink">
     <PlugZap size={34} aria-hidden="true" />
     <div><h2>{tr(`rx.nolink.${level}`)}</h2><p>{tr(`rx.nolink.${level}Text`)}</p>
-      {status?.link.error && !serverDown && <p className="rx-mono">{status.link.error}</p>}</div>
+      {status?.link.error && !serverDown && !starting && <p className="rx-mono">{status.link.error}</p>}</div>
   </section>
 }
 
@@ -69,21 +81,73 @@ function CheckButton() {
   return <div className="rx-check">
     <button className="ds-button" onClick={run} disabled={busy} data-testid="rx-check"><RefreshCw size={16} className={busy ? 'spin' : ''} />{tr('rx.check')}</button>
     {result && <span className={`rx-check-result ${result.ok ? 'is-ok' : 'is-bad'}`} role="status" data-testid="rx-check-result">
-      {result.ok ? tr('rx.checkOk', { ms: result.latency_ms, port: result.port ?? '—', arduino: result.arduino_ok ? tr('rx.yes') : tr('rx.no') })
+      {result.ok ? tr('rx.checkOk', { ms: result.latency_ms, port: result.port ?? '—', arduino: result.arduino_ok ? tr('rx.yes') : tr('rx.no'), route: result.route ? tr(`rx.route.${result.route}`) : result.url })
         : tr('rx.checkFail', { error: result.error ?? '' })}
     </span>}
   </div>
 }
 
+// ---------------------------------------------------------------- E-STOP and reset (always on top)
+function EmergencyBar({ status, onEstop, onReset, busy }: { status: ReactorStatus; onEstop: () => void; onReset: () => void; busy: boolean }) {
+  const needsReset = status.alarms.some(a => a.needs_reset)
+  return <section className="rx-estop-bar" aria-label={tr('rx.estop.label')} data-testid="rx-estop-bar">
+    <button className="rx-estop" onClick={onEstop} disabled={!status.estop_enabled || busy} data-testid="rx-estop">
+      <OctagonX size={26} aria-hidden="true" /><span><strong>{tr('rx.estop.button')}</strong><small>{tr('rx.estop.hint')}</small></span></button>
+    <button className="ds-button rx-reset-button" onClick={onReset} disabled={!needsReset || !status.controls_enabled || busy} data-testid="rx-reset">
+      <RotateCcw size={16} />{tr('rx.reset.button')}</button>
+    <p className="ds-muted">{needsReset ? tr('rx.reset.needed') : tr('rx.reset.none')}</p>
+  </section>
+}
+
+// ---------------------------------------------------------------- alarms
+const BIG_ALARMS = ['estop', 'leak']
+
+function alarmBody(alarm: Alarm, status: ReactorStatus): string {
+  if (alarm.code === 'leak') return tr('rx.alarm.leakText', { value: formatValue('gas_out', status.readings.gas_out.value ?? status.readings.gas_out.last), limit: status.limits?.gas_out_limit ?? '—' })
+  if (alarm.code === 'overheat') return tr('rx.alarm.overheat', { limit: status.limits?.temp_hard_max ?? '—' })
+  return tr(`rx.alarm.${alarm.code}`)
+}
+
+function BigAlarm({ status, onReset }: { status: ReactorStatus; onReset: () => void }) {
+  const alarm = status.alarms.find(a => BIG_ALARMS.includes(a.code))
+  const [collapsedFor, setCollapsedFor] = useState<string | null>(null)
+  if (!alarm) return null
+  const id = `${alarm.code}:${alarm.since ?? ''}`
+  const collapsed = collapsedFor === id
+  const blocked = alarm.code === 'leak' && alarm.still_leaking
+  const body = <>
+    <p>{alarmBody(alarm, status)}</p>
+    {alarm.code === 'leak' && <p>{blocked ? tr('rx.leak.still') : tr('rx.leak.gone')}</p>}
+    <div className="rx-alarm-actions">
+      <button className="ds-button rx-alarm-reset" disabled={Boolean(blocked) || !status.controls_enabled} onClick={onReset} data-testid="rx-alarm-reset">{tr('rx.reset.button')}</button>
+      {!collapsed && <button className="ds-button" onClick={() => setCollapsedFor(id)}>{tr('rx.alarm.collapse')}</button>}
+    </div>
+  </>
+  if (collapsed) return <section className="rx-alarm-strip" role="alert" data-testid={`rx-${alarm.code}-strip`}><AlertOctagon size={22} /><strong>{tr(`rx.alarm.${alarm.code}Title`)}</strong>{body}</section>
+  return <div className="rx-alarm-overlay" role="alertdialog" aria-modal="true" aria-labelledby="rx-alarm-title" data-testid={`rx-${alarm.code}-alarm`}>
+    <div className="rx-alarm-box"><AlertOctagon size={64} aria-hidden="true" /><h2 id="rx-alarm-title">{tr(`rx.alarm.${alarm.code}Title`)}</h2>
+      <p className="rx-alarm-lead">{tr(`rx.alarm.${alarm.code}Lead`)}</p>{body}</div>
+  </div>
+}
+
+function AlarmList({ status }: { status: ReactorStatus }) {
+  const order = ALARM_CODES as readonly string[]
+  const list = status.alarms.filter(a => order.includes(a.code)).sort((a, b) => order.indexOf(a.code) - order.indexOf(b.code))
+  if (!list.length) return null
+  return <div className="rx-alarms" data-testid="rx-alarms">{list.map(a =>
+    <div key={a.code} className={`rx-alarm-line rx-tone-${a.level}`} role={a.level === 'danger' ? 'alert' : 'status'} data-testid={`rx-alarm-${a.code}`}>
+      {a.level === 'danger' ? <AlertOctagon size={20} /> : <AlertTriangle size={20} />}
+      <strong>{tr(`rx.alarm.${a.code}Title`)}</strong><span>{alarmBody(a, status)}</span></div>)}</div>
+}
+
 // ---------------------------------------------------------------- readings
 function readingNote(name: SensorName, status: ReactorStatus): string {
-  const th = status.thresholds
-  if (!th) return ''
-  if (name === 'temp_c') return tr('rx.note.temp', { target: th.temp_c.target, low: th.temp_c.warn_low, high: th.temp_c.warn_high, over: th.overheat_c })
-  if (name === 'rh_pct') return tr('rx.note.rh', { high: th.rh_pct.warn_high })
-  if (name === 'gas_in') return tr('rx.note.gasIn')
-  if (name === 'gas_out') return tr('rx.note.gasOut', { leak: th.gas_out_raw.leak })
-  return tr('rx.note.pressure', { pump: th.pressure_kpa.pump_warn, danger: th.pressure_kpa.danger })
+  const l = status.limits
+  if (name === 'rh_pct') return tr('rx.note.rh')
+  if (!l) return ''
+  if (name === 'temp_c') return tr('rx.note.temp', { low: l.temp_min, high: l.temp_max, over: l.temp_hard_max })
+  if (name === 'gas_in') return tr('rx.note.gasIn', { limit: l.gas_in_limit })
+  return tr('rx.note.gasOut', { limit: l.gas_out_limit })
 }
 
 function ReadingCard({ name, status, big }: { name: SensorName; status: ReactorStatus; big?: boolean }) {
@@ -94,30 +158,23 @@ function ReadingCard({ name, status, big }: { name: SensorName; status: ReactorS
     <span className="rx-reading-title"><Icon size={18} aria-hidden="true" />{tr(`rx.sensor.${name}`)}</span>
     <strong className="rx-reading-value">{formatValue(name, reading.value)}<small>{unit(name)}</small></strong>
     <LevelChip level={reading.level} />
-    {name === 'p_kpa' && reading.fill_share !== null && reading.fill_share !== undefined && status.thresholds &&
-      <div className="rx-fill" aria-label={tr('rx.fillLabel')}>
-        <div className="rx-fill-track"><div className={`rx-fill-bar rx-tone-${reading.level}`} style={{ width: `${Math.round(reading.fill_share * 100)}%` }} />
-          <span className="rx-fill-mark" style={{ left: `${(status.thresholds.pressure_kpa.pump_warn / status.thresholds.pressure_kpa.scale_max) * 100}%` }} /></div>
-        <span>{reading.level === 'ok' ? tr('rx.fill.ok') : tr('rx.fill.pump')}</span>
-      </div>}
     {!big && <span className="rx-reading-note">{readingNote(name, status)}</span>}
     {stale && reading.last !== null && <span className="rx-reading-stale">{tr('rx.lastKnown', { value: formatValue(name, reading.last), unit: unit(name) })}</span>}
   </article>
 }
 
 // ---------------------------------------------------------------- charts (one small chart per measure: never two scales)
-function thresholdLines(name: SensorName, th: Thresholds | null): { y: number; tone: 'warn' | 'danger' | 'target'; label: string }[] {
-  if (!th) return []
-  if (name === 'temp_c') return [{ y: th.temp_c.target, tone: 'target', label: tr('rx.line.target') }, { y: th.temp_c.warn_low, tone: 'warn', label: '' }, { y: th.overheat_c, tone: 'danger', label: tr('rx.line.overheat') }]
-  if (name === 'rh_pct') return [{ y: th.rh_pct.warn_high, tone: 'warn', label: '' }]
-  if (name === 'gas_in') return [{ y: th.gas_in_raw.warn_low, tone: 'warn', label: '' }]
-  if (name === 'gas_out') return [{ y: th.gas_out_raw.warn, tone: 'warn', label: '' }, { y: th.gas_out_raw.leak, tone: 'danger', label: tr('rx.line.leak') }]
-  return [{ y: th.pressure_kpa.pump_warn, tone: 'warn', label: tr('rx.line.pump') }, { y: th.pressure_kpa.danger, tone: 'danger', label: '' }]
+function thresholdLines(name: SensorName, l: Limits | null): { y: number; tone: 'warn' | 'danger' | 'target'; label: string }[] {
+  if (!l) return []
+  if (name === 'temp_c') return [{ y: l.temp_min, tone: 'target', label: tr('rx.line.min') }, { y: l.temp_max, tone: 'warn', label: tr('rx.line.max') }, { y: l.temp_hard_max, tone: 'danger', label: tr('rx.line.overheat') }]
+  if (name === 'gas_in') return [{ y: l.gas_in_limit, tone: 'warn', label: tr('rx.line.pump') }]
+  if (name === 'gas_out') return [{ y: l.gas_out_limit, tone: 'danger', label: tr('rx.line.leak') }]
+  return [{ y: 95, tone: 'warn', label: '' }]
 }
 const LINE_COLORS = { warn: '#e9bd6c', danger: '#f3958a', target: '#8cc4ee' }
 const clock = (t: number) => new Date(t * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' })
 
-function SensorChart({ name, points, th }: { name: SensorName; points: HistoryPoint[]; th: Thresholds | null }) {
+function SensorChart({ name, points, limits }: { name: SensorName; points: HistoryPoint[]; limits: Limits | null }) {
   const data = points.map(p => ({ t: p.t, v: p[name] }))
   return <figure className="rx-chart ds-card" data-testid={`rx-chart-${name}`}>
     <figcaption>{tr(`rx.sensor.${name}`)}<span>, {unit(name)}</span></figcaption>
@@ -126,8 +183,8 @@ function SensorChart({ name, points, th }: { name: SensorName; points: HistoryPo
         <LineChart data={data} margin={{ top: 10, right: 12, bottom: 0, left: -12 }}>
           <CartesianGrid stroke="#24333b" strokeDasharray="3 5" vertical={false} />
           <XAxis dataKey="t" type="number" domain={['dataMin', 'dataMax']} tickFormatter={v => clock(Number(v)).slice(0, 5)} axisLine={false} tickLine={false} tick={{ fill: '#8fa6aa', fontSize: 13 }} minTickGap={40} />
-          <YAxis domain={['auto', 'auto']} axisLine={false} tickLine={false} tick={{ fill: '#8fa6aa', fontSize: 13 }} width={52} tickFormatter={v => Number(v).toFixed(DIGITS[name] === 2 ? 1 : 0)} />
-          {thresholdLines(name, th).map(line => <ReferenceLine key={`${line.tone}${line.y}`} y={line.y} stroke={LINE_COLORS[line.tone]} strokeDasharray={line.tone === 'target' ? '2 4' : '6 4'} ifOverflow="extendDomain"
+          <YAxis domain={['auto', 'auto']} axisLine={false} tickLine={false} tick={{ fill: '#8fa6aa', fontSize: 13 }} width={52} tickFormatter={v => Number(v).toFixed(0)} />
+          {thresholdLines(name, limits).map(line => <ReferenceLine key={`${line.tone}${line.y}`} y={line.y} stroke={LINE_COLORS[line.tone]} strokeDasharray={line.tone === 'target' ? '2 4' : '6 4'} ifOverflow="extendDomain"
             label={line.label ? { value: line.label, position: 'insideTopRight', fill: '#a9bdbf', fontSize: 13 } : undefined} />)}
           <Tooltip contentStyle={{ background: '#152329', border: '1px solid #36525a', borderRadius: 10, color: '#f0f7f5' }} labelFormatter={v => clock(Number(v))}
             formatter={value => [`${formatValue(name, value as number | null)} ${unit(name)}`, tr(`rx.sensor.${name}`)]} />
@@ -155,7 +212,7 @@ function Charts({ status }: { status: ReactorStatus }) {
         <button aria-pressed={window === 3600} onClick={() => setWindow(3600)}>{tr('rx.window60')}</button>
       </div></div>
     {!live && <p className="ds-muted">{tr('rx.chartsStale')}</p>}
-    <div className="rx-charts">{SENSORS.map(name => <SensorChart key={name} name={name} points={points} th={status.thresholds} />)}</div>
+    <div className="rx-charts">{SENSORS.map(name => <SensorChart key={name} name={name} points={points} limits={status.limits} />)}</div>
     <details className="ds-collapse rx-table-view"><summary>{tr('rx.tableView')}</summary>
       <div className="rx-table-wrap"><table className="rx-table"><thead><tr><th>{tr('rx.time')}</th>{SENSORS.map(n => <th key={n}>{tr(`rx.sensor.${n}`)}</th>)}{RELAYS.map(r => <th key={r}>{tr(`rx.relay.${r}`)}</th>)}</tr></thead>
         <tbody>{points.slice(-20).reverse().map(p => <tr key={p.t}><td>{clock(p.t)}</td>{SENSORS.map(n => <td key={n}>{formatValue(n, p[n])}</td>)}{RELAYS.map(r => <td key={r}>{p[`relay_${r}`] ? tr('rx.on') : tr('rx.off')}</td>)}</tr>)}</tbody></table></div>
@@ -163,24 +220,9 @@ function Charts({ status }: { status: ReactorStatus }) {
   </section>
 }
 
-// ---------------------------------------------------------------- relays
-type Pending = { kind: 'relay'; relay: RelayName; on: boolean } | { kind: 'reset' }
-
-function RelayCard({ relay, status, onAsk, big }: { relay: RelayName; status: ReactorStatus; onAsk: (p: Pending) => void; big?: boolean }) {
-  const state = status.relays[relay]
-  const Icon = RELAY_ICONS[relay]
-  const blockedOn = !state.on ? state.on_blocked : null
-  const disabled = !status.controls_enabled || Boolean(blockedOn)
-  return <article className={`rx-relay ds-card ${state.on ? 'is-on' : ''} ${big ? 'rx-relay-big' : ''}`} data-testid={`rx-relay-${relay}`}>
-    <div className="rx-relay-head"><Icon size={big ? 30 : 22} aria-hidden="true" /><strong>{tr(`rx.relay.${relay}`)}</strong>
-      <span className={`rx-relay-state ${state.on ? 'is-on' : ''}`} data-testid={`rx-relay-state-${relay}`}>{state.on ? tr('rx.on') : tr('rx.off')}</span></div>
-    {!big && <p className="rx-relay-time">{state.on ? tr('rx.runningFor', { time: duration(state.on_for_s) }) : tr('rx.stopped')} · {tr('rx.totalFor', { time: duration(state.total_s) })}</p>}
-    {big && state.on && <p className="rx-relay-time">{tr('rx.runningFor', { time: duration(state.on_for_s) })}</p>}
-    {!big && <button className={`ds-button ${state.on ? '' : 'ds-button-primary'}`} disabled={disabled} data-testid={`rx-relay-button-${relay}`}
-      onClick={() => onAsk({ kind: 'relay', relay, on: !state.on })}>{state.on ? tr('rx.turnOff') : tr('rx.turnOn')}</button>}
-    {!big && blockedOn && status.controls_enabled && <p className="rx-relay-blocked" data-testid={`rx-relay-blocked-${relay}`}>{tr(`rx.reason.${blockedOn}`)}</p>}
-  </article>
-}
+// ---------------------------------------------------------------- confirmation
+type Pending = { kind: 'relay'; relay: RelayName; on: boolean } | { kind: 'reset' } | { kind: 'auto'; on: boolean }
+  | { kind: 'limit'; name: LimitName; value: number; was: number }
 
 function ConfirmDialog({ pending, onCancel, onConfirm, busy }: { pending: Pending; onCancel: () => void; onConfirm: () => void; busy: boolean }) {
   const confirmRef = useRef<HTMLButtonElement>(null)
@@ -190,8 +232,11 @@ function ConfirmDialog({ pending, onCancel, onConfirm, busy }: { pending: Pendin
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
   }, [onCancel])
-  const title = pending.kind === 'reset' ? tr('rx.confirm.resetTitle') : tr(pending.on ? 'rx.confirm.onTitle' : 'rx.confirm.offTitle', { relay: tr(`rx.relay.${pending.relay}`) })
-  const text = pending.kind === 'reset' ? tr('rx.confirm.resetText') : pending.on ? tr(`rx.confirm.on.${pending.relay}`) : tr('rx.confirm.offText')
+  let title: string, text: string
+  if (pending.kind === 'reset') { title = tr('rx.confirm.resetTitle'); text = tr('rx.confirm.resetText') }
+  else if (pending.kind === 'auto') { title = tr(pending.on ? 'rx.confirm.autoOnTitle' : 'rx.confirm.autoOffTitle'); text = tr(pending.on ? 'rx.confirm.autoOnText' : 'rx.confirm.autoOffText') }
+  else if (pending.kind === 'limit') { title = tr('rx.confirm.limitTitle', { limit: tr(`rx.limit.${pending.name}`) }); text = tr('rx.confirm.limitText', { was: limitText(pending.name, pending.was), value: limitText(pending.name, pending.value) }) }
+  else { title = tr(pending.on ? 'rx.confirm.onTitle' : 'rx.confirm.offTitle', { relay: tr(`rx.relay.${pending.relay}`) }); text = pending.on ? tr(`rx.confirm.on.${pending.relay}`) : tr('rx.confirm.offText') }
   return <div className="rx-modal-backdrop" role="presentation" onClick={onCancel}>
     <div className="rx-modal ds-card" role="dialog" aria-modal="true" aria-labelledby="rx-confirm-title" onClick={event => event.stopPropagation()} data-testid="rx-confirm">
       <h2 id="rx-confirm-title">{title}</h2><p>{text}</p>
@@ -201,33 +246,66 @@ function ConfirmDialog({ pending, onCancel, onConfirm, busy }: { pending: Pendin
   </div>
 }
 
-// ---------------------------------------------------------------- alarms
-function LeakAlarm({ status, onReset }: { status: ReactorStatus; onReset: () => void }) {
-  const leak = status.alarms.find(a => a.code === 'leak')
-  const [collapsedFor, setCollapsedFor] = useState<number | null>(null)
-  if (!leak) return null
-  const collapsed = collapsedFor !== null && collapsedFor === leak.since
-  const body = <>
-    <p>{tr('rx.leak.text', { value: formatValue('gas_out', status.readings.gas_out.value ?? status.readings.gas_out.last), leak: status.thresholds?.gas_out_raw.leak ?? '—' })}</p>
-    <p>{leak.still_leaking ? tr('rx.leak.still') : tr('rx.leak.gone')}</p>
-    <div className="rx-alarm-actions">
-      <button className="ds-button rx-alarm-reset" disabled={Boolean(leak.still_leaking) || !status.controls_enabled} onClick={onReset} data-testid="rx-leak-reset">{tr('rx.leak.reset')}</button>
-      {!collapsed && <button className="ds-button" onClick={() => setCollapsedFor(leak.since ?? 0)}>{tr('rx.leak.collapse')}</button>}
+// ---------------------------------------------------------------- mode, relays, limits
+function ModeCard({ status, onAsk }: { status: ReactorStatus; onAsk: (p: Pending) => void }) {
+  const auto = Boolean(status.auto)
+  const locked = Boolean(status.arduino_alarms?.estop || status.arduino_alarms?.leak)
+  return <article className={`rx-mode ds-card ${auto ? 'is-auto' : ''}`} data-testid="rx-mode">
+    <div className="rx-relay-head"><SlidersHorizontal size={22} aria-hidden="true" /><strong>{tr('rx.mode.title')}</strong>
+      <span className={`rx-relay-state ${auto ? 'is-on' : ''}`} data-testid="rx-mode-state">{status.auto === null ? '—' : auto ? tr('rx.mode.auto') : tr('rx.mode.manual')}</span></div>
+    <p className="rx-relay-time">{auto ? tr('rx.mode.autoText') : tr('rx.mode.manualText')}</p>
+    <button className={`ds-button ${auto ? '' : 'ds-button-primary'}`} disabled={!status.controls_enabled || (!auto && locked)} data-testid="rx-mode-button"
+      onClick={() => onAsk({ kind: 'auto', on: !auto })}>{auto ? tr('rx.mode.turnOff') : tr('rx.mode.turnOn')}</button>
+    {!auto && locked && status.controls_enabled && <p className="rx-relay-blocked">{tr(`rx.reason.${status.arduino_alarms?.estop ? 'estop' : 'leak'}`)}</p>}
+  </article>
+}
+
+function RelayCard({ relay, status, onAsk, big }: { relay: RelayName; status: ReactorStatus; onAsk: (p: Pending) => void; big?: boolean }) {
+  const state = status.relays[relay]
+  const Icon = RELAY_ICONS[relay]
+  const blockedOn = !state.on ? state.on_blocked : null
+  const disabled = !status.controls_enabled || Boolean(blockedOn)
+  const who = state.on ? (state.remote ? tr('rx.who.fromLaptop') : tr('rx.who.byArduino')) : null
+  return <article className={`rx-relay ds-card ${state.on ? 'is-on' : ''} ${big ? 'rx-relay-big' : ''}`} data-testid={`rx-relay-${relay}`}>
+    <div className="rx-relay-head"><Icon size={big ? 30 : 22} aria-hidden="true" /><strong>{tr(`rx.relay.${relay}`)}</strong>
+      <span className={`rx-relay-state ${state.on ? 'is-on' : ''}`} data-testid={`rx-relay-state-${relay}`}>{state.on ? tr('rx.on') : tr('rx.off')}</span></div>
+    {who && <p className="rx-relay-who" data-testid={`rx-relay-who-${relay}`}>{who}</p>}
+    {!big && <p className="rx-relay-time">{state.on ? tr('rx.runningFor', { time: duration(state.on_for_s) }) : tr('rx.stopped')} · {tr('rx.totalFor', { time: duration(state.total_s) })}</p>}
+    {big && state.on && <p className="rx-relay-time">{tr('rx.runningFor', { time: duration(state.on_for_s) })}</p>}
+    {!big && <button className={`ds-button ${state.on ? '' : 'ds-button-primary'}`} disabled={disabled} data-testid={`rx-relay-button-${relay}`}
+      onClick={() => onAsk({ kind: 'relay', relay, on: !state.on })}>{state.on ? tr('rx.turnOff') : tr('rx.turnOn')}</button>}
+    {!big && blockedOn && status.controls_enabled && <p className="rx-relay-blocked" data-testid={`rx-relay-blocked-${relay}`}>{reasonText(blockedOn)}</p>}
+    {!big && relay === 'auger' && <p className="rx-reading-note">{tr('rx.relay.augerNote')}</p>}
+  </article>
+}
+
+function LimitRow({ name, status, onAsk }: { name: LimitName; status: ReactorStatus; onAsk: (p: Pending) => void }) {
+  const current = status.limits?.[name]
+  const [draft, setDraft] = useState<string>('')
+  useEffect(() => { if (current !== undefined) setDraft(String(current)) }, [current])
+  const input = LIMIT_INPUT[name]
+  const value = Number(draft)
+  const valid = draft.trim() !== '' && Number.isFinite(value) && value >= input.min && value <= input.max
+  const changed = current !== undefined && valid && value !== current
+  return <div className="rx-limit" data-testid={`rx-limit-${name}`}>
+    <label htmlFor={`rx-limit-input-${name}`}><strong>{tr(`rx.limit.${name}`)}</strong><span>{tr(`rx.limit.${name}Hint`)}</span></label>
+    <span className="rx-limit-now">{current === undefined ? '—' : limitText(name, current)}</span>
+    <div className="rx-limit-edit">
+      <input id={`rx-limit-input-${name}`} type="number" inputMode="decimal" min={input.min} max={input.max} step={input.step} value={draft}
+        onChange={event => setDraft(event.target.value)} disabled={!status.controls_enabled} aria-invalid={!valid} data-testid={`rx-limit-input-${name}`} />
+      <span className="rx-limit-unit">{isTempLimit(name) ? '°C' : tr('rx.limit.raw')}</span>
+      <button className="ds-button" disabled={!status.controls_enabled || !changed} data-testid={`rx-limit-save-${name}`}
+        onClick={() => current !== undefined && onAsk({ kind: 'limit', name, value, was: current })}>{tr('rx.limit.save')}</button>
     </div>
-  </>
-  if (collapsed) return <section className="rx-alarm-strip" role="alert" data-testid="rx-leak-strip"><AlertOctagon size={22} /><strong>{tr('rx.leak.title')}</strong>{body}</section>
-  return <div className="rx-alarm-overlay" role="alertdialog" aria-modal="true" aria-labelledby="rx-leak-title" data-testid="rx-leak-alarm">
-    <div className="rx-alarm-box"><AlertOctagon size={64} aria-hidden="true" /><h2 id="rx-leak-title">{tr('rx.leak.title')}</h2>
-      <p className="rx-alarm-lead">{tr('rx.leak.heaterOff')}</p>{body}</div>
   </div>
 }
 
-function OtherAlarms({ status }: { status: ReactorStatus }) {
-  const list = status.alarms.filter(a => !['leak', 'pi_lost', 'arduino_lost'].includes(a.code))
-  if (!list.length) return null
-  return <div className="rx-alarms" data-testid="rx-alarms">{list.map(a =>
-    <div key={a.code} className={`rx-alarm-line rx-tone-${a.level}`} role={a.level === 'danger' ? 'alert' : 'status'}>
-      {a.level === 'danger' ? <AlertOctagon size={18} /> : <AlertTriangle size={18} />}<span>{tr(`rx.alarm.${a.code}`)}</span></div>)}</div>
+function LimitsPanel({ status, onAsk }: { status: ReactorStatus; onAsk: (p: Pending) => void }) {
+  return <section className="rx-section ds-card rx-limits" aria-labelledby="rx-limits-title" data-testid="rx-limits">
+    <h2 id="rx-limits-title"><SlidersHorizontal size={18} /> {tr('rx.limits.title')}</h2>
+    <p className="ds-muted">{tr('rx.limits.lead')}</p>
+    {status.limits ? LIMITS.map(name => <LimitRow key={name} name={name} status={status} onAsk={onAsk} />) : <p className="ds-muted">{tr('rx.limits.unknown')}</p>}
+  </section>
 }
 
 // ---------------------------------------------------------------- simulator, journal, chain
@@ -270,7 +348,7 @@ function Journal() {
 
 const CHAIN = () => [
   { icon: Thermometer, title: tr('rx.chain.sensors'), text: tr('rx.chain.sensorsText') },
-  { icon: Cpu, title: 'Arduino', text: tr('rx.chain.arduinoText') },
+  { icon: Cpu, title: 'Arduino Mega', text: tr('rx.chain.arduinoText') },
   { icon: Cable, title: 'USB', text: tr('rx.chain.usbText') },
   { icon: RadioTower, title: 'Raspberry Pi', text: tr('rx.chain.piText') },
   { icon: Network, title: tr('rx.chain.network'), text: tr('rx.chain.networkText') },
@@ -316,28 +394,40 @@ export default function Reactor() {
   }, [refresh])
   useEffect(() => { writeStorage(JURY_KEY, jury ? '1' : '0') }, [jury])
 
+  const report = (result: CommandResult, done: string) =>
+    setMessage(result.ok ? { ok: true, text: done } : { ok: false, text: tr('rx.refused', { reason: reasonText(result.reason) }) })
+
+  const estop = async () => {
+    setBusy(true)
+    try { report(await reactorApi.estop(), tr('rx.done.estop')) }
+    catch (error) { setMessage({ ok: false, text: String((error as Error).message ?? error) }) }
+    finally { setBusy(false); refresh() }
+  }
+
   const confirm = async () => {
     if (!pending) return
     setBusy(true)
     try {
-      const result = pending.kind === 'reset' ? await reactorApi.resetLeak() : await reactorApi.relay(pending.relay, pending.on)
-      const done = pending.kind === 'reset' ? tr('rx.done.reset') : tr(pending.on ? 'rx.done.on' : 'rx.done.off', { relay: tr(`rx.relay.${pending.relay}`) })
-      setMessage(result.ok ? { ok: true, text: done } : { ok: false, text: tr('rx.refused', { reason: tr(`rx.reason.${result.reason ?? 'unknown'}`) }) })
+      if (pending.kind === 'reset') report(await reactorApi.resetAlarms(), tr('rx.done.reset'))
+      else if (pending.kind === 'auto') report(await reactorApi.auto(pending.on), tr(pending.on ? 'rx.done.autoOn' : 'rx.done.autoOff'))
+      else if (pending.kind === 'limit') report(await reactorApi.limit(pending.name, pending.value), tr('rx.done.limit', { limit: tr(`rx.limit.${pending.name}`), value: limitText(pending.name, pending.value) }))
+      else report(await reactorApi.relay(pending.relay, pending.on), tr(pending.on ? 'rx.done.on' : 'rx.done.off', { relay: tr(`rx.relay.${pending.relay}`) }))
     } catch (error) {
       setMessage({ ok: false, text: String((error as Error).message ?? error) })
     } finally { setBusy(false); setPending(null); refresh() }
   }
 
   const controls = Boolean(status?.controls_enabled) && !serverDown
-  const shown = status && serverDown ? { ...status, controls_enabled: false, link: { ...status.link, ok: false } } : status
+  const shown = status && serverDown ? { ...status, controls_enabled: false, estop_enabled: false, link: { ...status.link, ok: false } } : status
   return <div className={`reactor-page rx-page ${jury ? 'rx-jury' : ''}`} data-testid="reactor-page">
     <div className="page-heading rx-heading"><div><h1>{tr('rx.title')}</h1><p>{tr('rx.lead')}</p></div>
       <div className="rx-heading-actions"><SourceBadge status={status} /><CheckButton />
         <button className={`ds-button ${jury ? 'ds-button-primary' : ''}`} aria-pressed={jury} onClick={() => setJury(!jury)} data-testid="rx-jury"><Gavel size={16} />{tr('rx.jury')}</button></div></div>
 
     <LinkBanner status={status} serverDown={serverDown} />
-    {shown && <LeakAlarm status={shown} onReset={() => setPending({ kind: 'reset' })} />}
-    {shown && <OtherAlarms status={shown} />}
+    {shown && <EmergencyBar status={shown} onEstop={estop} onReset={() => setPending({ kind: 'reset' })} busy={busy} />}
+    {shown && <BigAlarm status={shown} onReset={() => setPending({ kind: 'reset' })} />}
+    {shown && <AlarmList status={shown} />}
     {message && <div className={`rx-message ${message.ok ? 'is-ok' : 'is-bad'}`} role="status" data-testid="rx-message">
       {message.ok ? <CheckCircle2 size={18} /> : <XCircle size={18} />}<span>{message.text}</span>
       <button className="rx-message-close" onClick={() => setMessage(null)} aria-label={tr('rx.close')}>×</button></div>}
@@ -354,9 +444,10 @@ export default function Reactor() {
         <section className="rx-section" aria-labelledby="rx-relays-title">
           <div className="rx-section-head"><h2 id="rx-relays-title">{tr('rx.relays')}</h2></div>
           <p className="ds-muted">{controls ? tr('rx.relaysLead') : tr('rx.relaysLocked')}</p>
-          <div className="rx-relays">{RELAYS.map(relay => <RelayCard key={relay} relay={relay} status={shown} onAsk={setPending} />)}</div>
+          <div className="rx-relays"><ModeCard status={shown} onAsk={setPending} />{RELAYS.map(relay => <RelayCard key={relay} relay={relay} status={shown} onAsk={setPending} />)}</div>
           <p className="rx-agent-note"><Bot size={18} /> {tr('rx.agentNote')}</p>
         </section>
+        <LimitsPanel status={shown} onAsk={setPending} />
       </>}
     {shown && <Charts status={shown} />}
     {shown && !jury && <SimulatorPanel status={shown} onChange={() => refresh()} />}
@@ -365,4 +456,3 @@ export default function Reactor() {
     {pending && <ConfirmDialog pending={pending} busy={busy} onCancel={() => setPending(null)} onConfirm={confirm} />}
   </div>
 }
-
