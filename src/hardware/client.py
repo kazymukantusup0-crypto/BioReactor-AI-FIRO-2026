@@ -20,6 +20,9 @@ from __future__ import annotations
 import json
 import threading
 import time
+from concurrent.futures import ThreadPoolExecutor, wait
+from datetime import datetime
+from pathlib import Path
 import urllib.error
 import urllib.request
 from collections.abc import Callable
@@ -48,6 +51,7 @@ class ReactorClient:
         if self.mode == "auto" and self.candidates:
             self.pi_url = self.candidates[0]["url"]
         self.searching = False
+        self.route_seen: str | None = None
         self.last_state: dict | None = None
         self.last_ok: float | None = None
         self.error: str | None = None
@@ -98,35 +102,73 @@ class ReactorClient:
         """How the laptop reaches the Pi: pi_wifi | cable | lan (from pi_candidates), None if the address is not listed."""
         return next((c["route"] for c in self.candidates if c["url"] == self.pi_url), None)
 
-    def find_pi(self) -> bool:
-        """Mode auto: the first candidate that answers /health becomes pi_url."""
-        if self.network_cut:
-            return False
-        self.searching = True
+    def _health(self, url: str, timeout: float) -> bool:
+        request = urllib.request.Request(url + "/health", headers={**({"X-Bioreactor-Token": self.token} if self.token else {})})
         try:
-            for candidate in self.candidates:
-                request = urllib.request.Request(candidate["url"] + "/health",
-                                                 headers={**({"X-Bioreactor-Token": self.token} if self.token else {})})
-                try:
-                    with urllib.request.urlopen(request, timeout=float(self.config.get("search_timeout_s", 1.5))) as response:
-                        if json.loads(response.read().decode("utf-8")).get("ok"):
-                            self.pi_url = candidate["url"]
-                            return True
-                except (urllib.error.URLError, OSError, ValueError):
-                    continue
+            with urllib.request.urlopen(request, timeout=timeout) as response:
+                return bool(json.loads(response.read().decode("utf-8")).get("ok"))
+        except Exception:      # any failure (URLError, timeout, HTTPException, bad JSON) = this address does not answer
+            return False
+
+    def find_pi(self) -> bool:
+        """Mode auto: ask every candidate AT ONCE (each in its own thread); the first in priority order that answers
+        /health becomes pi_url. In parallel, a name that Windows resolves slowly (bioreactor.local while the networks
+        change) cannot hold up the cable or the Pi's Wi-Fi."""
+        if self.network_cut or not self.candidates:
+            return False
+        timeout = float(self.config.get("search_timeout_s", 1.5))
+        self.searching = True
+        started = time.monotonic()
+        try:
+            pool = ThreadPoolExecutor(max_workers=len(self.candidates), thread_name_prefix="find-pi")
+            futures = [pool.submit(self._health, c["url"], timeout) for c in self.candidates]
+            wait(futures, timeout=timeout + 1.0)
+            pool.shutdown(wait=False)          # a hung name lookup finishes later in the background
+            answers = [f.done() and f.result() for f in futures]
+            for candidate, ok in zip(self.candidates, answers):
+                if ok:
+                    if candidate["url"] != self.pi_url or self.route_seen != candidate["route"]:
+                        self._log(f"Pi found via {candidate['route']} ({candidate['url']}) in "
+                                  f"{time.monotonic() - started:.1f} s; answers: {dict(zip([c['route'] for c in self.candidates], answers))}")
+                    self.pi_url, self.route_seen = candidate["url"], candidate["route"]
+                    return True
+            self._log(f"Pi not found ({time.monotonic() - started:.1f} s): no candidate answered")
             return False
         finally:
             self.searching = False
+
+    def _log(self, text: str) -> None:
+        """data/runtime/reactor_client.log (config client_log): searches and route changes, with the laptop's time."""
+        path = self.config.get("client_log")
+        if not path:
+            return
+        try:
+            full = Path(path) if Path(path).is_absolute() else Path(__file__).resolve().parents[2] / path
+            full.parent.mkdir(parents=True, exist_ok=True)
+            with open(full, "a", encoding="utf-8") as f:
+                f.write(f"{datetime.now():%Y-%m-%d %H:%M:%S} {text}\n")
+        except OSError:
+            pass
 
     def poll(self) -> None:
         try:
             state = self._request("GET", "/state")
         except PiUnreachable as error:
+            if self.last_ok is not None and self.error is None:
+                self._log(f"lost the Pi at {self.pi_url}: {error}")
             if self.mode == "auto" and self.find_pi():
-                return self.poll()
-            with self._lock:
-                self.error = str(error)
-            return
+                try:
+                    state = self._request("GET", "/state")
+                except PiUnreachable as error2:
+                    with self._lock:
+                        self.error = str(error2)
+                    return
+            else:
+                with self._lock:
+                    self.error = str(error)
+                return
+        if self.error is not None or self.last_ok is None:
+            self._log(f"data from the Pi via {self.route() or self.pi_url}")
         with self._lock:
             self.last_state, self.last_ok, self.error = state, self.clock(), None
 
@@ -279,7 +321,12 @@ class ReactorClient:
     def _loop(self) -> None:
         while not self._stop.is_set():
             started = self.clock()
-            self.poll()
+            try:
+                self.poll()
+            except Exception as error:      # the polling thread must never die (the page would freeze on old data)
+                with self._lock:
+                    self.error = f"{type(error).__name__}: {error}"
+                self._log(f"poll error {type(error).__name__}: {error}")
             self._stop.wait(max(0.05, self.config["poll_s"] - (self.clock() - started)))
 
     def stop(self) -> None:

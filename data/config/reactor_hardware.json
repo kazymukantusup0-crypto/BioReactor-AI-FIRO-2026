@@ -11,5 +11,6 @@
   "poll_s": 1.0,
   "link_timeout_s": 5,
   "request_timeout_s": 2.5,
-  "search_timeout_s": 1.5
+  "search_timeout_s": 1.5,
+  "client_log": "data/runtime/reactor_client.log"
 }

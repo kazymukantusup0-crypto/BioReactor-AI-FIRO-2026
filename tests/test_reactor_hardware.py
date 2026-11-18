@@ -808,6 +808,47 @@ def test_laptop_auto_mode_finds_the_pi_and_names_the_route(pi_server):
     assert check["ok"] and check["route"] == "cable"
 
 
+def test_laptop_auto_mode_a_hanging_address_does_not_hold_the_search(pi_server, tmp_path):
+    """A candidate that accepts the connection and never answers (like a slow name lookup) must not delay the others:
+    all candidates are asked at once; the search ends within the timeout and logs the route."""
+    import socket
+    import threading
+    bridge, url = pi_server
+    hang = socket.socket()
+    hang.bind(("127.0.0.1", 0))
+    hang.listen(5)
+    accepted = []
+    threading.Thread(target=lambda: accepted.append(hang.accept()), daemon=True).start()
+    log = tmp_path / "client.log"
+    client = ReactorClient({"mode": "auto", "pi_url": "http://127.0.0.1:9", "token": "secret", "poll_s": 1,
+                            "link_timeout_s": 5, "request_timeout_s": 1, "search_timeout_s": 1.0, "client_log": str(log),
+                            "pi_candidates": [{"url": f"http://127.0.0.1:{hang.getsockname()[1]}", "route": "pi_wifi"},
+                                              {"url": url, "route": "cable"}]})
+    started = time.monotonic()
+    client.poll()
+    assert time.monotonic() - started < 4, "the hanging address held up the search"
+    assert client.status()["source"]["route"] == "cable"
+    text = log.read_text(encoding="utf-8")
+    assert "Pi found via cable" in text and "data from the Pi via cable" in text
+    hang.close()
+
+
+def test_laptop_client_thread_survives_an_unexpected_error(monkeypatch):
+    client = ReactorClient({"mode": "pi", "pi_url": "http://127.0.0.1:9", "poll_s": 0.05, "link_timeout_s": 5,
+                            "request_timeout_s": 0.2})
+    calls = []
+
+    def boom():
+        calls.append(1)
+        raise RuntimeError("unexpected")
+    monkeypatch.setattr(client, "poll", boom)
+    client.start()
+    time.sleep(0.4)
+    client.stop()
+    assert len(calls) >= 3, "the polling thread kept running after an exception"
+    assert "RuntimeError" in client.status()["link"]["error"]
+
+
 def test_laptop_auto_mode_nothing_answers():
     client = ReactorClient({"mode": "auto", "pi_url": "http://127.0.0.1:9", "poll_s": 1, "link_timeout_s": 5,
                             "request_timeout_s": 0.3, "search_timeout_s": 0.3,
