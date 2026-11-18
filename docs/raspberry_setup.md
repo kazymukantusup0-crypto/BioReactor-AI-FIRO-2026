@@ -86,10 +86,15 @@ Wi-Fi (172.20.10.1), github.com открывается, ping 0 мс, /health п�
 
 ### Без кабеля и без интернета — своя Wi-Fi сеть Pi «BioReactor-Pi»
 
-Установка (один раз; пароль Wi-Fi вводите сами, он хранится только в профиле на Pi, не в проекте):
+Установка (пароль Wi-Fi — **только цифры, от 8**, вводите сами; он хранится только в профиле на Pi, не в проекте).
+С `test` Pi сразу отпускает iPhone и держит BioReactor-Pi 20 минут — для проверки при подключённом кабеле:
 ```
-ssh -t bioreactor "cd ~/BioReactor_AI && git pull && sudo raspberry/setup_network.sh hotspot"
+ssh -t bio@192.168.50.2 "cd ~/BioReactor_AI && git pull && sudo raspberry/setup_network.sh hotspot test"
 ```
+Сменить только пароль: `sudo raspberry/setup_network.sh hotspot-password`. Тестовый режим ещё раз:
+`sudo raspberry/setup_network.sh hotspot-test 20`. Посмотреть, кто подключён: `sudo raspberry/setup_network.sh status`.
+
+Настройки для Windows: WPA2-PSK (без WPA3), шифрование AES-CCMP, PMF выключен, WPS выключен, 2,4 ГГц, канал 6.
 Что получается (служба `bioreactor-wifi`, работает без монитора и клавиатуры):
 
 | Ситуация | Что делает Pi |
@@ -102,9 +107,10 @@ ssh -t bioreactor "cd ~/BioReactor_AI && git pull && sudo raspberry/setup_networ
 Ноутбук получает адрес 10.42.0.x **без шлюза и DNS** — интернета в этой сети нет, и он не нужен.
 Кабель (192.168.50.2) остаётся запасным и не меняется.
 
-Защита от потери связи: первый раз, когда Pi поднимет BioReactor-Pi, в течение 3 минут кто-то должен зайти на Pi
+Защита от потери связи: первый раз, когда Pi сама поднимет BioReactor-Pi, в течение 3 минут кто-то должен зайти на Pi
 **через эту сеть**: `ssh bio@10.42.0.1 "touch /tmp/bioreactor-hotspot-ok"`. Иначе всё само вернётся как было
-(профиль удалится, служба уберётся, Pi вернётся к iPhone). Убрать вручную: `sudo raspberry/setup_network.sh hotspot-remove`.
+(профиль удалится, служба уберётся, Pi вернётся к iPhone) — **но только если кабель не подключён**: с кабелем Pi
+доступна и так, отката нет. После отката BioReactor-Pi больше не появится, пока не установить её заново. Убрать вручную: `sudo raspberry/setup_network.sh hotspot-remove`.
 Журнал: `journalctl -u bioreactor-wifi -f`.
 
 #### Простая инструкция: демо ↔ разработка
