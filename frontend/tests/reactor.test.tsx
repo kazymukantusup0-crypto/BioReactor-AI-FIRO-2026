@@ -39,6 +39,12 @@ describe('Reactor page', () => {
     expect(screen.queryByTestId('rx-simulator')).toBeNull()
   })
 
+  it('says the Arduino is virtual when the real Pi runs with --simulate', async () => {
+    mockApi(reactorStatus({ source: { kind: 'pi', address: '172.20.10.3:8780', arduino_port: 'virtual', firmware: 'virtual-0.1' }, simulator: null }))
+    render(<Reactor />)
+    expect(await screen.findByText('ДАТЧИКИ: RASPBERRY PI (172.20.10.3:8780) → ВИРТУАЛЬНЫЙ ARDUINO')).toBeInTheDocument()
+  })
+
   it('asks for confirmation before switching a relay; cancel sends nothing', async () => {
     mockApi()
     const relay = vi.spyOn(reactorApi, 'relay').mockResolvedValue({ ok: true, reason: null })

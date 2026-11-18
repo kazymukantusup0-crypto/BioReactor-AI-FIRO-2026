@@ -42,7 +42,10 @@ export function SourceBadge({ status, big = false }: { status: ReactorStatus | n
   const simulator = status.source.kind === 'simulator'
   return <span className={`rx-source ${simulator ? 'rx-source-sim' : 'rx-source-pi'} ${big ? 'rx-big' : ''}`} data-testid="rx-source">
     {simulator ? <Cpu size={16} /> : <RadioTower size={16} />}
-    {simulator ? tr('rx.source.sim') : tr('rx.source.pi', { address: status.source.address ?? '?' })}
+    {simulator ? tr('rx.source.sim')
+      // a real Pi started with --simulate: the network is real, the sensors are not — say so
+      : status.source.arduino_port === 'virtual' ? tr('rx.source.piVirtual', { address: status.source.address ?? '?' })
+      : tr('rx.source.pi', { address: status.source.address ?? '?' })}
   </span>
 }
 

@@ -8,6 +8,18 @@
 - Ethernet-кабель ноутбук ↔ Pi (обычный: современные порты сами разбираются с перекрёстным);
 - папка `raspberry/` из проекта. Интернет **не нужен**: pyserial лежит в `raspberry/wheels/`.
 
+## Наша Pi (проверено 18.11.2026)
+
+- Raspberry Pi 5, **Debian 13 trixie** (не Bookworm), Python 3.13.5, пользователь `bio`, имя `bioreactor.local`.
+- Вход с ноутбука по ключу `~/.ssh/id_ed25519_bioreactor` (без пароля); в `~/.ssh/config` короткое имя `bioreactor`.
+  Имя `.local` в точке доступа iPhone находится не всегда — тогда по IP (`ssh bio@172.20.10.3`, адрес может меняться).
+- Код: `~/BioReactor_AI` (ветка `reactor-hardware`, клон без истории), venv `raspberry/.venv` с pyserial из `wheels/`.
+- `sudo` на Pi спрашивает пароль → `install.sh` и сетевые команды запускает человек.
+- Проверка без Arduino и без sudo: `~/BioReactor_AI/raspberry/run_simulated.sh start` → на ноутбуке
+  `BIOREACTOR_SENSORS=pi BIOREACTOR_PI_URL=http://<адрес Pi>:8780`, страница показывает
+  «RASPBERRY PI (<адрес>) → ВИРТУАЛЬНЫЙ ARDUINO» (`docs/reactor/real_pi_virtual_arduino.png`).
+- Trixie: сетевые профили создаёт netplan (`netplan-eth0`, `netplan-wlan0-…`), управляет ими NetworkManager.
+
 ## 1. Первый запуск Pi (один раз, с монитором или по SSH)
 
 1. В Raspberry Pi Imager → «Настройки» включить SSH, задать имя пользователя и пароль.

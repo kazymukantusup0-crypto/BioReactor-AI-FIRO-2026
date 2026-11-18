@@ -1022,6 +1022,7 @@
  "rx.lead": "Живые показания установки и ручное управление реле. Включает и выключает только человек — с подтверждением. Защита Arduino и Raspberry Pi сама только выключает.",
  "rx.source.sim": "ДАТЧИКИ: СИМУЛЯТОР",
  "rx.source.pi": "ДАТЧИКИ: RASPBERRY PI → ARDUINO ({address})",
+ "rx.source.piVirtual": "ДАТЧИКИ: RASPBERRY PI ({address}) → ВИРТУАЛЬНЫЙ ARDUINO",
  "rx.source.unknown": "ДАТЧИКИ: подключаюсь…",
  "rx.check": "Проверить связь",
  "rx.checkOk": "Связь есть: {ms} мс, Arduino на связи: {arduino}, порт {port}",
