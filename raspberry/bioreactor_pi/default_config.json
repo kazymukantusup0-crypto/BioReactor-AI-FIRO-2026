@@ -1,0 +1,36 @@
+{
+  "_comment": "Raspberry Pi bridge settings. Copy to /etc/bioreactor-pi/config.json on the Pi and edit there. The Arduino sketch has its own copy of OVERHEAT_C, GAS_OUT_LEAK and WATCHDOG_MS (firmware/bioreactor/bioreactor.ino) — keep them equal. Thresholds are placeholders until the real sensors are calibrated.",
+  "serial": {
+    "_comment": "port: \"auto\" = first /dev/ttyACM* or /dev/ttyUSB* (on Windows: first USB COM port), or an exact port like \"/dev/ttyACM0\".",
+    "port": "auto",
+    "baud": 115200
+  },
+  "http": {"host": "0.0.0.0", "port": 8780, "token": ""},
+  "journal_path": "/var/lib/bioreactor-pi/journal.sqlite3",
+  "reading_log_every_s": 5,
+  "arduino_timeout_s": 5,
+  "ping_every_s": 2,
+  "arduino_watchdog_s": 10,
+  "laptop_timeout_s": 15,
+  "ack_timeout_s": 2,
+  "thresholds": {
+    "temp_c": {"target": 37, "danger_low": 25, "warn_low": 33, "warn_high": 40, "danger_high": 43},
+    "overheat_c": 45,
+    "overheat_release_c": 43,
+    "rh_pct": {"warn_high": 95, "danger_high": 99},
+    "gas_in_raw": {"warn_low": 150},
+    "gas_out_raw": {"warn": 300, "leak": 400},
+    "pressure_kpa": {"pump_warn": 2.0, "danger": 3.0, "scale_max": 3.5, "pump_stop": 0.1}
+  },
+  "simulator": {
+    "ambient_c": 20.0,
+    "start_temp_c": 31.0,
+    "start_pressure_kpa": 1.2,
+    "heater_c_per_s": 0.05,
+    "cooler_c_per_s": 0.06,
+    "loss_per_s": 0.0015,
+    "gas_kpa_per_s_at_37": 0.003,
+    "pump_kpa_per_s": 0.06,
+    "mq_warmup_s": 0
+  }
+}

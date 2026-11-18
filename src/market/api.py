@@ -4,6 +4,7 @@ from contextlib import asynccontextmanager
 import os
 import sqlite3
 from datetime import date
+from pathlib import Path
 from fastapi import FastAPI,HTTPException,Query,Request
 from fastapi.responses import JSONResponse
 from pydantic import Field,ValidationError
@@ -38,8 +39,15 @@ def create_app(store=None,scheduler_enabled=None,interval=None,*,firo_demo=False
         task=asyncio.create_task(scheduler(updater,stop,interval)) if enabled else None
         runtime=getattr(app.state,'agent_runtime',None)
         if runtime:runtime.start()
+        # Reactor hardware (sensors + relays, or the simulator): one thread; the agent reads a copy (src/hardware/live.py).
+        reactor=getattr(app.state,'reactor_manager',None)
+        if reactor:
+            from src.hardware import live
+            reactor.start();live.register(reactor)
         try:yield
         finally:
+            if reactor:
+                live.unregister(reactor);reactor.stop()
             if runtime:runtime.stop()
             stop.set()
             if task is not None:await task
@@ -145,6 +153,15 @@ def create_app(store=None,scheduler_enabled=None,interval=None,*,firo_demo=False
     # «Сырьё и смеси» page: the agent's own estimate_methane, so the page and the chat give equal numbers.
     from src.dashboard.substrates_api import create_router as substrates_router
     app.include_router(substrates_router())
+    # «Реактор» page: Arduino -> USB -> Raspberry Pi -> network -> here (src/hardware, docs/hardware_protocol.md).
+    # Mode "simulator": the Pi bridge with a virtual Arduino runs inside this server (the page says СИМУЛЯТОР).
+    from src.hardware.api import build_client,create_router as reactor_router
+    data_dir=(ROOT/'data').resolve()
+    store_dir=Path(db.path).resolve().parent
+    # A test with a temporary database keeps the simulator's journal next to it, never in data/runtime.
+    journal=None if store_dir.is_relative_to(data_dir) else store_dir/'reactor_simulator_journal.sqlite3'
+    app.state.reactor_manager=build_client(journal_path=journal)
+    app.include_router(reactor_router(app.state.reactor_manager))
     if (ROOT/'frontend/dist/index.html').is_file():
         app.mount('/dashboard',StaticFiles(directory=ROOT/'frontend/dist',html=True),name='dashboard')
     return app

@@ -36,6 +36,7 @@ from src.agent_v10 import substrates
 from src.agent_v10.substrates import material_name, material_word
 from src.agent_v10.units import find_quantities
 from src.agent_v10 import verdicts as verdicts_module
+from src.agent_v10.tools import reactor as reactor_tool
 from src.agent_v10.tools.registry import TOOL_SCHEMAS, ToolCallError, run_tool
 
 LANGUAGE_NAMES = {"ru": "Russian", "kk": "Kazakh", "en": "English"}
@@ -338,11 +339,26 @@ class Agent:
                 about_last = "sources"
             elif re.search(TRUST_WORDS, text, re.IGNORECASE):
                 about_last = "trust"
-        python_answer = history_question or about_last is not None
+        # «Что сейчас в реакторе?» / «Включи подогрев»: live sensors, read-only; Python answers (src/hardware).
+        # A message with a new batch ("200 л навоза, сколько газа?") stays a calculation question.
+        new_batch = extracted["updates"].get("components") or extracted["updates"].get("components_added")
+        control_request = reactor_tool.is_control_request(text)
+        reactor_question = control_request or (reactor_tool.is_reactor_question(text) and not new_batch)
+        python_answer = history_question or about_last is not None or reactor_question
         llm_ok = use_llm and not python_answer and self.llm.available()
         if use_llm and not llm_ok and not python_answer:
             yield event("note", code="no_llm", message="Ollama недоступна — режим без ИИ-модели")
-        if about_last:
+        if reactor_question:
+            yield event("note", code="reactor", message="Вопрос о живом реакторе — читаю датчики (только чтение), "
+                                                        "реле включает только человек; ответ пишет Python")
+            yield event("tool_call", name="get_reactor_status", args={}, by="python")
+            tool_started = time.perf_counter()
+            output = reactor_tool.get_reactor_status(language)
+            yield event("tool_result", name=output["name"], ok=output["ok"], summary=output["llm"], label=output["label"],
+                        duration_ms=round((time.perf_counter() - tool_started) * 1000), data=output["data"])
+            outcome = {"results": [output], "explanation": reactor_tool.answer_text(output, language, control_request),
+                       "mode": "reactor", "verified": True}
+        elif about_last:
             yield event("note", code=about_last, message="Вопрос о последнем расчёте — отвечает Python, без модели")
             text_of = answer_module.sources_answer if about_last == "sources" else answer_module.trust_answer
             outcome = {"results": [], "explanation": text_of(state["messages"], language), "mode": about_last,

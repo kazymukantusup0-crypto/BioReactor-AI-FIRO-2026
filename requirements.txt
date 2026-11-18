@@ -26,3 +26,5 @@ truststore==0.10.4
 
 # Process / port checks used by the demo runtime
 psutil==7.2.2
+# Reactor hardware: USB Serial to the Arduino (Raspberry Pi bridge; the laptop simulator imports it too)
+pyserial==3.5
