@@ -5,6 +5,10 @@
 #   sudo ./setup_network.sh hotspot [test]  own Wi-Fi "BioReactor-Pi" (WPA2, Pi = 10.42.0.1, digits-only password typed
 #                                      in) + the service bioreactor-wifi: phone near -> stay on it; gone 45 s -> own Wi-Fi
 #   sudo ./setup_network.sh hotspot-password | hotspot-test [minutes] | hotspot-remove
+#   sudo ./setup_network.sh always     DEFAULT: BioReactor-Pi at every power-on, the phone never by itself (cable needed to switch)
+#   sudo ./setup_network.sh online [minutes]   the phone hotspot for 30 min (internet for the Pi), then BioReactor-Pi again
+#   sudo ./setup_network.sh back       BioReactor-Pi at once
+#   sudo ./setup_network.sh auto       the first version: phone when near, own Wi-Fi when the phone is gone
 #   sudo ./setup_network.sh status
 #
 # The cable profile does not touch Wi-Fi; the Wi-Fi part never touches the cable.
@@ -146,6 +150,64 @@ CONF
       start_test 20
     fi
     ;;
+  always|auto)
+    # always: BioReactor-Pi at every power-on (NetworkManager autoconnect, priority 100); the phone profile keeps its
+    #         password but does not connect by itself any more («online» uses it on request). Default for the demo.
+    # auto:   the first version — phone when near, own Wi-Fi when the phone is gone.
+    # Only with the direct cable connected: the Pi stays reachable over it whatever happens to Wi-Fi.
+    HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+    if [[ "$(cat /sys/class/net/eth0/carrier 2>/dev/null)" != "1" ]] || ! nmcli -t -f NAME con show --active | grep -qx bioreactor-cable; then
+      echo "The direct cable is not connected (bioreactor-cable not active): connect it first, nothing changed." >&2
+      exit 1
+    fi
+    nmcli -t -f NAME con show | grep -qx bioreactor-hotspot || { echo "Own Wi-Fi not installed: sudo $0 hotspot" >&2; exit 1; }
+    PHONE_CON="$(. /etc/default/bioreactor-wifi 2>/dev/null; echo "${PHONE_CON:-netplan-wlan0-iPhone}")"
+    if [[ "$1" == "always" ]]; then
+      nmcli con modify bioreactor-hotspot connection.autoconnect yes connection.autoconnect-priority 100
+      nmcli con modify "$PHONE_CON" connection.autoconnect no
+    else
+      nmcli con modify bioreactor-hotspot connection.autoconnect no connection.autoconnect-priority 0
+      nmcli con modify "$PHONE_CON" connection.autoconnect yes
+    fi
+    printf 'MODE="%s"\nPHONE_CON="%s"\nHOTSPOT_CON="bioreactor-hotspot"\nLOST_S=45\nRETRY_PHONE_S=300\nHOTSPOT_BACK_S=20\n' "$1" "$PHONE_CON" \
+      > /etc/default/bioreactor-wifi
+    rm -f /etc/bioreactor-pi/hotspot-unconfirmed /run/bioreactor-wifi/hold-until /run/bioreactor-wifi/online-until
+    install -m 755 "$HERE/wifi/bioreactor-wifi-watch.sh" /usr/local/sbin/bioreactor-wifi-watch
+    install -m 755 "$HERE/wifi/bioreactor-wifi-rollback.sh" /usr/local/sbin/bioreactor-wifi-rollback
+    install -m 644 "$HERE/wifi/bioreactor-wifi.service" /etc/systemd/system/bioreactor-wifi.service
+    systemctl daemon-reload
+    systemctl enable bioreactor-wifi.service >/dev/null
+    systemctl restart bioreactor-wifi.service
+    if [[ "$1" == "always" ]]; then
+      nmcli --wait 30 con up bioreactor-hotspot >/dev/null
+      echo "Mode ALWAYS: BioReactor-Pi now and at every power-on (10.42.0.1). The phone ${PHONE_CON}: autoconnect off (kept)."
+      echo "Internet for the Pi for a while: sudo $0 online [minutes]   back at once: sudo $0 back"
+    else
+      echo "Mode AUTO: phone ${PHONE_CON} when near, BioReactor-Pi when the phone is gone 45 s."
+    fi
+    ;;
+  online)
+    # The phone hotspot for <minutes> (default 30): internet for the Pi (apt, git). Then BioReactor-Pi by itself.
+    # Laptops on BioReactor-Pi lose the Pi for that time — use the cable.
+    PHONE_CON="$(. /etc/default/bioreactor-wifi 2>/dev/null; echo "${PHONE_CON:-netplan-wlan0-iPhone}")"
+    MINUTES="${2:-30}"
+    [[ "$MINUTES" =~ ^[0-9]+$ ]] || { echo "minutes: a number" >&2; exit 1; }
+    mkdir -p /run/bioreactor-wifi
+    echo $(( $(date +%s) + MINUTES * 60 )) > /run/bioreactor-wifi/online-until
+    echo "Connecting to ${PHONE_CON} for ${MINUTES} min (turn the phone hotspot on)..."
+    if nmcli --wait 40 con up "$PHONE_CON" >/dev/null; then
+      echo "Online via ${PHONE_CON}: $(ip -4 -br addr show wlan0 | awk '{print $3}'). Back to BioReactor-Pi in ${MINUTES} min, or: sudo $0 back"
+    else
+      rm -f /run/bioreactor-wifi/online-until
+      nmcli --wait 30 con up bioreactor-hotspot >/dev/null 2>&1 || true
+      echo "Phone hotspot not found — back on BioReactor-Pi." >&2
+      exit 1
+    fi
+    ;;
+  back)
+    rm -f /run/bioreactor-wifi/online-until
+    nmcli --wait 30 con up bioreactor-hotspot >/dev/null && echo "Back on BioReactor-Pi (10.42.0.1)."
+    ;;
   hotspot-remove)
     systemctl disable --now bioreactor-wifi.service >/dev/null 2>&1 || true
     rm -f /etc/systemd/system/bioreactor-wifi.service /usr/local/sbin/bioreactor-wifi-watch /usr/local/sbin/bioreactor-wifi-rollback \
@@ -159,13 +221,15 @@ CONF
     ip -4 -br addr
     systemctl is-active bioreactor-wifi 2>/dev/null | sed 's/^/bioreactor-wifi: /'
     [[ -f /etc/bioreactor-pi/hotspot-unconfirmed ]] && echo "own Wi-Fi: on probation (not confirmed yet)"
+    grep -h '^MODE=' /etc/default/bioreactor-wifi 2>/dev/null | sed 's/^/Wi-Fi /'
+    [[ -f /run/bioreactor-wifi/online-until ]] && echo "online until $(date -d @$(cat /run/bioreactor-wifi/online-until) +%H:%M)"
     nmcli -g 802-11-wireless.band,802-11-wireless.channel,802-11-wireless-security.key-mgmt,802-11-wireless-security.proto,802-11-wireless-security.pairwise,802-11-wireless-security.pmf \
       con show bioreactor-hotspot 2>/dev/null | tr '\n' ' ' | sed 's/^/own Wi-Fi settings (band ch key proto pairwise pmf): /'; echo
     /usr/sbin/iw dev wlan0 station dump 2>/dev/null | grep -c '^Station' | sed 's/^/devices on the own Wi-Fi: /'
     true
     ;;
   *)
-    echo "usage: sudo $0 cable | hotspot [test] | hotspot-password | hotspot-test [minutes] | hotspot-remove | status" >&2
+    echo "usage: sudo $0 cable | hotspot [test] | hotspot-password | hotspot-test [minutes] | always | online [minutes] | back | auto | hotspot-remove | status" >&2
     exit 1
     ;;
 esac

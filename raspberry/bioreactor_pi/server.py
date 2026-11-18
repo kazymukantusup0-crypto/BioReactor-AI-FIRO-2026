@@ -1,6 +1,6 @@
 """HTTP API of the Pi (Python standard library only: nothing to install on the Pi except pyserial).
 
-    GET  /health                 {"ok":true,"version":"0.1","simulated":false,"arduino_ok":true}
+    GET  /health                 {"ok":true,"version":"1.0","simulated":false,"arduino_ok":true,"deployed":"<commit> <time>"}
     GET  /state                  readings + levels, relays (on, how long, why blocked), alarms, links
     GET  /history?window=600     points for charts (600 = 10 min, 3600 = 1 hour)
     GET  /journal?limit=50       commands and alarms
@@ -21,11 +21,21 @@ from __future__ import annotations
 import json
 import time
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+from pathlib import Path
 from urllib.parse import parse_qs, urlsplit
 
 from . import protocol
 
 MAX_BODY = 4096
+STAMP = Path(__file__).resolve().parent.parent / "DEPLOYED"   # /opt/bioreactor-pi/DEPLOYED, written by bioreactor-deploy
+
+
+def deployed_stamp() -> str | None:
+    """Which laptop commit the running code came from (scripts/deploy_to_pi.ps1), None when unknown."""
+    try:
+        return STAMP.read_text(encoding="utf-8").strip()[:200] or None
+    except OSError:
+        return None
 
 
 def make_handler(bridge, token: str = ""):
@@ -79,7 +89,7 @@ def make_handler(bridge, token: str = ""):
                 state = bridge.state()
                 return self._json(200, {"ok": True, "version": state["bridge"]["version"], "simulated": bridge.simulated,
                                         "arduino_ok": state["arduino_link"]["ok"], "port": state["bridge"]["port"],
-                                        "firmware": state["bridge"]["firmware"]})
+                                        "firmware": state["bridge"]["firmware"], "deployed": deployed_stamp()})
             if url.path == "/state":
                 return self._json(200, bridge.state())
             if url.path == "/history":

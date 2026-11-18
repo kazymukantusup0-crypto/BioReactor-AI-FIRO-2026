@@ -15,7 +15,7 @@
   Имя `.local` в точке доступа iPhone находится не всегда — тогда по IP (`ssh bio@172.20.10.3`, адрес может меняться).
 - Код: `~/BioReactor_AI` (ветка `reactor-hardware`, клон без истории), venv `raspberry/.venv` с pyserial из `wheels/`.
 - `sudo` на Pi спрашивает пароль → `install.sh` и сетевые команды запускает человек.
-- Ручная проверка без Arduino и без sudo (когда службы ещё нет): сначала `cd ~/BioReactor_AI && git pull`
+- Ручная проверка без Arduino и без sudo (когда службы ещё нет): код на Pi обновляется `scripts\deploy_to_pi.ps1`
   (скрипт появился в коммите c1435c7), затем `~/BioReactor_AI/raspberry/run_simulated.sh start` → на ноутбуке
   `BIOREACTOR_SENSORS=pi BIOREACTOR_PI_URL=http://<адрес Pi>:8780`, страница показывает
   «RASPBERRY PI (<адрес>) → ВИРТУАЛЬНЫЙ ARDUINO» (`docs/reactor/real_pi_virtual_arduino.png`).
@@ -25,6 +25,39 @@
   `ssh -t bioreactor "cd ~/BioReactor_AI && git pull && cd raspberry && ./run_simulated.sh stop; sudo ./install.sh --simulate"`
 - 18.11 служба установлена с `--simulate` и работает (`systemctl status bioreactor-pi` → active (running)).
 - Trixie: сетевые профили создаёт netplan (`netplan-eth0`, `netplan-wlan0-…`), управляет ими NetworkManager.
+
+## Как это работает сейчас (с 18.11.2026)
+
+**Pi всегда раздаёт свою Wi-Fi сеть «BioReactor-Pi»** (режим `always`): при каждом включении питания
+NetworkManager сам поднимает её примерно через 30–60 с, iPhone не нужен. Адрес Pi в этой сети — **10.42.0.1**, интернета в ней нет.
+Профиль iPhone остался, но сам больше не подключается.
+
+| Режим ноутбука | Как подключён | Интернет у ноутбука | Адрес Pi |
+|---|---|---|---|
+| **Защита / демо** | Wi-Fi **BioReactor-Pi** (кабель не нужен) | нет (и не нужен) | 10.42.0.1 |
+| **Разработка** | школьный Wi-Fi + **кабель** к Pi | есть, через Wi-Fi | 192.168.50.2 |
+
+Проверено 18.11.2026 в режиме разработки: маршрут по умолчанию у ноутбука один — через Wi-Fi (192.168.1.1), Pi — через
+Ethernet; по кабелю шлюз и DNS не выдаются.
+
+**Pi нужен интернет** (apt, обновить что-то из сети) — редко. Включите точку доступа на iPhone и по кабелю:
+```
+ssh -t bio@192.168.50.2 "sudo ~/BioReactor_AI/raspberry/setup_network.sh online 30"
+```
+Pi уйдёт на iPhone на 30 минут и сама вернётся к BioReactor-Pi. Раньше: `sudo ~/BioReactor_AI/raspberry/setup_network.sh back`.
+Пока Pi на iPhone, ноутбук в BioReactor-Pi её не видит — работайте по кабелю.
+
+**Обновить код на Pi** — без интернета, с ноутбука (по кабелю или по BioReactor-Pi), `git pull` на Pi больше не нужен:
+```
+powershell -ExecutionPolicy Bypass -File scripts\deploy_to_pi.ps1
+```
+Скрипт копирует папку `raspberry/` (как она на ноутбуке), кладёт код моста в `/opt/bioreactor-pi`, перезапускает
+службу и ждёт `/health` с отметкой «коммит, время». Без пароля он запускает только `/usr/local/sbin/bioreactor-deploy`
+(правило `/etc/sudoers.d/bioreactor-deploy`, ставит `install.sh`). Сетевые скрипты он только копирует; применить их —
+`sudo ./install.sh && sudo ./setup_network.sh always` на Pi, **с подключённым кабелем**.
+
+Переключить режим Wi-Fi (только с подключённым кабелем, иначе команда откажется):
+`sudo ~/BioReactor_AI/raspberry/setup_network.sh always` (по умолчанию) или `... auto` (старый: iPhone рядом → он, нет → своя сеть).
 
 ## 1. Первый запуск Pi (один раз, с монитором или по SSH)
 
@@ -113,23 +146,13 @@ ssh -t bio@192.168.50.2 "cd ~/BioReactor_AI && git pull && sudo raspberry/setup_
 доступна и так, отката нет. После отката BioReactor-Pi больше не появится, пока не установить её заново. Убрать вручную: `sudo raspberry/setup_network.sh hotspot-remove`.
 Журнал: `journalctl -u bioreactor-wifi -f`.
 
-#### Простая инструкция: демо ↔ разработка
+#### Простая инструкция: демо ↔ разработка (режим always)
 
-**Перед демо (без интернета):**
-1. Выключите точку доступа на iPhone (Настройки → Режим модема → выкл).
-2. Подождите ~1 минуту — Pi поднимет Wi-Fi «BioReactor-Pi».
-3. На ноутбуке: значок Wi-Fi внизу справа → **BioReactor-Pi** → «Подключиться». Первый раз введите пароль и
-   поставьте галочку «Подключаться автоматически».
-4. Запустите дашборд (`ЗАПУСК_BioReactor.bat`) → «Реактор». Вверху: «RASPBERRY PI → ARDUINO (10.42.0.1:8780) · через Wi-Fi Pi».
-   Windows напишет «Нет подключения к интернету» — так и должно быть.
+**Демо:** включить питание Pi → через 1–2 мин на ноутбуке Wi-Fi **BioReactor-Pi** (подключается сам, если других
+знакомых сетей рядом нет; иначе выбрать вручную) → `ЗАПУСК_BioReactor.bat` → «Реактор»: «через Wi-Fi Pi».
 
-**Обратно к разработке (с интернетом):**
-1. Включите точку доступа на iPhone.
-2. На ноутбуке: Wi-Fi → **iPhone** → «Подключиться» (ноутбук уходит из BioReactor-Pi).
-3. Подождите до 5–6 минут: когда в BioReactor-Pi никого нет 5 минут, Pi сама вернётся на iPhone.
-   Быстрее — через кабель: `ssh -t bio@192.168.50.2 "sudo nmcli con up netplan-wlan0-iPhone"`.
-
-Если дашборд не видит Pi: «Проверить связь» — ноутбук сам перебирает 10.42.0.1 → 192.168.50.2 → bioreactor.local.
+**Разработка:** ноутбук в школьном Wi-Fi + кабель к Pi. Дашборд найдёт Pi по кабелю («через кабель»), интернет у
+ноутбука идёт через Wi-Fi. Windows не переключится на BioReactor-Pi сама, пока подключена к школьной сети.
 
 ## 4. Ноутбук: где искать Pi
 
