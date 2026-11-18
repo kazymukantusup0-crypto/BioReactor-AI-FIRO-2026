@@ -52,6 +52,7 @@ class ReactorClient:
             self.pi_url = self.candidates[0]["url"]
         self.searching = False
         self.route_seen: str | None = None
+        self._last_not_found_log = -1e9
         self.last_state: dict | None = None
         self.last_ok: float | None = None
         self.error: str | None = None
@@ -132,7 +133,10 @@ class ReactorClient:
                                   f"{time.monotonic() - started:.1f} s; answers: {dict(zip([c['route'] for c in self.candidates], answers))}")
                     self.pi_url, self.route_seen = candidate["url"], candidate["route"]
                     return True
-            self._log(f"Pi not found ({time.monotonic() - started:.1f} s): no candidate answered")
+            now = time.monotonic()
+            if now - self._last_not_found_log >= 30:      # once per 30 s, not every second of a reboot
+                self._log(f"Pi not found ({now - started:.1f} s): no candidate answered")
+                self._last_not_found_log = now
             return False
         finally:
             self.searching = False
