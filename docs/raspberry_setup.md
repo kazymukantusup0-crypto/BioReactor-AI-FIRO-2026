@@ -59,19 +59,25 @@ ls /dev/ttyACM* /dev/ttyUSB*           # видна ли Arduino (Uno/Mega — t
 
 ### Основной вариант — прямой Ethernet-кабель
 
-На Pi:
+На Pi (пароль sudo вводит человек; с ноутбука: `ssh -t bioreactor "sudo ~/BioReactor_AI/raspberry/setup_network.sh cable"`):
 ```bash
-sudo ./setup_network.sh cable          # Pi = 192.168.50.2/24 на eth0, Wi-Fi не трогает
+sudo ./setup_network.sh cable
 ```
+- Pi = **192.168.50.2/24** на eth0 и сама раздаёт ноутбуку адрес 192.168.50.x (NetworkManager «shared», свой dnsmasq).
+- **Без шлюза и без DNS** (`/etc/NetworkManager/dnsmasq-shared.d/bioreactor-no-gateway.conf`, `ipv4.never-default`,
+  IPv6 на кабеле выключен): интернет ноутбука всегда идёт через Wi-Fi, кабель — только для Pi.
+- Wi-Fi Pi не трогается. Профиль Debian 13 `netplan-eth0` остаётся, наш `bioreactor-cable` главнее по приоритету.
+- Защита от потери связи: если кабель вставлен, через 3 мин изменения откатываются сами, пока кто-то не подтвердит
+  по кабелю: `ssh bio@192.168.50.2 "touch /tmp/bioreactor-net-ok"`.
+- Отменить: `sudo nmcli con delete bioreactor-cable`.
 
-На ноутбуке (Windows) задать адаптеру Ethernet статический адрес **192.168.50.1**, маска **255.255.255.0**, шлюз пустой:
-«Параметры → Сеть и Интернет → Ethernet → Назначение IP → Изменить → Вручную». Или в командной строке от
-администратора (имя адаптера смотреть в `ipconfig`):
-```bat
-netsh interface ipv4 set address name="Ethernet" static 192.168.50.1 255.255.255.0
-```
+На ноутбуке (Windows) ничего настраивать не нужно: адаптер Ethernet «получать адрес автоматически» (по умолчанию).
 
-Проверка с ноутбука: `ping 192.168.50.2`, затем в браузере `http://192.168.50.2:8780/health`.
+Проверка с ноутбука: `ping 192.168.50.2`, затем `http://192.168.50.2:8780/health`; `route print 0.0.0.0` — маршрут
+по умолчанию только через Wi-Fi.
+
+Проверено 18.11.2026: ноутбук получил 192.168.50.142 (DHCP), DNS на Ethernet пустой, маршрут по умолчанию один —
+Wi-Fi (172.20.10.1), github.com открывается, ping 0 мс, /health по кабелю отвечает, после 3 мин профиль на месте.
 
 ### Запасной вариант — Wi-Fi точка доступа на Pi
 

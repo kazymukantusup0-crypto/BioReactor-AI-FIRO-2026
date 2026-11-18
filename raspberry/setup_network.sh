@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# BioReactor AI — network laptop <-> Pi WITHOUT internet (Raspberry Pi OS Bookworm, NetworkManager).
+# BioReactor AI — network laptop <-> Pi WITHOUT internet (NetworkManager: Raspberry Pi OS Bookworm, Debian 13 trixie).
 #
-#   sudo ./setup_network.sh cable      MAIN: direct Ethernet cable, Pi = 192.168.50.2, laptop = 192.168.50.1
+#   sudo ./setup_network.sh cable      MAIN: direct Ethernet cable, Pi = 192.168.50.2, laptop gets 192.168.50.x by DHCP (no gateway)
 #   sudo ./setup_network.sh hotspot    BACKUP: the Pi makes its own Wi-Fi "BioReactor-Pi", Pi = 10.42.0.1
 #   sudo ./setup_network.sh status
 #
@@ -21,12 +21,34 @@ fi
 
 case "${1:-}" in
   cable)
+    # Pi = 192.168.50.2 and hands the laptop an address by DHCP (NetworkManager "shared" = its own dnsmasq).
+    # NO default gateway and NO DNS are sent: the laptop keeps its internet on Wi-Fi, the cable is only for the Pi.
+    # Wi-Fi of the Pi is not touched. The Debian 13 netplan profile "netplan-eth0" stays; ours wins by priority.
+    # Safety: if the cable link is up, the change is rolled back after 3 min unless someone confirms over the cable:
+    #   ssh bio@192.168.50.2 "touch /tmp/bioreactor-net-ok"
+    mkdir -p /etc/NetworkManager/dnsmasq-shared.d
+    cat > /etc/NetworkManager/dnsmasq-shared.d/bioreactor-no-gateway.conf <<'CONF'
+# BioReactor AI: DHCP on the Pi cable gives only an address. Empty value = option is NOT sent.
+dhcp-option=3
+dhcp-option=6
+CONF
     nmcli con delete bioreactor-cable >/dev/null 2>&1 || true
     nmcli con add type ethernet ifname eth0 con-name bioreactor-cable \
-      ipv4.method manual ipv4.addresses 192.168.50.2/24 ipv6.method disabled connection.autoconnect yes
-    nmcli con up bioreactor-cable || echo "(the profile becomes active when the cable is plugged in)"
-    echo "Pi: 192.168.50.2. On the laptop set the Ethernet adapter to 192.168.50.1 / 255.255.255.0 (docs/raspberry_setup.md)."
-    echo "Laptop config (data/config/reactor_hardware.json): \"mode\": \"pi\", \"pi_url\": \"http://192.168.50.2:8780\""
+      ipv4.method shared ipv4.addresses 192.168.50.2/24 ipv4.never-default yes \
+      ipv6.method disabled connection.autoconnect yes connection.autoconnect-priority 10
+    if [[ "$(cat /sys/class/net/eth0/carrier 2>/dev/null)" == "1" ]]; then
+      rm -f /tmp/bioreactor-net-ok
+      systemctl stop bioreactor-net-rollback.timer >/dev/null 2>&1 || true
+      systemd-run --quiet --on-active=180 --unit=bioreactor-net-rollback /bin/sh -c \
+        'test -f /tmp/bioreactor-net-ok || { nmcli con delete bioreactor-cable; rm -f /etc/NetworkManager/dnsmasq-shared.d/bioreactor-no-gateway.conf; logger "bioreactor: cable profile rolled back (not confirmed)"; }'
+      nmcli con up bioreactor-cable
+      echo "Cable profile is up. NOT confirmed within 3 min -> rolled back automatically."
+      echo "Confirm from the laptop over the cable:  ssh bio@192.168.50.2 \"touch /tmp/bioreactor-net-ok\""
+    else
+      echo "Cable not plugged in: profile saved, it comes up by itself when the cable is connected (no rollback timer)."
+    fi
+    echo "Pi: 192.168.50.2. Laptop: Ethernet adapter on automatic (DHCP) gets 192.168.50.x, no gateway, no DNS."
+    echo "Laptop pi_url: http://192.168.50.2:8780.  Undo: sudo nmcli con delete bioreactor-cable"
     ;;
   hotspot)
     PASSWORD="${2:-bioreactor2026}"
