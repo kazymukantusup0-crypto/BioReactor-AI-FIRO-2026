@@ -14,7 +14,7 @@
 - Вход с ноутбука по ключу `~/.ssh/id_ed25519_bioreactor` (без пароля); в `~/.ssh/config` короткое имя `bioreactor`.
   Имя `.local` в точке доступа iPhone находится не всегда — тогда по IP (`ssh bio@172.20.10.3`, адрес может меняться).
 - Код: `~/BioReactor_AI` (ветка `reactor-hardware`, клон без истории), venv `raspberry/.venv` с pyserial из `wheels/`.
-- `sudo` на Pi спрашивает пароль → `install.sh` и сетевые команды запускает человек.
+- `sudo` на Pi без пароля, SSH только по ключу (с 18.11.2026, см. «Вход на Pi» ниже).
 - Ручная проверка без Arduino и без sudo (когда службы ещё нет): код на Pi обновляется `scripts\deploy_to_pi.ps1`
   (скрипт появился в коммите c1435c7), затем `~/BioReactor_AI/raspberry/run_simulated.sh start` → на ноутбуке
   `BIOREACTOR_SENSORS=pi BIOREACTOR_PI_URL=http://<адрес Pi>:8780`, страница показывает
@@ -58,6 +58,26 @@ powershell -ExecutionPolicy Bypass -File scripts\deploy_to_pi.ps1
 
 Переключить режим Wi-Fi (только с подключённым кабелем, иначе команда откажется):
 `sudo ~/BioReactor_AI/raspberry/setup_network.sh always` (по умолчанию) или `... auto` (старый: iPhone рядом → он, нет → своя сеть).
+
+## Вход на Pi: ключ, sudo, если ноутбук потерян
+
+С 18.11.2026 (`raspberry/ssh_keys_only.sh`):
+- **SSH — только по ключу** `~/.ssh/id_ed25519_bioreactor` с ноутбука (пароль по SSH не принимается, вход root по SSH запрещён).
+  `ssh bioreactor` — по кабелю (192.168.50.2), `ssh bioreactor-wifi` — через BioReactor-Pi (10.42.0.1).
+- **sudo без пароля** для `bio` (`/etc/sudoers.d/010-bio-nopasswd`). Значит, ключ ноутбука = полный доступ к Pi:
+  берегите ноутбук; копию ключа держите только на своей флешке, не в проекте и не в облаке.
+- **С монитора и клавиатуры на самой Pi** вход по-прежнему **с паролем** пользователя `bio` — это запасной путь.
+
+**Если ноутбук потерян (или ключ пропал):**
+1. Подключить к Pi монитор (кабель micro-HDMI) и USB-клавиатуру, включить питание.
+2. Войти: пользователь `bio` и его пароль.
+3. Вариант А — дать доступ новому ноутбуку по ключу. На новом ноутбуке в PowerShell:
+   `ssh-keygen -t ed25519 -f $env:USERPROFILE\.ssh\id_ed25519_bioreactor`, файл `id_ed25519_bioreactor.pub`
+   перенести на флешке и на Pi выполнить: `cat /media/bio/<флешка>/id_ed25519_bioreactor.pub >> ~/.ssh/authorized_keys`.
+4. Вариант Б — временно вернуть вход по паролю: `sudo ~/BioReactor_AI/raspberry/ssh_keys_only.sh undo`
+   (SSH снова принимает пароль, sudo снова спрашивает пароль). После настройки ключа — снова
+   `sudo ~/BioReactor_AI/raspberry/ssh_keys_only.sh` (5 минут на подтверждение входом по ключу в новой сессии).
+5. Если ноутбук украли — удалить его ключ: `nano ~/.ssh/authorized_keys`, строка с `laptop-bioreactor`.
 
 ## 1. Первый запуск Pi (один раз, с монитором или по SSH)
 
