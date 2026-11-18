@@ -1,0 +1,14 @@
+[Unit]
+Description=BioReactor AI - phone Wi-Fi when near, otherwise the Pi's own Wi-Fi BioReactor-Pi
+After=NetworkManager.service
+Wants=NetworkManager.service
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+ExecStart=/usr/local/sbin/bioreactor-wifi-watch
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
