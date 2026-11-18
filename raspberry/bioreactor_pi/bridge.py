@@ -401,3 +401,5 @@ class Bridge:
             except Exception:
                 pass
         self.link.close()
+        # Release the SQLite file (Windows cannot delete an open file: a test's temporary folder, a USB backup).
+        self.journal.close()
