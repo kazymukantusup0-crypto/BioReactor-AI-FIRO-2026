@@ -28,7 +28,7 @@ const LOANWORDS = new Set(['экономика', 'когенерация', 'ди
   'диагностика', 'биометан', 'интернет', 'сервер', 'плата', 'ноутбук', 'дашборд', 'компост', 'карбамид', 'аммофос', 'алматы', 'тариф', 'метан'])
 const KAZAKH_LETTERS = /[әғқңөұүһі]/i
 // Strings that may stay the same in Kazakh as in Russian: units, abbreviations, names, formulas, numbers.
-const SAME_OK = /^[\s\d.,:;·×÷=+−–—\-/()%°≈~<>|«»"'?!A-Za-z₀-₉³²µ]*$|^(?:л|кг|т|м³|кВт·ч|°C|КРС|МРС|pH|CH₄|ч|сут|мм|см)$/
+const SAME_OK = /^[\s\d.,:;·×÷=+−–—\-/()%°≈~<>|«»"'?!A-Za-z₀-₉³²µ]*$|^(?:л|кг|т|м³|кВт·ч|°C|КРС|МРС|pH|CH₄|ч|сут|мм|см|кПа)$/
 
 export function check(root = '.') {
   const read = lang => JSON.parse(fs.readFileSync(path.join(root, 'src/i18n', `${lang}.json`), 'utf8'))

@@ -5,6 +5,8 @@ import Reactor from '../src/pages/Reactor'
 import System from '../src/pages/System'
 import { agentApi } from '../src/agentV10'
 import { api } from '../src/api'
+import { reactorApi } from '../src/reactorApi'
+import { reactorStatus } from './reactorFixtures'
 
 describe('dashboard polish: first screen, reactor, system', () => {
   beforeEach(() => { vi.restoreAllMocks(); localStorage.clear() })
@@ -32,12 +34,12 @@ describe('dashboard polish: first screen, reactor, system', () => {
     expect(screen.getByTestId('home-status-model').textContent).toMatch(/не запущена/)
   })
 
-  it('Reactor: «not connected», no invented numbers, API contract only in the developer block', () => {
-    vi.spyOn(api, 'contract').mockReturnValue(new Promise(() => {}))
+  it('Reactor: the source of the readings is always visible, never presented as real when simulated', async () => {
+    vi.spyOn(reactorApi, 'status').mockResolvedValue(reactorStatus() as never)
+    vi.spyOn(reactorApi, 'history').mockResolvedValue({ window: 600, points: [], live: true })
+    vi.spyOn(reactorApi, 'journal').mockResolvedValue({ items: [], live: true })
     render(<Reactor />)
-    expect(screen.getByTestId('reactor-state').textContent).toMatch(/Датчики не подключены/)
-    expect(screen.getAllByText('ждёт датчик')).toHaveLength(2)
-    expect(screen.getByTestId('reactor-dev').hasAttribute('open')).toBe(false)
+    expect(await screen.findByText('ДАТЧИКИ: СИМУЛЯТОР')).toBeInTheDocument()
     expect(screen.getByText('ИИ-агент')).toBeInTheDocument()
   })
 
