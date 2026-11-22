@@ -2,7 +2,7 @@
 // Farmer view: answer, number cards, one question. Jury view: every step with
 // tool arguments, raw results, LLM token counts and timings.
 import { useCallback, useEffect, useRef, useState, type FormEvent } from 'react'
-import { ArrowUp, Bot, BookOpen, Check, CircleStop, Cpu, Gavel, LoaderCircle, MessageSquarePlus, Pencil, ShieldAlert, ShieldCheck, User } from 'lucide-react'
+import { AlertTriangle, ArrowUp, BarChart3, Bot, BookOpen, Brain, Check, CheckCircle2, CircleHelp, CircleStop, ClipboardList, Cpu, FileText, Gavel, Info, LoaderCircle, MessageSquare, MessageSquarePlus, Pencil, ShieldAlert, ShieldCheck, Timer, User, Wrench, XCircle, type LucideIcon } from 'lucide-react'
 import {
   agentApi, componentText, INSULATION_LABELS, MODE_LABELS, newConversationId, pluralRu, speedWarning, streamAgentChat, TOOL_LABELS,
   type AgentAnswer, type AgentEvent, type AgentStatus, type DemoReactor, type Facts, type NumberCard, type Verdict,
@@ -42,52 +42,54 @@ export function applyEvent(turn: Turn, event: AgentEvent): Turn {
 }
 
 // ---------- thinking feed ----------
-interface FeedLine { icon: string; title: string; detail?: unknown; tone?: 'ok' | 'warn' | 'bad' }
+interface FeedLine { icon: LucideIcon; title: string; detail?: unknown; tone?: 'ok' | 'warn' | 'bad' }
 function json(value: unknown) { return JSON.stringify(value, null, 1).replace(/\n\s*/g, ' ') }
 
 export function feedLine(event: AgentEvent): FeedLine | null {
   switch (event.type) {
-    case 'understood': return { icon: '🧠', title: tr('agentChat.8', { v0: ({ ru: tr('agentChat.97'), kk: tr('agentChat.98'), en: tr('agentChat.99') } as Record<string, string>)[String(event.language)] ?? event.language }) }
+    case 'understood': return { icon: Brain, title: tr('agentChat.8', { v0: ({ ru: tr('agentChat.97'), kk: tr('agentChat.98'), en: tr('agentChat.99') } as Record<string, string>)[String(event.language)] ?? event.language }) }
     case 'facts': {
       const updates = (event.updates ?? {}) as Record<string, unknown>
       const keys = Object.keys(updates)
-      return { icon: '📋', title: keys.length ? tr('agentChat.9', { v0: keys.join(', ') }) : tr('agentChat.10'), detail: updates }
+      return { icon: ClipboardList, title: keys.length ? tr('agentChat.9', { v0: keys.join(', ') }) : tr('agentChat.10'), detail: updates }
     }
     case 'llm_step': {
       const decision = event.decision === 'tool_calls' ? tr('agentChat.11') : tr('agentChat.12')
-      return { icon: '🤖', title: tr('agentChat.13', { v0: event.step, v1: decision }), detail: { [tr('agentChat.102')]: event.prompt_tokens, [tr('agentChat.103')]: event.output_tokens, [tr('agentChat.104')]: seconds(event.duration_ms as number), [tr('agentChat.105')]: event.tokens_per_s } }
+      return { icon: Bot, title: tr('agentChat.13', { v0: event.step, v1: decision }), detail: { [tr('agentChat.102')]: event.prompt_tokens, [tr('agentChat.103')]: event.output_tokens, [tr('agentChat.104')]: seconds(event.duration_ms as number), [tr('agentChat.105')]: event.tokens_per_s } }
     }
-    case 'tool_call': return { icon: '🔧', title: tr('agentChat.14', { v0: TOOL_LABELS[String(event.name)] ?? event.name, v1: event.by === 'llm' ? tr('agentChat.100') : 'Python' }), detail: { tool: event.name, args: event.args } }
-    case 'tool_result': return { icon: '📊', title: tr('agentChat.15', { v0: TOOL_LABELS[String(event.name)] ?? event.name, v1: event.ok ? '' : tr('agentChat.101'), v2: event.duration_ms }), detail: event.summary, tone: event.ok ? 'ok' : 'bad' }
+    case 'tool_call': return { icon: Wrench, title: tr('agentChat.14', { v0: TOOL_LABELS[String(event.name)] ?? event.name, v1: event.by === 'llm' ? tr('agentChat.100') : 'Python' }), detail: { tool: event.name, args: event.args } }
+    case 'tool_result': return { icon: BarChart3, title: tr('agentChat.15', { v0: TOOL_LABELS[String(event.name)] ?? event.name, v1: event.ok ? '' : tr('agentChat.101'), v2: event.duration_ms }), detail: event.summary, tone: event.ok ? 'ok' : 'bad' }
     case 'verification': {
       const unknown = (event.unknown_numbers ?? []) as number[]
       const against = (event.contradicts ?? []) as string[]
       const next = event.attempt === 1 ? tr('agentChat.16') : tr('agentChat.17')
-      if (event.ok) return { icon: '✅', title: tr('agentChat.18'), tone: 'ok' }
-      if (against.length) return { icon: '⚠️', title: tr('agentChat.19', { v0: next }), detail: { [tr('agentChat.106')]: against, [tr('agentChat.107')]: unknown }, tone: 'warn' }
-      return { icon: '⚠️', title: tr('agentChat.20', { v0: unknown.join(', '), v1: next }), tone: 'warn' }
+      if (event.ok) return { icon: CheckCircle2, title: tr('agentChat.18'), tone: 'ok' }
+      if (against.length) return { icon: AlertTriangle, title: tr('agentChat.19', { v0: next }), detail: { [tr('agentChat.106')]: against, [tr('agentChat.107')]: unknown }, tone: 'warn' }
+      return { icon: AlertTriangle, title: tr('agentChat.20', { v0: unknown.join(', '), v1: next }), tone: 'warn' }
     }
     // Notes come from Python in Russian; the text in the interface language is taken by the note code.
-    case 'note': return { icon: 'ℹ️', title: tr(`note.${String(event.code)}`) === `note.${String(event.code)}` ? String(event.message ?? event.code) : tr(`note.${String(event.code)}`), tone: 'warn' }
-    case 'token_reset': return event.reason === 'template' ? { icon: '📝', title: tr('agentChat.21'), tone: 'warn' } : null
-    case 'answer': return { icon: '💬', title: tr('agentChat.22', { v0: MODE_LABELS[String(event.mode)] ?? event.mode }) }
-    case 'done': return { icon: '⏱️', title: tr('agentChat.23', { v0: seconds(event.total_ms as number) }) }
-    case 'error': return { icon: '❌', title: String(event.message), tone: 'bad' }
+    case 'note': return { icon: Info, title: tr(`note.${String(event.code)}`) === `note.${String(event.code)}` ? String(event.message ?? event.code) : tr(`note.${String(event.code)}`), tone: 'warn' }
+    case 'token_reset': return event.reason === 'template' ? { icon: FileText, title: tr('agentChat.21'), tone: 'warn' } : null
+    case 'answer': return { icon: MessageSquare, title: tr('agentChat.22', { v0: MODE_LABELS[String(event.mode)] ?? event.mode }) }
+    case 'done': return { icon: Timer, title: tr('agentChat.23', { v0: seconds(event.total_ms as number) }) }
+    case 'error': return { icon: XCircle, title: String(event.message), tone: 'bad' }
     default: return null
   }
 }
+
+const FeedIcon = ({ icon: Icon }: { icon: LucideIcon }) => <Icon size={16} />
 
 function ThinkingFeed({ turn, jury }: { turn: Turn; jury: boolean }) {
   const lines = turn.events.map(event => ({ event, line: feedLine(event) })).filter(item => item.line)
   if (!lines.length && !turn.running) return null
   const list = <ol className="ac-feed-list">
     {lines.map(({ event, line }, index) => <li key={index} className={`ac-feed-item ${line!.tone ?? ''}`}>
-      <span className="ac-feed-icon" aria-hidden>{line!.icon}</span>
+      <span className="ac-feed-icon" aria-hidden><FeedIcon icon={line!.icon} /></span>
       <div><span>{line!.title}</span>{jury && <span className="ac-feed-time">{seconds(event.t_ms)}</span>}
         {jury && line!.detail != null && Object.keys(line!.detail as object).length > 0 && <code className="ac-feed-detail">{json(line!.detail)}</code>}
       </div>
     </li>)}
-    {turn.running && <li className="ac-feed-item"><LoaderCircle size={14} className="spin" /><div><span>{tr('agentChat.24')}</span></div></li>}
+    {turn.running && <li className="ac-feed-item"><span className="ac-feed-icon" aria-hidden><LoaderCircle size={16} className="spin" /></span><div><span>{tr('agentChat.24')}</span></div></li>}
   </ol>
   if (jury || turn.running) return <div className="ac-feed" aria-label={tr('agentChat.25')}>{list}</div>
   const calls = lines.filter(l => l.event.type === 'tool_call').length
@@ -135,7 +137,7 @@ export function AnswerView({ answer, jury }: { answer: AgentAnswer; jury: boolea
       </div>)}
     </div>}
     {answer.explanation && <p className="ac-explanation">{answer.explanation}</p>}
-    {answer.question && <p className="ac-question">❓ {answer.question}</p>}
+    {answer.question && <p className="ac-question"><CircleHelp size={18} aria-hidden="true" /><span>{answer.question}</span></p>}
     <div className="ac-answer-meta">
       {answer.verified
         ? <span className="badge badge-green"><ShieldCheck size={11} />{tr('agentChat.32')}</span>
