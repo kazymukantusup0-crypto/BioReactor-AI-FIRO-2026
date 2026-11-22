@@ -99,6 +99,30 @@
   --dur-enter: 250ms;
 }
 
+/* ---------- design-v3 concepts: a whole-app palette per concept (?concept=a|b), tokens only.
+   A «Ночной чертёж»: blueprint navy, gas blue-cyan accent, heat in amber.
+   B «Живой процесс»: warm soil dark, biogas gold accent, blue flame, Geologica display. */
+:root[data-concept="a"] {
+  --bg: #070b12; --surface-1: #0c1320; --surface-2: #111a2a; --surface-3: #182335;
+  --border: #22314a; --border-strong: #35486a;
+  --text-strong: #f2f6fb; --text: #dde6f0; --text-muted: #aebccd; --text-faint: #93a3b8;
+  --accent: #6cc6f2; --accent-strong: #9adaf7; --accent-soft: #10293a; --on-accent: #04131c;
+  --info: #9ab8ff;
+  --rs-cold: #3f86d8; --rs-warm: #f2a04a; --rs-gas: #9fdcff; --rs-line: #5f88b8; --rs-grid: rgba(95, 160, 220, .10);
+  --rs-glass: rgba(12, 20, 34, .62); --rs-glass-line: rgba(160, 200, 255, .16); --rs-flame: #7cc4ff;
+  --font-display: var(--font-sans);
+}
+:root[data-concept="b"] {
+  --bg: #100d0a; --surface-1: #19150f; --surface-2: #211c15; --surface-3: #2b241b;
+  --border: #3a3127; --border-strong: #574a3b;
+  --text-strong: #fbf4ea; --text: #efe5d7; --text-muted: #cdbfab; --text-faint: #b2a38f;
+  --accent: #f4b955; --accent-strong: #f8cd82; --accent-soft: #3a2a12; --on-accent: #221502;
+  --info: #8ec3ee;
+  --rs-cold: #5f9fd8; --rs-warm: #e98b3a; --rs-gas: #ffd889; --rs-line: #8c7a62; --rs-grid: rgba(255, 220, 170, .05);
+  --rs-glass: rgba(30, 24, 17, .62); --rs-glass-line: rgba(255, 225, 180, .14); --rs-flame: #7cc4ff;
+  --font-display: "Geologica", var(--font-sans);
+}
+
 body { background: var(--bg); color: var(--text); font-family: var(--font-sans); }
 button, input, select, textarea { font-family: inherit; }
 code, kbd, pre, samp { font-family: var(--font-mono); }

@@ -18,7 +18,9 @@ describe('design tokens', () => {
   })
   it('no literal colours in CSS outside the :root token block', () => {
     for (const [file, raw] of Object.entries(css)) {
-      const text = file.endsWith('design.css') ? raw.slice(raw.indexOf('}', raw.indexOf(':root')) + 1) : raw
+      let text = file.endsWith('design.css') ? raw.slice(raw.indexOf('}', raw.indexOf(':root')) + 1) : raw
+      // palette blocks that only declare tokens: :root[data-concept="a"] { --bg: …; }
+      if (file.endsWith('design.css')) text = text.replace(/:root\[data-concept="[a-z]+"\]\s*\{[^}]*\}/g, '')
       expect(text.match(COLOUR) ?? [], file).toEqual([])
     }
   })
@@ -33,7 +35,9 @@ describe('design tokens', () => {
     expect(faces).toContain("font-family: 'Golos Text'")
     expect(faces).toContain("font-family: 'IBM Plex Mono'")
     for (const url of faces.match(/url\(([^)]+)\)/g) ?? []) expect(url).toMatch(/^url\(\.\/[\w-]+\.woff2\)$/)
-    for (const [file, text] of Object.entries(css)) expect(text, file).not.toMatch(/https?:\/\/|@import\s+url\(/)
+    // nothing is loaded from the network: no url(http…) and no @import of a remote file
+    // (an inline SVG's xmlns="http://www.w3.org/2000/svg" is a name, not a download)
+    for (const [file, text] of Object.entries(css)) expect(text, file).not.toMatch(/url\(\s*['"]?(https?:)?\/\/|@import\s+(url\()?\s*['"]?(https?:)?\/\//)
     expect(all.filter(f => f.endsWith('.woff2')).length).toBeGreaterThanOrEqual(20)
   })
   it('status colours are separate tokens: ok / warn / danger / offline', () => {
