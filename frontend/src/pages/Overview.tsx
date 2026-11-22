@@ -1,11 +1,13 @@
 // «Обзор» — the first screen the jury sees: what the system does, its live state, three big buttons.
 import { useEffect, useState } from 'react'
-import { ArrowRight, Calculator, Cpu, Gavel, Languages, MessageSquare, Server, ShieldCheck, Sparkles, Thermometer, WifiOff } from 'lucide-react'
+import { AlertTriangle, ArrowRight, Calculator, CheckCircle2, Cpu, Gavel, Languages, MessageSquare, Server, ShieldCheck, Sparkles, Thermometer, WifiOff, XCircle } from 'lucide-react'
 import { motion } from 'motion/react'
 import { agentApi, type AgentStatus } from '../agentV10'
 import { tr } from '../i18n'
 
 const JURY_KEY = 'bioreactor-agent-v10-jury'  // the same key the chat reads
+// A status is never colour alone: each tone has its own icon next to the words.
+const TONE_ICON = { ok: CheckCircle2, warn: AlertTriangle, bad: XCircle } as const
 
 export default function Overview({ navigate }: { navigate: (page: string) => void }) {
   const [status, setStatus] = useState<AgentStatus | null>(null)
@@ -37,7 +39,7 @@ export default function Overview({ navigate }: { navigate: (page: string) => voi
     { icon: Sparkles, title: tr('home.skill.4.title'), text: tr('home.skill.4.text') },
   ]
   return <div className="home">
-    <motion.header className="home-hero" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .3 }}>
+    <motion.header className="home-hero" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .25, ease: [.23, 1, .32, 1] }}>
       <span className="home-eyebrow">{tr('home.eyebrow')}</span>
       <h1>{tr('home.title')}</h1>
       <p>{tr('home.lead')}</p>
@@ -48,20 +50,23 @@ export default function Overview({ navigate }: { navigate: (page: string) => voi
       </div>
     </motion.header>
 
-    <section className="home-status-strip" aria-label={tr('home.status.title')} data-testid="home-status">
-      {items.map((item, index) => <motion.div key={item.id} className="home-status-item" initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .25, delay: .1 + index * .05 }}>
-        <item.icon size={20} />
-        <div><span>{item.label}</span><strong className="ds-status" data-tone={item.tone} data-testid={`home-status-${item.id}`}>{item.value}</strong></div>
-      </motion.div>)}
-    </section>
+    {/* one instrument panel: four gauges in one frame, not four cards */}
+    <motion.section className="home-status-strip" aria-label={tr('home.status.title')} data-testid="home-status"
+      initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .25, delay: .06, ease: [.23, 1, .32, 1] }}>
+      {items.map(item => { const Tone = TONE_ICON[item.tone as keyof typeof TONE_ICON]; return <div key={item.id} className="home-status-item" data-tone={item.tone}>
+        <span className="home-status-label"><item.icon size={18} aria-hidden="true" />{item.label}</span>
+        <p className="home-status-value"><Tone size={18} aria-hidden="true" className="home-status-tone" /><strong data-testid={`home-status-${item.id}`}>{item.value}</strong></p>
+      </div> })}
+    </motion.section>
 
-    <section className="home-skills" aria-label={tr('home.skills')}>
-      {skills.map((skill, index) => <motion.article key={skill.title} className="home-skill ds-card" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .25, delay: .2 + index * .06 }}>
-        <skill.icon size={24} />
-        <h2>{skill.title}</h2>
-        <p>{skill.text}</p>
-      </motion.article>)}
-    </section>
+    {/* what the system does: a plain list, no card boxes */}
+    <motion.section className="home-skills" aria-label={tr('home.skills')}
+      initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: .25, delay: .12, ease: [.23, 1, .32, 1] }}>
+      {skills.map(skill => <article key={skill.title} className="home-skill">
+        <skill.icon size={22} aria-hidden="true" />
+        <div><h2>{skill.title}</h2><p>{skill.text}</p></div>
+      </article>)}
+    </motion.section>
 
     <button className="home-more" onClick={() => navigate('science')}>{tr('home.more')} <ArrowRight size={16} /></button>
   </div>
