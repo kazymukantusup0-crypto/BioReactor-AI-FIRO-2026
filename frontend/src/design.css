@@ -247,7 +247,7 @@ main { font-size: var(--fs-md); }
 .science-plain { margin-bottom: var(--sp-4); }
 .science-plain h2 { font-size: var(--fs-xl); color: var(--text-strong); margin-bottom: var(--sp-3); }
 .science-plain ul { padding-left: 1.2em; display: flex; flex-direction: column; gap: var(--sp-2); font-size: var(--fs-md); line-height: 1.6; color: var(--text); }
-.science-explain { font-size: var(--fs-md); line-height: 1.6; color: var(--text); background: var(--surface-2); border-left: 3px solid var(--accent); border-radius: var(--radius-sm); padding: var(--sp-3) var(--sp-4); margin: var(--sp-3) 0; }
+.science-explain { font-size: var(--fs-md); line-height: 1.6; color: var(--text); background: var(--accent-wash); border: 1px solid var(--accent-line); border-radius: var(--radius); padding: var(--sp-3) var(--sp-4); margin: var(--sp-3) 0; }
 /* the saved matplotlib figures are white: shown inverted so they sit in the dark theme (hues kept by the rotation) */
 .scientific-figure { background: var(--surface-2) !important; border-radius: var(--radius); padding: var(--sp-3); }
 .scientific-figure img { filter: invert(.92) hue-rotate(180deg) contrast(.95); border-radius: var(--radius-sm); }
