@@ -71,19 +71,19 @@
 .rx-alarms { display: flex; flex-direction: column; gap: var(--sp-2); }
 .rx-alarm-line { display: flex; gap: var(--sp-2); align-items: center; padding: var(--sp-3) var(--sp-4); border-radius: var(--radius); font-size: var(--fs-md); font-weight: 600; }
 .rx-alarm-line svg { flex-shrink: 0; }
-.rx-alarm-line.rx-tone-danger { background: var(--danger-soft); color: var(--danger); border: 1px solid #7a3a33; }
-.rx-alarm-line.rx-tone-warn { background: var(--warn-soft); color: var(--warn); border: 1px solid #6b5527; }
-.rx-alarm-overlay { position: fixed; inset: 0; z-index: 1000; display: grid; place-items: center; padding: var(--sp-4); background: rgba(60, 8, 8, .94); animation: rx-pulse 1.6s ease-in-out infinite; overflow-y: auto; }
-@keyframes rx-pulse { 50% { background: rgba(110, 14, 14, .96); } }
+.rx-alarm-line.rx-tone-danger { background: var(--danger-soft); color: var(--danger); border: 1px solid var(--danger-line); }
+.rx-alarm-line.rx-tone-warn { background: var(--warn-soft); color: var(--warn); border: 1px solid var(--warn-line); }
+.rx-alarm-overlay { position: fixed; inset: 0; z-index: 1000; display: grid; place-items: center; padding: var(--sp-4); background: var(--alarm-bg); animation: rx-pulse 1.6s ease-in-out infinite; overflow-y: auto; }
+@keyframes rx-pulse { 50% { background: var(--alarm-bg-strong); } }
 @media (prefers-reduced-motion: reduce) { .rx-alarm-overlay { animation: none; } }
-.rx-alarm-box { max-width: 640px; width: 100%; text-align: center; display: flex; flex-direction: column; align-items: center; gap: var(--sp-3); color: #fff; }
+.rx-alarm-box { max-width: 640px; width: 100%; text-align: center; display: flex; flex-direction: column; align-items: center; gap: var(--sp-3); color: var(--on-alarm); }
 .rx-alarm-box h2 { font-size: var(--fs-hero); font-weight: 900; letter-spacing: .04em; }
-.rx-alarm-box p { font-size: var(--fs-lg); line-height: 1.6; color: #ffe9e6; }
-.rx-alarm-lead { font-weight: 700; font-size: var(--fs-xl) !important; color: #fff !important; }
+.rx-alarm-box p { font-size: var(--fs-lg); line-height: 1.6; color: var(--on-alarm-muted); }
+.rx-alarm-lead { font-weight: 700; font-size: var(--fs-xl) !important; color: var(--on-alarm) !important; }
 .rx-alarm-actions { display: flex; gap: var(--sp-3); flex-wrap: wrap; justify-content: center; }
-.rx-alarm-reset { background: #fff; color: #5a0d0d; border-color: #fff; }
-.rx-alarm-strip { position: sticky; top: 0; z-index: 50; display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-2) var(--sp-4); padding: var(--sp-3) var(--sp-4); border-radius: var(--radius); background: #6e1010; color: #fff; }
-.rx-alarm-strip p { color: #ffe9e6; font-size: var(--fs-sm); }
+.rx-alarm-reset { background: var(--on-alarm); color: var(--alarm-ink); border-color: var(--on-alarm); }
+.rx-alarm-strip { position: sticky; top: 0; z-index: 50; display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-2) var(--sp-4); padding: var(--sp-3) var(--sp-4); border-radius: var(--radius); background: var(--estop-shadow); color: var(--on-alarm); }
+.rx-alarm-strip p { color: var(--on-alarm-muted); font-size: var(--fs-sm); }
 .rx-alarm-strip .rx-alarm-actions { justify-content: flex-start; }
 
 .rx-segmented { display: inline-flex; border: 1px solid var(--border-strong); border-radius: var(--radius); overflow: hidden; }
@@ -110,8 +110,8 @@
 .rx-chain-block .reactor-chain-list { grid-template-columns: repeat(7, minmax(0, 1fr)); margin-top: var(--sp-2); }
 .rx-chain-block > p { margin-top: var(--sp-3); }
 
-.rx-modal-backdrop { position: fixed; inset: 0; z-index: 1100; display: grid; place-items: center; padding: var(--sp-4); background: rgba(3, 8, 10, .72); }
-.rx-modal { max-width: 520px; width: 100%; display: flex; flex-direction: column; gap: var(--sp-3); box-shadow: 0 20px 60px rgba(0, 0, 0, .5); }
+.rx-modal-backdrop { position: fixed; inset: 0; z-index: 1100; display: grid; place-items: center; padding: var(--sp-4); background: var(--scrim); }
+.rx-modal { max-width: 520px; width: 100%; display: flex; flex-direction: column; gap: var(--sp-3); box-shadow: var(--shadow-lg); }
 .rx-modal h2 { font-size: var(--fs-2xl); color: var(--text-strong); }
 .rx-modal p { font-size: var(--fs-md); line-height: 1.6; color: var(--text); }
 .rx-modal-actions { display: flex; justify-content: flex-end; gap: var(--sp-3); flex-wrap: wrap; }
@@ -157,12 +157,12 @@
 .rx-route { display: inline-flex; align-items: center; gap: 4px; margin-left: var(--sp-2); padding: 1px var(--sp-2); border-radius: var(--radius-pill); background: var(--surface-2); color: var(--text); font-size: var(--fs-sm); font-weight: 600; }
 .rx-nolink.is-starting { border-color: var(--warn); background: var(--warn-soft); color: var(--warn); }
 .rx-estop-bar { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-3); }
-.rx-estop { display: inline-flex; align-items: center; gap: var(--sp-3); min-height: 56px; padding: var(--sp-2) var(--sp-5); border-radius: var(--radius-lg); border: 3px solid #ffb3a8; background: #b3261e; color: #fff; cursor: pointer; text-align: left; box-shadow: 0 4px 0 #6e1010; }
+.rx-estop { display: inline-flex; align-items: center; gap: var(--sp-3); min-height: 56px; padding: var(--sp-2) var(--sp-5); border-radius: var(--radius-lg); border: 3px solid var(--estop-edge); background: var(--estop); color: var(--on-alarm); cursor: pointer; text-align: left; box-shadow: 0 4px 0 var(--estop-shadow); }
 .rx-estop strong { display: block; font-size: var(--fs-xl); font-weight: 900; letter-spacing: .04em; }
-.rx-estop small { display: block; font-size: var(--fs-sm); color: #ffe1dc; }
-.rx-estop:hover:not(:disabled) { background: #d0342a; }
-.rx-estop:active:not(:disabled) { transform: translateY(2px); box-shadow: 0 2px 0 #6e1010; }
-.rx-estop:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+.rx-estop small { display: block; font-size: var(--fs-sm); color: var(--on-estop-muted); }
+.rx-estop:hover:not(:disabled) { background: var(--estop-hover); }
+.rx-estop:active:not(:disabled) { transform: translateY(2px); box-shadow: 0 2px 0 var(--estop-shadow); }
+.rx-estop:focus-visible { outline: 3px solid var(--on-alarm); outline-offset: 3px; }
 /* No link: the E-STOP turns grey with a plug icon and says why (the Arduino's own BACK button still works). */
 .rx-estop:disabled { background: var(--surface-2); border: 3px dashed var(--border-strong); color: var(--text-muted); box-shadow: none; cursor: not-allowed; opacity: 1; }
 .rx-estop:disabled small { color: var(--text-muted); }

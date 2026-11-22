@@ -8,6 +8,7 @@ import { CartesianGrid, Line, LineChart, ReferenceLine, ResponsiveContainer, Too
 import { ALARM_CODES, LIMITS, reactorApi, RELAYS, SENSORS, type Alarm, type CheckResult, type CommandResult, type HistoryPoint, type JournalItem, type Level, type LimitName, type Limits, type ReactorStatus, type RelayName, type SensorName, type SimulatorSwitch } from '../reactorApi'
 import { tr } from '../i18n'
 import '../reactor.css'
+import { chartColors } from '../theme'
 
 const JURY_KEY = 'bioreactor-reactor-jury'
 const ICONS: Record<SensorName, typeof Thermometer> = { temp_c: Thermometer, rh_pct: Droplets, gas_in: Wind, gas_out: ShieldAlert }
@@ -172,24 +173,25 @@ function thresholdLines(name: SensorName, l: Limits | null): { y: number; tone: 
   if (name === 'gas_out') return [{ y: l.gas_out_limit, tone: 'danger', label: tr('rx.line.leak') }]
   return [{ y: 95, tone: 'warn', label: '' }]
 }
-const LINE_COLORS = { warn: '#e9bd6c', danger: '#f3958a', target: '#8cc4ee' }
 const clock = (t: number) => new Date(t * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' })
 
 function SensorChart({ name, points, limits }: { name: SensorName; points: HistoryPoint[]; limits: Limits | null }) {
   const data = points.map(p => ({ t: p.t, v: p[name] }))
+  const c = chartColors()
+  const lineColor = { warn: c.warn, danger: c.danger, target: c.info }
   return <figure className="rx-chart ds-card" data-testid={`rx-chart-${name}`}>
     <figcaption>{tr(`rx.sensor.${name}`)}<span>, {unit(name)}</span></figcaption>
     {data.length < 2 ? <p className="ds-muted rx-chart-empty">{tr('rx.chartEmpty')}</p> :
       <div className="rx-chart-box"><ResponsiveContainer width="100%" height="100%">
         <LineChart data={data} margin={{ top: 10, right: 12, bottom: 0, left: -12 }}>
-          <CartesianGrid stroke="#24333b" strokeDasharray="3 5" vertical={false} />
-          <XAxis dataKey="t" type="number" domain={['dataMin', 'dataMax']} tickFormatter={v => clock(Number(v)).slice(0, 5)} axisLine={false} tickLine={false} tick={{ fill: '#8fa6aa', fontSize: 13 }} minTickGap={40} />
-          <YAxis domain={['auto', 'auto']} axisLine={false} tickLine={false} tick={{ fill: '#8fa6aa', fontSize: 13 }} width={52} tickFormatter={v => Number(v).toFixed(0)} />
-          {thresholdLines(name, limits).map(line => <ReferenceLine key={`${line.tone}${line.y}`} y={line.y} stroke={LINE_COLORS[line.tone]} strokeDasharray={line.tone === 'target' ? '2 4' : '6 4'} ifOverflow="extendDomain"
-            label={line.label ? { value: line.label, position: 'insideTopRight', fill: '#a9bdbf', fontSize: 13 } : undefined} />)}
-          <Tooltip contentStyle={{ background: '#152329', border: '1px solid #36525a', borderRadius: 10, color: '#f0f7f5' }} labelFormatter={v => clock(Number(v))}
+          <CartesianGrid stroke={c.grid} strokeDasharray="3 5" vertical={false} />
+          <XAxis dataKey="t" type="number" domain={['dataMin', 'dataMax']} tickFormatter={v => clock(Number(v)).slice(0, 5)} axisLine={false} tickLine={false} tick={{ fill: c.tick, fontSize: 13, fontFamily: c.fontFamily }} minTickGap={40} />
+          <YAxis domain={['auto', 'auto']} axisLine={false} tickLine={false} tick={{ fill: c.tick, fontSize: 13, fontFamily: c.fontFamily }} width={52} tickFormatter={v => Number(v).toFixed(0)} />
+          {thresholdLines(name, limits).map(line => <ReferenceLine key={`${line.tone}${line.y}`} y={line.y} stroke={lineColor[line.tone]} strokeDasharray={line.tone === 'target' ? '2 4' : '6 4'} ifOverflow="extendDomain"
+            label={line.label ? { value: line.label, position: 'insideTopRight', fill: c.label, fontSize: 13 } : undefined} />)}
+          <Tooltip contentStyle={{ background: c.tooltipBg, border: `1px solid ${c.tooltipBorder}`, borderRadius: 10, color: c.tooltipText }} labelFormatter={v => clock(Number(v))}
             formatter={value => [`${formatValue(name, value as number | null)} ${unit(name)}`, tr(`rx.sensor.${name}`)]} />
-          <Line type="monotone" dataKey="v" stroke="#55d6af" strokeWidth={2} dot={false} activeDot={{ r: 5, stroke: '#111c22', strokeWidth: 2 }} isAnimationActive={false} connectNulls={false} />
+          <Line type="monotone" dataKey="v" stroke={c.line} strokeWidth={2} dot={false} activeDot={{ r: 5, stroke: c.surface, strokeWidth: 2 }} isAnimationActive={false} connectNulls={false} />
         </LineChart>
       </ResponsiveContainer></div>}
   </figure>

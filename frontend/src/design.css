@@ -27,6 +27,42 @@
   --danger: #f3958a;
   --danger-soft: #3d1f1c;
   --info: #8cc4ee;
+  /* derived: lines, tints and washes are mixed from the meaning colours, so a theme only sets the base values */
+  --accent-line: color-mix(in srgb, var(--accent) 55%, var(--border));
+  --accent-soft-strong: color-mix(in srgb, var(--accent) 28%, var(--surface-1));
+  --accent-tint: color-mix(in srgb, var(--accent) 12%, transparent);
+  --accent-wash: color-mix(in srgb, var(--accent) 7%, var(--surface-1));
+  --accent-ring: color-mix(in srgb, var(--accent) 25%, transparent);
+  --warn-line: color-mix(in srgb, var(--warn) 45%, var(--border));
+  --warn-tint: color-mix(in srgb, var(--warn) 12%, transparent);
+  --danger-line: color-mix(in srgb, var(--danger) 45%, var(--border));
+  --danger-tint: color-mix(in srgb, var(--danger) 12%, transparent);
+  --info-tint: color-mix(in srgb, var(--info) 12%, transparent);
+  /* status: норма / внимание / авария / нет связи. Never colour alone: every status also has an icon or a word. */
+  --ok: var(--accent);
+  --ok-soft: var(--accent-soft);
+  --offline: var(--text-muted);
+  --offline-soft: var(--surface-2);
+  /* layers */
+  --overlay: color-mix(in srgb, var(--bg) 91%, transparent);
+  --scrim: color-mix(in srgb, var(--bg) 72%, transparent);
+  --bg-ring: color-mix(in srgb, var(--bg) 20%, transparent);
+  --shadow-lg: 0 20px 60px rgba(0, 0, 0, .5);
+  --figure-bg: #fff; /* scientific figures are drawn on white */
+  --chart-grid: var(--border);
+  --font-sans: "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: ui-monospace, Consolas, monospace;
+  /* E-STOP and the full-screen alarm keep their red in every theme */
+  --estop: #b3261e;
+  --estop-hover: #d0342a;
+  --estop-edge: #ffb3a8;
+  --estop-shadow: #6e1010;
+  --on-estop-muted: #ffe1dc;
+  --alarm-bg: rgba(60, 8, 8, .94);
+  --alarm-bg-strong: rgba(110, 14, 14, .96);
+  --on-alarm: #fff;
+  --on-alarm-muted: #ffe9e6;
+  --alarm-ink: #5a0d0d;
   /* type scale: 8 sizes, the smallest is 13 px */
   --fs-xs: 13px;
   --fs-sm: 14px;
@@ -77,9 +113,9 @@ main { font-size: var(--fs-md); }
 .ds-notice { border: 1px solid var(--border-strong); background: var(--surface-2); border-radius: var(--radius); padding: var(--sp-3) var(--sp-4);
   color: var(--text); font-size: var(--fs-md); line-height: 1.6; margin: var(--sp-4) 0; }
 .ds-notice p { margin-top: var(--sp-1); }
-.ds-notice-warn { border-color: #6b5527; background: var(--warn-soft); color: var(--warn); }
+.ds-notice-warn { border-color: var(--warn-line); background: var(--warn-soft); color: var(--warn); }
 .ds-notice-warn p { color: var(--text); }
-.ds-notice-danger { border-color: #7a3a33; background: var(--danger-soft); color: var(--danger); }
+.ds-notice-danger { border-color: var(--danger-line); background: var(--danger-soft); color: var(--danger); }
 .ds-collapse { border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--surface-1); padding: var(--sp-3) var(--sp-5); margin: var(--sp-4) 0; }
 .ds-collapse > summary { cursor: pointer; font-size: var(--fs-md); font-weight: 600; color: var(--text); padding: var(--sp-2) 0; }
 .ds-collapse[open] > summary { margin-bottom: var(--sp-3); }
@@ -88,7 +124,7 @@ main { font-size: var(--fs-md); }
 .ds-collapse a { color: var(--accent); }
 .ds-status { display: inline-flex; align-items: center; gap: var(--sp-2); font-size: var(--fs-sm); color: var(--text-muted); }
 .ds-status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--text-faint); }
-.ds-status[data-tone="ok"]::before { background: var(--accent); box-shadow: 0 0 0 3px #55d6af33; }
+.ds-status[data-tone="ok"]::before { background: var(--accent); box-shadow: 0 0 0 3px var(--accent-ring); }
 .ds-status[data-tone="warn"]::before { background: var(--warn); }
 .ds-status[data-tone="bad"]::before { background: var(--danger); }
 .ds-skeleton { border-radius: var(--radius-lg); background: linear-gradient(90deg, var(--surface-1) 0%, var(--surface-2) 40%, var(--surface-1) 80%);
@@ -170,7 +206,7 @@ main { font-size: var(--fs-md); }
 
 /* ---------- «Реактор» ---------- */
 .reactor-page { display: flex; flex-direction: column; gap: var(--sp-4); }
-.reactor-state { display: flex; gap: var(--sp-4); align-items: center; border-color: #6b5527; background: linear-gradient(90deg, var(--warn-soft), var(--surface-1) 70%); }
+.reactor-state { display: flex; gap: var(--sp-4); align-items: center; border-color: var(--warn-line); background: linear-gradient(90deg, var(--warn-soft), var(--surface-1) 70%); }
 .reactor-state-icon { display: grid; place-items: center; width: 60px; height: 60px; border-radius: var(--radius-lg); background: var(--surface-2); color: var(--warn); flex-shrink: 0; }
 .reactor-state h2 { font-size: var(--fs-2xl); color: var(--text-strong); }
 .reactor-state p { font-size: var(--fs-md); color: var(--text-muted); line-height: 1.6; margin-top: var(--sp-1); max-width: 80ch; }
