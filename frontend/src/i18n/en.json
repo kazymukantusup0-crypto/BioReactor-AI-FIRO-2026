@@ -1261,5 +1261,9 @@
  "rx.chain.laptopText": "this page: readings and buttons",
  "rx.chain.agent": "AI agent",
  "rx.chain.agentText": "reads the readings and advises, switches nothing",
- "rx.chain.safety": "Arduino protection: leak → every relay off and an alarm until reset; overheating or no sensor → heater off; 60 s MQ warm-up; heater and cooling never together; 10 s without the Pi → what the Pi switched on goes off; auger no longer than 10 min. Laptop silent 15 s → the Pi switches off what the laptop switched on. E-STOP: the button here or BACK for 2 s on the Arduino."
+ "rx.chain.safety": "Arduino protection: leak → every relay off and an alarm until reset; overheating or no sensor → heater off; 60 s MQ warm-up; heater and cooling never together; 10 s without the Pi → what the Pi switched on goes off; auger no longer than 10 min. Laptop silent 15 s → the Pi switches off what the laptop switched on. E-STOP: the button here or BACK for 2 s on the Arduino.",
+ "rx.noLinkButton": "No link",
+ "rx.noLinkButton.hint": "Button inactive: no link with the installation",
+ "rx.estop.noLink": "no link with the installation — hold BACK on the Arduino for 2 s",
+ "rx.state.noLink": "no link"
 }

@@ -2,8 +2,8 @@
 // Chain: Arduino (firmware bioreactor-1.0, main protection + AUTO) -> USB -> Raspberry Pi -> network -> this page.
 // The page only shows what the Pi reports. Every manual command is a person's button + a confirmation; E-STOP is one
 // click with no confirmation. The AI agent reads the same data and never presses buttons.
-import { useCallback, useEffect, useRef, useState } from 'react'
-import { AlertOctagon, AlertTriangle, ArrowRight, Bot, Cable, CheckCircle2, Cog, Cpu, Droplets, Fan, Flame, Gavel, HelpCircle, Laptop, Network, OctagonX, PlugZap, Power, RadioTower, RefreshCw, RotateCcw, ShieldAlert, SlidersHorizontal, Thermometer, Wifi, Wind, Wrench, XCircle } from 'lucide-react'
+import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react'
+import { AlertOctagon, AlertTriangle, ArrowRight, Bot, Cable, CheckCircle2, Cog, Cpu, Droplets, Fan, Flame, Gavel, HelpCircle, Laptop, Network, OctagonX, PlugZap, Power, RadioTower, RefreshCw, RotateCcw, ShieldAlert, SlidersHorizontal, Thermometer, Unplug, Wifi, Wind, Wrench, XCircle } from 'lucide-react'
 import { CartesianGrid, Line, LineChart, ReferenceLine, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 import { ALARM_CODES, LIMITS, reactorApi, RELAYS, SENSORS, type Alarm, type CheckResult, type CommandResult, type HistoryPoint, type JournalItem, type Level, type LimitName, type Limits, type ReactorStatus, type RelayName, type SensorName, type SimulatorSwitch } from '../reactorApi'
 import { tr } from '../i18n'
@@ -92,7 +92,8 @@ function EmergencyBar({ status, onEstop, onReset, busy }: { status: ReactorStatu
   const needsReset = status.alarms.some(a => a.needs_reset)
   return <section className="rx-estop-bar" aria-label={tr('rx.estop.label')} data-testid="rx-estop-bar">
     <button className="rx-estop" onClick={onEstop} disabled={!status.estop_enabled || busy} data-testid="rx-estop">
-      <OctagonX size={26} aria-hidden="true" /><span><strong>{tr('rx.estop.button')}</strong><small>{tr('rx.estop.hint')}</small></span></button>
+      {status.estop_enabled ? <OctagonX size={26} aria-hidden="true" /> : <Unplug size={26} aria-hidden="true" />}
+      <span><strong>{tr('rx.estop.button')}</strong><small>{status.estop_enabled ? tr('rx.estop.hint') : tr('rx.estop.noLink')}</small></span></button>
     <button className="ds-button rx-reset-button" onClick={onReset} disabled={!needsReset || !status.controls_enabled || busy} data-testid="rx-reset">
       <RotateCcw size={16} />{tr('rx.reset.button')}</button>
     <p className="ds-muted">{needsReset ? tr('rx.reset.needed') : tr('rx.reset.none')}</p>
@@ -254,10 +255,19 @@ function ModeCard({ status, onAsk }: { status: ReactorStatus; onAsk: (p: Pending
     <div className="rx-relay-head"><SlidersHorizontal size={22} aria-hidden="true" /><strong>{tr('rx.mode.title')}</strong>
       <span className={`rx-relay-state ${auto ? 'is-on' : ''}`} data-testid="rx-mode-state">{status.auto === null ? '—' : auto ? tr('rx.mode.auto') : tr('rx.mode.manual')}</span></div>
     <p className="rx-relay-time">{auto ? tr('rx.mode.autoText') : tr('rx.mode.manualText')}</p>
-    <button className={`ds-button ${auto ? '' : 'ds-button-primary'}`} disabled={!status.controls_enabled || (!auto && locked)} data-testid="rx-mode-button"
-      onClick={() => onAsk({ kind: 'auto', on: !auto })}>{auto ? tr('rx.mode.turnOff') : tr('rx.mode.turnOn')}</button>
+    <ControlButton status={status} primary={!auto} disabled={!status.controls_enabled || (!auto && locked)} testId="rx-mode-button"
+      onClick={() => onAsk({ kind: 'auto', on: !auto })}>{auto ? tr('rx.mode.turnOff') : tr('rx.mode.turnOn')}</ControlButton>
     {!auto && locked && status.controls_enabled && <p className="rx-relay-blocked">{tr(`rx.reason.${status.arduino_alarms?.estop ? 'estop' : 'leak'}`)}</p>}
   </article>
+}
+
+// A control button that says plainly when it cannot work: no link -> grey, plug icon, «Нет связи» instead of the action.
+// A disabled button is never filled with the accent colour (on a projector a filled button reads as clickable).
+function ControlButton({ status, primary, disabled, testId, onClick, children }: { status: ReactorStatus; primary?: boolean; disabled: boolean; testId: string; onClick: () => void; children: ReactNode }) {
+  const offline = !status.link.ok
+  return <button className={`ds-button ${primary && !disabled ? 'ds-button-primary' : ''} ${offline ? 'rx-offline-button' : ''}`} disabled={disabled} data-testid={testId}
+    title={offline ? tr('rx.noLinkButton.hint') : undefined} onClick={onClick}>
+    {offline ? <><Unplug size={16} aria-hidden="true" />{tr('rx.noLinkButton')}</> : children}</button>
 }
 
 function RelayCard({ relay, status, onAsk, big }: { relay: RelayName; status: ReactorStatus; onAsk: (p: Pending) => void; big?: boolean }) {
@@ -265,15 +275,16 @@ function RelayCard({ relay, status, onAsk, big }: { relay: RelayName; status: Re
   const Icon = RELAY_ICONS[relay]
   const blockedOn = !state.on ? state.on_blocked : null
   const disabled = !status.controls_enabled || Boolean(blockedOn)
+  const offline = !status.link.ok
   const who = state.on ? (state.remote ? tr('rx.who.fromLaptop') : tr('rx.who.byArduino')) : null
-  return <article className={`rx-relay ds-card ${state.on ? 'is-on' : ''} ${big ? 'rx-relay-big' : ''}`} data-testid={`rx-relay-${relay}`}>
+  return <article className={`rx-relay ds-card ${state.on ? 'is-on' : ''} ${offline ? 'is-offline' : ''} ${big ? 'rx-relay-big' : ''}`} data-testid={`rx-relay-${relay}`}>
     <div className="rx-relay-head"><Icon size={big ? 30 : 22} aria-hidden="true" /><strong>{tr(`rx.relay.${relay}`)}</strong>
-      <span className={`rx-relay-state ${state.on ? 'is-on' : ''}`} data-testid={`rx-relay-state-${relay}`}>{state.on ? tr('rx.on') : tr('rx.off')}</span></div>
+      <span className={`rx-relay-state ${state.on ? 'is-on' : ''} ${offline ? 'is-offline' : ''}`} data-testid={`rx-relay-state-${relay}`}>{offline ? tr('rx.state.noLink') : state.on ? tr('rx.on') : tr('rx.off')}</span></div>
     {who && <p className="rx-relay-who" data-testid={`rx-relay-who-${relay}`}>{who}</p>}
     {!big && <p className="rx-relay-time">{state.on ? tr('rx.runningFor', { time: duration(state.on_for_s) }) : tr('rx.stopped')} · {tr('rx.totalFor', { time: duration(state.total_s) })}</p>}
     {big && state.on && <p className="rx-relay-time">{tr('rx.runningFor', { time: duration(state.on_for_s) })}</p>}
-    {!big && <button className={`ds-button ${state.on ? '' : 'ds-button-primary'}`} disabled={disabled} data-testid={`rx-relay-button-${relay}`}
-      onClick={() => onAsk({ kind: 'relay', relay, on: !state.on })}>{state.on ? tr('rx.turnOff') : tr('rx.turnOn')}</button>}
+    {!big && <ControlButton status={status} primary={!state.on} disabled={disabled} testId={`rx-relay-button-${relay}`}
+      onClick={() => onAsk({ kind: 'relay', relay, on: !state.on })}>{state.on ? tr('rx.turnOff') : tr('rx.turnOn')}</ControlButton>}
     {!big && blockedOn && status.controls_enabled && <p className="rx-relay-blocked" data-testid={`rx-relay-blocked-${relay}`}>{reasonText(blockedOn)}</p>}
     {!big && relay === 'auger' && <p className="rx-reading-note">{tr('rx.relay.augerNote')}</p>}
   </article>

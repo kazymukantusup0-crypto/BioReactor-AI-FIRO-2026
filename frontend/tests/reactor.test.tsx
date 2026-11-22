@@ -205,6 +205,15 @@ describe('Reactor page', () => {
     render(<Reactor />)
     expect(await screen.findByText('НЕТ СВЯЗИ С RASPBERRY PI')).toBeInTheDocument()
     expect(screen.getByTestId('rx-estop')).toBeDisabled()
+    // design-v2: no link -> buttons are grey and say «Нет связи» instead of the action, never the green primary fill
+    for (const relay of ['heat', 'cool', 'pump', 'auger']) {
+      const button = screen.getByTestId(`rx-relay-button-${relay}`)
+      expect(button).toHaveTextContent('Нет связи')
+      expect(button).not.toHaveClass('ds-button-primary')
+      expect(screen.getByTestId(`rx-relay-state-${relay}`)).toHaveTextContent('нет связи')
+    }
+    expect(screen.getByTestId('rx-mode-button')).toHaveTextContent('Нет связи')
+    expect(screen.getByTestId('rx-estop')).toHaveTextContent('нет связи с установкой')
   })
 
   it('«Проверить связь» shows the route, the answer time and the Arduino port', async () => {

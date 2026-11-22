@@ -65,7 +65,9 @@ main { font-size: var(--fs-md); }
   transition: background .15s var(--ease), border-color .15s var(--ease), transform .15s var(--ease); }
 .ds-button:hover:not(:disabled) { background: var(--surface-3); border-color: var(--accent); }
 .ds-button:active:not(:disabled) { transform: translateY(1px); }
-.ds-button:disabled { opacity: .45; cursor: not-allowed; }
+/* Disabled = grey and flat, label still readable (≥ 4.5:1): never the accent fill, never washed out by opacity. */
+.ds-button:disabled, .ds-button-primary:disabled { background: var(--surface-2); border-color: var(--border); border-style: dashed;
+  color: var(--text-faint); cursor: not-allowed; box-shadow: none; opacity: 1; }
 .ds-button:focus-visible, .ds-icon-button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .ds-button-primary { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
 .ds-button-primary:hover:not(:disabled) { background: var(--accent-strong); border-color: var(--accent-strong); }
