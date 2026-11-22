@@ -28,6 +28,14 @@ describe('design tokens', () => {
       expect(text.match(/['"`]#[0-9a-fA-F]{3,8}['"`]|rgba?\(/g) ?? [], file).toEqual([])
     }
   })
+  it('offline: fonts are local woff2 files, no stylesheet or font comes from the internet', () => {
+    const faces = css['fonts/fonts.css']
+    expect(faces).toContain("font-family: 'Golos Text'")
+    expect(faces).toContain("font-family: 'IBM Plex Mono'")
+    for (const url of faces.match(/url\(([^)]+)\)/g) ?? []) expect(url).toMatch(/^url\(\.\/[\w-]+\.woff2\)$/)
+    for (const [file, text] of Object.entries(css)) expect(text, file).not.toMatch(/https?:\/\/|@import\s+url\(/)
+    expect(all.filter(f => f.endsWith('.woff2')).length).toBeGreaterThanOrEqual(20)
+  })
   it('status colours are separate tokens: ok / warn / danger / offline', () => {
     const root = Object.entries(css).find(([file]) => file.endsWith('design.css'))![1]
     for (const token of ['--ok:', '--warn:', '--danger:', '--offline:']) expect(root).toContain(token)

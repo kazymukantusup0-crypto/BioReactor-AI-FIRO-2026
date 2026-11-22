@@ -1,32 +1,36 @@
 /*
- * BioReactor AI design system (v10). One set of colours, type sizes, spacing, radii, cards and buttons for every page.
- * Older CSS files use the same tokens (scripts/apply-design-tokens.mjs replaced their hard-coded values).
- * Dark theme only; text colours keep at least 4.5:1 contrast on --surface-1 (checked by scripts/check-contrast.mjs),
- * so a projector still shows them.
+ * BioReactor AI design system (v10, design-v2 theme «Приборная панель»): graphite surfaces, lime accent,
+ * Golos Text for words, IBM Plex Mono (tabular) for readings. One set of colours, type sizes, spacing, radii,
+ * cards and buttons for every page; every colour on the dashboard comes from this block (tests/design-tokens.test.ts).
+ * Dark theme only, for a projector: text keeps at least 4.5:1 on every surface (scripts/check-contrast.mjs,
+ * tests/contrast-scan.mjs), surfaces step clearly so cards do not melt into the background.
  */
+@import './fonts/fonts.css';
+
 :root {
+  color-scheme: dark;
   /* surfaces, darkest -> lightest */
-  --bg: #0b1217;
-  --surface-1: #111c22;
-  --surface-2: #152329;
-  --surface-3: #1b2d34;
-  --border: #25383f;
-  --border-strong: #36525a;
+  --bg: #0c0d0f;
+  --surface-1: #16181b;
+  --surface-2: #1d2024;
+  --surface-3: #262b30;
+  --border: #323940;
+  --border-strong: #4b555e;
   /* text */
-  --text-strong: #f0f7f5;
-  --text: #d5e3e0;
-  --text-muted: #a9bdbf;
-  --text-faint: #8fa6aa;
+  --text-strong: #f6f7f8;
+  --text: #e2e5e8;
+  --text-muted: #b8bec5;
+  --text-faint: #9ca4ad;
   /* meaning */
-  --accent: #55d6af;
-  --accent-strong: #86ead0;
-  --accent-soft: #173a31;
-  --on-accent: #052019;
-  --warn: #e9bd6c;
-  --warn-soft: #36290f;
-  --danger: #f3958a;
-  --danger-soft: #3d1f1c;
-  --info: #8cc4ee;
+  --accent: #c6e05c;
+  --accent-strong: #dbef88;
+  --accent-soft: #2b3312;
+  --on-accent: #151b00;
+  --warn: #ffb454;
+  --warn-soft: #3a2808;
+  --danger: #ff9384;
+  --danger-soft: #41201c;
+  --info: #7fc6ff;
   /* derived: lines, tints and washes are mixed from the meaning colours, so a theme only sets the base values */
   --accent-line: color-mix(in srgb, var(--accent) 55%, var(--border));
   --accent-soft-strong: color-mix(in srgb, var(--accent) 28%, var(--surface-1));
@@ -39,9 +43,10 @@
   --danger-tint: color-mix(in srgb, var(--danger) 12%, transparent);
   --info-tint: color-mix(in srgb, var(--info) 12%, transparent);
   /* status: норма / внимание / авария / нет связи. Never colour alone: every status also has an icon or a word. */
-  --ok: var(--accent);
-  --ok-soft: var(--accent-soft);
-  --offline: var(--text-muted);
+  --ok: #7fdc95;          /* норма: green, its own hue next to the lime accent */
+  --ok-soft: #1b3323;
+  /* внимание = --warn, авария = --danger */
+  --offline: var(--text-muted);  /* нет связи: grey + dashed outline + plug icon */
   --offline-soft: var(--surface-2);
   /* layers */
   --overlay: color-mix(in srgb, var(--bg) 91%, transparent);
@@ -50,8 +55,8 @@
   --shadow-lg: 0 20px 60px rgba(0, 0, 0, .5);
   --figure-bg: #fff; /* scientific figures are drawn on white */
   --chart-grid: var(--border);
-  --font-sans: "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-mono: ui-monospace, Consolas, monospace;
+  --font-sans: "Golos Text", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", Consolas, ui-monospace, monospace;
   /* E-STOP and the full-screen alarm keep their red in every theme */
   --estop: #b3261e;
   --estop-hover: #d0342a;
@@ -85,10 +90,20 @@
   --radius: 10px;
   --radius-lg: 14px;
   --radius-pill: 999px;
-  --ease: cubic-bezier(.2, .7, .2, 1);
+  /* motion (Emil Kowalski): short, ease-out, transform/opacity only */
+  --ease-out: cubic-bezier(.23, 1, .32, 1);
+  --ease-in-out: cubic-bezier(.77, 0, .175, 1);
+  --ease: var(--ease-out);
+  --dur-press: 150ms;
+  --dur: 200ms;
+  --dur-enter: 250ms;
 }
 
-body { background: var(--bg); color: var(--text); }
+body { background: var(--bg); color: var(--text); font-family: var(--font-sans); }
+button, input, select, textarea { font-family: inherit; }
+code, kbd, pre, samp { font-family: var(--font-mono); }
+::selection { background: var(--accent); color: var(--on-accent); }
+html { scrollbar-color: var(--border-strong) var(--bg); }
 main { font-size: var(--fs-md); }
 .page-heading h1, .clean-intro h1, .ac-topline h1 { font-size: var(--fs-3xl); color: var(--text-strong); letter-spacing: -.01em; }
 .page-heading p, .clean-intro p { font-size: var(--fs-md); color: var(--text-muted); line-height: 1.6; max-width: 72ch; }
@@ -235,7 +250,7 @@ main { font-size: var(--fs-md); }
 .scientific-figure img { filter: invert(.92) hue-rotate(180deg) contrast(.95); border-radius: var(--radius-sm); }
 
 /* ---------- «Рынок», «Состояние системы» ---------- */
-.market-codes { font-family: ui-monospace, Consolas, monospace; color: var(--text-faint) !important; overflow-wrap: anywhere; }
+.market-codes { font-family: var(--font-mono); color: var(--text-faint) !important; overflow-wrap: anywhere; }
 .price-table td, .table-scroll td { overflow-wrap: anywhere; }
 .system-skeleton-card { height: 190px; }
 
@@ -273,3 +288,8 @@ main { font-size: var(--fs-md); }
 /* long Kazakh menu labels must not squeeze the icons */
 .nav-item > svg { flex-shrink: 0; }
 .nav-item > span:not(.nav-indicator):not(.nav-state) { min-width: 0; line-height: 1.3; white-space: normal; overflow-wrap: anywhere; }
+
+/* ---------- design-v2: readings in IBM Plex Mono, tabular figures (digits line up and do not jump while they update) */
+.rx-reading-value, .farm-card-value, .metric-value, .ac-card-value, .ac-advice-value, .advisor-metrics strong,
+.firo-value strong, .prediction-number, .ds-num { font-family: var(--font-mono); font-variant-numeric: tabular-nums slashed-zero; letter-spacing: -.02em; font-weight: 600; }
+.rx-relay-time, .rx-table td, .market-table td { font-variant-numeric: tabular-nums; }

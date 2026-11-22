@@ -11,12 +11,13 @@ const lum = hex => {
 const ratio = (a, b) => { const [x, y] = [lum(a), lum(b)].sort((p, q) => q - p); return (x + .05) / (y + .05) }
 let bad = 0
 for (const surface of ['bg', 'surface-1', 'surface-2', 'surface-3']) {
-  for (const text of ['text-strong', 'text', 'text-muted', 'text-faint', 'accent', 'warn', 'danger', 'info']) {
+  for (const text of ['text-strong', 'text', 'text-muted', 'text-faint', 'accent', 'ok', 'warn', 'danger', 'info']) {
     const value = ratio(token(text), token(surface))
     const ok = value >= 4.5
     if (!ok) bad++
     console.log(`${ok ? 'OK ' : 'LOW'} ${text.padEnd(12)} on ${surface.padEnd(10)} ${value.toFixed(2)}:1`)
   }
 }
+for (const [fg, bg] of [['ok', 'ok-soft'], ['warn', 'warn-soft'], ['danger', 'danger-soft']]) { const v = ratio(token(fg), token(bg)); if (v < 4.5) bad++; console.log(`${v >= 4.5 ? 'OK ' : 'LOW'} ${fg.padEnd(12)} on ${bg.padEnd(10)} ${v.toFixed(2)}:1`) }
 console.log(`on-accent on accent ${ratio(token('on-accent'), token('accent')).toFixed(2)}:1`)
 process.exit(bad ? 1 : 0)

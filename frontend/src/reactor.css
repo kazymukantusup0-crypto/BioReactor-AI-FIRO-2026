@@ -12,7 +12,7 @@
 .rx-check-result { font-size: var(--fs-sm); padding: var(--sp-1) var(--sp-3); border-radius: var(--radius); max-width: 46ch; overflow-wrap: anywhere; }
 .rx-check-result.is-ok { color: var(--accent-strong); background: var(--accent-soft); }
 .rx-check-result.is-bad { color: var(--danger); background: var(--danger-soft); }
-.rx-mono { font-family: ui-monospace, Consolas, monospace; font-size: var(--fs-xs); color: var(--text-faint); overflow-wrap: anywhere; }
+.rx-mono { font-family: var(--font-mono); font-size: var(--fs-xs); color: var(--text-faint); overflow-wrap: anywhere; }
 .rx-page .spin { animation: rx-spin 1s linear infinite; }
 @keyframes rx-spin { to { transform: rotate(360deg); } }
 
@@ -34,10 +34,10 @@
 .rx-reading-note { font-size: var(--fs-xs); color: var(--text-faint); line-height: 1.5; }
 .rx-reading-stale { font-size: var(--fs-xs); color: var(--warn); }
 .rx-level { display: inline-flex; align-self: flex-start; align-items: center; gap: 6px; font-size: var(--fs-sm); font-weight: 700; padding: 2px var(--sp-2); border-radius: var(--radius-pill); }
-.rx-level-ok { color: var(--accent-strong); background: var(--accent-soft); }
+.rx-level-ok { color: var(--ok); background: var(--ok-soft); }
 .rx-level-warn { color: var(--warn); background: var(--warn-soft); }
 .rx-level-danger { color: var(--danger); background: var(--danger-soft); }
-.rx-level-unknown { color: var(--text-muted); background: var(--surface-2); }
+.rx-level-unknown { color: var(--offline); background: var(--offline-soft); outline: 1px dashed var(--border-strong); outline-offset: -1px; }
 .rx-fill { display: flex; flex-direction: column; gap: var(--sp-1); font-size: var(--fs-xs); color: var(--text-muted); }
 .rx-fill-track { position: relative; height: 10px; border-radius: var(--radius-pill); background: var(--surface-3); overflow: hidden; }
 .rx-fill-bar { height: 100%; border-radius: var(--radius-pill); background: var(--accent); transition: width .6s var(--ease); }
