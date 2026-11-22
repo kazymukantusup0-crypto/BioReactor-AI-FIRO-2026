@@ -8,6 +8,9 @@
     port lost / cable pulled       reopen every 3 s
     laptop silent > laptop_timeout_s   switch OFF only the relays that were switched ON from the Pi (remote = true).
                                    NOT ALLOFF: that would also stop the Arduino's own AUTO regime (thermostat, pump).
+    POST /time from the laptop     the Pi has no battery clock: set_time() moves the wall clock to the laptop's time
+                                   when they differ by more than 5 s (clock.py). Safety timers use time.monotonic and
+                                   are not affected.
 
 The Arduino has the last word on every command (its ack); the Pi checks first only to give a clear reason.
 Automatic actions of the Pi only switch relays OFF.
@@ -20,6 +23,7 @@ from collections import deque
 from collections.abc import Callable
 
 from . import protocol, safety
+from .clock import EPOCH_MAX, EPOCH_MIN, TIME_SYNC_MIN_OFFSET_S
 from .journal import Journal
 from .serial_link import LinkError
 
@@ -31,8 +35,12 @@ AUGER_TIMEOUT_SHOW_S = 300   # the Arduino reports auger_timeout in ONE status; 
 
 class Bridge:
     def __init__(self, config: dict, link, journal: Journal, *, simulated: bool = False,
-                 clock: Callable[[], float] = time.monotonic, wall: Callable[[], float] = time.time):
+                 clock: Callable[[], float] = time.monotonic, wall: Callable[[], float] | None = None, time_source=None):
         self.config = config
+        # time_source (clock.SystemClock / VirtualClock) can be SET by the laptop; without one the time is read-only
+        self.time_source = time_source
+        wall = wall or (time_source.now if time_source is not None else time.time)
+        self.time_set_at: float | None = None       # wall time of the last change, for /state
         self.link = link
         self.journal = journal
         self.simulated = simulated
@@ -347,6 +355,34 @@ class Bridge:
             return {"ok": False, "reason": reason}
         return self._person("reset", who, protocol.reset())
 
+    def set_time(self, epoch, who: str = "laptop") -> dict:
+        """Set the Pi's wall clock to the laptop's time. Changes nothing when the difference is within 5 s.
+        The in-memory history, alarm and auger times move with the clock (they were measured at the right moment but
+        stamped with the wrong clock); the SQLite journal keeps what was written."""
+        if isinstance(epoch, bool) or not isinstance(epoch, (int, float)) or not EPOCH_MIN <= float(epoch) <= EPOCH_MAX:
+            return {"ok": False, "reason": "bad_time", "changed": False}
+        before = self.wall()
+        offset = float(epoch) - before
+        if abs(offset) <= TIME_SYNC_MIN_OFFSET_S:
+            return {"ok": True, "reason": None, "changed": False, "offset_s": round(offset, 1), "time": round(before, 1)}
+        if self.time_source is None:
+            return {"ok": False, "reason": "not_supported", "changed": False, "offset_s": round(offset, 1)}
+        try:
+            self.time_source.set(float(epoch))
+        except (PermissionError, OSError, NotImplementedError) as error:
+            self._log("system", "time_set", who, "no_permission", {"offset_s": round(offset, 1), "error": str(error)[:120]})
+            return {"ok": False, "reason": "no_permission", "changed": False, "offset_s": round(offset, 1)}
+        shift = self.wall() - before
+        with self._state:
+            for point in self.history:
+                point["t"] = round(point["t"] + shift, 1)
+            self.alarm_since = {name: t + shift for name, t in self.alarm_since.items()}
+            if self.auger_timeout_at is not None:
+                self.auger_timeout_at += shift
+            self.time_set_at = self.wall()
+        self._log("system", "time_set", who, "ok", {"offset_s": round(offset, 1), "clock": self.time_source.kind})
+        return {"ok": True, "reason": None, "changed": True, "offset_s": round(offset, 1), "time": round(self.wall(), 1)}
+
     def simulate(self, what: str, on: bool, who: str = "operator") -> dict:
         """Simulator buttons (only with the virtual Arduino): leak, broken USB cable, frozen Arduino, broken sensor."""
         if not self.simulated:
@@ -416,6 +452,8 @@ class Bridge:
                                "arduino_silent": self.link.silent, "temp_sensor": self.link.arduino.temp_sensor_broken}
                               if self.simulated else None),
                 "time": round(self.wall(), 1),
+                "time_set_at": None if self.time_set_at is None else round(self.time_set_at, 1),
+                "time_settable": self.time_source is not None,
             }
 
     def history_window(self, window_s: int) -> list[dict]:

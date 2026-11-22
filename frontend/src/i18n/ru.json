@@ -1265,5 +1265,6 @@
  "rx.noLinkButton": "Нет связи",
  "rx.noLinkButton.hint": "Кнопка неактивна: нет связи с установкой",
  "rx.estop.noLink": "нет связи с установкой — жмите BACK на Arduino 2 с",
- "rx.state.noLink": "нет связи"
+ "rx.state.noLink": "нет связи",
+ "rx.j.time_set": "Время Pi выставлено по ноутбуку"
 }

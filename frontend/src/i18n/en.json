@@ -1265,5 +1265,6 @@
  "rx.noLinkButton": "No link",
  "rx.noLinkButton.hint": "Button inactive: no link with the installation",
  "rx.estop.noLink": "no link with the installation — hold BACK on the Arduino for 2 s",
- "rx.state.noLink": "no link"
+ "rx.state.noLink": "no link",
+ "rx.j.time_set": "Pi clock set from the laptop"
 }

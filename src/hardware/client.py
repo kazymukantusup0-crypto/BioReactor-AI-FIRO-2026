@@ -14,6 +14,11 @@ Mode "simulator": the SAME Pi bridge code (raspberry/bioreactor_pi) with the vir
 server on 127.0.0.1 and this client talks to it over HTTP — the whole chain works without hardware, and the page
 always says СИМУЛЯТОР. The «оборвать сеть» simulator button stops this client's requests, so the Pi's own
 laptop watchdog can be shown (after 15 s it switches off the relays that were switched on from the Pi).
+
+Time: the Pi has no battery clock. On every (re)connection the client compares the Pi's time (state["time"]) with
+the laptop's, taking half of the request time into account, and if they differ by more than time_sync_min_offset_s
+(5 s) sends POST /time with the laptop's time — once per connection. The simulator's Pi has a virtual clock
+(simulator_pi_offset_s), so the laptop's own clock is never touched. Result in status()["time_sync"].
 """
 from __future__ import annotations
 
@@ -37,10 +42,13 @@ class PiUnreachable(OSError):
 
 
 class ReactorClient:
-    def __init__(self, config: dict, *, journal_path=None, clock: Callable[[], float] = time.monotonic):
+    def __init__(self, config: dict, *, journal_path=None, clock: Callable[[], float] = time.monotonic,
+                 wall: Callable[[], float] = time.time):
         self.config = config
         self.mode = config["mode"]
         self.clock = clock
+        self.wall = wall
+        self.time_sync: dict = {"checked": False, "offset_s": None, "changed": False, "error": None, "at": None}
         self.token = config.get("token") or ""
         self.timeout = float(config.get("request_timeout_s", 2.5))
         self.network_cut = False          # simulator button: «оборвать сеть ноутбук ↔ Pi»
@@ -67,12 +75,15 @@ class ReactorClient:
         pi_package()
         from bioreactor_pi import config as pi_config
         from bioreactor_pi.bridge import Bridge
+        from bioreactor_pi.clock import VirtualClock
         from bioreactor_pi.journal import Journal
         from bioreactor_pi.server import PiServer
         from bioreactor_pi.virtual_arduino import VirtualSerial
         config = pi_config.load()
         journal = Journal(self._journal_path or ROOT / "data/runtime/reactor_simulator_journal.sqlite3")
-        bridge = Bridge(config, VirtualSerial(config), journal, simulated=True)
+        # virtual clock: the simulated Pi can be set by the time sync without touching this computer's clock
+        bridge = Bridge(config, VirtualSerial(config), journal, simulated=True,
+                        time_source=VirtualClock(float(self.config.get("simulator_pi_offset_s", 0))))
         server = PiServer(bridge, "127.0.0.1", 0)
         bridge.start()
         server.start()
@@ -154,15 +165,22 @@ class ReactorClient:
         except OSError:
             pass
 
+    def _get_state(self) -> tuple[dict, float]:
+        """GET /state and the laptop's time at the middle of the request (to compare with the Pi's clock)."""
+        sent = self.wall()
+        state = self._request("GET", "/state")
+        return state, (sent + self.wall()) / 2
+
     def poll(self) -> None:
         try:
-            state = self._request("GET", "/state")
+            state, laptop_time = self._get_state()
         except PiUnreachable as error:
             if self.last_ok is not None and self.error is None:
                 self._log(f"lost the Pi at {self.pi_url}: {error}")
+            self.time_sync["checked"] = False      # check the time again after the link is back
             if self.mode == "auto" and self.find_pi():
                 try:
-                    state = self._request("GET", "/state")
+                    state, laptop_time = self._get_state()
                 except PiUnreachable as error2:
                     with self._lock:
                         self.error = str(error2)
@@ -175,6 +193,32 @@ class ReactorClient:
             self._log(f"data from the Pi via {self.route() or self.pi_url}")
         with self._lock:
             self.last_state, self.last_ok, self.error = state, self.clock(), None
+        if not self.time_sync["checked"]:
+            self.sync_time(state, laptop_time)
+
+    def sync_time(self, state: dict, laptop_time: float) -> dict:
+        """Once per connection: the Pi's clock more than time_sync_min_offset_s off -> POST /time with the laptop's time.
+        Never raises: a failure is written to the log and to status()["time_sync"], the reactor keeps working."""
+        limit = float(self.config.get("time_sync_min_offset_s", 5))
+        pi_time = state.get("time")
+        result = {"checked": True, "offset_s": None, "changed": False, "error": None,
+                  "at": datetime.now().isoformat(timespec="seconds")}
+        if not self.config.get("time_sync", True) or not isinstance(pi_time, (int, float)):
+            result["error"] = "off" if not self.config.get("time_sync", True) else "no_pi_time"
+        else:
+            offset = round(float(pi_time) - laptop_time, 1)       # + : the Pi is ahead, - : behind
+            result["offset_s"] = offset
+            if abs(offset) > limit:
+                try:
+                    answer = self._request("POST", "/time", {"epoch": self.wall(), "who": "laptop"})
+                    result["changed"] = bool(answer.get("changed"))
+                    result["error"] = None if answer.get("ok") else answer.get("reason") or "refused"
+                except PiUnreachable as error:
+                    result["error"] = str(error)          # e.g. «HTTP 404» from a bridge deployed before POST /time
+                self._log(f"Pi clock {offset:+.1f} s from the laptop: "
+                          + ("set to the laptop's time" if result["changed"] else f"NOT set ({result['error']})"))
+        self.time_sync = result
+        return result
 
     # -- link -----------------------------------------------------------------------------------
     def network_ok(self) -> bool:
@@ -203,7 +247,7 @@ class ReactorClient:
                                for n in RELAYS},
                     "alarms": [{"code": "pi_lost", "level": "danger", "error": error}], "auto": None, "limits": None,
                     "arduino_alarms": None, "controls_enabled": False, "estop_enabled": False, "laptop_watchdog": None,
-                    "simulator": self._simulator_flags(None), "time": time.time()}
+                    "simulator": self._simulator_flags(None), "time": time.time(), "time_sync": dict(self.time_sync)}
         out = json.loads(json.dumps(state))
         out.pop("bridge", None)
         if not net:
@@ -221,6 +265,7 @@ class ReactorClient:
         # E-STOP is tried whenever the Pi answers and its USB port is open — even if the Arduino status is late
         out["estop_enabled"] = bool(net and state["arduino_link"].get("connected"))
         out["simulator"] = self._simulator_flags(out.get("simulator"))
+        out["time_sync"] = dict(self.time_sync)
         return out
 
     def _simulator_flags(self, pi_flags: dict | None) -> dict | None:

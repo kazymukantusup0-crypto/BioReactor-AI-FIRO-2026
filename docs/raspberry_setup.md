@@ -192,3 +192,43 @@ ssh -t bio@192.168.50.2 "cd ~/BioReactor_AI && git pull && sudo raspberry/setup_
 | Реле выключились сами | журнал на странице: `laptop_lost` (ноутбук молчал > 15 с), `watchdog_all_off` (Arduino 10 с без команд), `leak_heat_off` |
 | Ложная утечка сразу после включения | MQ греются ~1 мин (`warmup`); порог `GAS_OUT_LEAK` подобрать скетчем `sensor_test` |
 | `permission denied /dev/ttyACM0` | пользователь `bioreactor` в группе `dialout` (`install.sh` добавляет), перезапуск службы |
+
+## 6. Время Pi (нет батарейки часов) — подготовлено 22.11.2026, на Pi ещё НЕ установлено
+
+**Проблема.** У Raspberry Pi нет часов на батарейке. Без интернета после включения она стартует со времени последнего
+выключения, поэтому время в журнале и на графиках может отставать на часы и дни.
+
+**Решение.** Дашборд на ноутбуке при каждом подключении к Pi (и после каждого восстановления связи) сравнивает время:
+`/state` отдаёт `time` Pi, ноутбук берёт своё время в середине запроса. Если разница больше **5 с**, он отправляет
+`POST /time {"epoch": <время ноутбука>}`, и мост выставляет часы Pi. За одно подключение — одна проверка.
+
+- Мост (`raspberry/bioreactor_pi/clock.py`, `Bridge.set_time`): меняет часы только при разнице больше 5 с. Отказывает
+  при явно сломанном времени ноутбука (до 2024 или после 2100 года). Пишет в журнал `time_set` (на странице —
+  «Время Pi выставлено по ноутбуку»). Точки графиков и время тревог в памяти сдвигаются вместе с часами;
+  записи SQLite остаются как были.
+- **Безопасность не зависит от этих часов.** Таймеры защиты (ноутбук молчит 15 с, связь с Arduino, реле) считают
+  по `time.monotonic`, поэтому перевод часов не выключит реле и не вызовет тревогу. Это проверяет тест
+  `test_a_clock_jump_does_not_trip_the_watchdog_or_switch_relays`.
+- Права: сервис работает от `bioreactor` без root. Unit `bioreactor-pi.service` даёт ему ровно одну
+  capability — `AmbientCapabilities=CAP_SYS_TIME` (и `CapabilityBoundingSet=CAP_SYS_TIME`).
+- Ноутбук (`src/hardware/client.py`): результат лежит в `/api/reactor/status` → `time_sync`
+  (`offset_s`, `changed`, `error`), строка пишется в `data/runtime/reactor_client.log`. Настройки в
+  `data/config/reactor_hardware.json` (необязательные): `"time_sync": true`, `"time_sync_min_offset_s": 5`.
+  Если на Pi старый мост без `/time` (HTTP 404), это запишется в лог, а реактор продолжит работать как раньше.
+- Симулятор на ноутбуке: у виртуальной Pi **виртуальные часы**, часы самого ноутбука не трогаются никогда.
+  Для проверки можно задать `"simulator_pi_offset_s": -3600`: Pi «отстаёт на час» и исправляется при подключении.
+- Когда у Pi есть интернет, `systemd-timesyncd` сам поправит время по NTP. Одно другому не мешает.
+- Тесты: `tests/test_pi_time_sync.py` (18 проверок: мост, HTTP, клиент, симулятор, безопасность).
+
+**Что сделать при следующем подключении Pi** (кабель или Wi-Fi BioReactor-Pi; сеть Pi не трогаем):
+1. Код моста: `powershell -File scripts\deploy_to_pi.ps1`. Копирует `clock.py`, `bridge.py`, `server.py`,
+   `__main__.py` и перезапускает сервис. Скрипт предупредит, что изменился `bioreactor-pi.service`.
+2. Новый unit (capability `CAP_SYS_TIME`): `ssh -t bioreactor "cd ~/BioReactor_AI/raspberry && sudo ./install.sh"`
+   **без** `--simulate`, потому что Arduino подключена. `install.sh` сеть не меняет: только пользователь, код, venv,
+   конфиг (существующий не перезаписывается) и сервис.
+3. Проверить права: `ssh bioreactor "systemctl show bioreactor-pi -p AmbientCapabilities"` → `cap_sys_time`;
+   `curl http://<pi>:8780/state` → `"time_settable": true`.
+4. Проверить синхронизацию: сравнить `ssh bioreactor date +%s` с временем ноутбука. Открыть дашборд, вкладку
+   «Реактор»: в `data/runtime/reactor_client.log` появится «Pi clock … set to the laptop's time» (если разница была
+   больше 5 с), в журнале на странице — «Время Pi выставлено по ноутбуку». Ещё раз сравнить `date`: разница ≤ 1–2 с.
+5. Если в логе `no_permission`, значит не применился шаг 2 (сервис без `CAP_SYS_TIME`): выполнить шаг 2 и шаг 3.

@@ -11,6 +11,7 @@ import threading
 
 from . import config as config_module
 from .bridge import Bridge
+from .clock import default_clock
 from .journal import Journal
 from .serial_link import SerialLink
 from .server import PiServer
@@ -22,7 +23,8 @@ def build(config: dict, simulate: bool):
         link = VirtualSerial(config)
     else:
         link = SerialLink(config["serial"]["port"], int(config["serial"]["baud"]))
-    return Bridge(config, link, Journal(config["journal_path"]), simulated=simulate)
+    # On the Pi the real clock (settable by the laptop, needs CAP_SYS_TIME); elsewhere a virtual one
+    return Bridge(config, link, Journal(config["journal_path"]), simulated=simulate, time_source=default_clock(False))
 
 
 def main(argv=None) -> int:

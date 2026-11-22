@@ -1265,5 +1265,6 @@
  "rx.noLinkButton": "Байланыс жоқ",
  "rx.noLinkButton.hint": "Батырма белсенді емес: қондырғымен байланыс жоқ",
  "rx.estop.noLink": "қондырғымен байланыс жоқ — Arduino-да BACK батырмасын 2 с басыңыз",
- "rx.state.noLink": "байланыс жоқ"
+ "rx.state.noLink": "байланыс жоқ",
+ "rx.j.time_set": "Pi уақыты ноутбук бойынша қойылды"
 }

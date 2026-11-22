@@ -6,6 +6,7 @@
     GET  /journal?limit=50       commands and alarms
     GET  /events                 Server-Sent Events: "event: state" with /state every second
     POST /relay                  {"name":"heat"|"cool"|"pump"|"auger","state":1,"who":"operator","confirm":true}
+    POST /time                   {"epoch": <laptop time, s>}  set the Pi's clock if it is more than 5 s off
     POST /auto                   {"on":true,"confirm":true}                 the Arduino's automatic regime
     POST /limit                  {"name":"temp_min","value":35.5,"confirm":true}   one EEPROM threshold (SET)
     POST /estop                  {"who":"operator"}                         EMERGENCY STOP: no confirmation, never delayed
@@ -135,6 +136,10 @@ def make_handler(bridge, token: str = ""):
             if body is None:
                 return
             who = str(body.get("who") or "operator")[:40]
+            if path == "/time":
+                # the laptop's clock -> the Pi's clock (no battery clock on the Pi); not a hardware command
+                result = bridge.set_time(body.get("epoch"), who=who if who != "operator" else "laptop")
+                return self._json(400 if result["reason"] == "bad_time" else 200, result)
             if path == "/estop":
                 return self._json(200, bridge.estop(who=who))
             if body.get("confirm") is not True and path in ("/relay", "/auto", "/limit", "/reset"):
