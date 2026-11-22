@@ -13,7 +13,7 @@
 .rx-check-result.is-ok { color: var(--accent-strong); background: var(--accent-soft); }
 .rx-check-result.is-bad { color: var(--danger); background: var(--danger-soft); }
 .rx-mono { font-family: var(--font-mono); font-size: var(--fs-xs); color: var(--text-faint); overflow-wrap: anywhere; }
-.rx-page .spin { animation: rx-spin 1s linear infinite; }
+.rx-page .spin { animation: rx-spin .8s linear infinite; }
 @keyframes rx-spin { to { transform: rotate(360deg); } }
 
 .rx-nolink { display: flex; gap: var(--sp-4); align-items: center; padding: var(--sp-5); border: 2px solid var(--danger); border-radius: var(--radius-lg); background: var(--danger-soft); color: var(--danger); }
@@ -38,12 +38,6 @@
 .rx-level-warn { color: var(--warn); background: var(--warn-soft); }
 .rx-level-danger { color: var(--danger); background: var(--danger-soft); }
 .rx-level-unknown { color: var(--offline); background: var(--offline-soft); outline: 1px dashed var(--border-strong); outline-offset: -1px; }
-.rx-fill { display: flex; flex-direction: column; gap: var(--sp-1); font-size: var(--fs-xs); color: var(--text-muted); }
-.rx-fill-track { position: relative; height: 10px; border-radius: var(--radius-pill); background: var(--surface-3); overflow: hidden; }
-.rx-fill-bar { height: 100%; border-radius: var(--radius-pill); background: var(--accent); transition: width .6s var(--ease); }
-.rx-fill-bar.rx-tone-warn { background: var(--warn); }
-.rx-fill-bar.rx-tone-danger { background: var(--danger); }
-.rx-fill-mark { position: absolute; top: 0; bottom: 0; width: 2px; background: var(--text-strong); opacity: .7; }
 
 .rx-section { display: flex; flex-direction: column; gap: var(--sp-3); }
 .rx-section h2 { font-size: var(--fs-xl); color: var(--text-strong); display: flex; align-items: center; gap: var(--sp-2); }
@@ -186,3 +180,14 @@
 .rx-limit-edit input { width: 110px; min-height: 38px; padding: var(--sp-1) var(--sp-2); border-radius: var(--radius); border: 1px solid var(--border-strong); background: var(--surface-2); color: var(--text-strong); font-size: var(--fs-md); font-variant-numeric: tabular-nums; }
 .rx-limit-edit input[aria-invalid="true"] { border-color: var(--danger); }
 .rx-limit-unit { color: var(--text-muted); font-size: var(--fs-sm); min-width: 3ch; }
+
+/* design-v2 motion: a relay or mode change is shown by colour (200 ms), never by movement; readings update with no animation */
+.rx-relay, .rx-mode { transition: border-color var(--dur) var(--ease-out), box-shadow var(--dur) var(--ease-out); }
+.rx-relay-state { transition: background-color var(--dur) var(--ease-out), color var(--dur) var(--ease-out); }
+.rx-relay.is-on { border-color: var(--accent); }
+/* confirmation dialog: occasional, so it may animate — fade + scale from .96, 200 ms ease-out, from the centre */
+.rx-modal-backdrop { animation: ds-fade var(--dur) var(--ease-out); }
+.rx-modal { animation: rx-modal-in var(--dur) var(--ease-out); }
+@keyframes rx-modal-in { from { opacity: 0; transform: scale(.96); } }
+@keyframes ds-fade { from { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .rx-modal { animation-name: ds-fade; } .rx-modal, .rx-modal-backdrop { animation-duration: var(--dur) !important; } }
