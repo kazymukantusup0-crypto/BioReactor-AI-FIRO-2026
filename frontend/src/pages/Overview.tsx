@@ -9,21 +9,12 @@ import type { Level } from '../reactorApi'
 import { LineReactor } from '../overview/LineReactor'
 import { IconChip, IconDrop, IconGas, IconLeak, IconRelay, IconThermo, Sparkle } from '../overview/LineIcons'
 import { DEMO_REACTOR, sceneState, useReactorLive, type LiveReactor } from '../overview/useReactorLive'
+import { LevelWord, Marked } from '../v3ui'
 import '../overview/overview.css'
 
 const JURY_KEY = 'bioreactor-agent-v10-jury'  // the same key the chat reads
 const LEVEL_ICON = { ok: CheckCircle2, warn: AlertTriangle, danger: XCircle, unknown: HelpCircle } as const
 const TONE_LEVEL: Record<string, Level> = { ok: 'ok', warn: 'warn', bad: 'danger' }
-
-export function LevelWord({ level }: { level: Level }) {
-  const Icon = LEVEL_ICON[level]
-  return <span className={`v3-level v3-level-${level}`}><Icon size={16} aria-hidden="true" />{tr(`ov.level.${level}`)}</span>
-}
-
-/** A section title on the lime marker. */
-export function Marked({ children, as: Tag = 'h2', id }: { children: ReactNode; as?: 'h1' | 'h2'; id?: string }) {
-  return <Tag className="v3-section-title" id={id}><span className="v3-mark">{children}</span></Tag>
-}
 
 function useAgentStatus() {
   const [status, setStatus] = useState<AgentStatus | null>(null)

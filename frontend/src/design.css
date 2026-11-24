@@ -109,6 +109,10 @@
   --offline-ink: #5b5c57;
   --radius-card: 22px;
   --font-display: "Onest", "Segoe UI", system-ui, sans-serif;
+  --ok-paper: #d6eedb;
+  --warn-paper: #f6e2c2;
+  --danger-paper: #f8d5d1;
+  --accent-paper: #e3f6b8;
 }
 
 
@@ -322,7 +326,12 @@ main { font-size: var(--fs-md); }
    section titles on a lime marker (black text); mono labels and readings; pill buttons with ↗.
    Lime is only a background under black text or a shape — never text on a light card. */
 .v3-card { border-radius: var(--radius-card); padding: 28px; position: relative; min-width: 0; }
-.v3-card-paper { background: var(--paper); color: var(--ink); }
+.v3-card-paper { background: var(--paper); color: var(--ink);
+  /* everything inside a paper card reads the «ink» set: older components adapt without their own rules */
+  --text-strong: var(--ink); --text: var(--ink); --text-muted: var(--ink-muted); --text-faint: var(--ink-muted);
+  --border: var(--paper-line); --border-strong: var(--ink-muted); --surface-1: var(--paper); --surface-2: var(--paper-2); --surface-3: var(--paper-line);
+  --ok: var(--ok-ink); --warn: var(--warn-ink); --danger: var(--danger-ink); --offline: var(--offline-ink); --info: var(--ink);
+  --ok-soft: var(--ok-paper); --warn-soft: var(--warn-paper); --danger-soft: var(--danger-paper); --accent-soft: var(--accent-paper); --offline-soft: var(--paper-2); }
 .v3-card-dark { background: var(--surface-1); color: var(--text-strong); border: 1px solid var(--border); }
 .v3-section-title { margin: 0; font-family: var(--font-display); font-size: 26px; font-weight: 800; line-height: 1.1; letter-spacing: -.02em; }
 .v3-mark { background: var(--accent); color: var(--on-accent); padding: 2px 10px 4px; border-radius: 4px;

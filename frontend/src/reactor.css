@@ -191,3 +191,50 @@
 @keyframes rx-modal-in { from { opacity: 0; transform: scale(.96); } }
 @keyframes ds-fade { from { opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .rx-modal { animation-name: ds-fade; } .rx-modal, .rx-modal-backdrop { animation-duration: var(--dur) !important; } }
+
+/* ================= design-v3: «Реактор» in the reference style ================= */
+.rx-page { gap: 40px; }
+.rx-heading h1.v3-section-title { font-size: 34px; }
+.rx-heading > div:first-child { display: flex; flex-direction: column; gap: 16px; }
+.rx-heading p { max-width: 70ch; }
+/* readings and relays: 2×2 grids of paper and dark cards, lots of air */
+.rx-readings, .rx-jury-readings { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.rx-reading.v3-card { border-top: 0; padding: 26px 28px; gap: 12px; }
+.rx-reading-title { font-family: var(--font-mono); font-weight: 500; font-size: var(--fs-md); }
+.rx-reading-value { font-family: var(--font-mono); font-size: 60px; line-height: 1; letter-spacing: -.03em; font-weight: 600; }
+.rx-reading-value small { font-family: var(--font-mono); font-size: var(--fs-lg); }
+.rx-reading-note { font-size: var(--fs-sm); color: var(--text-muted); }
+.rx-reading.rx-tone-warn { box-shadow: inset 0 0 0 2px var(--warn); }
+.rx-reading.rx-tone-danger { box-shadow: inset 0 0 0 3px var(--danger); }
+.rx-relays, .rx-jury-relays { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.rx-relays > .rx-mode { grid-column: 1 / -1; }
+.rx-relay.v3-card, .rx-mode.v3-card { padding: 26px 28px; gap: 14px; }
+.rx-relay-head { gap: 14px; }
+.rx-relay-head strong { font-family: var(--font-display); font-size: var(--fs-xl); font-weight: 700; }
+.rx-relay-head svg { color: currentColor; }
+.rx-relay-state { font-family: var(--font-mono); font-weight: 600; letter-spacing: .02em; padding: 4px 14px; border: 1px solid var(--border-strong); background: transparent; color: var(--text-muted); }
+.rx-relay-state.is-on { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.rx-relay-time { font-family: var(--font-mono); }
+/* ON: a lime ring (and «ВКЛ» on the lime pill), not a colour wash */
+.rx-relay.is-on { border-color: var(--accent); box-shadow: inset 0 0 0 2px var(--accent); }
+.v3-card-paper.rx-relay.is-on { box-shadow: inset 0 0 0 3px var(--ink); }
+.rx-relay.is-on .rx-relay-head svg { color: currentColor; }
+.rx-mode.v3-card { border-style: solid; }
+.rx-mode.is-auto { box-shadow: inset 0 0 0 2px var(--info); }
+/* no link: every relay card turns grey and dashed, whatever its tone */
+.rx-relay.is-offline { background: var(--surface-2); color: var(--text-muted); border: 1.5px dashed var(--border-strong); box-shadow: none; --text-strong: var(--text-muted); }
+.rx-relay.is-offline .li .li-accent { fill: var(--border-strong); }
+/* pill buttons inside the cards; disabled = grey dashed, still readable */
+.rx-relay .v3-pill, .rx-mode .v3-pill { align-self: flex-start; }
+.v3-pill:disabled { background: transparent; border-style: dashed; border-color: var(--border-strong); color: var(--text-muted); cursor: not-allowed; }
+/* E-STOP stays red (never lime): a big red pill */
+.rx-estop { border-radius: var(--radius-card); font-family: var(--font-display); padding: 14px 28px; }
+.rx-estop strong { font-weight: 800; letter-spacing: .02em; }
+.rx-estop small { font-family: var(--font-mono); }
+/* charts, limits, journal, simulator: dark cards */
+.rx-chart.v3-card { padding: 20px 22px 14px; }
+.rx-chart figcaption { font-family: var(--font-mono); font-weight: 500; }
+.rx-limits.v3-card, .rx-sim.v3-card, [data-testid="rx-journal"].v3-card { padding: 28px; }
+.rx-limits h2, .rx-sim h2, [data-testid="rx-journal"] h2 { font-family: var(--font-display); font-size: var(--fs-xl); font-weight: 700; }
+.rx-segmented button { font-family: var(--font-mono); }
+@media (max-width: 760px) { .rx-readings, .rx-jury-readings, .rx-relays, .rx-jury-relays { grid-template-columns: 1fr; } .rx-reading-value { font-size: 48px; } }

@@ -3,17 +3,22 @@
 // The page only shows what the Pi reports. Every manual command is a person's button + a confirmation; E-STOP is one
 // click with no confirmation. The AI agent reads the same data and never presses buttons.
 import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react'
-import { AlertOctagon, AlertTriangle, ArrowRight, Bot, Cable, CheckCircle2, Cog, Cpu, Droplets, Fan, Flame, Gavel, HelpCircle, Laptop, Network, OctagonX, PlugZap, Power, RadioTower, RefreshCw, RotateCcw, ShieldAlert, SlidersHorizontal, Snowflake, Thermometer, Unplug, Wifi, Wind, Wrench, XCircle } from 'lucide-react'
+import { AlertOctagon, AlertTriangle, ArrowRight, Bot, Cable, CheckCircle2, Cpu, Droplets, Gavel, HelpCircle, Laptop, Network, OctagonX, PlugZap, RadioTower, RefreshCw, RotateCcw, ShieldAlert, SlidersHorizontal, Thermometer, Unplug, Wifi, Wind, Wrench, XCircle } from 'lucide-react'
 import { CartesianGrid, Line, LineChart, ReferenceLine, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 import { ALARM_CODES, LIMITS, reactorApi, RELAYS, SENSORS, type Alarm, type CheckResult, type CommandResult, type HistoryPoint, type JournalItem, type Level, type LimitName, type Limits, type ReactorStatus, type RelayName, type SensorName, type SimulatorSwitch } from '../reactorApi'
 import { tr } from '../i18n'
 import '../reactor.css'
+import { IconCompressor, IconCool, IconHeat, IconMixer } from '../overview/LineIcons'
+import { Marked } from '../v3ui'
 import { chartColors } from '../theme'
 
 const JURY_KEY = 'bioreactor-reactor-jury'
 const ICONS: Record<SensorName, typeof Thermometer> = { temp_c: Thermometer, rh_pct: Droplets, gas_in: Wind, gas_out: ShieldAlert }
-// relay 1 heat, 2 cool, 3 mixer (API name pump), 4 compressor (API name auger)
-const RELAY_ICONS: Record<RelayName, typeof Flame> = { heat: Flame, cool: Snowflake, pump: RefreshCw, auger: Wind }
+// relay 1 heat, 2 cool (LEDs), 3 mixer (API name pump), 4 compressor (API name auger): our own line icons
+const RELAY_ICONS: Record<RelayName, typeof IconHeat> = { heat: IconHeat, cool: IconCool, pump: IconMixer, auger: IconCompressor }
+// design-v3: paper and dark cards alternate in the 2×2 grids
+const READING_TONE: Record<SensorName, 'paper' | 'dark'> = { temp_c: 'paper', rh_pct: 'dark', gas_in: 'dark', gas_out: 'paper' }
+const RELAY_TONE: Record<RelayName, 'paper' | 'dark'> = { heat: 'paper', cool: 'dark', pump: 'dark', auger: 'paper' }
 const DIGITS: Record<SensorName, number> = { temp_c: 1, rh_pct: 1, gas_in: 0, gas_out: 0 }
 // Same ranges as validSettings() in the sketch; the step is the encoder's step on the Arduino screen
 const LIMIT_INPUT: Record<LimitName, { min: number; max: number; step: number }> = {
@@ -157,7 +162,7 @@ function ReadingCard({ name, status, big }: { name: SensorName; status: ReactorS
   const reading = status.readings[name]
   const Icon = ICONS[name]
   const stale = !status.link.ok
-  return <article className={`rx-reading ds-card rx-tone-${reading.level} ${big ? 'rx-reading-big' : ''}`} data-testid={`rx-reading-${name}`}>
+  return <article className={`rx-reading v3-card v3-card-${READING_TONE[name]} rx-tone-${reading.level} ${big ? 'rx-reading-big' : ''}`} data-testid={`rx-reading-${name}`}>
     <span className="rx-reading-title"><Icon size={18} aria-hidden="true" />{tr(`rx.sensor.${name}`)}</span>
     <strong className="rx-reading-value">{formatValue(name, reading.value)}<small>{unit(name)}</small></strong>
     <LevelChip level={reading.level} />
@@ -180,7 +185,7 @@ function SensorChart({ name, points, limits }: { name: SensorName; points: Histo
   const data = points.map(p => ({ t: p.t, v: p[name] }))
   const c = chartColors()
   const lineColor = { warn: c.warn, danger: c.danger, target: c.info }
-  return <figure className="rx-chart ds-card" data-testid={`rx-chart-${name}`}>
+  return <figure className="rx-chart v3-card v3-card-dark" data-testid={`rx-chart-${name}`}>
     <figcaption>{tr(`rx.sensor.${name}`)}<span>, {unit(name)}</span></figcaption>
     {data.length < 2 ? <p className="ds-muted rx-chart-empty">{tr('rx.chartEmpty')}</p> :
       <div className="rx-chart-box"><ResponsiveContainer width="100%" height="100%">
@@ -210,7 +215,7 @@ function Charts({ status }: { status: ReactorStatus }) {
     return () => { controller.abort(); clearInterval(timer) }
   }, [window])
   return <section className="rx-section" aria-labelledby="rx-charts-title">
-    <div className="rx-section-head"><h2 id="rx-charts-title">{tr('rx.charts')}</h2>
+    <div className="rx-section-head"><Marked id="rx-charts-title">{tr('rx.charts')}</Marked>
       <div className="rx-segmented" role="group" aria-label={tr('rx.window')}>
         <button aria-pressed={window === 600} onClick={() => setWindow(600)}>{tr('rx.window10')}</button>
         <button aria-pressed={window === 3600} onClick={() => setWindow(3600)}>{tr('rx.window60')}</button>
@@ -242,7 +247,7 @@ function ConfirmDialog({ pending, onCancel, onConfirm, busy }: { pending: Pendin
   else if (pending.kind === 'limit') { title = tr('rx.confirm.limitTitle', { limit: tr(`rx.limit.${pending.name}`) }); text = tr('rx.confirm.limitText', { was: limitText(pending.name, pending.was), value: limitText(pending.name, pending.value) }) }
   else { title = tr(pending.on ? 'rx.confirm.onTitle' : 'rx.confirm.offTitle', { relay: tr(`rx.relay.${pending.relay}`) }); text = pending.on ? tr(`rx.confirm.on.${pending.relay}`) : tr('rx.confirm.offText') }
   return <div className="rx-modal-backdrop" role="presentation" onClick={onCancel}>
-    <div className="rx-modal ds-card" role="dialog" aria-modal="true" aria-labelledby="rx-confirm-title" onClick={event => event.stopPropagation()} data-testid="rx-confirm">
+    <div className="rx-modal v3-card v3-card-dark" role="dialog" aria-modal="true" aria-labelledby="rx-confirm-title" onClick={event => event.stopPropagation()} data-testid="rx-confirm">
       <h2 id="rx-confirm-title">{title}</h2><p>{text}</p>
       <div className="rx-modal-actions"><button className="ds-button" onClick={onCancel}>{tr('rx.cancel')}</button>
         <button ref={confirmRef} className="ds-button ds-button-primary" onClick={onConfirm} disabled={busy} data-testid="rx-confirm-yes">{tr('rx.confirmYes')}</button></div>
@@ -254,7 +259,7 @@ function ConfirmDialog({ pending, onCancel, onConfirm, busy }: { pending: Pendin
 function ModeCard({ status, onAsk }: { status: ReactorStatus; onAsk: (p: Pending) => void }) {
   const auto = Boolean(status.auto)
   const locked = Boolean(status.arduino_alarms?.estop || status.arduino_alarms?.leak)
-  return <article className={`rx-mode ds-card ${auto ? 'is-auto' : ''}`} data-testid="rx-mode">
+  return <article className={`rx-mode v3-card v3-card-dark ${auto ? 'is-auto' : ''}`} data-testid="rx-mode">
     <div className="rx-relay-head"><SlidersHorizontal size={22} aria-hidden="true" /><strong>{tr('rx.mode.title')}</strong>
       <span className={`rx-relay-state ${auto ? 'is-on' : ''}`} data-testid="rx-mode-state">{status.auto === null ? '—' : auto ? tr('rx.mode.auto') : tr('rx.mode.manual')}</span></div>
     <p className="rx-relay-time">{auto ? tr('rx.mode.autoText') : tr('rx.mode.manualText')}</p>
@@ -268,7 +273,7 @@ function ModeCard({ status, onAsk }: { status: ReactorStatus; onAsk: (p: Pending
 // A disabled button is never filled with the accent colour (on a projector a filled button reads as clickable).
 function ControlButton({ status, primary, disabled, testId, onClick, children }: { status: ReactorStatus; primary?: boolean; disabled: boolean; testId: string; onClick: () => void; children: ReactNode }) {
   const offline = !status.link.ok
-  return <button className={`ds-button ${primary && !disabled ? 'ds-button-primary' : ''} ${offline ? 'rx-offline-button' : ''}`} disabled={disabled} data-testid={testId}
+  return <button className={`v3-pill ${primary && !disabled ? 'v3-pill-lime' : ''} ${offline ? 'rx-offline-button' : ''}`} disabled={disabled} data-testid={testId}
     title={offline ? tr('rx.noLinkButton.hint') : undefined} onClick={onClick}>
     {offline ? <><Unplug size={16} aria-hidden="true" />{tr('rx.noLinkButton')}</> : children}</button>
 }
@@ -280,7 +285,7 @@ function RelayCard({ relay, status, onAsk, big }: { relay: RelayName; status: Re
   const disabled = !status.controls_enabled || Boolean(blockedOn)
   const offline = !status.link.ok
   const who = state.on ? (state.remote ? tr('rx.who.fromLaptop') : tr('rx.who.byArduino')) : null
-  return <article className={`rx-relay ds-card ${state.on ? 'is-on' : ''} ${offline ? 'is-offline' : ''} ${big ? 'rx-relay-big' : ''}`} data-testid={`rx-relay-${relay}`}>
+  return <article className={`rx-relay v3-card v3-card-${offline ? 'dark' : RELAY_TONE[relay]} ${state.on ? 'is-on' : ''} ${offline ? 'is-offline' : ''} ${big ? 'rx-relay-big' : ''}`} data-testid={`rx-relay-${relay}`}>
     <div className="rx-relay-head"><Icon size={big ? 30 : 22} aria-hidden="true" /><strong>{tr(`rx.relay.${relay}`)}</strong>
       <span className={`rx-relay-state ${state.on ? 'is-on' : ''} ${offline ? 'is-offline' : ''}`} data-testid={`rx-relay-state-${relay}`}>{offline ? tr('rx.state.noLink') : state.on ? tr('rx.on') : tr('rx.off')}</span></div>
     {who && <p className="rx-relay-who" data-testid={`rx-relay-who-${relay}`}>{who}</p>}
@@ -315,7 +320,7 @@ function LimitRow({ name, status, onAsk }: { name: LimitName; status: ReactorSta
 }
 
 function LimitsPanel({ status, onAsk }: { status: ReactorStatus; onAsk: (p: Pending) => void }) {
-  return <section className="rx-section ds-card rx-limits" aria-labelledby="rx-limits-title" data-testid="rx-limits">
+  return <section className="rx-section v3-card v3-card-dark rx-limits" aria-labelledby="rx-limits-title" data-testid="rx-limits">
     <h2 id="rx-limits-title"><SlidersHorizontal size={18} /> {tr('rx.limits.title')}</h2>
     <p className="ds-muted">{tr('rx.limits.lead')}</p>
     {status.limits ? LIMITS.map(name => <LimitRow key={name} name={name} status={status} onAsk={onAsk} />) : <p className="ds-muted">{tr('rx.limits.unknown')}</p>}
@@ -332,7 +337,7 @@ function SimulatorPanel({ status, onChange }: { status: ReactorStatus; onChange:
     setBusy(true)
     try { await reactorApi.simulate(what, !status.simulator?.[what]) } finally { setBusy(false); onChange() }
   }
-  return <section className="rx-section ds-card rx-sim" data-testid="rx-simulator">
+  return <section className="rx-section v3-card v3-card-dark rx-sim" data-testid="rx-simulator">
     <h2><Cpu size={18} /> {tr('rx.sim.title')}</h2><p className="ds-muted">{tr('rx.sim.lead')}</p>
     <div className="rx-sim-buttons">{SIM_SWITCHES.map(what => <button key={what} className={`ds-button ${status.simulator?.[what] ? 'is-active' : ''}`} aria-pressed={Boolean(status.simulator?.[what])}
       disabled={busy || (what !== 'network' && !status.link.network_ok)} onClick={() => flip(what)} data-testid={`rx-sim-${what}`}>
@@ -352,7 +357,7 @@ function Journal() {
   }, [])
   const what = (item: JournalItem) => { const key = `rx.j.${item.what}`; const text = tr(key); return text === key ? item.what : text }
   const who = (item: JournalItem) => { const key = `rx.who.${item.who}`; const text = tr(key); return text === key ? item.who : text }
-  return <section className="rx-section ds-card" data-testid="rx-journal">
+  return <section className="rx-section v3-card v3-card-dark" data-testid="rx-journal">
     <h2>{tr('rx.journal')}</h2><p className="ds-muted">{tr('rx.journalLead')}</p>
     {!live && <p className="ds-muted">{tr('rx.journalStale')}</p>}
     <div className="rx-table-wrap"><table className="rx-table"><thead><tr><th>{tr('rx.time')}</th><th>{tr('rx.j.what')}</th><th>{tr('rx.j.who')}</th><th>{tr('rx.j.result')}</th></tr></thead>
@@ -434,7 +439,7 @@ export default function Reactor() {
   const controls = Boolean(status?.controls_enabled) && !serverDown
   const shown = status && serverDown ? { ...status, controls_enabled: false, estop_enabled: false, link: { ...status.link, ok: false } } : status
   return <div className={`reactor-page rx-page ${jury ? 'rx-jury' : ''}`} data-testid="reactor-page">
-    <div className="page-heading rx-heading"><div><h1>{tr('rx.title')}</h1><p>{tr('rx.lead')}</p></div>
+    <div className="page-heading rx-heading"><div><Marked as="h1">{tr('rx.title')}</Marked><p>{tr('rx.lead')}</p></div>
       <div className="rx-heading-actions"><SourceBadge status={status} /><CheckButton />
         <button className={`ds-button ${jury ? 'ds-button-primary' : ''}`} aria-pressed={jury} onClick={() => setJury(!jury)} data-testid="rx-jury"><Gavel size={16} />{tr('rx.jury')}</button></div></div>
 
@@ -446,7 +451,7 @@ export default function Reactor() {
       {message.ok ? <CheckCircle2 size={18} /> : <XCircle size={18} />}<span>{message.text}</span>
       <button className="rx-message-close" onClick={() => setMessage(null)} aria-label={tr('rx.close')}>×</button></div>}
 
-    {!shown ? <div className="rx-loading ds-card" role="status">{tr('rx.loading')}</div> : jury ?
+    {!shown ? <div className="rx-loading v3-card v3-card-dark" role="status">{tr('rx.loading')}</div> : jury ?
       <section className="rx-jury-panel" data-testid="rx-jury-panel" aria-label={tr('rx.jury')}>
         <SourceBadge status={shown} big />
         <div className="rx-jury-readings">{SENSORS.map(name => <ReadingCard key={name} name={name} status={shown} big />)}</div>
@@ -456,7 +461,7 @@ export default function Reactor() {
       <>
         <div className="rx-readings">{SENSORS.map(name => <ReadingCard key={name} name={name} status={shown} />)}</div>
         <section className="rx-section" aria-labelledby="rx-relays-title">
-          <div className="rx-section-head"><h2 id="rx-relays-title">{tr('rx.relays')}</h2></div>
+          <div className="rx-section-head"><Marked id="rx-relays-title">{tr('rx.relays')}</Marked></div>
           <p className="ds-muted">{controls ? tr('rx.relaysLead') : tr('rx.relaysLocked')}</p>
           <div className="rx-relays"><ModeCard status={shown} onAsk={setPending} />{RELAYS.map(relay => <RelayCard key={relay} relay={relay} status={shown} onAsk={setPending} />)}</div>
           <p className="rx-agent-note"><Bot size={18} /> {tr('rx.agentNote')}</p>

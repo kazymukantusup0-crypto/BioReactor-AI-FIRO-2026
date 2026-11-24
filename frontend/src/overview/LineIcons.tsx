@@ -58,3 +58,34 @@ export function Sparkle({ size = 14, ...rest }: IconProps) {
     <path d="M8 0c.6 4.2 3.2 7 8 8-4.8 1-7.4 3.8-8 8-.6-4.2-3.2-7-8-8 4.8-1 7.4-3.8 8-8Z" />
   </svg>
 }
+
+// ---- the four relays of the stand: 1 heat, 2 cool (LEDs), 3 mixer, 4 compressor
+export function IconHeat({ size = 32, ...rest }: IconProps) {
+  return <svg {...base(size, rest)} className={`li ${rest.className ?? ''}`}>
+    <path className="li-accent" d="M16 15c1.8 2 3 3.4 3 5a3 3 0 0 1-6 0c0-1.6 1.2-3 3-5Z" stroke="none" />
+    <path d="M16 3c4.5 5 9 8.6 9 14a9 9 0 0 1-18 0c0-3.4 1.8-5.8 4.2-7.8.4 2.5 1.6 3.8 3.2 4.4C13.6 10 14.6 6.4 16 3Z" />
+    <path d="M16 15c1.8 2 3 3.4 3 5a3 3 0 0 1-6 0c0-1.6 1.2-3 3-5Z" />
+  </svg>
+}
+
+export function IconCool({ size = 32, ...rest }: IconProps) {
+  return <svg {...base(size, rest)} className={`li ${rest.className ?? ''}`}>
+    <circle className="li-accent" cx="16" cy="16" r="3.2" stroke="none" />
+    <path d="M16 3v26M4.7 9.5l22.6 13M27.3 9.5 4.7 22.5M12 5.5l4 2.5 4-2.5M12 26.5l4-2.5 4 2.5" /><circle cx="16" cy="16" r="3.2" />
+  </svg>
+}
+
+export function IconMixer({ size = 32, ...rest }: IconProps) {
+  return <svg {...base(size, rest)} className={`li ${rest.className ?? ''}`}>
+    <rect className="li-accent" x="12" y="3" width="8" height="5" rx="1.5" stroke="none" />
+    <rect x="12" y="3" width="8" height="5" rx="1.5" /><path d="M16 8v12" />
+    <path d="M16 21l10-3.5q2 3.5 0 7L16 21Zm0 0L6 24.5q-2-3.5 0-7L16 21Z" />
+  </svg>
+}
+
+export function IconCompressor({ size = 32, ...rest }: IconProps) {
+  return <svg {...base(size, rest)} className={`li ${rest.className ?? ''}`}>
+    <path d="M4 12.5h19.5a3.5 3.5 0 1 0-3.5-3.5" /><path d="M4 18.5h22a3.5 3.5 0 1 1-3.5 3.5" /><path d="M4 24.5h9" />
+    <circle className="li-accent" cx="26" cy="22" r="2" stroke="none" />
+  </svg>
+}
