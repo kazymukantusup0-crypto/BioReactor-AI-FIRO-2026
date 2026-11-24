@@ -2,6 +2,7 @@ import type { ReactNode } from 'react'
 import { AlertTriangle, ArrowUpRight, Check, ChevronRight, CircleDashed, ExternalLink, LoaderCircle, Radio, Terminal } from 'lucide-react'
 import type { Price, ToolCall, AgentReply } from './types'
 import { locale, localized, tr } from './i18n'
+import { Marked } from './v3ui'
 
 export const number = (value: number | string | undefined | null, digits = 2) => value === undefined || value === null ? '—' : Number(value).toLocaleString(locale(), { maximumFractionDigits: digits })
 export const date = (value?: string | null) => value ? new Date(value.length === 10 ? value + 'T12:00:00' : value).toLocaleDateString(locale()) : tr('ui.1')
@@ -12,7 +13,7 @@ export const regionName = (value: string) => ({ 'KZ-Karaganda': tr('ui.17'), 'KZ
 export function Badge({ children, tone = 'muted' }: { children: ReactNode; tone?: string }) { return <span className={`badge badge-${tone}`}><span className="badge-dot" />{children}</span> }
 export function PriceStatus({ price }: { price: Price }) { return <Badge tone={price.validation_status === 'VERIFIED_CURRENT' ? price.price_type === 'reference' ? 'cyan' : 'green' : price.validation_status === 'UNAVAILABLE' ? 'red' : 'amber'}>{price.validation_status === 'VERIFIED_CURRENT' && price.price_type === 'reference' ? tr('ui.26') : ({ VERIFIED_CURRENT: tr('ui.27'), VERIFIED_HISTORICAL: tr('ui.28'), STALE: tr('ui.29'), UNVERIFIED: tr('ui.30'), UNAVAILABLE: tr('ui.31') }[price.validation_status] ?? price.validation_status)}</Badge> }
 export function Panel({ children, className = '', title, subtitle, action }: { children: ReactNode; className?: string; title?: string; subtitle?: string; action?: ReactNode }) { return <section className={`panel ${className}`}>{title && <div className="panel-head"><div><h2>{title}</h2>{subtitle && <p>{subtitle}</p>}</div>{action}</div>}{children}</section> }
-export function PageTitle({ eyebrow, title, description, action }: { eyebrow: string; title: string; description: string; action?: ReactNode }) { return <div className="page-title"><div><span className="eyebrow">{eyebrow}</span><h1>{title}</h1><p>{description}</p></div>{action}</div> }
+export function PageTitle({ eyebrow, title, description, action }: { eyebrow: string; title: string; description: string; action?: ReactNode }) { return <div className="page-title v3-heading"><div><span className="eyebrow">{eyebrow}</span><Marked as="h1">{title}</Marked><p>{description}</p></div>{action}</div> }
 export function Empty({ title, children, icon = <CircleDashed size={28} /> }: { title: string; children?: ReactNode; icon?: ReactNode }) { return <div className="empty-state">{icon}<h3>{title}</h3>{children && <p>{children}</p>}</div> }
 export function Notice({ children, tone = 'amber' }: { children: ReactNode; tone?: string }) { return <div className={`notice notice-${tone}`}><AlertTriangle size={16} /><div>{children}</div></div> }
 export function LoadState({ loading, error, retry }: { loading: boolean; error?: string; retry?: () => void }) { return loading ? <div className="loading-state" role="status"><LoaderCircle size={22} className="spin" />{tr('ui.32')}</div> : error ? <div className="error-state" role="alert"><AlertTriangle size={20} /><span>{error}</span>{retry && <button className="btn btn-secondary" onClick={retry}>{tr('ui.33')}</button>}</div> : null }

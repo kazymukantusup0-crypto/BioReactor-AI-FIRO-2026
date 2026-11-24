@@ -326,7 +326,8 @@ main { font-size: var(--fs-md); }
    section titles on a lime marker (black text); mono labels and readings; pill buttons with ↗.
    Lime is only a background under black text or a shape — never text on a light card. */
 .v3-card { border-radius: var(--radius-card); padding: 28px; position: relative; min-width: 0; }
-.v3-card-paper { background: var(--paper); color: var(--ink);
+/* paper cards; in older metric grids every 1st and 4th card is paper too (2×2 checkerboard) */
+.v3-card-paper, .metric-grid > .metric:nth-child(4n+1), .metric-grid > .metric:nth-child(4n+4) { background: var(--paper); color: var(--ink);
   /* everything inside a paper card reads the «ink» set: older components adapt without their own rules */
   --text-strong: var(--ink); --text: var(--ink); --text-muted: var(--ink-muted); --text-faint: var(--ink-muted);
   --border: var(--paper-line); --border-strong: var(--ink-muted); --surface-1: var(--paper); --surface-2: var(--paper-2); --surface-3: var(--paper-line);
@@ -394,3 +395,16 @@ main { font-size: var(--fs-md); }
 @media (max-width: 760px) { .farm-cards { grid-template-columns: 1fr; } .farm-card .farm-card-value { font-size: 44px; } }
 /* lime is never a line or text colour on a paper card: icons there are ink */
 .v3-card-paper .farm-card-title svg, .v3-card-paper .rx-reading-title svg, .v3-card-paper .metric-icon svg { color: var(--ink); }
+
+/* the other pages (Рынок, Источники, Система, Демо): panels and metrics as v3 cards */
+.panel, .metric { border-radius: var(--radius-card); }
+.panel { padding: 26px 28px; }
+.panel-head h2 { font-family: var(--font-display); font-size: var(--fs-xl); font-weight: 700; letter-spacing: -.01em; }
+.metric-grid { gap: 20px; }
+.metric { padding: 24px 26px; }
+.metric-grid > .metric:nth-child(4n+1), .metric-grid > .metric:nth-child(4n+4) { border-color: var(--paper); }
+.metric-top { font-family: var(--font-mono); font-size: var(--fs-sm); }
+.metric-value { font-family: var(--font-mono); font-size: 40px; font-weight: 600; letter-spacing: -.03em; }
+.metric-grid > .metric:nth-child(4n+1) .metric-icon, .metric-grid > .metric:nth-child(4n+4) .metric-icon { color: var(--ink); }
+.page-title p { color: var(--text-muted); }
+.page-title.v3-heading h1.v3-section-title { font-size: 34px !important; letter-spacing: -.02em; margin: 0; }
