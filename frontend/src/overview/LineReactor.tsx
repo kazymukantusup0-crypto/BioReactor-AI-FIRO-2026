@@ -18,8 +18,8 @@ function LegendRow({ y, on, label, children }: { y: number; on: boolean; label: 
   return <g className={`lr-legend ${on ? 'is-on' : ''}`} transform={`translate(10 ${y})`}>
     <rect className="lr-legend-bg" x="0" y="-18" width="146" height="36" rx="18" />
     <g className="lr-legend-icon" transform="translate(10 -9)">{children}</g>
-    <text className="lr-legend-text" x="33" y={on ? -1 : 5}>{label}</text>
-    {on && <text className="lr-legend-on" x="33" y="13">{tr('v3.on')}</text>}
+    <text className="lr-legend-text" x="33" y={on ? -3 : 5}>{label}</text>
+    {on && <text className="lr-legend-on" x="33" y="14">{tr('v3.on')}</text>}
   </g>
 }
 
