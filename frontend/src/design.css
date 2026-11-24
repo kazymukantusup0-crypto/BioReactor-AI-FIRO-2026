@@ -369,3 +369,4 @@ main { font-size: var(--fs-md); }
 @keyframes v3-in { from { opacity: 0; transform: translateY(10px); } }
 @media (prefers-reduced-motion: reduce) { .v3-enter, .v3-enter-2 { animation-name: v3-fade !important; animation-duration: var(--dur) !important; } }
 @keyframes v3-fade { from { opacity: 0; } }
+.v3-pill-sm { min-height: 40px; padding: 0 16px; font-size: var(--fs-sm); gap: 8px; }

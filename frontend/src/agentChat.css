@@ -139,3 +139,46 @@
 .ac-card-wide{grid-column:1/-1}
 .ac-card-details{margin:6px 0 0;padding-left:16px;font-size:var(--fs-sm);line-height:1.45;color:var(--text-muted)}
 .ac-card-details li{margin:1px 0}
+
+/* ================= design-v3: AI Chat in the reference style ================= */
+.ac-page { gap: 28px; }
+.ac-topline h1.v3-section-title { font-size: 34px; margin: 10px 0 12px; }
+.ac-chat.v3-card, .ac-side.v3-card { padding: 22px; border-radius: var(--radius-card); }
+/* the thinking feed: a dark card, one row per step with a mono step number */
+.ac-feed { background: var(--surface-2); border: 1px solid var(--border); border-radius: 18px; padding: 8px 18px; }
+.ac-feed-list { gap: 0; }
+.ac-feed-item { display: grid; grid-template-columns: 34px 22px 1fr; gap: 10px; align-items: start; padding: 10px 0; border-bottom: 1px solid var(--border); }
+.ac-feed-item:last-child { border-bottom: 0; }
+.ac-feed-step { font-family: var(--font-mono); font-size: var(--fs-xs); color: var(--text-muted); border: 1px solid var(--border-strong); border-radius: 6px; text-align: center; padding: 1px 0; }
+.ac-feed-item > div > span:first-child { font-size: var(--fs-md); }
+.ac-feed-time { font-family: var(--font-mono); }
+.ac-feed-collapsed summary { font-family: var(--font-mono); font-size: var(--fs-sm); padding: 8px 0; }
+/* «думает»: a pulsing lime step marker */
+.ac-feed-pulse { height: 18px; border: 0; background: var(--accent); border-radius: 6px; animation: ac-think 1.2s var(--ease-in-out) infinite; }
+@keyframes ac-think { 50% { opacity: .35; transform: scale(.85); } }
+.ac-feed-item.is-thinking > div > span { color: var(--text-strong); }
+/* the agent's answer: a light paper card */
+.ac-answer.v3-card { padding: 24px 26px; display: flex; flex-direction: column; gap: 16px; }
+.ac-answer .ac-cards { gap: 12px; }
+.ac-answer .ac-card { background: var(--paper-2); border: 1px solid var(--paper-line); border-radius: 16px; padding: 16px 18px; }
+.ac-answer .ac-card-title { font-family: var(--font-mono); font-size: var(--fs-sm); color: var(--ink-muted); }
+.ac-answer .ac-card-value { font-family: var(--font-mono); font-size: 34px; font-weight: 600; color: var(--ink); letter-spacing: -.03em; }
+.ac-answer .ac-explanation { font-size: var(--fs-lg); line-height: 1.6; color: var(--ink); }
+.ac-answer .ac-details summary { font-family: var(--font-mono); font-size: var(--fs-sm); }
+.ac-answer a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+/* the user's question: a dark bubble */
+.ac-user p { background: var(--surface-3); border: 1px solid var(--border-strong); border-radius: 22px 22px 6px 22px; padding: 12px 18px; color: var(--text-strong); }
+.ac-bot-avatar { color: var(--text-strong); flex-shrink: 0; margin-top: 4px; }
+/* empty state and examples: pills */
+.ac-empty h2 { font-family: var(--font-display); font-size: var(--fs-2xl); font-weight: 800; letter-spacing: -.02em; }
+.ac-chip { font-family: var(--font-mono); font-size: var(--fs-sm); border-radius: var(--radius-pill); border: 1px solid var(--border-strong); background: transparent; padding: 10px 18px; }
+@media (hover: hover) and (pointer: fine) { .ac-chip:hover { border-color: var(--text-strong); } }
+/* composer: rounded field, lime round send button */
+.ac-composer textarea { border-radius: 22px; padding: 14px 18px; background: var(--surface-2); }
+.ac-composer .ac-btn { width: 48px; height: 48px; border-radius: 50%; }
+.ac-composer .ac-btn-primary { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.ac-composer .ac-btn-primary:disabled { background: transparent; border-style: dashed; color: var(--text-muted); }
+.ac-side h2 { font-family: var(--font-display); font-weight: 700; }
+.ac-side dt { font-family: var(--font-mono); font-size: var(--fs-sm); }
+.ac-scenario { border-radius: 18px; }
+@media (prefers-reduced-motion: reduce) { .ac-feed-pulse { animation: none; } }
