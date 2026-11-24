@@ -1,0 +1,240 @@
+/* «Реактор»: live sensors and relays (Arduino -> Raspberry Pi -> laptop). Tokens from design.css. */
+.rx-page { gap: var(--sp-5); }
+.rx-heading { display: flex; justify-content: space-between; gap: var(--sp-4); align-items: flex-start; flex-wrap: wrap; }
+.rx-heading-actions { display: flex; flex-wrap: wrap; gap: var(--sp-3); align-items: center; }
+.rx-source { display: inline-flex; align-items: center; gap: var(--sp-2); padding: var(--sp-2) var(--sp-4); border-radius: var(--radius-pill); font-size: var(--fs-md); font-weight: 700; letter-spacing: .02em; border: 2px solid; max-width: 100%; overflow-wrap: anywhere; }
+.rx-source svg { flex-shrink: 0; }
+.rx-source-sim { color: var(--warn); border-color: var(--warn); background: var(--warn-soft); }
+.rx-source-pi { color: var(--accent-strong); border-color: var(--accent); background: var(--accent-soft); }
+.rx-source-unknown { color: var(--text-muted); border-color: var(--border-strong); }
+.rx-source.rx-big { font-size: var(--fs-2xl); padding: var(--sp-3) var(--sp-5); }
+.rx-check { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-2); }
+.rx-check-result { font-size: var(--fs-sm); padding: var(--sp-1) var(--sp-3); border-radius: var(--radius); max-width: 46ch; overflow-wrap: anywhere; }
+.rx-check-result.is-ok { color: var(--accent-strong); background: var(--accent-soft); }
+.rx-check-result.is-bad { color: var(--danger); background: var(--danger-soft); }
+.rx-mono { font-family: var(--font-mono); font-size: var(--fs-xs); color: var(--text-faint); overflow-wrap: anywhere; }
+.rx-page .spin { animation: rx-spin .8s linear infinite; }
+@keyframes rx-spin { to { transform: rotate(360deg); } }
+
+.rx-nolink { display: flex; gap: var(--sp-4); align-items: center; padding: var(--sp-5); border: 2px solid var(--danger); border-radius: var(--radius-lg); background: var(--danger-soft); color: var(--danger); }
+.rx-nolink svg { flex-shrink: 0; }
+.rx-nolink h2 { font-size: var(--fs-2xl); font-weight: 800; letter-spacing: .02em; }
+.rx-nolink p { color: var(--text); font-size: var(--fs-md); line-height: 1.6; margin-top: var(--sp-1); }
+.rx-loading { color: var(--text-muted); }
+
+.rx-readings { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--sp-3); }
+.rx-reading { display: flex; flex-direction: column; gap: var(--sp-2); padding: var(--sp-4); border-top: 4px solid var(--border-strong); min-width: 0; }
+.rx-reading.rx-tone-ok { border-top-color: var(--accent); }
+.rx-reading.rx-tone-warn { border-top-color: var(--warn); }
+.rx-reading.rx-tone-danger { border-top-color: var(--danger); background: linear-gradient(180deg, var(--danger-soft), var(--surface-1) 60%); }
+.rx-reading-title { display: flex; gap: var(--sp-2); align-items: center; font-size: var(--fs-sm); color: var(--text-muted); font-weight: 600; }
+.rx-reading-title svg { flex-shrink: 0; }
+.rx-reading-value { font-size: var(--fs-3xl); color: var(--text-strong); font-variant-numeric: tabular-nums; line-height: 1.1; }
+.rx-reading-value small { font-size: var(--fs-md); color: var(--text-muted); font-weight: 500; margin-left: 6px; }
+.rx-reading-note { font-size: var(--fs-xs); color: var(--text-faint); line-height: 1.5; }
+.rx-reading-stale { font-size: var(--fs-xs); color: var(--warn); }
+.rx-level { display: inline-flex; align-self: flex-start; align-items: center; gap: 6px; font-size: var(--fs-sm); font-weight: 700; padding: 2px var(--sp-2); border-radius: var(--radius-pill); }
+.rx-level-ok { color: var(--ok); background: var(--ok-soft); }
+.rx-level-warn { color: var(--warn); background: var(--warn-soft); }
+.rx-level-danger { color: var(--danger); background: var(--danger-soft); }
+.rx-level-unknown { color: var(--offline); background: var(--offline-soft); outline: 1px dashed var(--border-strong); outline-offset: -1px; }
+
+.rx-section { display: flex; flex-direction: column; gap: var(--sp-3); }
+.rx-section h2 { font-size: var(--fs-xl); color: var(--text-strong); display: flex; align-items: center; gap: var(--sp-2); }
+.rx-section-head { display: flex; justify-content: space-between; align-items: center; gap: var(--sp-3); flex-wrap: wrap; }
+.rx-relays { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: var(--sp-3); }
+.rx-relay { display: flex; flex-direction: column; gap: var(--sp-3); padding: var(--sp-4); min-width: 0; }
+.rx-relay.is-on { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent) inset; }
+.rx-relay-head { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-2); }
+.rx-relay-head strong { font-size: var(--fs-lg); color: var(--text-strong); flex: 1; }
+.rx-relay-head svg { color: var(--text-muted); flex-shrink: 0; }
+.rx-relay.is-on .rx-relay-head svg { color: var(--accent); }
+.rx-relay-state { font-weight: 800; font-size: var(--fs-md); padding: 2px var(--sp-3); border-radius: var(--radius-pill); background: var(--surface-3); color: var(--text-muted); }
+.rx-relay-state.is-on { background: var(--accent); color: var(--on-accent); }
+.rx-relay-time { font-size: var(--fs-sm); color: var(--text-muted); font-variant-numeric: tabular-nums; }
+.rx-relay-blocked { font-size: var(--fs-sm); color: var(--warn); line-height: 1.5; }
+.rx-agent-note { display: flex; gap: var(--sp-2); align-items: flex-start; font-size: var(--fs-sm); color: var(--text-muted); }
+.rx-agent-note svg { color: var(--info); flex-shrink: 0; margin-top: 2px; }
+
+.rx-message { display: flex; align-items: center; gap: var(--sp-2); padding: var(--sp-3) var(--sp-4); border-radius: var(--radius); font-size: var(--fs-md); }
+.rx-message.is-ok { background: var(--accent-soft); color: var(--accent-strong); }
+.rx-message.is-bad { background: var(--danger-soft); color: var(--danger); }
+.rx-message span { flex: 1; }
+.rx-message-close { background: none; border: 0; color: inherit; font-size: var(--fs-xl); cursor: pointer; padding: 0 var(--sp-2); }
+
+.rx-alarms { display: flex; flex-direction: column; gap: var(--sp-2); }
+.rx-alarm-line { display: flex; gap: var(--sp-2); align-items: center; padding: var(--sp-3) var(--sp-4); border-radius: var(--radius); font-size: var(--fs-md); font-weight: 600; }
+.rx-alarm-line svg { flex-shrink: 0; }
+.rx-alarm-line.rx-tone-danger { background: var(--danger-soft); color: var(--danger); border: 1px solid var(--danger-line); }
+.rx-alarm-line.rx-tone-warn { background: var(--warn-soft); color: var(--warn); border: 1px solid var(--warn-line); }
+.rx-alarm-overlay { position: fixed; inset: 0; z-index: 1000; display: grid; place-items: center; padding: var(--sp-4); background: var(--alarm-bg); animation: rx-pulse 1.6s ease-in-out infinite; overflow-y: auto; }
+@keyframes rx-pulse { 50% { background: var(--alarm-bg-strong); } }
+@media (prefers-reduced-motion: reduce) { .rx-alarm-overlay { animation: none; } }
+.rx-alarm-box { max-width: 640px; width: 100%; text-align: center; display: flex; flex-direction: column; align-items: center; gap: var(--sp-3); color: var(--on-alarm); }
+.rx-alarm-box h2 { font-size: var(--fs-hero); font-weight: 900; letter-spacing: .04em; }
+.rx-alarm-box p { font-size: var(--fs-lg); line-height: 1.6; color: var(--on-alarm-muted); }
+.rx-alarm-lead { font-weight: 700; font-size: var(--fs-xl) !important; color: var(--on-alarm) !important; }
+.rx-alarm-actions { display: flex; gap: var(--sp-3); flex-wrap: wrap; justify-content: center; }
+.rx-alarm-reset { background: var(--on-alarm); color: var(--alarm-ink); border-color: var(--on-alarm); }
+.rx-alarm-strip { position: sticky; top: 0; z-index: 50; display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-2) var(--sp-4); padding: var(--sp-3) var(--sp-4); border-radius: var(--radius); background: var(--estop-shadow); color: var(--on-alarm); }
+.rx-alarm-strip p { color: var(--on-alarm-muted); font-size: var(--fs-sm); }
+.rx-alarm-strip .rx-alarm-actions { justify-content: flex-start; }
+
+.rx-segmented { display: inline-flex; border: 1px solid var(--border-strong); border-radius: var(--radius); overflow: hidden; }
+.rx-segmented button { background: transparent; border: 0; color: var(--text-muted); padding: var(--sp-2) var(--sp-4); font-size: var(--fs-sm); font-weight: 600; cursor: pointer; min-height: 38px; }
+.rx-segmented button[aria-pressed="true"] { background: var(--accent-soft); color: var(--accent-strong); }
+.rx-charts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sp-3); }
+.rx-chart { margin: 0; padding: var(--sp-3) var(--sp-3) var(--sp-2); min-width: 0; }
+.rx-chart figcaption { font-size: var(--fs-sm); font-weight: 600; color: var(--text); margin-bottom: var(--sp-2); }
+.rx-chart figcaption span { color: var(--text-faint); font-weight: 400; }
+.rx-chart-box { height: 180px; }
+.rx-chart-empty { height: 180px; display: grid; place-items: center; text-align: center; }
+.rx-table-wrap { overflow-x: auto; max-width: 100%; }
+.rx-table { width: 100%; border-collapse: collapse; font-size: var(--fs-sm); font-variant-numeric: tabular-nums; }
+.rx-table th, .rx-table td { text-align: left; padding: 6px var(--sp-2); border-bottom: 1px solid var(--border); white-space: nowrap; }
+.rx-table th { color: var(--text-muted); font-weight: 600; }
+.rx-table tr.rx-j-alarm td { color: var(--danger); }
+.rx-table tr.rx-j-safety td { color: var(--warn); }
+.rx-table-view { margin: 0; }
+
+.rx-sim { border-style: dashed; border-color: var(--warn); }
+.rx-sim-buttons { display: flex; flex-wrap: wrap; gap: var(--sp-2); }
+.rx-sim-buttons .is-active { border-color: var(--warn); background: var(--warn-soft); color: var(--warn); }
+.rx-chain-block { margin: 0; }
+.rx-chain-block .reactor-chain-list { grid-template-columns: repeat(7, minmax(0, 1fr)); margin-top: var(--sp-2); }
+.rx-chain-block > p { margin-top: var(--sp-3); }
+
+.rx-modal-backdrop { position: fixed; inset: 0; z-index: 1100; display: grid; place-items: center; padding: var(--sp-4); background: var(--scrim); }
+.rx-modal { max-width: 520px; width: 100%; display: flex; flex-direction: column; gap: var(--sp-3); box-shadow: var(--shadow-lg); }
+.rx-modal h2 { font-size: var(--fs-2xl); color: var(--text-strong); }
+.rx-modal p { font-size: var(--fs-md); line-height: 1.6; color: var(--text); }
+.rx-modal-actions { display: flex; justify-content: flex-end; gap: var(--sp-3); flex-wrap: wrap; }
+
+/* jury: big readings and relay states for a projector — the panel fits one 1280×720 screen */
+.rx-jury { gap: var(--sp-3); }
+.rx-jury .rx-heading p, .rx-jury .rx-heading .rx-source { display: none; }
+.rx-jury .rx-heading h1 { font-size: var(--fs-2xl); }
+.rx-reading-value small { white-space: nowrap; }
+.rx-jury-panel { display: flex; flex-direction: column; gap: var(--sp-3); align-items: flex-start; }
+.rx-jury-readings { width: 100%; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--sp-3); }
+.rx-reading-big .rx-reading-title { font-size: var(--fs-md); }
+.rx-reading-big .rx-reading-value { font-size: 44px; }
+.rx-reading-big .rx-reading-value small { display: block; margin: var(--sp-1) 0 0; font-size: var(--fs-md); }
+.rx-reading-big .rx-level { font-size: var(--fs-lg); }
+.rx-jury-relays { width: 100%; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--sp-3); }
+.rx-relay-big { padding: var(--sp-3) var(--sp-4); gap: var(--sp-2); }
+.rx-relay-big .rx-relay-head strong { font-size: var(--fs-xl); }
+.rx-relay-big .rx-relay-state { font-size: var(--fs-xl); padding: var(--sp-1) var(--sp-4); }
+.rx-relay-big .rx-relay-time { font-size: var(--fs-lg); }
+
+@media (max-width: 1250px) {
+  .rx-readings, .rx-jury-readings { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .rx-limit { grid-template-columns: 1fr auto; }
+  .rx-limit-edit { grid-column: 1 / -1; }
+  .rx-chain-block .reactor-chain-list { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+@media (max-width: 760px) {
+  .rx-readings, .rx-jury-readings { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .rx-relays, .rx-jury-relays, .rx-charts { grid-template-columns: 1fr; }
+  .rx-estop { width: 100%; }
+  .rx-chain-block .reactor-chain-list { grid-template-columns: 1fr 1fr; }
+  .rx-reading-value { font-size: var(--fs-2xl); }
+  .rx-reading-big .rx-reading-value { font-size: var(--fs-3xl); }
+  .rx-source.rx-big { font-size: var(--fs-lg); }
+  .rx-alarm-box h2 { font-size: var(--fs-3xl); }
+  .rx-nolink { flex-direction: column; align-items: flex-start; padding: var(--sp-4); }
+  .rx-nolink h2 { font-size: var(--fs-xl); }
+}
+@media (max-width: 420px) { .rx-readings, .rx-jury-readings { grid-template-columns: 1fr; } }
+
+/* firmware bioreactor-1.0: E-STOP, alarms, AUTO mode, auger, EEPROM thresholds, route to the Pi */
+.rx-route { display: inline-flex; align-items: center; gap: 4px; margin-left: var(--sp-2); padding: 1px var(--sp-2); border-radius: var(--radius-pill); background: var(--surface-2); color: var(--text); font-size: var(--fs-sm); font-weight: 600; }
+.rx-nolink.is-starting { border-color: var(--warn); background: var(--warn-soft); color: var(--warn); }
+.rx-estop-bar { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-3); }
+.rx-estop { display: inline-flex; align-items: center; gap: var(--sp-3); min-height: 56px; padding: var(--sp-2) var(--sp-5); border-radius: var(--radius-lg); border: 3px solid var(--estop-edge); background: var(--estop); color: var(--on-alarm); cursor: pointer; text-align: left; box-shadow: 0 4px 0 var(--estop-shadow); }
+.rx-estop strong { display: block; font-size: var(--fs-xl); font-weight: 900; letter-spacing: .04em; }
+.rx-estop small { display: block; font-size: var(--fs-sm); color: var(--on-estop-muted); }
+.rx-estop:hover:not(:disabled) { background: var(--estop-hover); }
+.rx-estop:active:not(:disabled) { transform: translateY(2px); box-shadow: 0 2px 0 var(--estop-shadow); }
+.rx-estop:focus-visible { outline: 3px solid var(--on-alarm); outline-offset: 3px; }
+/* No link: the E-STOP turns grey with a plug icon and says why (the Arduino's own BACK button still works). */
+.rx-estop:disabled { background: var(--surface-2); border: 3px dashed var(--border-strong); color: var(--text-muted); box-shadow: none; cursor: not-allowed; opacity: 1; }
+.rx-estop:disabled small { color: var(--text-muted); }
+.rx-offline-button svg { color: var(--text-faint); }
+.rx-relay-state.is-offline { background: transparent; border: 1px dashed var(--border-strong); color: var(--text-muted); font-weight: 600; }
+.rx-relay.is-offline .rx-relay-head svg { color: var(--text-faint); }
+.rx-estop-bar > p { flex: 1 1 260px; font-size: var(--fs-sm); }
+.rx-alarm-line strong { white-space: nowrap; }
+.rx-alarm-line span { font-weight: 500; }
+.rx-mode { display: flex; flex-direction: column; gap: var(--sp-3); padding: var(--sp-4); border-style: dashed; }
+.rx-mode.is-auto { border-color: var(--info); border-style: solid; }
+.rx-mode .rx-relay-head strong { font-size: var(--fs-lg); color: var(--text-strong); flex: 1; }
+.rx-relay-who { font-size: var(--fs-sm); color: var(--info); font-weight: 600; }
+.rx-limits { gap: var(--sp-2); }
+.rx-limit { display: grid; grid-template-columns: minmax(0, 1.4fr) 110px minmax(0, 1.2fr); gap: var(--sp-2) var(--sp-4); align-items: center; padding: var(--sp-2) 0; border-top: 1px solid var(--border); }
+.rx-limit label { display: flex; flex-direction: column; gap: 2px; }
+.rx-limit label strong { color: var(--text-strong); font-size: var(--fs-md); }
+.rx-limit label span { color: var(--text-faint); font-size: var(--fs-xs); line-height: 1.5; }
+.rx-limit-now { font-size: var(--fs-lg); font-weight: 700; color: var(--text-strong); font-variant-numeric: tabular-nums; }
+.rx-limit-edit { display: flex; align-items: center; gap: var(--sp-2); flex-wrap: wrap; }
+.rx-limit-edit input { width: 110px; min-height: 38px; padding: var(--sp-1) var(--sp-2); border-radius: var(--radius); border: 1px solid var(--border-strong); background: var(--surface-2); color: var(--text-strong); font-size: var(--fs-md); font-variant-numeric: tabular-nums; }
+.rx-limit-edit input[aria-invalid="true"] { border-color: var(--danger); }
+.rx-limit-unit { color: var(--text-muted); font-size: var(--fs-sm); min-width: 3ch; }
+
+/* design-v2 motion: a relay or mode change is shown by colour (200 ms), never by movement; readings update with no animation */
+.rx-relay, .rx-mode { transition: border-color var(--dur) var(--ease-out), box-shadow var(--dur) var(--ease-out); }
+.rx-relay-state { transition: background-color var(--dur) var(--ease-out), color var(--dur) var(--ease-out); }
+.rx-relay.is-on { border-color: var(--accent); }
+/* confirmation dialog: occasional, so it may animate — fade + scale from .96, 200 ms ease-out, from the centre */
+.rx-modal-backdrop { animation: ds-fade var(--dur) var(--ease-out); }
+.rx-modal { animation: rx-modal-in var(--dur) var(--ease-out); }
+@keyframes rx-modal-in { from { opacity: 0; transform: scale(.96); } }
+@keyframes ds-fade { from { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .rx-modal { animation-name: ds-fade; } .rx-modal, .rx-modal-backdrop { animation-duration: var(--dur) !important; } }
+
+/* ================= design-v3: «Реактор» in the reference style ================= */
+.rx-page { gap: 40px; }
+.rx-heading h1.v3-section-title { font-size: 34px; }
+.rx-heading > div:first-child { display: flex; flex-direction: column; gap: 16px; }
+.rx-heading p { max-width: 70ch; }
+/* readings and relays: 2×2 grids of paper and dark cards, lots of air */
+.rx-readings, .rx-jury-readings { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.rx-reading.v3-card { border-top: 0; padding: 26px 28px; gap: 12px; }
+.rx-reading-title { font-family: var(--font-mono); font-weight: 500; font-size: var(--fs-md); }
+.rx-reading-value { font-family: var(--font-mono); font-size: 60px; line-height: 1; letter-spacing: -.03em; font-weight: 600; }
+.rx-reading-value small { font-family: var(--font-mono); font-size: var(--fs-lg); }
+.rx-reading-note { font-size: var(--fs-sm); color: var(--text-muted); }
+.rx-reading.rx-tone-warn { box-shadow: inset 0 0 0 2px var(--warn); }
+.rx-reading.rx-tone-danger { box-shadow: inset 0 0 0 3px var(--danger); }
+.rx-relays, .rx-jury-relays { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.rx-relays > .rx-mode { grid-column: 1 / -1; }
+.rx-relay.v3-card, .rx-mode.v3-card { padding: 26px 28px; gap: 14px; }
+.rx-relay-head { gap: 14px; }
+.rx-relay-head strong { font-family: var(--font-display); font-size: var(--fs-xl); font-weight: 700; }
+.rx-relay-head svg { color: currentColor; }
+.rx-relay-state { font-family: var(--font-mono); font-weight: 600; letter-spacing: .02em; padding: 4px 14px; border: 1px solid var(--border-strong); background: transparent; color: var(--text-muted); }
+.rx-relay-state.is-on { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.rx-relay-time { font-family: var(--font-mono); }
+/* ON: a lime ring (and «ВКЛ» on the lime pill), not a colour wash */
+.rx-relay.is-on { border-color: var(--accent); box-shadow: inset 0 0 0 2px var(--accent); }
+.v3-card-paper.rx-relay.is-on { box-shadow: inset 0 0 0 3px var(--ink); }
+.rx-relay.is-on .rx-relay-head svg { color: currentColor; }
+.rx-mode.v3-card { border-style: solid; }
+.rx-mode.is-auto { box-shadow: inset 0 0 0 2px var(--info); }
+/* no link: every relay card turns grey and dashed, whatever its tone */
+.rx-relay.is-offline { background: var(--surface-2); color: var(--text-muted); border: 1.5px dashed var(--border-strong); box-shadow: none; --text-strong: var(--text-muted); }
+.rx-relay.is-offline .li .li-accent { fill: var(--border-strong); }
+/* pill buttons inside the cards; disabled = grey dashed, still readable */
+.rx-relay .v3-pill, .rx-mode .v3-pill { align-self: flex-start; }
+.v3-pill:disabled { background: transparent; border-style: dashed; border-color: var(--border-strong); color: var(--text-muted); cursor: not-allowed; }
+/* E-STOP stays red (never lime): a big red pill */
+.rx-estop { border-radius: var(--radius-card); font-family: var(--font-display); padding: 14px 28px; }
+.rx-estop strong { font-weight: 800; letter-spacing: .02em; }
+.rx-estop small { font-family: var(--font-mono); }
+/* charts, limits, journal, simulator: dark cards */
+.rx-chart.v3-card { padding: 20px 22px 14px; }
+.rx-chart figcaption { font-family: var(--font-mono); font-weight: 500; }
+.rx-limits.v3-card, .rx-sim.v3-card, [data-testid="rx-journal"].v3-card { padding: 28px; }
+.rx-limits h2, .rx-sim h2, [data-testid="rx-journal"] h2 { font-family: var(--font-display); font-size: var(--fs-xl); font-weight: 700; }
+.rx-segmented button { font-family: var(--font-mono); }
+@media (max-width: 760px) { .rx-readings, .rx-jury-readings, .rx-relays, .rx-jury-relays { grid-template-columns: 1fr; } .rx-reading-value { font-size: 48px; } }

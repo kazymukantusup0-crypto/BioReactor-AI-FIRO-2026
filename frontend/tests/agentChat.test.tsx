@@ -147,7 +147,7 @@ describe('AgentChat page', () => {
     fireEvent.click(screen.getByRole('button', { name: 'У меня 200 литров коровьего навоза, сколько будет газа?' }))
     expect(await screen.findByText('Из 200 литров получится около 4.9 м³ биогаза.')).toBeInTheDocument()
     expect(screen.getByText('2.9–5.2')).toBeInTheDocument()
-    expect(screen.getByText('❓ Какой объём у реактора?')).toBeInTheDocument()
+    expect(screen.getByText('Какой объём у реактора?')).toBeInTheDocument()  // design-v2: icon instead of the ❓ emoji
     expect(screen.getByText('Числа сверены с расчётами')).toBeInTheDocument()
     expect(screen.getByText('навоз КРС: 200 л, жидкий')).toBeInTheDocument()
     const chatCall = fetchMock.mock.calls.find(call => call[0] === '/api/agent/chat')!

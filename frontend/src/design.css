@@ -1,0 +1,410 @@
+/*
+ * BioReactor AI design system (v10, design-v3: near-black background, light «paper» cards and dark cards, one lime accent),
+ * Onest for words, IBM Plex Mono (tabular) for labels, buttons and readings. One set of colours, type sizes, spacing, radii,
+ * cards and buttons for every page; every colour on the dashboard comes from this block (tests/design-tokens.test.ts).
+ * Dark theme only, for a projector: text keeps at least 4.5:1 on every surface (scripts/check-contrast.mjs,
+ * tests/contrast-scan.mjs), surfaces step clearly so cards do not melt into the background.
+ */
+@import './fonts/fonts.css';
+
+:root {
+  color-scheme: dark;
+  /* surfaces, darkest -> lightest */
+  --bg: #0e0f0e;
+  --surface-1: #151615;
+  --surface-2: #1b1c1b;
+  --surface-3: #242524;
+  --border: #2a2b2a;
+  --border-strong: #454644;
+  /* text */
+  --text-strong: #f7f7f3;
+  --text: #e6e6e0;
+  --text-muted: #b6b7b0;
+  --text-faint: #9c9d96;
+  /* meaning */
+  --accent: #b8f23a;
+  --accent-strong: #ccf76c;
+  --accent-soft: #26300f;
+  --on-accent: #0e0f0e;
+  --warn: #ffb454;
+  --warn-soft: #3a2808;
+  --danger: #ff9384;
+  --danger-soft: #41201c;
+  --info: #8ec5ff;
+  /* derived: lines, tints and washes are mixed from the meaning colours, so a theme only sets the base values */
+  --accent-line: color-mix(in srgb, var(--accent) 55%, var(--border));
+  --accent-soft-strong: color-mix(in srgb, var(--accent) 28%, var(--surface-1));
+  --accent-tint: color-mix(in srgb, var(--accent) 12%, transparent);
+  --accent-wash: color-mix(in srgb, var(--accent) 7%, var(--surface-1));
+  --accent-ring: color-mix(in srgb, var(--accent) 25%, transparent);
+  --warn-line: color-mix(in srgb, var(--warn) 45%, var(--border));
+  --warn-tint: color-mix(in srgb, var(--warn) 12%, transparent);
+  --danger-line: color-mix(in srgb, var(--danger) 45%, var(--border));
+  --danger-tint: color-mix(in srgb, var(--danger) 12%, transparent);
+  --info-tint: color-mix(in srgb, var(--info) 12%, transparent);
+  /* status: норма / внимание / авария / нет связи. Never colour alone: every status also has an icon or a word. */
+  --ok: #86e09a;          /* норма: green, its own hue next to the lime accent */
+  --ok-soft: #1b3323;
+  /* внимание = --warn, авария = --danger */
+  --offline: var(--text-muted);  /* нет связи: grey + dashed outline + plug icon */
+  --offline-soft: var(--surface-2);
+  /* layers */
+  --overlay: color-mix(in srgb, var(--bg) 91%, transparent);
+  --scrim: color-mix(in srgb, var(--bg) 72%, transparent);
+  --bg-ring: color-mix(in srgb, var(--bg) 20%, transparent);
+  --shadow-lg: 0 20px 60px rgba(0, 0, 0, .5);
+  --figure-bg: #fff; /* scientific figures are drawn on white */
+  --chart-grid: var(--border);
+  --font-sans: "Onest", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", Consolas, ui-monospace, monospace;
+  /* E-STOP and the full-screen alarm keep their red in every theme */
+  --estop: #b3261e;
+  --estop-hover: #d0342a;
+  --estop-edge: #ffb3a8;
+  --estop-shadow: #6e1010;
+  --on-estop-muted: #ffe1dc;
+  --alarm-bg: rgba(60, 8, 8, .94);
+  --alarm-bg-strong: rgba(110, 14, 14, .96);
+  --on-alarm: #fff;
+  --on-alarm-muted: #ffe9e6;
+  --alarm-ink: #5a0d0d;
+  /* type scale: 8 sizes, the smallest is 13 px */
+  --fs-xs: 13px;
+  --fs-sm: 14px;
+  --fs-md: 15px;
+  --fs-lg: 17px;
+  --fs-xl: 20px;
+  --fs-2xl: 24px;
+  --fs-3xl: 30px;
+  --fs-hero: 40px;
+  /* spacing: 4-px grid */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 24px;
+  --sp-6: 32px;
+  --sp-7: 48px;
+  /* radii */
+  --radius-sm: 6px;
+  --radius: 10px;
+  --radius-lg: 14px;
+  --radius-pill: 999px;
+  /* motion (Emil Kowalski): short, ease-out, transform/opacity only */
+  --ease-out: cubic-bezier(.23, 1, .32, 1);
+  --ease-in-out: cubic-bezier(.77, 0, .175, 1);
+  --ease: var(--ease-out);
+  --dur-press: 150ms;
+  --dur: 200ms;
+  --dur-enter: 250ms;
+  /* design-v3 «paper» cards: light card #f2f2ee with black text; status inks that keep ≥ 4.5:1 on it */
+  --paper: #f2f2ee;
+  --paper-2: #e7e7e1;
+  --ink: #0e0f0e;
+  --ink-muted: #4a4b46;
+  --paper-line: #cfd0c8;
+  --ok-ink: #1f6a35;
+  --warn-ink: #8a5100;
+  --danger-ink: #b3261e;
+  --offline-ink: #5b5c57;
+  --radius-card: 22px;
+  --font-display: "Onest", "Segoe UI", system-ui, sans-serif;
+  --ok-paper: #d6eedb;
+  --warn-paper: #f6e2c2;
+  --danger-paper: #f8d5d1;
+  --accent-paper: #e3f6b8;
+}
+
+
+body { background: var(--bg); color: var(--text); font-family: var(--font-sans); }
+button, input, select, textarea { font-family: inherit; }
+code, kbd, pre, samp { font-family: var(--font-mono); }
+::selection { background: var(--accent); color: var(--on-accent); }
+html { scrollbar-color: var(--border-strong) var(--bg); }
+main { font-size: var(--fs-md); }
+.page-heading h1, .clean-intro h1, .ac-topline h1 { font-size: var(--fs-3xl); color: var(--text-strong); letter-spacing: -.01em; }
+.page-heading p, .clean-intro p { font-size: var(--fs-md); color: var(--text-muted); line-height: 1.6; max-width: 72ch; }
+
+/* ---------- components ---------- */
+.ds-card { background: var(--surface-1); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: var(--sp-5); }
+.ds-muted { color: var(--text-muted); font-size: var(--fs-sm); line-height: 1.6; }
+.ds-button { display: inline-flex; align-items: center; gap: var(--sp-2); min-height: 42px; padding: 0 var(--sp-4); border-radius: var(--radius);
+  border: 1px solid var(--border-strong); background: var(--surface-2); color: var(--text); font-size: var(--fs-md); font-weight: 600; cursor: pointer;
+  transition: background-color var(--dur-press) var(--ease-out), border-color var(--dur-press) var(--ease-out), color var(--dur-press) var(--ease-out), transform var(--dur-press) var(--ease-out); }
+@media (hover: hover) and (pointer: fine) { .ds-button:hover:not(:disabled) { background: var(--surface-3); border-color: var(--accent); } }
+.ds-button:active:not(:disabled) { transform: scale(.97); }
+/* Disabled = grey and flat, label still readable (≥ 4.5:1): never the accent fill, never washed out by opacity. */
+.ds-button:disabled, .ds-button-primary:disabled { background: var(--surface-2); border-color: var(--border); border-style: dashed;
+  color: var(--text-faint); cursor: not-allowed; box-shadow: none; opacity: 1; }
+.ds-button:focus-visible, .ds-icon-button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.ds-button-primary { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.ds-button-primary:hover:not(:disabled) { background: var(--accent-strong); border-color: var(--accent-strong); }
+.ds-icon-button { display: inline-grid; place-items: center; width: 42px; height: 42px; border-radius: var(--radius); border: 1px solid var(--border);
+  background: transparent; color: var(--text-muted); cursor: pointer; }
+.ds-icon-button:hover { color: var(--danger); border-color: var(--danger); }
+.ds-notice { border: 1px solid var(--border-strong); background: var(--surface-2); border-radius: var(--radius); padding: var(--sp-3) var(--sp-4);
+  color: var(--text); font-size: var(--fs-md); line-height: 1.6; margin: var(--sp-4) 0; }
+.ds-notice p { margin-top: var(--sp-1); }
+.ds-notice-warn { border-color: var(--warn-line); background: var(--warn-soft); color: var(--warn); }
+.ds-notice-warn p { color: var(--text); }
+.ds-notice-danger { border-color: var(--danger-line); background: var(--danger-soft); color: var(--danger); }
+.ds-collapse { border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--surface-1); padding: var(--sp-3) var(--sp-5); margin: var(--sp-4) 0; }
+.ds-collapse > summary { cursor: pointer; font-size: var(--fs-md); font-weight: 600; color: var(--text); padding: var(--sp-2) 0; }
+.ds-collapse[open] > summary { margin-bottom: var(--sp-3); }
+.ds-collapse ul { padding-left: 1.2em; display: flex; flex-direction: column; gap: var(--sp-2); font-size: var(--fs-sm); color: var(--text-muted); line-height: 1.6; }
+.ds-collapse h3 { font-size: var(--fs-md); margin: var(--sp-4) 0 var(--sp-2); color: var(--text); }
+.ds-collapse a { color: var(--accent); }
+.ds-skeleton { border-radius: var(--radius-lg); background: linear-gradient(90deg, var(--surface-1) 0%, var(--surface-2) 40%, var(--surface-1) 80%);
+  background-size: 200% 100%; animation: ds-shimmer 1.3s linear infinite; border: 1px solid var(--border); }
+@keyframes ds-shimmer { from { background-position: 100% 0 } to { background-position: -100% 0 } }
+@media (prefers-reduced-motion: reduce) { .ds-skeleton { animation: none; } }
+
+/* ---------- «Сырьё и смеси» ---------- */
+.farm { display: flex; flex-direction: column; gap: var(--sp-4); }
+.farm-rows { display: flex; flex-direction: column; gap: var(--sp-4); }
+.farm-row { display: grid; grid-template-columns: minmax(200px, 2fr) minmax(130px, 1fr) minmax(110px, 1fr) minmax(90px, .8fr) 42px; gap: var(--sp-3); align-items: end; }
+.farm-row:not(:has(.farm-state)) { grid-template-columns: minmax(200px, 3fr) minmax(110px, 1fr) minmax(90px, .8fr) 42px; }
+.farm-field { display: flex; flex-direction: column; gap: var(--sp-2); min-width: 0; }
+.farm-field > span { font-size: var(--fs-sm); color: var(--text-muted); font-weight: 600; }
+.farm-field select, .farm-field input { height: 46px; font-size: var(--fs-lg); padding: 0 var(--sp-3); border-radius: var(--radius); border: 1px solid var(--border-strong);
+  background: var(--bg); color: var(--text-strong); width: 100%; }
+.farm-field input[aria-invalid="true"] { border-color: var(--danger); }
+.farm-field select:focus, .farm-field input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+.farm-error { grid-column: 1 / -1; color: var(--danger); font-size: var(--fs-sm); margin-top: calc(-1 * var(--sp-1)); }
+.farm-actions { display: flex; flex-wrap: wrap; gap: var(--sp-3); align-items: center; margin-top: var(--sp-5); }
+.farm-status { font-size: var(--fs-sm); color: var(--text-muted); }
+.farm-results { display: flex; flex-direction: column; gap: var(--sp-4); transition: opacity var(--dur) var(--ease-out); }
+.farm-results.is-busy { opacity: .7; }
+.farm-cards { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--sp-4); }
+.farm-card { display: flex; flex-direction: column; gap: var(--sp-2); padding: var(--sp-5); }
+.farm-card-title { display: flex; align-items: center; gap: var(--sp-2); font-size: var(--fs-md); color: var(--text-muted); font-weight: 600; }
+.farm-card-title svg { color: var(--accent); }
+.farm-card-value { font-size: var(--fs-3xl); color: var(--text-strong); font-weight: 700; line-height: 1.15; font-variant-numeric: tabular-nums; }
+.farm-card-value small { font-size: var(--fs-lg); color: var(--text-muted); font-weight: 600; }
+.farm-card-range { font-size: var(--fs-md); color: var(--text); font-variant-numeric: tabular-nums; }
+.farm-card-note { font-size: var(--fs-sm); color: var(--text-muted); line-height: 1.5; }
+.farm-chart h2 { font-size: var(--fs-lg); color: var(--text-strong); margin-bottom: var(--sp-1); }
+.farm-bars { list-style: none; display: flex; flex-direction: column; gap: var(--sp-3); margin-top: var(--sp-4); padding: 0; }
+.farm-bars li { display: grid; grid-template-columns: minmax(160px, 1.3fr) minmax(0, 3fr) minmax(130px, auto); gap: var(--sp-3); align-items: center; }
+.farm-bar-label { font-size: var(--fs-sm); color: var(--text); }
+.farm-bar-track { height: 14px; background: var(--surface-3); border-radius: var(--radius-pill); overflow: hidden; }
+.farm-bar-fill { display: block; height: 100%; background: var(--accent); border-radius: var(--radius-pill); }
+.farm-bars li:hover .farm-bar-fill { background: var(--accent-strong); }
+.farm-bar-value { font-size: var(--fs-sm); color: var(--text); font-variant-numeric: tabular-nums; text-align: right; }
+.farm-same { display: flex; align-items: center; gap: var(--sp-2); }
+.farm-legacy .legacy-advisor { margin-top: var(--sp-3); }
+.legacy-mode { margin-bottom: var(--sp-4); width: max-content; }
+@media (max-width: 1100px) { .farm-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 760px) {
+  .farm-row, .farm-row:not(:has(.farm-state)) { grid-template-columns: 1fr 1fr; }
+  .farm-material { grid-column: 1 / -1; }
+  .farm-remove { justify-self: start; }
+  .farm-bars li { grid-template-columns: 1fr; gap: var(--sp-1); }
+  .farm-bar-value { text-align: left; }
+}
+@media (max-width: 480px) { .farm-cards { grid-template-columns: 1fr; } }
+
+/* ---------- shell ---------- */
+.brand small { letter-spacing: .06em; white-space: nowrap; }
+.sidebar-bottom .local-card p, .sidebar-bottom .local-card span { line-height: 1.5; }
+
+/* ---------- «Обзор» (first screen for the jury) ---------- */
+.home { display: flex; flex-direction: column; gap: var(--sp-6); padding-top: var(--sp-3); }
+.home-hero { display: flex; flex-direction: column; gap: var(--sp-4); max-width: 980px; }
+.home-eyebrow { font-size: var(--fs-md); font-weight: 600; color: var(--accent); }
+.home-hero h1 { font-size: var(--fs-hero); line-height: 1.12; color: var(--text-strong); letter-spacing: -.02em; text-wrap: balance; }
+.home-hero p { font-size: var(--fs-lg); line-height: 1.6; color: var(--text-muted); max-width: 70ch; }
+.home-buttons { display: flex; flex-wrap: wrap; gap: var(--sp-3); margin-top: var(--sp-2); }
+.home-button { min-height: 52px; font-size: var(--fs-lg); padding: 0 var(--sp-5); }
+/* instrument panel: one frame, gauges divided by rules */
+.home-status-strip { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); background: var(--surface-1); border: 1px solid var(--border); border-radius: var(--radius-lg); }
+.home-status-item { display: flex; flex-direction: column; gap: var(--sp-2); padding: var(--sp-4) var(--sp-5); min-width: 0; }
+.home-status-item + .home-status-item { border-left: 1px solid var(--border); }
+.home-status-label { display: inline-flex; align-items: center; gap: var(--sp-2); font-size: var(--fs-sm); color: var(--text-muted); }
+.home-status-label svg { color: var(--text-faint); flex-shrink: 0; }
+.home-status-value { display: flex; gap: var(--sp-2); align-items: flex-start; margin: 0; }
+.home-status-value strong { font-size: var(--fs-md); color: var(--text-strong); font-weight: 600; line-height: 1.45; }
+.home-status-tone { flex-shrink: 0; margin-top: 2px; color: var(--text-faint); }
+.home-status-item[data-tone="ok"] .home-status-tone { color: var(--ok); }
+.home-status-item[data-tone="warn"] .home-status-tone { color: var(--warn); }
+.home-status-item[data-tone="bad"] .home-status-tone { color: var(--danger); }
+/* skills: a 2×2 list separated by hairlines, no boxes */
+.home-skills { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--sp-7); }
+.home-skill { display: flex; gap: var(--sp-4); align-items: flex-start; padding: var(--sp-5) 0; border-top: 1px solid var(--border); }
+.home-skill > svg { color: var(--accent); flex-shrink: 0; margin-top: 3px; }
+.home-skill h2 { font-size: var(--fs-xl); color: var(--text-strong); margin-bottom: var(--sp-2); }
+.home-skill p { font-size: var(--fs-md); color: var(--text-muted); line-height: 1.6; max-width: 52ch; }
+.home-more { align-self: flex-start; display: inline-flex; gap: var(--sp-2); align-items: center; background: none; border: 0; color: var(--accent); font-size: var(--fs-md); font-weight: 600; cursor: pointer; padding: 0; }
+.home-more:hover { color: var(--accent-strong); }
+@media (max-width: 1100px) { .home-status-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); } .home-status-item:nth-child(3) { border-left: 0; } .home-status-item:nth-child(n+3) { border-top: 1px solid var(--border); } .home-hero h1 { font-size: var(--fs-3xl); } }
+@media (max-width: 560px) { .home-status-strip, .home-skills { grid-template-columns: 1fr; } .home-status-item + .home-status-item { border-left: 0; border-top: 1px solid var(--border); } }
+
+/* ---------- «Реактор» ---------- */
+.reactor-page { display: flex; flex-direction: column; gap: var(--sp-4); }
+.reactor-state { display: flex; gap: var(--sp-4); align-items: center; border-color: var(--warn-line); background: linear-gradient(90deg, var(--warn-soft), var(--surface-1) 70%); }
+.reactor-state-icon { display: grid; place-items: center; width: 60px; height: 60px; border-radius: var(--radius-lg); background: var(--surface-2); color: var(--warn); flex-shrink: 0; }
+.reactor-state h2 { font-size: var(--fs-2xl); color: var(--text-strong); }
+.reactor-state p { font-size: var(--fs-md); color: var(--text-muted); line-height: 1.6; margin-top: var(--sp-1); max-width: 80ch; }
+.reactor-readings { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sp-4); }
+.reactor-chain h2 { font-size: var(--fs-xl); color: var(--text-strong); }
+.reactor-chain-list { list-style: none; padding: 0; margin-top: var(--sp-5); display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: var(--sp-2); }
+.reactor-chain-list li { display: flex; align-items: center; gap: var(--sp-2); min-width: 0; }
+.reactor-chain-step { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: var(--sp-2); padding: var(--sp-4); border: 1px solid var(--border-strong); border-radius: var(--radius-lg); background: var(--surface-2); min-height: 150px; }
+.reactor-chain-step svg { color: var(--accent); }
+.reactor-chain-step strong { font-size: var(--fs-md); color: var(--text-strong); }
+.reactor-chain-step span { font-size: var(--fs-sm); color: var(--text-muted); line-height: 1.5; }
+.reactor-chain-arrow { color: var(--text-faint); flex-shrink: 0; }
+.reactor-dev-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--sp-5); margin: var(--sp-4) 0; }
+.ds-collapse > summary svg { vertical-align: -2px; }
+.ds-collapse h3 svg { vertical-align: -2px; }
+@media (max-width: 1100px) { .reactor-chain-list { grid-template-columns: repeat(3, minmax(0, 1fr)); } .reactor-chain-arrow { display: none; } }
+@media (max-width: 760px) { .reactor-readings, .reactor-dev-grid { grid-template-columns: 1fr; } .reactor-chain-list { grid-template-columns: 1fr 1fr; } }
+
+/* ---------- «Источники и данные» ---------- */
+.science-plain { margin-bottom: var(--sp-4); }
+.science-plain h2 { font-size: var(--fs-xl); color: var(--text-strong); margin-bottom: var(--sp-3); }
+.science-plain ul { padding-left: 1.2em; display: flex; flex-direction: column; gap: var(--sp-2); font-size: var(--fs-md); line-height: 1.6; color: var(--text); }
+.science-explain { font-size: var(--fs-md); line-height: 1.6; color: var(--text); background: var(--accent-wash); border: 1px solid var(--accent-line); border-radius: var(--radius); padding: var(--sp-3) var(--sp-4); margin: var(--sp-3) 0; }
+/* the saved matplotlib figures are white: shown inverted so they sit in the dark theme (hues kept by the rotation) */
+.scientific-figure { background: var(--surface-2) !important; border-radius: var(--radius); padding: var(--sp-3); }
+.scientific-figure img { filter: invert(.92) hue-rotate(180deg) contrast(.95); border-radius: var(--radius-sm); }
+
+/* ---------- «Рынок», «Состояние системы» ---------- */
+.market-codes { font-family: var(--font-mono); color: var(--text-faint) !important; overflow-wrap: anywhere; }
+.price-table td, .table-scroll td { overflow-wrap: anywhere; }
+.system-skeleton-card { height: 190px; }
+
+/* ---------- fixes after the type scale grew ---------- */
+/* Tailwind preflight makes svg a block: icons inside a line of text stay inline */
+.ds-collapse > summary svg, .ds-collapse h3 svg, .home-more svg { display: inline-block; }
+/* the sidebar fits 1366×768 and a 1280×720 projector: shorter gaps, the local card hides on short screens */
+.workspace-pill { margin: var(--sp-4) 7px var(--sp-4); }
+.nav-caption { margin-bottom: var(--sp-2); }
+.sidebar nav { gap: 2px; }
+.nav-item { padding: 10px 12px; }
+.nav-caption-system { margin-top: var(--sp-4); }
+.sidebar-bottom .local-card > span { display: block; }
+@media (max-height: 820px) { .sidebar-bottom .local-card p { display: none; } .sidebar-bottom { padding-top: var(--sp-3); } }
+/* status values: the dot stays at the first line when the text wraps */
+/* reactor readings: value, unit and note one under another */
+.reactor-reading { display: flex; flex-direction: column; gap: var(--sp-2); }
+/* phone: the header keeps the menu, the language and the view switch; status details are on «Обзор» */
+@media (max-width: 600px) {
+  .topbar-right > .badge, .topbar-region, .header-system-button, .user-mark { display: none; }
+  .topbar-right { gap: var(--sp-2); }
+  .breadcrumb > span:first-child, .breadcrumb > svg { display: none; }
+  .topbar .display-mode button { padding-left: var(--sp-2); padding-right: var(--sp-2); }
+  .home-hero h1 { font-size: var(--fs-2xl); }
+}
+.ac-controls { flex-wrap: wrap; }
+.ac-controls .badge { white-space: normal; max-width: 100%; }
+.table-scroll { overflow-x: auto; max-width: 100%; }
+@media (max-width: 600px) {
+  .topbar-right { min-width: 0; flex-wrap: wrap; justify-content: flex-end; }
+  .topbar .display-mode button, .language-switch [role="radio"] { font-size: var(--fs-xs); }
+}
+/* long Kazakh menu labels must not squeeze the icons */
+.nav-item > svg { flex-shrink: 0; }
+.nav-item > span:not(.nav-indicator):not(.nav-state) { min-width: 0; line-height: 1.3; white-space: normal; overflow-wrap: anywhere; }
+
+/* ---------- design-v2: readings in IBM Plex Mono, tabular figures (digits line up and do not jump while they update) */
+.rx-reading-value, .farm-card-value, .metric-value, .ac-card-value, .ac-advice-value, .advisor-metrics strong,
+.firo-value strong, .prediction-number, .ds-num { font-family: var(--font-mono); font-variant-numeric: tabular-nums slashed-zero; letter-spacing: -.02em; font-weight: 600; }
+.rx-relay-time, .rx-table td, .market-table td { font-variant-numeric: tabular-nums; }
+
+/* ---------- design-v2 motion (Emil Kowalski): 150–250 ms, ease-out, transform/opacity only.
+   Reduced motion = no movement, but state still changes: colours and fades stay, relay state switches at once. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: 1ms !important; animation-iteration-count: 1 !important;
+    transition-property: color, background-color, border-color, outline-color, opacity !important; }
+  .ds-button:active:not(:disabled) { transform: none; }
+  .rx-relay, .rx-relay *, .rx-mode, .rx-mode * { transition: none !important; }
+}
+
+/* ---------- design-v3 components (shared by every page) ----------
+   cards: «paper» (light, black text) and «dark» (1px line, white text), radius 22px, lots of air;
+   section titles on a lime marker (black text); mono labels and readings; pill buttons with ↗.
+   Lime is only a background under black text or a shape — never text on a light card. */
+.v3-card { border-radius: var(--radius-card); padding: 28px; position: relative; min-width: 0; }
+/* paper cards; in older metric grids every 1st and 4th card is paper too (2×2 checkerboard) */
+.v3-card-paper, .metric-grid > .metric:nth-child(4n+1), .metric-grid > .metric:nth-child(4n+4) { background: var(--paper); color: var(--ink);
+  /* everything inside a paper card reads the «ink» set: older components adapt without their own rules */
+  --text-strong: var(--ink); --text: var(--ink); --text-muted: var(--ink-muted); --text-faint: var(--ink-muted);
+  --border: var(--paper-line); --border-strong: var(--ink-muted); --surface-1: var(--paper); --surface-2: var(--paper-2); --surface-3: var(--paper-line);
+  --ok: var(--ok-ink); --warn: var(--warn-ink); --danger: var(--danger-ink); --offline: var(--offline-ink); --info: var(--ink);
+  --ok-soft: var(--ok-paper); --warn-soft: var(--warn-paper); --danger-soft: var(--danger-paper); --accent-soft: var(--accent-paper); --offline-soft: var(--paper-2); }
+.v3-card-dark { background: var(--surface-1); color: var(--text-strong); border: 1px solid var(--border); }
+.v3-section-title { margin: 0; font-family: var(--font-display); font-size: 26px; font-weight: 800; line-height: 1.1; letter-spacing: -.02em; }
+.v3-mark { background: var(--accent); color: var(--on-accent); padding: 2px 10px 4px; border-radius: 4px;
+  -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.v3-label { font-family: var(--font-mono); font-size: var(--fs-sm); letter-spacing: .01em; color: var(--text-muted); }
+.v3-card-paper .v3-label, .v3-card-paper .v3-detail { color: var(--ink-muted); }
+.v3-num { font-family: var(--font-mono); font-variant-numeric: tabular-nums slashed-zero; font-weight: 600; letter-spacing: -.03em; }
+.v3-detail { font-size: var(--fs-sm); color: var(--text-muted); line-height: 1.5; }
+.v3-pill { display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 0 20px 0 22px; border-radius: var(--radius-pill);
+  border: 1px solid var(--border-strong); background: transparent; color: var(--text-strong); font-family: var(--font-mono); font-size: var(--fs-md);
+  font-weight: 500; cursor: pointer; transition: background-color var(--dur-press) var(--ease-out), border-color var(--dur-press) var(--ease-out), transform var(--dur-press) var(--ease-out); }
+.v3-pill svg { transition: transform var(--dur) var(--ease-out); }
+@media (hover: hover) and (pointer: fine) {
+  .v3-pill:hover:not(:disabled) { border-color: var(--text-strong); }
+  .v3-pill:hover:not(:disabled) svg { transform: translate(2px, -2px); }
+  .v3-pill-lime:hover:not(:disabled) { background: var(--accent-strong); border-color: var(--accent-strong); }
+}
+.v3-pill:active:not(:disabled) { transform: scale(.97); }
+.v3-pill:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.v3-pill-lime { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.v3-pill-white { background: var(--paper); border-color: var(--paper); color: var(--ink); }
+.v3-card-paper .v3-pill { border-color: var(--ink); color: var(--ink); }
+/* statuses: an icon and a word; on paper the darker «ink» variants keep 4.5:1 */
+.v3-level { display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-mono); font-size: var(--fs-sm); font-weight: 600; white-space: nowrap; }
+.v3-level-ok { color: var(--ok); } .v3-level-warn { color: var(--warn); } .v3-level-danger { color: var(--danger); } .v3-level-unknown { color: var(--offline); }
+.v3-card-paper .v3-level-ok { color: var(--ok-ink); } .v3-card-paper .v3-level-warn { color: var(--warn-ink); }
+.v3-card-paper .v3-level-danger { color: var(--danger-ink); } .v3-card-paper .v3-level-unknown { color: var(--offline-ink); }
+/* line icons: outline in the text colour, lime accent shape */
+.li .li-accent { fill: var(--accent); }
+.li-sparkle { fill: var(--accent); flex-shrink: 0; }
+.v3-card-paper .li-sparkle { fill: var(--ink); }
+/* entrance: cards rise in once, 250 ms, a short cascade */
+.v3-enter { animation: v3-in var(--dur-enter) var(--ease-out) both; }
+.v3-enter-2 { animation: v3-in var(--dur-enter) var(--ease-out) 80ms both; }
+@keyframes v3-in { from { opacity: 0; transform: translateY(10px); } }
+@media (prefers-reduced-motion: reduce) { .v3-enter, .v3-enter-2 { animation-name: v3-fade !important; animation-duration: var(--dur) !important; } }
+@keyframes v3-fade { from { opacity: 0; } }
+.v3-pill-sm { min-height: 40px; padding: 0 16px; font-size: var(--fs-sm); gap: 8px; }
+
+/* design-v3: the older design-system pieces take the reference look everywhere */
+.ds-button { border-radius: var(--radius-pill); font-family: var(--font-mono); font-weight: 500; min-height: 44px; padding: 0 18px; background: transparent;
+  border: 1px solid var(--border-strong); color: var(--text-strong); }
+@media (hover: hover) and (pointer: fine) { .ds-button:hover:not(:disabled) { background: transparent; border-color: var(--text-strong); } }
+.ds-button-primary { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+@media (hover: hover) and (pointer: fine) { .ds-button-primary:hover:not(:disabled) { background: var(--accent-strong); border-color: var(--accent-strong); } }
+.ds-card { border-radius: var(--radius-card); padding: 28px; background: var(--surface-1); border: 1px solid var(--border); }
+.v3-heading > div { display: flex; flex-direction: column; gap: 16px; }
+.v3-heading h1.v3-section-title { font-size: 34px; }
+
+/* «Сырьё и смеси»: input on a dark card, results as a 2×2 grid of paper/dark cards */
+.farm-input.v3-card { padding: 28px; }
+.farm-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.farm-card.v3-card { padding: 26px 28px; display: flex; flex-direction: column; gap: 10px; }
+.farm-card-title { font-family: var(--font-mono); font-size: var(--fs-md); font-weight: 500; color: var(--text-muted); display: flex; gap: 10px; align-items: center; }
+.farm-card .farm-card-value { font-family: var(--font-mono); font-size: 56px; line-height: 1; letter-spacing: -.03em; font-weight: 600; }
+.farm-card-value small { font-size: var(--fs-lg); color: var(--text-muted); font-weight: 500; }
+.farm-card-range { font-family: var(--font-mono); font-size: var(--fs-sm); }
+.farm-chart.v3-card { padding: 24px 28px; }
+.ds-collapse { border-radius: var(--radius-card); }
+@media (max-width: 760px) { .farm-cards { grid-template-columns: 1fr; } .farm-card .farm-card-value { font-size: 44px; } }
+/* lime is never a line or text colour on a paper card: icons there are ink */
+.v3-card-paper .farm-card-title svg, .v3-card-paper .rx-reading-title svg, .v3-card-paper .metric-icon svg { color: var(--ink); }
+
+/* the other pages (Рынок, Источники, Система, Демо): panels and metrics as v3 cards */
+.panel, .metric { border-radius: var(--radius-card); }
+.panel { padding: 26px 28px; }
+.panel-head h2 { font-family: var(--font-display); font-size: var(--fs-xl); font-weight: 700; letter-spacing: -.01em; }
+.metric-grid { gap: 20px; }
+.metric { padding: 24px 26px; }
+.metric-grid > .metric:nth-child(4n+1), .metric-grid > .metric:nth-child(4n+4) { border-color: var(--paper); }
+.metric-top { font-family: var(--font-mono); font-size: var(--fs-sm); }
+.metric-value { font-family: var(--font-mono); font-size: 40px; font-weight: 600; letter-spacing: -.03em; }
+.metric-grid > .metric:nth-child(4n+1) .metric-icon, .metric-grid > .metric:nth-child(4n+4) .metric-icon { color: var(--ink); }
+.page-title p { color: var(--text-muted); }
+.page-title.v3-heading h1.v3-section-title { font-size: 34px !important; letter-spacing: -.02em; margin: 0; }

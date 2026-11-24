@@ -1,0 +1,25 @@
+[Unit]
+Description=BioReactor AI - Arduino <-> network bridge
+After=network.target
+# Restart forever: the bridge is part of the reactor's safety chain.
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+User=bioreactor
+Group=bioreactor
+SupplementaryGroups=dialout
+# The Pi has no battery clock: the laptop's dashboard sets the time (POST /time) when it is more than 5 s off.
+# That needs exactly one capability; the service keeps no other privilege.
+AmbientCapabilities=CAP_SYS_TIME
+CapabilityBoundingSet=CAP_SYS_TIME
+WorkingDirectory=/opt/bioreactor-pi
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/opt/bioreactor-pi/venv/bin/python -m bioreactor_pi --config /etc/bioreactor-pi/config.json @SIMULATE@
+Restart=always
+RestartSec=2
+# On stop the bridge sends all_off to the Arduino; give it time.
+TimeoutStopSec=10
+
+[Install]
+WantedBy=multi-user.target

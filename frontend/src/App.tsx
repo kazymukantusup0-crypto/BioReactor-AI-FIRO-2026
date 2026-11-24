@@ -58,7 +58,7 @@ function Workspace() {
         <nav aria-label={tr('app.13')}>{pages.filter(item => !['system', 'demo', 'chat-v9'].includes(item.id)).map(item => <button key={item.id} className={`nav-item ${page === item.id ? 'active' : ''}`} aria-current={page === item.id ? 'page' : undefined} onClick={() => navigate(item.id)}><item.icon size={19} /><span>{item.title}</span>{page === item.id && <span className="nav-indicator" />}</button>)}</nav>
         <span className="nav-caption nav-caption-system">{tr('app.14')}</span>
         <nav aria-label={tr('app.15')}><button className={`nav-item ${page === 'system' ? 'active' : ''}`} aria-current={page === 'system' ? 'page' : undefined} onClick={() => navigate('system')}><Server size={19} /><span>{tr('app.7')}</span><span className={`nav-state ${system ? 'connected' : ''}`} /></button></nav>
-        <div className="sidebar-bottom"><div className="local-card"><div><ShieldCheck size={15} /><strong>{tr('app.16')}</strong></div><p>{tr('app.17')}<br />{tr('app.18')}</p><span>v8.3 <span>•</span> {tr('app.prototype')}</span></div></div>
+        <div className="sidebar-bottom"><div className="local-card"><div><ShieldCheck size={15} /><strong>{tr('app.16')}</strong></div><p>{tr('app.17')}<br />{tr('app.18')}</p><span>v10 <span>•</span> {tr('app.prototype')}</span></div></div>
       </aside>
       {menuOpen && <button className="menu-scrim" aria-label={tr('app.19')} onClick={() => setMenuOpen(false)} />}
       <div className="main-shell">
@@ -68,7 +68,7 @@ function Workspace() {
           <div className="topbar-right"><LanguageSwitch /><DisplayModeToggle /><span className="topbar-region">{tr('app.22')}</span><Badge tone={system ? 'green' : health.error ? 'red' : 'muted'}>{system ? tr('app.23') : health.error ? tr('app.24') : tr('app.25')}</Badge><button className="header-system-button" aria-label={tr('app.26')} onClick={() => navigate('system')}><Radio size={17} /></button><div className="user-mark" title={tr('app.27')}>BR</div></div>
         </header>
         <main id="main-content" tabIndex={-1}>
-          <motion.div key={page} className="page-content" initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .18 }}>
+          <motion.div key={page} className="page-content" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .22, ease: [.2, .7, .2, 1] }}>
             {page === 'overview' && <Overview navigate={navigate} />}{page === 'chat' && <AgentChat />}{page === 'chat-v9' && <Chat />}{page === 'substrates' && <SubstrateAdvisor mixture />}{page === 'market' && <Market onChange={health.refresh} />}{page === 'reactor' && <Reactor />}{page === 'science' && <Science />}{page === 'system' && <System />}{page === 'demo' && <Demo navigate={navigate} />}
           </motion.div>
           <footer className="app-footer"><span>BioReactor AI <span className="footer-divider">/</span> {tr('app.28')}</span><span><ShieldCheck size={12} />{tr('app.29')}</span></footer>

@@ -621,6 +621,51 @@ def insulation_claims(text: str, results: list[dict]) -> list[str]:
     return problems
 
 
+# "Основной фактор — навоз КРС, который даёт около 6.5 м³ метана" (dashboard check, 18.11.2026): 6.5 m³ is the
+# methane of the WHOLE mixture (cattle manure is ≈31 % of it, ≈2 m³). The number is real, so the number check let it
+# pass while the claim was wrong — the same kind of mistake as «≈398 after insulation». A total of the mixture must
+# not stand next to the name of ONE component: contradiction -> regeneration -> template.
+MIXTURE_WORDS = re.compile(
+    r"всего|итого|в\s+сумме|вместе|смес\w*|сумм\w*|общ\w+|\btotal\w*|together|altogether|mixture|blend|combined|"
+    r"барлығы|жалпы|қоспа\w*|бірге|қосынды\w*|"
+    # «если добавить пищевые отходы, метана станет 6.5 м³» — the new total after adding one component is right
+    r"добав\w*|станет|вырас\w*|увелич\w*|\badd\w*|increas\w*|\brise\w*|\bgrow\w*|қос(?:са|сақ|саңыз|у|ылса)\w*|артады|өседі",
+    re.IGNORECASE)
+MIXTURE_NUMBER = re.compile(r"(?<![\w.,])\d+(?:[.,]\d+)?")
+
+
+def mixture_total_claims(text: str, results: list[dict]) -> list[str]:
+    """A total of the mixture (methane, biogas, energy, lab potential) given as the number of one component."""
+    from src.agent_v10 import substrates
+
+    data = next(((r.get("data") or {}) for r in results if r.get("name") == "estimate_methane" and r.get("ok")), {})
+    rows = data.get("components") or []
+    if len(rows) < 2:
+        return []
+
+    def spread(value) -> list[float]:
+        if isinstance(value, dict) and "low" in value:
+            return [abs(value["low"]), abs(value["high"]), abs(center([value["low"], value["high"]]))]
+        return [abs(float(value))] if isinstance(value, (int, float)) else []
+
+    totals = [v for key in ("methane_m3", "biogas_m3", "energy_kwh", "methane_potential_m3") for v in spread(data.get(key))]
+    own = {row["substrate"]: [v for key in ("methane_m3", "biogas_m3", "methane_potential_m3", "wet_mass_kg", "amount")
+                              for v in spread(row.get(key))] for row in rows}
+    for sentence in re.split(r"(?<=[.!?;])\s+", text or ""):
+        named = {substrates.resolve_material(m["material"]) for m in substrates.recognize(sentence)} & set(own)
+        if len(named) != 1 or MIXTURE_WORDS.search(sentence):
+            continue
+        component = next(iter(named))
+        for match in MIXTURE_NUMBER.finditer(sentence):
+            number = float(match.group(0).replace(",", "."))
+            near = lambda value: abs(number - value) <= max(0.05 * value, 0.05)  # noqa: E731 — rounding to 2 digits
+            if any(near(v) for v in totals) and not any(near(v) for v in own[component]):
+                return [f"{match.group(0)} is the total of the WHOLE mixture, not of "
+                        f"{substrates.material_name(component, 'en')} alone. Say it is the total of the mixture, or give "
+                        "this component's own number from its row of the tool result."]
+    return []
+
+
 REASON_WORDS = re.compile(
     r"связан\w*|потому|из-за|так\s+как|поскольку|причин\w*|объясня\w*|органическ\w*|разбав\w*|сух\w+\s+веществ\w*|вод[аыо]\w*|"
     r"\bbecause\b|\bdue\s+to\b|\bsince\b|\breason\w*|organic|dilut\w*|dry\s+matter|water|"

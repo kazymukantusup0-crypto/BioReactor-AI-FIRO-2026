@@ -4,10 +4,12 @@ import {firoApi,type DemoRun} from '../firoDemo'
 import {useQuery} from '../hooks'
 import {Badge,Panel,Notice,LoadState,JsonDetails,number} from '../ui'
 import { localized, tr } from '../i18n'
+import { useDisplayMode } from '../DisplayMode'
 
 const KEY='bioreactor-firo-mvp-run'
 const provenance:Record<string,string>=localized(() => ({CALCULATED:tr('firoDemoMvp.1'),MEASURED:tr('firoDemoMvp.2'),LITERATURE_ESTIMATE:tr('firoDemoMvp.3'),INSUFFICIENT_EVIDENCE:tr('firoDemoMvp.4'),USER_INPUT:tr('firoDemoMvp.5'),LITERATURE:tr('firoDemoMvp.6'),UNAVAILABLE:tr('firoDemoMvp.7')}))
 export default function FiroDemoMvp(){
+  const scientific=useDisplayMode().mode==='scientific'  // the start command of the experimental mode: developers only
   const catalog=useQuery('firo-mvp',firoApi.scenarios)
   const [run,setRun]=useState<DemoRun|null>(null),[error,setError]=useState(''),[busy,setBusy]=useState(false),[model,setModel]=useState(false)
   const active=useRef(''),mounted=useRef(true)
@@ -31,7 +33,7 @@ export default function FiroDemoMvp(){
   const cancel=async()=>{if(!run)return;try{const next=await firoApi.cancel(run.id);if(mounted.current&&active.current===next.id)setRun(next)}catch(e){setError((e as Error).message)}}
   return <div className="firo-mvp" data-testid="firo-mvp">
     <LoadState loading={catalog.loading} error={catalog.error} retry={catalog.refresh}/>
-    {catalog.data&&!catalog.data.enabled?<Notice>{tr('firoDemoMvp.9')} <code>python -X utf8 main.py dashboard --firo-demo --port 8770</code></Notice>:null}
+    {catalog.data&&!catalog.data.enabled&&scientific?<Notice>{tr('firoDemoMvp.9')} <code>python -X utf8 main.py dashboard --firo-demo --port 8770</code></Notice>:null}
     {catalog.data?.enabled&&<>
       <Panel title="FIRO Demo MVP" subtitle={tr('firoDemoMvp.10')} action={<Badge tone="amber">{tr('firoDemoMvp.11')}</Badge>}>
         <label className="firo-model-toggle"><input type="checkbox" checked={model} disabled={busy} onChange={e=>setModel(e.target.checked)}/> {tr('firoDemoMvp.12')}</label>

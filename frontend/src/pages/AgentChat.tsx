@@ -2,13 +2,16 @@
 // Farmer view: answer, number cards, one question. Jury view: every step with
 // tool arguments, raw results, LLM token counts and timings.
 import { useCallback, useEffect, useRef, useState, type FormEvent } from 'react'
-import { ArrowUp, Bot, BookOpen, Check, CircleStop, Cpu, Gavel, LoaderCircle, MessageSquarePlus, Pencil, ShieldAlert, ShieldCheck, User } from 'lucide-react'
+import { AlertTriangle, ArrowUp, BarChart3, Bot, BookOpen, Brain, Check, CheckCircle2, CircleHelp, CircleStop, ClipboardList, Cpu, FileText, Gavel, Info, LoaderCircle, MessageSquare, MessageSquarePlus, Pencil, ShieldAlert, ShieldCheck, Timer, User, Wrench, XCircle, type LucideIcon } from 'lucide-react'
 import {
   agentApi, componentText, INSULATION_LABELS, MODE_LABELS, newConversationId, pluralRu, speedWarning, streamAgentChat, TOOL_LABELS,
   type AgentAnswer, type AgentEvent, type AgentStatus, type DemoReactor, type Facts, type NumberCard, type Verdict,
 } from '../agentV10'
 import { DEMO_SCENARIOS, type DemoScenario } from '../demoScenarios'
 import '../agentChat.css'
+import { IconChip } from '../overview/LineIcons'
+import { Marked } from '../v3ui'
+import { CHAT_PREFILL_KEY } from '../substratesApi'
 import { localized, materialName, tr } from '../i18n'
 
 const STORAGE_ID = 'bioreactor-agent-v10-conversation'
@@ -41,52 +44,55 @@ export function applyEvent(turn: Turn, event: AgentEvent): Turn {
 }
 
 // ---------- thinking feed ----------
-interface FeedLine { icon: string; title: string; detail?: unknown; tone?: 'ok' | 'warn' | 'bad' }
+interface FeedLine { icon: LucideIcon; title: string; detail?: unknown; tone?: 'ok' | 'warn' | 'bad' }
 function json(value: unknown) { return JSON.stringify(value, null, 1).replace(/\n\s*/g, ' ') }
 
 export function feedLine(event: AgentEvent): FeedLine | null {
   switch (event.type) {
-    case 'understood': return { icon: '🧠', title: tr('agentChat.8', { v0: ({ ru: tr('agentChat.97'), kk: tr('agentChat.98'), en: tr('agentChat.99') } as Record<string, string>)[String(event.language)] ?? event.language }) }
+    case 'understood': return { icon: Brain, title: tr('agentChat.8', { v0: ({ ru: tr('agentChat.97'), kk: tr('agentChat.98'), en: tr('agentChat.99') } as Record<string, string>)[String(event.language)] ?? event.language }) }
     case 'facts': {
       const updates = (event.updates ?? {}) as Record<string, unknown>
       const keys = Object.keys(updates)
-      return { icon: '📋', title: keys.length ? tr('agentChat.9', { v0: keys.join(', ') }) : tr('agentChat.10'), detail: updates }
+      return { icon: ClipboardList, title: keys.length ? tr('agentChat.9', { v0: keys.join(', ') }) : tr('agentChat.10'), detail: updates }
     }
     case 'llm_step': {
       const decision = event.decision === 'tool_calls' ? tr('agentChat.11') : tr('agentChat.12')
-      return { icon: '🤖', title: tr('agentChat.13', { v0: event.step, v1: decision }), detail: { [tr('agentChat.102')]: event.prompt_tokens, [tr('agentChat.103')]: event.output_tokens, [tr('agentChat.104')]: seconds(event.duration_ms as number), [tr('agentChat.105')]: event.tokens_per_s } }
+      return { icon: Bot, title: tr('agentChat.13', { v0: event.step, v1: decision }), detail: { [tr('agentChat.102')]: event.prompt_tokens, [tr('agentChat.103')]: event.output_tokens, [tr('agentChat.104')]: seconds(event.duration_ms as number), [tr('agentChat.105')]: event.tokens_per_s } }
     }
-    case 'tool_call': return { icon: '🔧', title: tr('agentChat.14', { v0: TOOL_LABELS[String(event.name)] ?? event.name, v1: event.by === 'llm' ? tr('agentChat.100') : 'Python' }), detail: { tool: event.name, args: event.args } }
-    case 'tool_result': return { icon: '📊', title: tr('agentChat.15', { v0: TOOL_LABELS[String(event.name)] ?? event.name, v1: event.ok ? '' : tr('agentChat.101'), v2: event.duration_ms }), detail: event.summary, tone: event.ok ? 'ok' : 'bad' }
+    case 'tool_call': return { icon: Wrench, title: tr('agentChat.14', { v0: TOOL_LABELS[String(event.name)] ?? event.name, v1: event.by === 'llm' ? tr('agentChat.100') : 'Python' }), detail: { tool: event.name, args: event.args } }
+    case 'tool_result': return { icon: BarChart3, title: tr('agentChat.15', { v0: TOOL_LABELS[String(event.name)] ?? event.name, v1: event.ok ? '' : tr('agentChat.101'), v2: event.duration_ms }), detail: event.summary, tone: event.ok ? 'ok' : 'bad' }
     case 'verification': {
       const unknown = (event.unknown_numbers ?? []) as number[]
       const against = (event.contradicts ?? []) as string[]
       const next = event.attempt === 1 ? tr('agentChat.16') : tr('agentChat.17')
-      if (event.ok) return { icon: '✅', title: tr('agentChat.18'), tone: 'ok' }
-      if (against.length) return { icon: '⚠️', title: tr('agentChat.19', { v0: next }), detail: { [tr('agentChat.106')]: against, [tr('agentChat.107')]: unknown }, tone: 'warn' }
-      return { icon: '⚠️', title: tr('agentChat.20', { v0: unknown.join(', '), v1: next }), tone: 'warn' }
+      if (event.ok) return { icon: CheckCircle2, title: tr('agentChat.18'), tone: 'ok' }
+      if (against.length) return { icon: AlertTriangle, title: tr('agentChat.19', { v0: next }), detail: { [tr('agentChat.106')]: against, [tr('agentChat.107')]: unknown }, tone: 'warn' }
+      return { icon: AlertTriangle, title: tr('agentChat.20', { v0: unknown.join(', '), v1: next }), tone: 'warn' }
     }
     // Notes come from Python in Russian; the text in the interface language is taken by the note code.
-    case 'note': return { icon: 'ℹ️', title: tr(`note.${String(event.code)}`) === `note.${String(event.code)}` ? String(event.message ?? event.code) : tr(`note.${String(event.code)}`), tone: 'warn' }
-    case 'token_reset': return event.reason === 'template' ? { icon: '📝', title: tr('agentChat.21'), tone: 'warn' } : null
-    case 'answer': return { icon: '💬', title: tr('agentChat.22', { v0: MODE_LABELS[String(event.mode)] ?? event.mode }) }
-    case 'done': return { icon: '⏱️', title: tr('agentChat.23', { v0: seconds(event.total_ms as number) }) }
-    case 'error': return { icon: '❌', title: String(event.message), tone: 'bad' }
+    case 'note': return { icon: Info, title: tr(`note.${String(event.code)}`) === `note.${String(event.code)}` ? String(event.message ?? event.code) : tr(`note.${String(event.code)}`), tone: 'warn' }
+    case 'token_reset': return event.reason === 'template' ? { icon: FileText, title: tr('agentChat.21'), tone: 'warn' } : null
+    case 'answer': return { icon: MessageSquare, title: tr('agentChat.22', { v0: MODE_LABELS[String(event.mode)] ?? event.mode }) }
+    case 'done': return { icon: Timer, title: tr('agentChat.23', { v0: seconds(event.total_ms as number) }) }
+    case 'error': return { icon: XCircle, title: String(event.message), tone: 'bad' }
     default: return null
   }
 }
+
+const FeedIcon = ({ icon: Icon }: { icon: LucideIcon }) => <Icon size={16} />
 
 function ThinkingFeed({ turn, jury }: { turn: Turn; jury: boolean }) {
   const lines = turn.events.map(event => ({ event, line: feedLine(event) })).filter(item => item.line)
   if (!lines.length && !turn.running) return null
   const list = <ol className="ac-feed-list">
     {lines.map(({ event, line }, index) => <li key={index} className={`ac-feed-item ${line!.tone ?? ''}`}>
-      <span className="ac-feed-icon" aria-hidden>{line!.icon}</span>
+      <span className="ac-feed-step" aria-hidden>{String(index + 1).padStart(2, '0')}</span>
+      <span className="ac-feed-icon" aria-hidden><FeedIcon icon={line!.icon} /></span>
       <div><span>{line!.title}</span>{jury && <span className="ac-feed-time">{seconds(event.t_ms)}</span>}
         {jury && line!.detail != null && Object.keys(line!.detail as object).length > 0 && <code className="ac-feed-detail">{json(line!.detail)}</code>}
       </div>
     </li>)}
-    {turn.running && <li className="ac-feed-item"><LoaderCircle size={14} className="spin" /><div><span>{tr('agentChat.24')}</span></div></li>}
+    {turn.running && <li className="ac-feed-item is-thinking"><span className="ac-feed-step ac-feed-pulse" aria-hidden /><span className="ac-feed-icon" aria-hidden><LoaderCircle size={16} className="spin" /></span><div><span>{tr('agentChat.24')}</span></div></li>}
   </ol>
   if (jury || turn.running) return <div className="ac-feed" aria-label={tr('agentChat.25')}>{list}</div>
   const calls = lines.filter(l => l.event.type === 'tool_call').length
@@ -121,7 +127,7 @@ function Verdicts({ items }: { items: Verdict[] }) {
 }
 
 export function AnswerView({ answer, jury }: { answer: AgentAnswer; jury: boolean }) {
-  return <div className="ac-answer">
+  return <div className="ac-answer v3-card v3-card-paper">
     {answer.verdicts && answer.verdicts.length > 0 && <Verdicts items={answer.verdicts} />}
     {answer.numbers.length > 0 && <div className="ac-cards">
       {answer.numbers.map(card => <div key={card.title} className={`ac-card ${card.details?.length ? 'ac-card-wide' : ''}`}>
@@ -134,7 +140,7 @@ export function AnswerView({ answer, jury }: { answer: AgentAnswer; jury: boolea
       </div>)}
     </div>}
     {answer.explanation && <p className="ac-explanation">{answer.explanation}</p>}
-    {answer.question && <p className="ac-question">❓ {answer.question}</p>}
+    {answer.question && <p className="ac-question"><CircleHelp size={18} aria-hidden="true" /><span>{answer.question}</span></p>}
     <div className="ac-answer-meta">
       {answer.verified
         ? <span className="badge badge-green"><ShieldCheck size={11} />{tr('agentChat.32')}</span>
@@ -193,7 +199,7 @@ function FactsPanel({ facts, demo, conversationId, onSaved, disabled }: { facts:
   const value = (known: unknown, unit: string, fallback?: string) => known != null && known !== ''
     ? <strong>{String(known)} {unit}</strong>
     : <span className="ac-default">{fallback ? tr('agentChat.50', { v0: fallback }) : tr('agentChat.51')}</span>
-  return <aside className="ac-side panel" aria-label={tr('agentChat.52')}>
+  return <aside className="ac-side panel v3-card v3-card-dark" aria-label={tr('agentChat.52')}>
     <div className="ac-side-head"><h2>{tr('agentChat.52')}</h2>
       {!editing && <button className="ac-link" onClick={start} disabled={disabled}><Pencil size={12} />{tr('agentChat.53')}</button>}
     </div>
@@ -236,10 +242,14 @@ function JuryPipeline() {
 
 // ---------- page ----------
 export default function AgentChat() {
-  const [conversationId, setConversationId] = useState(() => read(STORAGE_ID) ?? newConversationId())
+  // «Спросить ИИ об этой смеси» on the substrates page: the question waits in the box, in a NEW dialog
+  // (an old batch in the chat memory must not mix with the page's mixture).
+  const [prefill] = useState(() => { try { return sessionStorage.getItem(CHAT_PREFILL_KEY) } catch { return null } })
+  useEffect(() => { try { sessionStorage.removeItem(CHAT_PREFILL_KEY) } catch { /* optional */ } }, [])
+  const [conversationId, setConversationId] = useState(() => prefill ? newConversationId() : read(STORAGE_ID) ?? newConversationId())
   const [turns, setTurns] = useState<Turn[]>([])
   const [facts, setFacts] = useState<Facts | null>(null)
-  const [input, setInput] = useState('')
+  const [input, setInput] = useState(prefill ?? '')
   const [jury, setJury] = useState(() => read(STORAGE_JURY) === '1')
   const [useLlm, setUseLlm] = useState(true)
   const [status, setStatus] = useState<AgentStatus | null>(null)
@@ -275,7 +285,8 @@ export default function AgentChat() {
     }).catch(() => { /* server offline: start empty */ })
     return () => { cancelled = true }
   }, [conversationId])
-  useEffect(() => { bottom.current?.scrollIntoView?.({ behavior: 'smooth', block: 'end' }) }, [turns])
+  // Follow a new answer; an empty or restored dialog keeps the page at the top (on a projector the header stayed hidden).
+  useEffect(() => { if (turns.some(turn => !turn.restored)) bottom.current?.scrollIntoView?.({ behavior: 'smooth', block: 'end' }) }, [turns])
 
   const send = async (text: string, options: { conversation?: string; llm?: boolean; force?: boolean } = {}) => {
     const message = text.trim()
@@ -318,15 +329,15 @@ export default function AgentChat() {
   const slow = speedWarning(status)
   return <div className="ac-page">
     <div className="ac-topline">
-      <div><span className="eyebrow">{tr('agentChat.79')}</span><h1>{tr('app.chat')}</h1>
+      <div><span className="v3-label">{tr('agentChat.79')}</span><Marked as="h1">{tr('app.chat')}</Marked>
         <p>{tr('agentChat.80')}</p></div>
       <div className="ac-controls">
         <span className={`badge badge-${status?.llm_available ? slow ? 'amber' : 'green' : status ? 'amber' : 'muted'}`} title={slow ?? undefined}><Cpu size={11} />
           {status ? status.llm_available ? `${status.model}${gpu?.loaded ? ` · GPU ${gpu.gpu_percent}%` : ''}` : tr('agentChat.81') : tr('agentChat.82')}{slow ? ' · ⚠' : ''}</span>
         {status?.version && <span className={`badge badge-${status.version.stale ? 'red' : 'muted'}`} data-testid="server-version" title={tr('version.title', { v0: status.version.fingerprint, v1: status.version.disk_commit })}>{status.version.stale ? tr('version.stale', { v0: status.version.commit, v1: status.version.disk_commit }) : tr('version.current', { v0: status.version.commit, v1: (status.version.started_at ?? '').slice(11, 16) })}</span>}
         <label className="ac-switch"><input type="checkbox" checked={!useLlm} onChange={e => setUseLlm(!e.target.checked)} />{tr('agentChat.83')}</label>
-        <button className={`ac-btn ${jury ? "ac-btn-primary" : ""}`} aria-pressed={jury} onClick={() => setJury(!jury)}><Gavel size={14} />{tr('agentChat.84')}</button>
-        <button className="ac-btn" onClick={newDialog}><MessageSquarePlus size={14} />{tr('agentChat.85')}</button>
+        <button className={`v3-pill v3-pill-sm ${jury ? 'v3-pill-lime' : ''}`} aria-pressed={jury} onClick={() => setJury(!jury)}><Gavel size={14} />{tr('agentChat.84')}</button>
+        <button className="v3-pill v3-pill-sm" onClick={newDialog}><MessageSquarePlus size={14} />{tr('agentChat.85')}</button>
         <a className="ac-link" href="#/chat-v9" title={tr('agentChat.86')}>{tr('agentChat.87')}</a>
       </div>
     </div>
@@ -338,16 +349,16 @@ export default function AgentChat() {
       </button>)}
     </div>}
     <div className="ac-layout">
-      <section className="ac-chat panel" aria-label={tr('agentChat.89')}>
+      <section className="ac-chat panel v3-card v3-card-dark" aria-label={tr('agentChat.89')}>
         <div className="ac-messages" aria-live="polite">
           {!turns.length && <div className="ac-empty">
-            <Bot size={30} /><h2>{tr('agentChat.90')}</h2>
+            <IconChip size={44} /><h2>{tr('agentChat.90')}</h2>
             <p>{tr('agentChat.91')}</p>
             <div className="ac-examples">{EXAMPLES.map(example => <button key={example} className="ac-chip" onClick={() => void send(example)}>{example}</button>)}</div>
           </div>}
           {turns.map(turn => <article key={turn.id} className="ac-turn">
             <div className="ac-msg ac-user"><User size={15} /><p>{turn.user}</p></div>
-            <div className="ac-msg ac-bot"><Bot size={15} /><div className="ac-bot-body">
+            <div className="ac-msg ac-bot"><IconChip size={22} className="ac-bot-avatar" /><div className="ac-bot-body">
               {!turn.restored && <ThinkingFeed turn={turn} jury={jury} />}
               {turn.live && !turn.answer && <p className="ac-explanation ac-live">{turn.live}<span className="ac-caret" /></p>}
               {turn.answer && <AnswerView answer={turn.answer} jury={jury} />}

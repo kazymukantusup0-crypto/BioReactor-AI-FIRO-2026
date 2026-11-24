@@ -17,17 +17,18 @@ export const TRANSLATED_FILES = [
   'src/AdvisorResults.tsx', 'src/MaterialPropertiesFields.tsx', 'src/advisorApi.ts', 'src/pages/AgentChat.tsx', 'src/agentV10.ts',
   'src/pages/Reactor.tsx', 'src/pages/Market.tsx', 'src/MarketChart.tsx', 'src/pages/Science.tsx', 'src/pages/System.tsx',
   'src/pages/Demo.tsx', 'src/pages/FiroDemoMvp.tsx', 'src/firoDemo.ts', 'src/demoScenarios.ts', 'src/LanguageSwitch.tsx',
+  'src/pages/FarmerCalculator.tsx', 'src/substratesApi.ts',
 ]
 // Example questions that show the agent understands Kazakh: they stay in Kazakh in every interface language.
 const KEEP_KAZAKH = new Set(['agentChat.5', 'scenario.kazakh.message.1'])
 const CYR = /[А-Яа-яЁёӘәҒғҚқҢңӨөҰұҮүҺһІі]/
 // International words written the same in Kazakh and Russian (checked by hand, docs/kk_terms_review.md).
-const LOANWORDS = new Set(['экономика', 'когенерация', 'дигестат', 'температура', 'датчик', 'агент', 'оператор', 'диалог',
+const LOANWORDS = new Set(['компрессор', 'газгольдер', 'шнек', 'симулятор', 'экономика', 'когенерация', 'дигестат', 'температура', 'датчик', 'агент', 'оператор', 'диалог',
   'режим', 'сценарий', 'демо-партия', 'демо-реактор', 'файл', 'промпт', 'ток', 'с', 'мл', 'г', 'л', 'реактор',
-  'диагностика', 'биометан', 'компост', 'карбамид', 'аммофос', 'алматы', 'тариф', 'метан'])
+  'диагностика', 'биометан', 'интернет', 'сервер', 'плата', 'ноутбук', 'дашборд', 'компост', 'карбамид', 'аммофос', 'алматы', 'тариф', 'метан'])
 const KAZAKH_LETTERS = /[әғқңөұүһі]/i
 // Strings that may stay the same in Kazakh as in Russian: units, abbreviations, names, formulas, numbers.
-const SAME_OK = /^[\s\d.,:;·×÷=+−–—\-/()%°≈~<>|«»"'?!A-Za-z₀-₉³²µ]*$|^(?:л|кг|т|м³|кВт·ч|°C|КРС|МРС|pH|CH₄|ч|сут|мм|см)$/
+const SAME_OK = /^[\s\d.,:;·×÷=+−–—\-/()%°≈~<>|«»"'?!A-Za-z₀-₉³²µ]*$|^(?:л|кг|т|м³|кВт·ч|°C|КРС|МРС|pH|CH₄|ч|сут|мм|см|кПа)$/
 
 export function check(root = '.') {
   const read = lang => JSON.parse(fs.readFileSync(path.join(root, 'src/i18n', `${lang}.json`), 'utf8'))

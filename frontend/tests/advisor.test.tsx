@@ -2,7 +2,7 @@
 import { fireEvent, render, screen, waitFor, within } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { DisplayModeProvider, DisplayModeToggle } from '../src/DisplayMode'
-import SubstrateAdvisor from '../src/pages/SubstrateAdvisorV81'
+import { LegacyAdvisor as SubstrateAdvisor } from '../src/pages/SubstrateAdvisorV81'
 import ConversationReply from '../src/ConversationReply'
 import { CHAT_ADVISOR_KEY } from '../src/api'
 import { advisorApi, type AdvisorCatalog, type AdvisorResult } from '../src/advisorApi'
@@ -32,7 +32,7 @@ describe('Advisor scientific boundaries in the UI',()=>{
  beforeEach(()=>{vi.restoreAllMocks();localStorage.clear();vi.spyOn(advisorApi,'catalog').mockResolvedValue(catalog);vi.spyOn(advisorApi,'mixtures').mockResolvedValue({mixtures:[]})})
  it('has one unified form for one or several materials',async()=>{
   const {container}=builder();await screen.findByText('15',{selector:'strong'})
-  expect(screen.getByRole('heading',{name:'Сырьё и смеси'})).toBeVisible();expect(container.querySelectorAll('form')).toHaveLength(1)
+  expect(container.querySelectorAll('form')).toHaveLength(1)
   expect(screen.queryByRole('heading',{name:'Substrate Advisor'})).toBeNull();expect(modeButton('Простой')).toHaveAttribute('aria-pressed','true')
   fireEvent.click(modeButton('Научный'));expect(screen.getAllByRole('button',{name:'Добавить материал'})).toHaveLength(1)
  })

@@ -1,0 +1,141 @@
+/* «Обзор» design-v3: hero (title + line illustration on a paper card), 2×2 grid of paper/dark metric cards,
+   system + skills. Colours: tokens only. Shared pieces (.v3-card, .v3-mark, .v3-pill …) live in design.css. */
+.v3-overview { display: flex; flex-direction: column; gap: 56px; padding-top: 8px; }
+
+/* hero */
+.v3-hero { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 40px; align-items: stretch; }
+.v3-hero-copy { display: flex; flex-direction: column; gap: 22px; justify-content: center; }
+.v3-display { font-family: var(--font-display); font-size: 52px; font-weight: 800; line-height: 1.06; letter-spacing: -.035em; color: var(--text-strong); margin: 0; text-wrap: balance; }
+.v3-lead { font-size: var(--fs-lg); line-height: 1.6; color: var(--text-muted); margin: 0; max-width: 54ch; }
+.v3-buttons { display: flex; flex-wrap: wrap; gap: 12px; }
+.v3-hero-art { margin: 0; padding: 20px 24px 24px; display: flex; flex-direction: column; justify-content: space-between; gap: 8px; }
+.v3-hero-art figcaption { display: flex; flex-direction: column; gap: 4px; padding-top: 14px; border-top: 1px solid var(--paper-line); }
+.v3-hero-methane { font-family: var(--font-display); font-size: 30px; font-weight: 800; letter-spacing: -.02em; }
+.v3-hero-methane .v3-num { font-size: 34px; }
+.v3-live { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-mono); font-size: var(--fs-sm); color: var(--text-muted); }
+.v3-live-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--accent); animation: v3-ping 2s var(--ease-out) infinite; }
+.v3-live.is-off { color: var(--text-strong); font-weight: 600; }
+.v3-live.is-off .v3-live-dot { background: transparent; border: 1.5px dashed var(--offline); animation: none; }
+@keyframes v3-ping { 0% { box-shadow: 0 0 0 0 color-mix(in oklch, var(--accent) 60%, transparent); } 70%, 100% { box-shadow: 0 0 0 10px transparent; } }
+
+/* sections and the 2×2 grid */
+.v3-section { display: flex; flex-direction: column; gap: 24px; }
+.v3-section-head { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+.v3-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.v3-grid-bottom { flex-direction: row; }
+
+/* metric cards */
+.v3-metric { display: flex; flex-direction: column; gap: 18px; min-height: 230px; }
+.v3-metric header { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+.v3-metric .v3-label { font-size: var(--fs-md); }
+.v3-metric-icon { flex-shrink: 0; }
+.v3-metric-value { margin: auto 0 0; display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.v3-metric-value .v3-num { font-size: 68px; line-height: .95; }
+.v3-unit { font-family: var(--font-mono); font-size: var(--fs-lg); color: var(--text-muted); }
+.v3-card-paper .v3-unit { color: var(--ink-muted); }
+.v3-metric footer { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center; padding-top: 14px; border-top: 1px solid var(--border); }
+.v3-card-paper.v3-metric footer { border-top-color: var(--paper-line); }
+/* a reading that needs attention gets a full ring, not a colour wash */
+.v3-metric[data-level="warn"] { box-shadow: inset 0 0 0 2px var(--warn); }
+.v3-metric[data-level="danger"] { box-shadow: inset 0 0 0 3px var(--danger); }
+.v3-card-paper.v3-metric[data-level="warn"] { box-shadow: inset 0 0 0 2px var(--warn-ink); }
+.v3-card-paper.v3-metric[data-level="danger"] { box-shadow: inset 0 0 0 3px var(--danger-ink); }
+.v3-metric[data-level="unknown"] .v3-num { color: var(--offline); }
+.v3-card-paper.v3-metric[data-level="unknown"] .v3-num { color: var(--offline-ink); }
+
+/* system + skills */
+.v3-system header, .v3-skills header { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
+.v3-system h3, .v3-skills h3 { margin: 0; font-family: var(--font-display); font-size: var(--fs-xl); font-weight: 700; }
+.v3-system dl { margin: 0; display: grid; gap: 14px; }
+.v3-system dl > div { display: grid; grid-template-columns: 120px 1fr; gap: 12px; align-items: baseline; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
+.v3-system dl > div:last-child { border-bottom: 0; padding-bottom: 0; }
+.v3-system dd { margin: 0; display: flex; gap: 8px; align-items: flex-start; }
+.v3-system dd strong { font-weight: 500; color: var(--text); line-height: 1.45; }
+.v3-tone { flex-shrink: 0; margin-top: 3px; }
+.v3-system [data-tone="ok"] .v3-tone { color: var(--ok); } .v3-system [data-tone="warn"] .v3-tone { color: var(--warn); } .v3-system [data-tone="bad"] .v3-tone { color: var(--danger); }
+.v3-skills ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; }
+.v3-skills li { display: flex; gap: 12px; align-items: flex-start; }
+.v3-skills li .li-sparkle { margin-top: 5px; }
+.v3-skills strong { font-family: var(--font-display); font-size: var(--fs-lg); font-weight: 700; }
+.v3-skills p { margin: 2px 0 0; font-size: var(--fs-sm); color: var(--ink-muted); line-height: 1.55; }
+.v3-more { align-self: flex-start; }
+
+/* ================= the line reactor (paper card) ================= */
+.lr { width: 100%; height: auto; display: block; }
+.lr-line { fill: none; stroke: var(--ink); stroke-width: 2.25; stroke-linecap: round; stroke-linejoin: round; }
+.lr-thin { stroke-width: 1.5; }
+.lr-barrel { stroke-width: 2.75; }
+.lr-substrate { fill: color-mix(in oklch, var(--accent) 22%, var(--paper)); stroke: var(--ink); stroke-width: 2; }
+.lr-substrate { animation: lr-wave 6s ease-in-out infinite alternate; }
+@keyframes lr-wave { to { transform: translateX(-24px); } }
+.lr-bubble { fill: var(--paper); stroke: var(--ink); stroke-width: 1.75; opacity: 0; animation: lr-rise 3.4s cubic-bezier(.35, .1, .5, 1) infinite; transform-box: fill-box; }
+.lr-bubble.is-lime { fill: var(--accent); }
+@keyframes lr-rise { 0% { transform: translateY(0) scale(.6); opacity: 0; } 12% { opacity: 1; } 85% { opacity: 1; } 100% { transform: translateY(-150px) scale(1.1); opacity: 0; } }
+.lr-bubbles.rate-still .lr-bubble { animation-play-state: paused; opacity: 0; }
+.lr-bubbles.rate-low .lr-bubble:nth-child(3n) { display: none; }
+.lr-bubbles.rate-low .lr-bubble { animation-duration: 4.6s !important; }
+.lr-bubbles.rate-high .lr-bubble { animation-duration: 2.4s !important; }
+.lr-heater { fill: none; stroke: var(--ink); stroke-width: 2.25; stroke-linejoin: round; opacity: .5; transition: opacity var(--dur) var(--ease-out), stroke-width var(--dur) var(--ease-out); }
+.lr-heater.is-on { opacity: 1; stroke-width: 3; }
+/* relay 1 heat: a warm glow under the reactor */
+.lr-heat-glow { fill: var(--warn); opacity: 0; filter: blur(14px); transition: opacity .5s var(--ease-out); }
+.lr-heat-glow.is-on { opacity: .55; animation: lr-breathe 2.6s ease-in-out infinite; }
+@keyframes lr-breathe { 50% { opacity: .35; } }
+/* relay 2 cool (LEDs on the stand): blue glow along the walls */
+.lr-cool-glow { fill: none; stroke: var(--info); stroke-width: 14; opacity: 0; filter: blur(8px); transition: opacity .5s var(--ease-out); }
+.lr-cool-line { fill: none; stroke: var(--paper-line); stroke-width: 2; }
+.lr-cool circle { fill: var(--paper); stroke: var(--ink); stroke-width: 1.5; transition: fill var(--dur) var(--ease-out); }
+.lr-cool.is-on .lr-cool-glow { opacity: .55; }
+.lr-cool.is-on circle { fill: var(--info); }
+/* relay 3 mixer: the impeller turns */
+.lr-blade { fill: var(--paper); }
+.lr-impeller { transform-box: view-box; transform-origin: 255px 268px; }
+.lr-impeller.is-on { animation: lr-spin 1.6s linear infinite; }
+.lr-impeller.is-on .lr-blade { fill: var(--accent); }
+.lr-motor { fill: var(--paper); transition: fill var(--dur) var(--ease-out); }
+.lr-motor.is-on { fill: var(--accent); }
+@keyframes lr-spin { to { transform: rotate(360deg); } }
+/* relay 4 compressor: air/gas runs along the gas line */
+.lr-comp-body { fill: var(--paper); transition: fill var(--dur) var(--ease-out); }
+.lr-compressor.is-on .lr-comp-body { fill: var(--accent); }
+.lr-compressor.is-on .lr-comp-air { animation: lr-air .9s linear infinite; }
+@keyframes lr-air { 50% { transform: translateX(4px); opacity: .5; } }
+.lr-flow { fill: none; stroke: var(--accent); stroke-width: 4; stroke-linecap: round; stroke-dasharray: 3 14; opacity: 0; }
+.lr-pipe.is-flowing .lr-flow { opacity: 1; animation: lr-flow 1s linear infinite; }
+@keyframes lr-flow { to { stroke-dashoffset: -17; } }
+.lr-bell { fill: color-mix(in oklch, var(--accent) 35%, var(--paper)); transition: transform 1.2s var(--ease-out); }
+/* legend of the four relays: lime pill + the word «вкл» when ON */
+.lr-legend-bg { fill: var(--paper); stroke: var(--paper-line); stroke-width: 1.5; transition: fill var(--dur) var(--ease-out), stroke var(--dur) var(--ease-out); }
+.lr-legend.is-on .lr-legend-bg { fill: var(--accent); stroke: var(--ink); }
+.lr-ico { fill: none; stroke: var(--ink); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.lr-legend-text { fill: var(--ink); font-family: var(--font-sans); font-size: 14px; font-weight: 600; }
+.lr-legend:not(.is-on) .lr-legend-text { fill: var(--ink-muted); font-weight: 500; }
+.lr-legend-on { fill: var(--ink); font-family: var(--font-mono); font-size: 13px; font-weight: 600; }
+.lr-dot { fill: var(--accent); stroke: var(--ink); stroke-width: 2; }
+.lr-label { fill: var(--ink-muted); font-family: var(--font-sans); font-size: 15px; font-weight: 500; }
+.lr-value { fill: var(--ink); font-family: var(--font-mono); font-size: 20px; font-weight: 600; }
+.lr-sparkle { fill: var(--ink); transform-box: fill-box; transform-origin: center; }
+.lr-sparkle.s2 { fill: var(--accent); stroke: var(--ink); stroke-width: 1.25; }
+.lr-sparkle.s1 { animation: lr-twinkle 3.2s ease-in-out infinite; }
+@keyframes lr-twinkle { 50% { transform: scale(.8) rotate(12deg); opacity: .7; } }
+/* no link: dashed outline, nothing moves, said in words */
+.lr.is-offline .lr-barrel { stroke-dasharray: 8 7; }
+.lr.is-offline .lr-substrate { fill: var(--paper-2); animation: none; }
+.lr-nolink rect { fill: var(--paper); stroke: var(--ink); stroke-width: 2; stroke-dasharray: 6 5; }
+.lr-nolink text { fill: var(--ink); font-family: var(--font-mono); font-size: 18px; font-weight: 600; }
+
+@media (max-width: 1100px) {
+  .v3-hero { grid-template-columns: 1fr; }
+  .v3-display { font-size: 40px; }
+}
+@media (max-width: 640px) {
+  .v3-grid { grid-template-columns: 1fr; }
+  .v3-display { font-size: 32px; }
+  .v3-metric-value .v3-num { font-size: 52px; }
+  .v3-system dl > div { grid-template-columns: 1fr; gap: 4px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lr-substrate, .lr-bubble, .lr-impeller, .lr-comp-air, .lr-flow, .lr-heat-glow, .lr-sparkle, .v3-live-dot { animation: none !important; }
+  .lr-pipe.is-flowing .lr-flow { stroke-dasharray: none; opacity: .6; }
+  .lr-bubble { opacity: 0 !important; }
+}

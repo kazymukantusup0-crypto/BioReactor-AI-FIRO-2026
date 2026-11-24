@@ -1,0 +1,16 @@
+{
+  "_comment": "Laptop side of the reactor: where the Raspberry Pi is. mode \"auto\" = try pi_candidates in turn (the Pi's own Wi-Fi, the direct cable, bioreactor.local in a shared network) and show the route on the page. mode \"pi\" = one fixed pi_url. mode \"simulator\" = a Pi bridge with a virtual Arduino inside this server (no hardware; the page always shows СИМУЛЯТОР). Environment overrides: BIOREACTOR_SENSORS=auto|pi|simulator, BIOREACTOR_PI_URL=http://... (docs/raspberry_setup.md)",
+  "mode": "auto",
+  "pi_candidates": [
+    {"url": "http://10.42.0.1:8780", "route": "pi_wifi"},
+    {"url": "http://192.168.50.2:8780", "route": "cable"},
+    {"url": "http://bioreactor.local:8780", "route": "lan"}
+  ],
+  "pi_url": "http://192.168.50.2:8780",
+  "token": "",
+  "poll_s": 1.0,
+  "link_timeout_s": 5,
+  "request_timeout_s": 2.5,
+  "search_timeout_s": 1.5,
+  "client_log": "data/runtime/reactor_client.log"
+}

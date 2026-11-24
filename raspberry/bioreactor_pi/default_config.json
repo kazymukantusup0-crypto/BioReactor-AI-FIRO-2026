@@ -1,0 +1,33 @@
+{
+  "_comment": "Raspberry Pi bridge settings. Copy to /etc/bioreactor-pi/config.json on the Pi and edit there. The reactor THRESHOLDS are not here: the Arduino keeps them in EEPROM (Temp Min / Temp Max / Overheat / Gas out alarm / Gas in pump) and they are changed from the dashboard (SET command) or on the Arduino's own screen.",
+  "serial": {
+    "_comment": "port: \"auto\" = first /dev/ttyACM* or /dev/ttyUSB* (on Windows: first USB COM port), or an exact port like \"/dev/ttyUSB0\". A Mega with a CH340 chip is /dev/ttyUSB0.",
+    "port": "auto",
+    "baud": 115200
+  },
+  "http": {"host": "0.0.0.0", "port": 8780, "token": ""},
+  "journal_path": "/var/lib/bioreactor-pi/journal.sqlite3",
+  "reading_log_every_s": 5,
+  "boot_timeout_s": 8,
+  "arduino_timeout_s": 5,
+  "ping_every_s": 2,
+  "laptop_timeout_s": 15,
+  "ack_timeout_s": 2,
+  "simulator": {
+    "_comment": "Virtual Arduino (--simulate and the laptop's СИМУЛЯТОР). mq_warmup_s is 60 on the real board; shorter here so a demo does not start with a minute of «warm-up».",
+    "mq_warmup_s": 20,
+    "link_timeout_s": 10,
+    "auger_max_run_s": 600,
+    "ambient_c": 20.0,
+    "start_temp_c": 31.0,
+    "heater_c_per_s": 0.05,
+    "cooler_c_per_s": 0.06,
+    "loss_per_s": 0.0015,
+    "start_gas_in": 420,
+    "gas_in_floor": 180,
+    "gas_in_per_s_at_37": 0.6,
+    "pump_gas_in_per_s": 6.0,
+    "gas_out_clean": 120,
+    "gas_out_leak": 640
+  }
+}
