@@ -58,3 +58,35 @@ export function bubbleRate(raw: number | null | undefined, live: boolean): 'stil
   if (!live || raw == null) return 'still'
   return raw < 250 ? 'low' : raw < 550 ? 'mid' : 'high'
 }
+
+/** What the reactor drawing needs, from the status: everything stays still and grey without a link. */
+export interface SceneState {
+  live: boolean            // link ok and readings fresh
+  simulated: boolean
+  temp: number | null
+  gasIn: number | null
+  gasOut: number | null
+  heat: number             // 0..1
+  gas: number              // 0..1 of the pump threshold
+  rate: 'still' | 'low' | 'mid' | 'high'
+  relays: { heat: boolean; cool: boolean; pump: boolean; auger: boolean }
+  leak: boolean
+}
+
+export function sceneState(status: ReactorStatus | null): SceneState {
+  const live = Boolean(status?.link.ok)
+  const r = status?.readings
+  const temp = r?.temp_c.value ?? null
+  const gasIn = r?.gas_in.value ?? null
+  return {
+    live, simulated: status?.source.kind === 'simulator',
+    temp, gasIn, gasOut: r?.gas_out.value ?? null,
+    heat: heatOf(live ? temp : null),
+    gas: live ? gasShare(gasIn, status?.limits?.gas_in_limit) : 0,
+    rate: bubbleRate(gasIn, live),
+    relays: { heat: live && Boolean(status?.relays.heat.on), cool: live && Boolean(status?.relays.cool.on),
+              pump: live && Boolean(status?.relays.pump.on), auger: live && Boolean(status?.relays.auger.on) },
+    leak: Boolean(status?.arduino_alarms?.leak),
+  }
+}
+

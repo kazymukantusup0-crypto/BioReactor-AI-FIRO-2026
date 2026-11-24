@@ -1293,5 +1293,9 @@
  "ov.level.warn": "attention",
  "ov.level.danger": "alarm",
  "ov.level.unknown": "no data",
- "ov.m3": "m³"
+ "ov.m3": "m³",
+ "v3.metrics": "Reactor readings",
+ "v3.rh": "Humidity",
+ "v3.rhWarn": "attention from 95 %",
+ "v3.leakAt": "alarm from {v0}"
 }
