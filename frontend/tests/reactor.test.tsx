@@ -60,13 +60,14 @@ describe('Reactor page', () => {
     expect(await screen.findByText('ДАТЧИКИ: RASPBERRY PI (172.20.10.3:8780) → ВИРТУАЛЬНЫЙ ARDUINO')).toBeInTheDocument()
   })
 
-  it('four relays incl. the auger; asks for confirmation; cancel sends nothing', async () => {
+  it('four relays (4 = compressor, API name auger); asks for confirmation; cancel sends nothing', async () => {
     mockApi()
     const relay = vi.spyOn(reactorApi, 'relay').mockResolvedValue({ ok: true, reason: null })
     render(<Reactor />)
-    expect(await screen.findByTestId('rx-relay-auger')).toHaveTextContent('Шнек (мотор)')
+    expect(await screen.findByTestId('rx-relay-auger')).toHaveTextContent('Компрессор')
     fireEvent.click(screen.getByTestId('rx-relay-button-auger'))
-    expect(screen.getByTestId('rx-confirm').textContent).toMatch(/Включить: Шнек \(мотор\)\?.*нет рук/)
+    expect(screen.getByTestId('rx-confirm').textContent).toMatch(/Включить: Компрессор\?.*через 10 мин/)
+    expect(screen.getByTestId('rx-relay-pump')).toHaveTextContent('Мешалка')
     fireEvent.click(screen.getByText('Отмена'))
     expect(relay).not.toHaveBeenCalled()
     fireEvent.click(screen.getByTestId('rx-relay-button-heat'))

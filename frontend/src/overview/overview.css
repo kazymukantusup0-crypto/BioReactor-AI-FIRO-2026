@@ -75,17 +75,44 @@
 .lr-bubbles.rate-low .lr-bubble:nth-child(3n) { display: none; }
 .lr-bubbles.rate-low .lr-bubble { animation-duration: 4.6s !important; }
 .lr-bubbles.rate-high .lr-bubble { animation-duration: 2.4s !important; }
-.lr-heater { fill: none; stroke: var(--ink); stroke-width: 2.25; stroke-linejoin: round; opacity: .55; transition: stroke var(--dur) var(--ease-out), opacity var(--dur) var(--ease-out); }
-.lr-heater.is-on { stroke: var(--ink); opacity: 1; stroke-width: 3; }
-.lr-pump.is-on .lr-pump-body { fill: var(--accent); }
-.lr-impeller { transform-box: fill-box; transform-origin: center; }
-.lr-pump.is-on .lr-impeller { animation: lr-spin 1.4s linear infinite; }
+.lr-heater { fill: none; stroke: var(--ink); stroke-width: 2.25; stroke-linejoin: round; opacity: .5; transition: opacity var(--dur) var(--ease-out), stroke-width var(--dur) var(--ease-out); }
+.lr-heater.is-on { opacity: 1; stroke-width: 3; }
+/* relay 1 heat: a warm glow under the reactor */
+.lr-heat-glow { fill: var(--warn); opacity: 0; filter: blur(14px); transition: opacity .5s var(--ease-out); }
+.lr-heat-glow.is-on { opacity: .55; animation: lr-breathe 2.6s ease-in-out infinite; }
+@keyframes lr-breathe { 50% { opacity: .35; } }
+/* relay 2 cool (LEDs on the stand): blue glow along the walls */
+.lr-cool-glow { fill: none; stroke: var(--info); stroke-width: 14; opacity: 0; filter: blur(8px); transition: opacity .5s var(--ease-out); }
+.lr-cool-line { fill: none; stroke: var(--paper-line); stroke-width: 2; }
+.lr-cool circle { fill: var(--paper); stroke: var(--ink); stroke-width: 1.5; transition: fill var(--dur) var(--ease-out); }
+.lr-cool.is-on .lr-cool-glow { opacity: .55; }
+.lr-cool.is-on circle { fill: var(--info); }
+/* relay 3 mixer: the impeller turns */
+.lr-blade { fill: var(--paper); }
+.lr-impeller { transform-box: view-box; transform-origin: 255px 268px; }
+.lr-impeller.is-on { animation: lr-spin 1.6s linear infinite; }
+.lr-impeller.is-on .lr-blade { fill: var(--accent); }
+.lr-motor { fill: var(--paper); transition: fill var(--dur) var(--ease-out); }
+.lr-motor.is-on { fill: var(--accent); }
 @keyframes lr-spin { to { transform: rotate(360deg); } }
+/* relay 4 compressor: air/gas runs along the gas line */
+.lr-comp-body { fill: var(--paper); transition: fill var(--dur) var(--ease-out); }
+.lr-compressor.is-on .lr-comp-body { fill: var(--accent); }
+.lr-compressor.is-on .lr-comp-air { animation: lr-air .9s linear infinite; }
+@keyframes lr-air { 50% { transform: translateX(4px); opacity: .5; } }
+.lr-flow { fill: none; stroke: var(--accent); stroke-width: 4; stroke-linecap: round; stroke-dasharray: 3 14; opacity: 0; }
+.lr-pipe.is-flowing .lr-flow { opacity: 1; animation: lr-flow 1s linear infinite; }
+@keyframes lr-flow { to { stroke-dashoffset: -17; } }
 .lr-bell { fill: color-mix(in oklch, var(--accent) 35%, var(--paper)); transition: transform 1.2s var(--ease-out); }
-.lr-auger.is-on .lr-flights { animation: lr-auger .7s linear infinite; }
-@keyframes lr-auger { to { transform: translateX(14px); } }
+/* legend of the four relays: lime pill + the word «вкл» when ON */
+.lr-legend-bg { fill: var(--paper); stroke: var(--paper-line); stroke-width: 1.5; transition: fill var(--dur) var(--ease-out), stroke var(--dur) var(--ease-out); }
+.lr-legend.is-on .lr-legend-bg { fill: var(--accent); stroke: var(--ink); }
+.lr-ico { fill: none; stroke: var(--ink); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.lr-legend-text { fill: var(--ink); font-family: var(--font-sans); font-size: 14px; font-weight: 600; }
+.lr-legend:not(.is-on) .lr-legend-text { fill: var(--ink-muted); font-weight: 500; }
+.lr-legend-on { fill: var(--ink); font-family: var(--font-mono); font-size: 13px; font-weight: 600; }
 .lr-dot { fill: var(--accent); stroke: var(--ink); stroke-width: 2; }
-.lr-label { fill: var(--ink-muted); font-family: var(--font-mono); font-size: 15px; }
+.lr-label { fill: var(--ink-muted); font-family: var(--font-sans); font-size: 15px; font-weight: 500; }
 .lr-value { fill: var(--ink); font-family: var(--font-mono); font-size: 20px; font-weight: 600; }
 .lr-sparkle { fill: var(--ink); transform-box: fill-box; transform-origin: center; }
 .lr-sparkle.s2 { fill: var(--accent); stroke: var(--ink); stroke-width: 1.25; }
@@ -108,6 +135,7 @@
   .v3-system dl > div { grid-template-columns: 1fr; gap: 4px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .lr-substrate, .lr-bubble, .lr-impeller, .lr-flights, .lr-sparkle, .v3-live-dot { animation: none !important; }
+  .lr-substrate, .lr-bubble, .lr-impeller, .lr-comp-air, .lr-flow, .lr-heat-glow, .lr-sparkle, .v3-live-dot { animation: none !important; }
+  .lr-pipe.is-flowing .lr-flow { stroke-dasharray: none; opacity: .6; }
   .lr-bubble { opacity: 0 !important; }
 }

@@ -69,7 +69,8 @@ export interface SceneState {
   heat: number             // 0..1
   gas: number              // 0..1 of the pump threshold
   rate: 'still' | 'low' | 'mid' | 'high'
-  relays: { heat: boolean; cool: boolean; pump: boolean; auger: boolean }
+  // relay 1 heat, 2 cool (LEDs on the stand), 3 mixer, 4 compressor. The API/firmware names stay heat|cool|pump|auger.
+  relays: { heat: boolean; cool: boolean; mixer: boolean; compressor: boolean }
   leak: boolean
 }
 
@@ -85,7 +86,7 @@ export function sceneState(status: ReactorStatus | null): SceneState {
     gas: live ? gasShare(gasIn, status?.limits?.gas_in_limit) : 0,
     rate: bubbleRate(gasIn, live),
     relays: { heat: live && Boolean(status?.relays.heat.on), cool: live && Boolean(status?.relays.cool.on),
-              pump: live && Boolean(status?.relays.pump.on), auger: live && Boolean(status?.relays.auger.on) },
+              mixer: live && Boolean(status?.relays.pump.on), compressor: live && Boolean(status?.relays.auger.on) },
     leak: Boolean(status?.arduino_alarms?.leak),
   }
 }

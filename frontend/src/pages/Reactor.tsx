@@ -3,7 +3,7 @@
 // The page only shows what the Pi reports. Every manual command is a person's button + a confirmation; E-STOP is one
 // click with no confirmation. The AI agent reads the same data and never presses buttons.
 import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react'
-import { AlertOctagon, AlertTriangle, ArrowRight, Bot, Cable, CheckCircle2, Cog, Cpu, Droplets, Fan, Flame, Gavel, HelpCircle, Laptop, Network, OctagonX, PlugZap, Power, RadioTower, RefreshCw, RotateCcw, ShieldAlert, SlidersHorizontal, Thermometer, Unplug, Wifi, Wind, Wrench, XCircle } from 'lucide-react'
+import { AlertOctagon, AlertTriangle, ArrowRight, Bot, Cable, CheckCircle2, Cog, Cpu, Droplets, Fan, Flame, Gavel, HelpCircle, Laptop, Network, OctagonX, PlugZap, Power, RadioTower, RefreshCw, RotateCcw, ShieldAlert, SlidersHorizontal, Snowflake, Thermometer, Unplug, Wifi, Wind, Wrench, XCircle } from 'lucide-react'
 import { CartesianGrid, Line, LineChart, ReferenceLine, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 import { ALARM_CODES, LIMITS, reactorApi, RELAYS, SENSORS, type Alarm, type CheckResult, type CommandResult, type HistoryPoint, type JournalItem, type Level, type LimitName, type Limits, type ReactorStatus, type RelayName, type SensorName, type SimulatorSwitch } from '../reactorApi'
 import { tr } from '../i18n'
@@ -12,7 +12,8 @@ import { chartColors } from '../theme'
 
 const JURY_KEY = 'bioreactor-reactor-jury'
 const ICONS: Record<SensorName, typeof Thermometer> = { temp_c: Thermometer, rh_pct: Droplets, gas_in: Wind, gas_out: ShieldAlert }
-const RELAY_ICONS: Record<RelayName, typeof Flame> = { heat: Flame, cool: Fan, pump: Power, auger: Cog }
+// relay 1 heat, 2 cool, 3 mixer (API name pump), 4 compressor (API name auger)
+const RELAY_ICONS: Record<RelayName, typeof Flame> = { heat: Flame, cool: Snowflake, pump: RefreshCw, auger: Wind }
 const DIGITS: Record<SensorName, number> = { temp_c: 1, rh_pct: 1, gas_in: 0, gas_out: 0 }
 // Same ranges as validSettings() in the sketch; the step is the encoder's step on the Arduino screen
 const LIMIT_INPUT: Record<LimitName, { min: number; max: number; step: number }> = {
