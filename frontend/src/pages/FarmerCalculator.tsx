@@ -6,6 +6,8 @@ import { AnimatePresence, motion } from 'motion/react'
 import { advisorApi } from '../advisorApi'
 import { useQuery } from '../hooks'
 import { locale, materialName, tr, useI18n } from '../i18n'
+// design-v3: result cards alternate light «paper» and dark
+const FARM_TONE = ['paper', 'dark', 'dark', 'paper'] as const
 import { askAgentQuestion, CHAT_PREFILL_KEY, substratesApi, type EstimateResult, type EstimateRow, type FarmUnit, type Range } from '../substratesApi'
 
 const STORAGE = 'bioreactor-farm-calculator-v10'
@@ -90,7 +92,7 @@ export default function FarmerCalculator({ scientific }: { scientific: boolean }
   const ok = result?.ok && data?.status === 'ok'  // with a bad amount the last valid result stays, dimmed
   const parts = data?.components ?? []
   return <div className="farm">
-    <section className="farm-input ds-card" aria-label={tr('farm.input')}>
+    <section className="farm-input v3-card v3-card-dark" aria-label={tr('farm.input')}>
       <div className="farm-rows">
         <AnimatePresence initial={false}>
           {rows.map((row, index) => {
@@ -120,8 +122,8 @@ export default function FarmerCalculator({ scientific }: { scientific: boolean }
         </AnimatePresence>
       </div>
       <div className="farm-actions">
-        <button type="button" className="ds-button" disabled={rows.length >= 8} onClick={add} data-testid="farm-add"><Plus size={17} />{tr('farm.add')}</button>
-        <button type="button" className="ds-button ds-button-primary" disabled={!valid} onClick={ask} data-testid="farm-ask"><MessageSquare size={17} />{tr('farm.ask')}</button>
+        <button type="button" className="v3-pill" disabled={rows.length >= 8} onClick={add} data-testid="farm-add"><Plus size={17} />{tr('farm.add')}</button>
+        <button type="button" className="v3-pill v3-pill-lime" disabled={!valid} onClick={ask} data-testid="farm-ask"><MessageSquare size={17} />{tr('farm.ask')}</button>
         <span className="farm-status" role="status">{busy ? tr('farm.calculating') : ''}</span>
       </div>
     </section>
@@ -137,7 +139,7 @@ export default function FarmerCalculator({ scientific }: { scientific: boolean }
           { id: 'biogas', icon: Wind, title: tr('farm.card.biogas'), value: data.biogas_m3!, unit: tr('farm.unit.m3'), note: tr('farm.card.share', { v0: Math.round(data.methane_share!.low * 100), v1: Math.round(data.methane_share!.high * 100) }) },
           { id: 'energy', icon: Zap, title: tr('farm.card.energy'), value: data.energy_kwh!, unit: tr('farm.kwh'), note: tr('farm.card.energyNote') },
           { id: 'days', icon: Clock, title: tr('farm.card.days'), value: data.days!, unit: tr('farm.days'), note: tr('farm.card.regime', { v0: data.regime_name ?? '', v1: data.temperature_c ?? 37 }) },
-        ].map((card, index) => <motion.article key={card.id} className="farm-card ds-card" data-testid={`farm-card-${card.id}`}
+        ].map((card, index) => <motion.article key={card.id} className={`farm-card v3-card v3-card-${FARM_TONE[index % 4]}`} data-testid={`farm-card-${card.id}`}
           initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .22, delay: index * .05 }}>
           <span className="farm-card-title"><card.icon size={18} />{card.title}</span>
           <strong className="farm-card-value">≈ {card.id === 'days' ? range(card.value) : num(mid(card.value))} <small>{card.unit}</small></strong>
@@ -146,7 +148,7 @@ export default function FarmerCalculator({ scientific }: { scientific: boolean }
         </motion.article>)}
       </div>
 
-      {parts.length > 1 && <motion.section className="farm-chart ds-card" aria-label={tr('farm.chart')} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: .25, delay: .15 }}>
+      {parts.length > 1 && <motion.section className="farm-chart v3-card v3-card-dark" aria-label={tr('farm.chart')} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: .25, delay: .15 }}>
         <h2>{tr('farm.chart')}</h2>
         <p className="ds-muted">{tr('farm.chartNote')}</p>
         <ul className="farm-bars" data-testid="farm-chart">

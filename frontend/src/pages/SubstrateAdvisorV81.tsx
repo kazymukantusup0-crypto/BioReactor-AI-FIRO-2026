@@ -12,6 +12,7 @@ import '../advisor.css'
 import MaterialPropertiesFields from '../MaterialPropertiesFields'
 import { localized, materialName, optionLabel, tr } from '../i18n'
 import { useDisplayMode } from '../DisplayMode'
+import { Marked } from '../v3ui'
 import FarmerCalculator from './FarmerCalculator'
 
 const STORAGE_KEY = 'bioreactor-inventory-v8.1'
@@ -434,7 +435,7 @@ export default function SubstrateAdvisorV81(_props: { mixture?: boolean }) {
     setLegacyOpen(open)
   }
   return <div className="advisor-page">
-    <div className="page-heading"><div><h1>{tr('substrateAdvisorV81.17')}</h1><p>{tr('farm.subtitle')}</p></div></div>
+    <div className="page-heading v3-heading"><div><Marked as="h1">{tr('substrateAdvisorV81.17')}</Marked><p>{tr('farm.subtitle')}</p></div></div>
     <FarmerCalculator scientific={mode === 'scientific'} />
     {mode === 'scientific' && <details className="ds-collapse farm-legacy" data-testid="legacy-v8" onToggle={event => openLegacy((event.target as HTMLDetailsElement).open)}>
       <summary>{tr('farm.legacy')}</summary><p className="ds-muted">{tr('farm.legacyNote')}</p>{legacyOpen && <LegacyAdvisor mixture />}

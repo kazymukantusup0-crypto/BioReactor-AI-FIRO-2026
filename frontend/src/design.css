@@ -370,3 +370,27 @@ main { font-size: var(--fs-md); }
 @media (prefers-reduced-motion: reduce) { .v3-enter, .v3-enter-2 { animation-name: v3-fade !important; animation-duration: var(--dur) !important; } }
 @keyframes v3-fade { from { opacity: 0; } }
 .v3-pill-sm { min-height: 40px; padding: 0 16px; font-size: var(--fs-sm); gap: 8px; }
+
+/* design-v3: the older design-system pieces take the reference look everywhere */
+.ds-button { border-radius: var(--radius-pill); font-family: var(--font-mono); font-weight: 500; min-height: 44px; padding: 0 18px; background: transparent;
+  border: 1px solid var(--border-strong); color: var(--text-strong); }
+@media (hover: hover) and (pointer: fine) { .ds-button:hover:not(:disabled) { background: transparent; border-color: var(--text-strong); } }
+.ds-button-primary { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+@media (hover: hover) and (pointer: fine) { .ds-button-primary:hover:not(:disabled) { background: var(--accent-strong); border-color: var(--accent-strong); } }
+.ds-card { border-radius: var(--radius-card); padding: 28px; background: var(--surface-1); border: 1px solid var(--border); }
+.v3-heading > div { display: flex; flex-direction: column; gap: 16px; }
+.v3-heading h1.v3-section-title { font-size: 34px; }
+
+/* «Сырьё и смеси»: input on a dark card, results as a 2×2 grid of paper/dark cards */
+.farm-input.v3-card { padding: 28px; }
+.farm-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.farm-card.v3-card { padding: 26px 28px; display: flex; flex-direction: column; gap: 10px; }
+.farm-card-title { font-family: var(--font-mono); font-size: var(--fs-md); font-weight: 500; color: var(--text-muted); display: flex; gap: 10px; align-items: center; }
+.farm-card .farm-card-value { font-family: var(--font-mono); font-size: 56px; line-height: 1; letter-spacing: -.03em; font-weight: 600; }
+.farm-card-value small { font-size: var(--fs-lg); color: var(--text-muted); font-weight: 500; }
+.farm-card-range { font-family: var(--font-mono); font-size: var(--fs-sm); }
+.farm-chart.v3-card { padding: 24px 28px; }
+.ds-collapse { border-radius: var(--radius-card); }
+@media (max-width: 760px) { .farm-cards { grid-template-columns: 1fr; } .farm-card .farm-card-value { font-size: 44px; } }
+/* lime is never a line or text colour on a paper card: icons there are ink */
+.v3-card-paper .farm-card-title svg, .v3-card-paper .rx-reading-title svg, .v3-card-paper .metric-icon svg { color: var(--ink); }
