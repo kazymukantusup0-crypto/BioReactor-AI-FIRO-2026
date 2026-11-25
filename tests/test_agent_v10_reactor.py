@@ -79,7 +79,7 @@ def ask(agent, text, cid="conv-reactor-1"):
 
 
 @pytest.mark.parametrize("text", ["Что сейчас в реакторе?", "Какая температура в реакторе сейчас?", "Покажи показания датчиков",
-                                  "Пора откачивать газ?", "Есть утечка?", "Какое давление в реакторе?",
+                                  "Мешалка работает?", "Есть утечка?", "Какое давление в реакторе?", "Что с компрессором?", "Is the mixer on?",
                                   "What do the sensors show?", "Реактор қазір қандай?"])
 def test_reactor_questions_read_the_sensors(agent, manager, text):
     events, answer = ask(agent, text)
@@ -94,11 +94,16 @@ def test_answer_says_simulator_and_advises_heating(agent, manager):
     assert "СИМУЛЯТОР" in text and "31.2 °C" in text
     assert "рекомендую включить подогрев" in text and "только человек" in text
     assert "не % метана" in text and "сырое значение 0–1023" in text, "MQ is a raw indicator, never ppm or «% methane»"
-    assert "шнек" in text and "Режим: ручной режим" in text
+    assert "мешалка — выкл" in text and "компрессор — выкл" in text and "Режим: ручной режим" in text
+    for old in ("насос", "шнек", "откач"):   # relays 3/4 are the mixer and the compressor now (2026-11-24)
+        assert old not in text.lower()
 
 
-@pytest.mark.parametrize("text,language", [("Включи подогрев", "ru"), ("Выключи насос", "ru"), ("Turn on the heater", "en"),
-                                           ("Қыздыруды қос", "kk"), ("Включи шнек", "ru"), ("Turn the auger on", "en")])
+@pytest.mark.parametrize("text,language", [("Включи подогрев", "ru"), ("Включи мешалку", "ru"), ("Выключи компрессор", "ru"),
+                                           ("Turn on the heater", "en"), ("Turn the mixer on", "en"), ("Switch on the compressor", "en"),
+                                           ("Қыздыруды қос", "kk"), ("Араластырғышты қос", "kk"), ("Компрессорды өшір", "kk"),
+                                           # old words from habit: still refused, never sent to the LLM as a command
+                                           ("Выключи насос", "ru"), ("Включи шнек", "ru"), ("Turn the auger on", "en")])
 def test_control_requests_are_refused(agent, manager, text, language):
     _, answer = ask(agent, text)
     first = {"ru": "Я не управляю реле", "en": "I do not control the relays", "kk": "Мен релені басқармаймын"}[language]
@@ -126,15 +131,15 @@ def test_advice_rules():
     assert codes(status(temp=31.0, heat=True)) == ["heating"]
     assert codes(status(temp=31.0, auto=True)) == ["auto_temp"], "AUTO already holds the temperature"
     assert codes(status(temp=39.0)) == ["cool_on"]
-    assert codes(status(temp=36.5, gas_in=750)) == ["pump_on"]
-    assert codes(status(temp=36.5, gas_in=750, pump=True)) == ["pumping"]
+    assert codes(status(temp=36.5, gas_in=750)) == ["mixer_on"], "relay 3 = mixer: only a suggestion"
+    assert codes(status(temp=36.5, gas_in=750, pump=True)) == ["mixer_auto"]
     assert codes(status(temp=31.0, leak=True)) == ["leak"], "never advise heating during a leak"
     assert codes(status(temp=31.0, estop=True)) == ["estop"]
     assert codes(status(temp=46.0, overheat=True)) == ["overheat"]
     assert codes(status(temp=36.5, no_temp=True)) == ["no_temp"]
     assert codes(status(temp=31.0, warmup=True)) == ["warmup"], "no heating advice while heater is locked by warm-up"
     assert codes(status(temp=36.5, link_lost=True)) == ["link_lost"]
-    assert codes(status(temp=36.5, auger_timeout=True)) == ["auger_timeout"]
+    assert codes(status(temp=36.5, auger_timeout=True)) == ["compressor_timeout"], "relay 4 = compressor, 10 min limit"
     assert codes(status(link=False, level="pi")) == ["no_link_pi"]
     assert codes(status(link=False, level="arduino")) == ["no_link_arduino"]
 

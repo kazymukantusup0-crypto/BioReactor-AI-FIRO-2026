@@ -4,10 +4,15 @@ The data is a copy of the status from src/hardware/live.py (the server's reactor
 Python (like «откуда данные?»): every number is the sensor value, the advice is a fixed rule, and the text always
 says where the readings come from (СИМУЛЯТОР / RASPBERRY PI → ARDUINO) and that only a person switches relays.
 
+Relays of the stand (2026-11-24): 1 heat, 2 cool (LEDs), 3 mixer, 4 compressor. The API/firmware names stay
+heat | cool | pump | auger; every text the agent writes says мешалка / компрессор.
+
 Questions that come here (agent.run, before the LLM):
     REACTOR_WORDS   «что сейчас в реакторе?», «какая температура в реакторе сейчас?», «показания датчиков»,
-                    «пора откачивать?», «есть утечка?», «what do the sensors show?», «реактор қазір қандай?»
-    CONTROL_WORDS   «включи подогрев», «turn on the pump», «қыздыруды қос» -> refusal + the current status
+                    «работает мешалка?», «есть утечка?», «what do the sensors show?», «реактор қазір қандай?»
+    CONTROL_WORDS   «включи мешалку», «turn on the compressor», «қыздыруды қос» -> refusal + the current status.
+                    The old words (насос, шнек, откачка, pump, auger) are still recognised here, only to refuse:
+                    a habit like «включи насос» must never reach the LLM as an unanswered command.
 """
 from __future__ import annotations
 
@@ -20,36 +25,36 @@ REACTOR_WORDS = (
     r"(?:сейчас|щас|текущ\w*)\s+(?:\w+\s+){0,3}(?:в\s+)?(?:реактор\w*|бочк\w*)|"
     r"(?:в\s+)?(?:реактор\w*|бочк\w*)\s+(?:\w+\s+){0,2}(?:сейчас|щас)|"
     r"(?:что|как)\s+(?:там\s+)?(?:сейчас\s+)?с\s+реактор\w*|состояни\w*\s+реактор\w*|"
-    r"утечк\w*|пора\s+(?:ли\s+)?откачи\w*|откачи\w*\s+(?:газ\w*\s+)?(?:пора|нужно|надо)|"
+    r"утечк\w*|мешалк\w*|компрессор\w*|"
     r"давлени\w*\s+(?:газа\s+)?(?:в\s+реактор\w*|сейчас)|\bреле\b|"
     r"\bsensors?\b|\breadings?\b|\bright\s+now\b|reactor\s+status|status\s+of\s+the\s+reactor|"
     r"(?:in|inside)\s+the\s+reactor\s+now|current\s+(?:temperature|pressure|humidity)|\bleak\w*|\brelays?\b|"
-    r"time\s+to\s+pump|"
-    r"датчик\w*|көрсеткіш\w*|реактор\w*\s+қазір|қазір\s+(?:\w+\s+){0,2}реактор\w*|газ\s+ағ\w*|ағып\s+(?:жатыр|кет\w*)"
+    r"\bmixer\b|\bstirrer\b|\bcompressor\b|"
+    r"араластырғыш\w*|датчик\w*|көрсеткіш\w*|реактор\w*\s+қазір|қазір\s+(?:\w+\s+){0,2}реактор\w*|газ\s+ағ\w*|ағып\s+(?:жатыр|кет\w*)"
 )
 CONTROL_WORDS = (
     r"(?:включи|включите|включить|выключи|выключите|выключить|запусти|запустите|останови|остановите|отключи\w*)"
-    r"\s+(?:\w+\s+){0,2}(?:подогрев\w*|нагрев\w*|обогрев\w*|охлажд\w*|откачк\w*|насос\w*|реле|помп\w*|шнек\w*|автоматик\w*)|"
-    r"\b(?:turn|switch)\s+(?:on|off)\s+(?:the\s+)?(?:heater|heating|cooling|cooler|pump|relay|auger)\w*|"
-    r"\b(?:turn|switch)\s+(?:the\s+)?(?:heater|heating|cooling|cooler|pump|relay|auger)\w*\s+(?:on|off)\b|"
-    r"\b(?:start|stop)\s+(?:the\s+)?(?:heater|heating|cooling|pump|auger)\b|"
-    r"(?:қыздыр\w*|салқында\w*|сорғы\w*|реле\w*|шнек\w*)\s+(?:\w+\s+){0,1}(?:қос|өшір|іске\s+қос)\w*"
+    r"\s+(?:\w+\s+){0,2}(?:подогрев\w*|нагрев\w*|обогрев\w*|охлажд\w*|мешалк\w*|компрессор\w*|реле|автоматик\w*|откачк\w*|насос\w*|помп\w*|шнек\w*)|"
+    r"\b(?:turn|switch)\s+(?:on|off)\s+(?:the\s+)?(?:heater|heating|cooling|cooler|mixer|stirrer|compressor|relay|pump|auger)\w*|"
+    r"\b(?:turn|switch)\s+(?:the\s+)?(?:heater|heating|cooling|cooler|mixer|stirrer|compressor|relay|pump|auger)\w*\s+(?:on|off)\b|"
+    r"\b(?:start|stop)\s+(?:the\s+)?(?:heater|heating|cooling|mixer|stirrer|compressor|pump|auger)\b|"
+    r"(?:қыздыр\w*|салқында\w*|араластырғыш\w*|компрессор\w*|реле\w*|сорғы\w*|шнек\w*)\s+(?:\w+\s+){0,1}(?:қос|өшір|іске\s+қос)\w*"
 )
 
 NAMES = {
     "ru": {"temp_c": "температура", "rh_pct": "влажность", "gas_in": "газ внутри (индикатор MQ, сырое значение 0–1023, не % метана)",
            "gas_out": "газ снаружи (датчик утечки, сырое значение 0–1023)", "heat": "подогрев", "cool": "охлаждение",
-           "pump": "откачка газа", "auger": "шнек", "on": "вкл", "off": "выкл", "ok": "норма", "warn": "внимание",
+           "pump": "мешалка", "auger": "компрессор", "on": "вкл", "off": "выкл", "ok": "норма", "warn": "внимание",
            "danger": "опасно", "unknown": "датчик не отвечает", "auto": "автоматика Arduino", "manual": "ручной режим",
            "from_pi": "включено с ноутбука"},
     "en": {"temp_c": "temperature", "rh_pct": "humidity", "gas_in": "gas inside (MQ indicator, raw 0–1023, not % methane)",
-           "gas_out": "gas outside (leak sensor, raw 0–1023)", "heat": "heater", "cool": "cooling", "pump": "gas pump",
-           "auger": "auger", "on": "on", "off": "off", "ok": "normal", "warn": "attention", "danger": "danger",
+           "gas_out": "gas outside (leak sensor, raw 0–1023)", "heat": "heater", "cool": "cooling", "pump": "mixer",
+           "auger": "compressor", "on": "on", "off": "off", "ok": "normal", "warn": "attention", "danger": "danger",
            "unknown": "sensor not answering", "auto": "Arduino automatic mode", "manual": "manual mode",
            "from_pi": "switched on from the laptop"},
     "kk": {"temp_c": "температура", "rh_pct": "ылғалдылық", "gas_in": "ішіндегі газ (MQ индикаторы, шикі мән 0–1023, метан % емес)",
            "gas_out": "сыртқы газ (ағу датчигі, шикі мән 0–1023)", "heat": "қыздыру", "cool": "салқындату",
-           "pump": "газды сору", "auger": "шнек", "on": "қосулы", "off": "өшірулі", "ok": "қалыпты", "warn": "назар",
+           "pump": "араластырғыш", "auger": "компрессор", "on": "қосулы", "off": "өшірулі", "ok": "қалыпты", "warn": "назар",
            "danger": "қауіпті", "unknown": "датчик жауап бермейді", "auto": "Arduino автоматикасы", "manual": "қолмен режим",
            "from_pi": "ноутбуктан қосылған"},
 }
@@ -122,19 +127,19 @@ TEXTS = {
         "kk": "Температура датчигі жауап бермейді — қыздыру өшірулі және бұғатталған. DS18B20 (28-пин) тексеріңіз.",
     },
     "advice_warmup": {
-        "ru": "Датчики газа прогреваются после включения Arduino: подогрев и откачка пока заблокированы, утечка ещё не проверяется.",
-        "en": "The gas sensors are warming up after the Arduino started: heater and pump are locked, leaks are not checked yet.",
-        "kk": "Arduino қосылғаннан кейін газ датчиктері қызып жатыр: қыздыру мен сору әзірге бұғатталған.",
+        "ru": "Датчики газа прогреваются после включения Arduino: подогрев и мешалка пока заблокированы, утечка ещё не проверяется.",
+        "en": "The gas sensors are warming up after the Arduino started: heater and mixer are locked, leaks are not checked yet.",
+        "kk": "Arduino қосылғаннан кейін газ датчиктері қызып жатыр: қыздыру мен араластырғыш әзірге бұғатталған.",
     },
     "advice_link_lost": {
         "ru": "Arduino сообщает о потере связи с Pi: реле, включённые с ноутбука, она выключила. Сбросить отметку — «Сбросить тревоги».",
         "en": "The Arduino reports a lost link with the Pi: it switched off the relays switched on from the laptop. Clear it with «Reset alarms».",
         "kk": "Arduino Pi-мен байланыс үзілгенін хабарлайды: ноутбуктан қосылған релені өшірді. «Дабылдарды тастау» батырмасымен алыңыз.",
     },
-    "advice_auger_timeout": {
-        "ru": "Шнек выключен автоматически: он работал без перерыва дольше 10 минут.",
-        "en": "The auger was switched off automatically: it ran without a break for more than 10 minutes.",
-        "kk": "Шнек автоматты түрде өшірілді: ол 10 минуттан артық үздіксіз жұмыс істеді.",
+    "advice_compressor_timeout": {
+        "ru": "Компрессор (реле 4) выключен автоматически: он работал без перерыва дольше 10 минут.",
+        "en": "The compressor (relay 4) was switched off automatically: it ran without a break for more than 10 minutes.",
+        "kk": "Компрессор (4-реле) автоматты түрде өшірілді: ол 10 минуттан артық үздіксіз жұмыс істеді.",
     },
     "advice_heat": {
         "ru": "Совет: температура {temp} °C ниже нижнего порога {low} °C — рекомендую включить подогрев или автоматику.",
@@ -156,15 +161,18 @@ TEXTS = {
         "en": "The temperature {temp} °C is outside {low}–{high} °C; the Arduino's automatic mode switches heating or cooling itself.",
         "kk": "Температура {temp} °C {low}–{high} °C аралығынан тыс; Arduino автоматикасы қыздыруды не салқындатуды өзі қосады.",
     },
-    "advice_pump": {
-        "ru": "Совет: газ внутри {gas} (сырое значение) выше порога откачки {limit} — пора откачивать газ.",
-        "en": "Advice: gas inside {gas} (raw value) is above the pump limit {limit} — time to pump the gas out.",
-        "kk": "Кеңес: ішіндегі газ {gas} (шикі мән) сору шегінен {limit} жоғары — газды сору керек.",
+    "advice_mixer": {
+        "ru": "Совет: газ внутри {gas} (сырое значение) выше порога {limit} — можно включить мешалку (реле 3) "
+              "кнопкой на странице «Реактор» или включить автоматику.",
+        "en": "Advice: gas inside {gas} (raw value) is above the limit {limit} — you can switch the mixer (relay 3) on "
+              "with the button on the «Reactor» page or switch the automatic mode on.",
+        "kk": "Кеңес: ішіндегі газ {gas} (шикі мән) {limit} шегінен жоғары — араластырғышты (3-реле) «Реактор» "
+              "бетіндегі батырмамен немесе автоматиканы қосуға болады.",
     },
-    "advice_pump_auto": {
-        "ru": "Газ внутри {gas} выше порога откачки {limit}; откачка: {state}.",
-        "en": "Gas inside {gas} is above the pump limit {limit}; pump: {state}.",
-        "kk": "Ішіндегі газ {gas} сору шегінен {limit} жоғары; сору: {state}.",
+    "advice_mixer_auto": {
+        "ru": "Газ внутри {gas} выше порога {limit}; мешалка: {state}.",
+        "en": "Gas inside {gas} is above the limit {limit}; mixer: {state}.",
+        "kk": "Ішіндегі газ {gas} {limit} шегінен жоғары; араластырғыш: {state}.",
     },
     "all_ok": {
         "ru": "Всё в норме, действий не нужно.", "en": "Everything is normal, no action needed.",
@@ -226,8 +234,8 @@ def advice(status: dict, language: str) -> list[dict]:
         out.append({"code": "no_temp", "level": "danger", "text": _t("advice_no_temp", language)})
     if flags.get("link_lost"):
         out.append({"code": "link_lost", "level": "warn", "text": _t("advice_link_lost", language)})
-    if any(a.get("code") == "auger_timeout" for a in status.get("alarms", [])):
-        out.append({"code": "auger_timeout", "level": "warn", "text": _t("advice_auger_timeout", language)})
+    if any(a.get("code") == "auger_timeout" for a in status.get("alarms", [])):   # firmware name of relay 4
+        out.append({"code": "compressor_timeout", "level": "warn", "text": _t("advice_compressor_timeout", language)})
     if flags.get("warmup"):
         out.append({"code": "warmup", "level": "warn", "text": _t("advice_warmup", language)})
     stopped = flags.get("estop") or flags.get("leak")
@@ -248,11 +256,11 @@ def advice(status: dict, language: str) -> list[dict]:
     if gas is not None and limits and gas > limits["gas_in_limit"] and not stopped:
         values = {"gas": _fmt(gas, "gas_in"), "limit": int(limits["gas_in_limit"])}
         names = NAMES.get(language, NAMES["ru"])
-        if relays["pump"]["on"] or auto:
+        if relays["pump"]["on"] or auto:          # relay 3 = mixer (firmware name pump)
             state = names["on"] if relays["pump"]["on"] else names["auto"]
-            out.append({"code": "pumping", "level": "warn", "text": _t("advice_pump_auto", language, state=state, **values)})
+            out.append({"code": "mixer_auto", "level": "warn", "text": _t("advice_mixer_auto", language, state=state, **values)})
         elif not flags.get("warmup"):
-            out.append({"code": "pump_on", "level": "warn", "text": _t("advice_pump", language, **values)})
+            out.append({"code": "mixer_on", "level": "warn", "text": _t("advice_mixer", language, **values)})
     if not out:
         out.append({"code": "ok", "level": "ok", "text": _t("all_ok", language)})
     return out
