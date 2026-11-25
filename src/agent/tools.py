@@ -111,7 +111,7 @@ def recommend_conditions(data):
 
 def get_reactor_status():
     return {'status':'ok','mode':'mock','connected':False,'readings':None,'measured_at':None,'actuator_access':False,
-        'message':'Mock-режим: датчики не подключены, показаний нет. Агент не управляет нагревателем, насосом или клапанами.'}
+        'message':'Mock-режим: датчики не подключены, показаний нет. Агент не управляет реле (нагрев, охлаждение, мешалка, компрессор).'}
 
 
 class ToolRegistry:
